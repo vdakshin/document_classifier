@@ -1,0 +1,2277 @@
+VMware View™ 5 
+with PCoIP  
+
+N E T W O R K   O P T I M I Z AT I O N   G U I D E
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Table of Contents
+
+Introduction to VMware View PCoIP   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+PCoIP Bandwidth Optimization in View 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+Using VMware View Planner to Optimize Your View Deployments   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+Recommended Configurations for Optimal Bandwidth Utilization in View 5  .  .  .  .  .  .  .  . 7
+ 
+Importing the PCoIP Administrative Template  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+  Configuring Recommended View Settings  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+Windows Desktop Settings to Optimize Performance over a WAN  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 17
+  Windows 7 Visual Settings Optimization  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 17
+  Windows XP Visual Settings Optimization  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 17
+Network Optimization  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 20
+  Strengths of the PCoIP Protocol  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 20
+  Network Bandwidth Planning for Basic Office Productivity Desktops  .  .  .  .  .  .  .  .  .  .  . 21
+  Network Configuration Considerations  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 24
+  WAN Virtual Desktop Testing Guidelines  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 26
+Advanced Configurations in VMware View  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 28
+ 
+Image Display Settings in View  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 28
+  Network Settings in View  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 31
+  Client Cache Size Setting in View  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 33
+Using PCoIP Session Statistics to Monitor End-User Experience   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 35
+References for Further Information   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 37
+About the Author and Contributors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 37
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Introduction to VMware View PCoIP
+
+The PCoIP protocol provides real-time delivery of a rich user desktop experience using UDP. This document 
+addresses the optimization of the PCoIP display protocol in VMware View. 
+
+Any successful virtual desktop deployment starts with a solid plan and design, from the endpoint device to the 
+datacenter, to support the use cases and business objectives.  As with any remote display protocol, the most 
+important design consideration is a properly architected network. To ensure a responsive desktop, the PCoIP 
+protocol must be deployed across a network infrastructure that meets bandwidth, latency, jitter, and packet 
+loss requirements.
+
+Network requirements can vary greatly depending on the network parameters, application graphical 
+requirements, and user demands.
+
+The sections of the paper are:
+
+•	 PCoIP	Bandwidth	Optimization	in	View	5
+
+•	 Using	VMware	View	Planner	to	Optimize	Your	View	Deployments
+
+•	 Recommended	Configurations	for	Optimal	Bandwidth	Utilization	in	View	5
+
+•	 Windows	Desktop	Settings	to	Optimize	Performance	over	a	WAN
+
+•	 Network	Optimization
+
+•	 Advanced	Configurations	in	VMware	View
+
+•	 Using	PCoIP	Session	Statistics	to	Monitor	End-User	Experience
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+PCoIP Bandwidth Optimization in View 5
+
+In	View	5	with	PCoIP,	VMware	made	significant	performance	optimizations	to	improve	overall	bandwidth 	
+utilization and CPU consumption. The bandwidth improvements permit higher session consolidation per 
+network	connection	and	increased	WAN	scalability.	Combined	with	the	CPU	optimizations,	you	can	achieve 	
+higher consolidation ratios per host and greater responsiveness.
+
+The bandwidth reduction was achieved with a combination of these changes:
+
+•	 Lossless	codec	improvements
+
+•	 Client-side	caching
+
+•	 Ability	to	turn	off	Build	to	Lossless
+
+The	lossless	codec	and	client-side	caching	changes	are	enabled	by	default	in	View	PCoIP.	Build	to	Lossless 	
+is	enabled	by	default	to	provide	the	richest	graphical	experience,	and	now	you	can	disable	Build	to	Lossless. 	
+These three changes combined result in optimal bandwidth utilization. The bandwidth reduction occurs on both 
+a	LAN	and	a	WAN,	but	you	gain	the	most	value	on	a	WAN	because	of	the	smaller	bandwidth	available.
+
+Updates to the Lossless Codec
+In	View	5,	VMware	and	Teradici	improved	the	lossless	codec	by	changing	the	algorithm	for	compressing	text. 	
+This	improvement	significantly	reduced	bandwidth	usage,	especially	in	cases	where	ClearType	and	anti-aliased 	
+fonts are used.
+
+The	updated	lossless	codec	is	enabled	by	default	and	does	not	require	configuration.
+
+Client-Side Image Caching
+Client-side	caching	stores	image	content	on	the	client	to	avoid	retransmission.	By	default,	client-side	caching	is 	
+set	to	On,	which	helps	to	reduce	bandwidth	usage.
+
+Client-side	caching	is	a	feature	in	Windows	View	Clients,	but	not	in	zero	clients	or	mobile	clients.	In	addition, 	
+the	Mac	and	Linux	Clients	do	not	yet	have	client-side	caching.
+
+The	recommended	memory	for	client-side	caching	is	1GB.	Windows,	Mac,	and	Linux	clients	usually	have	more 	
+than	1GB	memory,	as	do	thin	clients,	but	a	virtual	machine	could	have	less.	Consult	the	client	documentation	or 	
+client	provider	for	information	on	available	memory.	If	the	client	memory	is	less	than	512MB,	reduce	the	client 	
+cache size for optimal performance of client-side caching. See	Client Cache Size Setting in View.
+
+Build to Lossless
+Building	to	lossless	is	a	unique	capability	built	into	PCoIP	to	provide	the	highest	quality	of	graphic	image. 	
+VMware View with PCoIP uses a progressive build process for screen images so that users have the optimal 
+experience, even under constrained network conditions. PCoIP builds to lossless in three incremental steps:
+
+•	 Sends	initial,	highly	compressed	lossy	(grainy)	image	to	the	client,	with	the	image	content	cached	on	the 	
+
+client
+
+•	 Builds	image	to	perceptually	lossless
+
+•	 Builds	image	to	fully	lossless	(full	fidelity)
+
+By	default,	PCoIP	builds	to	fully	lossless,	the	highest	image	quality.	The	final	step	between	perceptually	lossless 	
+and fully lossless by default takes thirty seconds. The process of building to lossless, when enabled, occurs in 
+the background.
+
+Building	to	lossless	works	best	on	a	LAN	or	high-bandwidth	WAN.	To	maintain	desktop	responsiveness	on 	
+congested	networks,	PCoIP	dynamically	reduces	image	quality	and	screen	update	frequency.	On	networks 	
+with less than 1Mbps of bandwidth per session, PCoIP dynamically adapts to changing network conditions and 
+adjusts by slowing down the build to lossless, with a visibly lossy image to the user, then a rapid build of the 
+
+V M WA R E   V I E W   W I T H   P C O I P   /   4
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+image	to	a	lossless	state.	When	the	network	is	no	longer	congested,	PCoIP	resumes	maximum	image	quality 	
+and update frequency. This algorithm allows the desktop to remain responsive even under varying network 
+conditions.
+
+A fully lossless image is critical for use cases such as medical imaging and graphic design, where image quality 
+is a more important consideration than bandwidth utilization.
+
+Other	use	cases,	such	as	office	workers,	task	workers,	and	knowledge	workers,	do	not	require	the	same	level	of 	
+image perfection. In these cases, bandwidth utilization is usually more important than image quality. In View 
+5	with	PCoIP,	you	have	the	ability	to	disable	the	build	to	lossless	stage	to	lower	bandwidth	utilization.	This 	
+provides standard users with a perceptually lossless rich user experience at the same time as you optimize 
+network bandwidth utilization.
+
+You	configure	the	build-to-lossless	capability	with	the	Disable	Build	To	Lossless	group	policy	setting	provided	in 	
+VMware	View.	The	default	value	of	Disable	Build	To	Lossless	is	Off;	fully	lossless	is	enabled,	and	images	are	built 	
+to the highest quality. In cases where bandwidth utilization is more critical than highest image quality, disable 
+the	build-to-lossless	feature	by	setting	Disable	Build	To	Lossless	to	On.	See	 Recommended Configurations for 
+Optimal Bandwidth Utilization in View 5.
+
+The	Disable-Build-to-Lossless	feature	extends	beyond	the	standard	View	Clients	to	zero	clients	and	mobile 	
+clients. 
+
+V M WA R E   V I E W   W I T H   P C O I P   /   5
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Using VMware View Planner to Optimize 
+ Your View Deployments
+
+VMware View Planner is a workload generator and sizing tool that simulates a large-scale deployment of 
+virtualized	desktop	systems.	This	virtual	appliance	enables	you	to	study	the	effects	of	a	View	deployment	on 	
+an	entire	virtualized	infrastructure.	The	tool	is	scalable	from	a	few	virtual	machines	running	on	one	VMware	ESX 	
+host	up	to	hundreds	of	virtual	machines	distributed	across	a	cluster	of	ESX	hosts.
+
+View	Planner	assists	in	the	setup	and	configuration	of	the	testing	infrastructure,	runs	a	set	of	application 	
+operations selected to be representative of real-world user applications, and reports data on the latencies of 
+those operations. View Planner is highly flexible and accommodates many testing and usage scenarios.
+
+VMware	used	View	Planner	to	test	the	performance	of	PCoIP	in	View	5.	The	View	Planner	tool	is	available 	
+to	consultants	from	the	VMware	Professionals	Services	Organization	and	to	VMware	Partners	via	download 	
+from Partner Central. For more information about evaluating your View deployment with this tool, contact a  
+VMware Partner or the VMware Professional Services Organization.
+
+For an introduction to View Planner see the VMware View Planner community forum and the View Planner 
+Datasheet.
+
+For complete instructions on using View Planner, see the View Planner and Installation Guide and Using 
+Custom Applications in View Planner.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   6
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Recommended Configurations for Optimal 
+Bandwidth Utilization in View 5
+
+View	5	is	optimized	to	a	new	level	of	low	bandwidth	usage.	Updates	to	the	lossless	codec	and	client-side 	
+caching	are	enabled	by	default	in	View	5.	You	can	achieve	the	maximum	bandwidth	efficiency	by:
+
+Turning	off	the	Build	to	Lossless	capability
+
+You	can	gain	further	reduction	by:
+
+	 Configuring	audio	compression
+All	configurable	PCoIP	settings	are	within	the	View		pcoip.adm	group	policy	administrative	(ADM)	template	
+file.	You	can	configure	the	group	policies	in	one	of	the	following:
+
+•	 In	Active	Directory
+
+•	 On	an	individual	virtual	machine	that	will	be	the	parent	or	template	for	a	desktop	pool
+
+Before	you	can	configure	the	View	PCoIP	settings,	you	must	import	the	PCoIP	administrative	template	into	the 	
+environment	where	you	will	configure	the	policies.
+
+Choose	to	configure	the	PCoIP	group	policy	settings	on	the	Active	Directory	server	when	one	of	the	following 	 
+is true:
+
+•	 You	want	to	apply	the	policies	to	desktop	pools
+
+•	 You	want	to	apply	the	policies	to	the	entire	View	environment
+
+Choose	to	configure	the	PCoIP	group	policy	settings	on	an	individual	machine	that	will	be	the	parent	or 	
+template for a desktop pool when:
+
+You	want	to	apply	the	policies	to	only	one	desktop	pool
+
+If	you	are	applying	the	policies	to	only	one	desktop	pool,	you	have	the	choice	of	configuring	the	policies	either 	
+in Active Directory or on a master virtual machine. However, pay careful attention to the level at which you 
+configure	the	PCoIP	group	policy	settings:
+
+•	 Plan	your	group	policy	settings	for	users	and	machines	ahead	of	time.	You	can	map	View	desktop	pools	to 	
+
+Active Directory organizational units.
+
+•	 Active	Directory	domain-level	settings	override	machine-level	settings.	For	more	centralized	management, 	
+
+configure	the	settings	in	the	Active	Directory.
+
+Importing the PCoIP Administrative Template
+Importing the Template into the Active Directory Server
+To	configure	the	group	policies	in	Active	Directory,	you	must	first	import	the		 pcoip.adm group policy 
+template into the Active Directory server.
+
+When	you	install	View,	this	file	is	automatically	installed	in:
+
+<install_directory>\VMware\VMware 
+View\Server\extras\GroupPolicyFiles\pcoip.adm
+
+on	your	View	Connection	Server,	and	you	copy	it	to	your	Active	Directory	server. 	
+
+V M WA R E   V I E W   W I T H   P C O I P   /   7
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Prior to copying the pcoip.adm	template	file	to	the	Active	Directory	server,	prepare	your	View	environment 	
+for	applying	policies	to	organization	units	(OUs):
+
+•	 Create	organizational	units	for	your	View	desktops	so	that	you	can	isolate	the	configured	group	policies	from 	
+
+other	Windows	computers	in	the	same	Active	Directory	domain.	Add	your	View	desktops	to	the	OUs.
+
+	 For	details	on	creating	OUs	and	adding	desktops	to	the	OUs,	see	 Create	an	OU	for	View	Desktops in the 
+Configuring	Policies chapter in the VMware View Administration guide. 
+
+•	 Create	GPOs	to	contain	the	View	group	policies	and	link	them	to	the	OUs	for	your	desktops
+
+	 Select	Start > All Programs > Administrative Tools > Active Directory Users and Computers. Continue with 
+the instructions in Create	GPOs	for	View	Group	Policies in the	Configuring	Policies chapter in the VMware 
+View Administration guide.
+
+•	 Add	the	template	to	your	GPOs	so	you	can	apply	the	View	group	policy	settings	to	your	View	desktops
+
+1.  Copy the pcoip.adm template file from the Connection Server (<install_directory>\VMware\VMware 
+
+View\Server\extras\GroupPolicyFiles) directory to your Active Directory.
+
+2.  Continue with the instructions in Add View ADM Templates to a GPO in the Configuring Policies chapter 
+
+of the VMware View Administration guide.
+You are now ready to configure the pcoip.adm group policy settings in Active Directory. See 
+Configuring Group Policies in Active Directory.
+
+	
+
+Importing the Template into an Individual Virtual Machine
+To	configure	the	group	policies	on	an	individual	virtual	machine	that	will	be	the	parent	or	template	for	a 	
+desktop	pool,	you	must	first	import	the	pcoip.adm group policy template into a virtual machine in your View 
+deployment.	You	add	the	pcoip.adm	template	file	to	the	Local	Computer	Policy	configuration	on	this	virtual 	
+machine.
+
+When	you	install	View,	this	file	is	automatically	installed	in:
+
+<install_directory>\VMware\VMware  
+View\Server\extras\GroupPolicyFiles\pcoip.adm
+
+on	the	View	Connection	Server,	and	you	copy	it	to	the	master	virtual	machine.
+
+1.	 On the virtual machine you will use to create the desktop pool, click Start > Run.
+2.  Type gpedit.msc, and click OK.
+	
+
+This opens the Local Group Policy Editor console in Windows.
+
+3. 	 Make sure you can connect to the View Connection Server from this virtual machine.
+
+4.   Navigate to Local Computer Policy > Computer Configuration.
+
+5.	 Right-click Administrative Templates.
+
+ 
+
+Alert: Do not select Administrative Templates under User Configuration.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   8
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+6.  Click Add/Remove Templates. 
+
+Figure 1: Local Group Policy Editor > Add/Remove Templates
+
+7.  Click Add.
+
+Figure 2: Add/Remove Templates
+
+8.  Navigate to <install_directory>\VMware\VMware  
+View\Server\extras\GroupPolicyFiles\pcoip.adm
+
+      on the View Connection Server.
+
+9.  Click Open.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   9
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+10.  Close the Add/Remove Templates window.
+
+	
+
+The PCoIP group policy settings are added to the Local Computer Policy environment on the desktop 
+system and are available for configuration. 
+
+Figure 3: PCoIP Session Variables Added to Local Group Policy Editor
+
+Now	that	the	template	is	on	the	desktop	system,	you	can	configure	the	group	policies.	See	 Configuring Group 
+Policies in an Individual Virtual Machine.
+
+Configuring Recommended View Settings
+Now that you have imported the pcoip.adm template into either the Active Directory server or a View virtual 
+machine,	you	configure	the	View	PCoIP	settings.
+
+Configuring Group Policies in Active Directory
+Configure	group	policies	in	Active	Directory	if: 	
+
+•	 You	want	to	apply	the	policies	to	desktop	pools
+
+•	 You	want	to	apply	the	policies	to	the	entire	View	environment
+You	must	have	first	imported	the	pcoip.adm	template	into	the	Active	Directory	server.	See	Importing the 
+Template into the Active Directory Server.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 0
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+To	configure	PCoIP	policies	in	Active	Directory:
+
+1.	 On the Active Directory server, navigate to Start > Administrative Tools > Group Policy Management.
+
+Figure 4: Administrative Tools > Group Policy Management
+
+2.	
+
+In the left pane, navigate to Group Policy Management > your_forest > Domains > your_cloud > View 
+Environments > View Desktops.
+
+3.	 Right-click View Desktops and select Edit.
+
+ 
+
+Figure 5: Group Policy Management > Edit
+
+The	Group	Policy	Management	Editor	opens	with	View	Desktops	in	detail.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 1
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+4.  Navigate to Computer Configuration > Policies > Administrative Templates... > Classic Administrative 
+
+Templates (ADM) > PCoIP Session Variables.
+
+ 
+
+Figure 6: Group Policy Management > View Desktops > PCoIP Session Variables
+
+From	this	point	on,	the	configuration	of	PCoIP	session	variables	is	the	same	as	in	an	individual	virtual	machine. 	
+See	Configuration of Individual PCoIP Session Variables.
+
+Configuring Group Policies in an Individual Virtual Machine
+Choose	to	configure	the	PCoIP	group	policy	settings	on	an	individual	machine	that	will	be	the	parent	or 	
+template for a desktop pool when:
+
+You	want	to	apply	the	policies	to	only	one	desktop	pool
+
+You	must	have	first	imported	the	pcoip.adm	template	into	the	Local	Computer	Policy	configuration	of	the 	
+master	virtual	machine.	See	Importing the Template into an Individual Virtual Machine.
+
+To	configure	PCoIP	policies	on	an	individual	virtual	machine:
+
+1.	 Select Start > Run and type gpedit.msc.
+	
+
+The Local Group Policy Editor window opens.
+
+2.  Under Local Computer Policy, navigate to Computer Configuration > Administrative Templates > 
+
+Classic Administrative Templates (ADM) > PCoIP Session Variables.
+
+3.	 From this point on, the configuration of PCoIP session variables is the same as for an Active Directory 
+
+server. See Configuration of Individual PCoIP Session Variables.
+
+Configuration of Individual PCoIP Session Variables
+You	have	opened	the	group	policy	editor	either	in	Active	Directory	or	on	a	master	virtual	machine.	The 	
+following steps are common to either group policy editor.
+
+1.  Decide whether you want to open Overridable Administrator Defaults or Not Overridable 
+
+Administrator Settings. See View PCoIP Session Variables ADM Template Settings in the Configuring 
+Policies chapter in the VMware View Administration guide.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 2
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+	
+
+After you choose a type, the list of PCoIP session settings appears.
+
+ 
+
+Figure 7: List of PCoIP Session Settings
+
+For each setting, the procedure is the same:
+
+1.	 Double-click the setting name, or highlight the setting name and select Edit policy setting.
+
+ 
+
+The setting window opens.
+
+2.	 Select a value at the top left and configure any details in the lower left of the window.
+
+3.  Click OK, or Apply and then Next Setting or Previous Setting.
+
+Note: You	are	configuring	the	settings	on	the	Windows	desktop	(sometimes	called	the	soft	host).	You	do	not 	
+configure	on	the	View	Client	(soft	client),	but	the	settings	take	effect	when	you	connect	to	the	desktop	with	the 	
+View Client.
+
+Recommended Settings to Configure
+View PCoIP is optimized to reduce bandwidth usage. To reach full optimization, VMware recommends that you 
+disable	the	Build-to-Lossless	feature	with	the	PCoIP	setting:
+
+  Turn off Build-to-Lossless feature
+
+You	can	further	reduce	bandwidth	by	increasing	audio	compression	with	the	PCoIP	setting:
+
+  Configure the PCoIP session audio bandwidth limit
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 3
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Disabling Build to Lossless
+The	Build	to	Lossless	feature	in	PCoIP	gives	highest	quality,	precise	images	suitable	for	the	medical	imaging	and 	
+artistic illustration professions. Images are built to lossless by default. Most users do not require this quality of 
+image	and	cannot	differentiate	perceptually	lossless	from	fully	lossless.	VMware	recommends	that	you	disable 	
+Build	to	Lossless	for	all	users	except	those	in	these	specialized	professions.
+You	configure	the	Build	to	Lossless	feature	in	the	 Turn off Build-to-Lossless feature setting in the pcoip.adm 
+template.	Disabling	BTL	gives	you	the	full	improvement	in	bandwidth	optimization	in	View	5.
+
+TURN OFF BUILD-TO-LOSSLESS FEATURE
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Disable	the	Build-to-Lossless	feature	so	that	bandwidth	usage	is	reduced.	
+Build	to	Lossless	provides	the	highest	quality	of	image	rendering.
+
+Disabled	(Build	to	Lossless	is	enabled)
+
+Disabled, enabled. Disabled preserves highest-quality lossless images. 
+Enabled	builds	images	to	perceptually	lossless	and	reduces	bandwidth 	
+usage in limited bandwidth network environments. Users who require great 
+precision of images—medical technicians and illustrators—need this setting 
+disabled.	Most	users	are	satisfied	with	perceptually	lossless	(enabled 	
+setting).
+
+Use cases and details
+
+Enable	this	setting	to	reduce	bandwidth	usage	in	limited	bandwidth	settings.
+
+Figure 8: Turn off Build to Lossless
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 4
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Configuring Audio Compression
+Audio compression is controlled by the Configure the PCoIP session audio bandwidth limit setting in the 
+pcoip.adm template. The lower the bandwidth assigned, the higher the compression, and the lower the 
+quality. Audio compression is normally automatically controlled, with the best audio quality provided for the 
+given network bandwidth available. If a limit is set in Configure the PCoIP session audio bandwidth limit, the 
+audio	quality	is	reduced	to	fit	within	the	bandwidth	limit.
+
+CONFIGURE THE PCOIP SESSION AUDIO BANDWIDTH LIMIT
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Maximum bandwidth that can be used for sound playback in a PCoIP session. 
+The lower the bandwidth assigned, the higher the compression, and the 
+lower the quality. Audio is normally automatically compressed, depending 
+upon the available network bandwidth. In a congested or constrained 
+network, the audio compression is increased to reduce the network 
+bandwidth. After the congestion is alleviated, the audio compression is 
+reduced. Audio processing monitors the bandwidth available for audio at all 
+times and selects the audio compression algorithm to use based on 
+providing the best audio possible, given the current bandwidth utilization. If 
+a	limit	is	set,	the	quality	is	reduced	(by	changing	the	compression	algorithm)	
+until the bandwidth limit can be respected. If minimum quality audio cannot 
+be	provided	within	the	bandwidth	limit	specified,	then	audio	is	disabled.	The	
+active bandwidth that PCoIP audio requires may fluctuate and may be 
+temporarily	above	the	limit.	Does	not	apply	to	USB	audio.	Audio	must	be	
+enabled	on	both	endpoints	before	the	setting	takes	effect.
+
+500Kbps
+
+0–100,000Kbps.	The	higher	the	audio	compression,	the	lower	the	quality, 	
+but the average bandwidth usage from desktop audio per user is reduced.  
+Uncompressed	high-quality	stereo	audio	requires	1600Kbps	or	above. 	
+450Kbps	or	higher	allows	for	compressed	high-quality	stereo	audio. 	
+50–450Kbps	provides	audio	quality	between	FM	radio	and	phone	calls. 	
+50Kbps	and	below	may	result	in	no	audio	playback.	50-100Kbps	is	good 	
+with	high	network	traffic	and	audio	that	does	not	require	high	quality.
+
+Use cases and details
+
+Use cases:
+
+•	 Consider	using	this	setting	if	the	maximum	bandwidth	limit	results	in 	
+an automatic audio bandwidth setting that is higher than your target 
+average	bandwidth.	For	example,	a	law	firm	set	a	maximum	session 	
+bandwidth	limit	of	5Mbps,	which	resulted	in	up	to	400Kbps	for	users 	
+consistently listening to audio.  However, this audio bandwidth was well 
+above	the	law	firm’s	total	session	average	bandwidth	target	of	175Kbps. 		
+In this case, an audio bandwidth limit can be set.
+
+•	 Email	and	instant	messenger	audio	notifications	cause	a	bandwidth 	
+
+spike	for	each	notification.	The	default	audio	bandwidth	of	500Kbps		for 	
+200	emails	per	user	can	result	in	more	bandwidth	usage	than	required. 	
+Email	alerts	do	not	need	high-quality	audio,	so	you	can	increase	audio 	
+compression.	You	can	safely	limit	audio	bandwidth	to	50–100Kbps	if 	
+network	traffic	is	high,	and	your	users	do	not	require	high-quality	audio 	
+for other reasons.
+
+•	 Videos	and	radio	transmission	require	less	audio	compression.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 5
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+ 
+
+Figure 9: Audio Bandwidth Limit
+
+The following table shows the default audio bandwidth and quality under various network bandwidth 
+conditions. View PCoIP is constantly measuring the available network bandwidth for the session. The ranges for 
+available network bandwidth are set within the View audio compression algorithm, or audio codec. For each 
+range,	audio	uses	a	set	amount	of	bandwidth,	which	results	in	a	particular	audio	quality.	Without	a	configured 	
+audio bandwidth limit, the audio compression algorithm sets audio bandwidth consumption at the default level 
+indicated in the table according to available bandwidth. 
+ 
+
+IF THE AVAILABLE 
+NETWORK BANDWIDTH IS:
+
+THEN AUDIO WILL USE   
+THIS AMOUNT OF BANDWIDTH:
+
+AND THE RESULTING   
+AUDIO QUALITY IS:
+
+>= 8Mbps
+
+2–8Mbps
+
+700Kbps–2Mbps
+
+125–700Kbps
+
+1500Kbps
+
+400Kbps
+
+90Kbps
+
+60Kbps
+
+CD-quality stereo audio
+
+Stereo	audio
+
+Mono
+
+Compressed	mono	(like	a	phone	call)
+
+If you set an audio bandwidth limit, then PCoIP recognizes only that amount of available bandwidth, and the 
+audio	quality	is	reduced	(by	changing	the	compression	algorithm)	until	the	audio	bandwidth	limit	can	be 	
+respected.	If	minimum	quality	audio	cannot	be	provided	within	the	bandwidth	limit	specified,	then	audio	is 	
+disabled for that PCoIP session.
+
+ 
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 6
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Windows Desktop Settings to Optimize 
+Performance over a WAN
+
+Operating	system	tuning	and	optimization	is	extremely	important.	The	effects	of	small	reductions	in	bandwidth 	
+usage	are	greatly	beneficial	when	scaled	over	hundreds	and	thousands	of	instances.	Even	a	10%	reduction	in 	
+CPU,	I/O,	or	network	consumption	can	be	significant	over	a	whole	deployment.
+
+There	are	a	number	of	visual	settings	in	Windows	that	require	additional	bandwidth	to	deliver.	An	initial	step	in 	
+optimizing	for	WAN	networks	is	to	consider	turning	these	features	off	to	significantly	reduce	the	average	and 	
+peak network bandwidth required.
+
+These	configurations	are	not	required,	but	you	may	wish	to	test	the	effects	of	turning	off	certain	visual	settings 	
+that your users do not need.
+
+These	settings	changes	apply	to	both	RDP	and	PCoIP,	to	reduce	network	bandwidth	used.
+
+For	more	information	about	Windows	7	and	Windows	XP	settings	for	a	View	deployment,	see:
+
+•	 VMware View Optimization Guide for Windows 7
+
+•	 Windows XP Deployment Guide
+
+Windows 7 Visual Settings Optimization
+To	optimize	Windows	7	visual	settings,	use	the	commands	 commands.txt	file	in	the	VMware View 
+Optimization Guide for Windows 7.	This	file	should	be	run	only	by	an	experienced	administrator	who	fully 	
+understands	the	changes	made	by	the	script.	Review	the	section	called	 Optimization	Aids	Provided	and 
+Appendix	B.
+
+Important: If you are implementing Persona Management, delete these three lines from the script for those 
+desktops:
+Powershell Set-Service ‘VSS’ -startuptype “disabled”  
+ ...  
+vssadmin delete shadows /All /Quiet  
+Powershell disable-computerrestore -drive c:\
+ 
+To optimize the visual settings:
+1.   Save Commands.txt as Commands.bat.
+2.   Right-click Commands.bat and select Run as administrator.
+Windows XP Visual Settings Optimization
+Set	visual	effects	to	best	performance:
+
+1.	 Right-click My Computer, and select Properties.
+
+2.  From the Advanced tab, click Settings.
+
+3.	 Select the Adjust for best performance option.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 7
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Remove	desktop	wallpaper:
+
+1.  From the Start menu, click Run.
+2.	 Enter gpedit.msc to display the Group Policy window.
+3.  From the Computer Configuration folder, select Administrative Templates > Windows Components > 
+
+Terminal Services > Enforce Removal of Remote Desktop Wallpaper.
+
+4.	 Select Enabled, and click OK.
+
+Enable	blank	screensaver:
+
+1.  From the Start menu, click Run.
+2.  Type gpedit.msc to display the Group Policy window.
+3.  From the User Configuration folder, select Administrative Templates > Control Panel > Display > 
+
+Screen Saver.
+
+	
+
+The Screen Saver dialog appears.
+
+4.	 Select Enabled.
+
+5.  Click Next Setting to display the Screen Saver executable name Properties dialog.  
+
+Type scrnsave.scr for Screen Saver executable name.
+
+Enable	the	Classic	Start	menu:
+
+1.	 Right-click the Taskbar and select Properties.
+
+2.  From the Start menu tab, select the Classic Start Menu.
+
+3.  Click Apply, and then click Customize.
+
+4.	 Scroll to the bottom of the Advanced Start menu options, and select Show Small Icons in Start menu.
+
+5.  Deselect Use Personalized Menus, click OK, and then click OK again.
+
+Disable additional fading:
+
+1.	 Right-click the desktop, and select Properties.
+
+2.  From the Appearance tab, click Effects.
+
+3.	 Deselect all options, click OK, and then click OK again.
+
+Change system icon and text settings:
+
+1.  From the Control Panel, select the View menu.
+
+2.	 Select Toolbars > Customize, and set the Text options to No text labels and set Icon options to  
+
+Small icons.
+
+3.  Click Close.
+
+4.	 From the Control Panel, select the Tools menu.
+
+5.	 Select Folder Options, and select the View tab.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 8
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+6.	 Select options as shown in the following two screenshots.
+
+ 
+
+Figure 11: System Icon and Text Changes
+
+7.  Click Apply.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   1 9
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Network Optimization
+
+If	performance	needs	improvement	in	your	View	deployment,	the	first	thing	to	check	is	the	network 	
+configuration.
+
+The	needs	of	every	organization	are	different.	When	you	plan	your	network,	consider:
+
+•	 The	kinds	of	computing	tasks	the	end	users	will	perform	(typical	office	work;	VoIP;	heavy	audio/video 	
+
+utilization)
+
+•	 Graphical	intensity	of	the	work	of	the	typical	user	(such	as	forms	pages	or	3D	viewing)
+
+•	 Importance	of	image	quality	to	user	(artists	and	medical	technicians,	as	opposed	to	administrators	and	office 	
+
+workers)
+
+•	 Amount	of	interactive	or	static	viewing
+
+•	 Physical	or	geographical	location	of	all	users	(working	from	home;	offshore)
+
+•	 Required	peripherals	(printers,	microphones,	specialized	keyboards,	external	CD	or	DVD)
+
+•	 Whether	Local	Mode	will	be	used
+
+•	 Average	bandwidth	utilization	of	users	performing	the	job	requirements	for	each	use	case
+
+•	 Increased	bandwidth	required	to	satisfy	more	demanding	users
+
+Note:	VMware	View	is	not	designed	to	handle	heavy	3D	applications,	such	as	CAD/CAM.	View	supports	light	3D 	
+applications	such	as	Office	2010	and	Aero.
+
+Strengths of the PCoIP Protocol
+PCoIP	is	a	real-time	protocol	based	on	the	User	Datagram	Protocol	(UDP).	UDP	provides	no	resiliency 	
+facilities at the network layer. Instead, PCoIP provides resiliency at the application layer. The real-time nature 
+of the protocol means that PCoIP makes the decisions about which data is important, and which data can be 
+discarded. The protocol is therefore very responsive, but anything that may induce packet loss or add latency 
+must be eliminated for optimal performance.
+
+PCoIP automatically reduces image or sound quality on congested networks, and resumes best quality when 
+congestion is alleviated. PCoIP is adaptive and can detect available network bandwidth and network conditions, 
+such	as	delayed	or	out-of-order	packet	delivery.	When	these	conditions	reach	a	particular	threshold,	PCoIP 	
+compensates	by	limiting	how	much	bandwidth	it	uses	or	by	increasing	compression	depth.	You	need	to	make 	
+sure the network is optimized so that PCoIP does not adjust itself down to a level with unsatisfactory quality. 
+PCoIP requires minimal and consistent latency and high-priority queuing to perform well.
+
+There	are	a	number	of	tuning	options	for	optimizing	performance	on	a	WAN	including:
+
+•	 Ensuring	sufficient	minimum	network	bandwidth	for	PCoIP	packets 	
+
+•	 Minimizing	packet	buffering	for	PCoIP	packets	through	the	network 	
+
+•	 Ensuring	an	appropriate	queuing	or	priority	configuration	in	the	switch	or	router 	
+
+•	 Following	key	WAN	testing	guidelines
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 0
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Network Bandwidth Planning for Basic Office Productivity Desktops
+Determine	the	minimum	bandwidth	required	for	simultaneous	access	for	typical	office	productivity	users.
+
+When	you	consider	your	network	bandwidth,	plan	with	the	following	estimates:
+
+•	 100	to	150Kbps	average	bandwidth	for	a	basic	office	productivity	desktop:	typical	office	applications 	 
+
+with	no	video,	no	3D	graphics,	and	the	default	Windows	and	VMware	View	settings
+
+•	 50	to	100Kbps	average	bandwidth	for	an	optimized	office	productivity	desktop:	typical	office	applications 	 
+
+with	no	video,	no	3D	graphics,	with	Windows	desktop	settings	optimized	and	VMware	View	optimized
+
+•	 400	to	600Kbps	average	bandwidth	for	virtual	desktops	utilizing	multiple	monitors,	3D,	Aero,	and 	 
+
+Office	2010
+
+•	 500Kbps	to	1Mbps	minimum	peak	bandwidth	to	provide	headroom	for	bursts	of	display	changes.	In 	
+
+general, size your network using the average bandwidth, but consider peak bandwidth to accommodate 
+bursts	of	imaging	traffic	associated	with	large	screen	changes.
+
+•	 The	percentage	of	users	who	will	use	3D	graphics.	You	might	balance	users	who	will	use	3D	with 	
+
+other	users	who	will	not	use	3D	graphics.	Those	using	3D	will	have	higher	bandwidth	utilization.	With 	
+the	reduced	bandwidth	consumption	in	View	5,	adding	3D	users	is	satisfactory	on	a	WAN	with	up	to 	
+approximately	100ms	latency.
+
+•	 2Mbps	per	simultaneous	user	running	480p	video,	depending	upon	the	configured	frame	rate	limit	and	the 	
+
+video type
+
+•	 Less	than	80%	network	utilization
+
+Note:	50	to	150Kbps	per	typical	user	is	based	on	the	assumption	that	all	users	are	operating	continuously	and 	
+performing	similar	tasks	over	an	8-	to	10-	hour	day.	The	50Kbps	bandwidth	usage	figure	is	from	View	Planner 	
+testing	on	a	LAN	with	the	Build-to-Lossless	feature	disabled.	Situations	may	vary	in	that	some	users	may	be 	
+fairly inactive and consuming almost no bandwidth, allowing more users per link. Therefore, these guidelines 
+are intended to provide a starting point for more detailed bandwidth planning and testing. After you know the 
+real bandwidth requirements of your typical users, substitute in those values.
+
+1.5Mbps T1 Example for a Basic Microsoft Office Desktop 
+
+Scenario:
+
+•	Users	with	basic	office	productivity	applications,	no	video,	no	3D	graphics,	and	keyboard/mouse 	 
+	USB	traffic
+
+•	Bandwidth	required	per	typical	office	user	on	VMware	View	is	from	50–150Kbps
+
+•	T1	network	capacity	is	1.5Mbps
+
+•	80%	bandwidth	utilization	(.8	utilization	factor)
+
+Calculations:
+
+In	the	worst	case,	users	require	150Kbps:  
+	
+
+(1.5Mbps*.8)/150Kbps	=	(1500*.8)/150	=	8	users
+
+In	the	best	case,	users	require	50Kbps:  
+	
+
+(1.5Mbps*.8)/50Kbps	=	(1500*.8)/50	=	24	users
+
+Result:
+
+Between	8	and	24	concurrent	users	per	T1	line	with	1.5Mbps	capacity
+
+Note: You	may	require	optimization	of	both	VMware	View	and	Windows	desktop	settings	to	achieve 	 
+this user density.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 1
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+10Mbps Example for a Microsoft Office Desktop with Occasional Multimedia
+
+In	this	example,	one	480p	video	user	is	sharing	the	network	link	with	typical	office	users.	Such	a	video 	
+user	requires	approximately	2Mbps	of	bandwidth,	depending	upon	the	configured	frame	rate	limit	and	the 	
+video	type.	Two	scenarios	are	presented,	one	with	a	lower	frame	rate	limit.	With	a	lower	frame	rate	limit, 	
+the	bandwidth	consumed	by	this	one	video	user	can	be	calculated	at	1.5Mbps,	rather	than	2Mbps.	With 	
+the	lower	frame	rate	limit,	and	therefore	less	bandwidth	utilization	for	the	video	user,	the	number	of	office 	
+workers able to share the link increases.
+
+Scenario 1:
+
+•	Users	with	basic	office	productivity	applications,	no	3D	graphics,	and	keyboard/mouse	USB	traffic 	 
+	share	the	network	link	with	a	single	user	watching	occasional	480p	video
+
+•	Frame	rate	limit	is	set	to	12	fps
+
+•	Bandwidth	required	for	a	single	480p	video	viewer	is	2Mbps
+
+•	Bandwidth	required	per	typical	office	user	on	VMware	View	is	from	50–150Kbps
+
+•	Network	capacity	is	10Mbps
+
+•	80%	bandwidth	utilization	(.8	utilization	factor)
+
+Resolution:
+
+Desktop optimizations including:
+
+•	Windows	desktop	settings	optimized
+
+•	Maximum	bandwidth	limit	set	to	5Mbps
+
+•	Maximum	initial	image	quality	set	to	70%
+
+Note: A	maximum	bandwidth	limit	per	session	of	5Mbps	has	been	set	so	that	one	user	cannot	consume	all 	
+10Mbps	of	bandwidth.
+
+Calculations:
+
+Because	the	bandwidth	utilization	factor	is	.8,	you	need	to	set	aside	more	than	2Mbps	for	the 	 
+one video user:
+
+	
+
+2Mbps/.8	utilization	factor	=	2.5Mbps
+
+Set	aside	2.5Mbps	for	the	video	user.	Divide	the	remaining	bandwidth	over	the	typical	office	users:
+
+	
+
+	
+
+	
+
+	
+
+	
+
+10Mbps-2.5Mbps	=	7.5Mbps
+
+The	worst	case	situation	is	if	office	users	consume	150Kbps	per	user:
+
+(7.5Mbps*.8)/150Kbps	=	(7500*.8)/150	=	6000/150	=	40	users
+
+Best	case	is	50Kbps	per	user:
+
+(7.5Mbps*.8)/50Kbps	=	(7500*.8)/50	=	6000/50	=	120	users
+
+Result:
+
+40	to	120	typical	office	users	can	share	a	10Mbps	network	line	with	one	video	user	if	the	frame	rate	is	set 	
+at	12	fps	so	that	the	video	user	consumes	2Mbps	bandwidth.	(The	frame	rate	of	12	fps	is	built	into	the 	
+estimated	2Mbps	bandwidth	utilization	for	the	video	user.)
+
+Note: You	may	need	additional	VMware	View	and	Windows	optimization	to	achieve	this	user	density.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 2
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Scenario 2:
+
+•	Users	with	basic	office	productivity	applications,	no	3D	graphics,	and	keyboard/mouse	USB	traffic	share 					 
+	the	network	link	with	a	single	user	watching	occasional	480p	video
+
+•	Frame	rate	limit	is	set	to	8	fps
+
+•	Bandwidth	required	for	a	single	480p	video	viewer	is	1.5Mbps,	because	of	the	lower	configured	frame 	 
+ rate limit
+
+•	Bandwidth	required	per	typical	office	user	on	VMware	View	is	from	50–150Kbps
+
+•	Network	capacity	is	10Mbps
+
+•	80%	bandwidth	utilization	(.8	utilization	factor)
+
+Note: The	only	difference	between	Scenario	1	and	Scenario	2	is	the	frame	rate	limit	setting,	which	changes 	
+the	figure	for	consumed	bandwidth	of	the	video	user.
+
+Resolution:
+
+Desktop optimizations including:
+
+•	Windows	desktop	settings	optimized
+
+•	Maximum	bandwidth	limit	set	to	5Mbps
+
+•	Maximum	initial	image	quality	set	to	70%
+
+Note: A	maximum	bandwidth	limit	per	session	of	5Mbps	has	been	set	so	that	one	user	cannot	consume	all 	
+10Mbps	of	bandwidth.
+
+Calculations:
+
+Because	the	bandwidth	utilization	factor	is	.8,	you	need	to	set	aside	more	than	1.5Mbps	for	the	one	video	user:
+
+	
+
+1.5Mbps/.8	utilization	factor	=	1.875Mbps
+
+Set	aside	1.875Mbps	for	the	video	user.	Divide	the	remaining	bandwidth	over	the	typical	office	users:
+
+	
+
+	
+
+	
+
+	
+
+	
+
+10Mbps-1.875Mbps	=	8.125Mbps
+
+The	worst	case	situation	is	if	office	users	consume	150Kbps	per	user:
+
+(8.125Mbps*.8)/150Kbps	=	(8125*.8)/150	=	6500/150	=	43	users
+
+Best	case	is	50Kbps	per	user:
+
+(8.125Mbps*.8)/50Kbps	=	(8125*.8)/50	=	6500/50	=	130	users
+
+Result:
+
+43	to	130	typical	office	users	can	share	a	10Mbps	network	line	with	one	video	user	if	the	frame	rate	is	set 	
+at	8	fps	so	that	the	video	user	consumes	1.5Mbps	bandwidth.	(The	frame	rate	of	8	fps	is	built	into	the 	
+estimated	1.5Mbps	bandwidth	utilization	for	the	video	user.)
+
+Note: You	may	need	additional	VMware	View	and	Windows	optimization	to	achieve	this	user	density.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 3
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Network Configuration Considerations
+To ensure a successful VMware View deployment, perform a network assessment to determine proper 
+configuration	to	support	the	necessary	bandwidth	while	meeting	latency,	jitter,	and	packet	loss	requirements.
+
+WAN Accelerator Network Devices and PCoIP
+PCoIP	is	already	highly	compressed	and	does	not	need	and	cannot	make	use	of	WAN	accelerator	network 	
+devices.	Some	WAN	acceleration	features	are	built	into	PCoIP:
+
+•	 UDP	protocol
+
+•	 No	resending	of	stale	dropped	packets
+
+•	 Audio	and	HID	are	already	the	highest	priority	packets
+
+Network Bandwidth
+Following are recommendations for optimizing network bandwidth:
+
+•	 Ensure	that	a	full-duplex	end-to-end	network	link	is	used.
+
+•	 Note: Older	switches	may	incorrectly	default	to	half-duplex	when	connected	to	a	link	with	autonegotiation. 	
+
+In this case, you must explicitly set the switch link to full duplex.
+
+•	 Confirm	network	connectivity	and	that	sufficient	bandwidth	is	available	between	the	VMware	View	server, 	
+
+VMware View Administrator, and the View Client.
+
+•	 Ensure	that	PCoIP	packets	are	not	fragmented	at	any	point	in	the	network	path.
+
+•	 Check	that	the	maximum	transmission	unit	(MTU)	in	the	switches	or	routers	in	the	network	path	is	not	below 	
+the PCoIP packet MTU size. Consider increasing the switch or router MTU or reducing the PCoIP packet MTU 
+via	the	PCoIPMtuSize	GPO—set	to	a	value	between	500	and	1500	bytes	(default	is	1400).
+
+•	 Note: Consider increasing the switch/router MTU before reducing the PCoIP packet MTU, as a lower MTU size 
+
+can impact desktop performance.
+
+•	 Consider	segmenting	PCoIP	traffic	via	IP	Quality	of	Service	(QoS)	Differentiated	Services	Code	Point	(DSCP) 	
+
+or	a	layer	2	Class	of	Service	(CoS)	or	virtual	LAN	(VLAN).
+
+•	 If	a	VPN	is	used,	confirm	that	UDP	traffic	is	supported.
+
+•	 Do	not	route	PCoIP	traffic	through	TCP-based	SSL	tunnels.
+
+•	 Use	a	VPN-less	solution	such	as	a	security	gateway,	or	use	Internet	Protocol	Security	(IPsec)	or	Datagram 	
+Transport	Layer	Security	(DTLS)-enabled	SSL	solutions.	See	the	VMware	knowledge	base	article	 VMware 
+View PCoIP Security Gateway.
+
+Network Latency and Jitter 
+Following are suggestions for handling network latency and jitter:
+
+•	 Ensure	that	the	round-trip	network	latency	is	less	than	250	ms.
+
+•	 Perform	a	thorough	assessment	of	active	application	traffic	across	the	end-to-end	network	to	ensure	that 	
+
+there	is	sufficient	minimum	bandwidth	available	for	PCoIP	traffic,	even	with	network	congestion.
+
+•	 Network	congestion	and	traffic	shaping	with	deep	packet	buffers	can	cause	high	packet	latency,	which	can 	
+
+be considered as lost packets to PCoIP protocol.
+
+•	 Ensure	that	the	buffers	in	routers	or	switches	are	set	to	minimize	latency	(for	example,	to	absorb	50	to	100	ms	
+
+of	PCoIP	packet	traffic).
+
+•	 If	a	service	provider	cannot	reduce	the	buffer	depths	in	all	routers	in	the	network	path,	consider	applying 	
+
+traffic-shaping	policies	in	the	Customer	Edge	(CE)	router,	or	Service	Provider	Edge	(PE)	router.
+
+•	 Allow	PCoIP	traffic	to	burst	when	network	bandwidth	is	available	(for	example,	do	not	set	a	hard	limit	on 	
+
+PCoIP	traffic	as	a	percentage	of	the	link	rate).
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 4
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+•	 Ensure	sufficient	priority	for	PCoIP	traffic	while	considering	the	real-time	nature	of	the	protocol.	Consider 	
+
+options	such	as	Class-based	Weighted	Fair	Queuing	(CBWFQ).
+
+•	 Assign	a	priority	to	PCoIP	traffic	that	is	above	standard	TCP	traffic,	but	below	Voice-over-IP	(VOIP)	protocol.
+
+•	 Ensure	guaranteed	network	bandwidth	for	PCoIP	traffic	during	congestion.	In	general,	set	PCoIP	traffic	to 	
+have	80%	of	the	remaining	bandwidth	after	the	higher	priority	traffic	is	allocated.	For	example,	consider	a 	
+network	that	guarantees	20%	of	a	link	bandwidth	for	critical	traffic	such	as	VoIP.	PCoIP	should	be	set	to 	
+receive	80%	of	the	remaining	bandwidth,	or	64%.	This	lets	other	protocols,	such	as	file	transfers	or	web 	
+traffic,	to	transfer	some	traffic	without	starving	the	PCoIP	sessions.
+
+•	 To	ensure	proper	delivery	of	PCoIP,	tag	it	in	Quality	of	Service	(QoS)	so	that	it	competes	fairly	across	the 	
+
+network with other real-time protocols. Also prioritize PCoIP above other non-critical and latency-tolerant 
+protocols	(such	as	file	transfers	or	print	jobs).	Failure	to	tag	PCoIP	properly	in	a	congested	network 	
+environment leads to PCoIP packet loss and a poor user experience, as PCoIP adapts down in response.
+
+•	 Tag	and	classify	PCoIP	as	interactive	real-time	traffic.	Generally,	you	will	classify	PCoIP	just	below	VoIP,	but 	
+above	all	other	TCP-based	traffic.	While	this	recommendation	is	likely	to	have	a	far	larger	impact	in	a	WAN 	
+scenario,	consider	it	a	best	practice	for	LAN	environments	as	well.
+
+•	 If	traffic	shapers	are	being	used,	use	them	in	conjunction	with	a	scheduling	queue,	and	assign	high	priority	to 	
+
+this	queue	based	on	the	CoS	value	set	for	PCoIP	traffic.	This	is	CBWFQ.
+
+•	 To	reduce	packet	latency	further,	configure	priority-queuing	for	low-latency	traffic,	also	called	low-latency 	
+
+queuing.	It	can	be	configured	with	class	of	service	to	match	and	mark	the	high-priority	traffic,	and	then	send 	
+it	to	a	low-latency	queue.	On	Cisco	devices,	network	managers	should	try	different	queue-limits	to	ensure 	
+there	are	no	tail-drops	on	PCoIP	packets.	This	gives	high	priority	to	low-latency	traffic.	This	is	a	version	of 	
+policy-based routing available on most routers.
+
+•	 Configure	congestion	avoidance	policies	to	use	weighted	random	early	detection	(WRED)	for	PCoIP	traffic.
+
+•	 Ensure	that	the	ESX	virtual	switch	traffic	shaper	is	turned	off.
+
+•	 Note: Periodic	excessive	latency	is	an	indication	that	traffic	shaping	with	deep	packet	buffers	is	impacting 	
+
+PCoIP packet delivery during periods of congestion.
+
+•	 Jitter	or	latency	variance	of	+	or	–	30	ms	may	be	too	much	for	PCoIP	to	succeed.
+
+•	 If	your	users	make	use	of	3D	graphics,	network	latency	on	a	WAN	should	not	exceed	100ms.	If	your	network 	
+
+latency	is	higher,	your	users	will	probably	not	be	satisfied	with	the	rendering	of	3D	graphics.
+
+Network Packet Loss
+PCoIP	protocol	is	tolerant	of	a	reasonable	amount	of	packet	loss.	Because	PCoIP	traffic	is	a	real-time	delivery	of 	
+a rich user desktop experience, packet loss should be minimized wherever possible. PCoIP is sensitive to delays 
+in packet delivery and packet loss caused by congestion-avoidance mechanisms.
+
+There are multiple potential sources of packet loss in a VMware View environment including:
+
+•	 Network	congestion	triggering	congestion	avoidance	algorithms.	While	this	is	expected	behavior	when 	
+
+congestion	avoidance	policies	are	configured,	excessive	packet	loss	due	to	congestion	is	an	indication	that 	
+additional	optimization	is	required	to	increase	bandwidth	available	or	to	reduce	PCoIP	traffic.
+
+•	 PCoIP	packets	that	arrive	with	a	high	latency	due	to	network	congestion	may	be	considered	as	lost	packets 	
+
+by VMware View.
+
+•	 PCoIP	packets	that	arrive	sufficiently	out	of	order	may	be	considered	as	lost	packets	by	VMware	View.	Be 	
+
+sure to minimize packet re-ordering in the network.
+
+• Note: If network logs show no packet loss, but VMware View or PCoIP zero client logs show packet loss, this 
+
+indicates	that	packets	with	high	latency,	or	sufficiently	out-of-order	packets,	are	being	considered	as	lost.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 5
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+DESCRIPTION
+
+RESOLUTION OPTIONS TO CONSIDER
+
+ 
+	
+
+e
+c
+n
+e
+i
+r
+e
+p
+x
+E
+	
+s
+w
+o
+d
+n
+W
+e
+h
+t
+	
+e
+z
+m
+
+	
+
+i
+
+i
+
+i
+t
+p
+O
+
+n
+o
+i
+t
+c
+e
+s
+	
+s
+g
+n
+i
+t
+t
+e
+S
+
+Significant	packet	loss	 
+due to congestion  
+(e.g.	WRED	being	triggered)
+
+Packets considered lost by 
+VMware View due to high 
+latency packet delivery
+
+Packets considerd lost by 
+VMware	View	due	to	sufficiently	
+out-of-order packets
+
+3
+
+3
+
+3
+
+i
+
+	
+r
+o
+f
+	
+s
+g
+n
+i
+t
+t
+e
+s
+	
+w
+e
+V
+e
+r
+a
+w
+M
+V
+e
+z
+m
+
+	
+
+	
+
+i
+
+i
+t
+p
+O
+
+ 
+ 
+
+d
+n
+a
+y
+t
+i
+l
+
+ 
+
+e
+t
+a
+r
+ 
+e
+m
+a
+r
+f
+
+ 
+
+a
+u
+q
+e
+g
+a
+m
+
+i
+ 
+,
+s
+t
+i
+
+m
+
+i
+l
+ 
+
+i
+
+h
+t
+d
+w
+d
+n
+a
+b
+
+3
+
+3
+
+3
+
+	
+l
+l
+
+	
+
+a
+n
+
+i
+	
+
+h
+t
+p
+e
+d
+	
+r
+e
+ff
+u
+b
+	
+t
+e
+k
+c
+a
+p
+e
+h
+t
+	
+e
+z
+m
+n
+M
+
+	
+
+i
+
+i
+
+i
+
+ 
+ 
+
+i
+
+h
+t
+d
+w
+d
+n
+a
+b
+ 
+f
+o
+ 
+t
+n
+u
+o
+m
+a
+e
+h
+t
+ 
+e
+s
+a
+e
+r
+c
+n
+
+ 
+
+	
+
+I
+
+c
+ffi
+a
+r
+t
+	
+P
+o
+C
+P
+	
+f
+o
+y
+t
+i
+r
+o
+i
+r
+p
+e
+s
+a
+e
+r
+c
+n
+
+	
+
+I
+
+I
+
+I
+
+c
+ffi
+a
+r
+t
+	
+P
+o
+C
+P
+o
+t
+	
+d
+e
+n
+g
+i
+s
+s
+a
+
+	
+
+r
+e
+t
+u
+o
+r
+/
+s
+e
+h
+c
+t
+i
+
+w
+s
+
+3
+
+3
+
+3
+
+3
+
+3
+
+k
+r
+o
+w
+t
+e
+n
+e
+h
+t
+ 
+n
+
+ 
+
+i
+ 
+
+g
+n
+i
+r
+e
+d
+r
+o
+-
+e
+r
+ 
+t
+e
+k
+c
+a
+p
+e
+z
+m
+n
+M
+
+ 
+
+i
+
+i
+
+i
+
+3
+
+i
+
+h
+t
+d
+w
+d
+n
+a
+b
+k
+n
+
+ 
+
+i
+l
+ 
+
+e
+h
+t
+ 
+e
+s
+a
+e
+r
+c
+n
+
+I
+
+3
+
+3
+
+Table 1: Resolution Options When Experiencing Significant Packet Loss for a VMware View Session
+
+WAN Virtual Desktop Testing Guidelines
+When	you	test	View	over	a	WAN,	be	sure	to	test	real	workloads	with	multiple	users	actively	sharing	the	link.	Key 	
+considerations include:
+
+•	 Single-user	bandwidth	tests	are	invalid	because	PCoIP	protocol	will	take	as	much	bandwidth	as	possible 	
+
+unless	constrained	by	the	network,	or	by	configuration.	When	constrained,	the	PCoIP	protocol	fairly	shares 	
+bandwidth with other PCoIP protocol users.
+
+•	 Do	not	try	to	simulate	desktop	performance	by	limiting	a	single	session.	This	is	also	an	invalid	test.
+
+•	 Do	not	rely	on	video	playback	to	be	representative	of	real-application	user	performance.
+
+•	 Test	real	web	sites	that	users	go	to,	not	just	sites	that	support	Windows	media,	because	MMR	improves	video 	
+
+in just that case.
+
+•	 Important: Do	not	use	random	packet	loss	to	emulate	network	loss.	Random	packet	loss	is	not	representative	
+
+of real network loss and results in PCoIP protocol using the minimum quality and performance.
+
+	 Free	WAN	emulation	tools	can	randomly	drop	packets	to	emulate	network	packet	loss.
+
+  However, in real networks, random packet loss is rare and due to poor network link quality which is typically 
+repaired	by	Service	Providers	when	it	occurs.	PCoIP	protocol	adapts	to	the	packet	loss	to	reduce	the	network 	
+load, however the random loss algorithm causes PCoIP protocol to continually lower the display quality and 
+frame rates until the minimum quality floor is hit.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 6
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+	 A	common	cause	of	packet	loss	is	network	congestion	(or	the	result	of	congestion	avoidance	algorithms 	
+being	triggered),	which	results	in	periodic	and	sequential	lost	packets.	This	loss	goes	away	when	the 	
+congestion	is	alleviated.	More	sophisticated	WAN	emulation	tools	incorporate	more	intelligent	packet 	
+loss algorithms. PCoIP protocol adapts to the packet loss to reduce the network load to help alleviate the 
+network congestion causing the loss.
+
+VMware	View	Planner	is	highly	recommended	for	testing	typical	workloads.	See	 Using VMware View Planner 
+to Optimize Your View Deployments.
+
+X86 and Thin Client Considerations
+Multimedia	redirection	(MMR)	adds	value	because	it	accelerates	some	media	formats.	MMR	requires	a	more 	
+powerful client, but most clients are powerful enough. VMware View PCoIP works with multimedia redirection 
+(MMR),	but	MMR	does	not	work	across	all	View	Clients.	For	example,	zero	clients	do	not	support	MMR.	If	you 	
+need	MMR	in	your	environment,	choose	clients	carefully	and	test	them.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 7
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Advanced Configurations in VMware View
+
+Because	VMware	has	optimized	View	5	PCoIP,	you	do	not	need	to	configure	anything	beyond	disabling	Build	to 	
+Lossless	and	configuring	audio	compression.	Configuring	any	other	View	PCoIP	settings	may	have	little	effect 	
+on bandwidth usage, except in specialized cases.
+
+This	section	specifies	some	advanced	View	PCoIP	settings	that	may	be	beneficial	in	some	use	cases.
+
+Note: The default values for the View PCoIP settings have been carefully selected to give maximum 
+performance in most environments. VMware recommends that you do not change these settings unless you 
+have	carefully	determined	the	overall	effect	to	be	beneficial.
+
+Consider	configuring	the	following	settings	for	special	use	cases:
+
+•	 Image	quality	levels
+
+-  Maximum Initial Image Quality
+
+-  Minimum Image Quality
+
+-  Maximum Frame Rate
+
+•	 Network	settings
+
+-  Configure the maximum PCoIP session bandwidth
+
+-  Configure the PCoIP session bandwidth floor
+
+•	 Client	cache	size	(Configure PCoIP client image cache size policy)
+
+Image Display Settings in View
+For optional optimization, adjust the image quality settings in View. These settings are in the pcoip.adm 
+administrative	policy	template.	Refer	to Importing the PCoIP Administrative Template for instructions on 
+copying	the	administrative	template	and	configuring	settings.
+The Configure PCoIP image quality levels setting in the pcoip.adm administrative template enables control 
+over how PCoIP compresses images during periods of network congestion. Three variables within this one 
+setting	interoperate	to	allow	fine	control	in	network-bandwidth-constrained	environments:
+
+•	 Maximum Initial Image Quality
+
+• Minimum Image Quality
+
+• Maximum Frame Rate
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 8
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+MAXIMUM INITIAL IMAGE QUALITY
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Limits	the	initial	image	quality	of	changed	regions	of	the	display,	which	can	
+reduce network bandwidth peaks. Most useful in limited bandwidth 
+scenarios.	(Note: The unchanged regions of the image progressively build to 
+a	lossless	(perfect)	quality,	regardless	of	this	setting.)	
+
+90	(percentage	of	fully	lossless)
+
+30–100	(percentage	of	fully	lossless).	A	lower	value	reduces	the	image 	
+quality of content changes and decreases peak bandwidth requirements. A 
+higher value increases the image quality of content changes and increases 
+peak	bandwidth	requirements.	The	recommended	value	of	90	or	lower 	
+best utilizes the available network bandwidth. Must be set to a value 
+greater	than	or	equal	to	the	Minimum	Image	Quality	setting.
+
+Use cases and details
+
+Use cases:
+
+•	 When	trying	to	achieve	a	low	average	bandwidth	usage	per	user
+
+•	 Where	a	link	is	designed	to	be	heavily	utilized	based	on	the	average 	
+
+bandwidth used, and where congestion is expected along with limited 
+headroom for peaks in individual session bandwidth
+
+•	 Environments	where	a	small	number	of	users	spike	in	bandwidth	and 	
+
+impact other users 
+
+MINIMUM IMAGE QUALITY
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Sets	the	lower	limit	of	quality	for	images.	Useful	in	a	limited	PCoIP	
+bandwidth scenario, Note:	When	network	bandwidth	is	not	constrained,	the	
+PCoIP protocol maintains maximum image quality regardless of the 
+Minimum	Image	Quality	setting.
+
+50	(percentage	of	fully	lossless)
+
+30–100	(percentage	of	fully	lossless).	Must	be	set	to	a	value	less	than	or 	
+equal	to	the	Maximum	Initial	Image	Quality	setting.	Higher	values	of	image 	
+quality use more bandwidth.
+
+Use cases and details
+
+In some medical or healthcare applications, you might not want to display 
+below a certain quality of image
+
+V M WA R E   V I E W   W I T H   P C O I P   /   2 9
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+MAXIMUM FRAME RATE
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Limits	the	number	of	screen	updates	per	second,	which	can	reduce	the	
+average bandwidth consumed per user. Most useful in a low-bandwidth 
+scenario. The higher the frame rate, the more frequently the screen is 
+updated, and the more bandwidth used. This setting reduces average 
+bandwidth	only	when	the	workloads	have	significant	imaging	motion.	
+Desktop	workloads	without	high	imaging	frame	rate	(below	the	maximum	
+frame	rate)	are	not	affected	by	this	setting.
+
+30	fps
+
+1–120	fps.	A	higher	setting	may	use	more	bandwidth,	but	provides	less	jitter, 	
+for smoother transitions in images that change, such as video. A lower 
+setting uses less bandwidth, but results in more jitter. Depending upon 
+network	settings,	10–15	fps	is	recommended.	When	setting	 Maximum 
+Frame Rate, consider the frame rate of an unconstrained desktop in your 
+environment.	Look	at	the	maximum	and	average	frame	rates	per	second	in 	
+the PCoIP session statistics. User testing in your environment will indicate 
+the need for a higher or lower value.
+
+Use cases and details
+
+Configure	for	WAN	environments	with	video	playback	and	fast	graphics	
+operations.
+
+In	limited	bandwidth	scenarios,	you	may	want	to	configure	these	image	quality	settings.	You	can	balance 	
+Minimum Image Quality with Maximum Frame Rate.	You	can	combine	a	lower	minimum	image	quality	(with 	
+possible	blurred	images)	with	a	higher	frame	rate	for	smooth	motion,	or	combine	a	higher	minimum	image 	
+quality	for	crisp	imaging	with	a	lower	frame	rate	(and	possible	choppy	motion).
+
+Maximum Initial Image Quality allows you to reduce the network bandwidth peaks by limiting the initial 
+image	quality	displayed.	You	can	configure	a	lower	initial	image	quality	(with	possible	blur)	with	more	frequent 	
+updates	(higher	frame	rate,	smoother	motion)	to	decrease	peak	bandwidth	requirements	during	large	screen 	
+changes.	Or	you	can	configure	a	higher	initial	image	quality	(crisper	image)	with	less	frequent	updates	(lower 	
+frame	rate,	possible	choppy	motion),	which	increases	peak	bandwidth	requirements	during	large	screen 	
+changes.
+
+PCoIP attempts to maximize the image quality within the following bandwidth constraints:
+
+•	 Configured	maximum	session	bandwidth	
+
+•	 Determined	bandwidth	limit	(see	the	server/client	logs)
+
+•	 Configured	maximum	initial	image	quality	
+
+Tip: If you adjust Maximum Initial Image Quality,	consider	configuring	it	before	applying	a	maximum	session 	
+bandwidth	limit	or	configuring	the	Minimum Image Quality.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 0
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Example: Network Congestion Causes Occasional Degraded User Experience
+ 
+
+   Scenario:
+
+•	 Basic	office	productivity	applications,	no	video,	no	3D	graphics
+
+•	 T1	line	with	four	active	users
+
+•	 An	analysis	of	the	link	shows	periodic	spikes	in	bandwidth	that	consume	the	available	link	bandwidth, 	
+
+or	the	bandwidth	assigned	to	PCoIP	traffic.	Further	analysis	shows	that	the	network	traffic	during	these 	
+spikes is roughly distributed across all active users.
+
+•	 Users	notice	a	momentary	degradation	in	their	desktop	experience.
+
+     Resolution:
+
+•	 Set	the	Windows	desktop	settings	for	best	performance	as	described	in	 Windows Desktop Settings to 
+
+Optimize Performance over a WAN
+
+•	 Reduce	the Maximum Initial Image Quality (for	example,	to	70	percent)
+
+    Result:
+
+    Users maintain an acceptable desktop experience even during spikes in bandwidth.
+
+Example: Screen Performance Is Inconsistent
+ 
+If the user desktop experience is degraded, or the screen performance is inconsistent, the PCoIP protocol 
+adjusts and is optimized. If issues arise, adjust the Maximum Initial Image Quality.	Only	change	these	image	
+quality	settings	if	you	are	confident	about	your	understanding	of	them.
+
+Network Settings in View
+You	can	achieve	the	optimal	bandwidth	usage	in	View	5	with	the	default	settings,	plus	by	disabling	Build	to 	
+Lossless.	The	PCoIP	protocol	automatically	takes	advantage	of	available	network	bandwidth	and	fairly	shares 	
+bandwidth across active users on a link. Change the network settings only if you have determined the overall 
+effect	to	be	beneficial.
+
+Configuring	some	of	the	PCoIP	network	settings	may	be	useful	in	special	cases:
+
+•	 Maximum	PCoIP	session	bandwidth	(maximum	link	rate)	( Configure the maximum PCoIP session 
+
+bandwidth)
+
+•	 Session	bandwidth	floor	(Configure the PCoIP session bandwidth floor)
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 1
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+These settings are in the pcoip.adm	administrative	policy	template.	Refer	to	Importing the PCoIP 
+Administrative Template	for	instructions	on	copying	the	administrative	template	and	configuring	settings.
+
+CONFIGURE THE MAXIMUM PCOIP SESSION BANDWIDTH
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Sets	the	maximum	session	bandwidth	used	by any one PCoIP session so that 
+one	user’s	bandwidth	peaks	do	not	interfere	with	others’	productivity.	
+Constrains the maximum link rate in a PCoIP session. Permits you to better 
+estimate	total	bandwidth	usage.	Set	this	value	to	the	overall	capacity	of	the	
+link	to	which	your	endpoint	is	connected.	You	do	not	want	the	server	to	try	
+to transmit at a higher rate than this because you would have excessive 
+packet loss and a poor user experience. This setting forces both the client 
+and	server	to	use	the	lowest	bandwidth	setting	found	on	either	side.	Leaving	
+this	setting	Not	Configured	imposes	no	bandwidth	constraints	from	the	
+endpoint side. 
+
+90,000Kbps
+
+104–90000Kbps.	Do	not	set	it	too	low	because	the	ability	to	peak	is	key	to 	
+desktop	performance.	You	want	individual	sessions	to	take	advantage	of 	
+additional link bandwidth when available.
+
+Use cases and details
+
+If	someone	is	overconsuming	bandwidth,	limit	this	setting.	For	a	LAN,	there	
+is	no	need	to	configure	this	setting.	Set	per	your	WAN	network	conditions.
+
+CONFIGURE THE PCOIP SESSION BANDWIDTH FLOOR
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Lower	limit	to	the	bandwidth	reserved	for	each	PCoIP	session.	Improves	
+responsiveness: A user does not need to wait for bandwidth to become 
+available because this minimum amount is waiting for them. Actual session 
+bandwidth can be below the floor if the desktop does not need the 
+minimum	amount	configured.
+
+0Kbps	(no	minimum	bandwidth	is	reserved,	so	users	may	wait	for	
+bandwidth	to	be	available)
+
+0–100,000Kbps.	For	a	given	configuration,	the	sum	of	all	floors	for	all 	
+connections	cannot	exceed	the	network	capability	(which	would	be 	
+oversubscribing).
+
+Use cases and details
+
+Use	only	in	special	cases;	consumes	bandwidth.
+
+ 
+Example: Network Congestion from a Small Number of Users Causes Degraded User Experience
+ 
+The PCoIP protocol automatically handles variation in user bandwidth requirements, and you generally do not 
+need	to	configure	network	settings.	In	some	situations,	consider	changing	these	PCoIP	settings.	For	example, 	
+users	may	complain	of	network	degradation.	You	investigate	and	notice	that	one	or	two	users	are	consuming 	
+3	or	4Mbps	during	this	degradation.	The	users	may	be	watching	more	videos	than	you	anticipated.	In	this 	
+case, make sure the Windows visual settings are optimized. In addition, you can adjust the maximum session 
+bandwidth for all users on the network link to limit how much bandwidth the video watchers can consume. If 
+you also set the PCoIP bandwidth floor, you can ensure a baseline performance for all users during a network 
+congestion event. 
+
+If	these	settings	are	not	sufficient,	consider	adjusting	the	image	quality	settings.	Reduce	the	maximum	initial 	
+image quality and increase the minimum image quality.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 2
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Example: Optimizing for Increased User Density on WAN Network Links
+ 
+
+   Scenario:
+
+•	Users	with	basic	task	worker	or	call	center	applications,	no	video,	no	3D	graphics.	Low	average	bandwidth 	
+
+is a higher priority than user experience. 
+
+•	 1.5Mbps	T1	WAN	link
+
+•	 More	than	25	active	users
+
+    Resolution options: 
+
+•	Set	the	Windows visual settings for best performance. 
+
+•	 Set	the	maximum	PCoIP	session	bandwidth	per	user.	The	actual	setting	depends	on	the	number	of	users 	
+
+targeted for the link. This must be set for all users on the link. 
+
+•	 Adjust	the	minimum	and	maximum	image	quality.	For	example:
+
+    Maximum Initial Image Quality	=	70
+
+    Minimum Image Quality	=	40
+
+•	 Reduce	the	Maximum Frame Rate to 8 fps. 
+
+•	 If	the	average	bandwidth	is	not	sufficiently	reduced,	you	can	use	even	lower	settings	for	the	maximum 	
+
+bandwidth and image quality. 
+
+    Result: 
+
+More	than	twenty-five	users	can	be	active	simultaneously	on	a	T1	WAN	link. 	
+
+Client Cache Size Setting in View
+Client-side image caching is enabled by default in View to reduce bandwidth usage. The recommended 
+memory	for	client-side	caching	is	1GB.	If	the	View	Client	has	less	memory,	you	can	reduce	bandwidth	usage 	
+by adjusting the View Client cache size. This setting is Configure PCoIP client image cache size policy in the 
+pcoip.adm policy template.
+
+CONFIGURE PCOIP CLIENT IMAGE CACHE SIZE POLICY
+
+Brief	definition
+
+Default value
+
+Possible values
+
+Controls the size of the PCoIP View Client image cache. Client-side caching 
+stores previously transmitted image content on the View Client to avoid 
+retransmission,	which	reduces	bandwidth	usage.	Takes	effect	only	on	
+Windows	View	Clients,	not	mobile	or	zero	clients,	and	not	yet	on	Mac	or	
+Linux	View	Clients.
+
+250MB
+
+50–300MB.	A	larger	cache	size	reduces	bandwidth	usage,	but	requires 	
+more memory on the client. A smaller cache size requires more bandwidth 
+usage.
+
+Use cases and details
+
+A thin client with little memory requires a smaller cache size.
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 3
+
+Figure 12: Image Cache Size
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 4
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+Using PCoIP Session Statistics to Monitor  
+End-User Experience
+
+VMware	View	5	offers	the	administrator	more	than	thirty	PCoIP	session	statistics	to	monitor,	obtain	trending 	
+on,	and	troubleshoot	end-user	connections.	Troubleshooting	remote	desktop	connections	is	difficult,	and 	
+traditional logs do not give enough information. These PCoIP counters give per-session feedback on PCoIP 
+protocol	performance.	When	latency	arises,	or	users	report	a	problem,	administrators	can	examine	these 	
+statistics. The ability to examine individual sessions is very helpful.
+
+This	performance	monitoring	runs	from	the	Windows	desktop.	You	can	import	the	data	into	any	standard 	
+Windows	Management	Instrumentation	(WMI)-based	tool	or	programming	interface	for	further	analysis.	If 	
+you	currently	use	a	monitoring	or	management	tool	in	the	enterprise	to	collect	WMI	statistics,	you	can	point 	
+the tool to the View virtual machines and set the counters to collect data. For example, you can use PerfMon 
+(Windows	Performance	Monitor),	which	is	simple	and	free,	yet	not	very	scalable.	You	can	also	do	WMI	scripting. 	
+Several	VMware	Partners	have	integrated	these	statistics	into	robust	tools.
+
+For more information on integrating PCoIP session counters into your performance monitoring environment, 
+see the Examining	PCoIP	Session	Statistics chapter in the VMware View Integration guide.
+
+View	5	measures	and	tracks	sessions	with	individual	session	counters	in	five	major	categories:
+
+•	 PCoIP	Session	General	Statistics
+
+•	 PCoIP	Session	Imaging	Statistics
+
+•	 PCoIP	Session	Network	Statistics
+
+•	 PCoIP	Session	USB	Statistics
+
+•	 PCoIP	Session	Audio	Statistics
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 5
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+The most commonly used session statistics in View are in the following table.
+
+PCOIP SESSION STATISTIC
+
+DEFINITION
+
+Audio	RX	BW	kbit/sec	(calculated	from	
+AudioBytesReceived)
+
+Incoming audio packet bandwidth being used, in 
+kilobits per second
+
+Audio	TX	BW	kbit/sec	(calculated	from	
+AudioBytesSent)
+
+Outgoing	audio	packet	bandwidth	being	used,	in	
+kilobits per second
+
+Session	Duration	Seconds	
+(SessionDurationSeconds)
+
+How long the PCoIP session has been connected, in 
+seconds
+
+Imaging	Encoded	Frames/sec	
+(ImagingEncodedFramesPersec)
+
+Imaging encoding frames per second that PCoIP is 
+sending across the network
+
+Round	Trip	Latency	ms	(RoundTripLatencyms)
+
+RX	BW	kbit/sec	(calculated	from	BytesReceived)
+
+TX	BW	kbit/sec	(calculated	from	BytesSent)
+
+Network roundtrip latency between server and client, 
+in milliseconds
+
+Receive	bandwidth	available	for	incoming	PCoIP	
+packets, in kilobits per second
+
+Transmission bandwidth available for outgoing PCoIP 
+packets, in kilobits per second
+
+TX	Packet	Loss	%	(calculated	from	PacketsSent	
+and	TXPacketsLost)
+
+Percentage of transmitted packets lost during the 
+sampled period
+
+RX	Packet	Loss	%	(calculated	from	
+PacketsReceived	and	RXPacketsLost)
+
+Percentage of received packets lost during the 
+sampled	period	(received	packets	have	sequence	IDs,	
+so	if	some	are	missing,	they	are	considered	lost)
+
+Table 2: Commonly Used PCoIP Session Statistics in View
+
+For a complete listing of the PCoIP session counters, see the Examining	PCoIP	Session	Statistics chapter in the 
+VMware View Integration guide.
+
+Session	statistics	are	sampled	every	second.
+
+ 
+
+V M WA R E   V I E W   W I T H   P C O I P   /   3 6
+
+VMware View 5 with PCoIP 
+Network Optimization Guide
+
+References for Further Information
+
+For more information on VMware View:
+
+•	 Visit	the	VMware Community Forum for View
+
+•	 Query	the	VMware Knowledge Base
+
+•	 Contact	your	local	authorized VMware partner
+
+•	 Delve	into	the	View Technical Resources	(technical	whitepapers),	including:
+
+-  Windows 7 Optimization Guide for VMware View
+
+-  Using PCoIP Host Cards Brokered by VMware View 4
+
+-  Using PCoIP Zero Clients with PCoIP Host Cards
+
+•	 Refer	to	the	VMware View documentation:
+
+-  VMware View Architecture Planning
+
+-  VMware View Administration guide
+
+-  VMware View Installation guide
+
+-  VMware View Upgrades guide
+
+-  VMware View Clients documentation
+
+-  VMware View Integration guide
+
+•	 Consider	View Planner for testing your network
+
+About the Author and Contributors
+
+Tina	de	Benedictis	is	a	Technical	Marketing	Manager	for	Enterprise	Desktop	at	VMware,	focused	on	VMware 	
+View	and	ThinApp.	Tina’s	background	at	VMware	includes	writing	Knowledge	Base	articles	and	developing 	
+Technical	Support	training	on	ThinApp,	Fusion,	and	Capacity	Planner.	Her	previous	background	is	in	customer 	
+training,	technical	support,	and	technical	publications	at	companies	including	Mobileum	(Roamware),	Scopus 	
+(Siebel),	and	ASK/Ingres	(Computer	Associates).
+
+Special	thanks	to	Warren	Ponder,	Rishi	Bidarkar,	Banit	Agrawal,	Lawrence	Spracklen,	Chuck	Hirstius,	and 	
+Tommy	Walker	for	their	contributions	to	the	content	in	this	guide.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www .vmware .com
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at
+http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be 
+trademarks of their respective companies. Item No: VMW-NOG-VIEW-PCOIP-USLET-101-WEB
+
+

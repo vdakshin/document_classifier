@@ -1,0 +1,761 @@
+ VirtualWisdom® Port Usage Guide 
+
+ Release 3.4 – Updated June 4, 2013 
+
+ 
+
+Purpose of this Document 
+This document summarizes VirtualWisdom usage of the datacenter network infrastructure. Its 
+purpose is to provide network administrators with the information they need for VirtualWisdom to 
+function as expected in their environment. 
+ 
+
+•  None of the data transmitted within the VirtualWisdom monitoring solution is encrypted; 
+however, VirtualWisdom neither uses nor transmits customer data, only measurements 
+of datacenter infrastructure regarding health, utilization, and performance. 
+
+•  VirtualWisdom uses standard protocols (such as UDP and TCP), which are not 
+
+proprietary. In some cases, it uses standard data transfer mechanisms (such as Java 
+RMI); however, in other cases it uses proprietary mechanisms (such as ProbeFC8 
+discovery, lease requests, and data transfers). 
+
+VirtualWisdom Components 
+A VirtualWisdom deployment consists of several software and hardware components. Your 
+VirtualWisdom system might consist of only a subset of these components. 
+Software 
+
+•  VirtualWisdom Server (VWServer) – deployed on a dedicated server machine in the 
+
+datacenter (also called the Portal). 
+
+•  VirtualWisdom Views Client – typically deployed on a user’s desktop or laptop. 
+•  VirtualWisdom Dashboard – deployed on a user’s desktop or laptop, also often deployed 
+
+on a large display in the datacenter. 
+
+•  ProbeSW 
+•  ProbeVM 
+
+Hardware 
+
+•  ProbeFC8 
+•  ProbeFCX  
+•  Rover 
+•  XGig 
+
+ 
+Note: The examples in this guide refer to two different properties files, found in the following 
+default install directories under Program Files. 
+ 
+Portal                                                                                                                                  
+\Virtual Instruments\VirtualWisdom\VirtualWisdom.properties 
+ 
+Views and Dashboard Clients                                                                                            
+\Virtual Instruments\VirtualWisdom Client\VirtualWisdom.properties 
+
+1  Purpose of this Document | Virtual Instruments 
+
+ 
+
+Port Usage Summary Diagram 
+
+ 
+
+ 
+
+ 
+
+2  VirtualWisdom Components | Virtual Instruments 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VirtualWisdom Server (Views/Dashboard Clients) Communications 
+ 
+
+Target 
+VWServer 
+
+Port 
+D 
+
+Protocol 
+TCP 
+
+Task 
+Data transmission 
+(Views/Dashboard) 
+RMI registry port 
+RMI export port 
+JMX RMI registry port 
+JMX RMI export port 
+JMS events 
+(Views/Dashboard) 
+Remote Client 
+When using a remote Client and e-mailing or storing reports remotely, the VirtualWisdom Server 
+contacts the remote Client through a dynamic port, and only the following scenarios are 
+supported: 
+
+VWServer 
+VWServer 
+VWServer 
+VWServer 
+VWServer 
+
+10068 
+10068 
+10071 
+10072 
+10067 
+
+TCP 
+TCP 
+TCP 
+TCP 
+TCP 
+
+•  No firewall between the VirtualWisdom Server and the remote Client. 
+•  Firewall in place, but all ports on the remote Client side must be open. 
+
+RMI Calls 
+Java’s standard RMI (Remote Method Invocation) API is used by various components for 
+communication.  
+
+The RMI registry port is where the client looks up the RMI objects The RMI export port is the 
+port used to communicate with an RMI object. 
+ 
+The Views or Dashboard client connects to the registry port to get the VWServer connector 
+proxy object. With this information the client can then connect to the export port to make the 
+RMI calls as needed.  
+
+Communication Interval 
+This communication occurs on an as-needed basis whenever the Views or Dashboard client 
+needs to communicate with the VWServer. A regular heartbeat goes across this connection as 
+well to help the client know if the VWServer has gone down. 
+ 
+Control Options (Views/Dashboard) 
+How to override the default RMI port usage. By default a random range of ports is used for RMI 
+communication setting: 
+
+com.vi.portal.enableCustomRMIFactory=true 
+forces the use of a single port (10068 by default). You can further customize which ports are 
+used by setting the port for the RMI registry and export services: 
+
+com.vi.portal.rmi.registry.port= <port number> 
+com.vi.portal.rmi.export.port= <port number> 
+
+3  VirtualWisdom Server (Views/Dashboard Clients) Communications | Virtual 
+
+Instruments 
+
+ 
+
+To provide additional debugging information, make sure you enable the JMX RMI connector by 
+setting the following property (it is enabled by default): 
+
+ 
+
+com.vi.portal.enableJMXRMIConnector=true 
+This overrides the previous registry and export port settings. To use custom ports, set the 
+following properties: 
+
+com.vi.portal.jmx.service.rmi.host=<host_name or IP of the portal machine> 
+com.vi.portal.jmx.service.rmi.port=<port number> 
+com.vi.portal.jmx.rmi.registry.port=<port number> 
+com.vi.portal.jmx.rmi.export.port=<port number> 
+Control Options (Dashboard) 
+To specify the VWServer to which to connect: 
+
+Dcom.sun.management.jmxremote.port=10067<port number> 
+The following settings are mutually exclusive; specify one or the other, but not both: 
+com.vi.portal.jmx.rmi.registry.port=<port number> 
+com.vi.portal.jmx.rmi.export.port=<port number> 
+JMS Events 
+The Apache ActiveMQ implementation of the Java standard JMS (Java Messaging Service) API 
+is used by various components for event communication.  
+
+The JMS connector port is used to establish communication between two JMS brokers in order 
+to send JMS messages. 
+
+Communication Interval 
+This communication occurs on an as needed basis whenever the VWServer needs to exchange 
+messages with a Views client. 
+ 
+Control Options 
+No additional controls are available for JMS communication. 
+
+VirtualWisdom Server Web Client Communications 
+ 
+
+Target 
+Task 
+Web interface 
+VWServer 
+Web interface – secure connection  VWServer 
+Communication Interval 
+Used during web client operations. 
+ 
+
+Port 
+8080 
+8443 
+
+Protocol 
+TCP 
+TCP 
+
+4  VirtualWisdom Server Web Client Communications | Virtual Instruments 
+
+ 
+
+ 
+
+Control Options 
+You can enable or disable the webservices on the VWServer using the enableServices 
+property, which is enabled by default.  
+ 
+Note: If you set this property to false, webclients will not be able to connect to the VWServer. 
+com.vi.web.enableServices=<true or false> 
+The web server port defaults to 8080 but can be set to another port using the following property: 
+com.vi.web.server.port=<port number> 
+The secure web server port defaults to 8443 but can be changed with the following property: 
+com.vi.web.server.https.port=<port number> 
+By default web connections made to the web server port are accepted, setting the following 
+property to true redirects these connections to the secure web server port: 
+com.vi.web.server.redirectToHttps 
+
+VirtualWisdom Server ProbeFC8 Communications  
+The ProbeFC8s listen on port 1331 using UDP and TCP for discovery requests from the Server. 
+The VirtualWisdom Server listens on port 4682 using UDP for replies from both local and 
+remote ProbeFC8s to its discovery requests. To lease a Probe FC8, the Portal starts a TCP 
+connection to port 1099 on the probe. To send uncompressed monitoring data to the Portal, the 
+ProbeFC8 starts a TCP connection on port 50082 of the VirtualWisdom Server; the ProbeFC8 
+sends compressed data on port 50083. Downloading updated firmware to the ProbeFC8 is 
+requested through Views, and the probe initiates the request via HTTP to port 8080 on the 
+VWServer. The port used on the ProbeFC8 is dynamically selected from the range 32768-6100. 
+ 
+In cases where some probe boxes are on different subnets from the VWServer, it can request 
+that a ProbeFC8 chassis present on both subnets act as a subnet repeater to assist in the 
+search for ProbeFC8 chassis. Note that ProbeFC8 repeats only for other ProbeFC8s. The 
+VWServer sends a TCP message to port 1331 requesting the ProbeFC8 act as a repeater for 
+broadcast search messages mentioned above. 
+ 
+
+Task 
+Local Discovery 
+Remote Discovery 
+Discovery Response 
+Lease Request 
+Data Transmission (uncompressed) 
+Data Transmission (compressed) 
+Request firmware update file download  VWServer  8080 
+Time synchronization 
+VWServer  123 
+
+Protocol 
+Target 
+Port 
+UDP 
+ProbeFC8  1331 
+TCP 
+ProbeFC8  1331 
+UDP 
+VWServer  4682 
+ProbeFC8  1099 
+TCP 
+VWServer  50082  TCP 
+VWServer  50083  TCP 
+HTTP 
+UDP 
+
+Communication Interval 
+The ProbeFC8 discovery broadcast messages are sent every 30 seconds for a period of 5 
+minutes, forming a single cycle. The same timing applies for a probe acting as a broadcast 
+repeater.  
+ 
+Probes do not respond to every broadcast message they receive. The first discovery message 
+in this cycle has an ID set to zero, which tells all probes to respond to it. Subsequent broadcast 
+
+5  VirtualWisdom Server ProbeFC8 Communications | Virtual Instruments 
+
+ 
+
+ 
+
+messages in the cycle increment the ID. If a probe has already responded to this VWServer, it 
+will not respond again until either the beginning of the next cycle or a change to the probe’s 
+configuration (such as IP address or name).   
+  
+Control Options 
+If your VWServer has multiple NICs you can control which local IPs are used by the VWServer 
+for discovery broadcast. Set the property  
+com.vi.local.discovery.ips  
+to a comma-separated list of IP addresses from which you want the VWServer to send 
+broadcast packets.   
+ 
+Example: Your VWServer machine has two NICs one on 129.168.2.x subnet and one on the 
+129.168.4.x subnet. The ProbeFC8 chassis is located only on the 129.168.2 subnet. You can 
+stop the broadcast packets from going to the 129.168.4 subnet by setting the following: 
+com.vi.local.discovery.ips=129.168.2.12 
+ 
+Time Synchronization 
+The VWServer includes its own NTP server, used to keep the VWServer and ProbeFC8s in 
+sync, using UDP and port 123 on the VWServer. ProbeFC8 port allocation is dynamic. 
+Communication Interval 
+The NTP server is updated every 64 seconds by default or on demand from the probe. 
+ 
+Control Options 
+No additional controls are available for NTP communication 
+
+VirtualWisdom Server ProbeFCX Communications  
+The VirtualWisdom Server sends UDP broadcast packets to attempt to find any ProbeFCX  
+chassis. The ProbeFCXs are listening on UDP port 3000. The Server also listens for TCP 
+responses from ProbeFCX chassis on port 3000.  
+ 
+In cases where some probe boxes are on different subnets from the VWServer, it can request 
+that a ProbeFCX chassis present on both subnets act as a subnet repeater to assist in the 
+search for ProbeFCX chassis. Note that ProbeFCX repeats only for other ProbeFCXs. The 
+VWServer sends a TCP message to port 2000 requesting the ProbeFCX act as a repeater for 
+broadcast search messages mentioned above. 
+ 
+
+Target 
+Task 
+ProbeFCX 
+Local Discovery 
+ProbeFCX 
+Remote Discovery 
+Local Discovery Response 
+VWServer 
+Remote Discovery Response  VWServer 
+VWServer 
+Data Transmission 
+Time synchronization 
+VWServer 
+
+Port 
+3000 
+2000 
+3000 
+3000 
+Dynamic 
+123 
+
+Protocol 
+UDP 
+TCP 
+UDP 
+UDP 
+TCP 
+UDP 
+
+Communication Interval 
+The ProbeFCX discovery broadcast messages are sent every 30 seconds for a period of 5 
+minutes, forming a single cycle. The same timing applies for a probe acting as a broadcast 
+repeater.  
+
+6  VirtualWisdom Server ProbeFCX Communications | Virtual Instruments 
+
+ 
+
+ 
+
+ 
+
+ 
+Probes do not respond to every broadcast message they receive. The first discovery message 
+in this cycle has an ID set to zero, which tells all probes to respond to it. Subsequent broadcast 
+messages in the cycle increment the ID. If a probe has already responded to this VWServer, it 
+will not respond again until either the beginning of the next cycle or a change to the probe’s 
+configuration (such as IP address or name).   
+  
+Control Options 
+If your VWServer has multiple NICs you can control which local IPs are used by the VWServer 
+for discovery broadcast. Set the property  
+com.vi.local.discovery.ips  
+to a comma-separated list of IP addresses from which you want the VWServer to send 
+broadcast packets.   
+ 
+Example: Your VWServer machine has two NICs one on 129.168.2.x subnet and one on the 
+129.168.4.x subnet. The ProbeFCX chassis is located only on the 129.168.2 subnet. You can 
+stop the broadcast packets from going to the 129.168.4 subnet by setting the following: 
+com.vi.local.discovery.ips=129.168.2.12 
+ 
+Example: You are using ProbeSW and have no ProbeFCX chassis. You might want to 
+eliminate all broadcast traffic associated with ProbeFCX. If you set the following property to 
+false, it will disable all local broadcasts: 
+ com.vi.local.discovery.enabled=false 
+Note: Do not do this if you have a ProbeFCX installed on your network. 
+ 
+Time Synchronization 
+The VWServer includes its own NTP server, used to keep the VWServer and ProbeFCXs in 
+sync, using UDP and port 123 on the VWServer. ProbeFCX port allocation is dynamic. 
+Communication Interval 
+The NTP server is updated every 64 seconds by default or on demand from the probe. 
+ 
+Control Options 
+No additional controls are available for NTP communication 
+
+VirtualWisdom Server ProbeSW Communications 
+ProbeSW monitors fibre channel switch activity by making SNMP requests via the UDP protocol 
+targeted at port 161 of the fibre channel switches. 
+ 
+The VWServer attempts to automatically detect the type of switch by establishing a TCP telnet 
+session to port 23 of the switch. If you don’t have telnet installed, you can manually enter the 
+switches. 
+ 
+
+Task 
+ProbeSW auto discovery of switch type 
+(telnet) 
+ProbeSW Switch data collection 
+(SNMP) 
+
+Target 
+FC Switches 
+
+Port 
+23 
+
+Protocol 
+TCP 
+
+FC Switches 
+
+161 
+
+UDP 
+
+7  VirtualWisdom Server ProbeSW Communications | Virtual Instruments 
+
+ 
+
+ 
+
+Communication Interval 
+The SNMP monitoring is configured through the Views client and defaults to once every 5 
+minutes, put can be set to as frequent as every 15 seconds.  
+ 
+The switch type discovery is a one-time operation that happens when the switch is added to the 
+fabric configuration. If a switch type is unknown, auto-detect attempts to run during every 
+scheduled discovery (defaults to 24 hours) until the switch type is determined. 
+ 
+Control Options 
+No additional controls are available for the ProbeSW communication 
+
+VirtualWisdom SNMP Trap Information 
+The VWServer includes the ability to provide SNMP traps to 3rd party management software.  
+The VWServer by default uses UDP to port 3000 of the 3rd party management software if 
+sending SNMP traps has been configured in the Views client. The default port number can be 
+overridden when configuring the target for traps in the Views client. 
+ 
+
+Task 
+Capture SNMP trap information 
+
+Target 
+SNMP Trap Listeners 
+
+Port 
+3000 
+
+Protocol 
+UDP 
+
+Communication Interval 
+This communication occurs on an as needed basis whenever an event occurs that has been 
+configured to generate an SNMP trap. 
+
+ 
+
+Control Options 
+No additional controls are available for SNMP communication 
+
+VirtualWisdom Server Rover Management Communications 
+If you have installed an Apcon or Curtiss Wright physical layer switch (PLS, aka rover), then the 
+VWServer controls the rover by establishing a telnet session to the rover on TCP port 23; an 
+SSH session can be established with VirtualWisdom 2.0 SP2 or later and a Curtiss-Wright PLS 
+running firmware level 1.13 or higher.  
+ 
+If you have installed a SANInsight PLS, then the VWServer controls the rover by establishing a 
+telnet session to the rover on TCP port 53058 or an SSH session on TCP port 53057. This rover 
+also requires TCP port 50100 for the UI client API, and port 80 to launch the HorizON web 
+page. The SANInsight rover is manufactured by ONPATH Technologies, and the firmware that 
+operates the rover is called HorizON. 
+ 
+
+Task 
+Telnet connection 
+SSH connection (Curtiss-Wright only) 
+Telnet connection 
+SSH connection 
+UI client API 
+
+Target 
+Apcon or  
+Curtiss Wright 
+SANInsight 
+
+Port 
+23 
+22 
+53058 
+53057 
+50100 
+
+Protocol 
+TCP 
+TCP 
+TCP 
+TCP 
+TCP 
+
+Communication Interval 
+Once established, the session remains active and is not terminated. 
+ 
+
+8  VirtualWisdom SNMP Trap Information | Virtual Instruments 
+
+ 
+
+Control Options 
+No additional controls are available for rover communication. 
+
+ 
+
+RemoteWisdom Communications 
+With customer approval and appropriate privileges, a Virtual Instruments support engineer can 
+initiate a remote desktop session to the VirtualWisdom Server to troubleshoot problems in a 
+VirtualWisdom deployment. RemoteWisdom encrypts all communications between customer 
+devices and VI servers with Secure Sockets Layer (SSL) technology, using a secure tunnel to 
+port 443 initiated by RemoteWisdom. The remote desktop session requires port 5920 on the 
+VirtualWisdom Server; however, communications are routed through the secure tunnel. 
+ 
+
+Task 
+RemoteWisdom (RW) connection  VI support 
+RW remote desktop connection 
+
+Target 
+
+VirtualWisdom Server 
+
+Port  Protocol 
+443 
+TCP 
+5920  TCP 
+
+Communication Interval 
+The RW agent polls at 30-second intervals and sends to the VI server; continuous when 
+connected to perform remote actions. 
+ 
+Control Options 
+Properties files are configured when RW is installed. 
+
+VirtualWisdom Server Miscellaneous Communications 
+ 
+
+Task 
+SMTP operations 
+Kerberos authentication for 
+active directory login 
+Xgig proxy initiating capture 
+VCenter (SSL) 
+VCenter (no SSL) 
+
+Target 
+Mailserver 
+Kerberos 
+
+Port 
+25 
+88 
+
+Protocol 
+TCP 
+TCP/UDP 
+
+Xgig Proxy 
+ProbeVM 
+ProbeVM 
+
+10070 
+TCP 
+443 (HTTPS)  TCP 
+TCP 
+80 (HTTP) 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+9  RemoteWisdom Communications | Virtual Instruments 
+
+ 
+
+How to Customize VirtualWisdom Server/Client Communication through 
+Firewalls 
+The list of rules used by a firewall determines whether unsolicited incoming traffic is allowed or 
+blocked. A typical behavior is implicit deny, which means that all unsolicited incoming traffic is 
+blocked, unless an explicit rule allows it through the firewall. If remote VirtualWisdom Clients 
+cannot connect to/communicate with the VirtualWisdom Server through a firewall, you can 
+configure the VirtualWisdom RMI service (for the Server and each Client) to create firewall rules 
+that allow this communication. 
+ 
+NOTE: After you customize VirtualWisdom ports, you must specify those ports to be allowed by 
+your Windows firewall rules for inbound traffic. 
+ 
+ 
+VirtualWisdom Server 
+The properties defined in this procedure specify to the VirtualWisdom Server which ports to use 
+to listen to requests from the Clients. 
+ 
+
+1.  Shut down the VirtualWisdom service. 
+
+ 
+
+2.  Edit (using Notepad or another text editor) the following file on the VirtualWisdom 
+
+3.  Remove the following section from the file: 
+
+Server: 
+\ProgramFiles\Virtual Instruments\VirtualWisdom\wrapper.conf  
+ 
+-Dcom.sun.management.jmxremote.port=10071 
+ 
+NOTE: You cannot comment this section out. It must be removed; otherwise, it overrides 
+any port customization.  
+
+ 
+VirtualWisdom versions up to 3.3.x 
+Before (section is embedded in a large wrapper line)  
+wrapper.java.additional.1=-Djava.security.auth.login.config=jaas.conf-Xrs -
+Djava.awt.headless=true -Dlog.traces=false -XX:+HeapDumpOnOutOfMemoryError-
+XX:PermSize=128m -XX:MaxPermSize=128m -
+Dcom.sun.management.jmxremote.port=10071-
+Dcom.sun.management.jmxremote.ssl=false-
+Dcom.sun.management.jmxremote.authenticate=false  
+After 
+wrapper.java.additional.1=-Djava.security.auth.login.config=jaas.conf-Xrs -
+Djava.awt.headless=true -Dlog.traces=false -XX:+HeapDumpOnOutOfMemoryError-
+XX:PermSize=128m -XX:MaxPermSize=128m -
+Dcom.sun.management.jmxremote.ssl=false-
+Dcom.sun.management.jmxremote.authenticate=false 
+ 
+VirtualWisdom versions 3.4.x and higher 
+Before (section is embedded in a large wrapper line)  
+wrapper.java.additional.1=-Xmx<max heap space value>G -XX:+UseConcMarkSweepGC 
+-XX:+PrintTenuringDistribution -XX:+UnlockDiagnosticVMOptions -
+XX:+PrintFlagsFinal -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -verbose:gc -
+Djava.net.preferIPv4Stack=true -Djava.security.auth.login.config=jaas.conf -
+Xrs -Djava.awt.headless=true -Dlog.traces=false -
+
+10  How to Customize VirtualWisdom Server/Client Communication through Firewalls | 
+
+Virtual Instruments 
+
+ 
+
+ 
+
+XX:+HeapDumpOnOutOfMemoryError -XX:PermSize=128m -XX:MaxPermSize=128m -
+Dcom.sun.management.jmxremote.port=10071 -
+Dcom.sun.management.jmxremote.ssl=false -
+Dcom.sun.management.jmxremote.authenticate=false 
+After  
+wrapper.java.additional.1=-Xmx<max heap space value>G -XX:+UseConcMarkSweepGC 
+-XX:+PrintTenuringDistribution -XX:+UnlockDiagnosticVMOptions -
+XX:+PrintFlagsFinal -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -verbose:gc -
+Djava.net.preferIPv4Stack=true -Djava.security.auth.login.config=jaas.conf -
+Xrs -Djava.awt.headless=true -Dlog.traces=false -
+XX:+HeapDumpOnOutOfMemoryError -XX:PermSize=128m -XX:MaxPermSize=128m -
+Dcom.sun.management.jmxremote.ssl=false -
+Dcom.sun.management.jmxremote.authenticate=false 
+ 
+ 
+ 
+ 
+
+4.  Add the following property to the VirtualWisdom properties file on the VirtualWisdom 
+
+Server: 
+com.vi.portal.enableCustomRMIFactory=true  
+ 
+ 
+ 
+ 
+This file is located in the following directory: 
+
+\ProgramFiles\Virtual Instruments\VirtualWisdom\VirtualWisdom.properties) 
+
+ 
+NOTE: The registry and export ports can be the same, and they are both set to 10068 by 
+default. The following example shows a non-default two-port setting: 
+com.vi.portal.rmi.registry.port=50005  
+com.vi.portal.rmi.export.port=50015  
+ 
+
+5.  Restart the VirtualWisdom service. 
+
+ 
+VirtualWisdom Client 
+The properties defined in this procedure specify to the VirtualWisdom Clients which ports to use 
+to send requests to the Server. The port changes made in the VirtualWisdom Server properties 
+file above must exactly match the Client RMI port changes.  
+ 
+
+1.  Add the customized ports in the VirtualWisdom client properties file for every Views and 
+
+Dashboard Client. 
+ 
+This file is located in the following directory: 
+
+\ProgramFiles (x86)\Virtual Instruments\VirtualWisdom 
+Client\VirtualWisdom.properties) 
+
+ 
+The following example shows a non-default two-port setting: 
+com.vi.portal.rmi.registry.port=50005  
+com.vi.portal.rmi.export.port=50015  
+ 
+
+2.  Restart all the VirtualWisdom Clients. 
+
+ 
+
+ 
+
+11  How to Customize VirtualWisdom Server/Client Communication through Firewalls | 
+
+Virtual Instruments 
+
+ 
+
+12  How to Customize VirtualWisdom Server/Client Communication through Firewalls | 
+
+Virtual Instruments 
+
+ 
+ 
+
+ 
+
+

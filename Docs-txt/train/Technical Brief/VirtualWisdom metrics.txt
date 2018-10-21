@@ -1,0 +1,2574 @@
+ Technical Brief           
+
+ 
+
+Metric Definitions for VirtualWisdom 3.x Probes 
+
+ 
+
+ 
+
+ 
+ 
+
+ UTILIZATION &  
+FABRIC ERRORS 
+
+    
+
+ 
+               
+
+  PERFORMANCE & 
+PROTOCOL ERRORS 
+
+                    CROSS DOMAIN 
+ 
+VirtualWisdom® SAN Performance 
+
+VirtualWisdom® Virtual Server 
+
+ 
+
+       CORRELATION                                  
+
+Probe adds 
+
+Probe adds 
+
+Disk IO Metrics 
+•  HBA Utilization % 
+• 
+IO Latency 
+•  Disk Aborts 
+
+CPU Metrics 
+•  CPU Usage % 
+•  CPU Idle % 
+•  CPU Reserved Capacity 
+•  CPU Wait Time 
+
+Memory Metrics 
+•  Memory Utilization % 
+•  Memory Shared 
+•  Memory Swapped 
+•  Memory Ballooning 
+
+Network IO Metrics 
+•  Network Utilization % 
+• 
+•  Packet Drops 
+
+Throughput 
+
+ITL-level metrics, more granular 
+than ProbeSW 
+• 
+
+Enables quicker problem 
+resolution 
+Enables what-if scenarios for 
+port count reduction 
+Enables tiering decisions per-
+application 
+
+• 
+
+• 
+
+Protocol level events 
+
+Proactive problem detection and 
+avoidance 
+•  Queue depth information 
+• 
+•  Bi-directional buffer-to-buffer 
+
+Latency information 
+
+credit information 
+
+Link level (hardware level) events 
+
+Fibre Channel protocol link 
+events 
+Identify low level problems 
+
+Fibre Channel link groups 
+Identify Fibre Channel linkage 
+problems 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+       
+       
+
+VirtualWisdom® SAN Availability 
+
+Probe 
+
+SAN fabric errors and faults 
+Identify critical errors in the SAN 
+fabric 
+• 
+• 
+• 
+•  Packet discards 
+•  CRC errors 
+
+Loss of synchronization 
+Link resets 
+Link failures 
+
+Buffer credits 
+
+SAN fabric utilization metrics 
+Monitors SAN bandwidth 
+utilization 
+•  Number of frames 
+• 
+
+Throughput and utilization 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+VirtualWisdom SAN Performance Probe model ProbeFC8 Metrics 
+ 
+ 
+
+Fibre Channel Link Source and Device Metrics 
+
+Fibre Channel Link Source Metrics 
+
+Source Type 
+
+Probe Serial Number 
+
+Probe Name 
+
+Interval Time Stamp 
+
+Tap port 
+
+Tap port name 
+
+Device 
+
+Channel 
+
+Definition 
+
+The number assigned to a hardware probe by the factory. 
+
+The name you have assigned to a probe during configuration or the default probe name. 
+
+One second time intervals that were collected and calculated, for example: 1 to 5 minutes, 
+1 hour, 1 day, etc. 
+
+Port number being used on the Tap. The port that the tap connected to the probe is 
+monitoring. 
+
+Name of the port that tap connected to the probe is monitoring. 
+
+Direction of a duplex link, Channel 1 or Channel 2. 
+
+Fibre Channel Link Counters 
+
+Fibre Channel Link Counters 
+
+Collected Data 
+
+Definition 
+
+Channel 
+
+Frames/sec 
+
+MB/sec 
+
+SCSI MB/sec 
+
+ 
+SCSI Frames/sec 
+
+ 
+
+The Channel being measured. Channel 1 is on the left side of the Probe when you are facing it. 
+
+Total number of frames of any type per second. 
+
+Total megabytes of frame payload data per second. This does not include the SOF, Header, CRC or 
+EOF. 
+
+Total megabytes of SCSI frame payload data per second. This includes all SCSI Command, Transfer 
+Ready, Data and Status frames. 
+
+Total number of SCSI frames per second. This includes all SCSI Command, Transfer Ready, Data and 
+Status frames 
+
+Application Data MB/sec 
+
+Total megabytes of Application payload data per second. Application Data refers only to the payload 
+of Solicited and Unsolicited Data frames. 
+
+Application Data Frames/sec           Total Application data frames per second. Application Data refers only to the payload of 
+
+Solicited and Unsolicited Data frames. 
+
+ 
+
+Management MB/sec 
+
+Management Frames/sec 
+
+Other MB/sec 
+
+Other Frames/sec 
+
+Total Capacity % 
+
+Total megabytes of FC Management frame payload data per second. This does not include the SOF, 
+Header, CRC or EOF. This is a count of all Extended Link Services (ELS), Basic Link Services (BLS), Fibre 
+Channel Services (FCS), Link Control (LC) and Fabric Frames (SOF(f)). 
+
+Total number of Fibre Channel Management Frames per second. This is a count of all Extended Link 
+Services (ELS), Basic Link Services (BLS), Fibre Channel Services (FCS), Link Control (LC) and Fabric 
+Frames (SOF(f)). 
+
+Total megabytes of Non-Management and Non-SCSI frame payload data per second. Does not include 
+the SOF, Header, CRC or EOF. 
+
+Total number of Non-Management and Non-SCSI frames per second. 
+
+Amount of overall Bus Capacity utilized in FRAME activity per second. This includes 
+
+Management, SCSI, and Other capacity. 
+
+Management Capacity % 
+
+Amount of overall Bus Capacity utilized in Fibre Channel Management FRAME activity per second. 
+
+SCSI Capacity % 
+
+Other Capacity % 
+ 
+
+Amount of overall Bus Capacity utilized in SCSI FRAME activity per second. 
+
+Amount of overall Bus Capacity utilized in Fibre Channel Management FRAME activity per second. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Fibre Channel Link Events 
+
+Fibre Channel Link Events  
+
+Collected Data 
+
+Definition 
+
+ 
+Loss of Signal Events 
+
+Number of times the Link has transitioned to a Loss of Signal state in this interval. 
+
+Loss of Sync Events 
+
+Number of times the Link has transitioned to a Loss of Sync state in this interval. 
+
+NOS/OLS Events 
+
+LIP Events 
+
+Number of times primitive sequences of NOS and OLS events have been seen. This is not a count of 
+the number of actual NOS/OLS primitives, but the number of sequences of these events. 
+
+Number of times primitive sequences of any LIP events have been seen. This is not a count of the 
+number of actual LIP primitives, but the number of sequences of these events. 
+
+Fibre Channel Link Up Events    
+
+Number of times the Link has returned to an Idle state after the transmission of LOS, LOSIG, LIP or 
+NOS/OLS events 
+
+Code Violations 
+
+Generally, a Code Violation is a bit error or disparity error occurring in a primitive sequence or Ordered 
+Set. A Loss of Sync condition is a repetition of 3 or more code violations. Unframed Data is an Ordered 
+Set that does not have a proper K28.5 character as the starting delimiter (i.e. another term for a Code 
+Violation). 
+It is also important to note that many components can be involved when a CRC error or other bad 
+frame transmission occurs. Generally between two devices connected together in a point-to-point 
+fashion, there are 6 potential points at which errors can occur (10 if you count the probe or tap). These 
+are: 
+1.   From the Fibre Channel ASIC to the SERDES on either device. 
+2.   From the SERDES to the physical transmitter (generally a GBIC or fixed media 
+
+transmitter) on either device. 
+
+3.   On either transmit wire between the devices. 
+If you add the probe in-line, you add many more degrees of complexity in debugging these issues. 
+The additional components required to analyze in-line are: 
+1.   Two GBICS. 
+2.   One more cable, in which either transmitting wire can fail. 
+
+Management Frames 
+
+Management Frames 
+
+Collected Data 
+
+Extended Link Services 
+Frames 
+
+Fibre Channel Services 
+Frames 
+Fabric SOFf Frames 
+
+Basic Fibre Channel Link 
+Services 
+
+Fibre Channel Link Control 
+Frames 
+
+Logins 
+
+Definition 
+ 
+Number of Fibre Channel Extended Link Services (ELS) Frames (LOGO, PLOGI, ACC, etc.) in this interval. 
+Many of these frames have more specific counters listed below. ELS events that do not have a separate 
+event counter listed below are generally minor and can indicate normal activities such as events similar 
+to a ping. 
+
+ 
+
+Number of Fibre Channel Services Frames (Directory Server Management and FC-AL 
+Management) in this interval. 
+
+Number of Fabric Frames (SOF(f)) in this interval. SOF(f) frames are traditionally used for 
+Inter-Switch Link (E_Port) communications. 
+ 
+Number of Basic Link Services Frames (ABTS, BA_ACC, BA_RJT, etc.) in this interval. 
+ 
+ 
+Number of Link Control Frames (P_RJT, F_RJT, F_BSY, etc.) in this interval. Note this does 
+NOT include ACK frames. 
+
+Number of Fibre Channel Extended Link Service Login Frames (FLOGI, PLOGI, PRLI, ADISC, PDISC, 
+FDISC). Login Frames are always a new exchange initiated by either the Initiator or Target. The only login 
+functions that a Target device will typically support is an FLOGI to establish communication with a 
+switch and the subsequent PLOGI frames to allow for registration in the Name Server on the switch. 
+In typical SCSI operating environments, Login Frames between end-points are strong indicators of 
+operational or protocol issues between the Initiator and Target. Typically, a login indicates an attempt 
+to re-establish failed communications between a pair of devices. 
+The FLOGI, PLOGI, PRLI login frames are considered to be “destructive” logins. That is, upon 
+successful completion of the login, any previously outstanding exchanges and sequences between 
+the devices are discarded and have to be re-issued by the Initiator. The 
+“non-destructive” logins (ADISC, PDISC, and FDISC) are not widely implemented due to the inherent 
+difficulty in attempting to recover from exchanges and sequences that may or may not be valid following 
+the login due to link reset issues and discarded frames. 
+VirtualWisdom handles all login frames as destructive and, upon completion of the login, any 
+previously outstanding exchange (pending exchange) information will be cleared for the pair of devices 
+based upon rules in FC-PH. In addition all of the ITL conversations that were impacted by the login will 
+have the minimum pending exchange set to -1 in the SCSI ITL Metrics. This can help to determine which 
+devices participated in the login. Devices that participate in a login that do not have any other traffic or 
+current pending exchanges will not be flagged with a -1. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Management Frames (continued) 
+
+Collected Data 
+
+Definition 
+
+Logouts 
+
+Abort Sequence Frames 
+(ABTS) 
+
+Number of Fibre Channel Extended Link Service Login Frames (LOGO, PRLO, TPRLO). 
+Logout Frames can be in response to an exchange or can be an initiation of a new exchange by either 
+the Initiator or Target. 
+In typical SCSI operating environments, Logout Frames between end-points are strong indicators of 
+operational or protocol issues between the Initiator and Target. Typically, a logout indicates a 
+communication failure between the two end-points. 
+A Logout response from a Target indicates that it cannot support the requested action from the 
+Initiator and has terminated its previous login. There are many reasons why this can occur, the most 
+common reason being that a Target goes through a Link Reset and has not reestablished communication 
+with the Initiator. This generally involves a switched fabric configuration in which the Initiator has not 
+handled an RSCN condition properly. 
+Some initiators will translate a Bus Reset message from the host operating system into a Third Party 
+Process Logout (TPRLO) to each Target or to a single Target. This tends to eliminate the need for a Bus 
+Reset but is a very dangerous activity (if not catastrophic) in multi-initiator environments. A TPRLO 
+forces the Target and all associated Logical Units (LUNS) within the Target to terminate its logins with 
+every Initiator it has a valid login state with. In clustered operating environments, this is the only valid 
+solution to a SCSI Reservation deadlock, but in non-clustered environments, this can cause I/O loss and 
+data corruption issues. 
+In some switched fabric environments, the switch will generate harmless PRLO frames on ports 
+following a Link Reset. This happens when a device does not register with the Directory Server following 
+a Fabric Login (FLOGI). The Directory Server attempts to discover the type and state of the device so 
+that it can be added to the directory. The Directory Server does this by performing PLOGI and PRLI to 
+the device. If the device responds to both with an accept (ACC), the Directory Server assumes that the 
+device is a Target (supports SCSI Process Login) and then adds the device to the Directory Server 
+database. Following the PRLI, the switch will perform PRLO and LOGO with the device to clean up any 
+connection information. VirtualWisdom handles logout frames as destructive and, upon completion of 
+the logout, any previously outstanding exchange information will be cleared for the pair of devices based 
+upon rules in FC-PH. In addition all of the ITL conversations that were impacted by the logout will have 
+the minimum pending exchange set to -1 in the SCSI ITL Metrics. This can help to determine which 
+devices participated in the logout. Devices that participate in a logout that do not have any other traffic 
+or current pending exchanges will not be flagged with a -1. 
+
+Number  of  Fibre  Channel  Basic  Link  Service  ABTS  frames.  In  Fibre  Channel,  ABTS  frames  are  most 
+commonly used to abort exchanges that have either timed out or encountered some other error. Since the 
+exchange encountered an error, ABTS is used to terminate the exchange and the Initiator should then 
+take appropriate steps to either retry or terminate the exchange. 
+ABTS frames usually occur when there are signaling and framing errors (i.e. CRC Errors) present in the 
+fabric. Dependent upon the devices, recovery from an ABTS can take anywhere from milliseconds to a 
+minute or more. 
+ABTS frames can also occur where timeout conditions occur. If a device has an inactive open 
+sequence for more than a Sequence Timeout Value (SEQ_TOV), it will generally transmit an ABTS to 
+terminate the sequence. However, in many situations the timeout comes following an Upper Layer 
+Timeout Value (ULP_TOV). This occurs when single frame sequences (like SCSI Command, Transfer 
+Ready, or Status Frames) are lost or delivered with incorrect CRC values. This can also occur when the 
+last frame in a sequence is lost or has a bad CRC. The only recourse is to wait for a ULP_TOV and then 
+transmit ABTS. 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Management Frames (continued) 
+
+Collected Data 
+
+Notifications 
+
+Rejects 
+
+Definition 
+
+Number of Registered State Change Notification (RSCN) frames plus Fabric Address 
+Notification (FAN) frames. 
+In Fibre Channel, RSCN frames are utilized by a switch or switched fabric to inform devices of changes 
+in state that have occurred on other ports or domains of the switch. The RSCN notifies a port that a 
+given port, domain or zone has changed state. Typically, a switch will generate an RSCN when a port 
+has a Link Reset or Loss of Sync condition. Additionally, the switch will generate an RSCN when devices 
+on a port perform FLOGI or register with the Directory Server. This serves as notification to the device 
+that receives the RSCN that the communication with an end-point may have been reset or lost. 
+Devices must register with the switch to receive RSCN notifications via a State Change Registration 
+(SCR). Typically, this is performed by SCSI Initiators and not by SCSI Targets. The logic behind this is that 
+an Initiator can control and recover the state of exchanges and pending operations thus leaving the 
+Target to have its exchanges “managed” by the Initiator. 
+Poor handling of RSCN frames can cause large amounts of disruption in switched fabric environments. 
+When a device receives an RSCN frame, it typically goes into a recovery / rediscovery mode to 
+determine if communication has been lost or has encountered an error. This recovery can take seconds 
+(or worse, MINUTES) with some devices, thus causing other problems on the link like exchange and 
+sequence timeouts and dropped frames. There are generally two ways that devices respond to an 
+RSCN frame: 
+
+1.    Many devices simply reset their interface via a “Start Of Day” routine, forcing them to blindly 
+perform logins and re-initialization with ALL connected devices. This can cause long periods of 
+inactivity and recovery. Depending on the number of RSCN frames generated by a switch, this can stop 
+the device from functioning completely (i.e. RSCN storms - similar to Multi-Cast storms in Ethernet). 
+2.   Devices with sophisticated recovery techniques will examine the RSCN and determine which port 
+
+or ports have been affected, then will verify communication with the specific port (or ports). In this 
+situation, the recovery can be smooth and seamless with no or little apparent disruption of normal 
+fabric activity. 
+
+It is generally very important to closely monitor the behavior and handling of RSCN frames in a switched 
+fabric to ensure timely and accurate handling. 
+FAN Frames are commonly utilized erroneously by FL_Ports. If the loop has been in a Loss of Sync 
+situation prior to (or during) the Link Reset, FAN should not be utilized by the FL_Port. The Loss of Sync 
+could have indicated that a device has been removed or added to the loop, thus causing the potential of 
+AL_PA re-addressing on the loop. There are also many situations in which the NL_Ports will initiate a 
+loop initialization due to error situations occurring on the loop. In these cases, it may not be safe to 
+assume that the previous AL_PA and Fabric Address assignments will be consistent following the loop 
+initialization. 
+
+Number of Reject (LS_RJT, BA_RJT, P_RJT, F_RJT) frames. 
+The presence of LS_RJT frames in a fabric does not necessarily imply problems or errors within the 
+fabric. Each LS_RJT needs to be evaluated for its impact on functionality of the device. 
+Link Service Reject frames are utilized as a response to an Extended Link Service Request from another 
+device. The device issuing the LS_RJT will include a reason code for the reject in the payload of the 
+frame. The most common reason for LS_RJT frames to occur is when a device cannot support a login 
+due to insufficient resources 
+BA_RJT frames generally occur in response to an ABTS frame that indicates an Exchange ID (OXID) or 
+Sequence ID (SEQ_ID) that the device does not have (or no longer has) knowledge of. Typically, this 
+happens following a Status transmission from the Target on a SCSI Read, where the Target believes the 
+exchange is fine because all frames were transmitted. However, on the receiving end, the Initiator has 
+received a CRC or other error in the exchange and transmits ABTS. The ABTS frame arrives at the 
+Target AFTER the Status has been delivered. The Target sends BA_RJT, because it is no longer 
+cognizant of the exchange 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+Management Frames (continued) 
+
+Collected Data 
+
+Definition 
+
+Rejects (continued) 
+
+ 
+
+Busy 
+
+Accepts 
+
+ 
+
+Loop Initialization Frames 
+
+(F_RJT) or Port Reject (P_RJT) frames are utilized in situations where there is guaranteed delivery in a 
+fabric, but a frame is undeliverable. Class 3 service does not utilize Reject Frames, as it is considered 
+an unreliable delivery service in which frames can be discarded without notification. 
+Fabric Reject Frames generally occur during periods of extreme congestion or when a port has changed 
+state via Link Reset or going to a non-participating state due to errors. 
+Port Reject Frames generally occur when there are end-to-end credit problems (i.e. ACK problems). 
+These normally occur when establishing login states between end-points, but can also occur when a 
+device overruns the set limit of end-to-end credits (due to frames being lost or corrupted). 
+
+Number of busy (P_BSY, F_BSY) frames. 
+P_BSY Frames are utilized in situations where there is guaranteed delivery in a fabric, but the receiving 
+port is temporarily busy and unable to process the frame request. Class 3 service does not utilize 
+P_BSY Frames, as it is considered an unreliable delivery service in which frames should be discarded 
+without notification. 
+F_BSY Frames are utilized in situations where there is guaranteed delivery in a fabric, but the receiving 
+port is temporarily busy and unable to process the frame request. Class 3 service does not utilize 
+F_BSY Frames, as it is considered an unreliable delivery service in which frames should be discarded 
+without notification. 
+
+Number of accept (BA_ACC, ACC) frames 
+BA_ACC frames generally occur in response to an ABTS frame that indicates an Exchange ID (OXID) or 
+Sequence ID (SEQ_ID) that the device has knowledge of. Some devices retain knowledge of previous 
+OXID values until they are re-issued at a later time. In some situations, a device could transmit BA_ACC 
+to an exchange that had completed (i.e. SCSI Status transmitted) seconds earlier. In this situation, 
+devices will more commonly utilize BA_RJT instead of BA_ACC. 
+BA_ACC implies that the device is cognizant of the exchange or sequence referenced by the 
+ABTS frames, and that the exchange or sequence has been aborted. 
+ACC frames are utilized for a variety of reasons as a response to an ELS Request - such as 
+PLOGI, FLOGI, PRLI, etc. 
+
+Number of Loop Initialization frames (LISM, LIFA, LIPA, LIHA, LISA, LIRP, LILP). A single Loop 
+Initialization will have many LISM frames and 2 of each other type of frame 
+
+ 
+
+SCSI Error Frames 
+
+SCSI Error Frames 
+
+Collected Data 
+
+Definition 
+
+Check Condition Status of Frames        Number of SCSI Check Condition Status Frames in this interval. 
+
+Other Bad Status Frames 
+
+Number of SCSI Other Bad Status Frames (Queue Full, Busy, Condition Met, etc.) in this interval. 
+
+Task Management Frames/sec 
+
+Number of SCSI Task Management Frames (Target Reset, LUN Reset, Clear ACA, etc.) 
+in this interval. 
+
+SCSI Metrics 
+
+End Device Conversation Information 
+
+End Device Conversation Information 
+
+Collected Data 
+
+Definition 
+
+Initiator 
+
+Name 
+
+Initiator WWN 
+
+Initiator Mft 
+
+Target 
+
+Target Name 
+
+Target WWN 
+
+ 
+
+LUN 
+
+LUN Name 
+
+Capacity % 
+
+A device that initiates SCSI Exchanges by sending SCSI commands to specific Target/LUN devices. Initiator 
+
+The name of the device that initiates SCSI Exchanges 
+
+The World Wide Name of the device that initiates SCSI Exchanges.  
+
+The manufacturer of the device that initiates SCSI Exchanges.  
+
+A device that responds to SCSI Commands issued by an Initiator. 
+
+The name of the device that responds to SCSI Commands issued by an Initiator. 
+
+The World Wide Name of the device that responds to SCSI Commands issued by an Initiator. Target Mft
+
+The manufacturer of the device that responds to SCSI Commands issued by an Initiator. 
+
+The Logical Unit Number (LUN) associated with a SCSI Target.  
+
+The name of the LUN associated with a SCSI Target. 
+
+Amount of overall Bus Capacity utilized in FRAME activity per second. Because the SCSI ITL metrics are not 
+based on channel the capacity is based on full duplex potential capacity. If a given ITL were performing at 100% 
+reads, but no writes, the capacity would be 50%. In order to achieve 100% capacity the ITLs would have to be 
+reading and writing at full capacity. 
+
+Frames/Sec 
+
+Total number of frames of any type per second. 
+
+MB/Sec 
+ 
+ 
+
+Total megabytes of frame payload data per second. Does not include the SOF, Header, CRC, or EOF. 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+End Device Conversation Information (continued) 
+
+Collected Data 
+
+Task Management 
+Frames/Sec 
+
+#Other Bad Status 
+Frames 
+
+#Check Condition 
+Status Frames 
+
+Minimum Pending 
+Exchanges 
+
+Maximum Pending 
+Exchanges 
+
+Current Pending 
+Exchanges 
+
+Read/Write/Other 
+Data Frames/sec 
+
+Read/Write/Other 
+Data MB/sec 
+
+Definition 
+ 
+Number of SCSI Task Management Frames (Target Reset, LUNReset, Clear ACA, etc.) in this interval. Number of 
+
+SCSI Other Bad Status Frames (Queue Full, Busy Condition Met, etc.) in this interval. Number of SCSI Check 
+
+Condition Status Frames in this interval. 
+
+The minimum number of exchanges that were pending at any time during the interval. The minimum value 
+includes any exchanges that were opened in previous intervals that have not yet closed. 
+The minimum pending exchange can also help in determining which devices were impacted or 
+involved in many of the Fibre Channel Link Events. The minimum Pending Exchange will be negative one if the 
+there is traffic for an ITL in an interval where the exchanges are reset. 
+The following events will reset the Pending Exchange Counts for all ITLs with a specific T, regardless 
+of I or L: 
+Event counter - Task Mgmt Fr/Sec: 
+Target  Reset,  Clear  Task  Set,  Abort  Task  Set  FC 
+Logout Events (Event counter - Logouts): TPRLO 
+- Third Party Process Logout 
+
+The following events will reset the Pending Exchange Counts for all ITLs with a specific IT, regardless of L: 
+Event counter - Logins: 
+PLOGI - Port Login, FLOGI-Fabric Login, PRLI- Process Login, PDISC- Discover N_Port Service 
+Parameters, FDISC- Discover F_Port Service Parameters, ADISC - Discover Address. Event 
+counter - Logouts: 
+LOGO- N_Port Logout,PRLO -Process Logout 
+The following events will reset the Pending Exchange Counts for all ITLs with a specific TL, regardless of I: 
+Event counter - Task Mgmt Fr/Sec: 
+Logical Unit Reset 
+ 
+The following events will reset the Pending Exchange Counts for all ITLs regardless of I, T, or L: Event 
+counter - Link Up Events: 
+Link Up. 
+ 
+The maximum number of exchanges that were pending at any time during the interval. The maximum value 
+includes any exchanges that were opened in previous intervals that have not yet closed. 
+
+ 
+
+The number of exchanges that were open in this or previous intervals that had not been closed by the end of the 
+interval. 
+
+ 
+
+Total number of SCSI Read/Write/Other Data frames per second. 
+ 
+ 
+Total Megabytes of payload data in SCSI Read/Write/Other Data frames per second. Does not include the SOF, 
+Header, CRC or EOF. 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Statistics for Completed Read/Write/Other SCSI Exchanges 
+
+Statistics for Completed Read/Write/Other SCSI Exchanges 
+
+Collected Data 
+
+Definition 
+
+Read/Write/Other Commands Issued 
+ 
+Read/Write/Other Commands Completed 
+
+ 
+ 
+Min Read/Write/Other Size 
+
+Max Read/Write/Other Size 
+
+ 
+Average Read/Write/Other Size 
+
+ 
+Min Read/Write/Other Exchange 
+Completion Time (ms) 
+ 
+
+ 
+
+ 
+      Max Read/Write/Other Exchange  
+      Completion time (ms) 
+
+ 
+
+ 
+
+      Average Read/Write/Other Exchange  
+      Completion time (ms) 
+ 
+ 
+ 
+
+ 
+
+Total Read/Write/Other Exchange 
+Completion Time (ms)  
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Average  number  of SCSI Read/Write/Other  commands per second issued in this interval. 
+
+Average  number  of SCSI Read/Write/Other  commands per second completed in this interval. 
+
+Minimum number of data bytes requested for any SCSI Read/Write/Other Exchange that 
+completed in this interval. 
+
+Maximum number of data bytes requested for any SCSI Read/Write/Other Exchange that 
+completed in this interval. 
+
+Average number of data bytes requested for any SCSI Read/Write/Other Exchange that 
+completed in this interval. 
+
+Minimum amount of elapsed time (milliseconds) for any SCSI Read/Write/Other  
+Exchange that completed in this interval. 
+
+Maximum amount of elapsed time (in milliseconds) for any SCSI Read/Write/Other 
+Exchange that completed in this interval. 
+
+Average amount of elapsed time (in milliseconds) for any SCSI Read/Write/Other 
+Exchange that completed in this interval. 
+
+Total  time  for all the SCSI Read/Write/Other Exchange Commands that completed in this 
+ interval. 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+ 
+
+Avg Read Cmd to First Data Time (ms) 
+
+Min Read Cmd to First Data Time (ms) 
+
+Max Write Cmd to First Data Time (ms) 
+
+Avg Write Cmd to First Response Time 
+(ms) 
+
+Average amount of elapsed time from the SCSI Read command to the first data received 
+for any exchange completed in this interval. 
+Minimum amount of elapsed time from the SCSI read command to the first data received 
+for any exchange completed in this interval. 
+Maximum amount of elapsed time from the SCSI read command to the first data received 
+for any exchange completed in this interval. 
+Average amount of elapsed time from the SCSI write command to the first transfer ready 
+received for any exchange completed in this interval. 
+
+Min Write Cmd to First Response Time 
+(ms) 
+
+Minimum amount of elapsed time from the SCSI write command to the first transfer ready 
+received for any exchange completed in this interval. 
+
+Max Write Cmd to First Response Time 
+(ms) 
+
+Minimum amount of elapsed time from the SCSI write command to the first transfer ready 
+received  for any exchange completed in this interval. 
+
+Avg Other Cmd to First Response Time 
+(ms) 
+
+Average amount of elapsed time from the SCSI other command to the first response for 
+any exchange completed in this interval. 
+
+Min Other Cmd to First Response Time 
+(ms) 
+
+Minimum amount of elapsed time from the SCSI other command to the first response for 
+any exchange completed in this interval. 
+
+Max Other Cmd to First Response Time 
+(ms) 
+
+Maximum amount of elapsed time from the SCSI other command to the first response for 
+any exchange completed in this interval. 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+Fibre Channel Link Statistics 
+
+This is a group of statistics and counts of events that occur within a sample. These counts are derived on a Channel basis, not utilizing 
+the S_ID/D_ID or I/T/L values. The following provides a definition of terms and counter definitions for all Fibre Channel Link Statistics 
+
+FC Link Statistics Definitions 
+
+Fibre Channel Link Statistic Definitions 
+ 
+Statistic 
+
+Definition 
+
+Frames/sec. MB/sec 
+
+An accumulation of all Payload Data occurring for any frame on the wire, regardless of R_CTL or TYPE field. 
+
+Application Data 
+Frames/sec /MB/sec 
+
+Application Data is defined as the amount of Payload Data occurring in frames that have an R_CTL = 0x01 or 
+0x04. 
+
+SCSI Frames/sec. MB/sec 
+
+Management Frames/sec. 
+MB/sec 
+
+ 
+
+SCSI Data is defined as the amount of Payload Data occurring in frames that have TYPE = 0x08 (FCP-SCSI) 
+or 0x09 (GPP-SCSI). 
+The definition for management frames is as follows: 
+Extended Fibre Channel Link Services - Any Extended Fibre Channel Link Service (ELS) frame is defined as: 
+Type = 0x01, R_CTL = Any, except: 
+LISM Frames, Type = 0x01, R_CTL = 0x22, P/L Data 0 = 1101xxxx ECHO 
+Frames, Type = 0x01, R_CTL = 0x22, P/L Data 0 = 1100xxxx TEST Frames, 
+Type = 0x01, R_CTL = 0x22, P/L Data 0 = 10xxxxxx 
+This broad definition catches all FLOGI, PLOGI, PRLI, ACC, LIFA, LIHA, LISA, LIPA, LILP, LIRP, 
+RSCN frames and all relevant / interesting ELS frames. 
+Fibre Channel Services - Any of the Fibre Channel Services (FCS) type frames – defined by Type 
+= 0x20, 0x21, 0x22, 0x23 and 0x24, R_CTL = Any. 
+This definition catches all Directory Server Management frames and FC-AL Management frames. 
+Fabric Frames - Any frame containing a SOF(f) delimiter. 
+All ISL (Inter-Switch Fibre Channel Link) connections pass management / operational frames using SOF(f) 
+delimiters on the frames. These frames will overlap somewhat with the definition of ELS and FCS, but 
+should be fairly simple to “weed out” duplicates. Many of these frames have proprietary decodes and data 
+based upon the manufacturer of the switch. 
+
+ 
+
+Basic Fibre Channel Link Services – the Basic Fibre Channel Link Services (BLS) frames are defined as: 
+R_CTL = 0x80 – 0x8F – NOP, ABTS, RMC, BA_ACC, BA_RJT, PRMT 
+Fibre Channel Link Control Frames - Any non-ACK Fibre Channel Link Control (LC) frame defined as: 
+R_CTL = 0xC2 – 0xC8 P_RJT, P_BST, F_RJT, F_BSY, LCR, NTY 
+
+Other Frames/sec. MB/sec 
+
+Other Data is defined as the amount of Payload Data occurring in frames that are NEITHER Management or 
+SCSI frames. 
+
+Bus capacity 
+
+Code violations 
+
+CRC Frame Errors 
+
+Loss of Signal Event 
+
+Loss of Sync Event 
+
+LIP Event 
+
+NOS/OLS Event 
+
+Bus Capacity is a representation of throughput over the total throughput capacity of the Fibre Channel Link. 
+This can be calculated from the data rate (MB/sec.) and the potential data rate in MB/sec. of the Fibre 
+Channel Link. The term Capacity is used to alleviate confusion when future versions of the FQS product 
+implement Bus Utilization statistics. 
+
+A bit error is defined as any Code Violation, Disparity Error, Unframed Data, etc. These should match the 
+counts provided in the GTX Performance Monitor. 
+
+A frame error is defined as any frame with a embedded Code Violation or Disparity Error (again mirroring the 
+qualification for the VirtualWisdom probe hardware). In addition, this should include ANY frame that is 
+terminated with an EOFa, EOFni, or EOFdti delimiter 
+
+Qualified by FCMAC or physical layer - indicated loss of light (i.e. GBIC removed). Generated by Fibre 
+Channel Link Engine and delivered to Frame Engine as Fibre Channel Link Status Event 
+
+Loss of disparity for 3 or more words. Generated by Fibre Channel Link Engine and delivered to Frame 
+Engine as Fibre Channel Link Status Event. 
+
+Any FCAL LIP primitive. Generated by Fibre Channel Link Engine and delivered to Frame Engine as Fibre 
+Channel Link Status Event. 
+
+Any Fibre Channel NOS or OLS primitive. Generated by Fibre Channel Link Engine and delivered to Frame 
+Engine as Fibre Channel Link Status Event 
+
+Fibre Channel Link Up Event  Any run of 3 or more Idle primitives following any of the Fibre Channel Link Down events listed above (LIP, 
+
+ 
+
+ 
+
+ 
+
+OLS/NOS, LOS, LOSIG). 
+
+ 
+
+ 
+
+ 
+
+FC Device Metrics 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Collected Data  
+
+Link Reset Events  
+
+ 
+
+ 
+
+Definition  
+
+Number of times primitive sequences LR or LRR events have been seen. This is not a count of 
+the number of actual LR/LRR primitives, but the number of sequences of these events. 
+
+ 
+
+CRC Errors (previously included in 
+Frame Errors metric) 
+
+The count of CRC errors.  
+
+ 
+
+Bad EOF (previously included in 
+Frame Errors metric)  
+
+Other Frame Errors (previously 
+included in Frame Errors metric)  
+
+ 
+
+Time spent at zero buffer-to-buffer 
+credit  
+
+ 
+
+Min buffer-to-buffer credit  
+
+Max buffer-to-buffer credit  
+VFT Frames  
+
+IFR Frames  
+
+Enc Frames  
+
+Min Pending Exchanges  
+
+The count of frames received with EOFa, EOFni, or EOFdti. 
+
+ 
+
+Framing errors that can occur on any link with media or transmission problems. The framing 
+errors checked for include: missing SOF/EOF values, and improperly truncated frames (jabber o  
+runt frames). 
+
+Time in milliseconds at min B2B credit. Can look at the max outstanding frame seen by probe, 
+and then compare by outstanding exchanges on device. Decreased with frames and increased 
+by Rready.  
+
+Minimum value of the B2B credit during the interval.  
+
+Maximum value of the B2B credit during the interval.  
+
+Number of frames with Virtual Fabric Tagging headers in this interval.  
+
+Number of frames with Inter-Fabric Routing headers in this interval.  
+
+Number of frames with Encapsulation headers in this interval.  
+The minimum number of SCSI exchanges open at one time during this interval.  
+
+ 
+
+  
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+VirtualWisdom SAN Availability Probe model ProbeSW Metrics 
+ 
+
+Port Information 
+
+Port Information returned by each ProbeV 
+
+Port Information 
+
+Port WWN 
+
+Number 
+
+Manufacturer 
+
+Link Rate 
+
+Nickname 
+
+FCID 
+
+Supported Port Type 
+
+NL, N, FL, F, E, TE Port 
+
+FL, F, E, TE 
+
+NL, N, FL, F, E, TE 
+
+NL, N, FL, F, E, TE 
+
+NL, N 
+
+NL, N, [FL] 
+
+MIB Metrics 
+
+Note: Some switch manufacturers may use 32 bit counters for counters that are designed as 
+64 bit in the MIB, which may cause data anomalies, such as unknown or -1 values, when the counters 
+wrap inconsistently. 
+
+The FCFE MIB defines all transmit and receive counters as 64 bit and all error counters as 32 bit. The FA 
+MIB defines all counters as 64 bit. Table below lists MIB data generated by ProbeSW. 
+
+Fibre Channel Metrics from ProbeSW 
+
+Metric 
+
+Received "bytes" 
+Transmitted "bytes" 
+
+Received frames 
+Transmitted frames 
+
+CRC Errors (receive 
+channel only) 
+
+Use 
+ 
+Determine if a port is running, or that 
+data is getting to a port. This is also 
+used in the Utilization Screen. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Find out how many bytes per frame 
+you are getting  and gauge how 
+bandwidth is being used or the relative 
+use of bandwidth setup overhead. 
+ 
+Usually indicates likelihood of a 
+physical problem on the link. 
+
+Description 
+
+MIB 
+ 
+FCFE  MIB  The  number  of  Class  3  frame  octets,  including  the 
+frame delimiters, received or transmitted by this port 
+from its attached Nx_Port. 
+
+ 
+
+FA MIB 
+
+The number of octets or bytes that have been 
+received or transmitted by this port. One second 
+periodic polling of the port. This value is saved and 
+compared with the next polled value to compute 
+net throughput. Ordered sets are not included in the 
+count. 
+
+ 
+
+FCFE MIB      The number of Class 3 frames received or 
+
+transmitted by this port from or to its attached 
+Nx_Port. 
+
+Count of Frames received or transmitted by this 
+port. 
+
+Count of frames received with invalid CRC. 
+This count is part of the Link Error Status Block 
+(LESB). (FC-PH 29.8). Loop ports should not count 
+CRC errors passing through when monitoring. 
+
+FA MIB 
+
+FA MIB 
+
+ 
+
+FCFE MIB      The number of invalid CRCs detected by the FC-
+
+Port. Loop ports should not count CRC errors 
+passing through when monitoring. 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+
+  
+
+Fibre Channel Metrics from ProbeSW 
+
+Metric 
+
+Link Resets Received 
+Link Resets Transmitted 
+
+Use 
+ 
+Usually indicates a credit reset which 
+may be due to a credit balance 
+problem between a device and a 
+switch. This may also be a result of a 
+reboot or cable pull. 
+
+Link Failures 
+
+Usually indicates server is rebooting or 
+is otherwise inaccessible. 
+
+ 
+FA MIB 
+
+MIB 
+ 
+FA MIB 
+
+Description 
+
+Count of Link resets. This is the number of LRs 
+received/transmitted. 
+
+FCFE MIB      The number of link reset protocol errors 
+
+received/issued by the FC-Port from/to the 
+attached FC-port. 
+The number of Link reset responses received/ 
+transmitted by the FC-port 
+
+Count of link failures. This count is part of the 
+Link Error Status Block (LESB). (FC-PH 29.8). 
+
+ 
+FCFE MIB      The number of link failures detected by the 
+
+FC-Port. 
+
+ 
+FA MIB 
+
+ 
+
+Count of instances of signal loss detected at port. 
+This count is part of the Link Error Status Block 
+(LESB). (FC-PH 29.8). 
+
+FCFE MIB      The number of signal losses detected by the 
+
+FC-Port. 
+
+ 
+FA MIB 
+
+ 
+
+Count of instances of synchronization loss 
+detected at port. This count is part of the Link 
+Error Status Block (LESB). (FC-PH 29.8). 
+
+FCFE MIB      The number of loss of synchronization failures 
+
+detected  by the FC-Port. 
+
+ 
+
+FCFE MIB      Count of Class 3 Frames that were discarded upon 
+
+reception at this port.  There is no FBSY or FRJT 
+generated for Class 3 Frames.  They are simply 
+discarded if they cannot be delivered. Note, this is 
+a Fibre Channel only stat. 
+
+FA MIB 
+
+The number of Class 3 frames discarded by this 
+port. 
+
+FCFE MIB     The number of transitions of BBC out of zero 
+
+      state. 
+
+       Count of transitions in/out of BBC zero state. 
+
+The other side is not providing any credit. Note, this is 
+a Fibre Channel only stat. 
+
+ 
+FA MIB  
+
+ 
+
+ 
+
+ 
+
+Loss of Signal 
+
+Indicates light loss due to a cable or 
+GBIC problem, or a reset by HBA, or a 
+disk time-out.  Correlate errors with 
+HBA logs to determine cause; in NT 
+event logs it says SCSI reset. 
+
+Loss of Sync 
+
+Usually indicates incompatible link 
+speeds on connected ports. 
+
+Class3Discards (receive 
+channel only) 
+ 
+ 
+ 
+ 
+ 
+ 
+Buffer to buffer credit 
+(BBC) transition from zero 
+(transmit channel only)  
+ 
+Note: This metric uses the 
+data from the switch and 
+converts it to a rate per 
+second; this rate is 
+averaged over the 
+configured poll interval for 
+ProbeSW. 
+ 
+ 
+ 
+
+ 
+
+Usually indicates traffic so heavy that 
+it causes the switch to discard 
+packets. 
+ 
+ 
+ 
+ 
+ 
+Used to manage the buffer-to-buffer 
+flow control of frames. The zero state 
+indicates that the port is out of 
+credits.  
+ 
+Vendor-specific implementations: 
+Cisco: the number of times the port 
+exits from the zero BBC state. 
+Brocade: the number of 2.5 
+microsecond intervals spent at the 
+zero BBC state. 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+  
+ProbeSW LED Information 
+
+The ProbeSW channels are: 
+
+Probe LED Information 
+
+LED label 
+CRC 
+ 
+
+ 
+DIS 
+ 
+
+ 
+LR 
+ 
+
+ 
+LF 
+ 
+
+ 
+LOS 
+ 
+
+ 
+SIG 
+ 
+
+ 
+
+Color 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+
+Definition 
+CRC errors >1 after the last poll 
+CRC has occurred since it was last reset but is not present in the current interval 
+
+No CRC errors detected since last reset 
+Class 3 Discards >1 after the last poll 
+Class 3 Discards have occurred since it was last reset but is not present in the 
+current interval 
+No Class 3 Discards detected since last reset 
+Link Resets >1 after the last poll 
+Link Resets have occurred since it was last reset but is not present in the current 
+interval 
+No Link Resets detected since last reset 
+Link Failures >1 after the last poll 
+Link Failures have occurred since it was last reset but is not present in the 
+current interval 
+No Link Failures detected since last reset 
+Loss of Sync errors >1 after the last poll 
+Loss of Sync errors have occurred since it was last reset but is not 
+present in the current interval 
+No Loss of Sync errors detected since last reset 
+Loss of Signal errors >1 after the last poll 
+Loss of Signal errors have occurred since it was last reset but is not 
+present in the current interval 
+No Loss of Signal errors detected since last reset 
+
+Click Reset on a ProbeSW configuration dialog to reset all LEDs. 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ProbeSW LED Information 
+
+The ProbeSW channels are: 
+
+Probe LED Information 
+
+LED label 
+CRC 
+ 
+
+ 
+DIS 
+ 
+
+ 
+LR 
+ 
+
+ 
+LF 
+ 
+
+ 
+LOS 
+ 
+
+ 
+SIG 
+ 
+
+ 
+
+Color 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+Red 
+Yellow 
+
+Green 
+
+Definition 
+CRC errors >1 after the last poll 
+CRC has occurred since it was last reset but is not present in the current interval 
+
+No CRC errors detected since last reset 
+Class 3 Discards >1 after the last poll 
+Class 3 Discards have occurred since it was last reset but is not present in the 
+current interval 
+No Class 3 Discards detected since last reset 
+Link Resets >1 after the last poll 
+Link Resets have occurred since it was last reset but is not present in the current 
+interval 
+No Link Resets detected since last reset 
+Link Failures >1 after the last poll 
+Link Failures have occurred since it was last reset but is not present in the 
+current interval 
+No Link Failures detected since last reset 
+Loss of Sync errors >1 after the last poll 
+Loss of Sync errors have occurred since it was last reset but is not 
+present in the current interval 
+No Loss of Sync errors detected since last reset 
+Loss of Signal errors >1 after the last poll 
+Loss of Signal errors have occurred since it was last reset but is not 
+present in the current interval 
+No Loss of Signal errors detected since last reset 
+
+Click Reset on a ProbeSW configuration dialog to reset all LEDs. 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+VirtualWisdom Virtual Server Probe model ProbeVM metrics 
+
+Each instance of a ProbeVM corresponds to a single Virtual Center Server with metrics collection available on a per server and virtual machine 
+basis. The frequency of metric collection can be set to 20 seconds, 1 minute or 5 minutes (default).  The two metrics sets for ProbeVM are Server 
+and Virtual Machine. These metric sets are organized into five groups starting with Context Metrics that include the container key fields, unique 
+VirtualWisdom calculated metrics, and hardware rate settings. There are four other groups that include CPU, Memory, Disk, Network and Other 
+Metrics that derive from similar groupings in Virtual Center. 
+
+Note: Virtual Center metrics are polled from ESX / ESXi servers on a VMware-specific poll interval. 
+
+Calculated Network Virtual Machine Metrics 
+
+Disk IO Utilization % - The average Disk IO Utilization percentage of total Server HBA capacity. Calculation is Avg Disk Usage / Server HBA 
+Capacity where:  
+
+• 
+• 
+
+Avg Disk Usage = Disk Read Rate + Disk Write Rate 
+Total HBA Link Capacity = Sum of HBA Link Rates from HBA ports 
+
+Network Utilization % - The average Network Utilization percentage of total Server NIC capacity. Calculation is Avg Net Usage / Total NIC 
+Capacity where:  
+
+• 
+• 
+
+Avg Network Data Rate = Network Data Transmit Rate + Network Data Receive Rate 
+ Total NIC Capacity = Sum of NIC Speeds from NIC card Ports 
+
+Composite Utilization % - A combination index that shows the average percentage of total Server capacity for four dimensions of resource 
+usage including CPU, Memory, Disk IO, and Network. Calculation is (Disk IO Utilization % + Network Utilization % + CPU Usage % + Memory 
+Usage %) / 4 
+
+Max Composite Utilization % - The maximum total Server capacity resource observed for the four dimensions of resource usage including 
+CPU, Memory, Disk IO and Network. Calculation is Max (Disk IO Utilization, Network Utilization %, CPU Usage %, Memory Usage %) 
+ 
+
+Context Virtual Machine Metrics 
+
+Virtual Machine 
+
+ The name of the Virtual Machine being measured. 
+
+Server 
+
+Cluster 
+
+ The name of the Server being measured. 
+
+ The name of the Cluster being measured 
+
+Total HBA Link Capacity (Gb/s) 
+
+ The total Host Bus Adapter link capacity (Gb/s). This is used to calculate Disk IO Utilization %. 
+
+Total NIC Capacity (Mb/s) 
+
+ The total Network Interface Card Capacity (Mb/s).  This is used to calculate Network Utilization 
+%. 
+
+Disk IO Utilization % 
+
+Network Utilization 
+
+Composite Utilization 
+
+ The average Disk IO Utilization percentage of total Server HBA capacity 
+
+ % The average Network Utilization percentage of total Server NIC capacity. 
+
+ % A combination index that shows the average percentage of total Server capacity for four 
+dimensions of resource usage including CPU, Memory, Disk IO, and Network. 
+
+Max Composite Utilization % 
+
+ The maximum total Server capacity resource observed for the four dimensions of resource usage 
+
+CPU Virtual Machine Metrics 
+
+  
+
+ 
+
+CPU Extra (ms) 
+
+CPU time (ms) that is extra. 
+
+CPU Guaranteed (ms) 
+
+CPU time (ms) that is guaranteed. 
+
+CPU Ready (ms) 
+
+CPU System (ms) 
+
+CPU Usage % 
+
+CPU Usage (MHz)  
+
+CPU Used (ms) 
+
+CPU Wait (ms) 
+
+CPU time (ms) spent in ready state. 
+
+CPU time (ms) spent on system processes 
+
+CPU usage as a percentage over the collected interval. 
+
+CPU usage in MHz over the collected interval. For hosts this can be represented on a per Virtual 
+Machine basis as a stacked graph. 
+
+CPU time (ms) that is used. 
+
+CPU time (ms) spent in wait state. 
+
+Avg CPU Active % (5 min.) 
+
+CPU active average % over 5 minute 
+
+Max CPU Active % (5 min.) 
+
+CPU active peak over 5 minute  
+
+Max CPU Throttled % (5 min.) 
+
+Amount of CPU resources over the limit that were refused, average over 5 minute 
+
+Avg CPU Running % (5 min.) 
+
+CPU running average over 5 minute 
+
+Max CPU Running % (5 min.) 
+
+CPU running peak over 5 minute 
+
+ 
+ 
+
+ 
+
+ 
+ 
+Memory Virtual Machine Metrics 
+
+Memory Active (KB) 
+
+Memory Consumed (KB) 
+
+Memory Granted (KB) 
+
+Memory Overhead (KB) 
+
+Memory Shared (KB)  
+
+Memory Swap In (KB) 
+
+Memory Swap Out (KB) 
+
+Amount of memory that is actively used (KB). 
+
+Amount of host memory (KB) consumed by the virtual machine for guest memory. 
+
+Amount of memory (KB) granted. For hosts this can be represented on a per Virtual Machine basis as 
+a stacked graph. 
+
+Amount of additional host memory (KB) allocated to the virtual machine. 
+
+Amount of memory (KB) that is shared. 
+Amount of memory (KB) that is swapped in. Occurs when the server reads from page file (“disk”) to 
+volatile memory 
+Amount of memory (KB) that is swapped out. Occurs when the server writes from memory to page 
+file ("disk") 
+
+Memory Swapped (KB) 
+
+Amount of memory (KB) that is swapped. 
+
+Memory Swap Target (KB) 
+
+Amount of memory (KB) that can be swapped. 
+
+Memory Usage % 
+
+Memory Balloon (KB) 
+
+Memory usage as percentage of total configured or available memory. 
+
+Amount of memory (KB) used by memory control. 
+
+Memory Balloon Target (KB) 
+
+Amount of memory (KB) that can be used by memory control. 
+
+Memory Zero (KB) 
+
+Amount of memory (KB) that is zeroed out. 
+
+Disk Virtual Machine Metrics 
+
+Disk Bus Resets 
+
+Disk Commands Issued 
+
+Disk Command Aborts 
+
+Disk Read Requests 
+
+Disk Write Requests 
+
+Disk Read Rate (KB/s) 
+
+Disk Usage (KB/s) 
+
+Number of bus resets in the period. 
+
+Number of disk commands issued in the period. 
+
+Number of disk commands aborted in the period. 
+
+Number of disk reads in the period. 
+
+Number of disk writes in the period. 
+
+Rate of reading data from the disk (KB/s). 
+
+Aggregated storage performance statistics (KB/s). For hosts this can be represented on a per Virtual 
+Machine basis as a stacked graph. 
+
+Disk Write Rate (KB/s) 
+
+Rate of writing data to the disk (KB/s). 
+
+Network Virtual Machine Metrics 
+
+Network Packets Received 
+
+Number of packets received in the period. 
+
+Network Packets Transmitted 
+
+Number of packets transmitted in the period. 
+
+Network Data Receive Rate (KB/s) 
+
+Rate at which data is received (KB/s). 
+
+Network Data Transmit Rate (KB/s) 
+
+Rate at which data is transmitted (KB/s). 
+
+Network Usage (KB/s) 
+
+Aggregated network performance statistics (KB/s). For hosts this can be represented on a per 
+Virtual Machine basis as a stacked graph. 
+
+Other Virtual Machine Metrics 
+
+Avg CPU Active (1 min.) 
+
+CPU active average over 1 minute. 
+
+Max CPU Active % (1 min.) 
+
+CPU active peak over 1 minute. 
+
+Max CPU Throttled % (1 min.) 
+
+Amount of CPU resources over the limit that were refused, average over 1 minute. 
+
+Avg CPU Running % (1 min.) 
+
+CPU running average over 1 minute. 
+
+Max CPU Running % (1 min.) 
+
+CPU running peak over 1 minute. 
+
+Group CPU Sample Count 
+
+Group CPU sample count. 
+
+Group CPU Sample Period (ms) 
+
+Group CPU sample period (ms). 
+
+Heartbeat 
+
+Number of heartbeats in this period. 
+
+Resource CPU Usage (MHz) 
+
+Resource CPU usage (MHz). 
+
+Uptime (sec) 
+
+Total time (sec) elapsed since last startup 
+
+Context Server Metrics 
+
+Server 
+ 
+
+The name of the Server/host being measured.  
+
+ 
+
+ 
+ 
+Cluster 
+
+The name of the Cluster being measured.  
+
+Total HBA Link Capacity (Gb/s) 
+
+The total Host Bus Adapter link capacity (Gb/s). This is used to calculate Disk IO 
+Utilization %. 
+
+Total NIC Capacity (Mb/s) 
+
+Network Interface Card Speed (Mb/s). 
+
+Disk IO Utilization % 
+
+Network Utilization % 
+
+Composite Utilization % 
+
+The average Disk IO Utilization percentage of total Server HBA capacity. 
+
+The average Network Utilization percentage of total Server NIC capacity. 
+
+A combination index that shows the average percentage of total Server capacity for four 
+dimensions of resource usage including CPU, Memory, Disk IO, and Network. 
+
+Max Composite Utilization % 
+
+ The maximum total Server capacity resource observed for the four dimensions of 
+resource usage including CPU, Memory, Disk IO, and Network. 
+
+CPU Server Metrics 
+
+CPU Idle (ms) 
+
+CPU time (ms) spent in idle state. 
+
+CPU Reserved Capacity (MHz) 
+
+Total CPU capacity (MHz) reserved by the virtual machines. 
+
+CPU Usage % 
+
+CPU Usage (MHz) 
+
+CPU usage as a percentage over the collected interval. 
+
+CPU usage (MHz) over the collected interval. For hosts this can be represented on a per 
+Virtual Machine basis as a stacked graph. 
+
+CPU Used (ms) 
+
+CPU time (ms) that is used 
+
+Avg CPU Active % (5 min.) 
+
+CPU active average % over 5 minute 
+
+Max CPU Active % (5 min.) 
+
+CPU active peak over 5 minute Max CPU Throttled % (5 min.) 3 Amount of CPU 
+resources over the limit that were refused, average over 5 minute 
+
+Avg CPU Running % (5 min.) 
+
+CPU running average over 5 minute 
+
+Max CPU Running % (5 min.) 
+
+CPU running peak over 5 minute 
+
+Memory Server Metrics 
+
+Avg Memory Active (KB) 
+
+Avg Memory Granted (KB) 
+
+Amount of memory (KB) that is actively used. 
+
+Amount of memory granted (KB). For hosts this can be represented on a per Virtual 
+Machine basis as a stacked graph. 
+
+Avg Memory Heap (KB) 
+
+Amount of memory (KB) allocated for heap. 
+
+Avg Memory Heap Free (KB) 
+
+Free space in memory heap (KB). 
+
+Avg Memory Overhead (KB) 
+
+Amount of additional host memory (KB) allocated to the virtual machine. 
+
+Memory Reserved Capacity (KB) 
+
+Amount of memory (KB) reserved by the virtual machines. 
+
+Avg Memory Shared (KB) 
+
+Amount of memory (KB) that is shared. 
+
+Avg Memory Shared Common (KB) 
+
+Amount of memory (KB) that is shared by common. 
+
+Memory State 
+
+Memory state. 
+
+Avg Memory Swap In (KB) 
+
+Amount of memory (KB) that is swapped in. 
+
+Avg Memory Swap Out (KB) 
+
+Amount of memory (KB) that is swapped out. 
+
+Avg Memory Swap Used (KB) 
+
+Amount of memory (KB) that is used by swap. 
+
+Avg Memory Unreserved (KB) 
+
+Amount of memory (KB) that is unreserved. 
+
+Memory Usage % 
+
+Avg Memory Zero (KB) 
+
+Memory usage as percentage of total configured or available memory. 
+
+Amount of memory (KB) that is zeroed out. 
+
+Avg Memory Consumed (KB) 
+
+Amount of host memory (KB) consumed by the virtual machine for guest memory 
+
+Avg Memory Balloon (KB) 
+
+Amount of memory (KB) used by memory control 
+
+Disk Virtual Machine Metrics 
+
+Disk Bus Resets 
+
+Disk Commands Issued 
+
+Disk Command Aborts 
+
+Avg Physical Device Command Latency 
+(ms) 
+
+Avg Physical Device Read Latency (ms) 
+ 
+
+Number of bus resets in the period. 
+
+Number of disk commands issued in the period. 
+
+Number of disk commands aborted in the period. 
+
+The average time (ms) taken to complete a command from the physical device. 
+
+The average time (ms) taken to complete a read from the physical device. 
+
+ 
+
+ 
+ 
+Avg Physical Device Write Latency (ms) 
+
+The average time (ms) taken to complete a write from the physical device. 
+
+Avg Kernel Disk Command Latency (ms) 
+
+The average time (ms) spent in ESX Server VMKernel per command. 
+
+Avg Kernel Disk Read Latency (ms) 
+
+The average time (ms) spent in ESX Server VMKernel per read. 
+
+Avg Kernel Disk Write Latency (ms) 
+
+The average time (ms) spent in ESX Server VMKernel per write. 
+
+Disk Read Requests 
+
+Disk Write Requests 
+
+Number of disk reads in the period. 
+
+Number of disk writes in the period. 
+
+Avg Queue Command Latency (ms) 
+
+The average time (ms) spent in the ESX Server VMKernel queue per command. 
+
+Avg Queue Read Latency (ms) 
+
+The average time (ms) spent in the ESX Server VMKernel queue per read. 
+
+Avg Queue Write Latency (ms) 
+
+The average time (ms) spent in the ESX Server VMKernel queue per write. 
+
+Disk Read Rate (KB/s) 
+
+Rate of reading data from the disk (KB/s). 
+
+Avg Disk Command Latency (ms) 
+
+The average amount of time (ms) taken for a command from the perspective of a Guest 
+OS. This is the sum of Kernel Command Latency and Physical Device Command Latency. 
+
+Avg Disk Read Latency (ms) 
+
+Avg Disk Write Latency (ms) 
+
+Disk Usage (KB/s) 
+
+The average amount of time (ms) taken for a read from the perspective of a Guest OS. 
+This is the sum of Kernel Read Latency and Physical Device Read Latency. 
+
+The average amount of time (ms) taken for a write from the perspective of a Guest OS. 
+This is the sum of Kernel Write Latency and Physical Device Write Latency. 
+
+Aggregated storage performance statistics (KB/s). For hosts this can be represented on a 
+per Virtual Machine basis as a stacked graph. 
+
+Disk Write Rate (KB/s) 
+
+Rate of writing data to the disk (KB/s). 
+
+Max Disk Command Latency (ms) 
+
+The highest latency value across all disks used by the host 
+
+Network Server Metrics 
+
+Network Packets Received 
+
+Number of packets received in the period. 
+
+Network Packets Transmitted 
+
+Number of packets transmitted in the period. 
+
+Network Data Receive Rate (KB/s) 
+
+Rate at which data is received (KB/s). 
+
+Network Data Transmit Rate (KB/s) 
+
+Rate at which data is transmitted (KB/s). 
+
+Network Usage (KB/s) 
+
+Aggregated network performance statistics (KB/s). For hosts this can be represented on a 
+per Virtual Machine basis as a stacked graph. 
+
+Network Receive Packets Dropped 
+
+Number of receive packets dropped in the period 
+
+Network Transmit Packets Dropped 
+
+Number of transmit packets dropped in the period 
+
+Other Server Metrics 
+
+Avg Resource CPU Usage (MHz) 
+
+Resource CPU usage (MHz). 
+
+Total time (sec) elapsed since last startup. 
+
+Fairness of distributed cpu resource allocation 
+
+Aggregate available memory resources of all hosts within a cluster 
+
+Uptime (sec) 
+
+CPU Fairness 
+
+Memory Fairness 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+European Headquarters 
+One Kingdom Street 
+Paddington Central * London W2 6BD 
+Phone:  44 (0) 203 402 3353 
+
+Sales 
+sales@virtualinstruments.com 
+Support 
+support@virtualinstruments.com 
+ 
+
+©2012 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or 
+servicemarks of, and are used to identify, products or services of their respective owners. 04/27/12 
+
+ 
+
+

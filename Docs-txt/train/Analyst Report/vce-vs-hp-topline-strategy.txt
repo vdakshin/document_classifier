@@ -1,0 +1,762 @@
+T o p l i n e   S t r a t e g y   G r o u p 
+
+September 2013
+
+Converged Infrastructure Systems Comparative Assessment:
+VCE Vblock Systems and HP Converged Infrastructure
+Introduction
+
+In today’s connected world, IT is at the heart of business. It powers integrated supply chains, e-commerce, global 
+distribution networks and every other mission critical business process. As globalization and ever-increasing 
+competitive pressure have accelerated the pace of business, business leaders have turned to IT to increase 
+agility and speed of innovation.
+The powers of virtualization and, increasingly, cloud computing have been central to operating at this 
+accelerated pace. IT professionals can now spin up new logical servers in minutes rather than the weeks or 
+months it used to take to physically deploy new hardware.
+The Administrative Burden of “Keeping 
+Data centers have achieved a level of unparalleled utility and 
+the Lights On” Uses 77% of IT Resources
+functionality – but at the same time these virtualization and 
+cloud technologies have created an age of unprecedented 
+complexity. Even without virtualization, IT’s administrative 
+burden has been growing rapidly. Every few months there are 
+new generations of hardware of ever-increasing sophistication 
+that need to be configured and deployed. Virtualization 
+multiplies this burden exponentially. On top of configuring 
+each component, each virtual machine must be provisioned 
+with storage, compute power and networking. The result: over 
+the last 10 years, while server hardware costs have actually 
+declined, virtualization has led to the number of logical servers 
+quadrupling and administrative costs tripling.1
+It has now reached the point that administrative costs are 
+crowding out innovation. According to a 2011 IDC study, just keeping the lights on (system planning, 
+deploying, maintaining) takes up 77 percent of IT’s budget while only 23 percent goes to supporting 
+business innovation.2
+
+Monitoring &
+Maintenance
+
+Pre-Systems
+Deployment
+
+Deployment
+
+Innovation
+
+Lights On”
+
+“Keeping 
+
+23% 
+
+30% 
+
+e
+
+p
+
+x
+
+24% 
+
+23% 
+
+u
+
+t
+
+i
+
+d
+
+n
+
+E
+
+ 
+
+T
+
+I
+
+s
+
+e
+
+r
+
+the 
+
+77%
+
+Converged Infrastructure Frees Up Resources for Innovation
+VCE and HP were among the first vendors to recognize that there was a better way than the conventional 
+approach to data center infrastructure – where IT departments build custom systems from individual 
+components. In 2009, both companies announced their first converged infrastructure (CI) initiatives. 
+Converged infrastructure takes compute, network and storage components and integrates them into a 
+single, cohesive pool that is engineered, manufactured and supported by the vendor as a unified system. 
+Furthermore, the entire system is maintained, supported and upgraded by the vendor throughout the 
+system’s entire lifecycle. 
+In the ideal case, these fully integrated, vendor-delivered CI systems greatly reduce the administrative 
+burden on IT managers by completely changing how systems are designed, deployed, optimized, 
+maintained, supported and upgraded.
+1  IDC White Paper.  Converging the Datacenter Infrastructure: Why, How, So What? May 2012
+2  Ibid
+
+The following table details the difference between conventional, do-it-yourself installations and vendor-
+delivered converged infrastructure systems at each stage of the system lifecycle. As the table illustrates, by 
+providing a standardized, vendor-delivered system, converged infrastructure providers take on many of the 
+administrative tasks that historically have been performed by IT, freeing up resources for innovation.
+
+Converged Infrastructure Simplifies Infrastructure Management, 
+Dramatically Reducing the Administrative Cost to Just “Keep the Lights On”
+
+Customized Integration In the Field
+(Do-It-Yourself or Integrator-Built)
+Custom implementations consisting of separate pools 
+for compute, network and storage, are designed for 
+individual environments and for deployment by IT 
+staff and vendor services.
+
+Converged System: 
+Vendor-Delivered Standardized System
+The system is engineered by the vendor as a single 
+integrated pool for optimal performance, scalability, 
+and availability and configured to meet customers’ 
+unique needs. 
+
+Area
+
+Design
+
+Deploy
+
+The system is delivered as components to the data 
+center where it is physically and logically configured 
+on site by vendor services and/or IT staff.
+
+Maintain
+
+Patches for each component must be thoroughly 
+tested by IT staff against the custom installation to 
+ensure compatibility.
+
+Upgrade
+
+Expanding capacity requires careful testing of newer 
+versions of components by the IT department.
+
+Support
+
+Evolve
+
+Vendors’ silo-based support organizations specialize in 
+individual components and place the burden on IT of 
+overall problem resolution and mediating finger pointing 
+among vendors or among a vendor’s product divisions.
+
+The process starts over from scratch at the design 
+phase, relying on IT or service providers. Migration also 
+requires customized services.
+
+The complete system is manufactured and logically 
+configured at the factory using standardized processes.
+
+Patches are preselected, pretested, and prepackaged 
+by the vendor for interoperability and compatibility 
+with installed configurations, and are ready for 
+immediate non-disruptive deployment.
+Newer versions of components are preselected, 
+pretested and certified for interoperability and 
+design integrity and are ready for immediate 
+non-disruptive deployment.
+There is a single point of ownership that is expert 
+in all aspects of the system. All deployed system 
+configurations are fully supported to accelerate 
+problem resolution.
+Vendor engineers next generation system leveraging 
+latest advances from each component while 
+providing a migration path that interlocks roadmaps 
+from each component.
+
+Early Success Spurs Further Advances
+When converged infrastructure systems first came on the market in late 2009, they met with immediate 
+success. IT departments that had been burdened with increasing administrative costs quickly saw that 
+working with a system that could be maintained and upgraded as a whole, not as a customized collection 
+of components, reduced the administrative load, accelerated the deployment of new capabilities, and 
+freed up resources for innovation. 
+The success of these early CI deployments coupled with increasing demand for CI systems by 
+customers has led the original CI vendors to continue to advance their solutions and attracted new 
+entrants to the market.
+But not all converged infrastructure offerings, even those that share nearly identical marketing messages, 
+are created equal. The key question for IT is: how far does the vendor truly go toward delivering on the 
+promise of a vendor-delivered and supported system vs. providing systems that are simply assemblages 
+of components where each deployment is a custom installation?  
+
+So how have VCE and HP advanced their CI solutions since 
+2009 and how well do they currently deliver on the promise of 
+transforming IT infrastructure into a vendor-delivered system 
+that lowers the administrative burden? 
+To answer these questions, we conducted a converged 
+infrastructure market study. As part of the study, we 
+interviewed and surveyed 119 North American companies with 
+$1B or more in revenue on their experience with converged 
+infrastructure systems. We also conducted secondary research 
+which included reviewing 46 HP case studies that were branded 
+as ‘converged infrastructure’ (identified via a thorough search 
+of the HP website, industry sites, YouTube and a variety of 
+other online sources) and reviewing analyst reports and other 
+publically available information.3 In the rest of this paper, we’ll 
+share our findings.
+
+Early Converged Infrastructure Systems 
+Were Very Successful in Lowering the 
+“Costs of Keeping the Lights On” and 
+Freeing Up Resources for Innovation
+
+ 
+
+l
+a
+u
+s
+U
+s
+A
+s
+s
+e
+n
+
+ 
+
+i
+s
+u
+B
+
+Innovation
+
+“Keeping
+
+the 
+
+Lights On”
+
+e
+r
+u
+t
+c
+u
+r
+t
+s
+a
+r
+f
+n
+
+I
+ 
+
+d
+e
+g
+r
+e
+v
+n
+o
+C
+
+About VCE: 
+VCE is a joint venture formed in November 2009 by EMC, Cisco and VMware, with investment from Intel. 
+The company brought together IT infrastructure from the three industry leaders and sought to deliver it to 
+customers as a single entity through the newly-created VCE. VCE introduced its reference architecture in 
+2009 and then introduced its first fully converged vendor-delivered system, the Vblock System (Vblock), 
+in 2010. It has since released three more generations of Vblocks and expanded its portfolio significantly. 
+Product Portfolio
+VCE offers 4 general purpose Vblock series (100, 200, 300 and 700) as well as several models within each series. 
+Each series and model is designed to meet different price, performance and scalability needs. The company 
+also offers specialized systems for SAP HANA, High Performance Databases, and Extreme Applications. 
+Components
+All Vblocks are built on a standardized infrastructure that uses best-in-class components as follows:
+  Compute and Network:  Vblock’s compute component is based on Cisco’s UCS product line, and its 
+
+network component is based on Cisco Nexus and MDS switches. Released in 2009, Cisco UCS and Nexus 
+were designed from the ground up for virtualization and feature innovations such as unified fabric, 
+embedded management, and policy computing that distinguish them from the competition.  Cisco has 
+long been the dominant networking vendor and in less than 4 years, it has grown to the #2 position in 
+the global x86 blade server market from scratch according to IDC.4
+
+  Storage:  All Vblocks use storage from EMC, the leading provider of external storage with over a 
+
+34% share.5 Each Vblock series uses the EMC product that matches its target price, performance and 
+scalability parameters, with the top of the line 700 series using enterprise-class VMAX storage, the 200 
+and 300 using the mid-tier VNX product, and the 100 using the more affordable VNXe.
+
+  Virtualization:  VMware ESX is included in the solution package and supported by VCE. VMware is the 
+
+leader in virtualization with 82% market share. 
+
+  Management: As part of its package VCE offers its Vision Intelligent Operations software (VCE Vision). 
+
+VCE Vision’s features include virtualization optimization, converged operation and an open API that 
+enables users to use their own management tools of choice.
+
+3  This study was funded by VCE 
+4  http://blogs.cisco.com/datacenter/cisco-achieves-2-worldwide-in-the-x86-blade-server-market/
+5  http://www.gartner.com/newsroom/id/2380815
+
+Market Experience
+According to a recent Gartner study, VCE currently controls 57% of the Integrated Infrastructure 
+Systems market.6 The company has over 500 customers worldwide and its customers have deployed 
+over 1,100 systems.
+IDC analyses of VCE’s customers, published in 2011 and 2013, show that VCE’s customers have achieved 
+major reductions in administrative costs and have freed up resources for innovation. In the most recent 
+study, customers report:7 
+  5x faster deployment
+  96% less downtime
+  50% reduction in the annual data center cost
+About HP Converged Infrastructure Systems:
+HP’s first step into the CI market came in 2009 with the introduction of its BladeSystem server chassis and 
+the Virtual Connect FlexFabric networking module. Although the offering did not include storage, these 
+products did bring together compute and networking into an integrated, vendor-delivered solution. 
+In 2009 HP acquired networking vendor 3Com and in 2010 acquired storage vendor 3PAR, adding to a 
+storage product portfolio that already included Lefthand, acquired in 2008, and its own legacy EVA storage.
+In mid 2011, the company repackaged its homegrown and acquired components, along with several 
+software products, into its current lineup of converged infrastructure offerings, which consists of the 
+following 3 product families:
+  VirtualSystem:  VirtualSystem is HP’s basic converged infrastructure offering. The family includes an x86 
+configuration that scales from 2 to 64 blades and one Unix configuration that scales from 2 to 12 blades. 
+For storage, VirtualSystem offers its midrange 3PAR storage.
+
+  CloudSystem:  For customers who need a more scalable system, or who would simply prefer to use 
+
+components or software other than those that come with VirtualSystem, HP offers CloudSystem. Unlike 
+VirtualSystem, which offers standard configurations, CloudSystem is an open architecture that offers 
+customers the ability to choose from a wide range of networking, storage and other options – or to forgo 
+new top of rack networking and storage and connect to customers’ existing components. However, as 
+described below, this choice comes at a cost – in the form of a higher administrative burden.
+
+  AppSystem:  AppSystem is a family of appliances that HP describes as “integrated systems optimized 
+
+for dedicated business applications” such as SAP, Hadoop, Data Warehousing, and Microsoft Messaging. 
+While technically converged, these specialty appliances have different technology underpinnings than 
+VirtualSystem and CloudSystem and have not been included in this comparison of general workload 
+systems from each vendor.
+
+HP Converged Infrastructure Components
+VirtualSystem and CloudSystem can include the following components: 
+  Compute:  The principal compute option is HP’s BladeSystem c7000 chassis populated with x86 
+
+ProLiant or HP-UX Integrity Superdome blades.  
+
+  Networking:  For both VirtualSystem and CloudSystem, HP uses its Virtual Connect FlexFabric networking 
+module for internal and storage communications. At the top of the rack, VirtualSystems uses the HP-5920 
+switch to connect to the network. With CloudSystem, practically any top of rack system can be used. 
+Furthermore, when CloudSystem is deployed with storage other than 3PAR, a separate fibre channel 
+switch is required and customers can choose from multiple vendors such as Emulex or Qlogic.   
+
+6  http://www.vce.com/about/market-leader
+7  http://www.vce.com/asset/documents/noindex/idc-vblock-value-whitepaper.pdf
+
+  Storage:  For VirtualSystem, HP offers its 3PAR storage. For CloudSystem, customers can choose to 
+
+attach any storage certified with Virtual Connect, including its own  Lefthand and legacy EVA storage, 
+Hitachi XP, NetApp and EMC.  
+
+  Virtualization:  For VirtualSystem, HP offers Microsoft Hyper-V, VMware, and HP VM (for the HP-UX 
+
+operating system).  
+
+  Management: HP offers a bundle of approximately a dozen software packages for managing its converged 
+
+infrastructure offerings. The specific components vary by installation, but the list includes the Matrix Operating 
+environment, Insight Control, Virtual Connect Enterprise Manager and Cloud Service Automation.
+
+Market Experience
+HP has reported that it has nearly 900 customers of just its CloudSystem and industry analyst research 
+reports have ranked it as the second largest CI provider, although with less than half the market share of 
+industry leader VCE.8  However, in our own research, we have had a difficult time validating those figures.
+From a marketing standpoint, HP has sought to bolster its position in the converged infrastructure by 
+applying the term to a wide range of customer deployments. As described above, as part of our research, we 
+reviewed 46 HP case studies that HP branded as ‘converged infrastructure’ and could not verify that any of 
+them were for a true vendor-delivered system that integrated compute, network and storage into a single 
+pool. What we found were:
+  Technology Consolidation Deployments: The majority, 24 of 46, of the case studies were for 
+
+deployments where HP used ‘converged’ to mean any technology consolidation such as converging voice 
+and data into a single network, converging several local data centers into a single centralized data center, 
+or converging a large number of servers into a smaller number of virtualized hardware servers.
+
+  BladeSystem Deployments: 18 more of the 46 converged infrastructure case studies were for the HP 
+
+BladeSystem. With Virtual Connect FlexFabric, BladeSystem does converge compute and network. 
+However, these deployments still use a separate storage pool instead of pre-integrated storage and at 
+best can be considered only partially converged.
+
+  CloudSystem/CloudSystem Matrix Deployments: 4 of the case studies were for CloudSystem. However, 
+
+in our interviews with two of these, we found that they used a separate storage pool instead of pre-
+integrated storage. In the third case, our interview uncovered that HP was operating the deployment 
+for the customer and there was no way to independently verify what was deployed. In the fourth case, 
+who we did not interview, the case study was ambiguous about whether pre-integrated storage was 
+deployed as part of the system.
+
+In fact, across all of our research, including the 
+online survey, interviews, and our case study 
+analysis, we did not verify a single HP customer 
+who had deployed a fully converged system. 
+Since we didn’t interview and/or survey every 
+HP account, they may very well have customers 
+who have deployed fully converged systems. 
+However, our finding suggests there are far fewer 
+than the numbers reported by analyst reports 
+and HP marketing.
+
+Our Review of 46 HP Case Studies Branded 
+as Converged Infrastructure Did Not Verify 
+Any Fully Converged Systems
+
+BladeSystem Only 
+
+ 39%
+
+Technology 
+Consolidation
+
+51%
+
+ 5%
+5%
+
+CloudSystem- 
+Deployment scope 
+not verfied
+
+CloudSystem 
+using a Seperate 
+Storage Pool
+
+8 http://www8.hp.com/us/en/hp-news/press-release.html?id=1368505#.UjC1gaXVQeM
+
+VCE vs. HP Converged Infrastructure Summary
+At the heart of comparing the VCE Vblock family to HP converged infrastructure is a basic question: how 
+does the installation and operation of each vendor’s systems compare to the vendor-delivered system 
+paradigm described in the chart on the second page of this paper?
+As discussed earlier, VCE and HP were among the first to introduce CI systems in 2009. At the time, both 
+systems offered a significant advancement over what came before – but when it comes to data center 
+systems, 4 years is a lifetime. 
+The bottom line is that since 2009 VCE has made great strides, and today delivers a cohesive vendor-delivered 
+system that considerably simplifies infrastructure administration, increases agility, and frees up resources for 
+innovation. In contrast, HP appears to have made little progress since it introduced BladeSystem and Virtual 
+Connect in 2009. 
+Underinvestment in R&D has been a recurring theme at HP in general over the last several years and 
+that may be the reason its converged infrastructure offerings have not advanced as much as would be 
+expected.9 Just as they did in 2009, the now aging BladeSystem and Virtual Connect products still form 
+the heart of HP’s converged systems. Storage, which wasn’t included at all in the company’s 2009 offering, 
+remains an afterthought.  With CloudSystem, storage is optional and with VirtualSystem, storage is limited 
+to HP’s own midrange 3PAR product line. 
+Our analysis also suggests that even when HP does sell compute, network and storage as an integrated 
+system, they have not invested nearly as much as VCE has in simplifying the design, deployment, 
+maintenance, support, and upgrade experience.  
+
+VCE vs. HP: Detailed Analysis by Lifecycle Stage
+In the chart below, we summarize our assessment of how far each vendor has progressed toward delivering 
+on the vendor-delivered system paradigm.
+Evaluation of the VCE Vblock and HP Converged Infrastructure across the System 
+Lifecycle on the Degree to Which it Performs as a Vendor-Delivered Standardized 
+System vs. a Customized, Field Integrated Installation (1 to 5 scale) 
+
+Area
+Design
+Deploy
+Maintain
+Upgrade
+Support
+Evolve
+Total
+
+VCE Vblock
+
+HP Converged Infrastructure
+
+5
+5
+4
+4
+5
+4
+4.5
+
+3
+3
+2
+2
+3
+
+Not Available
+
+2.6
+
+Design: 
+Evaluation Criteria: The system is engineered by the vendor as a single integrated pool for optimal performance, 
+scalability, and availability and configured to meet customers’ unique needs.
+VCE’s Vblock was conceived of and engineered as a vendor-delivered system for highly virtualized and cloud 
+environments. The company’s vision of creating an optimized vendor-delivered system is evidenced in 1) 
+its selection of best of breed components and 2) providing a family of systems that match the varying price, 
+performance and scalability needs of different customers.
+In comparison HP’s design appears to be primarily driven by repackaging the products it already has, not 
+from investing in R&D to build a scalable, optimized, and standardized vendor-delivered system.
+9  http://www.forbes.com/sites/ericsavitz/2013/01/17/hp-sharply-underspending-on-rd-moodys-finds/
+
+VirtualSystem, HP’s only standardized offering to combine compute, network and storage, lacks the 
+scalability of VCE. It tops out at just 64 servers vs. 384 servers for VCE’s Vblock 700. Furthermore, with 
+VirtualSystem, HP offers 2 different types of blades, 4 hypervisors and a host of other options – suggesting 
+that HP has invested very little in trying to optimize and simplify its configurations and instead has just 
+repackaged all of its available options under the VirtualSystem’s umbrella with little new development.
+
+VCE Vblocks are Available in Configurations Ranging from 2 to 384 Servers 
+While HP’s VirtualSystem Tops Out at 64 Servers
+Maximum 
+Number of 
+Servers
+
+450
+
+400
+
+350
+
+300
+
+250
+
+200
+
+150
+
+100
+
+50
+
+0
+
+VCE Vblock Family
+
+HP Virtual Systems
+
+A closer comparison of the constituent components of both systems further illustrates the differences.
+Server: 
+Where HP’s converged infrastructure offerings are based on its aging BladeSystem platform, VCE uses Cisco’s 
+innovative UCS platform.
+While HP is still the leading provider of x86 blade servers, its position is quickly eroding in favor of Cisco. 
+Cisco entered the x86 blade server market in 2009 and is now the #2 provider. In Q2 2013, Cisco held a 22% 
+share of the global market and 34% of the US market. Over the same period, HP’s share of the global market 
+has fallen from 50% to 43%.10
+This rapid shift in market share is largely due to Cisco’s technology advantages over HP, such as:
+  Cisco’s blades are truly stateless, meaning that configuration settings including network settings, BIOS 
+
+and firmware are managed in software. HP is only partially stateless – a greater share of its settings need 
+to be managed at the individual blade level. This greater complexity creates more work for IT.
+
+  Cisco UCS has a fabric-centric design which eliminates switching within the blade chassis and requires 
+
+just 2 UCS Fabric Interconnects for the entire deployment. HP requires 2 Virtual Connect networking 
+modules to be installed in each 16 blade enclosure, leading to extra cost, cabling, management 
+complexity and maintenance. 
+
+  Cisco UCS is optimized for x86 while HP BladeSystem supports both its ProLiant x86 blades and 
+
+Superdome Itanium-based blades for HP-UX. Designing for two inherently different blades introduces 
+tradeoffs that lead to sub-optimizing for both.
+
+10 http://www.slideshare.net/Ciscodatacenter/cisco-ucs-marketshare
+
+Storage: 
+While HP offers its own 3PAR storage for its VirtualSystem, VCE Vblocks are built using storage from market 
+leader EMC. EMC has long been the storage market leader and has steadily been increasing its lead. From 
+Q2 2010 to Q4 2012 EMC’s share of the external storage market grew from 27.8% to 34.2%. Over the same 
+period, HP’s share of the market fell from 9.9% to 7.9%.11
+The fortunes of EMC’s and HP’s storage products stem directly from the breadth of each vendor’s product 
+line and strength of its technology:
+  EMC offers storage solutions that scale from the more affordable VNXe to the enterprise class VMAX. 
+VCE’s product families take advantage of the breadth of EMC’s products to offer customers options to 
+meet a wide range of price and performance needs. In contrast, HP offers only midrange storage. 
+
+  At the high end,  EMC’s top of the line VMAX can support the largest and most demanding 
+
+applications through features such as federated storage. In contrast, HP does not have equivalent 
+capabilities and scalability.
+
+  In the midrange, EMC’s VNX provides exceptional performance by leveraging the full power of the latest 
+
+multi-core Intel processors while HP’s performance is limited by its custom ASIC, which is difficult and 
+expensive to update. 
+
+  In both the midrange and the high end, EMC offers predictable high performance and low latency 
+
+through features such as SSD caching. In comparison, HP’s wide striping and thin provisioning leads to 
+higher latency and unpredictable performance.
+
+For customers whose installation requires enterprise class and/or higher performance storage, HP will sell 
+the customer CloudSystem and substitute storage from another vendor in the field. However, substituting 
+storage in the field breaks the integrity of the vendor-delivered system paradigm and turns the deployment 
+into a custom installation.
+Hypervisors:
+VCE is designed and optimized for one hypervisor, industry leader VMware.
+HP offers a choice of four hypervisors for VirtualSystem and CloudSystem.12 While it is possible, it is 
+highly unlikely that HP has engineered the same degree of system optimization and support for four 
+hypervisors that VCE has for one.
+Questions for Evaluating System Design
+As a potential buyer of a converged infrastructure system, here are questions regarding the design of the 
+system we recommend you ask as part of your evaluation:
+1.  Has the vendor truly engineered systems optimized for virtualized and cloud infrastructures or have 
+
+they simply packaged their legacy components and software under their converged product line?
+
+2.  Does the vendor offer truly pre-integrated solutions designed for each tier of performance and availability?
+Deploy: 
+Evaluation Criteria: The complete system is manufactured and logically configured at the factory using 
+standardized processes. 
+Speed of deployment is a key outcome of VCE’s focus on design-level standardization and integration. In 
+most cases, VCE Vblocks are capable of shouldering operational loads within 45 days from time of customer 
+order and within 48 hours of delivery. 
+Both physical and logical builds are completed at the factory, so when a Vblock system reaches its destination:
+  All components are assembled and fully tested 
+  System is logically configured using a repeatable process with extensive automation
+  VMware and naming conventions are installed and IP addresses and VLANs are defined
+11  http://www.gartner.com/newsroom/id/2380815
+12  http://h17007.www1.hp.com/us/en/converged-infrastructure/virtualization.aspx#.Ui-jtcbktFs
+
+The net result is that VCE Vblocks arrive quickly and can be put into service in a short time span with low 
+administrative effort for IT staff and minimal vendor services.
+Even in the best case, very little of the HP converged infrastructure build takes place at the factory. When a 
+customer does purchase one of the standard VirtualSystem configurations, it does get physically assembled 
+at the factory.  However, these systems still require logical configuration in the field by IT staff or vendor 
+professional services teams.
+For CloudSystem, when a customer requires more scalable or higher performing storage other than HP’s 
+midrange offerings, or opts for networking from another vendor, not only does the logical configuration 
+take place in the field, so does the physical integration, requiring significant IT resources and/or 
+professional services.
+Questions for Evaluating Deployment
+1.  Does the system require physical or logical configuration on site and how much of your internal labor or 
+
+their professional services will be required to deploy it?
+
+2.  Does the vendor provide a guaranteed deployment window for the system?
+3.  How much has deployment risk been reduced by the vendor?
+
+Maintain:
+
+Evaluation Criteria: Patches are preselected, pretested, and prepackaged by the vendor for interoperability and 
+compatibility with installed configurations, and are ready for immediate non-disruptive deployment.
+With a constant stream of updates for each component, patching can be an administrative nightmare. Not 
+every patch is relevant to every deployed configuration, and each patch introduces its interoperability and 
+compatibility risk in its own way. VCE simplifies the process and mitigates the risk as follows:
+1.  Since VCE only ships Vblocks in standard configurations, the company supports the entire configuration 
+
+for every system it ships. As a result, VCE is able to evaluate each patch to determine which patches 
+actually need to be installed on which systems.
+
+2.  VCE then tests each patch that does need to be installed against the entire Vblock system, certifying 
+
+compatibility at system-level.
+
+3.  Finally, VCE bundles the patches into a single release. 
+Through this process, VCE delivers risk-free patch bundles with predictable outcomes on a regular basis, 
+eliminating the need for customers to select and test each patch, released at unpredictable times, against 
+their specific configuration. 
+Even in the best case, for its standard VirtualSystems configurations, HP’s design complexity (2 types of 
+processors, 4 hypervisors, etc.) means that they cannot provide nearly the level of patch support as VCE. 
+Rather than offering a synchronized patch update across all its components, HP’s patching is completed 
+component by component. For example, HP CloudSystem Matrix 7.1 Update 1 Release Notes instruct the 
+customer to contact their 3PAR representative separately for upgrading storage components.  
+Though HP does provide the CloudSystem Matrix Compatibility Chart, customers are responsible for ensuring 
+compatibility with their own configurations, which are often highly customized.
+Questions for Evaluating Maintenance
+1.  Does the vendor issue system releases of patches that are pre-selected, fully tested and validated 
+
+against the entire system or do they issue component-by-component patches that you need to validate 
+on your own custom installation? 
+
+Upgrade:
+
+Evaluation Criteria: Newer versions of components are preselected, pretested and certified for interoperability and 
+design integrity and are ready for immediate non-disruptive deployment.
+Since component vendors release new versions of their products every few months, it is virtually 
+guaranteed that when a customer seeks to expand the capacity of their system, they will be installing 
+newer component versions.
+VCE handles the integration of new hardware component versions in a way similar to how it handles 
+patches – each new component release is tested against each shipped system configuration to ensure 
+system-level compatibility. In addition, the company also tests the design integrity of the complete 
+system, ensuring that it has the headroom for and can support the power and cooling needs of the new 
+component. As with patches, by the time new components reach the customer, they are ready to install 
+with minimal disruption.
+Similar to patching, HP’s design complexity and share of field-customized installations means that it is 
+virtually impossible for them to fully certify each new component release against customers’ individual 
+deployments. This leaves the burden of testing each upgrade to the customer, as well as the risk carried by 
+each release.
+Questions for Evaluating Upgrades
+1.  Does the vendor preselect, fully test and validate upgraded components against your deployed 
+
+configurations beforehand at its own facilities, or do these components need to be tried out in your 
+systems by your own IT resources, or your vendor at your time and cost? 
+
+Support: 
+
+Evaluation Criteria: There is a single point of ownership that is expert in all aspects of the system. All deployed 
+system configurations are fully supported to accelerate problem resolution.
+VCE Support features a single point of contact for service request management and responsibility, including 
+escalation support tied directly into Cisco, EMC and VMware engineering support. 
+VCE’s cross-trained support staff handles compute, network, storage and virtualization, and in 2012 they 
+were able to resolve 70% of calls without escalation to more specialized support. VCE’s emphasis on 
+standardization also means problem-solving is shared across its customer base – solutions are engineered in 
+labs dedicated to problem re-creation and then distributed through the support network as needed.
+HP’s support model is more akin to triage than integration. While HP does offer a single point of contact for 
+large customers who purchase that option separately, it is still the silo-based organizations that actually 
+provide support. These silo-based support organizations put the burden of isolating the problem and 
+proving which component is causing the issue on IT staff.  
+HP’s emphasis on customization also means more problems are unique in nature, limiting shared problem-
+solving knowledge base and resulting in slower resolutions.
+Questions for Evaluating Support
+1.  Is there a true single point of ownership for support or just a single point of contact that serves as a front 
+
+end to traditional siloed support?
+
+Evolve:
+
+Evaluation Criteria: Vendor engineers next generation system leveraging latest advances from each component 
+while providing a migration path that interlocks roadmaps from each component.
+VCE has a proven record of releasing new versions of its Vblocks that include the latest advances from each 
+component vendor. The first Vblock was released in 2010 and the company is currently shipping its fourth 
+generation system. The company maintains close roadmap coordination with Cisco, EMC and VMware to 
+provide customers with visibility into new capabilities as they are being developed and a clear migration 
+path for implementing new technologies. 
+As described earlier in the paper, we had little success in identifying HP customers who had deployed a true 
+vendor-delivered solution from HP. Combined with the lack of published material on migrating from one 
+generation of HP converged systems to the next, we do not have sufficient information to judge how HP 
+plans to support migration to new generations of systems.
+Questions for Evaluating Upgrades
+1.  Does the vendor have a proven record of introducing new generations of its solutions?
+2.  If it does, does it offer a migration path for its installed customers?
+
+Conclusion:
+The key challenge for IT remains accelerating innovation by reducing the time, money and resources spent 
+on deploying and administering infrastructure systems. Converged infrastructure solutions offer a way to do 
+just that, but only if the system is designed with the needs of IT in mind. 
+By creating a system that, on the surface, looks like a converged infrastructure, but is almost always 
+extensively customized, HP does little to address the administrative load that is prevalent throughout the 
+system lifecycle. 
+By contrast, VCE Vblock truly changed the status quo. It built an integrated system that simplifies purchasing 
+and setup, shortens the time it takes to bring new capabilities on line, and reduces the cost and complexity 
+throughout the lifecycle of the product. In short, VCE is in the business of supporting a whole system that is 
+much more than just the sum of its parts.
+
+Final Question:
+Will the system enable you to truly transform your IT operations, shorten the time-to-market for new 
+capabilities and free up resources for innovation?
+
+

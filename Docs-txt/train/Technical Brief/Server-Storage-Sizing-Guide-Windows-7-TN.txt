@@ -1,0 +1,553 @@
+Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop Infrastructure TECHNICAL NOTESTable of Contents
+
+Introduction   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+Establish a Baseline of the Existing Desktop Environment   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+Estimate VDI Hardware Needed  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+  CPU   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+  Memory  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+  Storage     .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+  Virtual Desktop Configuration   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+  Virtual Desktop Configuration by User Type   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+  Optimizing Windows 7  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+  VMware Horizon View Requirements      .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+Other Design Considerations  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+  User Profiles  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+  Migration from Windows XP to Windows 7   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+  VMware ThinApp Application Delivery   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+Next Steps  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+Summary  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+About the Author and Contributors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+Resources   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+  Performance-Monitoring Tools   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+  Profile Tools   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+
+T E C H N I C A L   N O T E S   /   2
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureIntroduction
+
+Sizing the server and storage resources for a virtual desktop infrastructure (VDI) can be a complex task, 
+and there are no easy answers. This paper provides a high-level overview of the basic steps in sizing the 
+infrastructure, plus additional items to consider.
+
+The discussion is designed to help organizations size their server and storage resources for any VDI 
+implementation with Windows 7 desktops. You can apply these recommendations to a VMware® Horizon View™ 
+environment.
+
+Note: It is assumed the reader is already familiar with VDI and the related benefits of the technology. If an 
+introduction to VDI is necessary, see VMware Horizon View.
+
+In this paper, we focus on a Windows 7 implementation and the first two steps of the sizing process below:
+
+•	 Establish	a	baseline	of	the	existing	desktop	environment
+
+•	 Estimate	VDI	hardware	needed
+
+•	 Build	proof-of-concept	infrastructure
+
+•	 Validate	hardware	estimates
+
+References to Windows XP are also included for those looking to migrate their existing environment to 
+Windows 7.
+
+T E C H N I C A L   N O T E S   /   3
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureEstablish a Baseline of the Existing  
+Desktop Environment
+
+The first step in the process is to gather baseline information on the key user groups that have been identified 
+as good candidates for a VDI environment. The purpose of this step is to understand the performance 
+characteristics of the target users’ workload—for instance: What applications do they need? Are the 
+applications more CPU- or memory-intensive? Are there an excessive number of storage operations? What type 
+of network load is being generated by the end users’ activities?
+
+Note: These steps are applicable whether you are looking at implementing a new VDI environment or looking 
+at migrating an existing Windows XP VDI environment to a Windows 7 VDI environment.
+
+A performance-monitoring tool will help you gather the necessary baseline information. There are several 
+tools, including third-party tools, which can assist you with this process, such as VMware Capacity Planner, 
+Liquidware Labs Stratusphere FIT, and Lakeside Software SysTrack. In addition, both Windows XP and 
+Windows 7 ship with Performance Monitor (Perfmon), a performance logs and alerts tool. Perfmon allows 
+administrators to capture and graph various performance statistics from both local and remote computers.
+
+Additional	information	on	Perfmon	and	key	attributes	to	monitor	can	be	found	in	the	VMware	Knowledge	Base 	
+article  Collecting the Windows Perfmon log data to diagnose virtual machine performance issues. 
+
+Pay particular attention to the application workloads in the desktop estate. Physical-to-virtual hardware 
+mapping is less important and should be considered separately. Ideally, start with the recommended sizing of  
+2	vCPUs	and	4GB	RAM,	and	size	larger	if	necessary.
+
+T E C H N I C A L   N O T E S   /   4
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureEstimate VDI Hardware Needed
+
+This section describes the process of estimating the hardware resources needed for a VDI implementation.
+
+CPU
+The primary question you need to answer about processing power in your VDI environment is how many virtual 
+machines can be assigned to each CPU, or core, in the host. This calculation depends upon how many virtual 
+CPUs you need per virtual machine. For a typical Windows 7 implementation, use a minimum of 2 vCPUs per 
+virtual machine to ensure a good user experience. Only in the absolute lightest of workloads is 1 vCPU sufficient. 
+You	can	monitor	the	PCPU	USED,	PCPU	UTIL,	and	CORE	UTIL	 esxtop utility counters to monitor the required 
+virtual CPUs.
+
+VMware does not recommend oversubscribing memory resources in a VDI environment. However, we almost 
+always	oversubscribe	CPU	resources	in	order	to	achieve	an	optimal	density	of	virtual	machines	per	ESXi	host.
+
+Recommended sizing can be as many as 10 virtual CPUs (vCPUs) per physical CPU core (pCPU), depending on 
+the workload.
+
+A good, conservative starting point in the design is 6 vCPUs per pCPU when calculating density. This ratio of 
+vCPU:pCPU is called the overcommit ratio.
+
+After you have determined the optimal vCPU:pCPU ratio in your design, your virtual-machine-per-host sizing 
+can follow this simple formula:
+
+(Virtual Machines per Server) = ((Cores Available on Server) / (vCPUs Needed 
+per Virtual Machine)) * (Overcommit Ratio of vCPUs per pCPU)
+
+Table 1 provides two examples, both with an overcommit ratio of 6:1. 
+ 
+
+NUMBER OF vCPUs 
+NEEDED PER 
+VIRTUAL MACHINE
+
+NUMBER OF 
+PHYSICAL CORES 
+AVAILABLE ON 
+SERVER
+
+(CORES AVAILABLE / 
+vCPUs NEEDED PER 
+VIRTUAL MACHINE)* 
+(OVERCOMMIT RATIO)
+
+VIRTUAL MACHINES 
+PER SERVER
+
+1
+
+2
+
+16
+
+16
+
+(16/1)*6
+
+(16/2)*6
+
+96
+
+48
+
+Table 1: Virtual Machines per Server Based on vCPUs Needed per Virtual Machine
+
+Note: Virtual machines possible per server can vary based upon the workload the virtual machines are running, 
+the capacity of the server hardware, the requirements of the guest operating system, and the efficiency of the 
+hypervisor and available storage.  
+
+Memory
+A	typical	Windows	7	64-bit	enterprise	deployment	requires	2	vCPUs	and	4GB	RAM.	(For	a	Windows	7	32-bit 	
+virtual	machine	guest	with	2	vCPUs,	a	minimum	of	2GB	RAM	is	recommended.)	The	native	OS	alone	is 	
+approximately	400MB.	The	goal	is	to	allocate	enough	memory	to	hold	the	set	of	applications	and	data	while 	
+keeping the memory overcommit ratio as low as possible. This prevents Windows from writing data to the 
+paging file because there is not enough RAM available in the guest OS. 
+
+As a guideline, for balance between performance and memory utilization, the virtual machine should have 
+approximately 25 percent more RAM allocated than the maximum active load on the virtual machine. This 
+allocation prevents Windows from writing data to its paging file and keeps the active working set (applications 
+and data) for the virtual machine in RAM instead of in virtual memory space. 
+
+T E C H N I C A L   N O T E S   /   5
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureMemory should not be oversubscribed in a VDI deployment. There should be sufficient RAM in the host, plus 
+25	percent	for	vSphere	and	swap	overhead,	and	potentially	more	if	3D	is	being	used.	For	more	3D-overhead 	
+numbers, see Storage Considerations for VMware Horizon View 5.2.
+
+Storage   
+The	Windows	7	64-bit	version	requires	an	additional	4GB	of	disk	space	over	the	Windows	7	32-bit	version.	This 	
+will decrease the number of virtual machines on your server, unless additional storage can be added. 
+
+ 
+
+128 X
+
+MAXIMUM PER LUN
+
+LUN
+
+Figure 2: Maximum Virtual Machines per LUN
+
+The	maximum	virtual	machines	per	LUN	is	128	for	Fibre	Channel,	and	an	unlimited	number	of	virtual	machines 	
+for	NFS	and	iSCSI.
+
+Depending on the operations performed and applications that are used, Windows 7 could produce additional 
+I/O especially during boot and login, and the first time applications are opened. 
+
+It is extremely important that you baseline your existing environment, build a proof-of-concept infrastructure, 
+and run tests to validate your estimates for additional hardware, memory, and storage that will be required. 
+
+VMware Horizon View 4.5 and later versions offer a tiered-storage option. You can place View Composer 
+replicas	on	solid-state	disk	drives,	and	linked	clones	on	less	expensive	drives	like	SATA.	By	taking	advantage 	
+of the new tiered-storage option, intensive operations such as provisioning many linked clones at once can be 
+accelerated.
+
+For more information, consult Storage Considerations for VMware Horizon View 5.2.
+
+T E C H N I C A L   N O T E S   /   6
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureVirtual Desktop Configuration 
+There is no one virtual desktop configuration that will meet everyone’s needs. This is why gathering baseline 
+information about your existing environment is so important. Table 2 is based on the information provided in 
+previous sections of this document, Storage Considerations for VMware Horizon View 5.2, and the VMware 
+Horizon View Architecture Planning guide. These configuration guidelines are for standard Windows 7 and XP 
+virtual desktops running in remote mode.
+
+Note: Information is provided on XP is for those looking to migrate their existing VDI environments to Windows 7.
+
+ITEM
+
+WINDOWS 7, 32-BIT
+
+WINDOWS 7, 64-BIT
+
+WINDOWS XP
+
+Operating system
+
+32-bit	Windows	7	(with	
+the latest service pack)
+
+64-bit Windows 7 
+(with the latest service 
+pack)
+
+32-bit	Windows	XP	
+(with the latest service 
+pack) 
+
+RAM
+
+1–2GB,	 
+2 recommended
+
+4GB	minimum,	 
+4+ recommended
+
+1GB	(512MB	low	end,	
+2GB	high	end)
+
+Virtual CPUs
+
+1–2, 2 recommended
+
+Minimum of 2*
+
+1
+
+System disk capacity
+
+24GB
+
+32GB
+
+5GB	 
+(starting point)
+
+LSI	Logic	SAS	
+(the default)
+
+16GB	(8GB	low	end,	
+40GB	high	end)
+
+5GB	 
+(starting point)
+
+LSI	Logic	Parallel	
+(not the default)
+
+User data capacity 
+(as a persistent disk)
+
+5GB 
+(starting point)
+
+LSI	Logic	SAS	
+(the default)
+
+Virtual SCSI 
+adapter type
+
+Virtual network 
+adapter
+
+VMXNET3
+
+VMXNET3
+
+VMXNET3
+
+Table 2: Desktop Virtual Machine Examples for Windows 7 and XP, Hosted on an ESXi 5 .x Server
+
+*See the CPU section for more information.
+
+The amount of system disk space required depends on the number of applications required in the base image. 
+The amount of disk space required for user data depends on the role of the end user and on the organizational 
+policies for data storage. If you use View Composer, this data is kept on a persistent disk.
+
+Virtual Desktop Configuration by User Type 
+If you have not already classified your user base, you will want to. This step will help simplify your analysis as 
+well as your deployment. Users have been classified into three basic categories:
+
+•	 Task-based	workers	–	Limited	applications	and	limited	performance	requirements
+
+•	 Knowledge	workers	–	Standard	office	applications	and	medium	performance	requirements
+
+•	 Power	users	–	Compute-intensive	applications	and	high	performance	requirements
+
+The	IOPS	listed	in	Table	3	are	guidelines	for	Windows	7.	The	IOPS	generated	will	vary	based	on	your	definition 	
+of the worker types and the applications they use, the environment, storage, and whether or not the virtual 
+machines are optimized.
+
+T E C H N I C A L   N O T E S   /   7
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureUSER/WORKER 
+TYPE
+
+APPLICATIONS 
+(OPEN SIMULTANEOUSLY)
+
+VIRTUAL MACHINE 
+CONFIGURATION
+
+Task-based worker
+(light)
+
+Limited	
+(1–5 applications, light use)
+
+Knowledge worker 
+(medium)
+
+Standard office 
+(1–5 applications, regular use)
+
+Power user 
+(heavy)
+
+Compute-intensive 
+(5+ applications, regular use)
+
+Power user plus
+(heavy)
+
+Compute-intensive 
+(5+ applications, intense use)
+
+Table 3: Virtual Desktop Configuration by User Type
+
+1 virtual CPU
+1GB	memory
+
+2 virtual CPUs
+2GB	memory
+
+2 virtual CPUs
+4GB	memory
+
+2+ virtual CPUs
+4GB	memory
+
+IOPS
+
+3–7
+
+8–16
+
+17–25
+
+26+
+
+Optimizing Windows 7
+Microsoft Windows is a complex operating system incorporating thousands of built-in features. Many of the 
+user-convenience features were designed for a dedicated resource usage model, such as a dedicated physical 
+PC with abundant RAM and CPU resources. When the desktop hardware container moves from a dedicated 
+physical PC to a virtual hosted desktop, it is crucial that each running process provide value to the user 
+experience. It is this point where many of the Windows user-convenience features designed to enhance the 
+user experience actually have the opposite effect by taxing the shared resource pool of physical RAM and CPU 
+from the VMware vSphere® host, causing poor application performance.
+
+To provide a better user experience and enhance the overall scalability and performance of your VMware 
+Horizon View virtual desktop infrastructure, you will want to optimize your Windows 7 image. See the VMware 
+Horizon View Optimization Guide for Windows 7 and Windows 8. 
+
+VMware Horizon View Requirements    
+The following information has been gathered from the VMware Horizon View Installation guide. Consult the 
+latest Installation guide for the most up-to-date information.
+
+You will want to install the following in your Horizon View implementation for Windows 7 virtual desktops:
+
+•	 The	View	Agent	component	assists	with	session	management,	single	sign-on,	and	device	redirection.	You 	
+
+must install View Agent on all virtual machines, physical systems, and terminal servers that will be managed 
+by Horizon View. 
+
+•	 The	View	Client	is	used	to	connect	users	to	their	Horizon	View	desktops.	You	must	install	View	Client	or	View 	
+Client	with	Local	Mode	on	the	supported	operating	system	of	the	client	machine	that	is	accessing	the	Horizon 	
+View	desktop.	View	Client	with	Local	Mode	is	supported	only	on	Windows	systems	and	only	on	physical 	
+computers.
+
+•	 View	Transfer	Server	is	an	optional	component	of	the	View	Connection	Server	and	is	required	for	check-in, 	
+
+check-out,	and	replication	of	desktops	that	run	in	Local	Mode.	You	will	need	to	install	and	configure	View 	
+Transfer	Server	if	you	deploy	View	Client	with	Local	Mode	on	client	computers.
+
+T E C H N I C A L   N O T E S   /   8
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureOther Design Considerations
+
+This section covers additional topics you should consider for your VDI implementation.
+
+User Profiles
+User profiles include all user-specific settings of a user’s environment, including program items, network 
+connections, printer connections, mouse settings, window size and position, screen colors, and desktop 
+preferences. 
+
+There are three types of profiles available for use in a terminal services environment from Microsoft—local, 
+roaming, and mandatory profiles. Which profile type an organization decides to go with will be dependent on 
+the decision made about the overall environment:
+
+•	 Local	profiles	are	used	when	the	settings	in	the	profile	do	not	matter	as	a	user	roams	from	desktop	to	desktop.
+
+•	 Roaming	profiles	allow	user	settings	to	be	persistent	across	logins	and	across	machines,	ensuring	a	consistent 	
+
+user experience no matter which desktop a user logs in to. 
+
+•	 Mandatory	profiles	provide	groups	of	users	with	a	single	profile,	and	changes	to	the	profile	are	discarded 	
+
+upon logout.
+
+In addition to deciding on the type of profile(s), the size of the profile is also important when using roaming 
+profiles. Administrators have the ability to exclude folders from a profile, while redirecting other folders to the 
+network, and to use policies to configure settings such as Temporary Internet Files to minimize the size of the 
+profile.	Roaming	and	mandatory	profiles	should	be	measurable	in	KB	rather	than	MB.	A	properly	designed	and 	
+implemented profile solution will help to ensure quick login times for users. For further details, see Storage 
+Considerations for VMware Horizon View 5.2.
+
+VMware Horizon View Persona Management preserves user profiles and dynamically synchronizes them with a 
+remote profile repository.  Horizon View Persona Management does not require the configuration of Windows 
+roaming profiles, and you can bypass Windows Active Directory in the management of Horizon View user 
+profiles.  If you already use roaming profiles, Horizon View Persona Management enhances their functionality.
+
+Third-party solutions are available to help you plan and manage user profiles. One solution is the Liquidware 
+Labs ProfileUnity product, which not only offers profile support and fast logins, but also offers powerful 
+automated desktop configuration and deployment-integrity features such as user profile management, 
+migration, and portability of any Windows XP/2000/Vista/7 session.  
+
+Migration from Windows XP to Windows 7 
+For those organizations that are planning a migration from Windows XP to Windows 7, upgrading hundreds or 
+thousands of desktop devices is costly and time consuming. Windows XP applications will not automatically be 
+compatible	with	Windows	7.	For	example,	Web-based	applications	that	work	well	on	Internet	Explorer	6	may 	
+not	run	on	Internet	Explorer	8	with	Windows	7.	Additionally,	many	organizations	have	customized	applications 	
+driving their businesses; recoding and recertifying their applications for Windows 7 is a time-consuming and 
+costly endeavor. 
+
+Start the transition to Windows 7 by virtualizing your existing Windows applications with VMware ThinApp™. 
+Application virtualization removes the dependency of applications from the underlying operating system 
+so you can run a single application across multiple supported Windows operating systems. This helps to 
+streamline application migration, ease the burden of cost and complexity for IT organizations, and create a 
+seamless transition for end users. 
+
+T E C H N I C A L   N O T E S   /   9
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureVMware Horizon Mirage™ is a layered image-management solution that separates the PC into logical layers 
+which are owned and managed by either your IT organization or the end user.  You can update IT-managed 
+layers while maintaining end-user files and personalization. And to maximize end-user productivity, snapshots 
+and backups of layered desktop images enable quick recovery or rollback in case of failure. Horizon Mirage 
+enables the two most common approaches to Windows 7 migrations:  in-place and hardware refresh.  Horizon 
+Mirage can deliver a new IT-provisioned Windows 7 image to upgrade an existing Windows XP device, or 
+migrate an end user’s profile and files from that user’s previous Windows XP device to a new Windows 7 device.  
+Horizon Mirage can be especially useful if you wish to migrate from physical Windows XP devices to virtual 
+Windows 7 desktops. See VMware Horizon Mirage Streamlines Windows 7 Migration.
+
+VMware ThinApp Application Delivery 
+VMware ThinApp simplifies application delivery by isolating applications from the underlying operating system 
+and plugging directly into existing virtual and physical desktop management tools and infrastructure. ThinApp 
+encapsulates applications inside a virtual OS that transparently merges a virtual system environment with the 
+real system environment.
+
+ThinApp supports Windows 7. You can now package legacy applications from older versions of Windows such 
+as Windows XP and Windows Vista into ThinApp packages for deployment on Windows 7 if that application is 
+supported	on	Windows	7.		By	packaging	your	current	applications	with	ThinApp,	you	will	avoid	costly	recoding 	
+and regression testing and accelerate deployment of business applications to Windows 7 more quickly and 
+securely.
+
+For additional information, see VMware ThinApp.
+
+T E C H N I C A L   N O T E S   /   1 0
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureNext Steps
+
+After you have completed the first two steps in sizing your server and storage infrastructure, as discussed in this 
+document, the next two steps are
+
+•	 Build	a	proof-of-concept	infrastructure
+
+•	 Validate	hardware	estimates
+
+Summary
+
+Whether you are looking at implementing a VDI environment for the first time with Windows 7 or migrating 
+from an existing Windows XP VDI environment, it is important to take the time to follow the steps outlined in 
+this	document.	Be	sure	to	take	extra	care	in	designing	the	storage.	Depending	on	the	storage	you	have	in	your 	
+environment, check with the vendor; chances are, the storage vendor has created reference architectures that 
+can provide you with additional guidelines for parameters such as the number of virtual machines. For further 
+details, see Storage Considerations for VMware Horizon View 5.2.
+
+About the Author and Contributors
+
+Fred	Schimscheimer,	Product	Line	Marketing	Manager	at	VMware,	wrote	this	document.	Fred	works	in	the 	
+competitive marketing team as an expert in storage and workloads for virtual desktop solutions.  
+
+Thanks to the following individuals for review of content:
+
+•	Rory	Clements,	Group	Manager,	Solutions	Management,	End-User	Computing,	VMware
+
+•	Michael	Furman,	Senior	Member	of	the	Technical	Staff,	Quality	Engineering	for	Storage,	VMware
+
+•	Yee	Chin,	Senior	Member	of	the	Technical	Staff,	Quality	Engineering,	VMware
+
+T E C H N I C A L   N O T E S   /   1 1
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureResources
+
+VMware Horizon View Optimization Guide for Windows 7 and Windows 8
+
+VMware Compatibility Guides 
+
+VMware Horizon View Installation 
+
+VMware Horizon View Architecture Planning
+
+VMware View Persona Management Deployment Guide
+
+VMware Horizon Mirage Streamlines Windows 7 Migration
+
+Storage Considerations for VMware Horizon View 5.2
+
+Interpreting esxtop Statistics
+
+Performance-Monitoring Tools
+VMware Capacity Planner
+
+Xangati for vSphere
+
+Lakeside Software, Inc. – SysTrack
+
+Liquidware Labs – Stratusphere FIT
+
+Profile Tools
+Liquidware Labs ProfileUnity
+
+ Server and Storage Sizing Guide for Windows 7 Desktops in a Virtual Desktop InfrastructureVMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2013 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VMW-TN-WIN7-STORSIZVDI-USLET-20131213-WEB

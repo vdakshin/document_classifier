@@ -1,0 +1,137 @@
+SAN Best Practices Tech Brief 
+ 
+
+ 
+
+Slow Draining Devices 
+
+Virtual Instruments’ VirtualWisdom® is the only product that can help SAN administrators quickly find root 
+cause of SAN performance problems, including slow draining devices.  VirtualWisdom’s comprehensive 
+instrumentation and Storage Area Network (SAN) I/O measurement capabilities reduce application response 
+time, increase availability, and improve resource utilization. 
+
+Problem 
+Fibre Channel Network becomes congested; I/O 
+becomes bottlenecked; no apparent cause 
+
+Impact 
+Application response time slows to unacceptable 
+levels.  Latency can cause time-outs. 
+
+Introduction 
+
+We often hear of SAN slowdowns that turn out to be a result of slow draining devices.  It’s frustrating to 
+see a SAN become congested with no apparent cause.  Left untreated the result will be slow application 
+response time and even latency-induced time-outs.  What is a slow draining device?  Slow draining 
+devices are devices that are requesting more information than they can consume.  This can be because 
+they are running at a slower link rate than the rest of the environment, or could just mean that other 
+factors within the devices are preventing them from functioning as fast as they could.  A slow draining 
+device can exist at any link utilization level where achieved throughput into the slow draining port is 
+lower compared to the intended throughput.  It’s very important to note it can spread throughout the 
+fabric and can slow down traffic unrelated to the slow draining device within the fabric.  
+
+What causes slow draining devices?  The most common cause is within the device or server itself.  If the 
+device is overloaded in terms of CPU or memory it may have a hard time handling the data it has 
+requested.  Another common cause is devices that have slower link rates then the rest of the 
+environment. 
+
+Finding the problem 
+
+Without VirtualWisdom, troubleshooting is often a “trial and error” process.  Both Cisco and Brocade are 
+adding features to their switches to help with diagnostics by doing a better job on monitoring buffer-to-
+buffer credits.  Let’s consider Brocade as a good example.  Brocade’s Bottleneck Detection identifies 
+and alerts administrators to slow drain storage devices causing latency and I/O timeouts, particularly in 
+highly virtualized server environments. Top Talkers measures the top bandwidth-consuming traffic 
+(including by individual virtual machine) in real time over a physical device connection or throughout a 
+network switch.  Ingress Rate Limiting restricts data flow from less-critical hosts at preset bandwidths. 
+Traffic Isolation dedicates paths in the fabric to specific data flows, helping to avoid network congestion.  
+And QoS expedites critical traffic in the event of congestion while keeping all traffic flowing.  There is 
+anecdotal evidence that if the right data gets to the right Brocade or Cisco subject matter experts, they 
+may be able to help pinpoint and eliminate the problem. 
+
+There are metrics that help determine if a slowdown is caused by a server side (slow draining) device, 
+the storage side, or other issue.  For instance, our VirtualWisdom SAN Availability Probe solution can 
+pick up on one of the main symptoms, a credit issue, which causes class 3 discards.  While credit issues 
+can be detected or observed with SAN Availability Probe, the offending link can be hard to diagnose, as 
+the link that reports the discard usually isn’t the one that is causing the credit issue.  Though there are 
+other causes of class 3 discards, the pattern of their occurrence is quite different than the pattern of 
+occurrence of class 3 discards due to credit issues. 
+
+VirtualInstruments.com 
+
+ 
+
+Another metric that the switches offer is often referred to as “time with zero credit” or something similar, 
+it varies by vendor and switch.  But the meaning is basically the same.  Unfortunately, this counter has 
+been historically inaccurate and has been more of a red herring than useful for analyzing credit issues.  
+But as mentioned above, some of the switch vendors have fixed this counter for their newer switches, 
+and we are testing this to see if it is indeed valuable.  
+
+With our SANInsight SAN Performance Probe hardware, Read/Write/Other Exchange Completion Times 
+can be easily set to trigger alerts.  Using VirtualWisdom is the best way to detect and diagnose credit 
+issues.  This is because it sees the full symptoms of credit issues … which are high latency and large 
+numbers of exchanges that remain pending.  You might think that this would require that the probes be 
+placed on the link having the credit issue, and while there are a few cases where this is true, by and 
+large, the device or devices causing credit starvation can be detected by monitoring the storage ports 
+they are accessing.  This is because switches have only two choices when they receive a frame.  They 
+have to either route it or drop it within a very short timeframe.  If the switch drops the frame, then the 
+class 3 discard counter is incremented.  In order to avoid having to drop frames, lack of credit on a port 
+quickly flows back through an environment with a balance between delaying credit and dropping frames.  
+As a result, exchange completion times increase.  The number of pending and minimum pending 
+exchanges rapidly increases for the devices that are having the biggest impact to credit in the 
+environment.  There is also a much larger difference between the “time to first data” measurement 
+(which is how long the array takes to provide the first frame of data for a read) and the overall transaction 
+time because the arrays are ready with the data but waiting for credit to send it onto the link. 
+
+Mitigating the Problem 
+
+Queue Depth settings can help to mitigate slow draining devices, which are the most common cause of 
+credit issues.  Queue depth settings impact the number of transactions that can be open by a device at 
+any one time and credit issues deal with individual frames rather than transactions.  By limiting the 
+number of transactions you can throttle slow devices down to levels of data that they can consume and 
+prevent them from impacting other devices that share some of the same resources such as ISLs and 
+storage ports.  Typically, queue depth settings are set too high for optimum performance.  The SAN 
+Performance Probe allows users to really see the true impact of the queue depth settings and overall 
+latency in the environment.  Adding VirtualWisdom Server Virtualization Probe enables users to see not 
+only how the queue depth setting impacts the storage environment, but also to see how it affects overall 
+server response times. 
+
+This problem is more common that you might expect and it’s worth adding to your troubleshooting 
+methodologies. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 09/11 
+
+2                                                    VIRTUAL INSTRUMENTS TECH BRIEF 
+ 
+
+

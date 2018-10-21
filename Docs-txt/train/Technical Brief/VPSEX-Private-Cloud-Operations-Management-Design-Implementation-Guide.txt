@@ -1,0 +1,2945 @@
+ 
+
+VSPEX® Private Cloud with 
+Operations Management 
+
+Enabled with VMware® vSphere™, vCenter™ Operations 
+Management Advanced Suite™, EMC® VNX, and EMC® Storage 
+Analytics 
+ 
+D E S I G N   A N D   I M P L E M E N T A T I O N   G U I D E  
+
+ 
+
+Table of Contents 
+
+TABLE OF CONTENTS 
+
+CHAPTER 1 ......................................................................................................... 6 
+
+Introduction ................................................................................................................................ 6 
+Target Audience ......................................................................................................................... 6 
+Document Purpose .................................................................................................................... 6 
+Business Needs ......................................................................................................................... 7 
+Essential Reading ...................................................................................................................... 7 
+
+CHAPTER 2 ......................................................................................................... 8 
+
+Overview ..................................................................................................................................... 9 
+VMware® Datacenter and Cloud Management ....................................................................... 9 
+Datacenter and Cloud Management with EMC® and VMware® ............................................ 9 
+Integrated Management........................................................................................................... 9 
+Converged Management ......................................................................................................... 9 
+Managing the Software-Defined Datacenter ........................................................................... 9 
+
+VMware® vCenter™ Operations Management Advanced Suite™ with Third Party 
+
+Management Pack Support ..................................................................................................... 10 
+Intelligent Operations ............................................................................................................. 10 
+Policy-Based Automation....................................................................................................... 11 
+Unified Management .............................................................................................................. 11 
+VMware® vCenter™ Operations Management Packs .......................................................... 12 
+EMC® VNX Family.................................................................................................................... 12 
+Virtual Provisioning ................................................................................................................ 12 
+Fully Automated Storage Tiering (FAST) .............................................................................. 12 
+Unisphere .............................................................................................................................. 13 
+EMC® Integration for VMware vSphere ................................................................................. 13 
+EMC® Virtual Storage Integrator ........................................................................................... 13 
+VMware® vStorage™ APIs - Array Integration (VAAI) .......................................................... 13 
+VMware® vSphere™ Storage APIs for Storage Awareness (VASA) .................................... 13 
+EMC® Storage Analytics ......................................................................................................... 13 
+Hardware and Software List ................................................................................................... 13 
+
+CHAPTER 3 ....................................................................................................... 15 
+
+Overview: VMware® vCenter Operations Manager Advanced¹ Architecture .................... 16 
+Function in Overall Architecture ............................................................................................ 16 
+System Architecture ................................................................................................................ 16 
+
+D E S I G N   A N D   I M P L E M E N T A T I O N   G U I D E / 1    
+
+ 
+
+Table of Contents 
+
+Distribution Formats................................................................................................................ 17 
+vCenter™ Operations Manager Components ....................................................................... 17 
+vApp Components ................................................................................................................... 17 
+Analytics VM ............................................................................................................................. 18 
+Optimizing vCenter™ Operations Manager vCenter Data Collection ................................ 18 
+Modifying Data Retention and Custom Parameters ............................................................. 19 
+Security ..................................................................................................................................... 21 
+vCenter Operations Management Advanced Suite ............................................................... 21 
+Background and vCenter Operations Manager .................................................................... 22 
+Overview ................................................................................................................................ 22 
+Challenges ............................................................................................................................. 23 
+Backup and Restore vApps ................................................................................................... 23 
+EMC® Storage Design ............................................................................................................. 24 
+VNX storage tiering and FAST VP ........................................................................................ 24 
+Storage Mapping ................................................................................................................... 25 
+EMC® Virtual Storage Integrator (VSI).................................................................................. 26 
+EMC® Storage Analytics ....................................................................................................... 27 
+
+CHAPTER 4 ....................................................................................................... 28 
+
+Overview ................................................................................................................................... 29 
+Installing and configuring vSphere™ with Operations Management ................................ 29 
+Installing VMware® vSphere™ and vCenter™ Server .......................................................... 29 
+Deploying vCenter™ Operations Manager ............................................................................ 30 
+vCenter™ Server Integrations ............................................................................................... 30 
+Applying a vSphere™ with Operations Management License ............................................ 30 
+
+Updating vSphere™ with Operations Management to vCenter™ Operations Manager 
+
+Advanced Suite ........................................................................................................................ 31 
+Deploying EMC® Storage Analytics ...................................................................................... 33 
+
+CHAPTER 5 ....................................................................................................... 35 
+
+Overview ................................................................................................................................... 36 
+Verifying vCenter™ Operations Manager Implementation .................................................. 36 
+Verifying the Upgrade to vCenter™ Operations Manager Advanced ................................. 36 
+Verifying EMC® Adapter Configurations .............................................................................. 37 
+Monitoring vCenter Operations Manager Objects ................................................................ 40 
+vCenter™ Operations Manager vSphere™ Dashboard ....................................................... 40 
+vCenter™ Operations Manager Badges ................................................................................ 41 
+Monitoring VNX Health and Resources ................................................................................. 43 
+EMC® Storage Topology Dashboard .................................................................................... 43 
+D E S I G N   A N D   I M P L E M E N T A T I O N   G U I D E / 2    
+
+ 
+
+Table of Contents 
+
+EMC® Storage Metrics Dashboard ....................................................................................... 44 
+EMC® VNX Overview Dashboard ......................................................................................... 46 
+Capacity Planning and Optimization ..................................................................................... 46 
+Root Cause Analysis ............................................................................................................... 48 
+Root Cause Analysis: Disk Failure ........................................................................................ 50 
+
+CHAPTER 6 ....................................................................................................... 53 
+
+Overview: vCenter™ Operations Manager vApp Sizing Considerations ........................... 54 
+Java™ VM Configuration ........................................................................................................ 56 
+Detailed Storage Capacity and I/O Considerations .............................................................. 57 
+Interoperability Matrix ............................................................................................................. 59 
+
+ 
+
+D E S I G N   A N D   I M P L E M E N T A T I O N   G U I D E / 3    
+
+ 
+
+FIGURES 
+
+Table of Contents 
+
+vCenter Operations Manager - high level architecture ............................................. 16 
+vCenter Operations Manager – vApp architecture ................................................... 17 
+vCenter Server metrics profile .................................................................................. 18 
+EMC VNX sub-LUN tiering of production LUN data across two disk types ............. 25 
+Organization mappings for storage service levels.................................................... 26 
+EMC Storage Analytics with VMware vCenter Operations Manager Advanced ...... 27 
+Unlicensed asset in vSphere Server ........................................................................ 31 
+Licensed vSphere and vCenter Operations Manager after applying vSphere with 
+
+Figure 1. 
+Figure 2. 
+Figure 3. 
+Figure 4. 
+Figure 5. 
+Figure 6. 
+Figure 7. 
+Figure 8. 
+Operations Management license ................................................................................................... 31 
+Figure 9. 
+vCenter Operations Manager updated to Advanced Edition .................................... 32 
+Figure 10.  Before the upgrade ................................................................................................... 32 
+Figure 11.  After adding the Advanced add-on key .................................................................... 33 
+Figure 12.  Dashboards with detailed analytic information relating virtual machines to 
+corresponding storage .................................................................................................................... 34 
+Figure 13. 
+vCenter Operations “About” screen .......................................................................... 37 
+Figure 14.  Adapter instance list ................................................................................................. 38 
+vCenter adapter successful test ............................................................................... 38 
+Figure 15. 
+Figure 16. 
+vCenter Server successful entry............................................................................... 39 
+Figure 17.  EMC storage adapter successful test ....................................................................... 39 
+Figure 18.  EMC Storage Adapter successful entry ................................................................... 40 
+Figure 19.  Main vSphere dashboard in vCenter Operations Manager ...................................... 41 
+vCenter Operations Manager badges ...................................................................... 42 
+Figure 20. 
+Figure 21. 
+The Anomalies of 99 indicate a sudden increase in use of disk space for this virtual 
+42 
+machine 
+Figure 22.  Storage Topology Dashboard................................................................................... 44 
+Figure 23.  Storage Metrics Dashboard ...................................................................................... 44 
+Figure 24.  Storage Metrics ESA home screen .......................................................................... 45 
+Figure 25.  Storage Metrics vCenter Dashboard home screen .................................................. 45 
+Figure 26.  ESA VNX overview ................................................................................................... 46 
+Figure 27.  Virtual Machine Capacity details for management cluster ....................................... 47 
+“What-if” scenarios ................................................................................................... 47 
+Figure 28. 
+Figure 29. 
+“What-if” scenario, adding a new profile ................................................................... 48 
+Figure 30.  Normal “healthy” vCenter Operations Manager Dashboard ..................................... 48 
+vCenter Operations Manager Standard / datastore offline ....................................... 49 
+Figure 31. 
+Figure 32. 
+Tracking alerts .......................................................................................................... 49 
+Figure 33.  VNX Dashboard ........................................................................................................ 50 
+Figure 34.  VNX drill-down to specific fault ................................................................................. 51 
+Figure 35.  Offline disk shows as datastore down in vCenter Operations Manager Standard, 
+without ESA  52 
+ 
+
+TABLES 
+
+Table 1.  vCenter Operations Manager vApp sizing examples. .................................................. 54 
+Table 2.  vApp Java Memory Considerations .............................................................................. 56 
+Table 3.  vApp Example Reservation Requirements ................................................................... 57 
+Table 4.  Product Interoperability Matrix ...................................................................................... 59 
+
+D E S I G N   A N D   I M P L E M E N T A T I O N   G U I D E / 4    
+
+ 
+
+ 
+ 
+
+Table of Contents 
+
+CHAPTER 1 ......................................................................................................... 6 
+
+Introduction ................................................................................................................................ 6 
+Target Audience ......................................................................................................................... 6 
+Document Purpose .................................................................................................................... 6 
+Business Needs ......................................................................................................................... 7 
+Essential Reading ...................................................................................................................... 7 
+
+D E S I G N   A N D   I M P L E M E N T A T I O N   G U I D E / 5    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Chapter 1 
+
+Introduction 
+EMC® has joined forces with the industry-leading providers of IT infrastructure to create a 
+complete virtualization solution that accelerates the deployment of cloud infrastructures.  
+
+EMC VSPEX® validated and modular architectures are built with proven technologies comprising 
+complete virtualization solutions that enable the administrator to make an informed decision in the 
+hypervisor, compute, and networking layers. VSPEX® helps reduce virtualization planning and 
+configuration burdens. When embarking on server virtualization, virtual desktop deployment or IT 
+consolidation, VSPEX® accelerates IT transformation by enabling faster deployment, expanded 
+choices, greater efficiency, and lower risk.  
+
+This document describes how to design and implement VMware® operational management 
+solutions for EMC® VSPEX® Private Cloud: VMware® vSphere™ 5.5 Proven Infrastructure 
+Guides. 
+
+Target Audience 
+This document is designed for partners, technical architects, and cloud solution engineers with a 
+background in EMC and VMware solutions who want to align the daily operational tasks of 
+management and monitoring of a private cloud. The readers of this document must have the 
+necessary training and background to install and configure VMware vSphere 5.5, EMC VNX 
+family of storage products and associated infrastructure as required by this implementation. 
+External references are provided where applicable, and readers should be familiar with these 
+documents. 
+
+The reader should also have a clear understanding of operational processes that are 
+implemented within their own environments and recognize their end users’ general requirements 
+to monitor and manage their private cloud. These requirements should include areas such as 
+security, compliance, monitoring, management, data protection, and disaster recovery. Having 
+these competencies will ensure a more relevant connection between the capabilities provided by 
+this solution and the operational requirements of their organization, ultimately resulting in 
+additional business value. 
+
+Document Purpose 
+The VSPEX® Private Cloud architecture provides customers with a modern system capable of 
+hosting many virtual machines at a consistent performance level. This solution runs on the 
+VMware vSphere virtualization layer backed by the highly available VNX family. The compute and 
+network components, which are defined by the VSPEX partners, are designed to be redundant 
+and sufficiently powerful to handle the processing and data needs of the virtual machine 
+environment. 
+
+Private cloud architecture can be a complex undertaking to manage and monitor. This document 
+facilitates the implementation of a managed private cloud by providing prerequisite software and 
+hardware material lists, step-by-step sizing guidance, and verified deployment steps. After the 
+last component has been installed, validation tests and monitoring instructions ensure that the 
+system is running properly. This document includes several use cases for implementing 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 6    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+operational management for the private cloud and provides direction and enablement content for 
+foundational capabilities and requirements. 
+
+The virtual infrastructure operational management, as described in this document, is based on 
+VMware vCenter™ Operations Management Advanced Suite™ and EMC Storage Analytics. This 
+operational management solution is applicable to any of the EMC VSPEX Private Cloud: VMware 
+vSphere 5.5 Proven Infrastructure Guides. 
+
+ 
+
+Business Needs 
+VSPEX solutions are built with proven technologies to create complete virtualization solutions that 
+allow the reader to make an informed decision in the hypervisor, server, and networking layers. 
+
+Business applications are moving into consolidate compute, network, and storage environments. 
+EMC VSPEX Private Cloud using VMware reduces the complexity of configuring every 
+component of a traditional deployment model. The solution simplifies integration management 
+while maintaining the application design and implementation options. It also provides unified 
+administration while enabling adequate control and monitoring of process separation.   
+
+The challenges that infrastructure and operations management teams face most often in today’s 
+heterogeneous IT environments include: 
+
+  Performance and availability issues 
+
+  Capacity management and optimization issues 
+
+  Configuration and compliance issues 
+
+  Workload mobility and rapid changes on demand 
+
+As virtual environments continue to grow, converge, and evolve toward self-service private 
+clouds, and merge with public clouds, IT needs new capabilities to anticipate and overcome the 
+challenges of the next stage of the virtualization journey.  
+
+This management solution exemplifies the new cloud management approach by offering quality 
+of service, comprehensive visibility, policy-based automation for guided troubleshooting, root-
+cause isolation, and remediation of even the most complex scenarios. When coupled with the 
+EMC VSPEX validated modular architecture, the solution enables faster deployment, greater 
+efficiency, lower risk, easier management, and faster problem resolution. 
+
+Essential Reading 
+EMC recommends reading the related documents before proceeding: 
+
+VSPEX Proven Infrastructure Solutions 
+
+VMware vSphere 5.5 for up to 125 Virtual Machines or 
+VMware vSphere 5.5 for up to 1,000 Virtual Machines 
+
+VMware Cloud Management 
+
+VMware vCenter Operations Management documentation located here. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 7    
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+ 
+
+CHAPTER 2 ......................................................................................................... 9 
+
+Overview ..................................................................................................................................... 9 
+VMware Datacenter and Cloud Management .......................................................................... 9 
+Datacenter and Cloud Management with EMC and VMware ................................................. 9 
+Integrated Management........................................................................................................... 9 
+Converged Management ......................................................................................................... 9 
+Managing the Software-Defined Datacenter ........................................................................... 9 
+
+VMware vCenter™ Operations Management Advanced Suite™ with Third Party 
+
+Management Pack Support ..................................................................................................... 10 
+Intelligent Operations ............................................................................................................. 10 
+Policy-Based Automation....................................................................................................... 11 
+Unified Management .............................................................................................................. 11 
+VMware vCenter Operations Management Packs ................................................................ 12 
+EMC VNX Family ...................................................................................................................... 12 
+Virtual Provisioning ................................................................................................................ 12 
+Fully Automated Storage Tiering (FAST) .............................................................................. 12 
+Unisphere .............................................................................................................................. 13 
+EMC Integration for VMware vSphere .................................................................................... 13 
+EMC Virtual Storage Integrator ............................................................................................. 13 
+VMware vStorage APIs - Array Integration (VAAI) ................................................................ 13 
+VMware vSphere Storage APIs for Storage Awareness (VASA) .......................................... 13 
+EMC Storage Analytics............................................................................................................ 13 
+Hardware and Software List ................................................................................................... 13 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 8    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Chapter 2 
+
+Overview 
+
+VMware Datacenter and Cloud Management 
+In the cloud era, intelligent virtual infrastructure provides the foundation for faster, more agile and 
+accelerated delivery of IT services and business applications. However, within virtual and cloud 
+environments, the boundaries between operations and infrastructure management have blurred. 
+As a result, managing these new environments using tools designed for physical environments 
+creates operational and business problems—blocking the path to flexible, service-oriented cloud 
+infrastructure. 
+
+Datacenter and Cloud Management with EMC and 
+VMware 
+VMware’s approach to enterprise management is based on Integrated and Converged 
+management. 
+
+Integrated Management 
+Performance issues can originate from any component, virtual machine (VM), physical host or 
+cluster. What’s more, the rate of change of workloads has outstripped the capabilities of 
+traditional management approaches. This requires management capabilities be tightly integrated 
+with the virtualization and cloud platforms themselves. 
+
+Converged Management 
+Workload interdependence in virtual and cloud environments stymies the ability of specialized 
+teams to address performance, capacity and configuration issues in isolation. Highly virtualized 
+and cloud environments require integration of management disciplines and metrics for a holistic 
+view of the health of virtual and physical infrastructures, and the tools to maintain it. 
+
+In operations, the disciplines of performance, capacity and configuration management are 
+converging, necessitating greater collaboration between traditionally siloed IT teams. VMware 
+facilitates this collaboration, for example, by providing a single dashboard that can be used by 
+both VI and operations administrators alike to look at health, risk, and efficiency across the entire 
+IT environment. When deployed as part of the EMC VSPEX validated architecture, the VMware 
+management tools provide a significantly lower operational expense as well as a faster problem 
+resolution time. 
+
+Managing the Software-Defined Datacenter 
+Interdependent, dynamic virtual and cloud infrastructures exceed the capabilities—and outstrip 
+the speed—of traditional management processes and tools designed to manage physical IT 
+assets. 
+
+Virtual and cloud infrastructures differ from the traditional physical architectures that preceded 
+them in important ways. Traditional, siloed environments are built on tightly coupled applications 
+and infrastructure dedicated to certain components and application tiers. The resulting rigid 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 9    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+vertical stack offers limited flexibility and agility, and requires a complex stack of tools and equally 
+complex set of processes to manage it. 
+
+In contrast, highly virtualized and cloud abstracted resources, have shared capacity and fluid 
+configurations that characterize their environments. Tools and processes designed for traditional 
+architectures have difficulty managing this highly dynamic, constantly changing and 
+interdependent environment. Virtual and cloud computing requires organizations to embrace a 
+new management approach—one that is as agile, flexible and dynamic as their new IT 
+infrastructure.  
+
+VMware vCenter™ Operations Management 
+Advanced Suite™ with Third Party Management 
+Pack Support 
+vCenter Operations Management Advanced Suite provides a new approach that delivers on three 
+characteristics essential for success: 
+
+  Automated – Predictive, self-learning analytics enable a much higher degree of 
+
+automation than traditional management tools, delivering nearly 70 percent gains in IT 
+productivity, 30 percent reduction in resource consumption, and additional business 
+benefits, according to Forrester. 
+
+ 
+
+Integrated – The suite provides an integrated approach to performance, capacity and 
+configuration management. It converges management disciplines and unifies teams 
+across infrastructure and operations. 
+
+  Comprehensive – Built on an open and extensible operations platform designed for 
+
+hybrid cloud environments, vCenter Operations Management Advanced Suite delivers a 
+comprehensive set of management capabilities, including performance, capacity, change, 
+configuration, compliance management, and application discovery and monitoring. 
+
+vCenter Operations Management Advanced Suite gives greater visibility across all layers of the 
+infrastructure. It collects and analyzes performance data, correlates abnormalities, and identifies 
+the root cause of emerging performance problems. vCenter Operations Management Advanced 
+Suite provides capacity management to optimize resource usage and policy-based configuration 
+management to assure compliance. Application discovery and dependency mapping enable 
+infrastructure and operations teams to ensure service levels of critical applications and to build 
+disaster recovery plans. 
+
+Intelligent Operations 
+
+  Gain deep operational insights into the health, risk, and efficiency of infrastructure and 
+
+applications to help ensure quality of service and early detection of performance, 
+capacity, and configuration issues. 
+
+  Enhanced application monitoring with VMware vCenter Hyperic® provides out-of-box 
+
+dashboards for business-critical applications (Microsoft® SQL Server®, Microsoft 
+Exchange™). 
+
+  Storage analytics provide deep visibility into storage infrastructure, bringing together 
+
+views into topology, statistics, and events across host bus adapters, fabric, and arrays.  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 0    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+  Monitoring data is automatically analyzed and expressed as health, risk, and efficiency 
+
+measures that enable IT to detect potential issues in the environment more easily. 
+
+  Prebuilt and configurable operations dashboards provide real-time insights into 
+infrastructure behavior, upcoming problems, and opportunities for optimization. 
+
+  Visual correlation of change events with performance data across virtual infrastructure, 
+OS, and applications provide visibility into performance degradation from configuration 
+changes. 
+
+  Flexible group policies define specific thresholds, alert types, notifications, and other 
+configuration settings at a group level to prioritize operational activities for business-
+critical applications and production workloads. 
+
+Policy-Based Automation 
+
+  Automate root-cause analysis with advisory tools and orchestration workflows to enable 
+
+optimal resource utilization, operational efficiency, and enforcement of configuration 
+standards. 
+
+ 
+
+Infrastructure and operations analytics eliminate time-consuming problem resolution 
+processes through automated root-cause analysis. 
+
+  Actionable recommendations provide simplified explanations of underlying problems and 
+
+corrective actions to remediate them. 
+
+  Automated workflow triggers enable administrators to associate workflows created in 
+
+VMware vCenter Orchestrator™ with vCenter Operations alerts. 
+
+  Detection, enforcement, and remediation of security-hardening guidelines, configuration 
+
+standards, and regulatory requirements are automated across virtual and physical 
+infrastructure and operating systems. 
+
+  Automated capacity optimization reclaims overprovisioned capacity and eliminates the 
+
+need for spreadsheets or complex scripts. “What-if” scenarios facilitate capacity 
+optimizations and help defer unnecessary hardware investments. 
+
+Unified Management 
+
+  Get a holistic view into what is driving performance, capacity, and configuration issues as 
+
+well as infrastructure and application dependencies. Meet service-level agreements 
+(SLAs) by using real-time performance dashboards across hybrid and heterogeneous 
+cloud environments. 
+
+  Extensibility enables integration with existing monitoring tools to provide a holistic view 
+
+and proactive management capabilities across hybrid cloud infrastructure, including 
+physical and virtual hardware and applications. 
+
+ 
+
+ Self-learning performance analytics and dynamic thresholds adapt to the environment to 
+simplify operations management and eliminate false alerts. 
+
+  Real-time, integrated dashboards of performance, capacity, and configuration change 
+events enable a proactive management approach and help ensure that SLAs are met. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 1    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+  Application dependency, discovery, and visualization bring application-level awareness to 
+
+infrastructure and operations teams to ensure service levels and disaster-recovery 
+protection for all critical application services. 
+
+  Out-of-the-box compliance templates ensure continuous compliance with security best 
+practices, hardening guidelines, and regulatory requirements across all aspects of the 
+data center infrastructure to get a holistic view into what is driving performance, capacity, 
+and configuration issues as well as infrastructure and application dependencies. Meet 
+service-level agreements (SLAs) by using real-time performance dashboards across 
+hybrid and heterogeneous cloud environments. 
+
+VMware vCenter Operations Management Packs 
+VMware vCenter Operations Management Packs extend the capabilities of vCenter Operations to 
+third-party products and technologies to enable end-to-end operations intelligence with data 
+visualizations, dashboards, reports, alerts, and actions. An Operations Management Pack can be 
+delivered in the form of an agent plug-in, content pack, or compliance pack. vCenter Operations 
+Management Packs extend the power of vCenter Operations Management Suite to hybrid and 
+heterogeneous environments, providing comprehensive visibility in a single operations console 
+across applications, storage and network devices. This document explains the management pack 
+for EMC Storage Analytics. 
+
+EMC VNX Family 
+The EMC VNX storage system is a powerful, trusted, and smart storage array platform that 
+provides a high level of performance, availability, and intelligence in organizations within the 
+business.  
+
+VSPEX private cloud customers can leverage the advanced storage tiering features and 
+efficiencies of the VNX storage array to deliver multiple storage service levels to their various 
+organizations, accelerating and simplifying their as-a-service offerings in their private cloud 
+environment. 
+
+Virtual Provisioning 
+EMC Virtual Provisioning™ can reduce cost, improve capacity utilization, and simplify storage 
+management. Users can present a large amount of capacity to a host and then consume space 
+only as needed from a shared pool, reducing initial over-allocation of storage capacity. Virtual 
+Provisioning can reduce labor costs by simplifying data layout and reducing the steps required to 
+accommodate capacity growth. 
+
+Fully Automated Storage Tiering (FAST) 
+EMC Fully Automated Storage Provisioning for Virtual Pools (FAST™ VP) for VNX optimizes 
+efficiency across all drive types in the array to improve system performance while reducing cost. 
+FAST VP dynamically allocates workloads based on the configured service level and moves 
+workloads without disruption across drive types, optimizing overall system performance. FAST 
+VP moves the most active parts of the workload to high-performance flash disks and the least 
+frequently accessed data to lower-cost drives, leveraging the best performance and cost 
+characteristics of the different drive types. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 2    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Unisphere 
+EMC Unisphere® is an intuitive management interface that allows IT managers to dramatically 
+reduce the time required to provision, manage, and monitor storage assets. Unisphere delivers 
+the simplification, flexibility, and automation that accelerate the transformation to the private 
+cloud. 
+
+EMC Integration for VMware vSphere 
+EMC provides tight integration points for vSphere which simplify management and provisioning of 
+storage. vCenter Operations Manager Advanced also provides the capability to monitor the health 
+and performance of storage resources on the VNX array from within. 
+
+EMC Virtual Storage Integrator 
+EMC Virtual Storage Integrator (VSI) is the free vCenter plug-in provided by EMC that extends 
+the vCenter user interface (UI) to include additional EMC-specific capabilities. EMC VSI provides 
+multiple feature sets including Storage Viewer (SV), Path Management, and Unified Storage 
+Management. Unified Storage Management simplifies the provisioning of VNX virtual pooled 
+storage for the private cloud. 
+
+VMware vStorage APIs - Array Integration (VAAI) 
+EMC VNX supports VMware vStorage APIs - Array Integration (VAAI), which offloads virtual 
+machine storage operations to the array to optimize server performance. VMware environments 
+support the following VAAI components. 
+
+VMware vSphere Storage APIs for Storage Awareness (VASA) 
+VASA allows VMware administrators to view and classify, from a single location VNX drive types 
+in a more sophisticated way, using the storage vendors VASA provider to interrogate the storage 
+and classify it in terms of its attributes and underlying technology. This analysis can range from 
+basic disk type to the RAID level, automated tiering capabilities, and replication status. 
+
+EMC Storage Analytics 
+EMC Storage Analytics (ESA) can be used as a plug-in with VMware’s vCenter Operations 
+Manager to provide a powerful management tool for VMware and storage administrators to 
+access real-time intelligent analytics for their VNX platform. This plug-in allows users to obtain 
+detailed statistics via customizable dashboards, heat maps, and alerts while also accessing 
+topology mapping in a VMware environment.  In addition, ESA plug-in support is available for 
+EMC VNXe®, VMAX®, VPLEX® and XtremIO® storage. 
+
+Hardware and Software List 
+Hardware List 
+
+This solution is built on top of a VSPEX configuration and assumes that the required hardware is 
+installed and set up within the business according to the configuration guidelines in the EMC 
+VSPEX Private Cloud: VMware vSphere 5.5 Proven Infrastructure Guides. 
+
+Software List 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 3    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+The software listed below is an addendum to the software list found in the EMC VSPEX Private 
+Cloud: VMware vSphere 5.5 Proven Infrastructure Guides. 
+
+Software 
+
+Configuration 
+
+Notes 
+
+5.8.2 Build 1885282 
+
+VMware vCenter Operations Management 
+Advanced Suite 
+
+VMware 
+vCenter 
+Operations 
+Manager  
+
+EMC Storage 
+Analytics 
+
+2.3.1 
+
+ 
+
+EMC Storage Analytics Adapter 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 4    
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+ 
+
+CHAPTER 3 ....................................................................................................... 16 
+
+Overview: VMware vCenter Operations Manager Advanced¹ Architecture ....................... 16 
+Function in Overall Architecture ............................................................................................ 16 
+System Architecture ................................................................................................................ 16 
+Distribution Formats................................................................................................................ 17 
+vCenter Operations Manager Components .......................................................................... 17 
+vApp Components ................................................................................................................... 17 
+Analytics VM ............................................................................................................................. 18 
+Optimizing vCenter Operations Manager vCenter Data Collection .................................... 18 
+Modifying Data Retention and Custom Parameters ............................................................. 19 
+Security ..................................................................................................................................... 21 
+vCenter Operations Management Advanced Suite ............................................................... 21 
+Background and vCenter Operations Manager .................................................................... 22 
+Overview ................................................................................................................................ 22 
+Challenges ............................................................................................................................. 23 
+Backup and Restore vApps ................................................................................................... 23 
+EMC Storage Design................................................................................................................ 24 
+VNX storage tiering and FAST VP ........................................................................................ 24 
+Storage Mapping ................................................................................................................... 25 
+EMC Virtual Storage Integrator (VSI) .................................................................................... 26 
+EMC Storage Analytics .......................................................................................................... 27 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 5    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Chapter 3 
+
+Overview: VMware vCenter Operations Manager 
+Advanced¹ Architecture 
+
+Function in Overall Architecture 
+The vCenter Operations Management platform requires integrations to properly operate and 
+provide business value. The vApp (Virtual Appliance) version of vCenter Operations Manager 
+requires a connection to a VMware vCenter Server. During the initial installation, connection to a 
+vCenter Server must be established to provide vCenter Operations Manager as the first 
+integration point. This provides vCenter Operations Manager with the necessary metric and event 
+data that vCenter Server collects and produces natively.  
+
+The connections from vCenter Server to vCenter Operations Manager provide information on the 
+status of all the VMs and the supporting vSphere environment being managed. This status 
+information is derived from the metrics relating to the virtual hardware that the VMs use, as well 
+as the metrics relating to the supporting VMware ESXi™ host hardware. Additionally, resource 
+status is also established using vCenter Server event-related information for the Virtual Machines 
+and ESXi hosts. See Figure 1. 
+
+System Architecture 
+
+Figure 1.  vCenter Operations Manager - high level architecture 
+
+  ¹All references to vCenter Operations Manager Advanced is applied to version 5, release 5.7.1 and up. 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 6    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+vCenter Operations Manager is a vApp that is imported and deployed with a vCenter Server. 
+
+This vApp, which has the same basic operation as a virtual machine, actually contains two virtual 
+machines. These virtual machines are configured in a vApp form to provide ease of configuration 
+and proper data security.  
+
+Distribution Formats 
+The vApp is distributed as an Open Virtualization Format (OVF) file. The vSphere C# Client or 
+vSphere Web Client provides an import vApp workflow that guides the deployment of the vApps 
+in OVF format. 
+
+The vCenter Operations Manager vApp is managed using the Administration Portal, which is a 
+web console for configuration and management tasks. 
+
+vCenter Operations Manager Components 
+vCenter Operations Manager architecture consists of two VMs. Figure 2 illustrates the vCenter 
+Operations Manager key components of the vApp Architecture. 
+
+Figure 2.  vCenter Operations Manager – vApp architecture 
+
+vApp Components 
+UI VM 
+
+The UI VM allows access to the results of the analytics in the form of badges and scores using 
+the Web-based application. It also allows access to the Administration Portal in order to perform 
+management tasks. The components in UI VM are described as follows: 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 7    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+vSphere UI Web Application 
+
+Custom Web Application 
+
+ 
+
+ 
+
+Administration Web Application   
+
+The vCenter Operations Manager vSphere® UI provides 
+summary and deeper views into the vSphere 
+environment for VI Admin and Infrastructure Teams. 
+
+The vCenter Operations Manager Custom application 
+provides a customizable Web-based user interface. It is 
+available using the Advanced, Enterprise, or Enterprise 
+Plus license editions and provides a view into the entire 
+enterprise for the Operations Teams. 
+
+The vCenter Operations Manager Administration Portal 
+provides a user interface for vCenter Operations 
+Manager maintenance and management tasks. 
+
+Analytics VM 
+The Analytics VM is responsible for collecting data from vCenter Server, VMware Hyperic, 
+VMware vCloud® Application Director™ and other VMware or third-party data sources. The data 
+collected includes metrics, topology, and change events. Raw time-series metric data is stored in 
+its scalable File System Database (FSDB). The components in Analytics VM are described as 
+follows: 
+
+Capacity and Performance Analytics 
+
+Capacity Collector 
+
+File System Database 
+
+PostgreSQL© DB 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Checks the incoming metrics for abnormalities in 
+real time, updates health scores, and generates 
+alerts when necessary. 
+
+Collects metrics and computes derived metrics. 
+
+Stores the collected metrics statistics. 
+
+ 
+
+Stores all other data collected, including objects, 
+relationships, events, dynamic thresholds, and 
+alerts. 
+
+Optimizing vCenter Operations Manager vCenter 
+Data Collection 
+vCenter Operations Manager allows the user to adjust the amount of metrics collected from the 
+registered vCenter servers. Metric profile collection adjustments improve the performance of the 
+analytics calculation process and scale of the vApp collection. Metric profile collection is a single 
+setting that applies to all vCenter servers attached to the vApp system. 
+
+Figure 3.  vCenter Server metrics profile 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 8    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+To adjust the metric profile collection for the system, access the vCenter Operations admin portal 
+page. The main vCenter registration section contains the vCenter server metric profile. This 
+setting can be changed at any time and does not require a system restart or deployment changes 
+for the modification to take effect.  
+
+The default profile in vCenter Operations Manager upon initial deployment is the Balanced 
+Profile. This is also the new recommended setting for optimal performance of the system and 
+data collection process. If all metrics are needed in an environment, the user can switch to the 
+Full Profile. The following describes the difference between these two profiles: 
+
+  Balanced Profile – Metric collection count is cut almost in half vs. the full metric profile. 
+
+  Full Profile – The full metric profile contains all of the metrics possible to collect from the 
+
+vSphere environment. 
+
+Modifying Data Retention and Custom Parameters 
+In certain situations, specifically with large vCenter Operations Manager deployments, it is 
+recommended that the user adjust certain values to improve the performance and data collection 
+of the vApp. These scenarios include, but are not limited to, the following:  
+
+  High-turnover virtual machine environment such as a View/VDI environment 
+
+ 
+
+  Low disk space or limited storage access due to approvals or expected use cases of the 
+
+system 
+ 
+
+  Specific business use case requirements that only require specific data retention, either 
+
+more or less than the default values 
+ 
+
+  Deletion scheduling of resources is higher than a normal environment  
+
+ 
+
+  Multi-tenant environment with self-service portals with high deletion of resources/objects  
+
+ 
+
+The advanced properties file contains further settings for the analytics process and other system 
+variables for specific operations. The variables in the following section can be adjusted as needed 
+in the environment depending on customer requirements. 
+
+Note: Location = /usr/lib/vmwarevcops/user/conf/analytics/advanced.properties 
+
+After each change, the user must restart the analytics service for changes to take effect. To 
+restart, go to the Analytics VM and access the console session by SSH or direct console mode 
+and typing: service vcops restart analytics. 
+
+Adjusting the Data Cleaner Execution frequency and FSDB Data Retention 
+
+This variable adjusts the amount of data to store for resources. By default, vSphere data is 
+retained for 180 days out of the box. To change this default to a longer or shorter duration, simply 
+enter the amount of days to retain the data. The example below shows a change from the default 
+value of 180 days to a shorter duration of 90 days.  
+
+#Old Data Cleaner Execution frequency. Default is 0(Off) days 
+
+oldDataCleanerExecutionFrequency=1 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 1 9    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+#old date range for FSDB. Default is 180 days 
+
+oldDataCleanerDateRange=90 
+
+Adjusting the Data Cleaner for alerts and alarms 
+
+By default vCenter Operations retains alerts and alarms. The user can change this value to a 
+specified date range. Shortening the date range helps improve the performance of the database 
+table that contains all of the alarms and alerts. 
+
+# old data cleaner range for alerts and alarms 
+
+oldAlertsCleanerDateRange=14 
+
+Enable the new Combined DT Plug-in 
+
+vCenter Operations Manager includes a new dynamic threshold calculation plug-in that contains 
+an enhanced algorithm that improves DT calculations. This algorithm is not enabled by default on 
+new installations because it is a new feature typically used for large installations. Change the 
+value from false to true, as shown in the example below, to enable this feature. 
+
+# Enable the Combined DT Plugin which implements the new algorithm 
+
+useCombinedDTPlugin=true 
+
+Advanced Configuration Changes: controller.properties 
+
+The controller configuration file contains additional settings for the controller. The following 
+modifications can be adjusted for environments that have higher than normal turnover, or do not 
+require extended data retention of deleted resources or objects. 
+
+ Note: Location = /usr/lib/vmwarevcops/user/conf/controller/controller.properties 
+
+Automatically Delete Not Existing Resources 
+
+The user can set not existing resources, those resources and objects that have already been 
+deleted in vCenter, to automatically delete This feature helps to keep the vApp clean of old 
+resources and objects that are no longer needed.  
+
+#automatically delete not existing resources 
+
+deleteNotExisting = true 
+
+Adjust the Time of Not Existing State 
+
+This setting relates to the Automatically Delete Note Existing Resources setting and controls the 
+deletion period in hours that an object must be in the not existing state before it can be deleted. In 
+the example below, the Time of Note Existing State is set at 48 hours. This means that, after an 
+object is deleted in vCenter, 48 hours must pass before the object is deleted out of vCenter 
+Operations. 
+
+#time in hours an object must be in the not existing state before it can be deleted 
+
+deletionPeriodInHours=48 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 0    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Setting the Resource Deletion Schedule 
+
+This setting configures how often the resource scheduling should run to delete resources of the 
+vApp. 
+
+#time in hours between resource deletion scheduling 
+
+deletionSchedulePeriod = 12 
+
+Security 
+
+vCenter Operations Management Advanced Suite 
+There are a number of areas where, by default, security is applied to a vCenter Operations 
+Management Advanced Suite installation, or can be enhanced with extra configuration. These 
+instances include the following: 
+
+  Limiting Exposure to Internal Services 
+
+ 
+
+  Embedded Firewall 
+
+ 
+
+  Embedded Encryption 
+
+ 
+
+  SSL vCenter Operations to Browser Communication 
+
+ 
+
+  Use LDAP Authentication 
+
+ 
+
+ Following VMware’s best practices for vApps design, vCenter Operations Manager only exposes, 
+outside of the vApp, those services that are absolutely required. Specifically, only SSH and 
+HTTPS are open to by default.   
+
+The administrator does not have to take action for unnecessary services to be inaccessible. 
+
+Embedded Firewall 
+
+vCenter Operations Manager has a firewall enabled to prevent external attempts to access the 
+port probe. The vApp exposes minimal network footprints using only the following ports for 
+inbound connections: 
+
+  443 (https) 
+
+ 
+
+  22 (ssh) 
+
+ 
+
+  80 (redirected to 443) 
+
+ 
+
+Additionally, the vApp creates an Open VPN tunnel between the two virtual machines using port 
+1194.  
+
+The administrator does not have to take action to enable firewall services. 
+
+Embedded Encryption  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 1    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+vCenter Operations Manager uses the Blowfish encryption protocol to secure all internal user 
+accounts and external accounts. For example, this protocol encrypts all user credentials entered 
+into vCenter Operations Manager and used to communicate with monitoring tools.   
+
+The administrator does not have to take action to enable user credential encryption. 
+
+Collection Credentials 
+
+While the user credentials necessary to communicate with target monitoring tools are stored and 
+encrypted, it is still advised that these credentials be given strong passwords (or passwords that 
+follow the organization’s strength-of-password policy). Additionally, specific target monitoring 
+tools may only require “read” level access, or some minimal access authority. When this is the 
+case, the administrator should grant minimum access rights only.  
+
+SSL vCenter Operations to Browser Communication  
+
+vCenter Operations Manager supports the use of SSL communication for browser-to-server 
+communications. The use of SSL for browser-to-server communication is configurable.  
+
+Use LDAP Authentication  
+
+Within the Custom UI, vCenter Operations Manager encrypts user passwords using the Blowfish 
+encryption protocol. Note however, that vCenter Operations does not enforce a strength-of-
+password policy, nor does it enforce a lockout policy for failed login attempts. The recommended 
+best practice is to integrate vCenter Operations with an existing enterprise directory. For 
+information about integrating vCenter Operations Manager with LDAP or Active Directory see 
+Configure and Managing users in the vCenter Operations Manager Administration Guide. 
+
+Note: URL = https://www.vmware.com/pdf/vcops-57-custom-ui-admin-guide.pdf 
+
+It is recommended that LDAP groups are used for synchronizing LDAP users with their 
+appropriate access rights in vCenter Operations Manager. Create an LDAP Group for each of the 
+access rights groups in vCenter Operations, and then apply synchronization. Once synchronized, 
+any user added to or deleted from the LDAP group will be removed from the vCenter Operations 
+Manager group within the one hour synchronization period. Initially, the recommended groups to 
+be created in LDAP are Administrators, Operators and Users which will match the out-of-the box 
+vCenter Operations Manager groups.  
+
+For the vSphere UI, all rights within vCenter are applied to vCenter Operations Manager which 
+enables control of access to resources rather than control of the ability to perform activities as per 
+the Custom UI. 
+
+Background and vCenter Operations Manager 
+
+Overview 
+This section describes the backup and recovery process for the respective components and 
+provides detailed information on how to backup the applications themselves and the external (if 
+applicable) databases.  
+
+The following details the unique difficulties associated with backing up and restoring vCenter 
+Operations Manager, and the recommended sequence of backup steps that must be adhered to 
+in order to ensure a consistent and compatible state after a restore. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 2    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Challenges 
+vCenter Operations Manager is supplied as a vApp, which means it needs a vApp-aware backup 
+solution to ensure backup for the virtual machines and the vApp configuration. While a vApp-
+aware backup solution is preferred, there are only a few products with this capability currently on 
+the market.  
+
+If a vApp-aware product isn’t available, then traditional VM-based backup and restore steps need 
+to be taken. Both VADP and VDR provide this capability.  
+
+Additionally, any backup product, vApp-aware or not, needs evaluation because the backup 
+process could cause issues with the function of the VMs in the vApp. Most products of this type 
+take a snapshot of the VMs prior to the backup process. Given the nature of the machines, 
+especially the Analytics VM which has a large number of write operations, the snapshot may grow 
+to some size causing a potential performance problem when committing changes post-backup. 
+Additionally, the timing of the backups needs to be considered. The Analytics process starts 
+running at midnight, which is also a typical time for running backups. 
+
+The vCenter Operations Manager vApp can be easily “broken” in that a vApp in general can be 
+moved out of one cluster and into another cluster with a different network and environment. It is 
+also possible to create problems by attempting to apply a restore from a backup of a vCenter 
+Operations Manager vApp with a solution that is not vApp-aware. This can result in IP address 
+changes and severed connections between the VMs within the vApp. 
+
+If the vCenter Operations Manager vApp does become “broken,” the administrator can repair it by 
+running the following command from the UI VM: 
+
+vcops-admin repair –ipaddress <ipaddress of analytics VM> 
+
+Steps to mitigate the problem of the vCenter Operations Manager vApp becoming “broken” are 
+planned for a future release. 
+
+Backup and Restore vApps 
+As there are currently no known solutions available that address the need to backup a vApp with 
+more than one VM, the following guide provides a work around to the problem with manual steps 
+to backup and restore the individual VMs. (This procedure is applicable to vCenter Operations 
+Manager 5.x.x.) 
+
+  UI VM Capacity Analysis PostgreSQL DB 
+
+ 
+
+  UI VM file system 
+
+ 
+
+  Analytics VM PostgreSQL DB 
+
+ 
+
+  Analytics VM FSDB 
+
+ 
+
+  Analytics VM file system 
+
+ 
+In general, the sequence of the backup should be: 
+
+1.  Backup UI VM 
+
+2.  Backup Analytics VM 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 3    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+The restore sequence should be: 
+
+1.  Restore Analytics VM 
+
+2.  Restore UI VM 
+
+One possible way to restore using a VM-based backup solution that isn’t vApp-aware is as 
+follows: 
+
+1.  Deploy a fresh installation of vCenter Operations vApp that has the same major and 
+
+minor release version that was backed up and needs to be restored. Make sure the vApp 
+is not powered on. 
+
+2.  Restore the backed up VMs but do not power them on. 
+
+3.  Replace the VMDKs (and associated files e.g. .vmx, .vmxf, and so on) of the vApps in 
+
+Step 1 above with the VMDKs from Step 2. 
+
+4.  Power on the vApp. This process should restore the UI VM. It is possible that the 
+
+Analytics VM will go into consistency check mode if the backup was a "hot" a.k.a. "live" 
+backup. In this case, it might be necessary to restart the UI VM if it stops waiting for the 
+Analytics VM to respond during startup. 
+
+EMC Storage Design 
+The VNX storage array provides many features that allow provisioning of the Private Cloud. Since 
+this solution is built on top of a VSPEX Private Cloud, it uses the same storage configuration as 
+mentioned in the VSPEX Private Cloud proven infrastructure documents. Additional storage 
+service levels can be created within a VNX array to achieve different levels of performance. Most 
+effectively align resources with performance requirements.  
+
+See EMC VSPEX Private Cloud: VMware vSphere 5.5 Proven Infrastructure Guides for details. 
+
+VNX storage tiering and FAST VP 
+As validated in the VSPEX Proven Infrastructure, this solution uses EMC’s FAST VP technology, 
+which enables storage tiering within the storage service level. Storage tiering is the assignment of 
+data to different types, or tiers, of storage media to reduce total storage cost. FAST VP makes 
+automatic storage tiering possible on VNX storage arrays. FAST VP operates by periodically 
+relocating the most active data to the highest performance storage tier, while relocating less 
+active data to the lower performing storage tiers, as appropriate, when new data is promoted. 
+
+FAST VP uses intelligent algorithms to continuously analyze devices at the sub-LUN level. This 
+enables it to identify and relocate the specific parts of a LUN that are most active and would 
+benefit from being moved to higher-performing storage such as enterprise flash drives. It also 
+identifies the least active parts of a LUN and relocates that data to higher-capacity, more cost-
+effective storage. Performance measurement and user-defined policies determine data 
+movement between tiers. FAST VP moves the data automatically and non-disruptively.  
+
+The VSPEX Private Cloud uses two disk types within the storage pool with each providing a 
+different tier of performance and capacity, as shown in Figure 4 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 4    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+Figure 4.  EMC VNX sub-LUN tiering of production LUN data across two disk types 
+
+Storage Mapping 
+Figure 5 shows how the storage pool and LUNs are mapped to different enterprises within the 
+business. The following explains the storage service level’s three cloud types: 
+
+Production clouds are organizational clouds for virtual machines with maximum performance 
+requirements. 
+
+Test/Development clouds are organization clouds for virtual machines with medium performance 
+requirements. 
+
+Archive/Low Cost clouds are organizational clouds for virtual machines with the least 
+performance requirements. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 5    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+  
+
+Figure 5.  Organization mappings for storage service levels 
+
+EMC Virtual Storage Integrator (VSI) 
+Because VSI is modular in design, administrators can add, remove and update features 
+independently providing a flexible, customized user experience. Features available for VSI 
+include Storage Viewer, Path Management, Symmetrix storage replication adaptor (SRA), Unified 
+Storage Management, AppSync Management, and EMC RecoverPoint Management. 
+
+The three features used in this solution are as follows: 
+
+  Storage Viewer feature extends the VMware vSphere Client to facilitate the discovery 
+
+and identification of VNX storage devices that have been provisioned to ESXi hosts and 
+virtual machines. Storage Viewer presents the underlying storage details to the vSphere 
+administrator by merging the data of several different storage-mapping tools into a few 
+seamless VMware vSphere Client views. 
+ 
+
+  Path Management feature for VMware Native Multipathing and EMC PowerPath/VE 
+provides a mechanism for changing the multipath policy for groups of LUNs based on 
+storage class and virtualization objects. 
+ 
+
+  Unified Storage Management feature provides array-based storage management and 
+provisioning for VMAX, VNX, VNXe, CLARiiON, Celerra arrays. This feature also allows 
+for virtual machine decompression, compression, cloning and extending datastore 
+capacity. 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 6    
+
+Finance-ESXiMfg-ESXiProd-2LUNsProduction CloudsVM01VM03VM02Test/Development CloudsVM01VM03VM02Archive/Low Cost CloudVM01VM03VM02Storage Service Level Organization Mappings for Storage Service LevelsEMC VNXFlashDrivesSAS Drives 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+EMC Storage Analytics 
+EMC Storage Analytics (ESA) links VMware vCenter Operations Manager with EMC Adapter for 
+the VNX family. vCenter Operations Manager displays performance and capacity metrics from 
+EMC storage systems with data that the adapter provides by: 
+ 
+
+  Connecting to, and collecting data from, block and file systems 
+
+ 
+
+  Converting the date into a format that vCenter Operations can process 
+
+ 
+
+  Passing the date to the vCenter Operations collector 
+
+ 
+
+vCenter Operations Manager Advanced presents the aggregated data through alerts, 
+dashboards, and in pre-defined reports that end users can easily interpret. EMC Adapter is 
+installed with the vCenter Operations administrative user interface. See Figure 6. 
+
+ 
+
+Figure 6.  EMC Storage Analytics with VMware vCenter Operations Manager Advanced 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 7    
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+ 
+
+CHAPTER 4 ....................................................................................................... 29 
+
+Overview ................................................................................................................................... 29 
+Installing and configuring vSphere with Operations Management .................................... 29 
+Installing VMware vSphere and vCenter Server ................................................................... 29 
+Deploying vCenter Operations Manager ............................................................................... 30 
+vCenter Server Integrations ................................................................................................... 30 
+Applying a vSphere with Operations Management License ............................................... 30 
+
+Updating vSphere with Operations Management to vCenter Operations Manager 
+
+Advanced Suite ........................................................................................................................ 31 
+Deploying EMC Storage Analytics ......................................................................................... 33 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 8    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Chapter 4 
+
+Overview 
+This chapter introduces the steps and processes involved in deploying the solution. Table 2 lists 
+the main stages in the solution deployment process along with links to the relevant information 
+and procedures. 
+
+ 
+
+Install and Configure vSphere  
+
+  Deploy vCloud Operations Manager 
+
+  Upgrade to vCenter Operations Management Advanced Suite 
+
+  Deploy EMC Storage Analytics (ESA) 
+
+Installing and configuring vSphere with 
+Operations Management 
+
+Installing VMware vSphere and vCenter Server 
+Complete these tasks to install and configure VMware vSphere and vCenter Server: 
+
+1. 
+
+Install ESXi5.5 hypervisor on the physical servers being deployed for the solution. Refer 
+to the vSphere Installation and Setup Guide for more detail. 
+
+2.  Configure ESXi networking including NIC trunking, VMkernel ports, virtual machine port 
+
+groups, and enable Jumbo Frames. Refer to the vSphere Networking document for more 
+detail. 
+
+3. 
+
+Install and configure PowerPath/VE to manage multipathing for VNX LUNs (Block Only). 
+Refer to PowerPath/VE for VMware vSphere Installation and Administration Guide for 
+more details (block storage only). 
+
+4.  Connect the VMware datastores to the ESXi hosts deployed for the solution. Refer to the 
+
+vSphere Storage Guide for more detail. 
+
+5.  Set the ESXi host time. 
+
+6.  Download the OVA for VMware vCenter Server Appliance™ 5.5 from VMware’s 
+
+distribution website. This OVA installs VMware vCenter Server. For more information 
+refer to VMware Downloads. 
+
+7.  Deploy the vCenter Server appliance from the vSphere Client. Refer to VMware KB 
+
+article 2007619 for details on how to install and configure the Appliance. 
+
+8.  Connect the vCenter server to the ESXi host to be managed for this solution and add the 
+
+license for vCenter Server. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 2 9    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Deploying vCenter Operations Manager 
+Complete these tasks to deploy and configure vCenter Operations Manager: 
+
+1.  Download the OVA file for vCenter Operations Manager from VMware’s distribution 
+website. This vApp installs two virtual machines: UI VM and Analytics VM. For more 
+information refer to VMware Downloads. 
+
+2.  Refer to the vCenter Operations Manager vApp requirements to understand the 
+resources required for the vApp based on the scope of the resources that will be 
+monitored. For more information, refer to the vCenter Operations Manager vApp 
+Deployment and Configuration Guide. 
+
+3.  Use the IP pools configuration option through vSphere Client to assign the network base 
+
+address, netmask, and default gateway that will be assigned to a network used by the 
+vApp. 
+
+4.  Deploy the vCenter Operations Manager vApp from the vSphere Client. 
+
+vCenter Server Integrations 
+Integrating vCenter Operations Manager with vCenter Server enables vCenter Operations 
+Manager to have visibility to the vSphere resources and virtual machines.  
+
+To add vCenter Server instances to vCenter Operations Manager, refer to the vCenter 
+Operations Manager vApp Deployment and Configuration Guide. 
+
+Applying a vSphere with Operations Management 
+License 
+Note: This is not a required step but it is shown as an example of upgrading a vCenter Operations 
+Manager license from one edition to another. vSphere and vCenter Server licenses can be 
+installed as standalone implementations. 
+
+Obtain the vSphere with Operations Management License from 
+https://my.vmware.com/web/vmware/login. Adding a vSphere with Management license enables 
+both VMware vSphere as well as the vCenter Operations Manager server in Standard mode. 
+
+Figures 7 and 8 show assets listed in the vCenter server before applying the vSphere with 
+Operations Management license and the licensed products after applying the vSphere with 
+Operations Management license. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 0    
+
+ 
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 7.  Unlicensed asset in vSphere Server 
+
+ 
+
+Figure 8.  Licensed vSphere and vCenter Operations Manager after applying vSphere with 
+
+Operations Management license 
+
+Updating vSphere with Operations Management 
+to vCenter Operations Manager Advanced Suite 
+vSphere with Operations Manager enables the standard edition of vCenter Operations Manager. 
+vCenter Operations Manager Standard Edition shows the health of all the vSphere hosts and 
+virtual machines running on them. However; vCenter Operations Manager Advanced Suite 
+enables full end-to-end visibility of an entire infrastructure from applications to virtual machines to 
+hosts to the storage system used by the environment. The Advanced edition allows installation of 
+additional management packs that will help gather specific health data of an object generating 
+relevant health, dashboards, and matrices.  
+
+To update vCenter Operations Manager to the Advanced edition, obtain the license key from 
+https://my.vmware.com.  
+
+Complete the following steps to update to vCenter Operations Management Advanced Suite: 
+
+1.  Login to the vSphere client. 
+
+2.  Click on Home-> Licenses -> Manage vSphere Licenses. 
+
+3.  Copy the obtained license and paste it in the New License box. 
+
+4.  Click next; select the show licensed asset radio button. 
+
+5.  Select vCenter Operations Manager from the asset list under solutions.  
+
+6.  Select the Advance license key from the product list under ‘Choose a license for selected 
+
+assets’. 
+
+7.  Click next, and Finish. 
+
+vCenter Operations Manager now displays as Advanced Edition as shown in Figure 9. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 1    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 9.  vCenter Operations Manager updated to Advanced Edition 
+
+To verify, login to Operations Manager by taking the following steps: 
+
+1.  Login to <vcops ip address>/vcops-vsphere with admin credentials. 
+
+2.  Click on the About tab to verify the License Mode 
+
+Figure 10 and 11 shows the About tab description before and after the upgrade. 
+
+ 
+
+ 
+
+Figure 10.  Before the upgrade 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 2    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 11.  After adding the Advanced add-on key 
+
+vCenter Operations Management Advanced Suite includes the following bundled products: 
+ 
+
+ 
+
+1.  vCenter Operations Manager Advanced 
+2.  vCenter Configuration Manager™ 
+3.  vCenter Hyperic 
+4.  vCenter Infrastructure Navigator™ 
+
+ 
+These additional components are installed separately and use the same license that was 
+previously installed. For information on installation and configuration, please refer to the individual 
+Installation and Configuration documentation section found here. 
+ 
+http://www.vmware.com/products/vcenter-operations-management/resources.html 
+ 
+Note: This section will focus on vCenter Operations Manager rather than the other components 
+of the Suite. 
+ 
+
+Deploying EMC Storage Analytics 
+vCenter Operations Advanced Suite adds support for Management Packs that extends end-to-
+end operational intelligence with data visualizations, dashboards, reports, alerts, and actions. An 
+Operations Management Pack can be delivered in the form of an agent plug-in, content pack, or 
+compliance pack. vCenter Operations Management Packs extend the power of vCenter 
+Operations Management Advanced Suite to hybrid and heterogeneous environments, providing 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 3    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+comprehensive visibility in a single operations console across applications, storage, and network 
+devices. 
+
+EMC Storage Analytics Management Pack for vCenter Operations Manager collects performance 
+metrics for EMC Arrays. It uses the EMC Adapter that’s bundled along with the Management 
+Pack to collect data. 
+
+To install the EMC Storage Analytics Management Pack, perform the below steps: 
+
+1.  Download the ESA 2.3 .pak file from the EMC Support Zone site. 
+
+2.  Login to the admin console of vCenter Operations Manager and install the management 
+
+pack following the EMC Storage Analytics 2.3 Installation and User Guide. 
+
+3.  Add an EMC adapter instance for vCenter Server following the EMC Storage Analytics 
+
+2.3 Installation and User Guide. 
+
+4.  Add an EMC adapter instance for the EMC storage used in vSphere following the EMC 
+
+Storage Analytics 2.3 Installation and User Guide. 
+
+Figure 12.  Dashboards with detailed analytic information relating virtual machines to 
+
+corresponding storage 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 4    
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+ 
+
+CHAPTER 5 ....................................................................................................... 36 
+
+Overview ................................................................................................................................... 36 
+Verifying vCenter Operations Manager Implementation ..................................................... 36 
+Verifying the Upgrade to vCenter Operations Manager Advanced .................................... 36 
+Verifying EMC Adapter Configurations ................................................................................. 37 
+Monitoring vCenter Operations Manager Objects ................................................................ 40 
+vCenter Operations Manager vSphere Dashboard .............................................................. 40 
+vCenter Operations Manager Badges.................................................................................... 41 
+Monitoring VNX Health and Resources ................................................................................. 43 
+EMC Storage Topology Dashboard ....................................................................................... 43 
+EMC Storage Metrics Dashboard .......................................................................................... 44 
+EMC VNX Overview Dashboard ............................................................................................ 46 
+Capacity Planning and Optimization ..................................................................................... 46 
+Root Cause Analysis ............................................................................................................... 48 
+Root Cause Analysis: Disk Failure ........................................................................................ 50 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 5    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Chapter 5 
+
+Overview 
+This chapter shows how to verify that the vCenter Operations Manager was upgraded correctly 
+from Standard edition to the Advance edition and that the vCenter Operations Manager is able to 
+poll analytic data both from vCenter and EMC storage arrays to present correlative data. 
+
+Verifying vCenter Operations Manager 
+Implementation 
+Upgrading to vCenter Operations Manager Advanced and installing EMC Storage Analytics 
+(ESA) gives the ability to monitor health of a virtual infrastructure and the virtual machines 
+running on them. This data can be used to identify the root cause for performance bottlenecks 
+across VMs, hosts, and storage. It can also help the IT operations staff plan resources by giving 
+predictive data about capacity. 
+
+In order to correlate captured analytic data across hosts and storage systems, vCenter 
+Operations Manager needs to interface with vCenter Server as well as EMC Storage Arrays. 
+vCenter Operations Manager has adapters that can interface with each subsystem to collect 
+analytic data. The following procedure identifies the upgrade of vCenter Operations Manager to 
+the Advanced edition and verifies the correct installation of the adapter instances used for data 
+collection. 
+
+Verifying the Upgrade to vCenter Operations 
+Manager Advanced 
+Perform the following steps after upgrading vCenter Operations License in vSphere Client to 
+Advance as outlined in Chapter 4: 
+
+1.  Login to the vCenter Operations UI at https://<ip address of vcops>/vcops-vSphere. 
+
+2.  Click the “About” link at the top right corner. 
+
+3.  Advanced edition is listed as per Figure 13. 
+
+Note: If the UI is open before updating the License, please logout and log back in to see the 
+updated edition 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 6    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+Figure 13.  vCenter Operations “About” screen 
+
+In order for ESA to correlate data between the EMC array and virtual machines in the vCenter 
+Server, it needs the adapters for VNX and vCenter to be operational. The following procedure 
+verifies that the adapters are running correctly and that they are able to collect metric data from 
+both vCenter Server and VNX. 
+
+Verifying EMC Adapter Configurations 
+After adding adapters as mentioned in Chapter 4, use the following steps to verify that the EMC 
+adapter for vCenter Server and VNX is able to collect data. 
+
+1.  Login to the vCenter Operations Manager Custom UI at https://<ip address of 
+
+vcops>/vcops-custom as seen in Figure 14. 
+
+2.  Click on Environment, Configuration, Adapter Instance, and double click vCenter Server 
+
+adapter. 
+
+3.  Hit the test button to see a success message as shown in Figure 15. 
+
+From the dashboard page, under the Storage Topology dashboard, the adaptor instance is listed 
+under Storage system. Similarly, for the EMC storage adapter, the adapter instance test runs 
+successfully and is listed under storage system. See Figures 14-18. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 7    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 14.  Adapter instance list 
+
+ 
+
+ 
+
+Figure 15.  vCenter adapter successful test 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 8    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 16.  vCenter Server successful entry 
+
+ 
+
+ 
+
+Figure 17.  EMC storage adapter successful test 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 3 9    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+Figure 18.  EMC Storage Adapter successful entry 
+
+Monitoring vCenter Operations Manager Objects 
+Management operations in cloud environments include ensuring service levels, problem solving, 
+troubleshooting, and preventative maintenance. Successfully meeting these requirements 
+involves the analysis of current utilization, forecasting of future needs, and the optimization of 
+current resource consumption by reclaiming underutilized resources. 
+
+The in-depth infrastructure and operations information provided by VMware vCenter Operations 
+Management Advanced Suite eliminates time-consuming problem resolution processes through 
+automated root cause analysis. Self-learning performance analytics and dynamic thresholds 
+adapt to the environment to simplify operations management and eliminate false alerts. 
+Integrated smart alerts for health, performance, and capacity degradation identify performance 
+problems before they affect end users. Advanced capacity analytics allow administrators to 
+optimize virtual machine density and identify capacity shortfalls before they affect end users. The 
+VMware vCenter Operations Management Advanced Suite provides flexibility with advanced 
+features that extend monitoring, analytics, and reporting capabilities and it is suitable for solutions 
+of any size. 
+
+vCenter Operations Manager vSphere Dashboard 
+Once implemented and configured, the vSphere UI provides a comprehensive insight into the 
+environment, as shown in Figure 19. The main dashboard is divided into three logical entities 
+providing high-level information about the current overall health and issues of all managed 
+resources, potential future issues and risks in the environment, and resource efficiency trends in 
+the environment. 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 0    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 19.  Main vSphere dashboard in vCenter Operations Manager 
+
+ 
+
+The three primary logical entities in vCenter Operations Manager can be explained as follows: 
+ 
+
+  Health calculates health scores based on patented algorithms that dynamically calculate 
+
+thresholds by observing the behavior trends of the cloud environment. This information 
+gives visibility into the red, yellow, green status of the virtual machines, datastores, and 
+clusters. The administrator can see where the problems are, what the issue is, and if 
+there is any pattern of abnormal behavior in the environment. 
+
+  Risk provides insight into the resource consumption to tell the administrator not only 
+
+when the vSphere environment will run out of capacity, but also which resources will run 
+out. 
+
+  Efficiency aims to help administrators proactively optimize the environment and reclaim 
+
+waste. 
+
+vCenter Operations Manager Badges 
+vCenter Operations Manager uses badges to illustrate derived metrics and to provide an 
+overview of the state of the virtual environment or an individual object. These badges serve as 
+focus points to narrow the scope of a potential problem and provide details about the cause of the 
+problem. 
+
+Major and minor badges are color coded and range from a healthy green to a potentially 
+problematic yellow, orange, or red. Badges are organized in a simple hierarchy in which the 
+scores of minor badges contribute to the scores of major badges. 
+
+Scores might reflect a healthy state or a potential problem depending on the type of badge. For 
+example, low scores for health, time remaining, and capacity remaining might indicate potential 
+problems, while low scores for faults, stress, or anomalies indicate a normal state. 
+
+Navigation and Troubleshooting  
+The vCenter Operations Manager dashboards provide a wide number of different insights into 
+infrastructure condition and enable simple and easy analysis of the root cause of problems. For 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 1    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+example, suppose the overall environment condition for health is represented with a green badge 
+value of 85. The administrator can go to the Health Weather Map, hover the mouse over one of 
+the red/orange marked areas and get brief information about a fault. In the example used in 
+Figure 20, the orange icon on the bottom row of the Health Weather Map is related to a particular 
+virtual machine on a VNX datastore, indicated with a Health value of 48 and Anomalies value of 
+99. 
+ 
+
+Figure 20.  vCenter Operations Manager badges 
+
+ 
+
+Figure 21.  The Anomalies of 99 indicate a sudden increase in use of disk space for this virtual 
+
+ 
+
+machine 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 2    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Monitoring VNX Health and Resources 
+vCenter Operations Manager integration with EMC Storage Analytics (ESA) software delivers 
+custom analytics and visualizations that provide deep visibility into the EMC infrastructure and 
+enable the administrator to troubleshoot, identify, and take quick action on storage performance 
+and capacity management problems. 
+ 
+Note: vCenter Operations Manager Advanced is required to integrate with EMC Storage 
+Analytics 
+ 
+Within the vCenter Operations Manager custom portal, ESA presents three separate dashboards. 
+Two of those dashboards are universal and one is specific to VNX. Each dashboard is fully 
+customizable and can be adjusted to display the required details and metrics or additional 
+widgets. 
+ 
+By default, ESA enables the following dashboards in the vCenter Operations Manager custom 
+portal which provide information about VNX storage systems: 
+ 
+
+  EMC Storage Topology dashboard – Provides a view of resources and relationships 
+
+between storage and virtual infrastructure objects 
+
+  EMC VNX Storage Metrics dashboard – Displays resource and metrics for the storage 
+
+systems 
+
+  EMC VNX Overview dashboard – Represents a single view of performance and capacity 
+
+of the VNX resources 
+
+Additional dashboards included with ESA are the following: 
+ 
+
+  EMC VNX Topology 
+  EMC VNX Metrics 
+  EMC Top-N VNX File Systems 
+  EMC Top-N VNX LUNs 
+  EMC VNXe Overview 
+  EMC VNXe Topology 
+  EMC VNXe Metrics 
+  EMC Top-N VNXe LUNs and File Systems 
+
+ 
+
+EMC Storage Topology Dashboard 
+The EMC Storage Topology dashboard, displayed in Figure 22, shows the configured VNX arrays 
+also referred to as adapter instances. When an array is selected from the Storage System 
+Selector pane, the Topology and Resources panes are populated with associated underlying 
+components. ESA pulls in all related VMware objects, making it possible to navigate end-to-end 
+into the underlying storage array components. These components include vSphere datastore 
+clusters, LUNs, storage pools, and storage processors. The instance in Figure 22 shows that the 
+LUN VNX-ESA has datastore emc-vnx built on it. The LUN is created from the Raid group 9 and 
+uses Storage Processor A. These details are presented graphically in the Storage Topology and 
+Health pane and are also presented as parent and child resources in their respective panes. 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 3    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 22.  Storage Topology Dashboard 
+
+ 
+
+EMC Storage Metrics Dashboard 
+The second universal dashboard, shown in Figure 23, is for EMC Storage Metrics. Each EMC 
+resource has an associated set of metrics associated displayed in a graph. Navigation is driven 
+from the top down, so after choosing the storage system and specific resources, the user can 
+select multiple metrics to be displayed in the Metric graph. 
+ 
+
+Figure 23.  Storage Metrics Dashboard 
+
+ 
+
+The Storage Metric dashboard in ESA shows Performance related metrics such as Queue Length 
+Read/Write Size, and Service time. The matrices present a detailed performance overview of a 
+dashboard. Performance analysis with these matrices can help root cause analysis of 
+performance bottlenecks at a granular level. vCenter Operations Manager standard edition has a 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 4    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+limited number of these matrices. Figures 24-25 show differences in matrices available for 
+datastores in an ESA Storage metric dashboard. 
+
+Figure 24.  Storage Metrics ESA home screen 
+
+ 
+
+Figure 25.  Storage Metrics vCenter Dashboard home screen 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 5    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+EMC VNX Overview Dashboard 
+VNX arrays have their own specific dashboard, EMC Performance Overview, which presents 
+details in the form of heat maps, as shown in Figure 26. This dashboard covers the main storage 
+system resource types including thin pools, storage groups, LUNs, storage processors (VNX), 
+FAST Cache Performance (VNX) providing a few metrics from each one. The heat map colors 
+work on two different levels. There is a green-to-red legend for some resources types which 
+represents either usage (thin pool allocation) or performance (latency). There is a blue legend for 
+relative usage across that metric within an array (total writes). For any one of the objects shown, 
+a full historical perspective is available on the EMC Storage Metrics page. 
+ 
+
+Figure 26.  ESA VNX overview 
+
+ 
+
+The ESA VNX overview dashboard shows the CPU utilization and health of the Storage 
+processors along with detailed metrics on the LUNs such as LUN Utilization, Latency, IOPS, etc. 
+In the vCenter Operations Manager standard edition, heat maps related to Storage Processors or 
+LUNs are not available. 
+
+Capacity Planning and Optimization 
+VMware vCenter Operations Manager provides powerful capacity planning functionalities which 
+helps predict behavior and evaluate the potential impact of future growth on the underlying 
+resources supporting the enterprise private cloud environment. 
+The capacity planning component of vCenter Operations Manager provides statistics on current 
+utilization, as shown in Figure 27, but can also provide a prediction for a “What-If” scenario where 
+the infrastructure environment may be influenced by an increased or decreased number of ESXi 
+hosts, storage, or virtual machines on existing or new consumption profiles. By implementing the 
+scenario, vCenter Operations Manager will model the predicted impact so that the administrator 
+knows in advance what the capacity requirements will be under the “What-If” scenario 
+circumstances. 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 6    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 27.  Virtual Machine Capacity details for management cluster 
+
+ 
+
+As shown in Figure 27, the capacity-remaining figures are based on demand and consumption 
+trends of the currently operating virtual machines. To plan for capacity requirements for future 
+growth, the administrator can create a “What-If” scenario which contains a virtual machine profile 
+that can be based on an existing virtual machine, or even specified manually. 
+ 
+
+Figure 28.   “What-if” scenarios 
+
+ 
+
+As shown in Figure 28, the virtual machine profile can be tailored to specify not only the allocation 
+of resources, but also their actual usage and consumption. Once this scenario of adding ten new 
+virtual machines has been successfully run through, the details displayed for virtual machine 
+capacity are updated to display the current actual capacity remaining as well as the potential 
+capacity if the “What-If scenario” was implemented, as shown in Figure 29. 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 7    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 29.   “What-if” scenario, adding a new profile 
+
+Root Cause Analysis 
+Root Cause Analysis – LUN Offline 
+
+ 
+
+ 
+Figure 30.  Normal “healthy” vCenter Operations Manager Dashboard 
+
+ 
+
+vCenter Operations Manager provides root-cause analysis for alarms triggered on various 
+resources. These analyses show the most immediate reason for an alarm. Figure 30 shows a 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 8    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+healthy environment and Figure 31 shows datastores offline using vCenter Operations Manager 
+Standard. It is not possible to determine any extra details on the problems since the storage 
+system is offline. However, Figures 32-33 shows that, when using vCenter Operations Manager 
+Advanced with ESA, there is additional information available. Looking at the health tree of the 
+virtual machine, there are three alerts on the VM and six alerts on a child resource which is the 
+datastore used by this VM. Clicking on the alerts for the child resource shows a critical alert—the 
+storage connectivity is lost between the host and the storage system. 
+
+Figure 31.  vCenter Operations Manager Standard / datastore offline 
+
+ 
+
+ 
+
+Figure 32.  Tracking alerts 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 4 9    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Root Cause Analysis: Disk Failure 
+The VNX Overview dashboard gives the hierarchal overview of the various storage elements 
+associated with a virtual machine. The dashboard collects alerts and health information at each 
+level in the hierarchy. The hierarchy starts from the virtual machine and extends to the datastore 
+as follows: 
+ 
+datastore-> Storage Processor-> LUN -> Storage Pool -> Raid Group -> Disks, etc. 
+If there is a fault in any of the subsystems, the specific area can be pinpointed easily by looking at 
+the hierarchical view on the VNX Overview dashboard.  
+ 
+Figure 33 shows the VNX overview dashboard with a hierarchy for a virtual machine that has 
+storage on a datastore with LUN ‘VNX_ESA’. The hierarchy shows all the associated elements 
+with the LUN all the way to the disks that are part of the Raid Group supporting the LUN. 
+ 
+
+Figure 33.  VNX Dashboard 
+
+ 
+
+Disk # 1 on Bus1, Enclosure 2 of the VNX has a fault as seen in Figure 34. The image shows a 
+hierarchy indicating a Disk is at fault in the LUN that was in use by a virtual machine. Clicking on 
+the VNX Metric dashboard and selecting the faulted disk shows a red box indicating associated 
+events that are causing the disk’s health status to turn red. The resource event indicates that this 
+disk is at fault. 
+ 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 0    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Figure 34.  VNX drill-down to specific fault 
+
+ 
+
+ 
+As in the previous example, using only vCenter Operations Manager Standard shows only that 
+the datastore is unavailable without any additional information. This clearly indicates the benefits 
+of using vCenter Operations Manager Advanced with the EMC ESA Management Pack. 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 1    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+Figure 35.  Offline disk shows as datastore down in vCenter Operations Manager Standard, 
+
+without ESA 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 2    
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+ 
+
+ 
+
+CHAPTER 6 ....................................................................................................... 54 
+
+Overview: vCenter Operations Manager vApp Sizing Considerations .............................. 54 
+Java™ VM Configuration ........................................................................................................ 56 
+Detailed Storage Capacity and I/O Considerations .............................................................. 57 
+Interoperability Matrix ............................................................................................................. 59 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 3    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Chapter 6 
+
+Overview: vCenter Operations Manager vApp 
+Sizing Considerations 
+
+ 
+Prior to deploying the vCenter Operations Manager vApp, it is important to understand the size of 
+the target environment. The vCenter Operations Manager Installation Guide defines scale in 
+terms of virtual machine count. The following table summarizes these requirements. 
+
+Table 1.  vCenter Operations Manager vApp sizing examples.  
+
+ 
+
+Note: The disk I/O requirements represent an aggregate requirement for the entire vApp; 
+however the majority of the I/O generated is a result of the metrics collection from the Analytics 
+VM. Furthermore the I/O is typically biased towards write operations; the exception being the 
+daily analytics process that results in large quantities of combined reads and writes in order to 
+update the metrics contained in the FSDB. 
+
+Detailed CPU and RAM Considerations Explained 
+
+Although the sizing guidance from the installation guide defines environment scale with respect to 
+the quantity of virtual machines, it is important to recognize that this has been adopted to provide 
+a familiar approach for customers to understand. The real determining factor influencing the 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 4    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+deployment configuration, in particular for CPU and memory, is the number of metrics being 
+collected. In fact, the previously defined VM-based sizing recommendations from the vCenter 
+Operations Manager Installation Guide are actually derived using some simple metric-based 
+assumptions, as follows: 
+
+  Virtual machines generate 250 metrics 
+
+  ESXi host generate 1,500 metrics 
+
+  ESXi hosts offer a consolidation ratio of 10:1 
+
+Using these assumptions in conjunction with the previously defined VM-based sizing approach, it 
+is possible to determine the amount of metrics the configuration will support. This is calculated as 
+follows: 
+
+(#VMs x 250 metrics) + ((#VMs/10 VMs per host) x 1,500 metrics) = total metrics 
+
+Applying this calculation to the defined VM-based sizing approach results in the following total 
+metric counts: 
+
+ 
+
+(Pre-defined Small) 1,500 virtual machines and 600,000 metrics 
+
+o  For the purposes of this solution guide, the “small” configuration is suitable. From 
+
+Figure 3, the small configuration will require 4 vCPU, 16 GB RAM, and 900 GB 
+storage space. 
+
+ 
+
+ 
+
+(Pre-defined Medium) 3,000 virtual machines and 1,200,000 metrics 
+
+(Pre-defined Large) 6,000 virtual machines and 2,400,000 metrics 
+
+These metrics relate specifically to the use of vCenter Operations in conjunction with the vCenter 
+Server adapter only and do not include the use of additional external adapters. If there is a 
+requirement to collect further data from additional adapters then there is a requirement to 
+understand the total number of metrics this is likely to introduce. For example, if a SCOM 
+(Microsoft Systems Center Operations Manager) adapter were also introduced, and it were to 
+collect an additional 250 metrics per guest operating system, then an environment comprising 
+1,500 VMs would need to be sized for 975,000 metrics. In other words, the deployment sizing 
+would need to be determined using a linear extrapolation of the 600,000 metric based sizing. 
+
+Note: The three sizing tiers discussed translate to the “small,” “medium,” and “large” configuration 
+options available when deploying the vApp. The most current sizing requirements for the vApp 
+appear in the VMware knowledge base paper at http://kb.vmware.com/kb/2057607 
+
+Note:  EMC VSPEX defines a standard reference virtual machine to be composed of 1 vCPU, 2 
+GB RAM, and 100 GB storage space. The “small” vCenter Operations Manager vApp is equal to 
+9 VSPEX reference virtual machines. For more details on reference virtual machines refer to 
+EMC VSPEX Private Cloud: VMware vSphere 5.5 Proven Infrastructure Guides  
+
+Currently, vCenter Operations Manager is indicated as being limited to a maximum of 6,000 
+virtual machines. It should be noted that this is derived from the limitation of vSphere Virtual 
+Hardware 7 that is restricted to a maximum of 8 vCPUs. The availability of vSphere 5.x, and in 
+particular the introduction of Virtual Hardware 8, means this is no longer a constraint and, in 
+theory, vCenter Operations Manager can support larger configurations. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 5    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Note:  Virtual Hardware Versions reference material: http://kb.vmware.com/kb/1003746   
+
+Java™ VM Configuration 
+Another critical aspect of the vCenter Operations vApp sizing considerations involves applying 
+best practice recommendations for running Java based applications. The vCenter Operations 
+vApp comprises a UI VM and an Analytics VM that supports a number of key functions, which are 
+Java based applications. Running Java applications in virtualized environments presents a 
+unique challenge due to the manner in which a Java Virtual Machine (JVM) manages memory 
+internally. This additional layer of memory management causes complications with the VMware 
+Tools balloon driver. This complication arises from the guest operating system having no visibility 
+into how the Java application uses memory and therefore is unable to determine which memory 
+pages should be swapped. The result is that during periods of ESXi host memory contention the 
+VMware Tools driver could induce performance degradation more akin to VMkernel swapping as 
+the benefits of ballooning cannot be realized. This effect is described in the Love Your Balloon 
+Driver blog in the VMware Communities. To mitigate this risk, it is recommended to apply virtual 
+machine memory reservations in line with the JVM Heap Size, Permanent Generation, and Stack 
+Size. The Java memory requirements can be calculated as follows: 
+
+Java Max Heap Size + JVM Perm Gen + #Threads x Stack Size = JVM Memory Requirement 
+
+In order to apply the previously defined formula, it is necessary to understand how these 
+parameters are defined for the vCenter Operations application components. In the case of the 
+vCenter Operations vApp, the Heap Size parameters are defined dynamically based on the 
+configured memory for the virtual machine; the other parameters are fixed. These parameters are 
+defined as follows: 
+
+Table 2.  vApp Java Memory Considerations 
+
+Component 
+
+Max Heap 
+Size 
+
+Permanent 
+Generation 
+
+Stack 
+Size 
+
+vSphere UI (UI 
+VM) 
+
+9/25 VM 
+memory 
+
+512MB 
+
+Custom UI (UI 
+VM) 
+
+5/25 VM 
+memory 
+
+512MB 
+
+Admin (UI VM) 
+
+1/25 VM 
+memory 
+
+512MB 
+
+ActiveMQ 
+(Analytics VM) 
+
+2/25 VM 
+memory 
+
+64MB 
+
+Java 
+Default 
+(1MB) 
+
+Java 
+Default 
+(1MB) 
+
+Java 
+Default 
+(1MB) 
+
+Java 
+Default 
+(1MB) 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 6    
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Component 
+
+Max Heap 
+Size 
+
+Permanent 
+Generation 
+
+Stack 
+Size 
+
+Collector 
+(Analytics VM) 
+
+5/25 VM 
+memory 
+
+64MB 
+
+Java 
+Default 
+(1MB) 
+
+Analytics 
+(Analytics VM) 
+
+11/25 VM 
+memory 
+
+128MB 
+
+8MB 
+
+ 
+
+ 
+
+If the memory considerations defined in the previous table are applied in relation to defining 
+reservations for the vCenter Operations vApp, then the following minimums should be 
+considered. 
+
+Table 3.  vApp Example Reservation Requirements 
+
+Configuration  UI VM 
+
+(Memory/Reserved) 
+
+Analytics VM 
+(Memory/Reserved) 
+
+Small 
+
+7GB/4.7GB (16/25 + 
+(3 x 512MB)) 
+
+VSPEX RVM 4 
+
+Medium 
+
+11GB/7.1GB (16/25 
++ (3 x 512MB)) 
+
+Large 
+
+13GB/22.1GB (16/25 
++ (3 x 512MB)) 
+
+ 
+
+9GB/6.98GB (18/25 
++ (2 x 64MB) 
++128MB) 
+
+VSPEX RVM 5 
+
+14GB/10.5GB 
+(18/25 + (2 x 64MB) 
++128MB) 
+
+21GB/15.12GB 
+(18/25 + (2 x 64MB) 
++128MB) 
+
+Note: The example reservation calculations exclude the variable Stack Size requirements 
+required per thread. The purpose for these calculations is to provide a justification for the required 
+large virtual machine memory reservation. Given the variable nature of the stack size component, 
+the lack of control of which memory is allocated to a Java process, and general manageability, it 
+may be worth simply reserving the entire VM memory allocations. 
+
+Detailed Storage Capacity and I/O Considerations 
+Storage sizing considerations are again defined based on the scale of monitored environment. 
+Although the installation guide defines scale in terms of virtual machine count, this is again aimed 
+at achieving familiarity for customers. As with the CPU and memory sizing recommendation, the 
+considerations for storage sizing are more accurately defined by metric count. This is true for both 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 7    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+capacity and I/O requirements. The capacity requirements for vCenter Operations are derived 
+from a product of the following parameters: 
+
+  Metric count 
+
+  Metric collection frequency (every 5 minutes) 
+
+  Metric retention period (default of 6 months) 
+
+  Metric storage requirement (16 bytes per metric) 
+
+Using these assumptions in conjunction with the previously defined VM-based sizing approach, it 
+is possible to determine the amount of storage capacity required. This is calculated as follows: 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 8    
+
+ 
+
+VSPEX Private Cloud with Operations Management 
+Design and Implementation Guide 
+
+Interoperability Matrix 
+Table 4.  Product Interoperability Matrix 
+
+For the latest interoperability matrix, refer to 
+http://partnerweb.vmware.com/comp_guide2/sim/interop_matrix.php
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 w ww.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products 
+are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United 
+States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+D E S I G N   &   I M P L E M E N T A T I O N   G U I D E / 5 9    
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of 
+EMC Corporation in the United States and other countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+ 
+
+

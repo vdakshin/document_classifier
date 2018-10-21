@@ -1,0 +1,245 @@
+Case study 
+Wm Morrisons supermarket
+
+Reducing the Risks of storage Migration
+
+Wm Morrison Supermarkets Uses 
+VirtualWisdom® to Guarantee Oracle Application 
+Performance Through Major Storage Migration
+
+Company Background
+This UK-based major supermarket chain has been in business for over 100 
+years, changing and adapting to meet its customers’ needs. Today the 
+company takes a vertically integrated approach to its business, achieving 
+supply chain efficiencies by owning many of the factories that provision 
+its supermarket shelves. The company also grows through acquisition. 
+To support its rapidly changing and evolving business, the company is 
+transforming its IT environment, implementing integrated supply chain 
+solutions and optimizing IT efficiency.
+IT Environment
+The supermarket chain runs many of its strategic applications on Oracle 
+Retail and E-Business Suite platforms, with a HP and Brocade storage 
+environment. To meet its expanding application and data needs, the IT 
+team upgraded the storage infrastructure, migrating from monolithic and 
+modular arrays to HP 3PAR StoreServ arrays. In addition, they upgraded 
+the SAN with a new fibre optic structured cabling system (from VI 
+Partner Splice Group), standardizing on 8Gbps end-to-end Fibre Channel 
+connectivity. Data Replication and stretched SANs across data centre 
+locations was achieved using new point-to-point dark-fibre circuits with 
+40GE IP and 320Gbps FC initial bandwidth. 
+
+Challenges
+
+•  Storage migration to new 
+
+storage network and arrays
+•  More than 600 applications 
+to migrate, including critical 
+Oracle PeopleSoft and 
+E-Business Suite systems 
+managing vertically-integrated 
+supply chain and 130,000+ 
+employees
+
+•  Need to guarantee application 
+
+performance before, during 
+and after major migration
+
+Solution
+
+•  Virtual Instruments 
+
+VirtualWisdom® platform 
+and services, including the 
+SAN Performance and SAN 
+Availability Probes
+
+VirtualWisdom allows you to 
+dig in and understand why 
+applications are behaving as 
+they are, and where potential 
+problems lie…we can make 
+strategic investments based on 
+sound performance information.
+
+Simon Close 
+Head of Storage, Wm morriSon 
+SupermarketS pLC
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Customer Benefits
+
+•  Identification of major 
+
+performance issues during 
+early testing, before migration
+
+•  Reduced risks of major 
+infrastructure changes 
+through real-time insight into 
+performance implications of 
+change 
+
+•  Reduced CAPEX through 
+
+cost avoidance, with 
+provisioning based on detailed 
+performance needs
+
+•  Ability to demonstrate 
+
+performance gains on an 
+application-by-application 
+basis to internal stakeholders
+•  Storage network optimization 
+
+through end-to-end insight 
+into performance
+
+VirtualWisdom uncovered 
+several issues in testing, 
+and gave us the detailed 
+information we needed to 
+resolve those problems with 
+the vendor rather than wasting 
+time and deflecting blame…
+… getting to the route 
+cause quickly is critical, 
+VirtualWisdom enables that.
+
+Pervinder Bhamra 
+enterpriSe Storage SpeCiaLiSt, 
+Wm morriSon SupermarketS pLC
+
+Business Challenge
+This retailer achieves competitive advantage through supply chain 
+efficiencies. Part of its strategy is to integrate across the supply chain; 
+owning farms, manufacturing and distribution centers which supply its 
+retail supermarkets and convenience stores. The supply chain is the heart 
+of this business, and the Oracle software that runs it is truly business 
+critical. As the company grows, it aims to both optimize supply chain 
+efficiency and to protect it from failures or outages that could cause 
+serious damage to the business. This means achieving a careful balance 
+of business continuity and operational efficiency. 
+ 
+IT Challenge
+The Oracle applications are vital to business operations, so protecting 
+application performance is critical. The company decided to upgrade its 
+storage network and storage hardware, with replication to another data 
+center for business continuity. Before migrating vital applications to the 
+new storage, the IT team had to convince internal stakeholders that the 
+new environment would deliver the equivalent or better performance 
+than the old one. With more than 600 applications to migrate, this was a 
+significant challenge. During the migration, the team had to identify and 
+proactively fix a number of performance and configuration issues before 
+they affected production systems.
+
+the Virtual Instruments solution 
+Morrisons looked to Virtual Instruments to provide an agnostic 
+insurance policy which would underpin their Storage Transformation. 
+By instrumenting the storage infrastructure, they would be able to 
+monitor data traffic passing through it to provide very detailed diagnostic 
+information about application response times and fibre channel protocol 
+errors. The IT team made extensive use of the end-to-end insight available 
+through VirtualWisdom to baseline performance prior to the migration 
+and also to baseline performance post migration to demonstrate the 
+effectiveness of their storage investment.
+
+HP – UX Servers
+
+ODF A
+
+ODF B
+
+Brocade SAN Switch
+
+VirtualWisdom Server
+
+SAN Performance Probe
+
+SAN Performance Probe
+
+OM3/OS1ﬁbre
+1GE
+
+HP 3PAR V400
+
+VirtualWisdom Deployment
+
+Finding problems early: During initial pre-deployment testing, VirtualWisdom uncovered several performance and 
+configuration issues with the new storage implementation. With the detailed insight delivered from VirtualWisdom, 
+the team could pinpoint the problems and work with the vendors to address them, before moving forward with the 
+larger storage migration. With its vendor-neutral, end-to-end insight, VirtualWisdom eliminated the finger-pointing 
+that could otherwise delay rapid root cause analysis and problem resolution, helping minimize deployment delays. 
+ 
+Performance Verification: The IT team created VirtualWisdom performance dashboards for a number of their 
+business critical applications. These enabled the easy creation of performance benchmarks which were used to 
+establish baselines of pre and post migration metrics. Using the dashboards and baselines the IT team were able 
+to identify any performance or configuration issues before cutover and more critically before they became service 
+impacting. Overall, the Virtual Instruments toolsets were used to provide objective evidence that the new storage 
+infrastructure was meeting or exceeding its performance objectives and non-functional requirements.
+ 
+Ready for the next migration: VirtualWisdom reduces the risks of major migrations and helps them ensure the 
+smooth operation of business critical applications. Additionally, the retailer can now plan for additional growth 
+and capacity based on detailed performance information, rather than raw volume numbers. According to the 
+company’s head of storage,Simon Close “There’s a strong temptation to simply throw hardware at a performance 
+issue, but often that just moves the bottleneck rather than solving the problem. With Virtual Instruments, we can 
+make accurate and strategic investments based on sound performance information.”
+ 
+Customer Benefits
+Specific VirtualWisdom benefits to the IT team include:
+•  Rapid identification of several significant performance issues during testing, 
+
+so problems were corrected before the production migration
+
+•  Reduced risks of storage migration by closely monitoring performance in real time
+•  Reduced CAPEX by cost avoidance: capacity planning guided by 
+
+performance requirements, not guesses based on volumes
+
+•  Successful migration of business critical Oracle Applications and 
+
+hundreds of other applications to new storage environment
+
+•  Performance optimization of new storage environment
+•  Constant monitoring of real-time SAN performance during migrations, upgrades, and 
+
+reconfigurations to ensure that changes do not hurt application performance
+
+Corporate Headquarters
+25 Metro Drive, 
+San Jose, CA 95110 · USA
+Phone: 408-579-4000
+Fax: 408-579-4001
+
+European Headquarters
+46 New Broad Street
+London EC2M 1JH
+Phone: +44 (0) 203-651-5685
+
+Asia Pacific Headquarters
+8 Cross Street Level 28
+PWC Building, Singapore 048424
+Phone: +65 6850-7841
+
+Sales
+sales@virtualinstruments.com
+Phone: 888-522-2557
+Support
+support@virtualinstruments.com
+
+©2013  Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or 
+may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13
+
+

@@ -1,0 +1,1803 @@
+ 
+Enhanced Operational Agility and Scalability for Oracle E-
+Business Suite R12 and RAC on VMware vSphere  5 
+
+Table of Contents 
+
+www.vce.com 
+
+ 
+
+ 
+
+VBLOCK™ SYSTEMS: ENHANCED 
+OPERATIONAL AGILITY AND SCALABILITY 
+FOR ORACLE E-BUSINESS SUITE R12 AND 
+RAC ON VMWARE VSPHERE 5 
+
+Version 2.0 
+February 2013 
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ............................................................................................................................... 5 
+Business case ......................................................................................................................... 5 
+Objectives ................................................................................................................................ 6 
+Key results ............................................................................................................................... 6 
+Key benefits ............................................................................................................................. 6 
+Scope ...................................................................................................................................... 7 
+Audience ................................................................................................................................. 7 
+Feedback ................................................................................................................................. 8 
+Technology overview ............................................................................................................... 9 
+Vblock™ Systems ..................................................................................................................... 9 
+Vblock System 720 ............................................................................................................... 9 
+Vblock System 320 ............................................................................................................... 9 
+VMware vSphere 5 ................................................................................................................ 10 
+Oracle Database 11g Release 2 Enterprise Edition ............................................................... 11 
+Oracle Real Application Clusters ........................................................................................... 11 
+Oracle E-Business Suite Release 12 ..................................................................................... 11 
+EMC Ionix Unified Infrastructure Manager ............................................................................. 11 
+Solution architecture .............................................................................................................. 12 
+High-level architecture ........................................................................................................... 12 
+Physical topology ................................................................................................................... 13 
+Performance test environment ............................................................................................... 14 
+Scalability test environment ................................................................................................... 15 
+Hardware components ........................................................................................................... 16 
+Virtual machine configuration ................................................................................................. 16 
+Software components ............................................................................................................ 17 
+Storage layout ....................................................................................................................... 17 
+Storage pool 1 .................................................................................................................... 17 
+Storage pool 2 .................................................................................................................... 18 
+Storage mappings for Oracle database .............................................................................. 19 
+Performance and scalability testing ...................................................................................... 20 
+Test environment ................................................................................................................... 20 
+Workload description ............................................................................................................. 20 
+Performance testing ............................................................................................................... 21 
+Test objectives ................................................................................................................... 21 
+Test methods ...................................................................................................................... 21 
+Test results ......................................................................................................................... 22 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+3 
+
+ 
+
+ 
+
+Scalability testing ................................................................................................................... 22 
+Test objective ..................................................................................................................... 22 
+Test methods ...................................................................................................................... 23 
+Test results ......................................................................................................................... 24 
+Upgrading to vSphere 5 .......................................................................................................... 25 
+Related documentation .......................................................................................................... 25 
+Preparing for the upgrade ...................................................................................................... 25 
+Upgrading vCenter Server ..................................................................................................... 26 
+Upgrading vSphere Client ...................................................................................................... 26 
+Upgrading hosts to ESXi 5 ..................................................................................................... 26 
+Upgrading virtual machine hardware version ......................................................................... 27 
+Post-upgrade tasks ................................................................................................................ 27 
+Migrating to vSphere 5 ........................................................................................................... 28 
+Setting up the source Oracle VM environment ....................................................................... 29 
+Installing vCenter Converter Standalone ................................................................................ 29 
+Converting the virtual machines ............................................................................................. 30 
+Conclusion .............................................................................................................................. 34 
+Next steps ............................................................................................................................. 34 
+References .............................................................................................................................. 35 
+Oracle ................................................................................................................................. 35 
+VMware .............................................................................................................................. 35 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+Vblock™ Systems offer IT organizations the performance, agility, and scalability to effectively manage 
+and allocate resources to meet the demands of even the most dynamic, data-intensive Oracle 
+applications. In addition, Vblock Systems provide a predictable cost model by accelerating 
+infrastructure consolidation in the form of virtual machines on a single host to shave off licensing costs 
+tied to dependency on the number of servers and cores. 
+
+Earlier testing of Oracle E-Business Suite (Oracle EBS) and Oracle Real Application Clusters (Oracle 
+RAC) on Vblock Systems with VMware vSphere 4.1 demonstrated the performance and scalability 
+benefits of virtualization. Refer to Oracle E-Business Suite and RAC Performance and Elasticity on 
+Vblock Systems at www.vce.com/products/solutions/oracle. 
+
+Results from that initial testing showed that virtualization on Vblock Systems provides customers with 
+a high level of return on investment (ROI) and reduced total cost of ownership (TCO). Application 
+response times for transactions in the physical and virtual environments were within a 5-10% range 
+and scaling out Oracle EBS and RAC on Vblock Systems improved performance due to load 
+balancing. 
+
+The availability of VMware vSphere 5 brings significant enhancements to the virtual environment on 
+Vblock Systems, such as support for faster scaling, additional virtual CPUs (vCPUs), and more virtual 
+memory (vMem). To demonstrate the performance and scalability improvements enabled by vSphere 
+5, VCE conducted performance and scalability testing similar to the earlier testing. Performance test 
+results showed only a 1% difference between physical and virtual environments, while scalability 
+testing showed that near linear scalability could be achieved when scaling Oracle EBS and RAC in the 
+virtual environment. 
+
+This solution architecture describes how performance and scalability testing of Oracle EBS and RAC 
+on a Vblock System with vSphere 5 was conducted and presents the test results. 
+
+Business case 
+
+Customers want assurance that virtualizing their Oracle production systems and business applications 
+will: 
+
+  Maximize the performance and quality of service of their Oracle applications. 
+  Meet the needs of business service-level agreements (SLA). 
+  Allow non-disruptive migration of applications and workloads to improve performance, facilitate 
+
+maintenance, and enhance business continuity. 
+
+  Reduce time to market and lower total cost of ownership (TCO) while maintaining a high return 
+
+on investment (ROI). 
+
+This solution architecture will demonstrate that Vblock Systems with vSphere 5 provide a simplified, 
+cost-effective IT infrastructure to run business-critical Oracle and mixed workloads in a high-
+performance converged infrastructure.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+5 
+
+ 
+
+ 
+
+Objectives 
+
+Oracle EBS R12 was deployed on a virtualized Oracle RAC on a Vblock System with vSphere 5. 
+Performance and scalability testing of this environment was conducted to demonstrate that: 
+
+  Vblock Systems maximize performance of Oracle EBS applications on vSphere 5 to allow faster 
+deployment of new features to the business, minimize time-to-market, and deliver faster time to 
+revenue. 
+
+  Vblock Systems with vSphere 5 make it easy to scale the virtual environment to support data-
+intensive and business-critical Oracle EBS workloads while maintaining performance levels. 
+
+Existing VCE customers interested in improving the performance and increasing the scalability of their 
+Oracle EBS deployments should consider upgrading to the latest technology from VMware on Vblock 
+Systems. Customers currently deploying their Oracle EBS and RAC on an Oracle virtual machine 
+(Oracle VM) can migrate to vSphere 5 on Vblock Systems to leverage its ability to deploy mixed 
+workloads on a single system. This solution architecture includes the steps needed to demonstrate 
+the ease, convenience, and low risk of upgrading or migrating to vSphere 5 on Vblock Systems.  
+
+Key results 
+
+VCE conducted extensive performance and scalability testing of Oracle EBS applications in a virtual 
+Oracle RAC environment on a Vblock System with vSphere 5. Key results were: 
+
+  Comparison of average application response times of Oracle EBS and RAC in the physical 
+
+environment with average application response times in the virtual environment under similar 
+workloads showed a 1 percent difference. 
+
+  Near linear scalability was achieved when additional virtual Oracle EBS and RAC nodes were 
+
+added to the deployment. The number of transactions per second increased linearly while using 
+fewer resources than before scaling out. 
+
+Key benefits 
+
+Test results support these key benefits of virtualizing Oracle EBS and RAC on Vblock Systems with 
+vSphere 5: 
+
+Simplified deployment and management 
+
+  Standardized, prepackaged units of converged infrastructure on Vblock Systems accelerate 
+
+deployment and simplify operation. 
+
+  Simple, automated virtual machine migration and conversion from Oracle VM and other third-
+party platforms to Vblock Systems using VMware vCenter Converter reduce risk and increase 
+chances for a successful production cutover to vSphere 5. 
+
+  Virtualization on Vblock Systems allows deployment of more Oracle instances on less hardware 
+
+to maximize licensing ROI. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Operational agility 
+
+ 
+
+Integrated, best-in-class components to support computing, networking, storage, security, 
+virtualization, and management technologies on Vblock Systems make it easy to scale the 
+virtualization environment to support the most data-intensive application workloads 
+
+  Provisioning of new pre-configured Oracle EBS environments takes only minutes using VMware 
+
+vSphere templates 
+
+  Live migration of virtual machines from one physical server to another using VMware vMotion 
+  Converged infrastructure of Vblock Systems makes workload balancing simple and 
+
+straightforward across all components.  
+
+Performance and scalability 
+
+  The design of Vblock Systems makes it easy to scale the virtualization environment to support 
+
+data-intensive application workloads while maintaining performance levels. 
+
+  Dynamic vertical and horizontal scaling of virtual machines accommodates growth, changing 
+
+workloads, and scheduled maintenance demands. 
+
+  Load balancing data-intensive workloads by scaling out application and database nodes 
+
+improves throughput. 
+
+Scope 
+
+This solution architecture provides: 
+
+  Descriptions and diagrams of test components and architecture. 
+  Details on how the performance and scalability testing was conducted and the test results. 
+ 
+
+Instructions for upgrading an existing vSphere 4.1 deployment to vSphere 5 on a Vblock 
+System. 
+Instructions for migrating an Oracle VM deployment to vSphere 5 on Vblock Systems. 
+
+ 
+
+Audience 
+
+The primary audience for this solution architecture is technical, including CIOs, data center managers, 
+Oracle architects, and Oracle Database Administrators (DBAs) in medium-sized and large 
+enterprises.  
+
+New customers interested in virtualizing or migrating their Oracle applications environment to vSphere 
+5 on Vblock Systems to improve quality of service and reduce baseline cost structure should read this 
+paper. Current VCE customers interested in upgrading their Vblock Systems to vSphere 5 to leverage 
+a more robust feature set will also benefit from reading this paper.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper and the name of the topic to which your 
+feedback applies. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Technology overview 
+
+The VCE solution for virtualized Oracle EBS and RAC on Vblock Systems uses these major hardware 
+and software components: 
+
+  Vblock Systems 
+  VMware vSphere 5 
+  Oracle Database 11g Release 2 Enterprise Edition 
+  Oracle Real Application Clusters 
+  Oracle E-Business Suite Release 12 
+  EMC Unified Infrastructure Manager 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+For more information, go to www.vce.com. 
+
+VMware vSphere 5 
+
+Virtualization layers on Vblock Systems are provided by VMware vSphere, the industry-leading 
+virtualization system for building cloud infrastructures. vSphere 5 enables customers to run business-
+critical applications with confidence and respond to business needs faster. 
+
+This table summarizes some of the features and functionality in vSphere 5: 
+
+Description 
+ 
+
+ 
+
+Faster high availability (HA) configuration times 
+A 32-host, 3,200 virtual machine, high-availability enabled cluster 
+can be configured nine times faster in vSphere 5. 
+Faster failover rates 
+Able to fail over 60% more virtual machines within the same 
+period 
+Lower management operational latencies 
+
+ 
+  Higher management operations throughput (ops/min) 
+
+Up to 120% improvement, depending on the intensity of the 
+operations 
+32-way vCPU scalability 
+
+ 
+  Virtual machines can support vMem up to 1 TB.  
+
+With this support, Tier 1 applications consuming large amounts 
+of memory, such as in-memory databases, can be virtualized. 
+
+vSphere Storage I/O Control (SIOC) supports NFS. You can set 
+storage quality of service priorities per virtual machine, enabling 
+better access to storage resources for high-priority applications. 
+
+Functionality/feature 
+VMware vCenter Server 
+scalability 
+
+Compute 
+
+Storage 
+
+Network 
+
+VMware vSphere vMotion 
+
+vSphere Network I/O Control (NIOC) gives a higher granularity of 
+network load balancing. 
+ 
+
+vSphere vMotion 
+Multi–network adaptor enablement that contributes to an even 
+faster vMotion 
+vSphere Storage vMotion 
+Fast, live storage migration with I/O mirroring 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+10 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Oracle Database 11g Release 2 Enterprise Edition 
+
+Oracle Database 11g Release 2 provides industry-leading performance, scalability, security, and 
+reliability on a choice of clustered or single servers with a wide range of options to meet user needs. It 
+provides the foundation for IT to successfully deliver more information with higher-quality service, 
+reduce the risk of change within IT, and make efficient use of IT budgets. 
+
+In Oracle 11g R2 Enterprise Edition, Oracle Automatic Storage Management (ASM) and Oracle 
+Clusterware have been integrated into a single set of binaries and named Oracle Grid Infrastructure. 
+This now provides all cluster and storage services required to run an Oracle RAC database. 
+
+Oracle Real Application Clusters 
+
+Oracle RAC supports the transparent deployment of a single database across a cluster of servers, 
+providing fault tolerance from hardware failures or planned outages. Available as an option with 
+Oracle Database 11g, Oracle RAC is a cluster database with a shared cache architecture that 
+overcomes the limitations of traditional shared-nothing and shared-disk approaches to provide a 
+highly scalable and available database solution. 
+
+Oracle E-Business Suite Release 12 
+
+The Oracle EBS architecture is a framework for multitiered distributed computing. In the Oracle EBS 
+model, services are distributed among multiple levels or tiers. A service is a process or a group of 
+processes that exercises some business logic and provides a particular functionality. A tier is a 
+grouping of services that can potentially span physical machines. In other words, a tier is a logical 
+grouping of services that is not limited by physical nodes or machines. Each tier can consist of one or 
+more nodes, and each node can accommodate more than one tier. For instance, the database server 
+can reside on the same node as one or more servers in the application tier. 
+
+Note: 
+
+For more details, refer to Oracle Applications Concepts [B10642-01]. 
+
+EMC Ionix Unified Infrastructure Manager 
+
+EMC Ionix Unified Infrastructure Manager/Provisioning (UIM/P) provides simplified management for 
+Vblock Systems, including provisioning, configuration, change, and compliance management. UIM/P 
+provides the functionality to package portions of the compute, storage, and network resources of 
+Vblock Systems into infrastructure services. Once in a service, the resources can be reserved, 
+deployed, allocated, and managed as a single entity through UIM/P. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Solution architecture 
+
+The testing described in this solution architecture was conducted in a virtualized Oracle environment 
+created on a Vblock System 700 with VMware vSphere 5. To replicate a common customer 
+environment, the virtual environment included Oracle EBS applications and a virtualized Oracle 
+clustered database (Oracle and Oracle RAC).  
+
+High-level architecture 
+
+This diagram shows the high-level architecture of the environment used to validate the solution: 
+
+ 
+
+12 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Physical topology 
+
+This diagram shows the physical topology of the test environment: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+Performance test environment 
+
+Performance testing involved measuring and comparing performance of Oracle EBS on Oracle RAC 
+in the physical environment with performance in the virtual environment. This diagram illustrates the 
+test environment for performance testing: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+14 
+
+ 
+
+ 
+
+Scalability test environment 
+
+Scalability testing involved adding Oracle EBS application and Oracle RAC database nodes to the 
+virtual environment, and then monitoring performance improvements. This diagram illustrates the 
+scalability test environment: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+15 
+
+ 
+
+ 
+
+Hardware components 
+
+A virtual Oracle RAC can be deployed on Vblock Systems that provide SAN connectivity. The testing 
+described in this paper was performed on the Vblock System 700 model MX. 
+
+This table lists the hardware components used to validate the solution: 
+
+Component 
+UCS Blade B250-M2 
+
+Quantity 
+8 
+
+MDS 9148 Multilayer Fabric 
+Switch  
+
+Symmetrix VMAX 
+
+VMAX FA ports 
+
+Cisco ACE load balancer 
+
+UCS Blade B200-M1 
+
+2 
+
+1 
+
+8 
+
+1 
+
+3 
+
+Configuration 
+12 x CPU cores, 192 GB memory per blade 
+ 
+ 
+ 
+
+3 used for physical environment tests 
+3 used for virtualized environment tests 
+2 additional used for scale-out tests 
+
+4 x 8 Gbps ports per switch 
+
+172 x 450 GB (15K RPM) disks 
+
+8 GB per port 
+
+-- 
+ 
+ 
+
+For Oracle VM Server 
+8 x CPU cores, 96 GB memory per blade 
+
+Virtual machine configuration 
+
+By default, vNUMA is enabled only for virtual machines with more than eight vCPUs. Although 
+vNUMA can be enabled for smaller machines, it was not enabled for the virtual machines used in 
+validation of this solution. 
+
+This table describes the configuration of each virtual machine used to validate the solution:  
+
+Virtual machine 
+oel5u4-app1 
+
+oel5u4-app2 
+
+oel5u4-app3 
+
+*oel5u4-app4 
+
+oel5u4-rac1 
+
+oel5u4-rac2 
+
+oel5u4-rac3 
+
+oel5u4-rac4 
+
+oel5u4-rac5 
+
+Memory 
+65 GB RAM 
+
+65 GB RAM 
+
+65 GB RAM 
+
+65 GB RAM 
+
+98 GB RAM 
+
+98 GB RAM 
+
+98 GB RAM 
+
+98 GB RAM 
+
+98 GB RAM 
+
+No. of vCPUs 
+8 
+
+vNIC type 
+VMXNET3 
+
+Virtual SCSI adapter 
+LSI Logic Parallel 
+
+8 
+
+8 
+
+8 
+
+6 
+
+6 
+
+6 
+
+6 
+
+6 
+
+VMXNET3 
+
+VMXNET3 
+
+VMXNET3 
+
+VMXNET3 
+
+VMXNET3 
+
+VMXNET3 
+
+VMXNET3 
+
+VMXNET3 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+LSI Logic Parallel 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+16 
+
+ 
+
+ 
+
+Software components 
+
+This table lists the software components used to validate the solution: 
+
+Platform 
+Red Hat Enterprise Linux 5.4 
+
+Oracle EBS 12.1 
+
+Role 
+Operating system 
+
+Application 
+
+Oracle 11g R2 Enterprise Edition 
+
+Database 
+
+Oracle 11g R2 RAC 
+
+VMware vSphere 4.x 
+
+VMware vSphere 5.x 
+
+Clusterware 
+
+Virtualization 
+
+Virtualization 
+
+Version 
+RHEL 5 U4 (64-bit) 
+
+12.1.1 
+
+11.2.0.2 
+
+11.2.0.2 
+
+4.1 
+
+5.0 
+
+Storage layout 
+
+For performance testing, two VMAX thin storage pools comprising Fibre Channel (FC) disks were 
+used. These disks were 600 GB 15K RPM. 
+
+Storage pool 1 
+
+Pool 1 (eBizR10) contained 20 50-GB RAID 1 data devices with 1TB of usable storage. This table lists 
+the thin LUNs (TDEVs) created from this pool. 
+
+Environment 
+Physical 
+
+LUNs 
+Oracle DB online redo logs 
+
+Virtual (provisioned as RDMs) 
+
+Oracle DB online redo logs 
+
+Virtual disks 
+3 x 100 GB 
+
+3 x 100 GB 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+17 
+
+ 
+
+ 
+
+Storage pool 2 
+
+Pool 2 (eBizR5) contained 200 50-GB RAID 5 data devices with 10 TB of usable storage. This table 
+lists the thin LUNs (TDEVs) created from this pool: 
+
+Tier 
+Oracle DB 
+
+Environment 
+Physical 
+
+Virtual (provisioned as 
+RDMs) 
+
+Oracle 
+Application 
+
+Physical 
+
+Virtual (provisioned as 
+VMDKs) 
+
+LUNs 
+Oracle RAC voting/OCR disks 
+Oracle archive log DG  
+Oracle data DG 
+Oracle temp space DG 
+
+Oracle RAC voting/OCR disks 
+Oracle archive log DG  
+Oracle data DG 
+Oracle temp space DG RAC 
+
+Virtual disks 
+6 x 4 GB 
+1 x 536 GB 
+3 x 365 GB 
+1 x 256 GB 
+
+6 x 4 GB disks 
+Oracle RAC 
+voting/OCR disks 
+
+OS 
+Application tier binary and shared 
+application tier files 
+
+OS 
+Application tier binary and shared 
+application tier files 
+
+1 x 100 GB 
+1 x 500 GB 
+
+1 x 100 GB 
+1 x 500 GB 
+
+Note: DG = Automatic Storage Management Disk Group 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+18 
+
+ 
+
+ 
+
+Storage mappings for Oracle database 
+
+This illustration shows the storage mappings for the Oracle database: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+19 
+
+ 
+
+ 
+
+Performance and scalability testing 
+
+Performance and scalability tests were conducted to demonstrate the enhanced functionality, agility, 
+and other benefits of virtualizing Oracle EBS and RAC on Vblock Systems with vSphere 5. 
+
+Test environment 
+
+This table describes how the test environment was set up: 
+
+Step  Action 
+1 
+
+Install and configure a split-node Oracle EBS R12 
+(12.1.1) environment consisting of one application tier 
+server and one Oracle 11g database tier server.  
+
+2 
+
+3 
+
+4 
+
+Create a two-node physical Oracle RAC. 
+
+Migrate the physical Oracle RAC to the virtual vSphere 5 
+environment. 
+
+Clone the virtual Oracle EBS and RAC environment to 
+the physical environment using EMC storage replication 
+technology with Oracle Rapid Clone Technology. 
+
+Notes 
+Refer to the appropriate Oracle 
+documentation for instructions. 
+
+Refer to the appropriate Oracle 
+documentation for instructions. 
+
+Refer to Zero Downtime 
+Bi-directional Physical to Virtual 
+Migration for Oracle EBS R12 
+With RAC on Vblock Systems at 
+www.vce.com/products/solutions/
+oracle for instructions.  
+
+Refer to Cloning Oracle 
+Applications Release 12 with 
+Rapid Clone (Doc ID 406982.1) 
+for detailed information. You need 
+an Oracle support account to view 
+it. 
+
+Workload description 
+
+The table below describes the customized Order to Cash (O2C) workflow used to generate a 
+workload for the performance and scalability testing. This workload demonstrates the performance 
+and scalability of Oracle applications and provides metrics for comparing the performance of Oracle 
+applications on different system configurations.  
+
+The transactions were scripted using HP LoadRunner and executed under predefined user loads. 
+Each user executes the transactions as part of the O2C process. 
+
+Step  Action 
+1 
+
+Enter Order/ 
+Create Sales 
+Order 
+
+2 
+
+Pick Release 
+
+Description 
+The cycle begins in the Order Management Module where an order is 
+created with about four lines. This order is then booked and passed to 
+Pick Release. 
+
+Pick Release finds and releases the order and creates a move order request. 
+The process of transacting move orders creates a reservation against the 
+source sub-inventory. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+20 
+
+ 
+
+ 
+
+Step  Action 
+3 
+
+Ship Confirm 
+
+Workflow 
+Background 
+Process 
+
+4 
+
+5 
+
+Description 
+Ship Confirm confirms that items have shipped. Shipping execution 
+confirms that the delivery lines associated with the delivery have shipped. 
+Interface Trip Stop (ITS) creates a trip and related stops for all eligible 
+deliveries that have not been assigned to a trip. The ITS process happens 
+automatically when you Ship Confirm the order. 
+
+The workflow background process, OM Order Line, must run to merge 
+eligible order lines into Accounts Receivable (AR) as invoices. This 
+creates an invoice from the Shipped/Closed order lines. 
+In most production/customer environments, this process runs 
+automatically as prescribed by business requirements. For this test, this 
+process was manually submitted after the completion of ITS. 
+
+Receivables 
+Query Invoice 
+
+An invoice is created based on the customer and the items that were 
+ordered previously. 
+
+Performance testing 
+
+Five load tests were performed in each environment: physical and virtual Oracle RAC. Application 
+response times (in seconds) were averaged for each transaction in the load test. Then, the average 
+application response times on the physical Oracle RAC were compared to the average application 
+response times with the virtual Oracle RAC.  
+
+Test objectives 
+
+The objectives of the testing were to: 
+
+  Compare performance of Oracle EBS in the physical environment with performance in the virtual 
+
+environment. 
+
+  Demonstrate that running I/O-intensive, application-based workloads on Vblock Systems with 
+
+vSphere 5 meets industry expectations. 
+
+Test methods 
+
+Performance testing consisted of execution of Order Management transactions. To test performance 
+with increased load, the number of concurrent users was incremented from 100 to 500.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+21 
+
+ 
+
+ 
+
+Test results 
+
+This chart compares average application response times on the physical Oracle RAC with average 
+transaction response times on the virtual Oracle RAC under similar workloads.  
+
+Major findings of the performance test were: 
+
+  Compared to the physical environment, average application response times in the virtual test 
+
+environment increased slightly during testing with 500 concurrent users. 
+
+  A comparison of the average application response times in the virtual environment with average 
+
+application response times in the physical environment under similar workloads showed a 1 
+percent difference. 
+
+ 
+
+Scalability testing 
+
+To demonstrate the operational agility and scalability of applications in the vSphere 5 environment, 
+performance under load was measured before and after scaling out the virtual Oracle environment. 
+
+Test objective 
+
+The objective of the scalability testing was to demonstrate that the virtual environment provided by 
+vSphere 5 on a Vblock System allows scaling out of Oracle EBS with Oracle RAC deployments to 
+accommodate dynamic I/O-intensive workloads. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+Test methods 
+
+To determine when to scale the Oracle RAC environment, Oracle Enterprise Manager (OEM) 11g R1 
+Grid Control and native system tools were used to monitor utilization on the Oracle RAC database 
+nodes. When CPU and memory utilization reached 80 percent of available resources for the Oracle 
+RAC nodes, one Oracle RAC node and one Oracle EBS node were added to the environment to 
+provide sufficient resources for additional users to perform tasks within the Oracle EBS environment.  
+
+Note:  For detailed information about adding virtual nodes to Oracle EBS and RAC, refer to Zero Downtime 
+
+Bi-directional Physical to Virtual Migration for Oracle EBS R12 With RAC on Vblock Systems at 
+www.vce.com/products/solutions/oracle. 
+
+Scaling Oracle RAC 
+Step  Action 
+1 
+
+Add a virtual Oracle RAC node to the cluster. 
+
+2 
+
+3 
+
+Add an Oracle RAC instance to the new node. 
+
+Register the instance with the listener on the new node. 
+
+Scaling the application tier 
+Step  Action 
+1 
+
+Prepare the environment. 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+Configure the new application node. 
+
+Update profile options. 
+
+Verify the APPLCSF variable setting. 
+
+Update the SESSION_COOKIE_DOMAIN value in ICX_PARAMETERS. 
+
+Configure load balancing.  
+
+Configure parallel concurrent processing. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+23 
+
+ 
+
+ 
+
+Test results 
+
+The testing showed that near linear scalability was achieved on Vblock Systems by adding additional 
+nodes. After scaling out the environment, transactions per second (TPS) increased from 800 to 1430 
+with less resource utilization than before scaling because the load was evenly distributed to the newly 
+added nodes. This chart shows TPS before and after scaling out the environment: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+24 
+
+ 
+
+ 
+
+Upgrading to vSphere 5 
+
+Customers who already have Oracle deployments on Vblock Systems with vSphere 4.1 may want to 
+upgrade to leverage the performance and scalability enhancements in vSphere 5. For example, virtual 
+machines on vSphere 5 can have up to 32 virtual CPUs and 1 TB of RAM to support even the largest 
+applications.  
+
+The following sections provide an overview of the procedures for a non-disruptive upgrade from 
+vSphere 4.x to vSphere 5. In most cases, this upgrade is a straightforward process and can be 
+completed in a matter of hours. 
+
+The steps to upgrade are: 
+
+1.  Prepare for the upgrade. 
+2.  Upgrade vCenter Server. 
+3.  Upgrade vSphere Client. 
+4.  Upgrade hosts to ESXi 5. 
+5.  Upgrade virtual machine hardware and VMware Tools. 
+6.  Perform post-upgrade tasks. 
+
+Related documentation 
+
+For detailed upgrade instructions, refer to the following documentation available on the VCE support 
+portal (support.vce.com/): 
+
+  Vblock Systems Software and Firmware Upgrade Guide 
+  Vblock Systems Software and Firmware Upgrade Guide for VMware vSphere 5.0 
+
+Note:  A username and password are required to access the VCE support portal. 
+
+Preparing for the upgrade 
+
+1.  Use the VMware Compatibility Guide (www.vmware.com/resources/compatibility) to verify that the 
+
+current hardware, storage, and network drivers are compatible with vSphere 5. 
+If the vSphere system includes VMware plugins, verify that they are supported by vCenter Server 
+5. 
+
+2. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+25 
+
+ 
+
+ 
+
+Upgrading vCenter Server 
+
+1.  Verify the following requirements for upgrading to vCenter Server 5 are met: 
+
+Item 
+vCenter Server logs 
+
+Requirement 
+Minimum 450 MB additional storage 
+
+vCenter Server 5 appliance 
+
+7 GB of disk space and 8 GB RAM 
+
+vCenter 5 Client 
+
+1.5 GB disk storage per client 
+
+Microsoft SQL Server 2008 R2 Express Disk 
+Note: SQL Server 2008 is supported for the 
+
+vCenter 5 internal database. 
+
+Up to 2 GB free disk space to decompress the 
+installation archive 
+
+2.  Back up your vCenter Server database and SSL certificates.  
+3.  Stop the vCenter Server services. 
+4.  Run the vCenter Host Agent Pre-Upgrade Checker, and resolve any issue that Pre-Upgrade 
+
+Checker finds.  
+
+5.  Make sure that no processes are running that use the ports that vCenter Server uses.  
+6.  Run the vCenter Server upgrade. 
+
+Upgrading vSphere Client 
+
+Note:  The vSphere Client upgrade operation requires no downtime. Virtual machines do not need to be powered 
+
+off. 
+
+1. 
+
+(Optional) Use Add/Remove Programs from the Windows Control Panel to remove any previous 
+vSphere Client.  
+
+2.  Run the vSphere Client installer. 
+
+Upgrading hosts to ESXi 5 
+
+1.  Make a backup of host profiles, configurations, and VMFS 4.x file systems. 
+2.  Allocate additional required disk space for VMFS data stores with ESXi hosts. 
+
+Note: 
+
+vSphere 5 requires an additional 50 MB of disk storage per VMFS data store to perform the 
+upgrade. 
+
+If not enabled, enable Intel VT mode in the host’s BIOS. 
+
+3. 
+4.  Place the host or hosts in maintenance mode. Make sure virtual machines have been evacuated 
+
+to available hosts. 
+If a fibre-attached SAN is connected to the ESXi hosts, detach the fibre before proceeding. 
+
+5. 
+
+Note:  Do not disable HBA cards in the BIOS. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+26 
+
+ 
+
+ 
+
+Upgrading virtual machine hardware version 
+
+1.  Make a backup of the virtual machines. 
+2.  Use Update Manager in vCenter to upgrade the virtual machines from version 7 to version 8. 
+
+Note:  Do not use vmware-vmupgrade.exe to upgrade the virtual machines. 
+
+3.  Upgrade the VMware Tools for all virtual machines. 
+
+ Post-upgrade tasks 
+
+1.  Apply upgrade licenses for vSphere 5. 
+2.  Reconnect ESXi hosts to vCenter Server and to SAN fibre connections. 
+3.  Execute the following command to convert LUN masking to the claim rule format: 
+
+esxcli corestorage claimrule convert 
+
+4.  Validate that the upgraded environment is fully operational and without errors. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+27 
+
+ 
+
+ 
+
+Migrating to vSphere 5 
+
+Customers using Oracle VM as their virtualization platform for Oracle EBS might want to migrate their 
+deployments to Vblock Systems with vSphere 5 to maximize performance, scalability, and availability 
+of their applications and take advantage of running mixed workloads on a single platform. Migrating 
+from Oracle VM to Vblock Systems is quick, low cost, and low risk using VMware vCenter Converter 
+Standalone 5.  
+
+To demonstrate the ease of virtual machine migration and conversion, six virtual machines (two 
+Oracle EBS application tier and four Oracle RAC) were migrated from a source Oracle VM 
+environment to a destination vSphere 5 system on a Vblock System using VMware Converter 
+Standalone. 
+
+Converter Standalone provides an easy-to-use solution to automate the process of creating VMware 
+virtual machines from physical machines (running Windows and Linux), other virtual machine formats, 
+and third-party image formats. Through an intuitive wizard-driven interface and a centralized 
+management console, Converter Standalone can quickly and reliably convert multiple local and 
+remote physical machines without any disruptions or downtime.  
+
+The diagram below shows the types of conversions that can be performed with Converter Standalone. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+28 
+
+ 
+
+ 
+
+Setting up the source Oracle VM environment 
+
+To set up the source Oracle VM environment, the following components were installed and 
+configured: 
+
+  Oracle 3.0.3 VM Server 
+  Oracle 3.0.3 VM Manager 
+  Oracle VM template images 
+
+After verifying the source Oracle VM 3.0.3 environment was operational, the Oracle VM templates for 
+Oracle 11gR2 RAC and Oracle R12 were deployed. 
+
+Installing vCenter Converter Standalone 
+
+1.  Download VMware vCenter Converter Standalone 5 from: 
+
+www.vmware.com/products/converter/ 
+In the Oracle VM source environment, change the XEN kernel to normal kernel configuration. 
+In the destination vCenter 5 environment, select OVM as the physical host source. 
+
+2. 
+3. 
+4.  Modify the network name and IP address of the Oracle virtual machines from the Oracle VM 
+
+network to allow both the source virtual machines and new destination virtual machines to coexist 
+on the same network. 
+
+Note: 
+
+If the VMware virtual machines have disks that are populated by using a backup of a physical host 
+or by cold cloning, Converter Standalone prepares the image to run on VMware virtual hardware. If 
+third-party virtualization software was used to create a virtual machine on an ESXi host, use 
+Converter Standalone to reconfigure it. Any operating system installed on a multi-boot machine can 
+be reconfigured if the virtual machine is imported to an ESXi host. Before reconfiguring a multi-boot 
+machine, the boot.ini file must be changed. 
+
+5.  Disable ports that block access to the source and destination virtual machine environments, as 
+
+this will affect the conversion process. 
+Install Converter Standalone. Refer to the VMware vCenter Converter Standalone User's Guide 
+for instructions. 
+
+6. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+29 
+
+ 
+
+ 
+
+Converting the virtual machines 
+
+1.  Start the Converter Standalone application. 
+2.  Click Convert Machine in the application menu. The Source System page appears. 
+3.  On the Source System page, select the source system to convert (192.168.106.152). 
+
+4.  Click Next. The Destination System page appears. 
+5.  On the Destination System page: 
+
+a.  Select VMware Infrastructure virtual machine from the Select destination type drop-
+
+down menu. 
+
+b.  Enter the IP address or host name and the credentials for authentication with the ESXi host or 
+
+vCenter Server. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+30 
+
+ 
+
+ 
+
+ 
+
+6.  Click Next. The Destination Virtual Machine page appears. 
+7.  On the Destination Virtual Machine page, name the destination virtual machine.  
+
+If the destination is a vCenter Server, select the destination folder. 
+
+8.  Click Next. The Destination Location page appears. 
+9.  On the Destination Location page: 
+
+a.  Select a data center object from the inventory to accommodate the destination virtual 
+
+machine (hugo101.mord0r.vce). 
+
+b.  From the Datastore drop-down menu, select the data store to hold the destination virtual 
+
+machine files (OVM Target on VMAX4149_dev_275).  
+
+c.  From the Virtual machine version drop-down menu, select the virtual hardware version for 
+
+the destination virtual machine (Version 8). 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+31 
+
+ 
+
+ 
+
+10.  Click Next. The Options page appears. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+32 
+
+ 
+
+ 
+
+11.  Use the Options page to configure the following conversion parameters based on the 
+
+infrastructure and environment: 
+a.  Virtual hardware resources that the destination virtual machine uses. 
+b.  Network settings of the destination virtual machine 
+c.  Guest operating system 
+d.  Conversion process and behavior of the source and destination systems during and after 
+
+conversion 
+
+ Refer to the VMware vCenter Converter Standalone User's Guide for detailed instructions. 
+
+12.  Click Next. The Summary page appears. 
+13.  Use the Summary page to verify the source and destination settings are correct.  
+
+ 
+
+14.  Click Finish to submit the job.  
+
+Converter Standalone validates the job parameters. If the validation succeeds, the conversion 
+job appears in the Job View list in the main application window. If the validation fails, click Back 
+and correct the invalid parameters as prompted. 
+
+15.  Start the destination Oracle virtual machines and validate that the newly migrated Oracle 
+
+environment is functional and stable. 
+Refer to the VMware vCenter Converter Standalone User's Guide for more information. 
+
+16.  Apply VMware best practices for Oracle and test the functionality of the migrated Oracle virtual 
+
+machines in the vSphere 5 environment.  
+Refer to Oracle Databases on VMware Best Practices Guide for detailed information. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+33 
+
+ 
+
+ 
+
+Conclusion 
+
+Vblock Systems deliver enterprise-level functionality to address the needs of a vast array of business-
+critical applications, such as Oracle EBS. Vblock Systems scale to match the performance needs of 
+the largest and most data-intensive business applications, while the ability to migrate applications and 
+workloads enhances business continuity. 
+
+To demonstrate the performance, operational agility, and scalability benefits of virtualizing Oracle EBS 
+and Oracle RAC on a Vblock System with VMware vSphere 5, VCE performed extensive data-
+intensive workload performance and scalability testing.  
+
+Testing was conducted on a virtualized Oracle EBS R12 and Oracle RAC environment created on a 
+Vblock System 700 with vSphere 5.  
+
+Major findings of the performance and scalability tests were: 
+
+  Comparison of average application response times of Oracle EBS and RAC in the physical 
+
+environment with average application response times in the virtual environment under similar 
+workloads showed a 1 percent difference. 
+
+  Near linear scalability was achieved when additional virtual Oracle EBS and RAC nodes were 
+
+added to the deployment. The number of transactions per second increased linearly while using 
+fewer resources than before scaling out. 
+
+To demonstrate the ease with which virtual machines can be migrated and converted using Converter 
+Standalone, multiple virtual machines from a source Oracle VM environment were migrated to a 
+destination vSphere 5 environment on a Vblock System. The virtual machines were migrated and 
+converted to the vSphere 5 environment on a Vblock System quickly and easily without disruptions or 
+downtime. 
+
+Next steps 
+
+To learn more about this and other solutions, contact a VCE representative or go to www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+34 
+
+ 
+
+ 
+
+References 
+
+Oracle 
+
+  My Oracle Support Notes 
+http://support.oracle.com 
+
+  Cloning Oracle Applications Release 12 with Rapid Clone (Doc ID 406982.1, requires an Oracle 
+
+support account to view) 
+
+  Using Oracle 11g Release 2 Real Application Clusters with Oracle E-Business Suite Release 12 
+
+(Doc ID 823587.1) 
+
+  Using Load Balancers with Oracle E-Business Suite Release 12 
+
+(Doc ID 380489.1) 
+
+  Configuration of Load Balancing and Transparent Application Failover (Doc ID 226880.1) 
+  How to Implement Load Balancing With RAC Configured System Using JDBC (Doc ID 
+
+247135.1) 
+
+  Using Cisco ACE Series Application Control Engine with Oracle E-Business Suite Release 12 
+
+(Doc ID 603325.1) 
+
+  Sharing the Application Tier File System in Oracle E-Business Suite Release 12 (Doc ID 
+
+384248) 
+
+  Oracle VM: Installation and Upgrade Guide for Release 3.0.3 
+
+http://docs.oracle.com/cd/E26996_01/E18548/E18548.pdf 
+
+  Oracle VM: User's Guide for Release 3.0.3 
+
+http://docs.oracle.com/cd/E26996_01/E18549/E18549.pdf 
+
+VMware 
+
+  VMware vCenter Converter Standalone User's Guide 
+
+http://www.vmware.com/pdf/convsa_50_guide.pdf 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+35 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright © 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+

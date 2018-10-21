@@ -1,0 +1,61 @@
+VirtualWisdom 3.4 Supported Platforms  
+
+Purpose of this document 
+This document summarizes the current specifications for supported platforms.
+
+System Requirements – VirtualWisdom 3.4 
+VirtualWisdom Server  
+
+Minimum  
+Resource
+System
+
+Processors
+RAM
+Data Disk
+
+VirtualWisdom Requirement
+Windows Server 2012
+Windows Server 2008 R2 and SP1 and SP2
+6 GB free disk space to install VirtualWisdom *
+2 x 2.4 GHz (or faster) x86-64 class
+16 GB
+Dedicated 300 GB 15K RPM (or better) drive
+(not same drive as backup)
+
+Backup Disk Dedicated 300 GB 15K RPM (or better) drive 
+
+(not same drive as data) 
+
+This minimum configuration is not intended for significant monitoring use, but only for relatively 
+small SAN configurations, for example: 10,000 ProbeSW ports or a single ProbeFC8 device.
+
+Recommended  
+Resource
+System
+
+Processors
+RAM
+Data Disk
+
+VirtualWisdom Requirement
+Windows Server 2012
+Windows Server 2008 R2 and SP1 and SP2 
+(Enterprise Edition to access > 32 GB RAM)
+10 GB free disk space to install VirtualWisdom *
+2 x 2.4 GHz (or faster) x86-64 class
+48 GB
+Dedicated 600 GB 15K RPM (or better) drive
+(not same drive as backup)
+
+Backup Disk Dedicated 600 GB 15K RPM (or better) drive 
+
+(not same drive as data)
+
+* VirtualWisdom can be installed on the same drive as the Windows OS, but this is not a 
+requirement. System, data, and backup drives must be different devices. Disks can be 
+configured as RAID devices.
+
+1 VirtualWisdom 3.4 Supported Platforms | Virtual Instruments
+
+

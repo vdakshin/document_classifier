@@ -1,0 +1,328 @@
+8x8 RELIES ON VBLOCK SYSTEMS FOR 
+
+HIGHLY AVAILABLE CLOUD SERVICES 
+
+Cloud	pRovideR	CaptuReS	neW	BuSineSS	oppoRtunitieS
+
+	
+
+A leading provider of cloud-based communications and computing solutions, 8x8 
+Inc. has approximately 350 employees and is an established provider of cloud 
+services to small and medium sized businesses. 8x8 made a strategic decision to 
+expand its target market to larger enterprise and government customers. This 
+would require the deployment of a new, more robust infrastructure that could offer 
+enterprise-class reliability as well as ease of use. 
+
+The company found a solution in Vblock™ Systems from VCE™. As Andrew 
+Schwabecher, general manager–hosting services put it, “Vblock Systems are ideal for 
+a hosting infrastructure used for enterprise applications. The Vblock system ensures 
+full symmetric fault tolerance with no single point of failure. That means we can offer 
+customers a highly available cloud hosting solution that requires no code changes in 
+their applications.”
+
+Cloud	SeR viCe	pRovideR
+
+	 Client
+8x8 Inc.
+
+	 Challenge
+
+Develop cost-effective cloud 
+computing services
+
+Deploy a fully redundant 
+and highly reliable platform 
+to support mission-critical 
+applications
+
+	 Solution
+
+Kovarus designed a  
+cloud solution built on  
+Vblock Systems
+
+	 ReSultS
+
+Able to deploy a customer’s 
+virtual data center overnight
+
+Attracting new customers  
+by offering higher levels  
+of security and trusted  
+multi-tenancy 
+
+www.vce.com
+
+Challenge
+Founded in 1987, 8x8 Inc. transformed 
+itself into one of the leading stand-
+alone voice over Internet protocol 
+(VoIP) phone services providers 
+and a leading provider of cloud 
+services offering everything from 
+unified communications to managed, 
+dedicated hosting. 
+
+ In late summer of 2011, 8x8 decided to 
+expand its market from its traditional 
+small to medium-sized business 
+customers to larger enterprise and 
+government customers. One of the 
+major challenges for 8x8 was ensuring 
+that it could offer customers a fully 
+redundant and reliable platform, 
+suitable for running mission-critical 
+applications in a cloud environment. 
+Additionally, as a service provider, 
+8x8 has hosting requirements that are 
+continually changing. It was difficult 
+to predict precisely what workload a 
+customer would bring to the company 
+at a given time. Individual storage 
+workloads might require different 
+drives or storage layouts to efficiently 
+accommodate the data.
+
+Solution
+To accelerate deployment and expand 
+the range of cloud hosting services it 
+offered, 8x8 chose VCE and Vblock 
+Systems. The company worked closely 
+with VCE partner Kovarus—a system 
+integrator that specializes in data 
+center design, implementation, and 
+optimization—to specify requirements. 
+VCE then integrated, tested, and 
+validated the Vblock Series 300 model 
+GX—fully configured as required—in a 
+controlled factory environment, before 
+shipping the racks to 8x8’s data center.
+
+Kovarus managed the planning and 
+configuration process every step of 
+the way. In addition, once the Vblock 
+system was reassembled in 8x8’s 
+data center, Kovarus prepared the 
+infrastructure so it would be ready 
+for 8x8 to use for its cloud hosting 
+services. They used the VMware vCloud 
+API to create needed middleware, 
+and customize and deploy a variety 
+of applications—from provisioning 
+systems to billing.
+
+“8x8 needed a broad base of 
+experience such as in-depth VMware 
+experience as well as expertise with 
+converged switching infrastructures 
+involving Ethernet and Fibre Channel 
+and SAN storage,” Schwabecher 
+explains. “The Kovarus team helped us 
+build and customize all the applications 
+we required. We couldn’t have done  
+it without them.”
+
+Results
+virtual	data	Center	virtually	overnight
+
+Today, 8x8 can respond within 24 
+hours to customers by providing 
+subscription-based, hosted virtual data 
+center services on the highly available 
+and reliable Vblock system. The ability 
+to provision storage in real time on an 
+as-needed rather than pre-allocated 
+basis has proven to be a competitive 
+advantage. Customers can deploy their 
+existing Linux or Windows applications 
+such as virtual desktop infrastructure 
+(VDI) or enterprise solutions such as 
+MS SQL on virtual machines running 
+securely in 8x8’s data center.
+
+“We know of no other service provider 
+that offers similar subscription-based 
+cloud hosting with so little lead 
+time,” Schwabecher comments. “We 
+anticipate that these services based 
+on Vblock Systems will help us meet 
+the needs of a growing number of 
+businesses of all sizes for hosted 
+mission-critical applications.”
+
+www.vce.com
+
+Schwabecher also had similar 
+observations regarding the support 
+he receives from VCE. Although 8x8 
+hasn’t had any major issues to date, the 
+company is pleased with how service-
+oriented VCE is. And 8x8 especially 
+appreciates that VCE offers a single 
+source of support regardless of where 
+an issue may arise. That’s simply not 
+the case for traditional converged 
+infrastructure solutions comprised  
+of components from a number of 
+different vendors.
+
+“Vblock Systems represent the 
+platinum standard for tier-one business 
+applications and provides businesses 
+with the confidence to entrust mission-
+critical applications to the cloud,” says 
+Bryan Martin, chairman and CEO of 
+8x8. “We view this partnership as a 
+major steppingstone toward our goal of 
+becoming the preferred provider for all 
+types of cloud services for businesses 
+across the United States.” 
+
+“vblock	Systems	represent	
+the	platinum	standard for 
+tier-one business applications 
+and provides businesses with 
+the confidence to entrust 
+mission-critical applications 
+to the cloud.” 
+— Bryan Martin 
+Chairman and CEO 
+8x8 Inc.
+
+truly	trusted	Security
+
+To address multi-tenant environments, 
+8x8 also needed to ensure customers 
+could count on trusted security, with 
+no commingling of data. The Vblock 
+system integrates many robust security 
+features including RSA and other 
+encryption technologies to safeguard 
+data in motion or at rest; firewalls that 
+incorporate sophisticated malware 
+and intrusion detection; identity 
+management and access control; and 
+assured application separation.
+
+“If you look at the design of EMC VNX 
+storage arrays, which are a part of the 
+Vblock 300GX platform, we have the 
+ability to dedicate an entire spindle to 
+a customer,” notes Schwabecher. “That 
+provides added security that customers 
+really welcome. In addition, VMware 
+offers security features that aren’t 
+available with any other hypervisor.”
+
+Key	name	Recognition
+
+Another important selling point 
+for 8x8 is the trust its customers 
+have in VCE investors. Cisco, EMC, 
+VMware, and Intel are among the most 
+well-respected names in compute, 
+network, storage, virtualization, and 
+management technologies. 
+
+“IT project managers and executive 
+decision-makers who purchase cloud 
+computing services recognize the 
+VCE and investor company brands 
+and know the high degree of integrity 
+behind them,” Schwabecher states. 
+“Your job might be on the line if your 
+hosted Microsoft Exchange server 
+goes down. You’re going to want to 
+make certain you’ve selected a hosting 
+service you can count on.”
+
+ “We know of no other 
+service provider that offers 
+similar subscription-based 
+cloud hosting with so little 
+lead time. We anticipate 
+that these services on 
+the	vblock	system	will	
+help	us	meet	the	needs	
+of	a	growing	number	of	
+businesses of all sizes for 
+hosted mission-critical 
+applications.” 
+— Andrew Schwabecher 
+General Manager–Hosting 
+8x8 Inc.
+
+about	8x8	inc.
+
+about	vCe
+
+VCE, formed by Cisco and EMC with 
+investments from VMware and Intel, 
+accelerates the adoption of converged 
+infrastructure and cloud-based 
+computing models that dramatically 
+reduce the cost of IT while improving 
+time to market for our customers. VCE, 
+through the Vblock systems, delivers the 
+industry’s only fully integrated and fully 
+virtualized cloud infrastructure system. 
+VCE solutions are available through an 
+extensive partner network, and cover 
+horizontal applications, vertical industry 
+offerings, and application development 
+environments, allowing customers to 
+focus on business innovation instead  
+of integrating, validating, and managing 
+IT infrastructure. 
+
+For more information, go to  
+www.vce.com.
+
+A pioneer in the development of cloud-
+based VoIP, video, mobile, and unified 
+communications solutions, 8x8 leverages 
+its patented software technologies to 
+deliver industry-leading SaaS and IaaS 
+applications to businesses of any size 
+with employees in any location. The 
+company provides integrated business 
+communications and cloud computing 
+services designed to meet the highest 
+levels of availability, reliability, and 
+scalability. Businesses can reduce costs, 
+improve productivity, and enhance 
+their competitiveness by choosing 8x8 
+for their mission-critical, cloud-based 
+communications and computing needs.
+
+about	Kovarus
+
+Kovarus focuses on increasing IT efficiency 
+for their clients by architecting and 
+integrating business-aligned IT solutions. 
+The company’s holistic approach to 
+helping customers deliver IT-as-a-Service 
+(ITaaS) focuses on the people, process, and 
+technologies for enabling IT management 
+and service delivery. This includes deep 
+expertise in data center technologies, 
+including: virtualization, server, storage, 
+networking and cloud computing. Kovarus 
+enables its customers to dramatically 
+simplify their IT operating model and 
+cost-effectively deliver the resources their 
+organizations need to succeed in today’s 
+highly competitive environment. 
+
+For more information, please visit  
+www.Kovarus.com. 
+
+ 
+Copyright © 2012 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC. and/or its  
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners.
+
+www.vce.com
+
+the	WoRld’S	Mo St	advanCed	ConveRged	inFRaStRuCtuRe
+
+

@@ -1,0 +1,766 @@
+Using PCoIP Host Cards 
+with VMware® View™  
+
+W H I T E   P A P E R
+
+Using PCoIP Host Cards with VMware View
+
+Table of Contents
+
+Introduction   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+Overview  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+  Additional Resources   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+Prerequisites  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+ 
+Installing VMware View  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+  Setting up the PCoIP Host Card and Zero Client  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+Installing Tera1 Firmware Release 3.4.1 or Later  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+ 
+  Checking the Firmware Version   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+ 
+ 
+  Updating the Firmware  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+ 
+Installing PCoIP Host Driver Software Release v3.3.20 for Windows  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+  Ensuring your Operating System Complies with VMware View   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+Host PC Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+ 
+Installing the VMware View Agent on a Host PC  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+Configuring a Physical PC in View   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+Installing the PCoIP Host Driver Software  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+ 
+Installing the PCoIP Host Driver Software on a Host PC  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+Configuring the PCoIP Zero Client  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+Connecting a PCoIP Zero Client to VMware View  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+  Testing the PCoIP Connection  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+Deployment Considerations  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+  Bandwidth Matrix for Various Setups of Zero Clients and  
+  VMware View Clients with Host Cards  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+Known Issues, Troubleshooting, and FAQ  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 14
+  Troubleshooting  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 14
+  Frequently Asked Questions  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 14
+About the Author and Contributor  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 15
+
+W H I T E   P A P E R   /   2
+
+Using PCoIP Host Cards with VMware View
+
+Introduction
+
+This document describes the use of PCoIP® host cards to remote demanding applications that require dedicated 
+graphics cards within an environment brokered by VMware® View™. It describes the setup and configuration 
+of PCoIP host cards (or “host cards”) in physical PCs or workstations connecting to VMware View clients with 
+PCoIP, or PCoIP zero clients.  
+
+Overview
+
+VMware View lets you set up PCoIP sessions between PCoIP clients and PCoIP host cards. Using a PCoIP  
+host card installed in a physical PC or workstation lets you remote higher-end 3D applications that use 
+dedicated GPUs.
+
+This document describes how to set up a PCoIP session between a PCoIP zero client or VMware View client 
+with PCoIP (that is, a notebook or thin client running a VMware View client) and a PCoIP host card using 
+VMware View.
+
+ 
+
+ESX/ESXi Server
+
+VMware
+
+View
+
+Connection
+
+Server
+
+Guest VM
+
+VMware
+
+View Agent
+
+PCoIP
+Server
+
+Guest VM
+
+Guest VM
+
+VMware
+
+View Agent
+
+PCoIP
+Server
+
+VMware
+
+View Agent
+
+PCoIP
+Server
+
+VMware View
+Agent Protocol
+
+PCoIP Protocol
+
+VMware ESX/ESXi
+
+PCoIP Protocol
+
+PCoIP Hardware-
+
+Accelerated Workstation
+
+OS
+
+VMware
+
+View Agent
+
+PCoIP
+Host SW
+
+PCoIP Host Card
+
+PCoIP Protocol
+
+Host Machine
+
+Figure 1: VMware View and PCoIP Technology Architecture
+
+VMware
+Virtual
+Center
+
+Active
+Directory
+
+VMware View
+Client Protocol
+
+PCoIP Zero Client
+Integrated Display
+
+Client PC or TC
+
+VMware View Client
+
+VMware
+
+View Client
+
+PCoIP
+
+Client Plug-
+
+In
+
+PCoIP Zero Client
+
+W H I T E   P A P E R   /   3
+
+Using PCoIP Host Cards with VMware View
+
+Additional Resources
+This document provides basic guidelines for using PCoIP host cards with VMware View. For more details on any 
+of these steps or procedures, see the following documents:
+
+DOCUMENT NAME
+
+DESCRIPTION
+
+SOURCE
+
+PCoIP Administrator’s 
+Guide 
+(TER0606004)
+
+Documents configuration details for a single zero 
+client through the administrative web interface.
+
+PCoIP Management  
+Console User Manual 
+(TER0812002)
+
+Provides (multiple) zero client setup and 
+maintenance details through the management 
+console for PCoIP software.
+
+Teradici Support Site > 
+Downloads > (left 
+navigation pane) 
+Support Downloads > 
+PCoIP Documentation > 
+Administrative and User 
+Guides
+
+VMware View 5 with 
+PCoIP Network 
+Optimization Guide
+
+Provides general guidelines for typical office users 
+that are connecting PCoIP clients to VMware View 5 
+virtual desktops over remote-access WAN networks.
+
+VMware View  
+Technical Resources
+
+Using PCoIP Zero 
+Clients with PCoIP 
+Host Cards
+
+The configuration of a PCoIP zero client or PCoIP 
+integrated display, with VMware View. 
+
+PCoIP Protocol Virtual 
+Desktop Network 
+Design Checklist 
+(TER1105004)
+
+Documents things to consider (such as bandwidth, 
+Quality of Service (QoS), latency, jitter, and packet 
+loss) when designing your network for virtual 
+desktops to ensure a responsive desktop.
+
+VMware View 5  
+Evaluator's Guide
+
+VMware View  
+Administration  
+guide
+
+VMware View 
+Architecture  
+Planning guide
+
+A self-guided, hands-on review of VMware View. 
+The content is intended to show how easily you can 
+set up a VMware View environment so you can 
+evaluate both new and important capabilities. 
+These capabilities include creating and managing 
+virtualized desktops, and validating the suggested 
+use cases.
+
+Describes how to configure and administer VMware 
+View, including how to configure View Connection 
+Server, create administrators, provision and deploy 
+View desktops, set up user authentication, configure 
+policies, and manage VMware ThinApp™ applications 
+in View Administrator. This information also describes 
+how to maintain and troubleshoot VMware View 
+components.
+
+VMware View Architecture Planning provides an 
+introduction to VMware View, including a 
+description of its major features and deployment 
+options and an overview of how VMware View 
+components are typically set up in a production 
+environment.
+
+Teradici Support Site > 
+Downloads > (left 
+navigation pane) 
+Support Downloads > 
+PCoIP Documentation > 
+Architecture Planning 
+Guides
+
+VMware View  
+Technical Resources
+
+VMware View 
+documentation site
+
+W H I T E   P A P E R   /   4
+
+Using PCoIP Host Cards with VMware View
+
+Prerequisites
+
+To use a PCoIP zero client and PCoIP host card (in a workstation or physical PC) with VMware View 5,  
+you need a minimum of a:
+
+•	 VMware	View	environment	currently	running	with	VMware	View	5	Connection	Server	and	VMware 	 
+
+View 5 Agent
+
+•	 Firmware	release	3.4.1	(or	later)	for	PCoIP	zero	clients	and	host	cards
+
+•	 PCoIP	host	card	
+
+•	 PCoIP	client(s)	including:	
+
+-  PCoIP zero client
+
+-  Notebook, thin client, or repurposed PC running a VMware View 5 client configured for a PCoIP session  
+
+ 
+
+(default)
+
+•	 PCoIP	host	driver	software	v3.3.20	(or	later)	for	Windows®
+
+•	 Workstation	operating	system	compatible	with	VMware	View	5
+
+•	 Workstation	graphics	card	that	complies	with	PCoIP	host	cards	(such	as	DVI	or	display	port-based	Graphics 	
+
+Processing Unit (GPU))
+
+You must also know how to use PCoIP zero clients and PCoIP host cards independent of VMware View. See the 
+Additional Resources section for more details.
+
+Installing VMware View
+You must install VMware View, which includes the View Connection Server and View Administrator UI. For more 
+details about the process to install the View Agent in the target desktop, see the Installing the VMware View 
+Agent on a Host PC section. 
+
+Setting up the PCoIP Host Card and Zero Client
+1.  Set up a physical host PC with the host card installed. Connect the network and DVI cables. For more 
+
+details, see your vendor setup documentation.
+
+2.  Set up a zero client, connecting display(s), power cable, network cable, and the USB mouse/keyboard.
+
+3.  Make sure that the host card and zero client are running PCoIP firmware release 3.4.1 or later (see the 
+
+Installing Tera1 Firmware Release 3.4.1 or Later section).
+
+4.  From a web browser, enter the IP address for the zero client. 
+
+5.  Log in to the administrative web interface.
+
+6.  From the Configuration > VMware View menu, ensure Enable VMware View is deselected (that is, disable 
+
+use with VMware View Connection Server). 
+
+7.  Make sure the host PC NIC is connected to the same network as the host, the zero client, and the View 
+
+Connection Server. Make sure:
+
+•	 The	host	PC	can	ping	the	host	card,	client,	and	View	Connection	Server	IP	addresses. 	
+
+•	 The	View	Connection	Server	can	communicate	with	the	host	card,	client,	and	the	View	Agent	installed 	
+
+on the host PC (see the Installing the VMware View Agent on a Host PC section). This lets View manage 
+connections between the host card and client.
+
+8.  Set up a PCoIP session between the host card and zero client.
+
+W H I T E   P A P E R   /   5
+
+Using PCoIP Host Cards with VMware View
+
+Installing Tera1 Firmware Release 3.4.1 or Later
+The functionality described in this document is available with Tera1 firmware release 3.4.1 or later. Verify that the 
+zero client and host card are using the correct firmware release. 
+
+The processes described in this document reference the administrative web interface.
+
+Checking the Firmware Version
+To check the firmware version through the administrative web interface:
+
+1.  From a web browser, enter the IP address of the client.
+
+2.  Log in (if required).
+
+3.  Click Info > Version. 
+
+You can also access the IP address for the client and host card from the:
+
+•	 Router’s	Dynamic	Host	Configuration	Protocol	(DHCP)	lease	table
+
+•	 Management	console	for	PCoIP	protocol	devices
+
+•	 On	Screen	Display	(from	the	Connect	screen,	click	 Options > Configuration > Network)
+
+Example: Finding the Firmware Release
+The example in Figure 2 shows that firmware release 3.4.0 is currently in use. The client must be updated to 
+firmware release 3.4.1 (or later).
+
+Figure 2: Administrative Web Interface Version Webpage
+
+W H I T E   P A P E R   /   6
+
+Using PCoIP Host Cards with VMware View
+
+Updating the Firmware
+You can update the firmware release through the:
+
+•	 Administrative web interface: Verify the firmware release for a single zero client or host card through the 
+
+respective IP address
+
+•	 Management console for PCoIP protocol devices: Verify one or many zero clients in your network
+
+•	 Other	tools	such	as	connection	brokers
+
+If you do not have firmware release 3.4.1 (or later), visit the Teradici Support site to download the latest version 
+(click Current PCoIP Product and Releases).
+
+Example
+This example shows you the steps to update the firmware through the administrative web interface:
+
+1.  Ensure the host PC or workstation is in an idle state (close all applications).
+
+2.  Open a web browser.
+3.  Log into the administrative web interface for the host card. For example, 192.168.1.100 (accept 
+
+certificates, and then enter the login information as required).
+
+4.  Choose Upload > Firmware, and then click Browse. 
+5.  Select the firmware .all file. For example, tera1x00_rel3-4-1_ga_11491.all.
+6.  Click Open.
+
+7.  Click Upload.
+
+8.  A warning appears. Click OK to start the upload. This operation may take a few minutes. 
+9.  The following message appears when complete: Success Flash successfully programmed! Click 
+
+Reset to reset the device for the changes to take effect.
+
+10. A warning appears. Click OK to proceed.
+
+11. Repeat steps 3 through 8 on the client, but do not reset or power-cycle the client.
+
+12. Restart the host. 
+
+13. Reset the client.
+
+14. The new firmware is installed. You can now start a PCoIP session.
+
+Installing PCoIP Host Driver Software Release v3.3.20 for Windows
+The functionality described in this document requires PCoIP host driver software v3.3.20 or later. Verify that 
+the PCoIP host driver software installed on the host PC is using the correct release. See the Installing the PCoIP 
+Host Driver Software section for details on the host software installation process. You can download the latest 
+host driver software package from the Teradici Support site (click Current PCoIP Product and Releases).
+
+Ensuring Your Operating System Complies with VMware View
+Ensure that you are using an operating system that is supported by VMware View. See the VMware View 
+Architecture Planning guide for a list of supported operating systems.
+
+W H I T E   P A P E R   /   7
+
+Using PCoIP Host Cards with VMware View
+
+Host PC Configuration
+
+VMware View enables the use of the PCoIP protocol to connect PCoIP zero clients to virtual desktops and 
+physical host PCs (with the PCoIP host cards installed). This section describes how to configure dedicated 
+physical host PCs with PCoIP host cards. 
+
+Note: Ensure that the host PC computer name is unique and easy to identify. To set up the computer name, 
+from Windows XP: My Computer > Properties > Computer Name tab > Change…
+
+Installing the VMware View Agent on a Host PC
+1.  Start the VMware View Agent installation wizard by double-clicking the file (such as VMware-
+
+viewagent-5.0.0-481677.exe) in the Windows operating system for the host PC.
+
+2.  From the Welcome screen, click Next, and then click Next again.
+
+3.  If you accept the terms, select I accept the terms in the license agreement, and then click Next.
+
+4.  Click Next. 
+
+The VMware View Agent Custom Setup window appears:
+
+ 
+
+Figure 3: VMware View Agent Custom Setup Window
+
+5.  Note that in Figure 3, the PCoIP Server is not yet enabled. To enable it, click the down arrow, and then 
+
+choose This feature will be installed in local hard drive. 
+
+ 
+
+The Custom Setup window reappears with PCoIP now enabled.
+
+W H I T E   P A P E R   /   8
+
+Using PCoIP Host Cards with VMware View
+
+6.  Click Next. The Register with View Connection Server window appears:
+
+Figure 4: VMware View Agent Register with View Connection Server Window
+
+7.  Enter the IP address / Fully Qualified Domain Name (FQDN) of the physical server or virtual machine 
+
+hosting VMware View.
+
+8.  Choose Specify administrator credentials, and then enter the username and password for the VMware 
+
+View Connection Server.
+
+9.  Click Next.
+
+10. Click Install. Wait for the agent to install.
+
+11. When the install finishes, click Finish.
+
+12. When prompted, click Yes to reboot the host PC.
+
+13. Wait for the PC to reboot before continuing.
+
+W H I T E   P A P E R   /   9
+
+Using PCoIP Host Cards with VMware View
+
+Configuring a Physical PC in View
+
+This section outlines the steps to configure a physical PC for use with View.
+
+1.  Log in to the VMware View Administrator interface.
+
+2.  Click Pools, and then click Add…. to create a desktop entry.
+
+3.  Click Manual.
+
+4.  Follow the onscreen prompts to configure the PC to your specifications.
+
+Installing the PCoIP Host Driver Software
+
+To complete the process to let the physical PC work with VMware View, you must install the PCoIP host driver 
+software.
+
+Important Note: You cannot upgrade the PCoIP host driver sofware while a VMware View-brokered PCoIP 
+session is active between a host workstation or host PC and VMware View client. Doing this results in losing 
+access to your mouse and keyboard when the driver software is removed. 
+
+To upgrade the PCoIP host driver sofware in this type of deployment, either:
+
+•	 Connect	to	the	host	from	a	zero	client,	or
+
+•	 Upgrade	the	software	while	connected	to	the	host	through	another	desktop-remoting	protocol	such	as	RDP 	
+
+or VNC
+
+This section provides a quick overview of the host driver installation process. For more details, see the Teradici 
+Support site.
+
+Installing the PCoIP Host Driver Software on a Host PC
+1.  Download the PCoIP host driver software from the Teradici Support site (click Current PCoIP Product and 
+
+Releases).
+
+2.  Log in to the administrative web interface for the host card.
+
+3.  From the Configuration > Host Driver Function menu, enable the Host Driver Function.
+
+4.  Restart the host PC.
+
+5.  Install the PCoIP host software package appropriate for the operating system installed on the host PC.  
+
+You can start the install process by double-clicking the installer.
+-  32 bit: PCoipHostSoftware_x86-v3.3.20.msi (or later)
+-  64 bit: PCoipHostSoftware_x64-v3.3.20.msi (or later)
+
+6.  When the Welcome screen appears, click Next.
+
+7.  Accept the terms, and then click Next.
+
+8.  Ensure the install location is correct, and click Next.
+
+9.  Click Install.
+
+Note: For Windows 7, when the driver is  installed, a Windows Security dialog may appear. Click Install to 
+continue with the installation. To keep this dialog from appearing in the future, select Always trust software 
+from Teradici Corporation.
+
+W H I T E   P A P E R   /   1 0
+
+Using PCoIP Host Cards with VMware View
+
+10. If prompted, restart the operating system (OS) (otherwise skip this step). When restarted, the host driver 
+
+software installation process continues when the OS boots up. Click Install to continue.
+
+11. Click Finish to complete installation.
+
+Configuring the PCoIP Zero Client
+
+To use the PCoIP zero client through VMware View, you must enable the client for management by  
+VMware View. 
+
+To configure the zero client:
+
+1.  Log into the client administrative web interface or on-screen display (OSD) (from the Connect window, 
+
+click Options).
+
+2.  From the Configuration menu, choose Connection Management.
+
+3.  Ensure Enable Connection Management is not selected.
+
+Figure 5: Connection Management Window
+
+4.  From the Configuration menu, choose VMware View.
+
+5.  Select Enable VMware View.
+
+6.  From the Connection Server IP Address field, enter the IP address / FQDN of the physical server or virtual 
+
+machine hosting VMware View.
+
+7.  Enable the Secure Socket Layer (SSL). 
+
+W H I T E   P A P E R   /   1 1
+
+Using PCoIP Host Cards with VMware View
+
+Figure 6: Enabling SSL in VMware View
+
+8.  Click Apply.
+
+ 
+
+The VMware View logo should appear on the OSD Connect screen of the zero client.
+
+W H I T E   P A P E R   /   1 2
+
+Using PCoIP Host Cards with VMware View
+
+Connecting a PCoIP Zero Client to  
+ VMware View
+
+This section provides a brief outline of how to connect a client to a physical PC that uses VMware View.  
+See Using PCoIP Zero Clients with PCoIP Host Cards for details not covered in this section.
+
+Testing the PCoIP Connection
+1.  From the client’s OSD Connect screen, click Connect.
+
+2.  Enter the credentials of the user you set up for the desktop entry created in the VMware View Connection 
+
+Server. Choose the domain associated with the entitled user.
+
+3.  Click Login.
+
+4.  Select the physical PC’s desktop entry created in View Connection Server from the list of available 
+
+desktops.
+
+5.  Click Connect.
+
+ 
+
+The View Connection Server establishes a PCoIP session between the client and the host card, which allows 
+you to access the physical PC.
+
+Note: If this is the first time that the physical PC is installed with View Agent and registered to the View 
+Connection Server, it may take a short time for the physical PC to be available in the View Connection Server. If 
+a warning message appears stating that the desktop source is not yet available, wait a couple of minutes, and 
+then and try to connect.
+
+Deployment Considerations
+
+The PCoIP protocol provides a real-time delivery of a rich user desktop experience in virtual desktop and 
+remote workstation environments. To ensure a responsive desktop, you must deploy the PCoIP protocol across 
+a properly architected network infrastructure for your virtual desktops. This architecture must meet bandwidth, 
+QoS, latency, jitter, and packet loss requirements. 
+
+For more details, see the PCoIP Protocol Virtual Desktop Network Design Checklist (TER1105004) (Downloads 
+> (left navigation pane) Support Downloads > PCoIP Documentation > Architecture Planning Guides) and 
+VMware View 5 with PCoIP Network Optimization Guide.
+
+Bandwidth Matrix for Various Setups of Zero Clients and VMware View Clients  
+with Host Cards
+The following table guides you in the encryption algorithm and bandwidth metrics used for various setups of 
+zero clients and VMware View clients with host cards. For more details, see the VMware Knowledge Base article 
+VMware View with PCoIP encryption and bandwidth metrics: Teradici recommendations for various clients.
+
+Host Card 
+(No Security Server)
+
+ZERO CLIENT
+
+Up to 220Mbps
+
+Host Card 
+(with Security Server)
+
+Up to 7Mbps
+
+VMWARE VIEW CLIENT
+
+•	 Up	to	7Mbps	with	AES
+
+•	 Up	to	20Mbps	with	Salsa
+
+•	 Up	to	7Mbps	with	AES
+
+•	 Up	to	20Mbps	with	Salsa
+
+W H I T E   P A P E R   /   1 3
+
+Using PCoIP Host Cards with VMware View
+
+Known Issues, Troubleshooting, and FAQ
+
+This section outlines specific troubleshooting, and frequently asked questions related to firmware release  
+3.4.1 on zero clients and host cards when using VMware View. For a comprehensive troubleshooting resource, 
+search the: 
+
+•	 Teradici Knowledge Base (click Knowledge Base after you log in)
+
+•	 VMware View Product Support Center
+
+Troubleshooting
+This section outlines some common issues and suggested solutions.
+
+PROBLEM
+
+SOLUTION
+
+Trouble connecting to the host machine
+
+The desktop display resolution may change 
+when a user resizes the View client window 
+while a session is active with a PCoIP host 
+card. Sometimes when this change occurs, 
+the graphics driver scales the desktop 
+image and the desktop no longer fits within 
+the client window.
+
+The PC is often unreachable within approximately the first 
+two minutes of powering on the host PC. Wait several 
+minutes for the View Agent to communicate with the 
+View Connection Server. Log in to the View Connection 
+Server and then check the state for the host PC.
+
+Resize the client window or configure the graphics driver 
+to use the monitor’s built-in scaling feature.
+
+Frequently Asked Questions
+How can I verify the PCoIP host driver software is installed and running properly? 
+
+Log in to the host PC, click the host software icon in the system tray, and verify that the session statistics are 
+being updated. Updated statistics indicate that the host driver software can communicate with the host card. 
+
+If the statistics are not being updated, see the Teradici Support site for help with debugging the issue.
+
+Can I connect a supported VMware View client to a workstation?
+
+Yes. The workstation must be running the View Agent.
+
+What software clients are supported?
+
+For an up-to-date list of the supported View clients, see the VMware View 5 Evaluator’s Guide.
+
+W H I T E   P A P E R   /   1 4
+
+Using PCoIP Host Cards with VMware View
+
+About the Author and Contributor
+
+Teradici authored this article, with contributions from Tina de Benedictis, Technical Marketing Manager in 
+Enterprise Desktop at VMware.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www .vmware .com
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at
+http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be 
+trademarks of their respective companies. Item No: VMW-11Q4-WP-PCOIPHOSTCD-USLET-WEB
+
+

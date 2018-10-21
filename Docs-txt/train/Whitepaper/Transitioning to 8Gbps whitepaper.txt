@@ -1,0 +1,452 @@
+Technology Brief 
+ 
+
+ 
+
+Best Practices for keeping application data flowing 
+error-free – while transitioning to 8Gbps SANs  
+
+The continuing expansion of data centers and the introduction of new technologies such as server 
+and fabric virtualization are driving the need for higher storage networking performance and greater 
+capabilities from the data center fabric. Steady increases in performance and functionality have 
+been the hallmark of Fibre Channel evolution over the past 15 years. With the periodic doubling of 
+transport speed from 1 to 2 Gbit/sec, from 2 to 4 Gbit/sec, and to 8 Gbit/sec, storage administrators 
+have exploited the new performance capabilities and advanced features to build more optimized 
+storage networks.  
+
+This paper: 
+
+1.  Discusses some of the considerations around 8Gbps deployments 
+2.  Offers best practices for ensuring a smooth transition to 8Gbps 
+3.  Suggests a case for extending the life of existing 2Gbps and 4Gbps fabrics 
+
+  
+
+8Gbps CONSIDERATIONS 
+
+8Gbps Challenges for Architects 
+The increase in data transfer rates is potentially beneficial from a performance perspective.  
+However, transitioning to higher speeds creates some new challenges for architects.  In particular, 
+the potential for increased data communication error rates that may result in disruption or 
+performance degradation of business critical applications. The physics of high-speed 
+communication creates many new restrictions on crucial physical-layer elements such as optical 
+cabling and optical modules.  These restrictions must be understood, addressed and proactively 
+monitored before the full value of 8G can be realized in today’s Storage Area Network (SAN) 
+infrastructures.   
+
+As the data rate increases, sensitivity of induced jitter increases 
+
+As the speed of Fibre Channel bit rates increase from 1G (1.0625 Gbps) to 2G (2.125 Gbps) to 4G 
+(4.25 Gbps), and to 8G (8.5 Gbps), the “window” for valid data (called a bit period) decreases 
+proportionally to the speed. As shown in table 1, the bit period for FC at a 1G data rate is 941 
+picoseconds, whereas it falls to 235 picoseconds at 4G and only 118 picoseconds at 8G. 
+
+ 
+
+SUMMARY 
+
+•  8Gbps Transition 
+
+Fibre Channel is 
+the storage fabric 
+of choice for speed 
+and reliability 
+reasons.  As such, 
+most enterprises 
+are taking a slow, 
+phased approach 
+to 8Gbps adoption.  
+As with the 
+transition to 
+4Gbps, the SAN 
+vendors expect a 
+gradual, multi-year 
+transition to full 
+deployment of end-
+to-end 8Gbps FC 
+SANs.   
+
+•  8Gbps Best 
+
+Practices 
+With higher 
+speeds, it’s more 
+imperative than 
+ever to ensure 
+clean physical 
+connections, and 
+to instrument and 
+measure your 
+infrastructure.  
+
+•  Extending the Life 
+
+of Existing 
+Infrastructure 
+Existing 
+2Gbps/4Gbps 
+enterprise FC 
+SANs are nearly 
+always vastly 
+underutilized.  This 
+is a classic 
+example of how 
+you can do more 
+with less via better 
+utilization of 
+existing SAN 
+assets.  Adding 
+Virtual Instruments 
+monitoring, 
+measurement, and 
+analysis solutions 
+
+VirtualInstruments.com 
+
+to your existing 
+2Gbps/4Gbps 
+corporate SANs 
+dramatically 
+improves data 
+center ROI, 
+eliminates 
+expensive SAN 
+infrastructure 
+upgrades, lowers 
+operational risk, 
+and provides the 
+flexibility to build 
+out a large 
+mission-critical 
+application or 
+cloud computing 
+environment as 
+needed, without 
+the risk and 
+expense of an 
+8Gbps fabric. 
+
+•  8Gbps VI Support 
+Virtual Instruments 
+offers assistance 
+and risk mitigation 
+protection through 
+availability of our 
+8Gbps ready TAPs, 
+probe, optics 
+/cables, protocol 
+analyzer, and 
+professional 
+services 
+consulting. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+Fibre Channel Data Rates (Gbps) 
+
+Bit Period (picoseconds) 
+
+Table 1: Bit Period at FC Data Rates 
+
+1G 
+2G 
+4G 
+8G 
+
+941 
+471 
+235 
+118 
+
+This reduction of the window requires a more robust infrastructure.  Otherwise, the cabling and 
+communications infrastructure may induce errors into the bit stream, leading to increased bit-error 
+rates and costly transmission faults, causing retries or other performance-damaging consequences, 
+and potential application disruptions. 
+
+When switching from 4G to 8G infrastructures, even well-performing 4G environments might quickly 
+encounter unexpected failures running at 8G.   
+
+Jitter, which exists in varying degrees in all optical infrastructures, can result from any component 
+within the infrastructure, including the quality of the optical transceivers, length and quality of fiber 
+optic cables, quantity of in-line connectors, bend radius of the cables, and even the cleanliness of 
+the cable junctions.  For example: a small speck of dirt on the face of the optical cable junction, 
+transparent at lower speeds, becomes a major error-inducer at higher speeds, slowing down critical 
+applications.   
+
+Implications on the SAN infrastructure   
+
+Even if the network performed flawlessly at 4G, that does not guarantee the same result at 8G.  As 
+described above, an infrastructure running at higher speeds has a much higher sensitivity to 
+induced jitter from dirty connections, excessive cable bend, poor quality SFP’s, and other issues 
+inherent to the infrastructure itself. A light budget and error-analysis exercise is a best practice 
+to test and ensure the existing infrastructure can support the new data rates.  In some cases, 
+new fiber optic cabling may be necessary to remedy any faulty infrastructure.   
+
+Furthermore, once an infrastructure has been equipped to operate at the new higher speed, it may 
+not remain error-free over a period of time.  New cable installations, the addition of patch panels, or 
+even slight adjustments made with existing cable routings can significantly increase jitter and 
+reduce overall link performance.  Extreme care must be taken to ensure links are as clean as 
+possible, cables are not bent too much, and cable length and the number of connections are within 
+the budget, preventing any foreign particles from deflecting light or excessive light loss as the light 
+traverses the network. 
+
+Unfortunately, when these transmission errors are present (but while their true root cause remains 
+unknown), network administrators often rely on “rip-and-replace” tactics in the hope that this will 
+remove the offending component.  Or worse, the root cause is assumed to be other SAN elements 
+like host bus adapters (HBAs), and these are replaced unnecessarily. Not only is this expensive and 
+extremely disruptive to the data center and to the critical applications, it often does not remedy the 
+problem.  The problem may disappear temporarily, providing a false sense of security, only to re-
+surface again without warning or apparent cause.  This leads to endless fire-fighting and wasted 
+time that could be applied to higher-value activities. 
+
+8Gbps TRANSITION – BEST PRACTICES 
+
+To ensure a smooth transition to higher speed infrastructures, network administrators should follow 
+these best practices: 
+
+ 
+
+2                                                    SAN UTILIZATION – TECHNOLOGY BRIEF 
+ 
+
+ 
+
+Physical Preparation 
+
+Clean the optical modules, connectors and the cable junctions. Ensuring there is no 
+contamination in the fiber optic connections is very critical for the proper operation of the 
+infrastructure. Optics-grade solvents, cleaning sticks and lint-free swabs are available from 
+many different manufacturers that are engineered specifically for removing microscopic particles 
+and trace oils from optics. 
+
+Instrument  
+
+Having all of the relevant information to optimize performance and solve virtual infrastructure 
+and SAN-related problems requires capturing both directions of every SCSI I/O transaction from 
+start to finish, for every server/volume combination (initiator/target/LUN). Only with this 
+complete information can an IT organization go about resolving performance or availability 
+problems.  
+
+In order to capture all of the SCSI transactions without impacting performance or reliability, the 
+Fibre Channel SAN should be fully instrumented at every link that would carry business-critical 
+data. As a key part of the Virtual Instruments solution, the Traffic Access Point (TAP) is the 
+device that enables full instrumentation of the Fibre Channel network. It “taps” the network. 
+
+The Virtual Instruments TAP or TAP Patch Panel System is a passive, non-performance 
+impacting device that operates “out-of-band” and requires no power source or cooling. The 
+TAP generates a copy of all data that is traversing the SAN by utilizing a small portion of the 
+light within the fibre-optic cable and sends it to the Virtual Instruments SAN Performance Probe 
+device for further processing.  
+
+With TAPs installed on all key links within the data center, users can deploy a number of devices 
+that monitor and diagnose link performance without any further interruption or downtime.  These 
+devices, which include light meters and protocol analyzers, are engineered to detect a number 
+of issues such as light levels, signal quality, throughput metrics, latency and response times, 
+and protocol violations. These metrics provide a good indication of the health of the 
+infrastructure and proactively identify failing devices or bad links – all in real-time and at full line 
+speed.  An instrumented infrastructure takes the guesswork out of understanding optical link 
+health, providing accurate visibility into the infrastructure operation. 
+
+With TAPs, an optical power budget analysis can be performed between transmit and receive 
+ports. Make sure that the power margin (transmit power – power loss due to the length of the 
+cable and the connectors between the two ports) is above the required receive power of the 
+optical transceivers and meets the FC protocol specification. 
+
+Measure the light levels on the transmit side and receive side. Using light testers or light meters, 
+measure the optical power levels on critical links and make appropriate adjustments to the 
+length of the cables or bend radii of the cables. In some cases better quality optical transceivers 
+or cables may be necessary to meet the power margin requirements.   
+
+This real-time visibility into infrastructure is extremely important as data rates increase from 2G 
+and 4G to 8G rates. TAPs empower the SAN to provide uninterrupted access to business critical 
+application data and enable proactive alerting to potential infrastructure problems.   
+
+EXTENDING THE LIFE OF 2G AND 4G FABRICS 
+
+Overview 
+In most corporate data centers, 2Gbps and 4Gbps Fibre Channel Storage Area Network (SAN) links 
+are over-provisioned by a factor of 5x or more, on average.   This is due to a lack of visibility into 
+actual SAN performance and utilization data, which has led to massive hardware link over-
+provisioning in an attempt to avoid performance issues, to maximize availability, and to simply 
+minimize risk.  Traditional SAN management tools usually report on IOPS, a very poor indicator of 
+network utilization.  The emergence of VMware virtualization technology, making server resources 
+flexible and applications readily mobile, adds another layer of abstraction and makes SAN visibility 
+even worse. 
+
+While it’s generally accepted that SAN storage utilization is low, only a few industry luminaries, such 
+
+3                                                    SAN UTILIZATION – TECHNOLOGY BRIEF 
+ 
+
+ 
+
+as John Toigo, have talked about the severe underutilization of Fibre Channel (FC) SAN fabrics.  
+The challenge of course, is that few IT shops have actually instrumented their SANs to enable 
+accurate measurements of fabric utilization.  Instead, 100% of enterprise applications get the 
+bandwidth that perhaps only 5% of the applications need.  “Better to be safe than sorry” is the oft-
+repeated mantra.  But with SAN sizes rising at a 30 – 50% / year rate, many CFOs are starting to 
+examine more than just the costs of servers and disks.  They’re looking at the entire infrastructure. 
+
+Over the past 2 years, Virtual Instruments has instrumented a significant number of global enterprise 
+datacenters and for the first time, we remove the guesswork and present our report on FC SAN 
+fabric utilization. Following is a chart that shows 2Gbps/4Gbps SAN utilization rates for some 
+representative large enterprise SANs, before they undertook optimization projects with Virtual 
+Instruments.  Virtual Instruments has profiled dozens of large Global 1000 enterprise customers and 
+the results are remarkably consistent – average utilization rates well below 10%.   
+
+ Customer 
+
+Average FC Storage Port  
+
+Utilization Rate 
+
+Large European Bank  
+
+US Investment Bank   
+
+US Energy Company  
+
+International Consumer Products Company  
+
+3.0% 
+
+1.1% 
+
+4.87% 
+
+8.6% 
+
+Beyond the obvious unnecessary expense the reality is, with such low utilization rates, simply 
+building in more SAN hardware (HBAs, switches, cables, SFPs, storage ports) to address 
+performance and availability challenges does nothing more than add complexity and increase risk.   
+The more components that are deployed, the higher the probability of a failure.  Most organizations’ 
+data stores are growing 30 - 50% per year, which means SAN infrastructures are growing at a 
+similar rate.  With compliance regulations such as HIPAA, Sarbanes-Oxley, BASEL II and others 
+requiring corporations to keep increasing amounts of data longer, the demands on your storage 
+infrastructure are only compounding.  Though it’s common to look at storage space itself as the 
+place to reduce costs, especially with deduplication technology, the “network” in “SAN” can 
+contribute to costs as well.  It’s not unusual for a storage port, after cabling, etc. to cost between 
+$4K and $5K USD.  It’s no longer financially practical to overprovision SAN infrastructure. Most 
+SANs are designed with redundancy, so over provisioning is really doubly expensive. 
+
+On the server side, IT is investing in server virtualization to consolidate servers and reduce capital 
+and operating expenses.   The same can be true for the SAN: virtualization and consolidation of 
+underutilized SAN assets can easily save Global 1000 companies millions of dollars per year. 
+
+Optimized 2Gbps/4Gbps SAN Infrastructure can support future requirements 
+According to the statistics we’ve gathered from measuring Global 1000 corporate SANs, existing 
+2Gbps and 4Gbps SAN infrastructure can easily support more applications or a virtualized 
+infrastructure, including private cloud computing environments.  Balanced optimization of all SAN 
+I/O transactions between servers and LUNs can enable support for a significantly greater number of 
+servers and storage arrays with existing network infrastructures. 
+
+Increasing utilization of existing SAN infrastructure via intelligent load balancing would extend the 
+return on investment (ROI), reduce complexity and risk, and help avoid both the potential headaches 
+and excessive cost of implementing newer SAN hardware technology.  For instance, many 
+companies have found that they have to replace their physical infrastructure (patches and cables) in 
+order to use 8Gbps environments. When purchasing 8Gbps SFPs, you will need to either manually 
+set each port to 4Gbps, or ensure that your infrastructure is 8Gbps-ready. Doubling or even a 
+tripling of average utilization rates of 2Gbps/4GB fabrics is now possible with the proper use of real-
+time monitoring and measurement solutions. 
+
+Unnecessary capital and operating expense can be avoided with optimization of your existing SAN 
+infrastructure.   Capital expense savings would result from the delay or complete avoidance of the 
+
+4                                                    SAN UTILIZATION – TECHNOLOGY BRIEF 
+ 
+
+ 
+
+acquisition of additional SAN switches, related software licenses, additional cables, and new racks – 
+potentially from the delay of building out and an entire new data center. 
+
+Operating expense savings would come from the delay or avoidance of costs related to 
+implementation, configuration, testing, and documentation of new SAN infrastructure.  Other 
+operating expenses avoided include annual maintenance fees, management software licenses, 
+power consumption, and cooling and floor space. 
+
+Optimization and troubleshooting of corporate SAN infrastructure is difficult, as existing 
+management tools only give device-specific information.   None of these tools provide a single view 
+for all I/O transactions. If you’re not able to measure all of the transaction data between servers and 
+the LUNs, it is very difficult to understand what issues are causing problems and how to fix them. 
+
+The Solution:  Virtual Instruments’ VirtualWisdom 
+
+Virtual Instruments VirtualWisdom enables IT to optimize existing 2Gbps/4Gbps SAN infrastructure 
+so it can provide consistent performance and reliability to support virtualized applications and 
+internal cloud computing operations.  VirtualWisdom is the only product that can monitor and send 
+alerts about storage access times, congestion, link errors, and SCSI errors, and generate trend 
+reports that show the behavior of a heterogeneous SAN, over time. This information helps to 
+expedite troubleshooting and allows IT administrators to prove whether the problem is in the SAN or 
+elsewhere, such as applications, hosts, or VMware VM’s. 
+
+Summary 
+Existing 2Gbps/4Gbps enterprise FC SANs are nearly always vastly underutilized.  This is a classic 
+example of how you can do more with less via better utilization of existing SAN assets.  Adding 
+Virtual Instruments monitoring, measurement, and analysis solutions to your existing 2Gbps/4Gbps 
+corporate SANs dramatically improves data center ROI, eliminates expensive SAN infrastructure 
+upgrades, lowers operational risk, and provides the flexibility to build out a large mission-critical 
+application or cloud computing environment as needed.  
+
+Transitioning the storage infrastructure to higher data rates has many benefits.  However, it is 
+paramount to understand the hidden pitfalls that may impact application performance and 
+availability.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 09/11 
+
+5                                                    SAN UTILIZATION – TECHNOLOGY BRIEF 
+ 
+
+

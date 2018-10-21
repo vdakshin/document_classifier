@@ -1,0 +1,193 @@
+Halifax Bank of Scotland  
+ 
+CASE STUDY
+
+Challenge
+• 
+
+Maintain a position as the UK’s 
+largest mortgage and savings 
+organization by providing cus-
+tomers with a consistently good 
+user experience with bank’s 
+services
+
+Solution
+• 
+
+Virtual Instruments VirtualWisdom 
+SAN I/O Intelligence 
+
+Beneﬁts
+• 
+
+Proactive problem resolution 
+keeps the SAN architecture 
+optimized and eliminated major 
+problems from affecting banking 
+operation
+The ability to design optimal 
+SAN storage that can be easily 
+scaled over time
+
+• 
+
+Halifax Bank of Scotland (HBOS)
+
+Halifax Bank of Scotland Uses Virtual Instruments’ NetWisdom Monitoring Tools to 
+Help Manage its Ever-Expanding Storage Area Network (SAN)
+
+The Halifax Bank of Scotland (HBOS) was formed through the merger of Halifax and Bank of 
+Scotland on September 10, 2001. HBOS has assets of more than £400 million and is the UK’s 
+largest mortgage and savings provider. As one of the UK’s leading ﬁnancial organizations, HBOS 
+has a huge presence in the community not only through the products and services that it pro-
+vides to individuals, but by employing more than 67,000 people.
+
+With more than 22 million customers, HBOS has a relationship with two out of every ﬁve UK 
+households. And HBOS takes its customer relationships very seriously. It prides itself on its 
+ability to deliver new products and customer support services that are second to none. Part of 
+this commitment entails a massive information technology infrastructure that helps ensure that 
+customers have access to all of the information and banking services they might be seeking—
+available 24 x 7.
+
+In other words, system downtime is not acceptable. And that is no easy task when you consider 
+that HBOS has more than 67,000 users accessing everything from Microsoft Exchange Servers 
+to Oracle and SAS business intelligence and data warehousing applications. Hundreds of trans-
+actional systems and back ofﬁce systems support the HBOS retail banking operations.
+
+LARGE SAN
+In its production storage area network (SAN) computing environment, HBOS maintains over 
+3,000 SAN ports split across two data centers in West Yorkshire, England with more than 300 
+Sun E15K servers running Solaris, 149 Brocade switches, and 250 Terabytes of Hitachi Data 
+Systems Lightning 9900 V Series and Thunder 9500 V Series modular storage systems main-
+tained in a split fabric conﬁguration. In addition to the Sun servers, HBOS also utilizes IBM p6 
+90 Regatta servers running AIX and HP Integrity SuperDome servers running HP/UX. Veritas’ 
+volume management software is used across platforms.
+
+2
+
+Halifax Bank of Scotland  
+CASE STUDY
+
+“None of the tools that we 
+had been using to monitor 
+our SAN’s performance 
+could get us to the root 
+of the problem, and some 
+problems—in the early 
+days—went unsolved,” 
+
+And that’s just the HBOS production environment. HBOS also maintains a scaled down version 
+of the main SAN fabric that is virtually identical to the production environment—down to the split 
+fabric conﬁguration where all new releases and products are put through rigorous interoperability 
+veriﬁcation testing. The test environment alone includes 142 servers.
+
+“We greatly lessen the chance of a problem working its way into the production system if we 
+have performed testing and analysis in a virtually identical pre-production environment,” said 
+Simon Close, Technical Team Leader, Storage Management Services, Halifax Bank of Scotland 
+Group Technology. “It has proved to be a key part of our overall IT successes.”
+
+“It is a huge undertaking to efﬁciently operate a SAN of this size and complexity,” Close contin-
+ued. “Even though we have worked hard to standardize on certain technologies across the en-
+terprise, the reality is that to optimally run a banking operation of our scope requires supporting 
+a diverse heterogeneous computing environment running a multitude of operating systems and 
+a wide variety of applications,” Close said, who in his role at HBOS is responsible for developing 
+and championing the adoption of SAN best practice and service improvement initiatives.
+
+“Application changes, operating system patches, or simply adding servers or storage modules 
+are just a few of the reasons SAN performance can be impacted,” said Richard Briggs, Senior 
+Technical Infrastructure Developer within Storage Management Services who was Technical 
+Lead on the initial SAN implementation at HBOS which took place in 2000, and currently serves 
+as Chairman of the Brocade UK User Group. “With the size and complexity of our SAN fabric, 
+we often see problems that others have not seen before, so it is important that we have our 
+own SAN performance monitoring and analysis solution in place to help diagnose hard to ﬁnd 
+problem areas.” “One of the biggest challenges we face today is the perceived performance 
+issues related to our SAN,” Close said. “Give us a hardware problem any day, because they are 
+relatively simple to isolate, diagnose and ﬁx. It is the problems where a user tells us his or her 
+‘application is slow.’ Other than checking the application itself, the possibilities are endless as to 
+where the source of the problem might be.”
+
+“None of the tools that we had been using to monitor our SAN’s performance could get us to 
+the root of the problem, and some problems—in the early days—went unsolved,” admits Briggs. 
+“With the monitoring and analysis tools bundled with each product, we weren’t able to dive 
+deep enough into the problem area, so we used a ‘process of elimination’ method which we 
+recognized was not an effective way to handle these issues.”
+
+DETAILED VIEW OF NETWORK TRAFFIC
+That’s when HBOS went looking for another SAN monitoring solution, and once it saw Virtual 
+Instruments’ VirtualWisdom SAN I/O performance and analysis solution in action, the purchasing 
+decision was not far behind. Virtual Instruments’ VirtualWisdom is a real-time monitoring solution 
+that enables SAN managers to view critical data about their networks and increase performance 
+and reliability. “VirtualWisdom allows us to turn our storage service around from being reactive to 
+proactive,” said Close. “Whenever performance issues are encountered it is always the SAN that is 
+highlighted as the problem by our customers. VirtualWisdom enables us to provide evidence to either 
+support or refute the claim, which was not possible before. Furthermore, VirtualWisdom allows us 
+to design more efﬁcient storage solutions,” Close said. “We have recently been able to demon-
+
+strate that SAN response times are well within the thresholds that have been dictated and that the 
+problem most likely was within the application itself,” Close added.  “Armed with that information, 
+groups can evaluate their application design and redevelop or tune the application accordingly.”
+
+Halifax Bank of Scotland  
+CASE STUDY
+
+3
+
+“Everything used to be the SAN’s fault,” joked Briggs. “But now we have documented plenty 
+of cases we have been able to identify a bad application or bad coding as the source of the 
+problem, not the SAN. But wherever the problem lies, we are committed to ﬁnding it quickly 
+and getting the problem resolved.” Briggs added that HBOS now initiates support calls to the 
+appropriate vendor complete with a trace that details the issues to be dealt with. “It really helps 
+jump-start the support process,” he said.
+
+TRACKING PERFORMANCE LEVELS OVER TIME
+According to Close, HBOS is starting to baseline the performance of its systems while they are 
+in preproduction so the company can measure the performance of the system before it is de-
+ployed into the production SAN. HBOS can then benchmark the system again once it is brought 
+on line as well as six months later so the organization continually can monitor not only current 
+overall performance, but also historical performance levels of individual SAN components. “By 
+doing this, we are much better able to track performance over time, which often can give us a 
+clue that a server, disk or switch might be starting to malfunction, but not enough to take down 
+the system,” Close said. “By identifying these potential problem areas early in the process, we 
+can proactively move to resolve a potential major problem before it occurs.”
+
+According to Close, the VirtualWisdom solution goes a long way in helping us with HBOS’ storage 
+capacity planning and load balancing as well. “Using our best practices, we want to design sys-
+tems that are optimal and that will scale and be robust,” Close said. “We work to spread the load 
+across storage ports and subsystems so we can optimize our performance in these areas.” “From 
+the storage management perspective, VirtualWisdom allows SAN managers to isolate issues quickly 
+and resolve them in a timely manner”
+
+ “This enables us to spend more time tuning the SAN and less time ﬁghting ﬁres.” “We 
+are striving to be the group of choice for storage solutions within HBOS,” concluded Close. “To 
+accomplish this, we need to continually demonstrate the value and beneﬁts that we can provide. 
+Virtual Instruments’ VirtualWisdom helps us quantify and measure the services we provide to the 
+organization. VirtualWisdom is paying for itself multiple times every day as we are constantly being 
+contacted about various issues that we can quickly identify and respond to in an intelligent man-
+ner. It has been a powerful and vital addition to our SAN infrastructure.”
+
+100 Enterprise Way, Suite C-3
+Scotts Valley, CA 95066
+Phone: 831-439-4000
+
+Sales Information
+sales@virtualinstruments.com
+Phone: 831-439-4080
+
+Customer Support
+support@virtualinstruments.com
+www.virtualinstruments.com
+
+©2009 Virtual Instruments. All rights reserved. Features and speciﬁcations are subject to change without notice.         
+
+ 
+
+ 
+
+ 
+
+ 
+
+01/09
+
+

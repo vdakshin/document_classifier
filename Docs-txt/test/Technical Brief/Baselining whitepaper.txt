@@ -1,0 +1,545 @@
+WHITE PAPER
+
+Baselining Best Practices – how to de-risk your IT infrastructure projects,
+improve cycle time, and control costs
+
+Whitepaper
+
+Table of Contents
+Introduction.........................................................................................................................................2
+
+Baselining Defined................................................................................................................................3
+
+Benefits of Baselining ...........................................................................................................................3
+
+How Virtual Instruments Can Help ..........................................................................................................4
+
+Baselining Best Practices .......................................................................................................................5
+
+Baseline #1:  Operational Assessment - Monitoring and Measurement Best Practice .............................. 5
+
+Baseline #2:  Storage Network Provisioning Best Practice.......................................................................... 7
+
+Baseline #3:  Tiering Management Assessment Best Practice .................................................................... 7
+
+Baseline #4: Application Assurance Best Practice....................................................................................... 8
+
+Baseline #5:  Private Cloud Best Practice .................................................................................................... 8
+
+Baseline #6:  Problem Resolution Best Practice .......................................................................................... 9
+
+Baseline #7:  High Availability Best Practice ................................................................................................ 9
+
+Summary .......................................................................................................................................... 10
+
+Whitepaper
+
+Introduction
+The primary objective of the IT department is to support the growth and smooth operation of
+the business unit or of the entire organization. This implies that IT must ensure new
+applications are rolled out quickly and reliably, applications are up and available to users,
+and that application response times to the users are acceptable.
+IT has to accomplish this with as low a budget as possible with the fewest number of people
+possible; they have to be productive and efficient.  The mantra of “do more with less” can
+be heard in nearly every datacenter operation around the globe.
+
+At the same time, today’s IT infrastructure has scaled out of control, with more
+interdependencies between systems, while continuously operating closer to the
+performance limits of the infrastructure than ever before. For a given application,
+dependencies may cross multiple other applications, servers, SAN fabrics, IO adapters,
+network hops, and even datacenters. When the performance limit of a single component in
+one of these systems is breached, common experience indicates these I/O laden systems
+will not see performance gradually degrade, but rather will see latency and performance
+rapidly spiral out of control under a bombardment of increasingly delayed, dropped and
+repeated I/O attempts that can no longer be queued, cached, backed-off by congestion
+controls, or otherwise gracefully handled.
+
+Performance and availability
+baselining is used by leading
+enterprises to de-risk migration,
+consolidation, technology
+refreshes, and application
+upgrade project˘s
+
+How are administrators dealing with these challenges today? Most businesses today rely
+upon their initial testing of known good configurations or arbitrary rules of thumb rather than
+real data when they manage and make decisions about their infrastructures. They often
+throw more hardware at “the problem”.  This makes planning an exercise in waste that over-provisions resources,
+provides no guarantees that SLAs can be met, obfuscates troubleshooting, and restricts flexibility. Moreover, as
+configurations change over time, administrators have no guarantees about what their current infrastructure capabilities
+are.
+
+ Without baselining, any efforts to establish SLAs is a guessing game,
+
+which is probably the biggest reason relatively few companies
+implement meaningful SLAs.
+
+ Without baselining, the typical answer of an IT vendor to the
+
+question “how will this deployment impact my application
+performance” is “we don’t know; go ahead and try it; it should work”.
+
+ Without baselining, it’s hard to know to what extent your deployment
+
+of mission-critical applications in a virtualized / private cloud
+infrastructure affects application performance.
+
+ Without baselining, the next-best approach to de-risking your IT
+
+projects is to over-provision with excess hardware.
+
+www.virtualinstruments.com
+
+2
+
+Whitepaper
+
+Baselining Defined
+Baselining is traditionally thought of as a method for analyzing IT infrastructure performance. The method is marked by
+comparing current performance to a historical metric, or "baseline". For example, if you measured the performance of
+a network switch over a period of time, you could use that performance figure as a comparative baseline if you made a
+configuration change to the switch.  But if you extend that concept past performance and encompass availability, you
+are baselining many other metrics.
+
+In today’s world, the real best practice of baselining includes historical metrics that identify the health of the
+infrastructure.  All environments and IT components have some degree of variation in their health that can be
+measured.  For instance, in a SAN, SCSI Reservation Conflicts are a normal part of the SCSI protocol and they are not
+actually errors. The SCSI protocol uses the reservation to allow exclusive access to a LUN. It does this to prevent data
+corruption should there be competing devices for the same LUN.  A healthy SAN will experience SCSI Reservation
+Conflicts, but in excess, they can cause poor response times, as devices must wait for access. It’s a common best
+practice to baseline this metric and set alerts for out-of-bound conditions, which can often foretell application
+slowdowns or even outages.
+
+Benefits of Baselining
+Business managers often make the mistake of assuming that baselining is being done, or that baselining is something
+too far down in the “weeds” to care about.  If you aren’t getting meaningful “baseline” reports on infrastructure health
+and performance, perhaps you should ask. Our customers have demonstrated real business benefits to this best
+practice; and here are just some of them:
+
+Mitigate the risk of moving mission-critical applications to a private cloud and virtualized infrastructure.
+
+Cloud computing and virtualization offer many benefits, but IT staff lose the ability to “see” through the virtualized
+cloud, jeopardizing their ability to troubleshoot problems and assure that performance meets application SLAs. It’s no
+secret that many companies are reluctant to virtualize their most mission-critical applications, leaving 70%+ of today’s
+enterprise applications still running on purely physical infrastructures. What happens when an application slows?
+VirtualWisdom baselining enables you to capture the “before” performance metrics, to establish SLAs, then provide
+reports to the business owners of the applications as you virtualize your infrastructure.
+
+De-risk major datacenter consolidation and migration projects.
+Major datacenter projects, such as server and storage migrations, refreshes, and consolidations all carry a risk of
+unexpected problems. And new or major application refreshes add to the risk. You can experience delays and cost
+overruns when performance, mis-configuration, or availability issues arise. Even with all the help you get from your
+vendors, properly designing your new environments still includes guesswork. With the real-time monitoring backed by
+relevant metrics provided by VirtualWisdom, you can baseline the entire infrastructure’s effect on application latency,
+track it during the changes, and report on final results. You will know, to the millisecond, exactly how the changes are
+impacting application users. And you can potentially save millions of dollars of CAPEX by eliminating the over-
+provisioning you’re often forced into, in an effort to mitigate risks.
+
+Improve business agility and reduce cycle time.
+IT increasingly is being asked to move faster, to accommodate a more dynamic, global business environment. With
+VirtualWisdom baselining, your IT staff gets the required visibility into the most important health and performance
+indicators to enable them to know immediately whether a change is creating a problem.  This often lets them
+remediate issues before the full production deployment goes live.
+
+VirtualWisdom finds performance inhibitors before they bubble up to the application layer, accelerating new
+deployments, consolidations and technology migrations. VirtualWisdom helps validate new technologies by providing
+real-time measurements to determine the positive or negative performance impact of IT infrastructure changes.
+
+Application assurance by avoiding application performance degradations or even downtime.
+
+www.virtualinstruments.com
+
+3
+
+Whitepaper
+
+Performance problems are still most often reported by the application users, but it doesn’t have to be this way.  By
+baselining infrastructure metrics, your server, network, and storage teams can detect and fix problems before they
+cause application problems.  Every IT infrastructure has hidden issues, from physical layer errors to configuration and
+load-balancing issues. Almost all application outages are the result of a combination of these issues. Without
+baselining, IT staff often set alerts based on “best guess”, resulting in “alert SPAM”, which they have to ignore. By
+setting meaningful alerts key to these issues, administrators can proactively eliminate them while they are still benign,
+making administration a proactive activity rather than a series of fire-fighting drills. Being able to effectively address
+potential issues before application users report problems creates a more methodical process of ensuring application
+availability.
+
+Resolve infrastructure problems faster.
+Though rare, sev 1 problems can result in significant revenue loss and damage to a company’s brand image. By
+baselining, your IT staff have the metrics to know where to start looking for problems.  VirtualWisdom is the only
+product that can monitor and send alerts about storage access times, congestion, link errors, and SCSI errors, and
+generate trend reports that show the behavior of a heterogeneous infrastructure, by physical or virtual host, and by
+application. This information helps to dramatically expedite troubleshooting and allows the IT Manager to prove
+whether the problem is in the SAN, the application, or the server. This simple first step speeds troubleshooting by
+days, weeks, or even months. The goal is to reduce and if possible eliminate sev 1 issues, and where possible, remove
+recurring issues that sap productivity of your IT operations staff.
+
+Reduce storage costs through more aggressive use of storage tiering.
+Without adequate baselining, it’s hard to know exactly what effect that tiering has on your applications. Rather than
+risk an application slowdown, many enterprises simply develop conservative rules of thumb, which result in over-
+spending for storage.  With VirtualWisdom baselining, IT organizations can measure, in real-time, to the millisecond,
+the effect of lower cost tiers.  Combined with real-time alerting capabilities to prevent user impact as demands
+change, IT can realize huge CAPEX savings. The ability to use less expensive storage can result in 40-50% cost per
+terabyte savings and reduce floor space, power, and power/cooling requirements by up to 80%.
+
+How Virtual Instruments Can Help
+Virtual Instruments infrastructure optimization products and services provide comprehensive, real-time instrumentation
+and measurement that allows IT managers to optimize the three IT imperatives of Cost, Risk, and Cycle Time. Our
+product, called VirtualWisdom, enables you to optimize the performance, utilization, and availability of your datacenter
+IT infrastructure by providing real-time SAN I/O measurement capabilities from the VM to the LUN.  By first baselining
+your datacenter infrastructure, VirtualWisdom helps identify application performance bottlenecks, resulting in
+significantly higher virtual and physical infrastructure performance and availability.
+
+www.virtualinstruments.com
+
+4
+
+Whitepaper
+
+Global 2000 customers use VirtualWisdom to mitigate the risk of moving mission-critical applications to a virtualized or
+private cloud environment; to proactively prevent application outages and performance problems; to quickly resolve
+infrastructure problems; and to control storage costs by increasing use of more cost-effective components and
+reducing the over-provisioning that’s so common.  As a result, we dramatically accelerate the roll-out of new
+applications and infrastructure.
+
+The diagram above is a simple representation of a VirtualWisdom deployment.  VirtualWisdom gets its data from fibre
+channel switches via SNMP, from virtual servers via vCenter, and from the physical layer via an optical splitter (Tap
+Patch Panel System).  This TPPS provides real-time, bit-for-bit copy of all traffic, unlike switch mirror or SPAN ports.
+The SAN Performance Probe analyzes every transaction in real-time to provide dozens of critical statistics about
+storage traffic, transmission errors, and read and write latency.
+
+Baselining Best Practices
+As noted earlier, the benefits of baselining are many.  Depending on the customer’s objective, there are several
+options for conducting baselines.  Some of these are discussed in this section.  Note that these projects can and often
+are combined into
+a single baselining project.
+
+Baseline #1:  Operational Assessment - Monitoring and Measurement Best Practice
+Virtual Instruments commonly suggests a baseline operational assessment of the host to LUN infrastructure, to:
+
+Establish metric values and configuration policies for managing normal, organic growth
+
+
+ Minimize the risk of infrastructure-related application outages and performance degradation that impacts the
+
+
+
+business
+Drive down the number of day-to-day problems that the IT team have to deal with and improve the overall
+operational efficiency of administrators
+
+A typical 15 – 30 day operational sequence of this assessment looks something like:
+
+1.
+
+Install TAPs (optical splitters) into environment to enable real-time monitoring
+and measurement
+
+www.virtualinstruments.com
+
+5
+
+Whitepaper
+
+2. Deploy and use VirtualWisdom hardware and software probes
+
+to assess the environment
+
+3. Review results and remediate and outstanding issues
+4. Set appropriate thresholds and alerts
+5.
+
+Integrate into an OSS framework (ticketing system)
+
+The scope of this baseline assessment usually includes monitoring and measurement of:
+
+ Configuration – Server HBA Multipath Verification
+ Configuration – Storage Port Multipath Verification
+ Configuration – Missing or Incorrect Nicknames
+ Configuration – Queue Depths
+ Connectivity and Errors – Physical Layer Errors
+ Connectivity and Errors – Failed Communication and Transactions
+ Connectivity and Errors – Class 3 Discards
+
+As an example of item #1, server/HBA multipath verification, we often find that there are substantial performance and
+outage risks in existing infrastructures.  The following pie chart is a high level, summary example of a baseline
+multipathing report at a large healthcare provider.
+
+Similar issues are discovered and reported for items 2 – 8.
+
+www.virtualinstruments.com
+
+6
+
+Whitepaper
+
+Baseline #2:  Storage Network Provisioning Best Practice
+The lack of ability to actively measure SANs means storage architects design for the very
+worst case. In our engagements with customers, we have consistently found that storage
+networks at larger datacenters are significantly over-provisioned, with average network link
+utilization rates of less than 5%. VirtualWisdom can help reclaim underutilized SAN ports to
+postpone acquiring additional expensive core switch ports, storage ports, related cables,
+and SFPs.  To baseline #1: Operational Assessment, an eighth metric is added: Capacity
+Planning – HBA and Storage Port Utilization.
+
+The baseline deployment methodology and timeline remains the same; but additional
+reports and recommendations are generated aimed at right-sizing several infrastructure
+components.
+
+The sample report at the right shows the percent utilization of the most used storage ports
+over a period of time.  In this case, average utilization is far less than 10%, showing an
+opportunity to consolidate workloads, or perhaps defer the addition of more ports.
+
+Baseline #3: Tiering Management Assessment Best Practice
+VirtualWisdom is the missing puzzle piece of the tiering value proposition.  Drive speed is
+only one factor in achieving the desired application performance for a storage tier and is
+often the smallest, most expensive performance differentiator.  VirtualWisdom tracks I/O
+conversations to provide both real-time monitoring and trend analysis of overall
+performance between applications and all components of the Fibre Channel SAN – the
+host HBA, switches, virtualization appliances, storage ports, and LUNs.  Combined with the storage vendor tools with
+their emphasis on storage system metrics, VirtualWisdom provides the critical missing data to enable IT organizations
+to more confidently use lower cost storage to provide higher tier performance.  Virtual Instruments adds application
+latency data and other information to properly plan and optimize the environment.  This is combined with alerting
+capabilities to prevent user impact as demands change, enabling IT to realize huge CAPEX improvements while
+delivering on SLAs.
+
+To baselines #1 and #2: a ninth metric is added: Performance - Exchange Completion Time
+
+Exchange Completion Time (ECT) is a unique-to-VirtualWisdom metric that measures, to the millisecond, in real-time,
+the effect of any changes in the SAN, such as moving LUNs to lower-cost tiers.
+
+The operational sequence looks like this:
+
+1. From baseline #1 … install TAPs (optical splitters) into environment to enable real-time monitoring and
+
+measurement
+
+2. Deploy and use VirtualWisdom hardware and software probes to assess the environment, adding ECT
+3. Review results and recommendations
+4. Set appropriate thresholds and alerts per application
+5. As LUNs are moved to lower cost tiers, examine real-time dashboards for changes in ECT, compare to baseline
+
+6.
+
+figures
+The following graphs are simple examples of the “before” and “after” effects of application-level tiering.
+Meaningful reports are offered to application owners, demonstrating the continued adherence to SLAs.
+
+www.virtualinstruments.com
+
+7
+
+Whitepaper
+
+“Before” ECT in milliseconds                                       “After” ECT in milliseconds
+
+Baseline #4: Application Assurance Best Practice
+When you look at how people historically focus on application assurance, it’s around what happens from the
+application host to the client.  To see the complete picture, it’s a best practice to add in infrastructure from the host to
+the data storage.  We call this “Infrastructure Performance Management”.
+
+Infrastructure Performance Management (IPM) is a new approach to managing the performance of the physical and
+virtual hardware and software resources that comprise virtualized and cloud-based computing environments. IPM
+provides a response time or latency based perspective on infrastructure performance, which can be tied back to the
+application. This new approach is based on a new performance metric for the infrastructure: Infrastructure Response
+Time.
+
+Infrastructure Response Time (IRT) is defined as the time it takes for any workload (application) to place a request for
+work on the virtual environment and for the virtual environment to complete the request. Another way to think of IRT is
+that it is an end-to-end measurement of infrastructure latency.  With it, you can improve your application assurance.
+
+The baselining methodology builds on previous best practices.  Here, you:
+
+Identify/Highlight areas of risk in those assets
+Identify a  set of reports and target thresholds around health, availability, and performance metrics (such as ECT)
+Provide application level analysis of baseline to actual results
+
+ Create inventory map of infrastructure assets supporting a critical application
+
+
+
+ Continue to update baselines as application workloads change
+
+
+Pinpoint other application targets, including the backup or replication infrastructures
+
+Our customers have found that by baselining for application assurance, they achieve the availability and performance
+required, often with less infrastructure purchased and better guidance to the design teams.
+
+Baseline #5:  Private Cloud Best Practice
+When you look at where people historically focus on system management, it’s around capacity and utilization.  Server
+and storage virtualization now make capacity planning relatively easy, shifting the key criteria for success in Cloud
+Computing to performance.  When you look at a virtualized or private cloud environment, optimizing CPU and memory
+only gets you so far.  For I/O-intensive applications such as those running OLTP databases, looking only at server-
+
+www.virtualinstruments.com
+
+8
+
+Whitepaper
+
+related metrics is simply inadequate.  I/O optimization is the key as it is the third leg of
+the “systems optimization stool”.
+
+What administrators need is a way to see into multiple dimensions of the
+infrastructure, in real time. VirtualWisdom’s hardware monitoring is non-intrusive to
+the link and to the cloud component.   It sees evidence of degraded behavior because
+it sees and measures everything, not just the upper layers of the stack, and not just
+what a cloud component tells it.
+
+Proper network capacity planning can help maintain datacenter infrastructures in
+optimal working order, reduce risk of outages due to resource limitations, and justify
+future needs.  Just like traffic reports for a city’s roadway infrastructure, the
+information can be used to make both short-term and long-term decisions.  It is
+important to apply baselines for patterns that occur at various times of day, week, or
+even month; they are often the equivalent of “rush hour” time periods where the traffic
+will be slowed due to periods of significantly increased demand.
+
+It is a good idea to examine these time periods for workloads that can be shifted to
+other ‘less busy’ times of day.  Virtual Instruments looks for activities such as batch
+processing or backups that could be moved to other less busy time periods.  It is also
+very common that certain regular activities have been scheduled that are not
+necessary.  For example, a report that is no longer used but is configured to run
+periodically.  Simply turning off the report may yield performance improvements for all
+of the applications that share the same resources.  There may also be other medium-
+term capacity planning activities, such as refining traffic routing to eliminate
+bottlenecks and take advantage of underutilized links or storage ports.  Longer-term
+planning should verify which portions of the network designs and configurations have
+worked best for the specific environment and demands.  For this activity it is
+important to compare the capacity, performance and configurations.
+
+No new metrics, baselining methodology or time is added to the previously outlined
+baseline assessment project to enjoy the benefits of this Best Practice.
+
+Customer Case Study
+In early 2012, a large eCommerce
+company migrated a production
+datacenter 400 miles, and
+consolidated two major Oracle
+applications from two storage
+arrays to one. For the datacenter
+migration, the customer (1)
+baselined the application
+performance at the old datacenter,
+(2) tracked the latency metrics
+during the migration, and (3)
+provided assurance once the
+migration / consolidation was
+complete that there was no
+negative effect on application
+performance.  Additionally, the
+customer used VirtualWisdom to
+instrument and analyze the new
+SAN, remediating several physical
+and configuration problems before
+the production applications went
+live.  The entire project completed
+on time, and thanks to the
+VirtualWisdom baselining and
+monitoring against that baseline, a
+potentially devastating
+performance issue was caught and
+fixed before the heaviest
+production load occurred.
+
+Baseline #6:  Problem Resolution Best Practice
+Decreasing time to problem resolution is accomplished by monitoring transactions
+from the physical or virtual host to the LUN with VirtualWisdom. The ability to rapidly
+zero in on the source of the problem, proving within minutes whether the SAN is to
+blame for slow application performance or not, focuses the right team on the task and
+allows other teams to remain focused on other mission imperatives.  VirtualWisdom is
+the only product that can monitor and send an alert about storage access times, congestion, link errors, and SCSI
+errors, and generate trend reports that show the behavior of a heterogeneous infrastructure, by host and by
+application. This information helps to dramatically expedite troubleshooting and allows the IT Manager to prove
+whether the problem is in the SAN, the application, or the server.
+
+No new metrics, baselining methodology or time is added to the previously outlined baseline assessment project to
+enjoy the benefits of this Best Practice.
+
+Baseline #7:  High Availability Best Practice
+Beyond adding full I/O path awareness to let IT make more intelligent performance-based tiering decisions,
+VirtualWisdom also provides deep, physical-layer knowledge of the fabric to enable actual problem avoidance,
+
+www.virtualinstruments.com
+
+9
+
+Whitepaper
+
+accelerate troubleshooting, and help de-risk the move to a consolidated computing model.  Every network has hidden
+issues, from physical layer errors to configuration and load-balancing issues such as failed multipathing. By setting
+alerts keyed to these issues, administrators can proactively eliminate them while they are still benign, making IT
+administration a proactive activity rather than a series of firefighting drills.
+
+No new metrics, baselining methodology or time is added to the previously outlined baseline assessment project to
+enjoy the benefits of this Best Practice.
+
+Infrastructure Maturity Model
+
+The Infrastructure Maturity Model (IMM) is a management framework designed to systematically improve infrastructure
+business value through the continuous improvement of people, processes, and technology. The objectives of the
+framework are to:
+
+ Minimize the risk of infrastructure-related application outages and performance degradation that impacts the
+
+
+
+business
+Drive down the number of day-to-day problems that the IT team have to deal with and improve the overall
+operational efficiency of administrators
+
+ Make better use of the overall capacity of the infrastructure by ensuring the I/O workload is balanced and that I/O
+
+
+
+performance does not constrain the adoption and efficiency of the virtual infrastructure
+Facilitate the use of SLAs and provide the fundamental metrics that are needed to design, deploy and manage a
+flexible and scalable infrastructure that aligns with the needs of the business in the most cost-effective way.
+
+The IMM describes five levels of infrastructure maturity, from an “unmanaged and chaotic” environment to an
+optimized environment that includes both OPEX and CAPEX are optimized to meet business objectives.  Basic to this
+model is the requirement that all relevant metrics are baselined.  Baselining is the only quantitative way to measure
+your progress against these Best Practice standards.
+
+Summary
+Through the utilization of baselining best practices, Virtual Instruments customers realize these business benefits:
+ Mitigation of the risk of moving mission-critical applications to a private cloud and virtualized infrastructure.
+
+
+
+
+
+
+
+De-risking major datacenter consolidation and migration projects.
+Improving business agility and reduce cycle time.
+Application assurance by avoiding application performance degradations or even downtime.
+Resolving infrastructure problems faster.
+Reducing storage costs through more aggressive use of storage tiering.
+The benefits of baselining are well understood and Virtual Instruments can help by providing best practices guidance,
+and with an advanced measuring, monitoring, analysis, and optimization solution.
+
+Corporate Headquarters
+25 Metro Drive Suite 400
+San Jose, CA 95110
+Phone:  408-579-4000
+Fax:  408-579-4001
+
+European Headquarters
+One Kingdom Street
+Paddington Central * London W2 6BD
+Phone:  44 (0) 203 402 3353
+
+Sales
+sales@virtualinstruments.com
+Support
+support@virtualinstruments.com
+
+©2012 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight
+are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or
+servicemarks of, and are used to identify, products or services of their respective owners. 08/12
+
+www.virtualinstruments.com
+
+10
+
+

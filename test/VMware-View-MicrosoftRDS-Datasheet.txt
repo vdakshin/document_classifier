@@ -1,0 +1,278 @@
+Why Choose VMware® Horizon View™  
+over Microsoft RDS 2012? 
+
+Why VMware Horizon View for  
+Desktop Virtualization?
+VMware® pioneered desktop virtualization in response to 
+the unmet needs of the end-user computing market. 
+VMware Horizon View™ provides the security, robustness, 
+and flexibility required by today’s demanding workforce 
+and addresses the challenges of end-user mobility and 
+mobile device proliferation.
+
+VMware continues to innovate and augment desktop 
+solutions with tighter integration with VMware vSphere®, the 
+addition of centralized physical device management with 
+VMware Horizon Mirage™, and the introduction of VMware 
+Horizon™ Suite, the premier platform for workforce mobility. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Figure 1: VMware Has a Full Set of Technologies to Enable Workforce Mobility
+
+Why Choose VMware Horizon View  
+over Microsoft VDI?
+Horizon View is a proven, enterprise-class VDI solution 
+deployed at over 22,000 customers. Horizon View 
+deployments range in size to 60,000 or more desktops. In 
+addition to performance and scalability, Horizon View 
+includes other capabilities that the newly introduced 
+Microsoft VDI lacks:
+
+•	Proven,	scalable,	enterprise-class	solution
+
+•	Broad	client	and	operating	system	support	
+
+•	Platform	integration—vSphere
+
+Proven, Scalable, Enterprise-Class Solution
+Horizon View offers enterprise-ready capabilities that Microsoft 
+VDI does not: 
+
+•	Power	management	for	provisioned	desktops
+•	Web-based	management	front	end
+•	Cloning	and	disk	space	recovery	
+•	Scalable	and	flexible	desktop	templating
+•	Support	for	offline	desktops
+•	Granular	and	extensive		editing	of	desktop	attributes 	
+•	Published	large-scale	reference	architecture	and	success	stories
+
+Broad Client and OS Support
+Leveraging an extensive partner ecosystem, VMware offers much 
+broader client and OS support than Microsoft. VMware fully 
+supports	a	range	of	non-Windows-based	client	endpoints	(e.g.,	
+Linux, Mac, Android, and iOS-based certified devices), while 
+Microsoft	doesn’t	provide	support	for	non-Windows-based	devices.
+
+Microsoft’s new RemoteFX graphics capabilities are only 
+available	on	devices	that	have	either	a	Windows	8	or	Windows	7 	
+SP1	Enterprise	license.	Non-Windows	and	non-Enterprise	
+licensed devices are not supported by Microsoft.
+
+Platform Integration
+Horizon	View	is	tightly	integrated	with	VMware	vSphere—the 	
+only platform specifically designed to host virtual desktops. This 
+integration offers several unique capabilities:
+
+•	View	Storage	Acceleration	leverages	vSphere	Content-Based 	
+
+Read	Cache	to	provide	up	to	65	percent	reduction	in	peak 	
+IOPS,	dramatically	reducing	peak	storage	costs.	
+
+•	View	Composer	Array	Integration	and	Space-Efficient	sparse 	
+
+disk	utilization	provide	efficient	disk	utilization	and	reclamation.
+
+•	Antivirus	offloading	provides	simplified	antivirus	administration,	
+
+higher consolidation ratios, prevention of antivirus storms, and 
+improved performance. 
+
+How to Decide?
+If you are considering a choice between VMware Horizon View 
+and Microsoft VDI, consider these questions: 
+
+1.  Do you need direct support from one vendor for all of your 
+
+devices including non-WIndows devices?
+
+2.	 Do your deployments need to scale to thousands of users?
+3. 	 Do your users need desktop access when they travel?
+4.	
+
+Is your datacenter virtualized on vSphere? 
+
+An answer of “yes” to any of these questions indicates VMware 
+Horizon View is a better solution for you than Microsoft VDI. 
+
+D ATA S H E E T   /   1
+
+ 
+
+VDI
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+W7
+
+W7
+
+W7
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+W7
+
+W7
+
+W7
+
+VMware vSphere
+VMware vSphere
+
+• True desktop OS
+• Each user is isolated  in their own desktop instance
+• Sessions can be easily migrated between servers
+
+RDSH
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+User
+
+Apps
+
+Windows Server
+
+ 
+ 
+ 
+ 
+ 
+
+• Shared slice of a Windows server
+• OS or application issues can disrupt all users
+• Migrating users is complex 
+
+Figure 2: Comparison of VDI and RDSH Architectures
+
+VMware Is the Right Choice
+Whether	deploying	a	few	virtual	desktops	or	tens	of	thousands, 	
+VMware Horizon View provides the enterprise capabilities and 
+ease of management that organizations of all sizes require. 
+Horizon View, and Horizon Suite, provide a complete end-user 
+computing solution for today’s mobile workforce while 
+addressing the needs of IT for a secure, centrally managed 
+platform. VMware Horizon View is the best choice for desktop 
+virtualization. 
+
+Why Choose VMware Horizon View over Microsoft 
+for Mixed VDI and Session Deployments? 
+Horizon	View	supports	Microsoft	RDS	sessions	using	RDP	to	
+provide flexibility for your desktop deployment options. The key 
+advantage of using Horizon View over Remote Desktop Session 
+Host	services	(RDSH)	is	that	you	get	enterprise-class	VDI	plus	
+tight integration with vSphere while still enjoying the flexibility of 
+delivering a shared session experience when needed. 
+
+The question of when to use VDI desktops versus shared sessions 
+is best answered by considering the use case. If your end users 
+are task-based workers and use only a small number of 
+applications, Horizon View with shared sessions is a good choice. 
+If	your	end	users	require	the	full	desktop	experience	(i.e.,	
+administrators  of their own images, native application 
+compatibility, and use of desktop applications), View VDI is the 
+better choice. Many deployments use a mixture of both. 
+
+Horizon View offers ease of management along with a secure, 
+robust architecture, and the ability to offer end users the freedom 
+and choice they need to be productive. In comparing VDI and 
+sessions, VDI offers the following advantages over sessions: 
+
+•	Eliminates	application-compatibility	issues	
+•	User	or	OS	resets	do	not	impact	other	users	(sessions	require	
+
+resetting entire server)
+
+•	Provides	better	native-application	compatibility
+•	Eliminates	application-to-application	conflicts	in	a	multi-session	
+
+environment 
+
+•	Applications	do	not	have	to	be	written	with	TS	or	RDSH	in	mind	
+
+(i.e.,	desktop	applications	are	supported)
+
+Figure 2 illustrates the basic architectural differences between 
+VDI and shared sessions.
+
+How to Decide?
+If you are considering a choice between VDI and RDSH, consider 
+the following questions: 
+
+1.	 Do you have users that require constant up time?
+2.  Are you concerned about your application licensing 
+agreements being valid in a multi-user environment?
+
+3.  Do your users need a full desktop experience, i.e., admins of 
+
+their own machines, unique application requirements, and 
+varied and broad USB device support? 
+
+4.  Do you want or need the flexibility to easily migrate users 
+
+between servers?
+
+An answer of “yes” to any of these questions indicates that 
+VMware Horizon View is a better solution for your environment 
+than RDSH. 
+  
+
+Why Choose VMware Horizon View  over Microsoft RDS 2012?VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2013 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VWM-DS-WHYCHOOSEVIEWMSRDS-USLET-20130423-WEB

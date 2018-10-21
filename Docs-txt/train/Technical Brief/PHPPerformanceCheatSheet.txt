@@ -1,0 +1,402 @@
+Anatomy of a Modern PHP 
+Application Architecture
+
+R
+E
+V
+R
+E
+S
+ 
+B
+E
+W
+
+E
+H
+C
+A
+C
+
+CONFIGURE & VIEW
+• Navigate to AppDynamics Exchange
+• Search for your server
+• Download and Install extension
+• Navigate back to AppDynamics Controller
+• Analyze > Metric Browser
+• Find your extension
+
+CONFIGURE & VIEW
+• Navigate to AppDynamics Exchange
+• Search for your server
+• Download and Install extension
+• Navigate back to AppDynamics Controller
+• Analyze > Metric Browser
+• Find your extension
+
+VIEW
+• Navigate to Application Flowmap
+• View latency to your cache server
+
+WEB
+
+WEB SERVER
+
+IOS / ANDROID
+
+CACHE
+
+EXTERNAL WEBSERVICES
+
+SET HEALTH RULES
+• Alert & Respond > Health Rules 
+
+CONFIGURE
+• End User Experience > Web > Pages &
+  AJAX Requests
+• Double click on selected Page
+• View Summary Timeline to locate bottleneck
+
+VIEW
+• End User Experience > Web > Analyze
+• Focus on location, browser type, device type, 
+  and other combinations to analyze performance.
+
+VIEW
+• Servers > remote services
+• Double-click remote service
+
+VIEW
+• Troubleshoot > Slow Response Times > 
+  Slowest DB & Remote Service Calls
+• Select HTTP
+
+TRANSACTIONS
+
+ERRORS
+
+COLLECTING USER DATA
+
+ANALYSIS
+
+CONFIGURE BUSINESS TRANSACTIONS
+• Navigate to Business Transactions
+• Right-click Transaction
+• Choose con(cid:31)guration options to organize 
+  transactions
+
+CONFIGURE TRANSACTION DISCOVERY
+• Con(cid:31)gure > Instrumentation > Transaction
+  Detection > Select PHP Tier
+• Scroll down to Custom Rules
+• Create rules to group, match and exclude your 
+  transactions
+
+CONFIGURE FRAMEWORK SUPPORT
+• Con(cid:31)gure > Instrumentation > Transaction
+  Detection >
+• Select ‘Use Custom Con(cid:31)guration’
+• Enable PHP MVC, Drupal or Wordpress
+
+P
+H
+P
+
+CONFIGURE TRANSACTION API
+• Use the custom API functions to manually de(cid:31)ne 
+  the beginning and ending of a transaction from 
+  within your code
+• Navigate to Business Transactions to view 
+
+Hint: This is useful in cases where you have a 
+transaction executing jobs in an in(cid:31)nite loop and 
+want to register each job as a transaction.
+
+VIEW RUNTIME ERRORS
+• Troubleshoot > Errors > Error Transactions
+• Double-click Transaction Snapshot
+• Drill Down > Error Details
+
+VIEW UNCAUGHT EXCEPTIONS
+• Troubleshoot > Errors > Exceptions
+• Double-click Exception
+• Double-click Transaction Snapshot
+• Drill Down > Error Details
+
+CONFIGURE ERROR REPORTING
+• Con(cid:31)gure > Instrumentation > Error Detection >
+  PHP - Error Detection
+• Con(cid:31)gure Runtime Error Threshold (Notice, 
+  Warning, Fatal Error)
+• Con(cid:31)gure Ignored Exceptions or Logged 
+  Messages
+
+SLOW CODE EXECUTION
+
+PHP APPLICATION
+
+VIEW
+• Application Dashboard > Transaction 
+  Snapshots > Show Filters
+• Select search criteria > Search
+• Double click Transaction Snapshot
+• Start Drill Down > Call Graph OR Hot Spots
+
+PHP CLI
+
+CONFIGURE PHP CLI
+• Con(cid:31)gure > Instrumentation > Transaction
+  Detection > Select PHP Tier
+• Scroll down to Entry Points
+• Enable PHP CLI
+
+VIEW PHP CLI
+• Navigate to Business Transactions
+• View PHP CLI Transactions named after the 
+  executed PHP script
+
+DATABASE
+
+DATABASE
+
+VIEW
+• Navigate to Servers > Databases
+• Double-click your DB
+• Select your PHP Tier
+• View slow queries
+
+VIEW
+• Application Dashboard > Transaction Snapshots
+  > Show Filters
+• Select search criteria > Search
+• Double click Transaction Snapshot
+• Start Drill Down > SQL Calls
+
+VIEW
+• Navigate to Application Dashboard > Flowmap
+• Right-click on Database
+• Select ‘View in Database Monitoring’
+
+INFO
+In a service-oriented environment the 
+performance indicators of the distributed nature 
+of the transaction is an integral aspect of 
+characterizing transaction performance. 
+AppDynamics applies distributed transaction 
+tracing to for all business transactions as well as 
+for the entire application. Using a tag, trace, and 
+learn approach, AppDynamics traces the 
+transaction context across all tiers, including 
+JVMs, CLRs, PHP servers, and calls to HTTP, SOAP, 
+databases, third party web services, etc.
+
+E
+S
+A
+B
+A
+T
+A
+D
+
+I
+
+S
+E
+C
+V
+R
+E
+S
+B
+E
+W
+ 
+L
+A
+N
+R
+E
+T
+N
+
+I
+
+INTERNAL WEBSERVICES
+
+WORKER SERVERS
+
+DISTRIBUTED TRANSACTIONS
+
+CONFIGURE HTTP DATA
+• Con(cid:31)gure > Instrumentation > Diagnostic Data 
+  Collectors
+• Scroll down to HTTP Request Data Collectors
+
+VIEW APPDYNAMICS MACHINE AGENT
+• Download & Install Machine Agent
+• Navigate to Servers > App Servers >
+  [Your PHP Tier] > [Your PHP Node]
+• Select Hardware
+
+VIEW HTTP DATA
+• Application Dashboard > Transaction Snapshots 
+  > Show Filters
+• Select search criteria > Search
+• Double click Transaction Snapshot
+• Start Drill Down > HTTP Params
+
+VIEW HARDWARE
+• Application Dashboard > Transaction Snapshots > 
+  Show Filters
+• Select search criteria > Search
+• Double click Transaction Snapshot
+• Start Drill Down > Hardware
+
+CONFIGURE CLASS/METHOD DATA
+• Con(cid:31)gure > Instrumentation > Diagnostic Data 
+  Collectors
+• Scroll down to Method Invocation Data 
+  Collectors
+
+VIEW CLASS/METHOD DATA
+• Application Dashboard > Transaction Snapshots 
+  > Show Filters
+• Select search criteria > Search
+• Double click Transaction Snapshot
+• Start Drill Down > User Data
+
+BUSINESS INTELLIGENCE
+
+INFORMATION POINTS
+• Analyze > Information Points 
+• Click 'New', click 'PHP', enter JSON 
+  con(cid:31)guration, click 'Create Information Point'
+• Double-click [your information point] to view
+
+QUEUE SERVER
+
+COMPARE RELEASES
+• Analyze > Compare Releases
+• Select time ranges to compare
+
+HINT: Be sure to automatically add deployment 
+events using our REST API (see Events).
+
+CONFIGURE EVENTS
+• Add APPLICATION_DEPLOYMENT or CUSTOM 
+  as an event type to add events using the 
+  AppDynamics REST API
+
+VIEW EVENTS
+• Navigate to Application Dashboard > Events
+
+HINT: Add Custom events into all your 
+automated scripts, including deployments, 
+maintenance and rollbacks to keep track of 
+di(cid:30)erences in performance between key changes 
+to your application and environment.
+
+VIEW
+• Navigate to your Application Dashboard
+  > Flowmap
+• Find Queue Server
+• View latency to your queue server
+
+VIEW
+• Application Dashboards > Transaction 
+  Snapshots
+• Find transactions that speak to your Queue 
+  server
+• Double click > Start Drill Down > Call Graph
+• Find method call that sends job, click to 
+  correlate to downstream worker server for 
+  associated call graph
+
+INFO
+When a PHP application communicates with an 
+external component that is not being monitored 
+as part of the same business application, such as 
+a database or a message queue, you can monitor 
+the performance data for the communication. 
+
+AppDynamics displays distributed communication 
+performance in the business application and 
+business transaction (cid:29)ow maps.
+
+ 
+
+E
+N
+D
+U
+S
+E
+R
+ 
+E
+X
+P
+E
+R
+I
+E
+N
+C
+E
+
+E
+X
+T
+E
+R
+N
+A
+L
+ 
+W
+E
+B
+S
+E
+R
+V
+C
+E
+S
+
+I
+
+P
+H
+P
+
+Q
+U
+E
+U
+E
+ 
+S
+E
+R
+V
+E
+R
+
+W
+O
+R
+K
+E
+R
+ 
+S
+E
+R
+V
+E
+R
+S
+
+

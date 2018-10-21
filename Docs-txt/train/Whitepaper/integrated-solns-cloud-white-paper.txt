@@ -1,0 +1,596 @@
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+www.vce.com 
+
+BEYOND CONVERGED INFRASTRUCTURE: 
+DELIVERING A PRODUCTIVE CLOUD 
+EXPERIENCE WITH INTEGRATED SOLUTIONS  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+Copyright © 2014 VCE Company, LLC. All Rights Reserved. 
+
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+2 
+
+ 
+
+ 
+
+ 
+
+Contents 
+ 
+
+Popularity of Private Clouds Continues to Rise ...................................................................... 4	  
+Diverse Cloud Management Platforms ...................................................................................... 5	  
+Creating a Productive Private Cloud ........................................................................................ 6	  
+Gaining Greater Insight into the Journey ................................................................................... 6	  
+The Need for Effective Cloud Management ........................................................................... 7	  
+Building Better Managed Private Clouds ................................................................................. 8	  
+VCE™ Integrated Solutions for Cloud Management ............................................................... 9	  
+Designed for How Businesses Deploy Cloud Computing .......................................................... 9	  
+Going Beyond Out-of-the-Box Automation .............................................................................. 10	  
+Conclusion ................................................................................................................................ 11	  
+Next Steps ............................................................................................................................... 12	  
+
+	  
+
+  
+
+ 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+3 
+
+ 
+
+ 
+
+Popularity of Private Clouds Continues to Rise 
+
+Private cloud computing is soaring. The majority of enterprise-class and midmarket organizations in 
+North America already have a private cloud infrastructure in place, or are planning to deploy one in the 
+near future.1 Similar numbers of enterprises globally have implemented private cloud solutions. 
+
+Many IT organizations with private clouds have patterned their internal services after the successful 
+public cloud offerings of Amazon Web Services (AWS). IT organizations want to be able to offer the 
+agility, cost savings, and broad application scalability of AWS—together with the advantages of 
+increased security and control offered by private clouds. They are designing solutions that can be 
+used to quickly and efficiently deploy and provision servers to address fleeting business opportunities, 
+while containing costs. 
+
+Organizations are becoming increasingly knowledgeable about which applications will run well in a 
+public, AWS environment and which would be better suited for a private cloud environment in-house. 
+This has not only contributed to the growing number of private clouds, but has also led to more 
+organizations embracing hybrid cloud strategies. 
+
+Fueling this trend to private or hybrid clouds are today’s integrated computing platforms. A recent 
+survey found that one-third of the respondents had already deployed integrated computing platforms, 
+with another 44 percent expressing interest.2 Worth noting, organizations with a private cloud 
+infrastructure are nearly twice as likely to be using an integrated computing platform as those 
+organizations that have not yet deployed private clouds. 
+
+Organizations with private cloud infrastructures have identified a wide range of benefits, including 
+
+  Elasticity—Can quickly scale the infrastructure up or down based on actual demand for IT 
+
+resources. 
+
+  Resource pooling—Able to pool these IT resources for greater efficiency. 
+  Universal network access—Can offer business units seamless connectivity to public cloud 
+
+resources, when needed. 
+
+  On-demand self-service—Supports rapid, direct access to new virtual machines (VMs). 
+  Measured service—Allows IT organization to apply usage-based tracking and billing. 
+
+                                                        
+
+ 
+
+ 
+
+ 
+
+1 Mark Bowker, Bill Lundell, and Jennifer Gahm, Research Report: Trends in Private Cloud Infrastructure, The Enterprise Strategy 
+Group, April 2014. 
+2 Mark Bowker, Bill Lundell, and Jennifer Gahm, Research Report: Trends in Private Cloud Infrastructure, The Enterprise Strategy 
+Group, April 2014. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+4 
+
+ 
+
+ 
+
+Diverse Cloud Management Platforms 
+
+While the use of private cloud computing is growing rapidly, many organizations are finding it complex 
+to manage their cloud infrastructures. There are a wide variety of what Gartner has labeled cloud 
+management platforms (CMPs) to choose from—Cisco, VMware, BMC, CA Technologies, and even 
+IBM and HP offer solutions. The leading platforms are powerful and comprehensive, providing 
+enterprises with a wide range of tools for efficiently provisioning, orchestrating, and supporting private 
+cloud implementations in a way that delivers significant benefits to the business. 
+
+But for smaller organizations or those with fewer needs, these broad-based toolsets can present 
+challenges and risks in terms of cost, complexity, and deployment delays. In addition, to keep pace 
+with industry requirements, the tools’ feature sets must be updated regularly, which can result in 
+higher training costs and the very real risk that many of the tools’ capabilities will go unused or will 
+become out of specification before you’re ready to use them. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+5 
+
+ 
+
+ 
+
+Creating a Productive Private Cloud 
+
+For many organizations, the biggest question about private cloud implementations is what IT 
+architecture they should choose. The reality is that successful enterprises commonly spend as much 
+time thinking about their “financial architecture” as their technology architecture. How does the 
+organization get work done? How are IT budgets handled—in silos, or on an organization-wide basis? 
+Addressing these so-called “cloudonomic” 3 issues up front will lead to much smoother and shorter 
+cloud implementations. 
+
+Another misconception is that a private cloud is at its core a way to achieve a software-defined data 
+center. Organizations that buy into this buzzy concept with all of its attractions and ramifications might 
+be tempted to think that everything required for a cloud-computing infrastructure can be done with 
+software. 
+
+While theoretically this may be true, in most cases, organizations are going to be dealing with a wide 
+array of devices, components, and other resources; cascading firmware and hardware upgrades and 
+software release dates; and other complexities that often lead to a chaotic, tangled mess. Under these 
+circumstances, it’s difficult to find any purely software-defined platform that can help IT teams deliver 
+an attractive ROI. 
+
+That’s why so many organizations in recent years have turned to VCE and the advanced converged 
+infrastructure of its pre-engineered, pre-integrated, factory-built Vblock® Systems for their private 
+cloud implementations. 
+
+Gaining Greater Insight into the Journey 
+
+To better understand the journey organizations make to successful private cloud computing, VCE 
+commissioned the Topline Strategy Group to conduct a survey. VCE wanted greater insight into the 
+scope of the market and the needs of organizations as they sought to develop and deploy private 
+clouds. To gather this information, Topline conducted an online survey of organizations with 1,000 
+employees or more. The surveys were targeted to CIOs, VPs, directors, and managers with 
+knowledge of their organization’s private cloud implementation or plans. 
+
+From the more than 160 respondents with direct cloud responsibilities, 10 percent were selected for 
+in-depth interviews. Among the industries represented were government, financial services, 
+hospitality, media, logistics, manufacturing, construction, high technology, technology services, and 
+business services. 
+
+Among the survey’s key findings were 
+
+                                                        
+
+ 
+
+ 
+
+ 
+
+3 Joe Weinman, Cloudonomics: The Business Value of Cloud Computing, Wiley, September 4, 2012. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+6 
+
+ 
+
+ 
+
+  While public cloud has a precise definition, the term “private cloud” possesses a much more fluid 
+
+one that may be used to refer to anything along a continuum of capabilities—from systems 
+running highly virtualized, mixed workloads to true, full-featured, in-house cloud implementations. 
+
+  Successful companies typically start with a very basic, yet functional, private cloud and add 
+
+capabilities as needed over time. This “start small” approach is underscored by the fact that only 
+19 percent of private clouds provide the full range of public cloud functionality associated with 
+solutions such as AWS, which many IT managers set out to emulate. Other research, conducted 
+in several Gartner studies, reinforces this. The ideal pilot offering should be almost plug-and-play, 
+self-contained, and modular to support efficient growth while not putting existing production at risk. 
+  Most private clouds are being deployed for production or mixed workloads, not primarily for testing 
+
+and development (test/dev). 
+
+  As noted above, business process and organizational issues—not technical issues—act as the 
+
+primary barrier to efficiently rolling out advanced private cloud capabilities. 
+
+The Need for Effective Cloud Management 
+
+The right CMP can significantly enhance the effectiveness of private cloud implementations and help 
+meet business needs by providing exceptional agility. According to Gartner, organizations are 
+leveraging the automation capabilities of CMPs to address the demand for greater flexibility in 
+delivering infrastructure and application services rapidly and efficiently while reducing costs. 
+
+But Gartner warns, “For most organizations, going beyond out-of-the-box automation capabilities 
+provided by cloud management platforms is not recommended.” 4  What is clearly needed is a 
+simpler, fully integrated cloud management and orchestration solution that enables rapid provisioning 
+of cloud environments, without the level of complexity of most tools today. 
+
+In addition, these CMPs should be tailored to support test/dev applications right from the start, not just 
+production or mixed workloads. 
+
+                                                        
+
+ 
+
+ 
+
+ 
+
+4 Alessandro Perilli, Climbing the Cloud Orchestration Curve, Gartner Technical Professional Advice, January 13, 2014. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+7 
+
+ 
+
+ 
+
+Building Better Managed Private Clouds 
+
+Today, there are relatively few large organizations that are looking to build a full-service, private cloud 
+portal where they can provide application development groups or other business units complete self-
+service access. Most organizations with private clouds are primarily interested in faster, more efficient 
+VM provisioning, i.e. VM-as-a-service (VMaaS). In these implementations, data center managers may 
+refer to it as cloud computing, but the chief objective is to make their organizations more productive 
+and be able to respond quickly with VMs on demand. 
+
+These organizations are looking for lower-cost, prepackaged, quick-to-deploy, and easy-to-use CMPs 
+that meet their current requirements while providing a path to add more robust management and 
+orchestration capabilities over time. Further, Gartner recommends, “To reduce the need for custom 
+automation and rapidly return on the investment, organizations should first focus their cloud 
+environments on enabling agile development and testing while staying close to commoditized 
+capabilities.” 5 
+
+                                                        
+
+ 
+
+ 
+
+ 
+
+5 Alessandro Perilli, Climbing the Cloud Orchestration Curve, Gartner Technical Professional Advice, January 13, 2014. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+8 
+
+ 
+
+ 
+
+VCETM Integrated Solutions for Cloud Management 
+
+To address these requirements, VCE is introducing VCE™ Integrated Solutions for Cloud 
+Management, a first-of-its-kind approach to simplified cloud management and orchestration. These 
+integrated solutions extend the core VCE value propositions—simplicity, efficiency, agility, faster time-
+to-value, and lower risk—to deliver a cloud management experience that’s unavailable elsewhere. 
+The solutions incorporate 
+
+  Totally integrated approach—Fully engineering and building Vblock Systems in the factory for 
+
+virtualized applications and cloud computing, and then adding a cloud management and 
+orchestration layer that has been integrated with and tested on the Vblock Systems platform. 
+  Release Validation—Ongoing validation and assurance that all components and software will 
+
+work together, based on Vblock System testing and verification. 
+
+  VCE Vision™ Intelligent Operations—Enabling and simplifying cloud operations by dynamically 
+
+providing data from system health checks, event monitoring, compliance verification, and more to 
+management toolsets. 
+
+  On-site Deployment—Offering on-site deployment and other value-added service options that can 
+
+be tailored to the organization’s IT environment and requirements. 
+
+  Single-call support—Delivering VCE™ Support that helps organizations maximize the value of 
+
+their investment through a single point of accountability. 
+
+Designed for How Businesses Deploy Cloud Computing 
+
+VCE Integrated Solutions for Cloud Management have been designed to address the way 
+organizations are looking to implement cloud services. By offering pre-integrated, pre-tested solutions, 
+organizations can rapidly deploy version 1.0 of their private cloud and enjoy a time-to-value of hours 
+or days rather than weeks or months—making these solutions especially well-suited to the needs of 
+smaller to midmarket organizations. 
+
+In addition, a key strength of Vblock Systems has been their predictability due to the use of 
+standardized components and technologies with element managers and software versions that are 
+fully tested and verified in advance. Including cloud automation tools in this process ensures that the 
+tools will perform as expected and offer value rather than be underutilized due to their complexity or 
+applicability. 
+
+Among the essential features of the integrated cloud management solutions are 
+
+  Choose today from VMware or Cisco-based software stacks. 
+  Support a self-service portal or catalog of cloud services. 
+  Streamline infrastructure management, VM provisioning, and associated orchestration, using 
+
+predefined workflows. 
+
+  Take advantage of full showback capabilities that give IT business units and management a clear 
+
+analysis of costs and usage, without mandating chargebacks. 
+
+  Ensure that the full VCE experience—including VCE Vision™ software, release validation, and 
+VCE Support—is integrated into the cloud management platform, resulting in welcome peace of 
+mind. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+9 
+
+ 
+
+ 
+
+Going Beyond Out-of-the-Box Automation 
+
+VCE is well aware that VCE Integrated Solutions for Cloud Management will not meet every need for 
+organizations of different sizes and descriptions. These integrated solutions have been created 
+specifically to provide low-risk, low-maintenance, highly reliable cloud computing entry points—while 
+offering a clear path to more advanced cloud management features and capabilities. Organizations 
+can easily take the next steps by calling upon VCE or partner-led cloud service teams to build in more 
+advanced cloud features or better align the solution to fit specific business or operational processes. 
+
+The integrated solutions software components support the implementation of capabilities that can be 
+added whenever an organization’s needs or wants dictate, including 
+
+  Policy-driven provisioning, orchestration, and automation to quickly and efficiently address 
+
+business opportunities and manage in a hybrid cloud environment with applications and 
+resources moving among private and public clouds.  
+
+  A distributed cloud management stack and disaster recovery (DR) solutions to improve availability 
+
+and recoverability in a cloud environment. 
+
+  The ability to scale up or out of the cloud management stack with the addition of subsequent 
+
+Vblock Systems. 
+
+  Secure multi-tenancy that offers each user or application its own exclusive and fully safeguarded 
+
+virtualized computing environment. 
+
+  Chargebacks that allow business units to be accurately billed for the use of IT computing power 
+
+and resources. 
+
+  Configuration Management Databases (CMDBs) that conveniently and accurately store relevant 
+
+configuration records for IT resources throughout their lifecycle. 
+
+  Advanced security that’s required for larger cloud computing environments. 
+  Innovative capabilities for public cloud integration required for the growing number of hybrid cloud 
+
+solutions. 
+
+  Easy integration into workflow or ticketing systems. 
+  Effective kickouts to manual provisioning, when desired. 
+  Automated de-provisioning as applications and VMs are no longer required. 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+10 
+
+ 
+
+ 
+
+Conclusion 
+
+Driven by the broad acceptance of server virtualization, private cloud infrastructures are rising 
+worldwide. Midmarket to large enterprises and service providers have embraced private and hybrid 
+clouds to efficiently pool technology resources, scale to meet the actual demand for computing 
+services, offer fast and often self-service access to VMs, and set the groundwork for measured 
+service. The result is vastly improved business agility at a lower cost. 
+
+Accelerating this trend is the surge in the use of integrated platforms of compute, networking, and 
+storage technologies. IDC has projected an annual growth rate in excess of 50 percent in the 
+converged systems market, with converged systems expected to account for more than one-third of 
+enterprise cloud deployments in 2016. 6  
+
+VCE—with its best-of-breed components from Cisco, EMC, and VMware—has led in the creation of 
+the industry-best advanced converged infrastructure that is ideal for public, private, and hybrid cloud 
+implementations. VCE Vblock Systems are built on five solid pillars: 
+
+  Engineered—Designed with a forward-looking roadmap that enables organizations to integrate 
+
+new technology as needed over time without disruption or a lengthy learning curve. 
+
+  Manufactured—Vblock Systems are pre-integrated and pre-built to customer requirements at the 
+
+factory before being shipped in a handful of packages to data centers.  
+
+  Managed—VCE Vision software enables and simplifies converged operations by dynamically 
+
+providing a high level of intelligence to any management toolset. 
+
+  Supported—Single-call, VCE Support means no finger-pointing and quick resolution should any 
+
+issues arise. 
+
+  Sustained—With the help of the VCE Release Certification Matrices (RCMs), organizations can 
+rely on a healthy, integrated stack of infrastructure that works effectively together going forward. 
+
+By building more consistency and predictability into cloud environments built on standard 
+technologies, VCE has delivered extraordinary results for organizations. Now, VCE is extending that 
+consistency and predictability into the management and orchestration layer, offering rapid access to 
+the benefits of private cloud computing thanks to VCE Integrated Solutions for Cloud Management. 
+These innovative, fully integrated solutions are prepackaged, deploy quickly and easily, are simple to 
+use, and promise to significantly reduce the costs of deploying and managing efficient, productive 
+cloud infrastructures. 
+
+                                                        
+
+ 
+
+ 
+
+ 
+
+6 Frank Gens, IDC Predictions 2013: Competing on the 3rd Platform, IDC, November 2012 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+11 
+
+ 
+
+ 
+
+Next Steps 
+
+To learn more about VCE Integrated Solutions for Cloud Management and other solutions, contact a 
+VCE representative or visit www.vce.com. 
+
+ 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+ 
+
+12 
+
+ 
+
+ABOUT VCE	  
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to http://www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright © 2014 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. All Rights Reserved. 
+
+  
+
+

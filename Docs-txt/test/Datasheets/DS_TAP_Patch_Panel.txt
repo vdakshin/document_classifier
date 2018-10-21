@@ -1,0 +1,284 @@
+DATASHEET
+
+Product Features
+•  Allows passive, 
+
+out-of-band monitoring of 
+all Fiber Channel traffic
+
+•  Adds no latency and does 
+
+not alter live traffic
+
+•  High density: 4 — 12 TAPs 
+
+per cartridge; a total of up 
+to 48 tapped patch links 
+in 1U of rack space
+
+•  Standard 70/30 light split 
+
+minimizes attenuation 
+of live signal
+
+•  Supports LC or MT connectors 
+for flexibility in SAN connectivity
+
+•  Optimized, low-loss LC 
+
+and MT adapters; industry 
+standard color coding for all 
+trunk and patch adapters 
+
+SANInsight® 
+Fiber TAP Patch Panel System 
+ 
+10G Fiber Patch Panels with Integrated Traffic 
+Access Points (TAPs) significantly increase demands 
+on the fiber optic physical layer.
+
+VirtualWisdom SANInsight TAP Patch Panel
+
+The Challenge: Optimizing Performance, 
+Availability & Utilization
+A best practices-compliant physical layer must be capable of being both 
+maintained  and  monitored  in  order  to  meet  those  demands.  Physical 
+layer maintenance requires the ability to quickly and easily add, change, 
+or remove links and devices. Physical layer monitoring is the real-time 
+acquisition of error, performance, and utilization data via Traffic Access 
+Points,  or TAPs.  Monitoring  ensures  the  accuracy  of  the  changes  and 
+validates that they produce only the desired results. Physical layers that 
+address  both  requirements  enable  the  Fiber  Channel  SANs  operating 
+on  top  of  them  to  be  iteratively  optimized  for  maximum  availability, 
+performance, and utilization.
+
+Fiber optic cable plants make broad use of patch panels, which simplify 
+changing  device  connections  to  pre-installed  cabling,  to  improve 
+maintainability.  But  while  the  tremendous  value  of  passive,  out-of-band 
+monitoring is increasingly recognized, the deployment of the enabling TAPs 
+has not yet reached the same level of ubiquity, due at least in part to the 
+low fiber density and limited configurations of pre-existing TAP solutions.
+
+All  too  often, TAP  installation  is  only  undertaken  on  a  retrofit  basis  to 
+help troubleshoot  active  problems  in  production  environments. This  is 
+a  highly  inefficient  approach,  as  no  matter  how  critical  the  problems, 
+TAP  installation  will  require  downtime  or  will  have  to  wait  for  the  next 
+scheduled maintenance window
+
+Further, as Tapping is typically undertaken only for those links impacted 
+by the current issue, it does little to help either prevent future issues or 
+speed their resolution.
+
+Utilization
+Virtual Instrument’s new SANInsight TAP Patch Panel System provides a range of options for integrating the unique, 
+patented technology of our TAPs into patch panels from both Virtual Instruments and other leading vendors.
+
+By unifying TAPs and patch functions into a single layer of physical infrastructure, SANInsight significantly reduces the 
+cost, complexity, and infrastructure impact of TAP deployment. SANInsight facilitates the broad installation of TAPs 
+into both new and existing physical infrastructures, fully addressing the best practices monitorability requirement 
+and enabling complete SAN optimization.
+
+Solution Components
+The TAP Patch Panel System incorporates TAPs into TAP 
+Patch Cassettes that are installed into rack-mounted Patch 
+Shelves. Each of these components is detailed below.
+
+ 
+
+Figure 1: SANInsight 6 link TAP Patch Cassette
+
+Traffic Access Point (TAP)
+
+A TAP  uses  a  passive  (unpowered)  fiber  optic  splitter 
+to  create  an  exact  copy  of  the  light  signal  passing 
+through it. The fiber carrying the signal from a device’s 
+transmit  port  is  connected  to  the  splitter  input;  the 
+splitter’s live output is connected to the receive port of 
+the downstream device, while a second output carries 
+the copy of the live signal for out-of-band access. A TAP 
+uses two of these splitters, installed on the two fibers 
+supporting  both  channels  of  a  duplex  Fiber  Channel 
+link, to  create  a  complete  copy  of  all traffic  between 
+the two devices.
+
+The ratio at which the splitter divides the incoming light 
+signal between the two outputs is called the “split ratio.” 
+Virtual Instrument’s standard splitters use a 70/30 ratio 
+–70% of the incoming light goes to the live output, 30% 
+to the TAP output. Keeping such a high portion of the 
+light  on  the  live  output  is  critically  important,  given 
+the tight light budgets imposed by high Fiber Channel 
+line rates. Apart from the attenuation that results from 
+dividing  the  light  signal,  the  splitter  introduces  no 
+latency  or  other  alteration  to  the  signal.  Its  behavior 
+
+remains  constant  whether  or  not  a  receiving  device 
+is connected to the TAP output, making the TAP a true 
+“install and forget” physical layer component.
+
+While the optical splitter is simple in concept, in practice 
+there are significant technical challenges to creating a 
+jitter-free and fully-readable TAP output, especially when 
+combining asymmetrical split ratios and high line speeds. 
+Virtual  Instrument’s  TAPs  use  patented  technology  to 
+address these challenges and are certified to provide a 
+fully readable signal copy up to a 10 Gb/s line rate. Our 
+TAP  technology  is  demonstrably  superior  to  products 
+that  use  a  symmetrical  50/50  split  ratio,  which  may 
+attenuate the live signal to unworkably low levels, or that 
+have not addressed the jitter issue and will not produce 
+a readable TAP output at higher line rates
+
+TAP Patch Cassette
+
+The TAP Patch Cassette houses the TAPs and provides 
+standard  fiber  optic  adapters  for  connecting  the 
+trunk,  patch,  and TAP  cabling. The  dimensions  of  the 
+standard VI TAP  Patch  Cassette  body  (an  example  is 
+shown  in  Figure  2)  allow  it to  mount  in  both VI’s TAP 
+Patch  Shelves  and  Panduit’s  OptiCom®  QuickNetTM 
+
+Figure 2: Top Diagram View of Example VI TAP Patch Cassette
+
+enclosures.  TAP  Patch  Cassettes  with  dimensions 
+compatible with other patch enclosures or shelves are 
+available by special order.
+
+The VI TAP  Patch  Cassette  is  available  in  four  standard 
+configurations with varying fiber densities and mixes of 
+LC and MT trunk, patch, and TAP connections on the front 
+and rear panels. These configurations, shown in detail in 
+Figure 3, are as follows:
+
+•   8 live fibers/4 duplex links; front duplex 
+
+LC adapters for trunk, patch, and TAP 
+connections. Part # TCV-008DFDFDF-XY.
+•   12 live fibers/6 duplex links; rear duplex 
+LC adapters for trunk connections; front 
+duplex LC adapters for patch and TAP 
+connections. Part # TCV-012DRDFDF-XY.
+
+•   12 live fibers/6 duplex links; rear MT 
+adapters for trunk connections; front 
+duplex LC adapters for patch and TAP 
+connections. Part # TCV-012MRDFDF-XY.
+
+•   24 live fibers/12 duplex links; rear MT 
+
+adapters for trunk and TAP connections; 
+front duplex LC adapters for patch 
+connections. Part # TCV-024MRDFMR-XY.
+•   Each of these configurations is available in 
+
+several fiber types and split ratios; these are 
+specified in the X and Y characters of the 
+part numbers, respectively, as follows:
+
+•   X= 5 for OM3 50µm laser-optimized multi- 
+mode fiber; 6 for 62.5µm multi-mode fiber, 
+and 9 for 9um single-mode fiber.
+
+•  Y=7 for 70/30 split ratio and 5 for 50/50 split ratio. 
+Additional fiber density and adapter configurations of the 
+VI TAP Patch Cassette, as well as VI MT-to-LC Cassettes 
+without TAPs and MT-MT and LC-LC adapter plates, are 
+available by special order.
+
+TAP Patch Shelves
+
+The SANInsight TAP Patch Panel System includes two 1U 
+shelves, each mounting up to 4 TAP Patch Cassettes:
+
+•   TPS-01ES is a fully-enclosed patch shelf 
+
+with an inner tray that slides to both 
+front and rear to simplify installation.
+
+•  TPS-01OB is a fixed shelf with an open back.
+
+Both shelves are for EIA standard 19" racks (adapter ears 
+for 23" racks are available separately) and are 14" deep, 
+with multiple cable tie-downs and embosses for included 
+rings for secure and serviceable and cable management. 
+
+TPS-01ES  also  has  multiple  cable  entry  knockouts  on 
+the sides and rear, and uses screwed-on plates to secure 
+the entry grommets to prevent accidental dislodging and 
+potential abrasion damage to the cables.
+
+TAP Patch Panel Installation Locations
+TAPs are typically installed on the storage links (between 
+the core switches and storage devices), as these are far 
+fewer  in  number  than  the  server  links  and  still  provide 
+full  access  to  all  Fiber  Channel  traffic. There  are  three 
+potential locations for installing TAP Patch Panels along 
+the storage links:
+
+1.  In place of patch-only panels at the core switches;
+2.  In place of patch-only panels at the storage edge;
+3.  As an additive layer between the storage edge patch 
+
+panel and storage devices (or between the storage 
+edge trunk cabling and devices, if directly cabled).
+
+Note that the patch panels in the first two options may be 
+proximate to the switches and storage devices, or may 
+be centrally located with trunk cabling run directly to the 
+device ports.
+
+While  the  first  two  deployment  options  are  typically 
+feasible only in new installation or large-scale equipment 
+refresh  scenarios,  they  are  strongly  preferred  as  they 
+avoid  introducing  an  extra  cable  hop  into the  live  data 
+path. Locating the TAP Patch Panels at the core switch 
+links — Option  #1 — is  preferred,  as  it  enables  installing 
+TAPs  onto  the  intra-switch  links  (ISLs),  as  well  as  onto 
+the  storage  links.  While  the  Virtual  Instruments  SAN 
+Performance Probe has a limited ability to monitor ISLs, 
+the  Virtual  Instruments  Protocol  Analyzer  (and  those 
+of  other  vendors)  can  effectively  trace  traffic  across 
+aggregated  ISLs.  TAPs  on  ISLs  can  be  therefore  very 
+valuable for diagnostics  — and very difficult or impossible 
+to retrofit into live environments, making it important to 
+deploy them during physical layer installation.
+
+Option  #3  above  is the  least  preferred,  as  it  inserts  an 
+additional cable hop with attendant insertion loss, material 
+and  installation  cost,  and  rack  space  requirements  into 
+the live data path. This may, however, be the only viable 
+option for retrofitting TAPs into live environments, as the 
+live links can be reconnected through the TAP Patch Panel 
+a single link at a time, minimizing disruption.
+
+Component Selection Considerations
+TAP Patch Cassette selection is driven by the existing or 
+planned trunk cabling and rack access requirements in 
+the target installation locations, as follows:
+
+•   If trunk cabling is MT terminated, select 
+
+the TCV-012MRDFDF-XY Cassette.
+
+•   If trunk cabling is LC terminated, the TCV-
+
+012DRDFDF-XY Cassette provides the highest 
+available density by connecting the trunk cabling 
+to the rear of the Cassette. If the rear of the 
+Cassette cannot be accessed — when retrofitting 
+into existing patch links, for example   —  then 
+the TCV-008DFDFDF-XY, which has all front- 
+mounted adapters, is the correct Cassette.
+
+The TCV-012 series Cassettes can be mounted in either 
+the PTS-01ES or PTS-01OB shelves. Choose the former 
+if  you  have  significant  cable  lengths  that  you  want  to 
+manage in the shelf, or the latter if cable management is 
+in the rack itself (or MT cabling is pre-terminated to the 
+exact required lengths) and you need only to mount the 
+Cassettes and secure the trunk cables. The PTS-01OB is 
+the best shelf choice for the TCV-08 series Cassettes.
+
+Figure 3: TAP Patch Cassette Configuration — Front and Rear Panels
+
+©2013  Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13European Headquarters46 New Broad StreetLondon EC2M 1JHPhone: +44 (0) 203-651-5685Corporate Headquarters25 Metro Drive, San Jose, CA 95110 · USAPhone: 408-579-4000Fax: 408-579-4001Asia Pacific Headquarters8 Cross Street Level 28PWC Building, Singapore 048424Phone: +65 6850-7841Salessales@virtualinstruments.comPhone: 888-522-2557Supportsupport@virtualinstruments.com

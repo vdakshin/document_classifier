@@ -1,0 +1,91 @@
+SAN Best Practices Tech Brief 
+ 
+
+ 
+
+Storage Tiering 
+
+Virtual Instruments’ VirtualWisdom® is the only product that can help SAN administrators quickly find root cause of SAN performance 
+problems, including slow draining devices.  VirtualWisdom’s comprehensive instrumentation and Storage Area Network (SAN) I/O 
+measurement capabilities reduce application response time, increase availability, and improve resource utilization. 
+
+Problem 
+
+Concern 
+
+Impact 
+
+Business operations automatically ask 
+for the “best” performance and 
+availability 
+
+It’s difficult to prove to business 
+operations that application SLAs can 
+be met with less-than-tier-one 
+infrastructure 
+
+ 
+
+Storage-related CAPEX and 
+OPEX are skyrocketing 
+
+Background 
+
+Many organizations hesitate to provision their business critical applications on tier II storage or SATA drives for fear that performance 
+won’t meet requirements. Or, their ILM and HSM projects stall because there’s no way to know how tiering will impact users. Picking 
+the right storage tier can be risky, because most IT shops do not have the right instrumentation to measure the performance impact of 
+tiering.  
+
+With VirtualWisdom, IT organizations have the latency data and other information needed to properly plan and optimize the storage 
+environment so that lower cost tier II storage or SATA drives can provide tier I performance.  Organizations that combine 
+sophisticated storage planning with Virtual Instrument’s real-time alerting capabilities can prevent user impact as demands change, 
+enabling them to realize huge CAPEX improvements. The organization can use tier II or tier III storage for all applications except those 
+that actually demand tier I attributes such as enterprise-class replication. When the ILM decision is based on performance, 
+VirtualWisdom offers the real-time analysis that proves the effect of the storage on application response time. Using less expensive 
+storage can result in $5K – 20K+ per terabyte savings. 
+
+How VirtualWisdom is Different  
+
+In the days of direct-attached storage, when the I/O performance bottleneck was disk transfer rate, existing storage array tools would 
+be sufficient to determine where to place data for an optimum balance of performance and costs.  But today, in the world of shared 
+storage, it’s much too simplistic to look just at the difference in external transfer rates between a Fibre Channel disk and a SATA disk.  
+In today’s SAN you are guaranteed to have bottlenecks somewhere else.  Congestion in the fabric can cause response time to be 100 
+times (or more) slower.  Not having HBA queue depths set properly can have a factor of 10 impact on response time.  Errors on the 
+links can cause sporadic disturbances increasing  application response by 3,000 times.  Virtual Instruments gives the complete 
+picture, not just the storage system reading.  Quite simply, knowing your aggregate IOPS or MB/S on a SAN or even a link is of limited 
+help in reducing the risk of moving applications to less expensive storage tiers. 
+
+When you deploy tier 2 storage, typically based on SATA drives and a RAID 5 configuration, dramatic benefits will also be seen from 
+reductions in floor space, cooling and power consumption.  When compared to expensive tier 1 storage arrays, typically configured in 
+a RAID10 configuration, all of the core SAN environmental costs are improved by over 50% as SATA drives are larger and use far less 
+power and cooling per TB of data.  Additional significant savings can be realized in decreased floor space, often helping to postpone 
+datacenter build-outs as SATA drives are typically larger than FC drives by a factor of 4 or more, leading to a much lower PB per floor 
+tile. Intelligent storage tiering based on actual performance data helps you dramatically reduce both capital and operating expenses.     
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 09/11 
+
+VirtualInstruments.com 
+
+

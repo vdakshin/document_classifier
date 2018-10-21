@@ -1,0 +1,426 @@
+ 
+ 
+ 
+ 
+WHITE PAPER 
+
+ 
+
+vce.com
+
+VCE™ MANUFACTURING 
+
+ 
+
+ 
+ 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+ 
+
+ 
+
+Table of Contents 
+
+Challenges............................................................................................................3	  
+Fully-Integrated Manufacturing ..........................................................................4	  
+Optimized Cable Design And Layout.................................................................4	  
+Power And Cooling Optimizations.....................................................................5	  
+Environmental Component Testing And System Burn-In................................6	  
+Logical-Build Process .........................................................................................7	  
+Certification Process...........................................................................................8	  
+Standardized process monitored by independent quality assurance (QA) function ....................... 9	  
+World-class talent and depth of resources...................................................................................... 9	  
+Six Sigma and Lean Manufacturing methodologies...................................................................... 10	  
+Build Documentation.........................................................................................10	  
+Summary.............................................................................................................10	  
+The following images show the various stages of the final build process.................................................. 11	  
+
+ 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+2 
+
+ 
+
+ 
+
+The value of the VCE manufacturing process to customers can sometimes be hard  
+to articulate without customers touring a VCE manufacturing facility. This document 
+helps to fill that gap and serves to educate customers on the value of the VCE 
+manufacturing process. 
+
+Challenges 
+Challenges faced today by IT professionals and companies include: 
+  Staff – Lack of in-house staff trained in manufacturing, assembly, and testing of Vblock™  
+
+Systems solutions. 
+
+  Time – Business agility and time to value can vary greatly across organizations. Slower build times 
+erodes confidence in IT departments, delays application deployments, and results in lost revenue. 
+
+  Reliability and risk reduction – Fractured infrastructure teams who rarely build and deploy systems are 
+not proficient at optimizing the build process. This leads to delays and inconsistent or poor build quality.  
+
+The VCE manufacturing process addresses these challenges and improves business agility and quality while 
+lowering risk and TCO. 
+
+ 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+3 
+
+ 
+
+ 
+
+Fully-Integrated Manufacturing 
+Vblock Systems solutions are fully-integrated, qualified, configured, tested, and optimized in the factory and are 
+shipped to customers as a single product. Physical and logical builds are completed in the factory, allowing for 
+faster on-site deployment times. Business agility is improved since Vblock Systems ship within 45 days of 
+ordering, and customers are able to run operational workloads within 48 hours of delivery. 
+
+The VCE manufacturing facilities have a unique, direct connection with component suppliers and can quickly and 
+completely resolve integration issues that would be major problems for on-site integration. For example, faulty 
+components discovered during the build are immediately replaced, avoiding days and weeks of delay all too 
+common in the field.  
+
+ 
+
+Optimized Cable Design And Layout 
+VCE engineers design for optimal cable management to minimize complexity, increase airflow, and allow for easy 
+access to components for replacement and/or upgrades. Cables are color-coded and clearly labeled. The cabling 
+design, including cable type, lengths, routing, bend radius, and stress-relief management, has been optimized 
+through an iterative process that includes thousands of Vblock System builds. VCE cabling technicians are trained 
+to follow best-practice standards for handling and installing all types of cabling, have years of experience, and 
+have the advantage of a workspace specifically designed for the process. Individuals who infrequently build 
+converged infrastructure systems or reference architecture designs cannot easily replicate this level of quality.  
+
+Optimized cable design also simplifies system expansions and upgrades by allowing enough room to access, 
+remove, add, or replace infrastructure components. Vblock Systems leave the floor fully-cabled and require only a 
+few clearly-marked and pre-tested connections (power and network) to be performed on site. Intercabinet cables 
+are clearly labeled and are grouped and bundled by destination to simplify deployment and minimize cable 
+handling on site.  
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Rear of Vblock Systems cabinet showing optimized cable design 
+
+ 
+
+Power And Cooling Optimizations 
+Point-of-use storage power outlet units (POUs) are installed at the factory to support the maximum scale  
+points of a Vblock System configuration. Cabinet design and placement of cabling, networking, compute,  
+and storage components is optimized to ensure the best thermal distribution and cooling airflow and to reduce 
+power consumption. 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+5 
+
+ 
+
+ 
+
+Environmental Component Testing And System Burn-In 
+All Vblock Systems storage components are thoroughly tested and subjected to an environmental stress 
+screening process that includes vibration and thermal characteristics in the factory. This involves stress testing 
+individual components before they are integrated in a Vblock System. All storage system components are tested 
+under extreme temperatures. The factory includes specifically-designed rooms where systems burn-in under 
+extreme temperatures.  
+
+Environmental test chambers are cycled between a low temperature of 38 degrees Fahrenheit to a high of 104 
+degress Fahrenheit ,while fully-assembled and operational [VMAX] systems are dynamically tested under extreme 
+operational loads. 
+
+Vblock Systems are subjected to several days of fully-powered operation prior to shipment to detect early-life 
+failures, which can occur during the initial “burn-in.”  
+
+This reduces the customer’s risk of failure and speeds time-to-value. Component failures are exposed before the 
+Vblock System is shipped. 
+
+Environmental test chamber 
+
+ 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Logical-Build Process 
+
+ 
+
+Each Vblock System is logically configured to meet specific customer requirements defined for the Professional 
+Service logical-build team in a logical configuration survey (LCS). Developed with customers, the LCS helps to 
+ensure that each Vblock System is built based on client workload characteristics and will yield the needed scale 
+and performance characteristics for each application to perform optimally in a production environment.  
+
+Specially-trained and experienced professional services engineers perform the logical-build process, each 
+accustomed to performing all of the detailed steps to configure and test the broad portfolio of VCE products. All 
+software, configuration procedures, and settings are documented and updated regularly to guarantee system 
+stability, performance, and compliance with tested and verified designs. All tested and approved patches and 
+updates are installed according to the latest configuration matrix to make every Vblock System fully updated and 
+compliant with the VCE Life Cycle Assurance system. 
+
+Relying on the experience of thousands of configuration builds and the close association of VCE, Cisco, EMC, 
+and VMware support, even the largest and most complex Vblock Systems configurations are completed efficiently 
+and accurately, according to documented requirements. Any problems encountered are quickly resolved by 
+subject-matter experts and are subjected to root-cause analysis. 
+
+The VCE logical-build team has well-exercised and specialized skills needed to stay current and well-versed in all 
+of the configuration requirements for compute, network, and storage components. This skill set, which is 
+becoming increasingly rare in the typical data center, allows the logical-build team to create application-ready 
+infrastructures and enable backup, replication, workload balancing, seamless business continuity, and disaster 
+recovery. Factory-completed logical builds is one of the key reasons Vblock Systems customers can typically start 
+running operational workloads within 48 hours of receiving their systems. 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+7 
+
+ 
+
+ 
+
+Certification Process 
+
+ 
+
+VCE manufacturing facilities are certified to meet requirements of ISO 9001 Quality Management System. 
+Manufacturing sites co-located with EMC have the added advantage of ISO 140001 environmental management 
+systems, and OHSAS 18001 safety and health management systems (both improve resource efficiency, reduce 
+waste, and drive down costs). 
+
+System integration in a mature manufacturing environment (continually verified by these certification audits) has 
+several advantages over the uncertain conditions of on-site reference architecture builds: 
+
+Clean, orderly, and well-equipped work areas provide an ideal workspace to eliminate problems often faced  
+in the field:  
+
+  Reduce the chance of contamination —particularly optical fiber connections, which are susceptible to 
+
+signal degradation. These are clean spaces, maintained by the use of massive air filtration systems and 
+constant surface-cleaning activities.  
+
+  Eliminate physical damage to components or cables—equipment-handling tools, such as lifts and 
+transport carts, as well as space to manage cable handling prevents mishandling (drops/shock to 
+components that would exceed minimum bend radius of delicate cables (copper and fiber). 
+
+  Prevent electrostatic discharge (ESD) damage which is often the cause of undetected component 
+
+degradation and failure and is only avoided through attention to ESD precautions. 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+8 
+
+ 
+
+ 
+
+ESD labeling on factory floor 
+
+ 
+
+Standardized process monitored by independent quality assurance (QA) function 
+  Well-documented procedures for both the build and the QA checks, continually updated to reflect 
+
+incremental improvements to process and product. 
+
+  Root-cause analysis of all anomalies ensures appropriate corrective actions are taken for all issues 
+
+encountered during a build, and drives continuous improvement. 
+
+  Consistently high quality maintained through gating inspections performed and recorded at each major 
+
+step in the manufacturing process. 
+
+World-class talent and depth of resources 
+  Permanent, co-located staff including all required skillsets: technical program management, inventory  
+and production control, assembly and test technicians, professional services engineers, logistics and 
+quality assurance personnel shepherd each order through the entire process, from order validation to  
+final shipment. 
+
+  Specialized skillsets working under direct supervision and subject to quality audit and daily inspections. 
+
+Experts in niche skills such and cable routing and dressing, system configuration and validation, 
+packaging, and shipping. 
+
+  Direct access to extensive manufacturing infrastructure and supplier support for problem resolution and 
+
+continuous improvement activities. 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+9 
+
+ 
+
+ 
+
+Six Sigma and Lean Manufacturing methodologies 
+  Proven methodologies for improving efficiency, quality, and driving down costs. 
+
+  All staff members are trained and rely on decisions based on data to ensure the best process. 
+
+  5S manufacturing system ensures the best working environment for the job at hand. 
+
+  Process and product improvement activities are a part of every staff member’s role. Listening to 
+
+customers is a main source of improvement initiatives. 
+
+Build Documentation 
+Each Vblock System is built to a set of order-specific build instructions, which provide all details of materials used, 
+component location, point-to-point cabling details, software licensing, and configuration details. The build 
+documentation for each order is generated through a set of proprietary VCE software tools that optimize the 
+component and cabling layout. As the Vblock Systems evolve and the variety of designs available increases, we 
+are able to maintain consistency in layout while meeting requirements to optimize component placement for 
+power distribution loading, as well as component redundancy and failover.  
+
+During the build process, all system-specific details, such as hardware serial numbers, are collected and added to 
+the build documentation set. This “as-built” documentation set is stored and available through a dynamic 
+publishing system. 
+
+This detailed document describes the location and layout of each component of the converged infrastructure 
+solution. This document is extremely useful when making changes to the infrastructure, including upgrades,  
+and simplifies interaction during any support activity (no need to search for model and serial numbers during  
+a support call).  
+
+Summary 
+
+ 
+The VCE manufacturing process helps VCE stand out from the competition and is clearly a competitive advantage 
+in selling situations. Customers should be invited to take the manufacturing tour whenever possible. If that is not 
+an option, this document should be used to help sell the value of a Vblock Systems solution that is fully-tested, 
+integrated, and optimized before being shipped out to a customer site. 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+10 
+
+ 
+
+ 
+
+The following images show the various stages of the final build process. 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+11 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+VCE Confidential 
+
+ 
+
+12 
+
+ 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of 
+converged infrastructure and cloud-based computing models that dramatically reduce the cost of IT while 
+improving time to market for our customers. VCE, through the Vblock Systems, delivers the industry's 
+only fully integrated and fully virtualized cloud infrastructure system. VCE solutions are available 
+through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of 
+integrating, validating, and managing IT infrastructure. 
+For more information, go to vce.com. 
+ 
+ 
+
+ 
+
+ 
+Copyright © 2014 VCE Company, LLC. All rights reserved. VCE, VCE Vision, Vblock, and the VCE logo are registered trademarks or trademarks 
+of VCE Company LLC or its affiliates in the United States and/or other countries. All other trademarks used herein are the property of their 
+respective owners. 
+
+© 2014 VCE Company, LLC. All rights reserved.  
+
+ 
+
+VCE Confidential 
+
+ 
+
+13 
+
+ 
+
+

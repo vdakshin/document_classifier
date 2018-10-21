@@ -1,0 +1,174 @@
+Technical Brief
+
+Optimizing your EMC VPLEX-enabled Fibre
+Channel SAN with VirtualWisdom®
+
+VirtualWisdom increases the value and validates the benefits of storage
+virtualization
+
+VPLEX Architecture
+
+EMC VPLEX is a virtual storage solution introduced by EMC in
+May of 2010.  VPLEX is deployed as a cluster consisting of one
+or more engines.  It implements a distributed "virtualization"
+layer within and across geographically disparate Fibre Channel
+storage area networks and Data Centers. With VPLEX's unique
+distributed federation, data can be accessed and shared among
+locations over synchronous distances. The VPLEX architecture
+combines scale-out clustering with distributed cache coherence
+intelligence to enable data mobility between EMC and non-EMC
+platforms within, across, and between data centers.
+
+VPLEX uses an in-band architecture which means that data
+flowing between a host and a storage controller flows through
+one or more directors. On the front end, VPLEX presents an
+interface to a host which looks like a storage controller (like a
+target). On the VPLEX back end, it provides interface to a
+storage controller that looks like a host (like an initiator).
+
+VirtualWisdom’s Value Add
+
+Virtual Instruments customers use VirtualWisdom with VPLEX Local or Metro, and by Tapping the
+VPLEX SAN with optical splitters (TAPs), they get full visibility into their environment. VPLEX users
+enjoy the full benefits of VirtualWisdom, which include:
+
+ Operational (OpEx) savings through improved operations and faster troubleshooting;
+measuring latency in real-time, sometimes by recommending corrective action before
+issues arise
+
+VirtualWisdom
+Increases the Benefits
+of Storage
+Virtualization:
+
+ Enable more
+
+aggressive use of
+tiered storage by
+improved tiered
+storage planning and
+ability to prove
+performance SLAs
+
+ Operational (OpEx)
+
+savings through
+improved operations
+and faster
+troubleshooting
+
+ Capital expenditure
+(CapEx) savings by
+eliminating switch
+over-provisioning and
+over-tiering
+
+ Better adherence to,
+
+and monitoring of
+SLAs and external
+regulations
+
+ Higher revenues
+
+through accelerated
+application and SAN
+deployments
+
+ Reduction in
+
+unplanned downtime
+
+Better adherence to, and monitoring of SLAs and external regulations
+
+ Capital expenditure (CapEx) savings by eliminating over-provisioning and over-tiering
+
+ Higher revenues through accelerated application and SAN deployments
+
+
+
+
+
+Stronger vendor management and improved vendor relationships
+Increased use of server virtualization
+Accelerated use of  storage tiering
+Reduction in unplanned downtime
+
+With VirtualWisdom, reports can be created to show exactly how much the VPLEX is improving the
+overall performance in the environment, and pave the way for increased use of lower cost, tier 2
+storage devices.
+
+A thorough discussion of VirtualWisdom benefits that apply to all FC SAN and virtualized
+environments can be found in this brochure.
+
+Technical Brief
+
+VirtualWisdom Interoperability and Support for the VPLEX
+
+I/O requests from hosts are to their virtual
+
+The VPLEX does not modify Fibre Channel headers.
+target and all of the requests to the storage arrays come from its virtual hosts. VirtualWisdom can
+report how quickly each LUN provides its information to the VPLEX to troubleshoot any backend
+storage issue, and can assess how quickly each application is getting their data from the VPLEX.
+In that way, the storage administrator can tell how the VPLEX is impacting performance in the
+environment, in either a Local or a Metro VPLEX configuration.
+the TAP is placed between the switch and the VPLEX, allowing the user experience of the VPLEX
+LUN to be measured.
+
+In the following simplified diagram,
+
+SAN Topology with VPLEXand VirtualWisdom–VPLEX Tapped
+
+In this next diagram, the TAP is placed between the switch and the storage, allowing the effect on
+application latency at the array to be measured.
+
+SAN Topology with VPLEXand VirtualWisdom–Arrays Tapped
+
+Technical Brief
+
+And finally, as depicted in the diagram below, tapping into the front end and the back end of the
+VPLEX is optimal because it provides compete Initiator/Target/LUN mapping, including the effect of
+VPLEX-induced latency.
+
+SAN Topology with VPLEXand VirtualWisdom–Fully Tapped
+
+Summary
+
+VirtualWisdom actually increases the value of the VPLEX by validating adherence to performance
+SLAs in a virtualized server and storage environment. Additionally, more aggressive use of lower
+tier storage behind the VPLEX helps to directly lower storage costs.
+
+Corporate Headquarters
+25 Metro Drive
+Suite 400
+San Jose, CA 95110
+Phone: 408-439-4000
+
+European Headquarters
+One Kingdom Street
+Paddington Central * London W2
+6BD
+Phone:  44 (0) 203 402 3353
+
+Customer Support
+support@virtualinstruments.com
+www.virtualinstruments.com
+
+©2012 Virtual Instruments. All
+rights reserved. Features and
+specifications are subject to
+change without notice.
+VirtualWisdom®, Virtual
+Instruments, SANInsight are
+trademarks or registered
+trademarks in the United States
+and/or in other countries. All
+other brands, products, or service
+names are or may be trademarks
+or servicemarks of, and are used
+to identify, products or services
+of their respective owners.
+07/24/12
+
+

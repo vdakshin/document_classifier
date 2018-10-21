@@ -1,0 +1,466 @@
+Key Considerations in Choosing a Zero Client Environment for View Virtual Desktops in VMware HorizonWHITE PAPERTable of Contents
+
+Introduction   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+Zero Clients Explained   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+PCoIP: The Leading Choice for a Virtual Desktop Infrastructure .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  5
+High-Quality End-User Experience  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+  Media Rendering  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+  Encoding Algorithms  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+ 
+Image Compression  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+Security and Compliance  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+Cost of Operation  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+Rapid Deployment  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+Wide Range of Applicability   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+  Education  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 9
+  Healthcare  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 9
+  Government  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 9
+Zero Clients are a Complementary Solution  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+  Real-Time Audio-Video  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+  Multimedia Redirection  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+  Unified Communications Integration with Avaya, Cisco, Microsoft, and Mitel   .  .  .  . 10
+Conclusion  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+Additional Resources  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+Authors and Contributors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+
+W H I T E   P A P E R   /   2
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonIntroduction
+
+In the age of the virtual cubicle, enterprises must find ways to adapt to the needs of end users. End users must 
+be able to access information from a variety of devices and locations. Enterprises need a high-quality, secure, 
+low-cost, low-maintenance solution to manage information and workspaces for end users. Converting to a 
+virtual desktop environment can address these needs, and increase productivity for nearly any organization.
+
+A key factor in this decision is choosing the appropriate hardware client for the virtual desktop. Organizations 
+transitioning to a virtual desktop environment have a variety of hardware options available on the market. These 
+options range from larger thick clients, to lower-maintenance thin clients, to small zero clients. These can be no 
+more than an LCD display with minimal hardware and physical space requirements. Many organizations prefer to 
+use the smallest, easiest to manage, most cost-effective device at the endpoint, a zero client.
+
+The key points for considering zero clients are:
+
+•	High-quality	end-user	experience
+
+•	Security	and	compliance
+
+•	Low	cost	of	operation
+
+•	Rapid	deployment
+
+•	Use	cases	for	end	users
+
+When choosing a virtualization solution, organizations are faced with a number of concerns. Will the end 
+users	be	satisfied	with	their	experience	in	the	virtual	environment?	Will	sensitive	information	be	secure?	Is	the 	
+solution	cost	effective?	How	much	maintenance	is	required?	Several	solutions	on	the	market	promise	the	best 	
+bandwidth	or	highest	fidelity,	but	at	what	cost?	Can	end	users	leverage	the	tools	they	need	to	stay	connected 	
+and	be	productive?	
+
+This paper addresses these concerns, and looks at some key considerations in determining if a zero 
+client	environment	is	right	for	your	organization.	The	specific	example	used	here	for	the	virtual	desktop 	
+infrastructure	is	VMware®	Horizon™	with	View™,	with	the	PCoIP	protocol.	In	this	context,	zero	clients	are 	
+discussed as the preferred client to meet many needs.
+
+W H I T E   P A P E R   /   3
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonZero Clients Explained
+
+Before a decision can be made as to whether zero clients are appropriate for any given organization, it is helpful 
+to have some understanding of the technology. The technology behind zero client devices is aligned with the 
+architecture of virtual desktop infrastructure (VDI), where infrastructure management and data are centralized 
+in the data center.
+
+When implementing a virtual desktop environment, each user must have a device, or client, in order to display 
+the desktop, which is stored in the data center. Zero clients are one type of client. They come in different form 
+factors	and	contain	no	local	storage,	no	operating	system,	no	CPU,	and	no	moving	parts.	Instead,	zero	clients 	
+contain	a	chip	that	performs	the	decoding	of	PCoIP	at	the	hardware	level,	designed	specifically	for	rendering 	
+pixels	onto	the	user’s	display.	Each	user	has	a	zero	client,	a	display	monitor,	and	human	interface	devices	(HID) 	
+such as a keyboard and a mouse. Due to the absence of moving parts or other components, zero clients use 
+just	a	fraction	of	the	energy	consumed	by	traditional	PCs.	Zero	clients	are	the	easiest	to	configure,	manage, 	
+and deploy. Zero clients are available in a variety of formats, such as desktop devices, integrated monitors, and 
+laptops. Figure 1 shows how a typical zero client might appear.
+
+Figure 1: Zero Clients Are Available in a Variety of Formats
+
+Zero clients can be contrasted with thin clients and thick clients. Thin clients are similar to zero clients, but they 
+contain	a	local	operating	system,	CPU,	flash	memory,	and	local	storage.	Thick	clients	are	essentially	traditional 	
+PCs	or	laptops,	with	a	software	client	installed	specifically	for	displaying	the	virtual	desktop.	Although	thin	and 	
+thick clients allow for a wider range of features and can enable more use cases, they are also the more costly 
+option, require the most maintenance, and are the highest energy consumers. 
+
+Teradici,	a	PCoIP	solutions	vendor,	partners	with	nearly	30	manufacturers	that	build	the	hardware	for	zero 	
+clients.	The	Teradici	ecosystem	includes	such	companies	as	Dell,	HP,	LG,	Samsung,	and	many	others.	The 	
+manufacturers	embed	the	PCoIP	protocol	into	software	clients	for	use	with	thin	or	thick	clients,	or	into 	
+hardware within zero clients and thin clients.
+
+W H I T E   P A P E R   /   4
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonPCoIP: The Leading Choice for a Virtual 
+Desktop Infrastructure
+
+The	PCoIP	technology	developed	by	Teradici	is	the	innovative	remote-display	protocol	used	in	VMware	Horizon 	
+with	View	virtual	desktops.	The	PCoIP	protocol	is	available	in	software	format,	such	as	in	VMware	Horizon 	
+Clients,	and	hardware-based	clients,	such	as	PCoIP	zero	clients.	In	PCoIP	zero	clients,	Teradici	embeds	the 	
+PCoIP	protocol	in	a	silicon-based	chipset,	the	Teradici	processor,	designed	for	hardware-level	decode	of	the 	
+PCoIP	protocol.	This	protocol	is	made	up	of	a	set	of	coded	algorithms.	These	algorithms	employ	multiple 	
+intelligent	codecs	to	encode	and	compress	data	into	pixels.	With	this	host-rendered	protocol,	no	data	is 	
+transmitted	over	the	network,	only	pixels.
+
+Another	feature	of	PCoIP	technology	is	that	it	is	a	UDP-based	protocol	rather	than	TCP-based.	User 	
+Datagram	Protocol	(UDP)	and	Transmission	Control	Protocol	(TCP)	are	the	two	forms	of	Internet	Protocol 	
+(IP)	transmission,	the	means	in	which	messages	are	transmitted	from	one	IP	address	to	another.	TCP	is	a 	
+connection-oriented	protocol,	meaning	that	one	IP	address	establishes	a	connection	to	another	and	maintains 	
+that	connection	for	the	duration	of	the	transfer.	Transmissions	are	sent	bidirectionally,	from	one	IP	address 	
+to another; in the event that packets are lost, they are retransmitted to ensure delivery. This method places a 
+higher	load	on	the	client	machine.	UDP	is	a	connectionless	protocol	and	is	lightweight.	Packets	of	data	can	be 	
+sent	without	a	connection	to	the	receiving	IP	address,	and	UDP	is	therefore	simpler	and	more	efficient.	This 	
+protocol	is	ideal	for	streaming	audio	and	video,	delivering	a	responsive,	low-latency	user	experience	over	any 	
+network.
+
+W H I T E   P A P E R   /   5
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonHigh-Quality End-User Experience
+
+An	important	consideration	in	selecting	a	virtual	desktop	infrastructure	is	the	experience	of	the	end	user.	VDI 	
+end	users	seek	a	seamless	experience,	one	in	which	there	is	no	delay	in	data	retrieval	or	image	rendering. 	
+Users	are	also	concerned	with	the	quality	of	the	media	rendered,	which	could	be	text,	images,	audio,	or	other 	
+streaming media.
+
+Media Rendering
+Within a virtual desktop environment, there are two types of media rendering available: host rendering and 
+client	rendering.	Each	method	enables	end	users	to	have	a	good	experience	in	most	virtual	environments.	The 	
+key	difference	is	which	one	can	provide	the	best	end-user	experience	for	variable	network	conditions.	This 	
+difference determines which approach is more suitable for your environment.
+
+When using host rendering, the first step in the process is to encode or compress the information to be 
+transmitted. With zero clients, this step takes place in the data center, where compute-intensive resources are 
+readily available. The advantage of host rendering in this case is that the data is highly compressed before it is 
+sent to the endpoint, or client.
+
+Encoding Algorithms
+PCoIP	employs	a	variety	of	encoding	algorithms,	or	codecs,	for	the	multiple	types	of	information	to	be 	
+displayed. Different imaging algorithms are applied, depending on the type of information being encoded. For 
+example,	the	algorithm	used	for	text	is	different	from	the	algorithm	used	for	streaming	video,	photos,	graphics, 	
+or icons. Each data format is unique, and has specific characteristics that determine how the image is perceived 
+by	the	end	user.	The	use	of	multiple	codecs	within	the	PCoIP	protocol	allows	each	type	of	content	to	be	handled 	
+in	the	most	appropriate	and	efficient	way,	thereby	optimizing	use	of	available	network	bandwidth.
+
+The	PCoIP	processor	in	zero	client	devices	takes	the	information	sent	down	from	the	server	and	translates	it 	
+into	pixels	to	be	displayed	on	the	monitor.	Zero	clients	transmit	information	from	devices	such	as	a	keyboard 	
+and a mouse up to the server over a separate prioritized channel to further improve response time for end-user 
+interactions.
+
+Image Compression
+Image compression can take two forms: lossless data compression or lossy data compression. With lossless 
+compression, the program recreates the original file for the end user. Lossy codecs eliminate information that 
+the	program	considers	to	be	unnecessary.	This	results	in	the	compression	program’s	reinterpretation	of	the 	
+original file, rendering an image of lesser quality. Lossy compression is used when a file does not need to be 
+recreated	exactly	like	the	original	file.	Lossless	compression	is	better	in	situations	where	the	user	wants	or	needs 	
+the	original	file	or	media	to	be	recreated	exactly.	PCoIP	zero	clients	are	able	to	build	to	lossless,	if	you	need	a 	
+pixel-perfect	image	displayed	at	the	endpoint.
+
+Other image-rendering technologies can build only lossy images that do not contain all the information 
+from the original file. This is because sending the entirety of the data to the endpoint is bandwidth- and 
+performance-prohibitive. With these other technologies, image quality must be diminished so that optimal 
+bandwidth	and	performance	can	be	maintained.	With	PCoIP	zero	clients,	users	do	not	have	to	sacrifice	image 	
+quality for high performance and low network bandwidth usage. IT administrators can choose their level of 
+compression, lossy or lossless, based on their network constraints and the needs of end users.
+
+W H I T E   P A P E R   /   6
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonSecurity and Compliance
+
+Security	remains	the	top	concern	for	many	organizations	when	deploying	a	server-hosted	virtual	desktop 	
+environment. The heightened need for security has been demonstrated numerous times with the theft 
+of	laptops	and	USB	devices	containing	customer	account	information	or	other	sensitive	data.	The	risk	of 	
+confidential information getting into the wrong hands has never been higher.
+
+A	related	concern	is	corporate	compliance.	Government	regulations	such	as	the	Sarbanes-Oxley	Act,	Gramm-
+Leach-Bliley	Act,	and	Health	Insurance	Portability	and	Accountability	Act	(HIPAA)	have	mandated	that 	
+organizations follow specific measures and auditing practices in protecting customer, patient, and employee 
+information. Corporate compliance guidelines are good business and decrease enterprise liability.
+
+How	do	zero	clients	help	with	these	concerns?	Zero	clients	provide	maximum	security	and	centralized	control 	
+in	a	server-hosted	virtual	desktop	environment.	Absolutely	no	data	is	stored	on	the	endpoint.	With	PCoIP	zero 	
+clients, only the display of graphical information is transmitted to the end user, and it is encrypted before it is 
+sent.	Sensitive	corporate	data	remains	protected	in	the	data	center.	Figure	2	shows	how	encrypted	PCoIP	pixels 	
+are sent over the network connection.
+ 
+
+Encrypted pixels transmitted over PCoIP
+
+Data is compressed, 
+encrypted, and encoded 
+in data center
+
+Pixels are transmitted 
+over the network to 
+zero client endpoint
+
+Figure 2: Pixels Sent over Network Connection to PCoIP Zero Client
+
+Zero clients provide an ultra-secure environment with host-rendering. All data remains locked down in the 
+data center, centrally protected and managed. All media is host-rendered and encoded in the data center, then 
+delivered	to	these	stateless,	decode-only	devices.	PCoIP	zero	clients	have	no	operating	system,	hard	drive,	or	local	
+memory.	This	eliminates	the	risk	of	data	theft	through	USB	devices,	or	damage	to	data	from	viruses	or	malware,	
+as well as data loss from hardware failure. Table 1 shows the security features and benefits of a zero client.
+
+SECURITY FEATURE
+
+SECURITY BENEFIT
+
+No operating system
+
+No viruses or spyware, no patches, no maintenance
+
+No persistent user data
+
+No local storage to lock down
+
+No application data sent over network
+
+Only	fully	AES-encrypted	pixels	are	sent	over	the	network
+
+SIPR	hardware	token	support
+
+Supports	secure	SIPR	authentication	mandated	by	DoD
+
+Ability	to	disable	USB	device	access
+
+Full	control	over	USB	devices
+
+802.1X	network	authentication
+
+Allows network devices to be authenticated before use
+
+Fiber	support	(100BASE-FX)
+
+Fiber option to further secure endpoints on network
+
+W H I T E   P A P E R   /   7
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonSECURITY FEATURE
+
+SECURITY BENEFIT
+
+IPv6	Ready
+
+Ready	for	government	mandates	for	IPv6	deployments
+
+Support	for	CAC/PIV	smart	cards
+
+Supports	a	variety	of	CAC/PIV	smart	cards	required	by	federal,	
+state, and local government agencies
+
+Table 1: Zero Client Security Features and Benefits
+
+One use case for secure zero clients is the VMware Horizon View Federal Secure Desktop. This security 
+solution was designed with the compliance needs of federal agencies in mind. Federal IT organizations are 
+moving toward virtual computing in order to lower their carbon footprint, improve employee work and life 
+balance, and allow for constant availability of e-government infrastructure. The challenge is in keeping sensitive 
+data	secure.	To	meet	this	challenge,	VMware	established	the	Federal	Secure	Desktop	Validated	Design	Guide. 	
+Within the particular architecture of the federal validated design, zero clients play a key role. 
+
+Cost of Operation
+
+In addition to high-quality image rendering and secure data, implementing View with zero clients allows 
+enterprises to lower their total cost of ownership (TCO). The lack of moving parts within zero clients ensures 
+that the devices last longer and are more reliable than traditional desktop computers. These small, stateless 
+devices require minimal maintenance, take up far less space than legacy desktop computer towers, cost less 
+than	PCs	or	laptops,	and	consume	only	a	fraction	of	the	energy	required	to	operate	a	PC.
+
+Traditional	desktop	PCs	require	a	significant	amount	of	maintenance.	Hardware	breaks	down	and	must	be 	
+replaced.	Applications	require	updating.	Maintaining	PCs	can	place	an	undue	burden	on	IT	administrators.	If 	
+a	user	has	a	problem,	maintenance	must	be	done	on	location,	at	the	user’s	workplace.	In	an	environment	that 	
+relies	on	full	laptop	and	desktop	support,	organizations	can	spend	$2,000	or	more	per	year	on	maintaining 	
+each device.
+
+The	inefficiencies	and	escalating	costs	of	managing	PCs	at	the	endpoint	are	well	documented.	The	Gartner 	
+Report	Total Cost of Ownership Comparison of PCs With Hosted Virtual Desktops, 2011 Update itemizes 
+these costs and compares them to a server-hosted virtual desktop environment. Zero clients, which require no 
+maintenance, free IT workers for other necessary tasks. Most CIOs agree that zero management at the client is 
+the	most	efficient,	easiest,	lowest-cost	implementation	for	virtualizing	desktops.
+
+Maintenance is just one concern for IT administrators. Other concerns are energy consumption and the 
+workspace	footprint.	Traditional	PCs	consume	a	great	deal	of	electricity,	up	to	250	watts	of	power	each	hour. 	
+Desktops	also	take	up	a	large	portion	of	the	user’s	physical	workspace,	minimizing	the	available	work	area.	In 	
+comparison,	zero	clients	consume	a	minimal	amount	of	electricity,	about	6	to	14	watts	of	power	per	hour.	This 	
+is	comparable	to	the	power	expended	by	a	small	bulb	on	a	string	of	lights.	Also,	the	small	size	of	the	machine 	
+frees up physical workspace for end users.
+
+Rapid Deployment
+
+Another advantage of zero clients is rapid deployment. Zero clients are essentially plug-and-play devices. Out 
+of	the	box,	they	require	only	minutes	to	set	up	and	seconds	to	boot.	Several	zero	client	models	receive	power 	
+via Ethernet, eliminating the need for a power cord. After a display and human interface devices such as a 
+keyboard and mouse are connected, the zero client workstation is ready to be utilized.
+
+W H I T E   P A P E R   /   8
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonWide Range of Applicability
+
+PCoIP	zero	clients	are	deployed	in	a	wide	range	of	circumstances.	From	schools	to	healthcare	facilities	to	government	
+organizations, zero clients are providing desktop virtualization solutions for a variety of enterprise needs.
+
+Education
+The Ministry of Education in Malaysia	deployed	25,000	View	virtual	desktop	seats	and	Teradici	PCoIP	zero 	
+client	devices	to	bring	digital	learning	to	K-12	students	at	1,250	rural	and	inland	schools	across	Malaysia.	This 	
+private cloud deployment gives students access to high-quality computing and educational resources, in some 
+cases for the very first time, as part of a national effort led by the Malaysian Ministry of Education to modernize 
+education and bridge the digital divide.
+
+To demonstrate the viability of a large-scale VDI solution and the resilience of low-power, high-performance 
+PCoIP	zero	client	desktops,	the	Ministry	of	Education	initiated	a	pilot	program	at	120	elementary	schools	in	the 	
+state	of	Sabah.	This	is	an	area	of	the	country	where	electricity	is	provided	by	solar	panels	and	diesel	generators, 	
+and	Internet	is	delivered	by	a	VSAT	satellite	link	of	up	to	2Mbps.	Today,	teachers	and	administrators	at	all	1,250 	
+schools have access to desktops, applications, and data using a virtual desktop infrastructure. With minimal 
+onsite IT setup or modification to the classroom environment, high-performance computing and educational 
+resources	are	delivered	to	students	and	teachers	across	devices—even	in	rural	and	inland	areas	with	extremely 	
+poor access to connectivity and electricity. Educational resources are now shared among these schools, and 
+IT administrators have been empowered to manage, secure, and broker services to students and staff in 
+accordance with Ministry policies.
+
+The Thomas Jefferson School of Law (TJSL)	in	San	Diego,	California,	converted	to	VDI	with	PCoIP	zero	clients 	
+in	2011.	The	facility	took	the	opportunity	to	update	its	technology	when	moving	to	a	new	building.	TJSL	wanted 	
+to	provide	a	technologically	advanced	learning	environment	for	students,	while	also	improving	the	institution’s 	
+environmental	impact.	The	school	deployed	200	Samsung	PCoIP	zero	clients,	eliminated	200	desktop	PCs,	and 	
+reduced	the	amount	of	servers	from	35	to	7.
+
+Healthcare
+Zero clients perform well in the healthcare industry by providing mobility to healthcare providers. North 
+Kansas City Hospital in Kansas City, Missouri, found the increased mobility ideal for its facility. This nationally 
+recognized acute-care facility needed a solution that granted healthcare workers quick access to patient 
+information.	Before	zero	client	deployment,	nurses	would	have	to	return	to	a	specific	PC	in	order	to	access 	
+patient	information.	With	the	implementation	of	VMware	Horizon	with	View	and	zero	clients,	doctors	and 	
+nurses	can	easily	sign	in	and	out	of	virtual	desktops	at	any	location	within	the	facility.	Patient	information	is 	
+quickly accessed at the display endpoints using badge readers. This reduces idle time, and increases caregiver 
+efficiency	and	productivity.
+
+In Wilmington, North Carolina, Lower Cape Fear Hospice & LifeCareCenter chose to virtualize its workplace. The 
+in-patient	care	facility	was	faced	with	ongoing	maintenance	costs	for	its	legacy	PC	setup.	Rather	than	continue	
+to struggle with the cost of updating and repairing their old machines, the hospice center replaced them with 
+zero clients displaying View virtual desktops. On-site endpoint maintenance visits decreased from once a week to 
+once	a	month.	Electricity	costs	for	the	center	decreased	by	20	percent.	The	rapid	deployment	of	the	zero	client	
+machines	resulted	in	a	labor	cost	savings	of	$150	or	more	per	system	for	setup	of	the	new	endpoints.
+
+Government
+The VMware Federal Secure Validated Design Guide provides a model of zero client deployment for 
+governmental	agencies.	A	real-world	example	of	zero	clients	employed	by	government	is	found	in  Hamilton 
+County, Indiana.	The	local	government	of	Hamilton	County	wanted	to	virtualize	its	desktops	for	1,000 	
+employees	and	a	20-person	IT	support	team.	Their	legacy	PC	setup	strained	to	operate	the	latest	software 	
+application	updates.	The	solution	to	this	problem	was	to	virtualize	over	400	desktops	by	implementing	Horizon 	
+with	View,	and	a	mix	of	zero	clients	and	thin	clients.	The	improved	efficiency	of	this	setup	allowed	county 	
+workers to provide more services to citizens while reducing operating costs for the county.
+
+W H I T E   P A P E R   /   9
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonZero Clients are a Complementary Solution
+
+View can be configured for any endpoint, from zero clients to thin clients to traditional desktops. There might 
+be	some	circumstances	in	which	a	zero	client–only	environment	is	not	ideal.	For	example,	in	an	environment 	
+where real-time audio-video or multimedia redirection capabilities are crucial, a thin client or software client 
+could provide these features. In addition, zero clients do not fit the needs of BYOD (Bring Your Own Device) 
+implementations. Thin clients and software clients with View make BYOD possible with VDI. 
+
+IT administrators can select the ideal endpoint devices for their particular installation requirements, based on 
+each	device’s	specific	capabilities,	benefits,	and	advantages.	While	thin	clients	or	full	View	software	clients	offer 	
+flexibility,	zero	clients	offer	strong	security,	consistent	performance,	and	ease	of	management.	This	section 	
+addresses some features that might be better suited for a thin client or software client environment.
+
+Real-Time Audio-Video
+Zero clients are capable of supporting real-time audio devices like headsets and microphones with applications 
+running	inside	View	desktops.	However,	the	ability	to	utilize	webcams	and	rich	video	applications	such	as 	
+Skype,	GoogleTalk,	and	WebEx	from	within	virtual	desktops	requires	Real-Time	Audio-Video	(RTAV)	support, 	
+which	is	available	on	View	software	clients,	on	Windows,	Linux,	and	Mac	OS.	For	more	information	on	RTAV	in 	
+View, see Real-Time Audio-Video (RTAV) for Horizon View, Part 3.
+
+Multimedia Redirection
+Multimedia	redirection	(MMR)	provides	a	better	user	experience	for	video	viewing,	particularly	for	users	on 	
+a	WAN,	and	reduces	network	bandwidth	consumption.	MMR	redirects	the	media	stream	in	its	native	bit	rate 	
+to the client endpoint for media processing and rendering. This local multimedia decoding requires the View 
+software	client	and	at	least	the	View	5.3	Feature	Pack	1.	If	this	feature	is	important	for	your	organization,	see 	
+VMware Horizon with View Feature Pack Installation and Administration.
+
+Unified Communications Integration with Avaya, Cisco, Microsoft, and Mitel
+Organizations	that	require	enterprise-grade	unified	communications	(UC)	support	for	virtual	desktops	can 	
+acquire it with View on Windows-embedded thin clients. VMware has collaborated with vendors such as Avaya, 
+Cisco,	Microsoft,	and	Mitel	to	deliver	this	capability	with	full	support	for	VoIP	and	video	chat.	Partner-provided 	
+plug-ins for View software clients offload the data center server by performing all media processing of audio 
+and video on the client endpoint. For more information on unified communications in View, see the Business 
+Process Desktop.
+
+For	organizations	that	are	considering	zero	clients	as	endpoints,	a	UC	solution	is	available	that	extends	voice, 	
+instant	messaging,	presence,	and	address	integration	capabilities.	The	VoIP	UC	solution	on	Tera2	PCoIP	zero 	
+clients	works	with	the	CounterPath	Bria	Virtualized	Edition	Softphone.	Bria	is	a	standards-based	softphone	that 	
+interoperates	across	a	broad	range	of	SIP-compliant	network	equipment	providers	including Alcatel-Lucent, 	
+Avaya,	Broadsoft,	Cisco,	Metaswitch	Networks,	and	Mitel. Voice	traffic	is	routed	from	the	zero	client	directly 	
+to	the	endpoint,	avoiding the	“hair-pinning”	effect	of	routing	VoIP	media	traffic	through	the	data	center.	By 	
+offloading the media handling from the data center servers and pushing this function to the endpoints, the 
+virtualized servers can scale to hundreds or thousands of users to facilitate communications.
+
+W H I T E   P A P E R   /   1 0
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonConclusion
+
+The decision to virtualize the workplace is not always a simple one. It represents a departure from the 
+PC-centric	mindset	that	has	been	prevalent	in	business	for	the	past	30	years,	and	a	move	toward	a	more 	
+user-centric model. Many different variables must be considered. When customers choose a client, they must 
+consider the use cases their employees have not only today, but also a few years in the future.
+
+The	solution	and	examples	presented	illustrate	that	choosing	a	zero	client	environment	will	reap	many 	
+benefits. Zero clients require very little ongoing maintenance, and provide the highest security. A zero client 
+environment	delivers	a	desktop	virtualization	solution	that	has	excellent	host-rendering	capabilities,	and 	
+provides	a	consistent	user	experience	across	the	broadest	set	of	network	conditions.	It	is	the	combination	of 	
+zero client features—no maintenance, security, rapid deployment, and low TCO—that distinguishes zero clients 
+as important players in VDI. 
+
+PCoIP	zero	clients	provide	a	highly	secure,	powerful,	low-maintenance,	high-quality	end-user	experience	for	a 	
+wide	variety	of	VDI	needs.	With	the	Teradici	PCoIP	technology,	the	power	of	data	center	resources	is	harnessed 	
+for	fast,	efficient	transfer	of	information.	Data	is	centrally	managed	and	protected	within	the	data	center. 	
+Sensitive	information	is	protected	from	data	loss	resulting	from	theft,	viruses,	or	hardware	failure.	PCoIP	zero 	
+clients	render	pixels	only	at	the	endpoint	display.	The	security	and	efficiency	of	zero	clients	makes	them	an	ideal 	
+choice for enterprise VDI solutions.
+
+Additional Resources
+
+Case Study: Government of Hamilton County, Indiana
+
+Case Study: Lower Cape Fear Hospice & LifeCareCenter
+
+Case Study: North Kansas City Hospital
+
+Case Study: Thomas Jefferson School of Law
+
+Closing the Digital Divide in Education with VMware Horizon View and Teradici PCoIP Zero Clients
+
+Desktop Virtualization with VMware View 5 Compared to Citrix XenDesktop 5.5
+
+Gartner Report Total Cost of Ownership Comparison of PCs with Hosted Virtual Desktops, 2011 Update
+
+Government on the Go: Zero-Client Solutions Get Agencies Up to Speed with Secure, Anywhere Access
+
+VMware Federal Secure Desktop and BYOD: Straight Talk About Security
+
+VMware Federal Secure Desktop Validated Design Guide
+
+W H I T E   P A P E R   /   1 1
+
+Key Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware HorizonAuthors and Contributors
+
+Jessica	Chapin,	Technical	Editor	and	Writer,	End-User	Computing	Technical	Marketing,	VMware,	updated	this 	
+paper	with	information	about	unified	communications	support	on	Tera2	PCoIP	zero	clients.	Previously,	she 	
+updated	the	paper	for	View	5.3.
+
+Cyndie	Zikmund,	Product	Line	Marketing	Manager,	VMware,	authored	the	original	version	of	this	paper.
+
+The following individuals contributed to the content of this paper:
+
+•	Ellen	Chandra,	Senior	Product	Marketing	Manager,	Teradici
+
+•	Tina	de	Benedictis,	Senior	Technical	Marketing	Manager,	VMware
+
+•	Tony	Huynh,	Product	Line	Manager,	VMware
+
+•	Ben	Chong,	Group	Product	Manager,	VMware
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VMW-TWP-KEYCONSIDZEROCENVIRON-20140926-WEBKey Considerations in Choosing a Zero Client Environment  for View Virtual Desktops in VMware Horizon

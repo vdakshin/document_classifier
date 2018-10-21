@@ -1,0 +1,715 @@
+ 
+<full title of document> 
+
+ 
+
+ 
+
+ 
+
+Table of Contents 
+
+www.vce.com 
+
+VBLOCK™ SYSTEMS FOR VMWARE VIEW 5 
+
+Version 1.0 
+February 2013 
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+VCE Confidential – Internal Use Only 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Contents 
+
+Introduction .............................................................................................................................. 4 
+Audience................................................................................................................................. 4 
+Documentation feedback ........................................................................................................ 4 
+The business challenge ........................................................................................................... 5 
+The desktop dilemma.............................................................................................................. 5 
+Customer pain points .............................................................................................................. 5 
+Vblock™ Systems for VMware View ........................................................................................ 6 
+Vblock Systems overview ....................................................................................................... 6 
+Vblock System 100 .............................................................................................................. 7 
+Vblock System 200 .............................................................................................................. 7 
+Vblock System 320 .............................................................................................................. 8 
+Vblock System 720 .............................................................................................................. 8 
+VMware View 5 overview ........................................................................................................ 8 
+Vblock Systems for VMware View benefits ............................................................................10 
+Conclusion ..............................................................................................................................12 
+Next steps ..............................................................................................................................12 
+References ..............................................................................................................................13 
+VMware ..............................................................................................................................13 
+VCE ....................................................................................................................................13 
+EMC ...................................................................................................................................13 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Introduction 
+
+Organizations face the difficult task of building a strategy for the virtual desktop environment (VDI) that 
+satisfies the requirements of task workers to power workers and desktops to mobile devices while at 
+the same time meeting corporate objectives for cost, security, and compliance. 
+
+Vblock™ Systems—pre-integrated, pre-architected, and pre-tested converged infrastructure 
+platforms—when combined with the leading desktop virtualization solution, VMware View 5, deliver a 
+powerful, efficient, and scalable VDI solution. 
+
+This document presents an overview of Vblock Systems for VMware View 5. It highlights how Vblock 
+Systems extend their capabilities to provide a fully optimized View deployment solution.  
+
+Audience 
+
+The target audience for this document is highly technical, and it includes technical consultants, 
+professional services personnel, IT managers, infrastructure architects, partner engineers, sales 
+engineers, and consumers who wish to deploy VMware View 5 on Vblock Systems.  
+
+Documentation feedback 
+
+To suggest documentation changes and provide feedback on this guide, send an email to 
+docfeedback@vce.com. Include the name of this guide, the topic name where your comment applies, 
+and your feedback. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+4 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The business challenge 
+
+Deploying VDI presents challenges to organizations that can have significant long-term ramifications 
+for cost and functionality. This section describes some of the top VDI challenges that organizations 
+typically experience.  
+
+The desktop dilemma 
+
+Enterprises today face a serious desktop dilemma. Users need the freedom and flexibility to access 
+their applications and data from a multitude of devices and locations. However, meeting this need 
+drives up costs. In addition, beyond financial constraints, IT organizations must balance user needs 
+with internal policies and compliance requirements.  
+
+VMware View 5 is an excellent platform for building an enterprise VDI solution. It takes advantage of 
+all the features, services, and fault tolerance built into VMware's flagship vSphere Hypervisor. View 
+allows IT administrators to manage pools of virtual desktops, assign them to users, and define policies 
+for VDI behavior, all from a single browser-based UI. View supports connectivity from a wide variety of 
+client devices, and its PC over IP (PCoIP) remoting protocol helps improve the user experience by 
+reducing the latency between the server-hosted virtual machine (VM) and its user. By default, PCoIP 
+renders images up to 30 frames per second (FPS), achieving lossless reproduction once stable. In 
+comparison, Citrix High Definition Experience (HDX) protocol renders at up to 24 FPS, settling at 
+normal quality for lossy reproduction. 
+
+Vblock Systems are the perfect complement to VMware View 5. Together, they overcome the desktop 
+dilemma discussed above by virtualizing desktop operating systems, applications, and user data, 
+decoupling these components from their underlying hardware. IT administrators can then centrally 
+manage and provision these desktop components from the data center, creating a rapidly deployable 
+desktop cloud infrastructure. 
+
+Customer pain points 
+
+Some of the common VDI-related pain points that cause concern for IT administrators include: 
+
+  Lack of modularity: The customer wants to deploy VDI in different workgroups. 
+  Lack of pre-validated solutions: The customer needs VDI immediately as he does not have 
+
+several months for proof-of-concepts (POCs).  
+
+  Lack of seamless support: The customer finds it difficult to manage the multiple vendors in a 
+
+VDI solution. 
+
+  Lack of pre-architected solutions: The customer does not know how to design a VDI solution. 
+  Lack of proven user profile management: The customer finds it difficult to manage user profiles 
+
+effectively to ensure successful VDI deployment. 
+
+This document discusses how Vblock Systems for View meet these challenges and provide a simple, 
+fast, and efficient solution for VDI.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Vblock™ Systems for VMware View 
+
+Vblock Systems overview 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Combining validated technologies from industry leaders in compute, network, storage, and 
+virtualization technologies in a unified solution, Vblock Systems simplify VDI deployment and deliver 
+more value to the business.  
+
+Figure 1. Vblock Systems overview 
+
+Vblock Systems are characterized by:  
+
+ 
+
+  Repeatable units of construction based on matched performance, operational characteristics, and 
+
+discrete requirements of power, space, and cooling  
+
+  Repeatable design patterns that facilitate rapid deployment, integration, and scalability 
+  An architecture that can be scaled for the highest efficiencies in virtualization and workload 
+
+mobility 
+
+  An extensible management and orchestration model based on industry-standard tools, APIs, and 
+
+methods 
+
+  A design that contains, manages, and mitigates failure scenarios in hardware and software 
+
+environments 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Vblock System 100 
+
+Leveraging the Vblock System 100, midmarket companies and enterprise remote office/branch 
+offices (ROBOs) can, for the first time ever, address their specific capacity and workload 
+requirements while still enjoying the repeatability, standardization, and business results 
+synonymous with the Vblock System family. 
+Sized to fit within a footprint typical of the environment, the Vblock System 100 is the same 
+architecture as larger Vblock Systems in a competitively priced form factor. The system is 
+specifically priced and built to: 
+-  Deliver core IT services for remote and distributed locations in such specialized industries as 
+
+health care, multinational, and advanced manufacturing verticals 
+
+-  Function as the sole and comprehensive data center for the smallest midmarket companies 
+-  Provide mixed workload support for larger midmarket companies 
+-  Offer dedicated application support for larger midmarket companies in such areas as file, 
+
+print, and domain, VDI, communications, and collaboration   
+
+With well-defined, entirely fixed configurations, the Vblock System 100 can be shipped in as little 
+as 30 days of order—and fully operational in just a few more. 
+
+Vblock System 200 
+
+The Vblock System 200 provides the ultimate blend of architecture standardization and 
+implementation flexibility in a competitively priced form factor. The system is specifically priced 
+and designed to: 
+-  Deliver core IT services for enterprise remote and distributed operations 
+-  Function as the sole and comprehensive data center for smaller midmarket companies 
+-  Provide mixed workload support for larger midmarket and commercial companies  
+-  Support application development and testing and co-location data centers 
+-  Run a broad array of dedicated business applications, such as file, print, and domain, VDI, 
+
+communications, collaboration, and database 
+
+The Vblock System 200 can be shipped in as little as 45 days of order—and fully operational 
+within a week of delivery. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+7 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+VMware View 5 overview 
+
+VMware View 5, based on the proven VMware vSphere virtualization platform, delivers unique 
+desktop control and manageability, while providing users with a familiar desktop experience without 
+any modifications to the desktop environment or applications.  
+
+View 5 offers improved PCoIP performance, more client device support, and more integrated profile 
+management over its previous versions. Some of these notable features include: 
+
+  PCoIP optimization controls: View 5 with PCoIP provides users with top performance 
+
+regardless of network conditions. New PCoIP optimization controls, including client-side caching 
+can decrease bandwidth usage by up to 75 percent and increase network user density on both 
+LAN and WAN connections. 
+
+  3D graphics: View Media Services for 3D Graphics enables View desktops to run basic 3D 
+
+applications—such as Aero, Office 2010, or those requiring OpenGL or DirectX—without 
+specialized graphics cards or client devices. 
+
+  Unified Communications (UC) support: View 5 delivers an integrated workspace of virtual 
+desktops and communications to provide a seamless productivity experience across desktop, 
+voice, and video media services. This feature enables business continuity for UC with View and 
+quality of service for VoIP and desktop, all while saving costs by leveraging existing UC 
+infrastructure.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  Personal desktops and stateless desktops: View 5 is available in two editions–View Enterprise 
+
+and View Premier. The View Premier edition is a special View Persona Management console to 
+enable IT administrators to allow users to personalize certain aspects of their desktop. This allows 
+IT administrators’ greater control of their virtual machines and their users’ experiences across any 
+number of locations and virtual machine sessions. 
+The figure below shows the relationship between major components of a VMware View 
+deployment. It consists of a complete suite of tools for delivering desktops as a secure, managed 
+service from a centralized infrastructure. The components of VMware View VDI deployment 
+include client connection devices (desktops, laptops, or thin clients), VMware View manager for 
+connection brokering and virtual desktop management, VMware View Composer for space-
+efficient provisioning of desktop virtual machines, and vSphere ESXi server virtualization for 
+hosting virtual desktops. 
+
+Figure 2. VMware View deployment 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+9 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Vblock Systems for VMware View benefits  
+
+Vblock Systems provide a highly scalable, modular, and unified solution for VMware View. As 
+described in the previous section, the Vblock Systems product family ranges from Vblock Systems 
+100 through Vblock Systems 720. The choice of the right Vblock system for VDI depends on the 
+customer’s specific deployment needs in terms of machines, users, and applications. For example, 
+Vblock System 720 is ideally suited for deployments involving large number of virtual machines and 
+meets the higher performance and availability requirements of an enterprise's business-critical 
+applications. In some other deployment scenarios, such as when a wide spectrum of virtual machines, 
+users, and applications is required, Vblock System 320 is well suited and achieves the scale required 
+in both private and public cloud environments. 
+
+The figure below illustrates the basic Vblock Systems configuration for VMware view.  
+
+ 
+
+ 
+
+Figure 3. Vblock Systems for VMware components 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+10 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The unique benefits of the combined solution include: 
+
+  Modular virtual desktop growth: IT managers can easily add more virtual desktops as their 
+
+needs grow by moving to larger Vblock Systems or simply by adding more virtual desktops. The 
+building block approach allows organizations to scale out to meet growing demand for 
+thousands of users predictably. This facilitates a departmental VDI rollout and avoids the need to 
+pre-purchase hardware that may not readily be used. Enterprises can start with a right-sized 
+Vblock System and scale up or out as needed. 
+
+  Rapid provisioning and decommissioning of desktops: The auto-provisioning features built 
+
+into the Vblock converged infrastructures, such as EMC’s vStorage API for Array Integration 
+(VAAI), support rapid provisioning and decommissioning of resources. These features enable IT 
+administrators to create and provision virtual desktops much faster than traditional VDI 
+environments. Cisco UCS Manager and Cisco UCS service profiles help move new server 
+resources from the loading dock into production, or repurpose existing server resources in 
+minutes rather than in the hours, days, or weeks required to provision traditional servers. This 
+speed becomes an asset when IT departments need to move users to virtual desktops as 
+groups are ready to deploy VDI. In addition, 10Gb Ethernet and Fibre Channel over Ethernet 
+(FCoE) provide high throughput and bandwidth.  
+
+  Simplified management: EMC Unified Infrastructure Manager (UIM) enables administrators to 
+unify their server, network, and storage resources for the Vblock Solution for VMware View. UIM 
+provides a single point of management for Vblock Systems and manages multiple Vblock 
+Systems across compute, network, and storage resources anywhere in the world. Unified 
+Infrastructure Manager also comes with an open management framework (API) to leverage 
+other quality management solutions such as BMC. 
+
+  Self-curing architecture: Vblock Systems high-density architecture has elastic properties to 
+
+accommodate unplanned events such as spikes or boot storms. This prevents the degradation 
+of the user experience that can happen when too many users log in at the same time. Instead of 
+rendering mission-critical desktops into an unusable state, the self-curing properties of the 
+Vblock Systems kick in, allocate appropriate resources, and enable users to keep working with a 
+high-performance user experience. 
+
+  High number of virtual desktops on a single Vblock System: This solution can support 
+
+thousands of users on a single Vblock System that includes all the server, network, and storage 
+resources needed for virtual desktop deployment-all in one box. The patented Cisco Extended 
+Memory Technology improves desktop density by up to 60% per blade over alternative 
+solutions. 
+
+  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Conclusion 
+
+IT organizations today find it extremely challenging to set up, configure, and deploy VDI due to 
+complexity of consoles, and the servers and equipment needed to establish a simple proof of concept 
+or pilot. These challenges cause IT organizations to outsource their VDI projects or reset their projects 
+and try again, all driving up their total cost of ownership and return on investment. 
+
+This paper serves as a short introduction to the unique architectural design of Vblock Systems for 
+View and describes how this offering turns an IT organization’s VDI challenges into business 
+advantages. Vblock Systems for View eliminates VDI deployment complexity, lowers the cost, 
+accelerates implementation, and is easy to scale/grow, while providing a rich, no-compromise user 
+experience. However, it is not possible in this paper to provide a complete discussion of all of the 
+architectural principles, strategies, issues, and considerations for the Vblock Systems for View 
+deployment model.  
+
+In summary, using Vblock Systems for VMware View for VDI provides the following benefits: 
+
+  Integrated best-of-breed technology and support 
+  Factory-ready Vblock Systems 
+  Highly scalable options 
+  Fully optimized solution for VDI deployments 
+  Support for thousands of users on a single Vblock System 
+
+Next steps 
+
+ 
+
+ 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+12 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+References 
+
+VMware 
+
+  VMware View 5 Architecture and Planning Guide 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-architecture-
+planning.pdf 
+
+  VMware View 5 Installation 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-installation.pdf 
+
+  VMware View 5 Administration 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-administration.pdf 
+
+  VMware View 5 Security 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-security.pdf 
+
+  VMware View 5 Upgrades 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-upgrades.pdf 
+
+  Vblock Solution for VMware View 4.5 Solution Architecture 
+
+http://www.vce.com/asset/documents/vblock-vmware-view-refarch.pdf 
+
+  Vblock Solution for VMware View Solution Brochure 
+
+http://www.vce.com/asset/documents/vblock-vmware-view-overview.pdf 
+
+  Reference Architecture: EMC Infrastructure for User Virtualization 
+
+http://www.emc.com/collateral/hardware/technical-documentation/h10654-view5-0-vnx(nfs)-
+vsphere5-0-appSense-ra.pdf 
+
+  Proven Solutions Guide: EMC Infrastructure for VMware View 5.0 
+
+http://www.vmware.com/files/pdf/vmw-emc-infrastructure-view-proven-solutions-guide.pdf 
+
+VCE 
+
+EMC 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+VCE Confidential – Internal Use Only 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

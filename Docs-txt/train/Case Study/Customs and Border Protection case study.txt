@@ -1,0 +1,335 @@
+ 
+
+U.S. GOVERNMENT AGENCY  
+CASE STUDY 
+
+ 
+
+Challenges:  
+
+• 
+
+• 
+
+• 
+
+Finding configuration 
+problems that impact 
+performance and availability 
+
+Server / network / storage/ 
+application performance 
+problem diagnosis 
+
+Accelerating deployment of 
+virtualization 
+
+Solution:  
+
+• 
+
+Virtual Instruments 
+VirtualWisdom software, 
+SANInsight monitoring 
+hardware, and professional 
+services consulting  
+
+Agency Benefits:  
+
+• 
+
+• 
+
+• 
+
+• 
+
+Decreasing time to resolution 
+is accomplished by monitoring 
+the SAN with Virtual 
+Instruments software and 
+hardware probes. 
+
+Supports all Fibre Channel 
+devices:  Because 
+VirtualWisdom monitors the 
+SAN at the physical layer, it 
+has no use or need of vendor 
+APIs, the robustness and 
+quality of support is identical 
+in all the various vendor 
+implementations 
+
+VirtualWisdom offers 
+proactive problem detection 
+and helps maintain application 
+response times by measuring 
+the net effect of the entire 
+dynamic SAN infrastructure on 
+application latency.   
+
+By analyzing fault trends, 
+agency can begin to see 
+patterns of failure, and 
+therefore catch the borderline 
+cases before a major 
+meltdown occurs.   
+
+•  With VirtualWisdom’s “what 
+
+if” capability, planned changes 
+
+Virtual Instruments helps large U.S. Federal Agency 
+maintain application availability and smoothes the path to 
+increased use of virtualization technologies  
+
+ 
+
+Agency Overview  
+This agency is one of the largest and most complex.  Over 40,000 officers and agents 
+use the latest information technologies and procedures to assure agency can complete 
+its ongoing mission. 
+
+IT Environment and Role 
+The agency’s data center houses over 3 petabytes of data in the main datacenter, with 
+additional storage in the secondary and disaster recovery sites.  Thousands of physical 
+and virtual AIX, Linux, Windows, and mainframe servers support storage systems from 
+HDS, EMC, and NetApp, with over 6,000 Fibre Channel SAN ports provided by Brocade.   
+Even a small slowdown in the primary applications performance could result in 
+unacceptable backups and delays for the over 300 sites accessing those applications, 
+costing literally hundreds of millions of dollars, or delaying the processing and workflow 
+of  tens of thousands of agency constituents per hour.    
+
+Challenges and Solutions 
+•  Server/Network/Storage problem diagnosis.   When a performance problem 
+
+arises, the agency can start investigating at either the server or storage tier, but it’s 
+often not clear which approach is optimal. The server might have a busy LUN or 
+might have a queuing problem, or there might be congestion between ISLs in their 
+
+                                                       HTTP://VIRTUALINSTRUMENTS.COM 
+
+ 
+
+U.S. GOVERNMENT AGENCY  
+CASE STUDY 
+
+ 
+
+edge/core/edge topology.  They needed a rapid drill-down solution to help point to 
+the first places to look for problem root cause. 
+
+•  Accelerating deployment of virtualization.  The agency Information Technology 
+
+team is expected to bring new applications online faster with more certain 
+accountability through a service-based computing model.  In addition to server 
+virtualization, storage virtualization will enable a tiering model based on service 
+levels. 
+
+VirtualWisdom Value 
+
+Troubleshooting the SAN  
+
+Decreasing time to resolution is accomplished by monitoring the SAN with the complete set 
+of VirtualWisdom probes. The ability to prove whether or not the SAN is to blame for 
+slow application performance within minutes focuses the right team on the task 
+and allows other teams to remain focused on other tasks. Running historical 
+reports to look back in time enables faster time to problem identification and 
+resolution. In some occasions, a troubleshooting probe may be configured to 
+"capture" the moment of failure, reducing the overall time to discover the root 
+cause. VirtualWisdom is the only product that can monitor and send an alert about 
+storage access times, congestion, link errors, and SCSI errors, and generate trend 
+reports that show the behavior of a heterogeneous SAN, over time. This 
+information helps to expedite troubleshooting and allows the agency to prove 
+whether the problem is in the SAN or elsewhere, such as the application or server.  
+This simple first step often speeds troubleshooting by days or even weeks. 
+
+Heterogeneous Support 
+
+Most SRM tools are optimized for the systems supplied by the storage vendor who 
+builds that SRM product.  Because VirtualWisdom monitors the SAN at the physical 
+layer, it has no use or need of vendor APIs.  With VirtualWisdom, the robustness 
+and quality of support is identical in all the various vendor implementations.  The 
+agency uses systems from many vendors and appreciates the value of a monitoring 
+and analysis tool that offers the same view of performance no matter who supplies 
+the infrastructure.  Learning curves are shortened, staff training is optimized, and 
+the agency is free to select the storage system or virtualizer that best supports a 
+particular initiative. 
+
+Application Performance 
+
+Ultimately, the agency’s storage staff is judged by how effectively it supports the 
+application consumers.  VirtualWisdom offers proactive problem detection and 
+helps maintain application response times by measuring the net effect of the entire 
+SAN infrastructure on application latency.   With VirtualWisdom, it’s pretty easy to 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+to the infrastructure can be 
+modeled, and the effect on 
+application response time can 
+be forecasted to the 
+millisecond, using actual 
+production I/O data.  So many 
+change or configuration-
+related problems can be 
+avoided. 
+
+“We just can’t have a system 
+
+down or even slow.  Our 
+
+success is measured by 24x7 
+
+real time access to our 
+
+applications.   
+
+That being said, it’s important 
+
+to be able to charge our 
+
+customers for services they are 
+actually using.  To do that we 
+
+have to build a service 
+
+oriented architecture with 
+modern monitoring and 
+
+analysis tools.” 
+
+Gregory Phillips 
+Chief Architect, Phillips 
+Technology Solutions, serving as 
+Principal Systems Architect for 
+one of the agency’s  Data Center 
+Operations Groups 
+
+                                                       HTTP://VIRTUALINSTRUMENTS.COM 
+
+ 
+
+demonstrate that everything in the SAN is balanced.   
+
+ 
+
+Optimizing Use of Storage 
+
+The agency expects VirtualWisdom to help determine when and how much future 
+SAN capacity to acquire. VirtualWisdom helps ensure that IT is using the right class 
+(tier) of storage by enabling the agency to utilize lower cost storage while 
+maintaining performance SLAs.  A good process is to look at each application, 
+measure latency, IOPs, cache hits and review the historical data to determine which 
+applications to move to lower tiers.  The key to re-teiring is the use of storage 
+virtualization.  What used to take many months, can now take less than a week.  
+
+Predictive Analysis 
+
+Hardware failures can be classified into two categories: unpredictable/sudden 
+faults & predictable/borderline failures.  By analyzing fault trends, the agency can 
+begin to see patterns of failure, and therefore catch the borderline cases before a 
+major meltdown occurs.  With VirtualWisdom, SAN Administrators can monitor 
+fault trend reports to capture escalating errors before a total failure occurs.  
+Replacing a failing component is a way to handle trend-able hardware failures to 
+help prevent outages.  
+And with VirtualWisdom’s “what if” capability, planned changes to the 
+infrastructure can be modeled, and the effect on application response time can be 
+forecasted to the millisecond, using actual production I/O data.  So many change or 
+configuration-related problems can be avoided. 
+
+ 
+Lessons Learned 
+According to Greg Phillips, Chief Architect Phillips Technology Solutions - 
+http://www.phillipstechnologysolutions.com/, serving as Principal Systems Architect 
+for one of the agency’s Data Center Operations Groups, “When in doubt; put the TAPs 
+in.  And when you’re doing infrastructure upgrades; replace patch panels.”  This allows 
+complete non-disruptive monitoring immediately or at a later date.  Second, Mr. 
+Phillips advises to pay close attention to I/O considerations during planning for 
+consolidation.  Consolidating virtual servers onto existing physical servers can create 
+bottlenecks in the SAN as more data is pumped through existing SAN links.  It’s 
+important to utilize N_Port ID Virtualization (NPIV) to help measure the I/O from the 
+VM to the LUN in real time to avoid unexpected slowdowns. 
+
+U.S. GOVERNMENT AGENCY  
+CASE STUDY 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+25 Metro Drive,  Suite 400 
+ San Jose CA 95110  
+408-579-4000 
+Sales Information  
+sales@virtualinstruments.com 
+Support Information 
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+©2011 Virtual Instruments. All rights 
+reserved. Features and specifications 
+are subject to change without notice. 
+VirtualWisdom®, Virtual Instruments 
+are trademarks or registered 
+trademarks in the United States 
+and/or in other countries. All other 
+brands, products, or service names 
+are or may be trademarks or service 
+marks of, and are used to identify, 
+products or services of their 
+respective owners.   02/11b 
+
+ 
+
+                                                       HTTP://VIRTUALINSTRUMENTS.COM 
+
+

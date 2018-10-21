@@ -1,0 +1,198 @@
+ 
+
+CASE STUDY 
+
+ 
+
+HOLY NAME MEDICAL CENTER 
+SAFEGUARDS CRITICAL HEALTH-CARE 
+APPLICATIONS WITH VBLOCK™ 
+INFRASTRUCTURE PLATFORMS  
+
+Executive Summary 
+
+About Holy Name Medical Center 
+Holy Name Medical Center in Teaneck, N.J., has provided the communities of northern New Jersey with 
+compassionate medical and nursing care since 1925. Founded by the Sisters of Saint Joseph of Peace, Holy 
+Name has evolved into a comprehensive 361-bed acute-care Medical Center with more than 900 physicians 
+representing 35 medical specialties. 
+
+Challenge 
+  Medical Center expansion straining data center space 
+
+  Inadequate disaster-recovery capabilities 
+
+Solution 
+  VblockTM
+
+ Infrastructure Platforms 
+
+Results 
+  Accelerated delivery of critical applications supporting patient care 
+
+  Hundreds of thousands of dollars of costs saved, targeted for potential emergency-room system upgrade 
+
+  Reduced application recovery from days to under an hour 
+
+  Driving expansion of private and public cloud strategy 
+
+Challenge 
+Following years of steady expansion, Holy Name faced the prospect of its data center running out of physical 
+space and power and cooling resources. Holy Name’s lean staff could not deploy applications fast enough. And its 
+existing tape-backup infrastructure was an inadequate disaster-recovery solution at best. 
+
+With Vblock™ Infrastructure Platforms, Holy Name now has a factory-integrated, converged infrastructure that 
+enables the Medical Center to grow without limits, all while ensuring 24/7 availability of medical and administrative 
+services. 
+
+“The old way of procuring and installing physical infrastructure was simply not compatible with the pace of a 
+modern health-care facility like ours,” says Frank Marano, Systems Infrastructure Director at Holy Name Medical 
+Center. “It could take weeks to roll out applications, which held us back from providing our physicians and nurses 
+with the capabilities they needed to maximize patient care.” 
+
+Solution 
+Holy Name implemented Vblock Infrastructure Platforms from VCE. The Vblock platforms are comprised of Cisco 
+Unified Computing System (UCS) blade servers, Cisco networking components, EMC VNX unified storage, and 
+VMware vSphere virtualization. Using EMC RecoverPoint remote data protection and VMware vCenter Site 
+Recovery Manager (SRM) solutions, Holy Name replicates the Vblock platforms between its production and 
+disaster-recovery sites. 
+
+© 2012 VCE Company, LLC. All rights reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+To optimize efficiency, Holy Name relies on Vblock platform technologies, including EMC Fully Automated 
+Storage Tiering for Virtual Pools (FAST VP) and FAST Cache, as well as Flash, SAS, and near-line SAS drives 
+comprising EMC VNX unified storage. For streamlined management, Holy Name uses VMware vCenter 
+Operations Management Suite and EMC Unified Infrastructure Manager (UIM). 
+
+“We looked at Dell’s Virtual Integrated System, but it didn’t have much of a track record,” says Marano. “We liked 
+that Vblock platforms are fully tested and certified, and there have been many successful implementations in 
+health care.” 
+
+Computer Design and Integration (CDI), the reseller and systems integrator, and VCE Professional Services 
+worked with Holy Name to deploy the Vblock platforms in just two weeks. 
+
+Vblock platforms run a wide range of Holy Name’s critical clinical applications, including Oracle PeopleSoft and 
+McKesson financial and material management solutions Four Rivers biomed and maintenance ticket system, 
+HealthPay payment processor, McKesson IntelliShelf supply management software, Microsoft SQL Server, Lotus 
+Notes, and Raiser’s Edge foundation software. Holy Name also plans to move its Xcelera cardiology PACS to the 
+Vblock platforms. 
+
+Results 
+
+Accelerating server deployment from weeks to minutes 
+Since implementing the Vblock platforms, Holy Name has been rolling out new applications dramatically faster 
+with little burden on its IT staff. 
+
+“In the past, it took two or three weeks just to get the hardware in, and then another couple of days to configure 
+and deploy the application,” recalls Marano. “Now, using templates provided with the Vblock platform’s VMware 
+vCenter software, we can deploy virtual servers in minutes and have new applications running in a day. We can 
+meet almost any deadline to ensure we’re supporting the latest technologies and services.” 
+
+Marano also values the automated storage tiering in Vblock platforms. “FAST will manage where VMs are stored 
+based on workload and without requiring any hands-on work by our staff,” Marano comments. “We’re getting our 
+users the best possible performance and making the most efficient use of our storage capacity.” 
+
+Saving hundreds of thousands of dollars in capital expense 
+With its 100 percent virtualized Vblock platform, Holy Name realized significant cost avoidance and expects 
+ongoing operational saving. 
+
+“We avoided spending hundreds of thousands of dollars for new UPS systems because the Vblock platforms pack 
+so much more power in less space,” reports Marano. “We’re hoping not to have to purchase another physical 
+server for years, which should save us a considerable amount..” 
+
+“With a couple of racks already eliminated, we eventually expect to reduce the data center footprint by 50 percent. 
+The room is already running cooler, and we’re definitely saving on power,” indicates Marano. 
+
+Holy Name is also considering upgrading its emergency-room system. The health-care provider estimates saving 
+$100,000 by virtualizing the new system with Vblock platforms should the project move forward. 
+
+Reducing recovery time from days to under an hour 
+Holy Name also improved availability and disaster recovery with Vblock platforms, avoiding disruptions to critical 
+applications used to treat and care for patients. 
+
+“Before, when systems went down, physicians and nurses had to just wait for the server to come back up,” notes 
+Marano. “If the server was unrecoverable, then we’d have to restore everything from tape, which could take days. 
+With RecoverPoint and SRM running on Vblock platforms, we can recover applications within an hour and not 
+lose data.” 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+According to Marano, the ability to fail back is equally important. “There are a lot of solutions out there that fail over 
+to a backup data center, but very few that can fail back to the primary without a big hassle. That’s really only 
+possible with Vblock platform technologies, like SRM and RecoverPoint.” 
+
+Maximizing virtualization to drive cloud expansion 
+As Marano eyes the future, he looks to leveraging virtualization to the fullest. 
+
+“We offer a public cloud service for bill paying,” he notes. “We’re also planning to virtualize everything possible as 
+part of our private cloud strategy. And we’re considering desktop virtualization. 
+
+“Vblock platforms are ideal for taking our cloud strategy in any direction that will help us enhance IT service and 
+efficiency and, ultimately, improve the care of our patients.” 
+
+About Holy Name Medical Center 
+Holy Name Medical Center is a fully accredited, not-for-profit healthcare facility based in Teaneck, New Jersey, 
+with off-site locations throughout Bergen County.  Founded and sponsored by the Sisters of St. Joseph of Peace 
+in 1925, the comprehensive 361-bed medical center offers leading-edge medical practice and technology 
+administered in an environment rooted in a tradition of compassion and respect for every patient. Holy Name 
+provides high quality health care across a continuum that encompasses education, prevention, early intervention, 
+comprehensive treatment options, rehabilitation and wellness maintenance—from pre-conception through end-of-
+life.    
+
+About CDI 
+Computer Design and Integration LLC provides comprehensive and innovative technology infrastructure services 
+that solve complex business challenges. Recognized since 2000 as one of the top 500 IT solution providers in the 
+United States, CDI’s strategic differentiation is its commitment to understanding its clients’ business processes 
+and helping them advance their corporate strategies using technology with a particular focus on highly available 
+data center solutions. Founded in 1995, more than 80 percent of its 500 customers hail from the financial services, 
+pharmaceutical, health care, and media and entertainment industries. What’s more, a vast majority of these 
+customer relationships are ongoing. CDI clients have confirmed that the company’s quality, customer service, and 
+ability to complete projects on time and on budget are what keep them coming back. 
+
+ABOUT VCE 
+VCE, the Virtual Computing Environment Company formed by Cisco and EMC with investments from 
+VMware and Intel, accelerates the adoption of converged infrastructure and cloud-based computing models 
+that dramatically reduce the cost of IT while improving time to market for our customers. VCE, through the 
+Vblock platform, delivers the industry’s first completely integrated IT offering with end-to-end vendor 
+accountability. VCE’s prepackaged solutions are available through an extensive partner network, and cover 
+horizontal applications, vertical industry offerings, and application development environments, allowing 
+customers to focus on business innovation instead of integrating, validating and managing IT infrastructure. 
+For more information, go to www.vce.com. 
+ 
+ 
+
+ 
+Copyright © 2012 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, 
+LLC. and/or its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+

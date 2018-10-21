@@ -1,0 +1,258 @@
+HEALTHCARE CASE STUDY 
+
+ 
+
+Virtual Instruments helps JPS Health 
+Network reduce infrastructure costs  
+
+ 
+
+ 
+
+Challenges:  
+
+•  Maintain service levels, 
+while controlling costs 
+Improve effectiveness of 
+existing IT staff, while 
+growing data 50% / year 
+
+• 
+
+•  Help prepare IT 
+
+department for bringing 
+more mission critical 
+applications on-line 
+
+Solution:  
+
+ 
+
+•  Began deploying Virtual 
+
+Instruments VirtualWisdom 
+and professional services 
+consulting in Fall, 2008 
+
+Customer Benefits:  
+
+Company Overview  
+In October 1877, future Fort Worth, Texas mayor John Peter Smith deeded five acres of land 
+at what is now 1500 South Main Street to provide a place where individuals from Fort Worth 
+and Tarrant County "could have the best of medical care."  In 1906, a hospital affiliated with 
+the Fort Worth Medical College was opened in Fort Worth, and the foundation for JPS 
+Health Network was laid.  Today, JPS Health Network continues to serve the needs of the 
+families in Tarrant County, working to improve individual health and access to high-quality 
+health care. The facilities have grown to include a 567-bed hospital that is attached to a 
+Patient Care Pavilion – a five-story acute care facility, along with an outpatient care center 
+and a dedicated facility for psychiatric services. 
+
+IT Environment and Role 
+JPS Health Network’s Tarrant County main datacenter has a 200+ terabyte SAN growing at 
+over 40% annually connected to application servers through a Brocade fabric supporting 
+300 fibre channel SAN ports.  To optimize budget and resources, JPS uses both VMware 
+server virtualization and storage virtualization.  Storage is provided by an HDS USP/V 
+storage system, with two modular systems virtualized behind it and another standalone 
+modular array.  There are now 3 full-time staff managing all storage and backup related 
+tasks for the entire JPS organization, supporting all office functions like email and billing, 
+and the ongoing migration to online patient records. 
+
+Challenges and Concerns 
+One of the key challenges was in maintaining traditional high service levels in the face of 
+40% annual data growth, while keeping costs down.  With a growing number of ports and 
+disks, lack of standardization amongst vendor-supplied tools, and an inability to do 
+predictive problem avoidance, it was becoming a challenge to manage the SAN. 
+
+With an increasingly digitized patient-facing environment, Christopher Carlton, Storage 
+Team Lead at JPS states matter-of-factly that JPS IT systems “can’t really be down at all”.  
+
+Solution Evaluation  
+Like many IT shops, JPS was challenged with tight budgets and with getting more 
+
+•  Discovery of SAN related 
+
+problems before they could 
+cause outages 
+Increased productivity of 
+existing staff 
+
+• 
+
+•  Provides quicker 
+
+responses from storage 
+vendors by providing 
+insightful VirtualWisdom 
+reports 
+
+“To-date, we’ve used 
+
+VirtualWisdom to find and 
+
+resolve four problems before 
+they would have eventually 
+caused an outage.  We’re 
+using it as an additional 
+
+person on our team.  Once 
+you have it, you see a big 
+
+value.” 
+Christopher Carlton 
+Storage Team Lead 
+
+ 
+ 
+ 
+
+  
+
+ 
+ 
+ 
+ 
+ 
+
+HTTP://VIRTUALINSTRUMENTS.COM 
+
+HEALTHCARE CASE STUDY 
+
+ 
+
+performance from existing resources.  To do this, IT knew it must be proactive; it had to 
+avoid problems and anticipate issues before users and application owners were affected.  
+The only way to do this without dramatically increasing the staff size was to find some way 
+to proactively automate the monitoring and analysis of the effect of the SAN on application 
+availability.   According to Christopher Carlton, “All the storage vendors will help you to fix 
+problems, if you can identify the problem, and that’s the trick.”  JPS wanted: 
+
+•  A predictive analysis tool, something that could act like their “eyes and ears” to alert to 
+
+issues before they become serious problems.  Something to help prevent outages. 
+•  A reporting mechanism that could take a deeper look than vendor-supplied tools, 
+
+something at the hardware level to find things that might cause application problems.  
+With a light staff, JPS couldn’t spend time watching every SAN component. 
+
+•  Centralized monitoring, to accommodate a move from a primary only to a primary + 
+
+backup site 
+
+•  An agnostic, vendor-neutral solution that would enable them to avoid finger pointing and 
+
+assist the vendors to offer better advice 
+
+•  A partner relationship with a flexible business model 
+•  A complementary solution to existing vendor-oriented monitoring solutions.  (JPS uses 
+storage-vendor specific tools like Brocade DCFM and HDS Tuning Manager to manage 
+their storage assets (dynamic provisioning, capacity utilization, etc).  
+
+Benefits of the Virtual Instruments VirtualWisdom Solution 
+Previous to the VirtualWisdom deployment, JPS would have to wait until a problem was 
+reported, perhaps even in the form of an outage.  In a typical scenario, they would look at 
+individual components, system logs, etc. and do “process of elimination” troubleshooting.  
+With VirtualWisdom, problems were identified much earlier, before they became serious, and 
+root cause analysis became more efficient.  For instance, with VirtualWisdom, a problem the 
+server team thought was a SCSI controller related turned out to be an HBA issue, saving 
+potentially days of wasted investigative work. 
+
+Why use VI 
+Specific Virtual Instruments benefits to JPS Health Network include: 
+• 
+•  Saves CAPEX by enabling a better understanding of true bottlenecks and potentially 
+
+Finds problems before they affect application performance or availability 
+
+reducing the need to add hardware 
+
+•  Helps in communicating with our server team and our storage vendors.  JPS can send 
+
+them VirtualWisdom reports and ask for their advice.  
+
+•  No impact on users of application; a non-intrusive solution 
+•  Helps validate tiering strategies – need a neutral third-party in order to validate tiering, to 
+
+help match application requirements with the total SAN infrastructure; helps eliminate 
+“rules of thumb” planning 
+
+•  Great value-add from the VI staff.  During the first week of VI training and 
+
+implementation, some of the staff learned more about storage than they’d learned in the 
+past 3 years 
+
+ 
+
+“I think every person in the 
+world should buy TAPs.  It’s 
+like the valve for checking tire 
+
+pressure on your car. “ 
+
+Christopher Carlton 
+Storage Team Lead 
+
+“The UI is very nice; not 
+
+complicated at all.  With the 
+dashboard, you see things in 
+real time that you wouldn’t 
+
+otherwise know about” 
+
+Christopher Carlton 
+Storage Team Lead 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+“I believe that we’ve saved 
+nearly $100,000 per storage 
+
+array by understanding 
+
+performance bottlenecks better 
+
+and not having to buy extra 
+cache on the HDS arrays.” 
+
+Christopher Carlton 
+Storage Team Lead 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+25 Metro Drive, Suite 400  
+San Jose, CA 95110  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+©2010 Virtual Instruments. All rights reserved. 
+Features and specifications are subject to 
+change without notice 01/10 
+ 
+
+ 
+
+HTTP://VIRTUALINSTRUMENTS.COM 
+
+

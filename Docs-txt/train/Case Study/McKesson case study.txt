@@ -1,0 +1,238 @@
+ 
+
+ 
+
+ 
+Healthcare Services Company Deploys Virtual 
+Instruments’ NetWisdom SAN Optimization Platform to 
+Improve Customer Service 
+Overview and IT Contribution 
+
+ 
+
+This leading healthcare services company has been in business for more than 100 years.  
+As one of the largest healthcare services company, they combine innovation, 
+technology and process knowledge, strong relationships and a business approach to 
+give customers and partners the power to succeed.  
+
+Their vision is to help create a healthcare system where quality is higher, mistakes are 
+fewer and costs are lower. They provide pharmaceuticals, medical supplies and 
+healthcare information technologies that make healthcare safer while reducing costs. 
+And they touch virtually every aspect of healthcare. For instance, they distribute a huge 
+proportion of the medicines used in North America, supplying thousands of North 
+American health care locations.  
+
+IT Environment 
+
+The IT department is more than just a supporting function; it is a core contributor to the 
+value of the company.  For instance, they help prevent thousands of medication errors 
+every week through automation and bar-code scanning technology that helps to ensure 
+the right patient gets the right drug at the right time.  
+
+The two primary datacenters span the continent, with a Cisco fabric in the east and 
+Brocade in west.  Together, the sites support a mix of UNIX, LINUX, and Windows 
+servers, approximately 500 of which are SAN attached through over 5,000 ports.  The 
+eastern site supports a separate fabric for managed services, which supports a wide 
+range of customers including pharmacies and hospitals.  Storage is primarily supplied by 
+EMC. 
+
+ 
+
+ 
+
+HEALTH CARE 
+CASE STUDY 
+
+Challenges:  
+
+•  Maintain a position as a pre-
+eminent health care services 
+company 
+
+• 
+
+• 
+
+Prevent observed 
+performance problems  
+
+Drive costs out of IT 
+infrastructure 
+
+Solution:  
+
+• 
+
+Virtual Instruments 
+NetWisdom ProbeV software 
+
+Customer Benefits:  
+
+Proactive problem resolution 
+keeps the SAN architecture 
+optimized and eliminates 
+major problems from 
+affecting business operations, 
+helping to keep costs down 
+
+The ability to design optimal 
+SAN storage that can be easily 
+scaled over time  
+
+• 
+
+• 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+“Since we have implemented 
+NetWisdom to monitor our 
+
+SAN we have gained 
+
+tremendous visibility into 
+our infrastructure that was 
+not available previously” 
+
+-Senior SAN Administrator 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+ 
+
+Consistent with the business goals of controlling costs, the IT department is charged 
+with finding significant savings in infrastructure.  Already, they have seen significant 
+savings through consolidation and through improved server utilization by virtualizing 
+with VMware.  Going forward, additional savings are expected through better use of 
+tier 2 and 3 storage, and automating server and storage provisioning. 
+
+ 
+ 
+ 
+ 
+ 
+
+HEALTH CARE 
+CASE STUDY 
+
+NetWisdom Value 
+
+According to the company, “Since we have implemented NetWisdom to monitor our 
+SAN, we have gained tremendous visibility into our infrastructure that was not available 
+previously.  We are using the product to monitor our Inter-Switch Links which we could 
+not do up until that time.  Now we can identify exactly where SAN congestion is 
+occurring – at the hosts on the edge, on storage arrays on the core, or on the ISLs 
+between the core and edge.  This has definitely enhanced the accuracy of our root 
+cause analysis when congestion occurs.”  If traffic exceeds a pre-defined threshold, 
+NetWisdom sends SNMP alerts to the Tivoli Enterprise Console.  The deployment 
+team’s success is measured by SLAs, and many of the applications are directly 
+customer-facing so fast turnaround on problem resolution is key.   
+
+They go on to state “We can now empirically demonstrate when ISLs are getting 
+saturated and add more links as necessary without guesswork.  Another thing that has 
+impressed us with the product is that as we grow our SAN infrastructure by adding 
+switches to the fabrics, NetWisdom is automatically identifying the new ISLs and 
+monitoring them without direct administrator intervention.”   
+
+VirtualWisdom Value 
+
+To lower the cost of its IT infrastructure and to continue to drive down the costs of 
+delivering healthcare services, they are starting to deploy server virtualization using 
+VMware.  As the rollout of VMware accelerates, they are investigating Virtual 
+Instruments’ VirtualWisdom to optimize the performance and utilization of their 
+virtualized infrastructure.  Today, IT can only isolate SAN traffic to a specific ESX server 
+– it then becomes a guessing game to identify the VM that is the source of the traffic.  
+The addition of VirtualWisdom will dissipate the “virtual cloud” and open up the data-
+path view from the VM to the LUN.  And since VirtualWisdom is a simple software add-
+on to the existing NetWisdom product, it has an advantage over other products that 
+might require new servers (physical or virtual) to be added to their infrastructure. 
+
+Lessons Learned 
+
+The IT team lead for this project suggests that customers should “invest the time to get 
+the most out of the reporting, there’s a lot of data you can get if you know what you’re 
+doing.” 
+
+ 
+
+ 
+
+ 
+
+ 
+
+“I have been impressed by 
+
+the demos of the 
+
+VirtualWisdom product.  I’ve 
+seen several products that 
+will provide performance 
+monitoring of CPU and 
+memory utilization in the 
+virtual infrastructure, but 
+this is the only one I’ve seen 
+that provides detailed SAN 
+performance data on a per 
+
+VM basis” 
+
+-Senior SAN Administrator 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 100 Enterprise Way, Suite C-3  
+
+Scotts Valley, CA 95066  
+ 
+Phone: 831-439-4000  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+Phone: 831-439-4080  
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2009 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 7/09 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

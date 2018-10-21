@@ -1,0 +1,218 @@
+CASE STUDY 
+
+ 
+
+“VCE took a completely fresh 
+
+look at data center 
+
+infrastructure, with the result 
+
+that the Vblock system is 
+
+optimized for cloud computing" 
+
+ 
+
+Jeremy Whaley 
+
+Director of Information Systems 
+
+and Network Services 
+
+Claremont McKenna College 
+
+ 
+ 
+
+ 
+
+COLLEGE BUILDS SECURE 
+MULTITENANT CLOUD  
+ 
+Claremont McKenna College Implemented VblockTM Infrastructure  
+Platforms in new campus data center. 
+ 
+Executive Summary 
+Claremont McKenna College 
+Higher Education 
+Claremont, California 
+1200 Students 
+ 
+Challenge 
+  Increase IT efficiency 
+  Support computing needs in joint science lab 
+  Prepare for disaster recovery 
+ 
+Solution 
+  Vblock 0 system  
+ 
+Results 
+  Saved IT staff time through automated provisioning 
+  Increased security by reducing rogue websites 
+  Built foundation for cloud-based disaster recovery program 
+ 
+Challenge 
+A highly selective private liberal arts college, Claremont McKenna College (CMC) is 
+part of a seven-college community in Southern California known as The Claremont 
+Colleges, a system modeled after England's Oxford University. Founded in 1946, CMC 
+enrolls approximately 1200 undergraduate students.  
+ 
+The college’s Information Technology Services (ITS) department provides computing 
+services for students, faculty, and staff. ”Technology is embedded into research and 
+learning, student residential life, business processes, and our outreach to potential 
+students,” says Dr. Cynthia Humes, chief technology officer for CMC and an associate 
+professor. Some applications reside in the college data center. Others, such as Cisco 
+WebEx™ for conferencing and Google App for student email accounts, are hosted in 
+public clouds. 
+ 
+When CMC outgrew its old data center facility, ITS prepared to move into a new 
+building to be shared with other departments. College leaders viewed the move as an 
+opportunity to adopt cloud computing, with the goal of more quickly introducing new 
+applications and services, with less staff effort.  
+ 
+ 
+ 
+
+© 2011 VCE Company, LLC. All rights reserved.  
+
+“The Vblock system is a natural 
+
+stepping stone between 
+
+traditional IT infrastructure and 
+
+future cloud environments, 
+
+when physical resources might 
+
+not reside on campus at all." 
+ 
+Dr. Cynthia Humes 
+
+Chief Technology Officer 
+
+Claremont McKenna College  
+ 
+
+ 
+
+ITS began looking for a private-cloud platform. A major requirement was support for virtual 
+desktops in a lab setting. CMC had offered to provide compute services for the Joint Science 
+Department, which serves students from CMC, Pitzer College, and Scripps College. Faculty 
+scientists need to provide specialized scientific software on student workstations during 
+classes or research sessions, then return the resources to the shared pool.  
+ 
+Another requirement was rapid provisioning of infrastructure as a service (IaaS) for 
+faculty, staff, and students who host websites. A common problem on today’s college 
+campuses is that well-meaning people host websites on their own laptops, not realizing 
+the unsecured laptop can allow intruders and infections into the network.  
+ 
+Solution 
+After evaluating two preintegrated data center platforms, CMC selected VblockTM 
+Infrastructure Platforms from VCE, which includes Cisco, EMC, and VMware. “VCE took a 
+completely fresh look at data center infrastructure, with the result that the Vblock system is 
+optimized for cloud computing,” says Jeremy Whaley, director of information systems and 
+network services. “As our computing needs grow, we can add storage and compute 
+capacity in small increments. And we’ll be able to control a practically unlimited number of 
+Vblock systems from the same management interface.”  
+ 
+ITS also liked the fact that Vblock Infrastructure Platforms use best-of-class technology 
+already widely used in The Claremont Colleges. CMC has standardized on Cisco® 
+networking gear. Several colleges in the consortium use EMC storage solutions, so the 
+EMC storage in the Vblock system would simplify disaster recovery initiatives. And all 
+colleges had standardized on VMware for virtualization. 
+ 
+CMC engaged Nexus IS, an advanced technology partner, for planning, design, and 
+implementation services. Nexus IS installed a Vblock 0 system, which consists of the 
+Cisco Unified Computing System™ (UCS), VMware software, and EMC Celerra Unified 
+Storage. The college will take advantage of VCE Seamless Support for fast technical 
+assistance. “Having a single point of contact for any issue, whether related to servers, 
+storage, or virtualization, saves staff time and accelerates issue resolution,” says Whaley. 
+
+ 
+Results 
+Rapid Provisioning for Dynamic Campus Needs 
+Orchestration capabilities and automated provisioning have made it practical for the 
+college to offer IaaS for web hosting, so that fewer faculty members will host websites on 
+their own unsecured PCs and laptops. “Faculty members who use IaaS on the Vblock 
+system to host websites preserve their academic freedom while reducing security risks to 
+the college,” Humes says. 
+ 
+The Vblock 0 system also enabled ITS to provide an easy-to-use virtual desktop 
+infrastructure for the Joint Sciences Department by deploying VMware View, a validated 
+virtual desktop solution for Vblock Infrastructure Platforms.  What’s more, ITS can reserve 
+network bandwidth for different college user groups, so that one group’s usage does not 
+affect the performance for other groups. “The other colleges have a comfort level in having 
+CMC host the computing environment for the Joint Science Department, because we 
+have an enterprise data center architecture that’s robust, resilient, and versatile,” says 
+Humes. 
+
+© 2011 VCE Company, LLC. All rights reserved.  
+
+ 
+
+Increased IT Efficiency  
+Automated provisioning and the ability to manage all servers, storage, and connectivity from a unified interface 
+minimizes management overhead, an important consideration because, like most colleges and universities, CMC 
+has a relatively small IT staff. “Reducing the time we spend on repetitive tasks like provisioning frees up time to 
+focus on service-level agreements and innovation,” says Whaley.  
+ 
+Support for Green Initiatives 
+In addition to supporting campus computing initiatives, the Vblock 0 system reduces energy consumption. Its 
+small footprint supports CMC's pursuit of LEED Gold certification for the building that houses the new data center. 
+The Cisco UCS included in Vblock Infrastructure Platforms has the high memory capacity to support a large 
+number of virtual machines on each blade server, reducing the amount of physical equipment to power and cool.  
+ 
+Next Steps 
+Disaster recovery has become a priority at The Claremont Colleges, and campus leaders regard the Vblock 0 
+system as an important ingredient. The current plan is to consolidate storage from The Claremont Colleges on the 
+Vblock 0 system, and then replicate virtual machines and data over the WAN to a private cloud service provider.  
+
+ 
+Hume concludes, “The Vblock system is a natural stepping stone between traditional IT infrastructure and future 
+cloud environments, when physical resources might not reside on campus at all. Deploying the Vblock system 
+demonstrated to campus leaders that we’re moving to the cloud, while still being grounded in the reality that we 
+need on-campus resources. 
+ 
+Product and Services List 
+  Vblock 0 System 
+
+o  Cisco Unified Computing System 
+o  Cisco Nexus® 1000v software switch 
+o  EMC Celerra Unified Storage 
+o  VMware vSphere 
+
+ 
+ 
+ 
+ 
+ABOUT VCE 
+VCE, the Virtual Computing Environment Company formed by Cisco and EMC with investments from VMware and 
+
+Intel, accelerates the adoption of converged infrastructure and cloud-based computing models that dramatically 
+
+reduce the cost of IT while improving time to market for our customers. VCE, through the Vblock platform, delivers 
+
+the industry's first completely integrated IT offering with end-to-end vendor accountability. VCE's prepackaged 
+
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry 
+
+offerings, and application development environments, allowing customers to focus on business innovation instead 
+
+of integrating, validating and managing IT infrastructure. 
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+Copyright © 2011 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, 
+LLC. and/or its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+  
+
+© 2011 VCE Company, LLC. All rights reserved.  
+
+ 
+
+

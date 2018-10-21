@@ -1,0 +1,219 @@
+“If you don’t have a 
+seat at the table, you’re 
+probably on the menu” 
+
+Missouri State Senator Jolie L. Justus
+
+Storage and Database 
+Collaboration
+
+IT organizations have been divided into different 
+groups with distinct realms of control (aka silos) for 
+many years. This paradigm has been changing over 
+the past few years as a result of increased business 
+focus on applications as the driver of revenue, and the 
+increased levels of complexity associated with modern 
+applications (virtualization, cloud, SOA, etc.).
+The change is most evident with the rapidly growing 
+DevOps movement, which promotes greater levels 
+of collaboration between application developers and 
+IT operations personnel. In this white paper we will 
+explore the changes that are happening throughout 
+IT organizations and explain why it is important for 
+database and storage administrators to understand, 
+embrace, and participate in this changing paradigm. 
+Keep reading so you can take your seat at the table.
+
+An AppDynamics Business White PaperIT Operations is Changing
+DevOps may be a buzzword but the philosophy is becoming reality within many 
+IT organizations. The high degree of virtualization combined with the capability of 
+deploying new infrastructure from code has created a situation where silo’d  teams 
+need to collaborate for multiple reasons:
+
+–  Collaboration helps teams deploy faster and fix problems faster
+
+–  Companies following collaborative philosophies like DevOps can innovate and 
+
+respond to change faster
+
+–  Employees that are not able to collaborate will fall out of favor as the rest of the 
+
+company changes
+
+This new paradigm will encompass all groups involved with the delivery of 
+application services. Development, system administration, application operations, 
+database administration, storage administration, network operations, and any 
+other group that plays a part in the creation, deployment, and operation of any 
+application will eventually be required to participate.
+
+DevOps Statistics 
+ZeroTurnaround surveyed 620 engineers to understand how much time they spend 
+carrying out their tasks each week. The results of the study were published on 
+devops.com and are very interesting. (http://devops.com/tag/devops-statistics/)
+The image below is a list of tasks and associated hours. The black bars represent 
+the traditional silo’d environment while the yellow bars represent work done in a 
+DevOps oriented environment.
+
+Figure 1: DevOps survey results from ZeroTurnaround.
+
+2
+
+Storage and Database CollaborationThe numbers are impressively in favor of the organizations that have adopted a 
+DevOps philosophy. The statistics look really good, but the big challenge is making 
+the cultural shift.
+
+So what does this all mean to DBA’s and storage administrators and why am I 
+lumping them together?
+
+The Database and Storage Relationship 
+Database performance is directly impacted by storage performance, and storage 
+performance can be significantly impacted by database workloads. The natural 
+side effect of this relationship is finger pointing when performance problems 
+appear. Finger pointing is a consequence of working in a silo’d manner. Each 
+team is accustomed to using the free or included tools that provide them with 
+information only related to their silo’d system (DB, storage, etc.). This further 
+compounds the natural response of finger pointing when there are problems that 
+are difficult to isolate.
+
+If the storage and database teams can begin to work in a collaborative manner on a 
+daily basis they will start to reap the rewards shown in the ZeroTurnaround survey 
+— less time fixing problems and more time making improvements.
+
+Turning the Idea Into Reality
+Now that we have an understanding of the desired state (a high level of 
+collaboration across organizational silos), the question becomes, how do you start 
+down a path that leads to the final goal?
+
+Start small and communicate - If you’re a storage admin, reach out to some folks 
+on the DBA team and ask if you can be included in their meetings. The same goes 
+for the DBA’s; start talking to your storage admins regularly. Don’t get management 
+involved and start a big project, that’s too much overhead and too much scrutiny 
+to start out with. The key is to quickly increase the quantity and quality of 
+communication between teams. There is no need to merge teams, just to create a 
+new level of engagement between teams.
+
+Document a small success - Now that you are communicating better, you should 
+see an area where this new level of collaboration is making an improvement. 
+Remember “show and tell” time when you were in school? The corporate equivalent 
+is the “dog and pony show”. Regardless of how you feel about presenting, in order 
+to expand this new collaborative paradigm you will need to show off your success to 
+peers and management. Document your success (a small presentation of less than 
+10 slides will do fine) and be prepared to present it.
+
+3
+
+Storage and Database CollaborationDevOps: “DevOps 
+is the blending of 
+tasks performed by a 
+company’s application 
+development and 
+systems operations 
+teams.”
+
+Show your management - At this point you will probably need to get approval 
+from your management to increase the reach of your collaborative program. Your 
+documentation of success should be used to show management that what you 
+are working on is worthwhile. This is the point where you can arrange with your 
+manager to spend more time collaborating with other teams to make sure you are 
+all working in a coordinated manner.
+
+Engage the community - Hopefully you have permission to engage the larger 
+community at this point. Ideally, you can describe your work to the rest of the 
+storage and DBA teams and see who takes interest in your new style of working. 
+The great part about this stage is that you can reuse the presentation material you 
+used with your manager. Be sure to collect the contact information of the people 
+who are interested in working in a more collaborative manner and create a group 
+where everyone can communicate with each other easily.
+
+Grow your reach - At this point you have influenced the way you and your peers 
+work together. Now it’s time to grow your reach beyond just database and storage. 
+Reach out to the application and network teams and repeat the same process 
+you just used. Invite them to your meetings and ask to be invited to theirs. If you 
+can work in a collaborative manner with all of the people involved in delivering an 
+application to the end users, you will improve the overall end user experience and 
+your documentation will prove the value of your work.
+
+The Role of Software Tools
+Software tools should help you achieve a defined goal. Tools should help solve a 
+specific problem or set of problems. When you have a goal of a highly collaborative 
+environment, you need to have tools that are designed to foster that collaboration.
+
+Responding to production problems is an area where collaboration can produce 
+dramatic results. When problems occur, application teams often blame the problem 
+on the database. The database team is then tasked with either finding and fixing 
+the problem or with proving their innocence. Database performance issues will 
+reside within the database server itself or will be a result of slow storage response 
+(which might also be a network problem).
+
+The database and storage teams need to quickly understand if there are any 
+problems that they need to fix. In order to do that, they need more intelligent 
+monitoring tools that collect the proper data before and during the problem so that 
+they can compare good performance to poor performance. They also need to see 
+the storage and database metrics on the same screen to identify the impact of one 
+on the other. See the example screenshots on the following pages.
+
+4
+
+Storage and Database CollaborationFigure 2: Oracle to NetApp Drill Down - Notice the “View NetApp Volume Activity” 
+button that allows for in context drill down from DB to Storage.
+
+Figure 3: NetApp to Database Drill Down - Notice the “Launch in context” link 
+for correlating storage and database performance
+
+5
+
+Storage and Database CollaborationFigure 4: Database and Storage Metrics - Storage latency directly impacts database 
+performance so it should be shown together with database statistics.
+
+Figure 5: Database, Storage, and Server Dashboard - Having a high level 
+overview that can be shared between multiple inter-related roles helps accelerate 
+identification and resolution of problems.
+
+6
+
+Storage and Database CollaborationDocumentation using Software Tools
+Software tools are also a great way to create impressive and useful documentation. 
+When you have tools that continually collect information about your infrastructure 
+and applications you can use that information to make better decisions (is it time 
+for new hardware?), to justify past decisions (is our new hardware performing the 
+way we expected it to?), or to use as a planning tool for decisions that need to be 
+made in the future (capacity planning).
+
+Use screenshots from your tools to describe problems and results in a visual 
+manner while calling out what the visuals mean. See Figure 6 and Figure 7.
+
+Steps to create meaningful documentation: 
+1. Describe the problem 
+2. Describe the business impact of the problem 
+3. Describe the solution and results
+
+Figure 6: Oracle impact on storage without Flash
+
+Figure 7: Oracle impact on storage with flash
+
+7
+
+Storage and Database CollaborationConclusion
+IT applications, architecture, and operations are in the midst of a fundamental 
+shift. With the adoption of virtualization, service oriented architectures, and cloud 
+computing environments, collaboration is a requirement for solving problems in 
+a fast and effective manner. Organizations that do not collaborate well will spend 
+much more time troubleshooting issues instead of improving the quality of their 
+service. Ultimately, the organizations that achieve high levels of collaboration 
+will innovate faster while providing higher levels of service. These companies will 
+take customer share and revenue from their less nimble and more problematic 
+competition. Start your collaborative journey now and don’t fall behind your 
+competition. Don’t be left without your seat at the table.
+
+Try it FREE at  
+
+www.appdynamics.com
+
+AppDynamics, Inc. 
+www.appdynamics.com
+
+Copyright © 2014 AppDynamics, Inc. All rights reserved. The term 
+APPDYNAMICS and any logos of AppDynamics are trademarked or 
+registered trademarks of AppDynamics, Inc.
+
+

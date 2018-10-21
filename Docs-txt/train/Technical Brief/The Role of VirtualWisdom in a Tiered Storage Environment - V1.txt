@@ -1,0 +1,995 @@
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+The Role of VirtualWisdom in a Tiered 
+
+ 
+
+Storage Environment 
+
+ 
+ 
+
+Empowering Technology Business Owners to Drive Business Value 
+
+ 
+
+ 
+ 
+
+Prepared By: 
+Virtual Instruments  
+Tom Jensen – Solutions Architect 
+ 
+Version 1.0 
+August 8, 2013 
+ 
+
+ 
+
+ 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+Table of Contents 
+
+Introduction ................................................................................................................. 1 
+VirtualWisdom Tiered Storage Value Areas ................................................................ 2 
+Infrastructure Health .......................................................................................................................... 2 
+I/O Workload Measurement and Profiling .......................................................................................... 4 
+Metric-based Storage Provisioning .................................................................................................... 5 
+Continuous, Real-time, End-to-End Performance Monitoring ............................................................ 6 
+The Tiered Storage Process ....................................................................................... 8 
+Introduction ........................................................................................................................................ 8 
+Defining the Tiered Storage Policy .................................................................................................... 8 
+On-going Management of Tiered Storage ......................................................................................... 9 
+Continuously Monitor and Manage Infrastructure Health .......................................................................... 10 
+1 - Provision Storage ............................................................................................................................... 10 
+2 - Monitor Performance for SLA Compliance .......................................................................................... 13 
+3 - Re-classify and Move Data as Required ............................................................................................. 14 
+4 - Adjust Tiering Policy as Required ....................................................................................................... 15 
+5 - Adjust Infrastructure Capacity and Design .......................................................................................... 15 
+Summary .................................................................................................................. 16 
+
+ 
+
+Figures 
+
+Figure 1 Infrastructure Health Dashboard - ProbeSW ................................................... 3 
+Figure 2 Infrastructure Health Dashboard – Event Trend .............................................. 4 
+Figure 3 Aggregated Read/Write Workloads and Response Time ................................ 5 
+Figure 4 Top Front-end Port Utilization Dashboard ....................................................... 5 
+Figure 5 Application Response Time ............................................................................ 7 
+Figure 6 Tiered Storage Lifecycle ................................................................................. 9 
+Figure 7 Bandwidth Utilization Summary – All Arrays.................................................. 11 
+Figure 8 Utilization and Performance Summary – One Array ...................................... 12 
+Figure 9 Front-end Port Utilization – One Array .......................................................... 13 
+Figure 10 Application Performance Dashboard ........................................................... 14 
+
+ 
+
+ 
+ 
+ 
+
+"THE SIGNIFICANT PROBLEMS WE FACE CANNOT BE SOLVED USING THE SAME LEVEL OF 
+THINKING WE USED WHEN WE CREATED THEM."   
+
+ALBERT EINSTEIN
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Introduction 
+
+Most large businesses have made a significant investment in their IT disk storage infrastructure and have 
+implemented or are in the process of implementing a disk storage tiering strategy. The main reason for doing 
+this is to reduce the cost of the disk infrastructure. This is accomplished by deploying a multi-tiered storage 
+infrastructure where data is stored on a storage “tier” that most cost-effectively meets the needs of the data 
+being stored. This results in lower overall storage costs because the “lower” tiers of storage cost less per unit 
+of storage than the “upper” tiers.  If more application data can be stored on lower tiers of storage this will 
+reduce the overall cost of the storage infrastructure. That’s the philosophy anyway. 
+
+While many of these tiered storage initiatives may save money initially, over time they ultimately fail to 
+achieve the desired goal of meeting the business’s storage needs in the most cost-effective manner. Why is 
+this?  Well, there are several common reasons for this failure: 
+
+1.  The lack of an internal IT process to re-assess the storage and tiering requirements of the applications 
+
+on a recurring basis 
+
+2.  IT’s reluctance to interface with the business units because they lack meaningful storage performance 
+
+metrics that can be used to engage the business in a requirements/SLA discussion rather than a 
+discussion that focuses on specific technologies 
+
+3.  The inability of the business (and the infrastructure) to adapt to the changing needs of the data from a 
+
+performance, availability and business continuity perspective 
+
+4.  The lack of real-time, end-to-end monitoring of the storage infrastructure health,  performance and 
+workloads across the entire infrastructure ecosystem (not just from the host or network or storage 
+array perspective) and 
+
+5.  The inability to leverage real-time and historical metrics during the process of storage provisioning and 
+
+for assessing the impact that changes within the environment have on storage transaction 
+performance and availability. 
+
+Today, a business might make a significant investment in a point-in-time analysis of their storage workloads, 
+performance and business requirements. This analysis will result in some kind of tiered storage policy taking 
+into account the performance, availability and business continuity requirements of the data. This new policy is 
+then used going forward as the standard policy for provisioning all new storage. This tiered storage analysis 
+may also be used in a storage refresh/upgrade project as input for the design of the new infrastructure. For 
+example, how much of the new storage should be “Tier0” (e.g. SSD), how much should be “Tier1” (e.g. FC 15K 
+300GB) and how much cache in the arrays is needed? Section Defining the Tiered Storage Policy on page 8 
+contains additional information regarding the contents of a typical tiered storage policy.  
+
+However, storage workloads change quickly in a dynamic data center. New and changing applications, new 
+server and network technologies are constants within today’s data centers.  And these static, point-in-time 
+tiered storage strategies rapidly become obsolete and ineffective. And array-based automated storage tiering 
+solutions are not the solution since that technology can only optimize performance based on the array’s 
+workload and capacity, not based on what the business actually needs. 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 1 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Therefore, to deliver the storage services that cost-effectively meet the needs of the business,  the business 
+needs to have a robust process and monitoring platform in place that allows them to adjust their tiering 
+strategy and storage infrastructure as required by business and technology changes. And that is where 
+VirtualWisdom comes into play by providing the end-to-end performance and availability management 
+platform that allows the business to ensure that the infrastructure is healthy and that storage transactions 
+are performing within expectations. And, when there are conditions that affect the overall health of the 
+infrastructure or degraded performance, VirtualWisdom is there to provide proactive notification and a view 
+into the infrastructure that fosters rapid root-cause analysis and problem resolution. 
+
+VirtualWisdom Tiered Storage Value Areas 
+
+VirtualWisdom plays a critical role within a tiered storage infrastructure by ensuring that the storage 
+availability and performance needs of the business are met. Most tiered storage strategies are focused on the 
+disk array component, both from an availability and performance perspective. However, while certainly a 
+critical component in the tiered storage system, the disk array itself only represents one component in the 
+end-to-end data path between the server and storage.  VirtualWisdom provides the end-to-end visibility 
+required to truly ensure that the availability and performance needs of the applications are being met.  
+
+This section discusses each of the VirtualWisdom key areas of value within the context of a tiered storage 
+infrastructure.   
+
+Infrastructure Health 
+
+The data path of a storage transaction consists of many more components than the just the disk array. There 
+is the HBA within the server, the cables and transceivers that connect the server/HBA to the Fibre Channel 
+storage network (the SAN), all of the interconnection points within the SAN and then finally the connection of 
+the storage array (the “target port” on the array “front-end” controller) to the SAN. In most environments, 
+there are many shared components within these data paths; for example, shared Fibre Channel ISLs, shared 
+disk array target ports, etc. Consequently, storage transaction performance is not only a function of the ability 
+of the disk array to respond to read and write requests but also a function of all of the components within the 
+data path operating in a reliable and timely manner. No disk array technology will be able to respond in a 
+timely manner if there are problems along the data path somewhere. For example, if there is congestion on 
+an ISL or frames are being discarded within the SAN due to a slow-draining device, storage transaction 
+performance may not meet the needs of the applications even if the disk array is responding in a timely 
+manner. 
+
+Therefore, a key prerequisite in ensuring the performance and availability needs of storage transactions are 
+met is a clean and healthy storage network.  A good analogy for this is to think about the disk array as the 
+local roads (the “front-end” ports) and parking lots (the internal disk assemblies) surrounding a large sports 
+stadium and the highways and exit/entrance ramps as the SAN. The stadium architects and designers may 
+have done a wonderful job building a system to efficiently move spectators in and out of the parking areas 
+but what about the highways that are used to gain access to the local roads and parking lots? What happens if 
+the capacity of the highways can’t support the peak number of arriving or departing spectator vehicles? Or, 
+what happens when there’s an accident on the highway or an exit/entrance ramp?  Regardless of how 
+efficient the local roads and parking lots are, if the highways are congested due to too much traffic or 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 2 
+
+ 
+
+accidents the spectators’ expectations will not be met and they will end up missing the beginning of the game 
+or leaving early and missing the exciting ending just to try and avoid sitting in their vehicle too long! 
+
+Maintaining SAN health must be a continuous process; addressing and remediating problems in a proactive 
+manner before they escalate into issues that impact availability and performance. VirtualWisdom provides 
+the mechanisms to monitor and alert IT personnel so that the SAN is maintained in a healthy and efficient 
+state.  
+
+The VirtualWisdom screenshot below depicts a standard event dashboard for the SAN Availability Probe 
+(ProbeSW) that can be used to immediately determine if the SAN is healthy. 
+
+Figure 1 Infrastructure Health Dashboard - ProbeSW 
+
+ 
+
+ 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 2 Infrastructure Health Dashboard – Event Trend 
+
+ 
+
+In the dashboards shown in the figures above you can see the existence of some loss-of-signal, link-failure and 
+Class3-discard events. These could be normal events (e.g. from a server reboot) but could also indicate a 
+failing device on the SAN. VirtualWisdom pinpoints where these events occur, provides a proactive alert if 
+desired and allows the IT organization to proactively research and remediate the problem before it impacts 
+the availability and/or performance of storage transactions. 
+
+I/O Workload Measurement and Profiling 
+
+Understanding application I/O profiles, during initial application deployment as well as on an ongoing basis, is 
+another prerequisite for designing, implementing and managing a cost-effective tiered storage infrastructure. 
+An I/O workload profile consists of understanding the key characteristics of an application’s I/O workload. 
+These characteristics include: I/O size, IOPS, MB/sec, read/write ratio, random or sequential and response 
+time (for existing applications) in milliseconds. For a given application there may be multiple I/O profiles 
+based on specific LUN requirements. Additionally, understanding these I/O profiles as a function of time of 
+day, week and month is also important since the profile may vary according to time (e.g. a LUN that is lightly 
+used most of the time could be very active during close-of-business processing times). The vendor array tools 
+are useful for point-in-time analysis of workloads and profiles but interpretation of that data is complex and 
+difficult to trend over time.  
+
+It’s also important to be able to aggregate these workload profiles across different combinations of the 
+infrastructure such as: all servers/HBAs associated with an application or business unit, all target ports in a 
+storage array, all arrays in a data center or all ESX servers within a VMware cluster. This “macro” view of the 
+I/O workloads is very useful as input to storage refresh projects or when trying to better understand the I/O 
+trends for a storage consolidation project. This profile and aggregation capability is especially important 
+during the initial rollout of a tiered storage strategy. 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 4 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VirtualWisdom provides all of these essential workload profile metrics and allows these metrics to be 
+aggregated in any combination of infrastructure assets that makes sense. 
+
+The figure below provides a view of the average read and write I/O workloads along with the average 
+response time (Exchange Completion Time) over a several day period. 
+
+ 
+
+ 
+
+Figure 3 Aggregated Read/Write Workloads and Response Time 
+
+Metric-based Storage Provisioning 
+
+What generally occurs when a tiered storage strategy is implemented is that a “storage tiering” policy is 
+created and storage capacity is assigned based on the rules of this policy taking into account the performance, 
+availability and business continuity requirements of the data. The provisioning process may assign storage to 
+specific physical storage devices (or a pool of a certain type) or, with the advent of automated storage tiering, 
+to a storage “policy” that defines the automated tiering rules by which data is moved between different 
+storage tiers. 
+
+Figure 4 Top Front-end Port Utilization Dashboard 
+
+ 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Besides determining the kind of storage that will be provisioned it’s also important to ensure that the I/O 
+workload is properly balanced across all of the storage capacity (arrays, disk pools, front-end ports, etc.). 
+However, most businesses fail to do this, mostly due to the fact that they don’t have the data readily available 
+to make informed decisions during the provisioning process. Typically there are some general rules followed 
+regarding which array and which target ports on an array will be used and maybe which back-end storage 
+group will be used. Often these rules are “round robin” or “today’s Tuesday so we use this array and these 
+ports” or “this array or front-end port has fewer servers mapped to it so we’ll use this one.” These rules 
+generally do a poor job of load-balancing the workload across the available capacity and the result is a few 
+“hot spots”, a bunch of “cold spots” and inconsistent and poor overall storage performance. And this has a 
+cascading effect on the environment and operation of the infrastructure. Application performance is poor; 
+the Operations folks spend all kinds of time trying to troubleshoot what is going on; lots of different groups 
+end up getting involved; areas of congestion, if detected, require LUNs to be moved or servers to be moved 
+resulting in potential application downtime; someone thinks that faster spindles are needed or more cache or 
+more SSD is the answer and money is thrown at the problem when there probably exists sufficient capacity to 
+meet the needs of the business if only that capacity was properly used! 
+
+VirtualWisdom addresses this problem by providing both real-time and historical workload and performance 
+metrics that allow the storage provisioning process to efficiently allocate storage across the entire 
+infrastructure. Storage planners can determine which arrays and which front-end ports on the arrays are least 
+utilized from a bandwidth, IOPS and frames perspective and then provision storage to use the least utilized 
+components. This will reduce the number of downstream problems that have to be dealt with and should 
+reduce CapEx by ensuring that all capacity is used in the most cost-effective way. 
+
+The figure to the left shows the bandwidth utilization across a group of storage array front-end ports. This 
+kind of dashboard should be consulted at provisioning time to make decisions regarding which array and 
+which front-ports should be used. 
+
+Continuous, Real-time, End-to-End Performance Monitoring 
+
+A business’s storage provisioning policy, however it was developed, really just represents a “best effort” at 
+where the application’s data should be stored. And it’s generally based on a static, point-in-time assessment 
+of the current state of the storage infrastructure capacity and performance capabilities along with current 
+application workloads. But the reality is that conditions change rapidly within the environment.  Application 
+workloads evolve, the technology evolves and requirements evolve. It is therefore imperative that 
+performance constantly be monitored in real-time and that appropriate changes are made to the tiering 
+policy and the infrastructure when conditions dictate. 
+
+Remember that the tools used for the disk arrays are only concerned with what takes place within the array. 
+As far as the array is concerned, read and write response times measure only what is happening within the 
+array. Any latency getting from the host to the array or from the array to the host is not measured by the 
+array. So, measuring latency from the array’s perspective, while useful, does not tell a story that is meaningful 
+to server or application. 
+
+VirtualWisdom provides response time/latency by monitoring the SCSI conversations between the initiator 
+(HBA) and the target (the storage array) by inspecting the Fibre Channel frames. It is by analyzing these 
+conversations that VirtualWisdom can determine what the true response time is of all storage transactions, 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 6 
+
+ 
+
+taking into account all the other areas of latency that may occur along the data path. And, VirtualWisdom 
+does this in real-time and maintains this for historical trending purposes also. 
+
+Therefore, a business can properly monitor an application’s storage transactions, fire off an alert when 
+acceptable response times are exceeded and then provide the feedback necessary to determine where the 
+slowdown is occurring and what action needs to be taken to resolve the performance issue. It makes no sense 
+to move an application’s LUNs to a higher tier of storage if the bottleneck is in the SAN somewhere or on the 
+server itself. VirtualWisdom provides this cross-domain view that helps eliminate the guess work associated 
+with managing performance. 
+
+Figure 5 Application Response Time 
+
+ 
+
+The above figure represent the aggregated read response time before and after data was moved between 
+storage tiers. You can see on the right side that response time improved about 10-15% after data was moved 
+between tiers. 
+ 
+
+ 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 7 
+
+ 
+
+The Tiered Storage Process 
+
+Introduction 
+
+This section discusses the high-level processes by which a tiered storage strategy is typically implemented 
+within a business. Obviously there are many variations of this strategy with some implementations doing a 
+more effective job at meeting the overall goal of operating a more cost-effective storage infrastructure (while 
+still meeting the needs of the business) than other implementations.  
+
+It’s also important to note that there is a trade-off between deploying the most cost-effective storage 
+infrastructure with the cost of managing that infrastructure on a day-to-day basis. There is a point of 
+diminishing marginal returns where it is not cost-effective to overly micro-manage every LUN or sub-LUN 
+within the environment because the operational cost of doing so would offset any hardware and software 
+savings that could be obtained. Therefore, businesses need to strike a balance between optimizing the cost of 
+the storage infrastructure with what it will cost to achieve that optimization.  
+
+For example, a business may choose to deploy disk arrays that consist of more high-performing capacity than 
+is actually needed based on the performance requirements of the applications. This may be done because it 
+makes it easier for their storage administrators to provision capacity and manage storage performance even 
+though it does increase the cost of the storage infrastructure. In this case, the business is making a conscious 
+decision to absorb higher capital costs because for them it is more important to keep operating and personnel 
+costs low. 
+
+So, each business will have to determine what level of granularity they want to manage their tiered storage 
+infrastructure. Will it be by sub-LUN, by LUN, by application, by server? Will they actively move LUNs to lower 
+tiers if possible on a daily, weekly or monthly basis? This will be determined by the tools available to the 
+storage administrators to monitor performance, to move data to the appropriate tier and obviously by the 
+availability of sufficiently skilled storage administrators to perform these activities. Many businesses now rely 
+on array-based auto-tiering functionality to perform much of this data movement. However, it’s important to 
+remember that automated tiering technology can only optimize performance (i.e. move data to the 
+“appropriate tier”) based on the available capacity and configuration of the array using a limited set of 
+metrics to determine performance requirements. Therefore, even within an environment that is leveraging 
+automated tiering technology, external monitoring of the infrastructure health and performance along with 
+an understanding of the business requirements will still be required to strike that balance between cost-
+effective infrastructure and operational efficiency. 
+
+Defining the Tiered Storage Policy 
+
+Deciding to implement tiered storage is usually driven by some significant event within the IT organization; 
+like a storage refresh/consolidation project or the opening of a new data center. To implement a tiered 
+storage strategy a business must first create a policy that defines the rules by which storage will be 
+provisioned. This entails defining what “data characteristics” will be used to determine the storage tiers and 
+then putting into place a process that gathers these characteristics during the storage provisioning process so 
+that the appropriate storage tiers are used. 
+
+The “data characteristics” typically consist of both “technical” and “business” requirements. The technical 
+requirements consist of characteristics that include: capacity of usable storage (GB), number of LUNs, size of 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 8 
+
+ 
+
+LUNs, bandwidth workload (MB/sec), transaction rate workload (IOPS), random/sequential nature of the I/O, 
+size of I/O transactions and response time requirements (milliseconds). The business requirements consist of 
+characteristics that include: reliability/redundancy, business criticality of the data, recovery point objective 
+(RPO), recover time objective (RTO) and security requirements (e.g. encryption). From this collection of 
+requirements the business can then develop a finite catalog of storage services that meet the needs of the 
+business and then utilize this catalog to assign the appropriate storage tier to the application data. 
+
+Once the tiering policy has been created (and this policy should be refreshed periodically) the business then 
+needs to determine how to move forward using the updated policy (or in some cases it may be the “initial” 
+policy). For example, will the business look at all existing application data and re-classify it based on the new 
+policy? Or, will the policy just be used for all new applications or where data it going to be moved anyway 
+(e.g. as part of a storage refresh project)? In general, most business will not proactively move existing 
+application data just because the tiering policy has changed. Some application data may be moved from the 
+existing storage tier if for example the business requirements can’t be met (e.g. different storage is required 
+to meet the RTO) or if the performance requirements cannot be met (in which case the data will be moved to 
+a higher performance tier). 
+
+On-going Management of Tiered Storage 
+
+Defining the tiered storage policy in and of itself doesn’t make tiered storage happen! Defining the tiering 
+policy is the first milestone that must be completed but then a continuous process of provisioning, 
+monitoring, adjusting and tuning is required to ensure that the business’s needs are met in a cost-effective 
+manner. The figure below depicts this continuous process. 
+
+ 
+
+1 
+
+Provision Storage 
+
+Continuously 
+Monitor and 
+
+Manage 
+
+Infrastructure 
+
+Health 
+
+ 
+
+2 
+
+Monitor Performance 
+
+and Define Alerts 
+
+3 
+
+Adjust Data 
+Classification 
+
+5 
+
+Adjust Infrastructure 
+Design and Capacity 
+
+4 
+
+Adjust Tiering Policy  
+
+Figure 6 Tiered Storage Lifecycle 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 9 
+
+ 
+
+ 
+
+ 
+
+These key steps are discussed in further detail in the following sections with particular attention paid to the 
+role that VirtualWisdom plays.  
+
+Continuously Monitor and Manage Infrastructure Health 
+
+As described in section Infrastructure Health, ensuring that the overall infrastructure is consistently healthy is 
+a basic requirement of any efficient storage infrastructure, including one that leverages tiered storage. 
+VirtualWisdom plays a critical role in accomplishing this by: 
+
+  Continuously monitoring the infrastructure for conditions and events that could impact the availability 
+
+and/or performance of business applications 
+
+  Providing a proactive alerting mechanism that informs the business when abnormal conditions occur 
+
+  Providing the appropriate level of visibility into infrastructure events, workloads and performance that 
+
+allows rapid root-cause analysis which reduces mean- and max-time-to-resolution (MTTR and MAX-
+TTR) 
+
+  Virtually eliminating the time-consuming and labor-intensive data collection processes and finger-
+
+pointing that typically occurs during the troubleshooting phase of critical situations 
+
+  Providing time-based correlation of events and conditions at the physical, logical and protocol layer to 
+
+definitively connect the cause and effect these events have on specific availability and performance 
+issues 
+
+  Providing a mechanism for operational personnel to proactively detect “little issues” in the 
+
+environment before they become “big issues” that affect availability and performance 
+
+  Providing a mechanism to understand the “normal” operating state (the “baseline”) of the 
+
+environment so that significant changes can be detected and appropriate actions taken 
+
+  Periodically reviewing the state of multi-pathing based on observed traffic across a server’s data paths 
+
+to storage 
+
+As previously mentioned, the storage array is only one component within in the entire I/O data stream. While 
+the disk array is obviously a critical component there are many other points within the data stream that can 
+impact storage transaction performance and subsequent application performance. The health of the 
+infrastructure must be continuously and persistently monitored in order to leverage the business value of the 
+physical storage and ensure that needs of the business are being met in a cost-effective manner.   
+
+1 - Provision Storage 
+
+VirtualWisdom provides the following key functionality in the storage provisioning process: 
+
+a.  Select storage array to be used. VirtualWisdom is used as input to determine which storage array(s) 
+will be used to meet the storage provisioning request. The storage provisioning process will include 
+multiple inputs to select the target disk array. Selecting the storage tier will involve understanding the 
+technical and business needs of the data. Then a decision will have to be made as to which disk 
+array(s) will be used to satisfy the request. Several factors will come into play here including: which 
+arrays contain sufficient capacity of the appropriate tier, how storage is partitioned amongst 
+applications (e.g. by operating system, by business unit, application group, etc.), current workload 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 10 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+(IOPS, bandwidth) across the arrays and performance of existing storage on the arrays. VirtualWisdom 
+can provide real-time and historical array-level metrics of workload and performance. This will allow 
+the storage planners to assess which array is best suited to satisfy the storage request.  
+ 
+The following figure is a sample of dashboard that can be used to compare overall bandwidth 
+utilization across a group of arrays: 
+ 
+
+Figure 7 Bandwidth Utilization Summary – All Arrays 
+
+ 
+
+ 
+A similar dashboard can be used to look at other array-level metrics (e.g. IOPS) and these metrics can 
+be viewed over different timeframes (e.g. 24 hours, 7 days, 30 days). Vendor-specific array tools will 
+also probably be used to review internal array utilization metrics. All of these inputs will be used to 
+determine which array is used to satisfy the storage request. 
+ 
+In addition to looking at utilization of the array it is also important to review the current performance 
+of the array from a transaction response time perspective. It may be that the array has sufficient 
+capacity, which makes it a candidate for provisioning, but it is also useful to understand how well the 
+array is responding to its workload. The following VirtualWisdom dashboard can be used to review the 
+overall performance of one specific array. 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 11 
+
+ 
+
+ 
+
+Figure 8 Utilization and Performance Summary – One Array 
+
+ 
+
+ 
+
+b.  Select storage array front-end ports to be used. Once an array has been selected (note that the 
+
+request may also be satisfied from more than one array) it must then be determined which of the 
+front-end array ports will be used by the server to access the storage (LUNs). Typically at least two 
+ports will be used (to provide redundancy along with the host multi-pathing device driver) but it could 
+be greater than two ports. Selection of which ports to be used should be focused on load-balancing 
+workload across the front-end ports. Typically this should be done by reviewing at least the bandwidth 
+utilization (MB/sec) over a period of time to determine which ports are least used. Doing this on a 
+consistent basis will help ensure that an bottleneck is not introduced that impacts not only the newly 
+provisioned storage but also other storage provisioned over those same front-end ports and array 
+controllers.  
+ 
+The following dashboard provides an overview of overall bandwidth utilization of the array and can be 
+used to guide which front-end ports should be used for the current storage request. 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 12 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 9 Front-end Port Utilization – One Array 
+
+ 
+
+c.  Validate connectivity server-to-array. Confirm and verify that there are no configuration or 
+
+media/cabling concerns from the server to the storage array. Note that this step is actually part of 
+continuously managing the overall health of the infrastructure but it is worth mentioning here 
+because it is a critical step in the process of connecting servers and provisioning storage.  
+
+2 - Monitor Performance for SLA Compliance 
+
+Once the storage has been provisioned for an application, the application workload and storage response 
+time should be measured to ensure that: a) the workload is within the expected ranges and b) the response 
+time falls within the SLA of the storage tier. Workload and response time are generally going to be used as 
+inputs in the decision-making process for selecting the storage tier.  Therefore, to ensure that compliance is 
+being maintained these metrics must be measured and alerts generated when exceptions occur. Note that it 
+is important to measure response from the perspective of the server and not from the array’s perspective. 
+VirtualWisdom provides this measurement by analyzing the SCSI conversations between HBAs and the array. 
+
+The following figure contains a sample of what an application performance dashboard might look like. Note 
+that response time, bandwidth and queued exchanges are shown. 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 13 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 10 Application Performance Dashboard 
+
+3 - Re-classify and Move Data as Required 
+
+ 
+
+Continuously monitoring workload and performance enables the business to re-classify, and if required 
+relocate, data to meet the expected performance requirements and make better use of the storage 
+infrastructure. In some cases performance may not meet expectations and changes will have to be made to 
+the storage allocation (e.g. move to a better performing tier). In other cases it may be determined that the 
+data can be moved to a lower performing tier and still meet the needs of the business. This may benefit the 
+line of business if a chargeback model is used based on the assigned storage tier. It may also benefit the 
+overall business by freeing up storage capacity on higher performing tiers to be used for those applications 
+that truly need the performance. 
+
+Obviously, the storage organization will not want to be constantly moving data particularly if the process is 
+time-consuming and labor-intensive. In some cases re-classifying and relocating data may be as simple as 
+assigning a different automated tiered storage policy on the array and then letting the array take care of the 
+data movement. Ultimately what the business is trying to accomplish is a method of satisfying the storage 
+needs of the business in a manner that balances the need for an overly conservative infrastructure design 
+(which drives up capital costs) with a design that requires an excessive amount of micro-management (which 
+drives up operational costs).  
+
+VirtualWisdom gives the business the ability to strike this balance and ensure that the business’s storage 
+needs are met. And when changes are made VirtualWisdom immediately lets the business assess the impact 
+of those changes. Was the change a cost-effective change? Did performance improve, stay the same or get 
+better? Without persistent, real-time metrics it will not be readily apparent what impact those changes have 
+had. 
+
+ 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 14 
+
+ 
+
+4 - Adjust Tiering Policy as Required 
+
+The business’s tiered storage policy will most likely evolve over time as application requirements change and 
+technology and the cost of that technology changes. For example, flash drive technology (e.g. solid state disk) 
+costs will decline over time making it a more viable, cost-effective option for certain application workloads. As 
+the business’s applications, workloads and I/O profiles change the business will find that the old tiering policy 
+does not properly reflect these changes. The tiering policy must be adjusted to reflect these new realities if 
+the infrastructure is to continue to cost-effectively meet the needs of the business. 
+
+VirtualWisdom provides the essential reporting mechanism that allows the business to monitor the 
+workloads, profiles and performance over time ensuring that the tiering policy evolves along with these 
+changes. VirtualWisdom allows collected metrics to be combined into objects for reporting that make sense 
+for the business which allows the business to make adjustments and service improvements with confidence. 
+For example, all servers associated with a specific business unit or application can be combined to provide a 
+business-centric view of storage workloads, I/O profiles and performance. Or, all disk array write operations 
+can be combined to provide a storage-centric view of all write operations. This reporting functionality 
+provides the flexibility necessary to let the business analyze data in a manner that is most effective for making 
+decisions about storage tier classification and the proper needed to meet the business’s needs. 
+
+Without the level of detail and historical trending capability provided by VirtualWisdom, making these tiered 
+storage policy decisions becomes a “best guess” or in many cases is just avoided. The business will typically be 
+reluctant to engage in another long and drawn-out project to reassess their storage policy requirements. The 
+end result is a policy that no longer fits the business’s requirements and an infrastructure that is no longer 
+able to meet those requirements. This puts the storage team into a vicious cycle of prioritizing applications 
+and constantly moving application data around in an attempt to address the most painful storage 
+performance issues. This ends up consuming significant operational time (driving up operational costs) which 
+in turn prevents an operational focus on more business-critical and strategic projects. 
+
+5 - Adjust Infrastructure Capacity and Design 
+
+With any storage infrastructure, including a tiered storage infrastructure, adjustments to capacity, 
+performance and technology will have to be made over time. This is the result of a combination of changing 
+storage workloads, changing application performance and business requirements, technological changes and 
+the fact that eventually you just have to get rid of the old stuff and bring in some new stuff. 
+
+In many cases these technology refreshes and upgrades are based on “gut feel”, “rules-of-thumb” and just 
+plain guesses. And because of this the tendency is usually to be overly conservative in the design, architecture 
+and technology decisions that are made. After all, no one wants to be labeled as the person that architected 
+the storage infrastructure that “failed!” This leads to excessive over-architecting and over-provisioning which 
+drives infrastructure costs higher than they need to be. 
+
+However, with VirtualWisdom the business now has the detailed design data that arms the infrastructure 
+design team with the information needed to architect a solution that cost-effectively meets the needs of the 
+business. When comprehensively deployed, VirtualWisdom can report at a macro level, showing all storage 
+transactions, workloads, I/O profiles and performance across the entire infrastructure. This is the critical 
+design input that is usually missing in today’s infrastructure design process. Armed with this data the business 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 15 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+can work with their infrastructure business partners to design a solution that is based on real, historical 
+metrics ensuring that solution is aligned with actual business requirements. 
+
+Figure 3 Aggregated Read/Write Workloads and Response Time provides a typical aggregate summary of the 
+storage workload and response time over time. This macro-level data empowers the business, when working 
+with the storage providers, to better evaluate proposed solutions. Based on vendor technology specifications 
+does the proposed solution cost-effectively meet the measured workloads and performance requirements? 
+Or is the solution significantly over-designed (and overly costly!)? Is the right mix of disk technology (SSD, fast 
+and small FC, big and slower FC, SATA, etc.) being specified?  VirtualWisdom allows the business to pursue 
+greater utilization of infrastructure capacity without increasing the risk of having a deleterious impact on 
+application performance and availability.  The end result is a decrease in future costs through increased 
+consolidation and more effective use of virtual and cloud technologies. 
+
+Summary 
+
+VirtualWisdom plays a critical role in a business’s ability to define and then continuously operate a cost-
+effective tiered storage strategy. A business must have a continuous understand of storage I/O profiles, 
+workloads and performance if it is to ensure that the business’s needs are being met and that the 
+infrastructure is properly aligned with the requirements. Point-in-time assessments of the storage 
+requirements, rules-of-thumb for design and average-of-averages measurements are no longer acceptable 
+methodologies for managing the tiered storage infrastructure. A real-time, persistent and consistent 
+infrastructure monitoring platform like VirtualWisdom is now a necessary and key ingredient in the data 
+center ecosystem. 
+
+Virtual Instruments Whitepaper: The Role of VirtualWisdom in a Tiered Storage Environment 
+
+ 
+
+Page 16 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

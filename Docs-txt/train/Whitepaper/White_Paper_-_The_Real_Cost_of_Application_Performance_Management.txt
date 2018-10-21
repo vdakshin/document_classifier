@@ -1,0 +1,637 @@
+The Real Cost of Application 
+Performance Management  
+(APM) Ownership
+It’s no secret that IT can be seen as a cost center 
+in many organizations today. IT spends millions 
+every year digitizing business processes into online 
+applications and services. Businesses have a fairly 
+good idea of how much money they spend on IT,  
+but very few have visibility into how much revenue  
+IT generates through the applications they build  
+and support.
+
+An AppDynamics Business White PaperIn addition, there are four ownership costs to be evaluated before making a 
+purchase, three of which may not be obvious and may lead to unpleasant surprises.
+
+1. APM Software Licenses
+
+2. Hardware/System Software Required to Operate APM Software
+
+3. APM Deployment & Instrumentation Costs
+
+4. APM Ongoing Maintenance Costs
+
+Simply put, if an APM solution requires extensive configuration or hardware to 
+monitor your applications running in production, then the total cost of ownership 
+will be significantly higher than the initial cost of just acquiring APM licenses.
+
+Many organizations evaluate software offerings by their “time to value” and rapid 
+ROI.  If your organization thinks this way, you may want to consider all costs that 
+can accumulate over time. The last thing you want is to make APM shelf ware in 
+your organization because it’s too costly or time consuming to deploy. If you already 
+own an APM solution, ask yourself this question: why isn’t it deployed today in 
+production across your entire application portfolio? I bet effort, complexity, and 
+cost are top of your list for this lack of coverage.
+
+Here are some useful tips to evaluate the expected costs in each of the four areas.
+
+1. APM Software Licenses
+This is probably the most obvious cost to evaluate and compare across APM 
+vendors in the market place today. The problem for buyers is that APM license 
+prices can differ significantly between vendors depending on the complexity 
+and components of each solution. Most vendors will often charge per CPU, JVM 
+or agent depending on their pricing model, but some vendors may also charge 
+separately for licensing their management server and other add-ons/powerpacks. 
+It’s therefore worth checking what you are getting and what you aren’t when 
+presented with a vendor’s quote.
+
+It is also important to consider that some APM vendors offer only a traditional 
+perpetual licensing model with a large up-front payment and an annual 
+maintenance/support fee.  The downside of this option is that it can create a 
+shelfware risk if the software doesn’t get widely adopted within the organizations. 
+Modern vendors offer subscription licensing models which benefit buyers with 
+an ability to “rent” the solution for set time frame and validate that it works as 
+designed in your environment before committing to a longer-term agreement.  
+Some vendors provide the choice of either option.
+
+For calculating and comparing license costs lets use the following table, which 
+provides insight into how APM costs differ across solutions:
+
+2
+
+The Real Cost of Application PerformanceManagement (APM) OwnershipLicense Costs for Production
+
+# of Nodes
+to Monitor
+
+dynaTrace
+
+CA Wily
+
+AppDynamics
+
+Perpetual
+
+AppDynamics
+
+Annual
+
+Subscription
+
+1
+
+25
+
+50
+
+100
+
+250
+
+500
+
+$10,000
+
+$250,000
+
+$500,000
+
+$9,600
+
+$240,000
+
+$480,000
+
+$6,000
+
+$150,000
+
+$300,000
+
+$2,500
+
+$62,500
+
+$125,000
+
+$1,000,000
+
+$960,000
+
+$600,000
+
+$250,000
+
+$2,500,000
+
+$2,400,000
+
+$1,500,000
+
+$625,000
+
+$5,000,000
+
+$4,800,000
+
+$3,000,000
+
+$1,250,000
+
+License costs shown are approximated based on information made public on the 
+Internet at DynaTrace, CA Wily and AppDynamics. Note: pricing shown is US pricing 
+which is different to pricing in EMEA and Asia-Pacific.
+
+It’s obviously worth pointing out that the license costs above reflect list prices, and 
+of course you’ll get a cheeky discount if you say play golf, have dinner or high five 
+your APM vendor of choice. It’s also true that you may get APM licenses thrown in 
+for free as part of a larger enterprise license agreement (ELA) if your company is 
+buying more than APM from the vendor. What is interesting is the range of APM 
+license costs across vendors--with many choosing to still charge upwards of $8,000 
+per JVM or agent. For a 100-node application, that’s going in for a million dollars 
+just to buy APM licenses. And we haven’t even arrived yet at the cost of support, 
+deployment and solution maintenance.
+
+No matter whether you pay for your APM licenses or get them for free, you’ll 
+typically be required to sign up to a support & maintenance agreement. This is often 
+a three-year contract, which means you’ll pay another 20-30% of your perpetual 
+APM license price per annum. It is important to calculate the 3 or 5 year total-cost 
+of licenses and maintenance when making a purchase decision.
+
+Subscription pricing options on the other hand provides you with more pricing 
+flexibility so you only pay for what you need or use. Subscription based pricing is 
+usually an annual subscription, and maintenance/support is included in that annual 
+subscription price.  Thus, there is no separate annual fee for maintenance/support.  
+With subscription license, you have the option to continue using the APM solution 
+and renew on an annual basis, or quit with no penalty or additional costs.
+
+Important Note: It is always advised to compare the 3-5 year cumulative costs of 
+the vendor’s subscription or perpetual license options.  Typically, if you are already 
+convinced that the software will work in your environment and you intend to use 
+the APM software for many years, perpetual licenses can actually be cheaper than 
+subscription licenses at the 3-4 year break even point.
+
+3
+
+The Real Cost of Application PerformanceManagement (APM) Ownership2. Hardware/System Software Required to Operate APM Software
+These costs depend on whether your APM infrastructure (management server, 
+database, collectors) will be deployed on-premise are alternately provided by your 
+APM vendor as a Service (via SaaS). The cost savings alone for going the SaaS route 
+can often be huge as you’ll conclude after reading through this section.
+
+If your APM solution install is on-premise, the next step is to identify how much 
+hardware and capacity your APM solution will need in order to monitor your 
+application(s). All applications are unique and different by user concurrency, 
+transaction throughput, and infrastructure size. The more you want to monitor the 
+more capacity you’ll need--and the more capacity you’ll need, the more hardware 
+you’ll need to purchase and manage over time.
+
+So let’s take a quick look at what hardware costs are typical for installing APM 
+solutions within your organization.
+
+For calculating hardware cost let’s assume the following:
+
+•  Large Server = 16 core, 32GB, 4TB Disk, $15,000
+
+•  Med Server = 8 core, 16GB, 2TB Disk, $7,500
+
+APM Solution A – requires 1 large and 2 medium physical servers (1 mgmt server, 1 
+database, 1 collector) to monitor 400 JVMs at a cost of $30,000.
+
+CA Wily – requires 1 large and 4 medium servers (1 MOM, 4 collectors) to monitor 
+400 JVMs at a cost of  $45,000.
+
+AppDynamics On-Premise – requires 1 physical server (1 mgmt server including 
+embedded database) to monitor 2,000 JVM’s at a cost of $15,000.
+
+AppDynamics As a Service – no hardware purchase nor installation required.
+
+Hardware Costs
+
+# of Nodes
+to Monitor
+
+200
+
+400
+
+800
+
+1600
+
+4000
+
+APM
+
+Solution A
+$30,000
+
+$30,000
+
+$60,000
+
+CA Wily
+
+$30,000
+
+$45,000
+
+$90,000
+
+$120,000
+
+$180,000
+
+$300,000
+
+$450,000
+
+AppDynamics
+On-Premise
+
+AppDynamics
+
+Via Saas
+
+$15,000
+
+$15,000
+
+$15,000
+
+$15,000
+
+$15,000
+
+$0
+
+$0
+
+$0
+
+$0
+
+$0
+
+4
+
+The Real Cost of Application PerformanceManagement (APM) OwnershipA key conclusion here is that it’s relatively cheap to monitor one or two small 
+applications, but then it becomes very expensive to monitor large or multiple 
+applications as APM deployment increases.
+
+The other conclusion is that hardware costs disappear entirely when a customer 
+chooses a Software-as-a-Service APM solution. As an example, AppDynamics 
+monitors a customer’s web application that uses over 4,000 Amazon EC2 nodes 
+to deliver on quality of service goals. In this example, our customer does not have 
+any APM hardware or system software costs because they are using our SaaS 
+deployment option.  If this customer had gone with another APM vendor’s on-
+premise solution, the customer would have to pay more than $250,000 in APM 
+related hardware costs.
+
+Without this ease of deployment and high scalability, the hardware and admin 
+costs for our APM solution might have made this APM deployment prohibitive from 
+the start. If we look at the scalability of solutions A and B, it’s entirely possible 
+to budget $250k for hardware alone to support such a deployment. That capital 
+expenditure then becomes a depreciating asset over-time, which will probably be 
+replaced after 3 to 5 years.
+
+That is not the bad news, though. Just like your applications, your APM solution 
+needs high availability, DR, and failover. What happens if your APM management 
+server, database, or other components fail? You therefore need to purchase or 
+provision spare capacity, which can be used by your APM solution to failover should 
+failure occur. Remember, APM solutions are read/write intensive applications and 
+rely heavily on processing power and Disk I/O. Again, for APM vendors that provide 
+their solution via SaaS, all this high availability and additional cost and complexity is 
+absorbed by the vendor with the customer just paying an annual subscription.
+
+On top of the purchase costs, now look at the amount of physical servers you  
+need to provision with software, maintain, and support just to keeping the APM 
+solution operational:
+
+# of 
+
+Applications
+to Monitor
+
+Physical Machines to Admin and Maintain
+
+APM
+
+Solution A
+
+CA Wily
+
+AppDynamics
+On-Premise
+
+AppDynamics
+
+Via Saas
+
+200
+
+400
+
+800
+
+1600
+
+4000
+
+2
+
+4
+
+8
+
+16
+
+40
+
+3
+
+5
+
+10
+
+20
+
+50
+
+1
+
+1
+
+1
+
+1
+
+2
+
+0
+
+0
+
+0
+
+0
+
+0
+
+5
+
+The Real Cost of Application PerformanceManagement (APM) OwnershipYou also need to factor in software licenses for physical servers, which require a 
+commercial database like Oracle, SQL Server, DB2 or Sybase. Many APM solutions 
+require these for scaling beyond 25 to 50 application tiers. For example, an APM 
+database requiring Oracle 10g Enterprise Edition on an server with 8 cores is 
+$47,500 list price from Oracle. If you have multiple database servers, then this cost 
+can easily increase to over $100k.
+
+The conclusion here is that many APM solutions can be expensive to own from 
+a hardware and capex perspective depending on how well they scale. If you are 
+looking to minimize these costs, then factor in your APM deployment goals for the 
+first two years of APM ownership and make sure your APM solution can scale. APM 
+as a Service becomes an attractive proposition as this deployment option costs zero 
+and significantly cuts your time to value.
+
+3. APM Deployment & Instrumentation Costs
+Important Note: This is probably the largest hidden cost when deploying legacy 
+APM solutions. This is also the most common “unpleasant surprise” post-purchase.  
+It is in the buyer’s best interest to ask the vendors a lot of very detailed questions 
+about this topic.
+
+Application and Agent deployment might sound simple, but it’s actually where the 
+bulk of time, effort and cost is spent when deploying APM.
+
+Important Vendor Trap #1 to Avoid: If you only evaluated the APM solution in a test 
+environment and not in production, you may not have seen the complexity required 
+to configure the APM solution’s instrumentation to avoid excess overhead.  Why?  
+In a test environment, where you may not care as much about the APM solutions 
+impact on your app’s performance, the vendor may have used a high-overhead “dev 
+mode” that  requires almost no configuration. Be demanding with the vendor and 
+ask them to spell out the exact steps that need to occur when deploying the APM 
+solution on a production application.
+
+Important Vendor Trap #2 to Avoid: Another trick pulled by some APM Vendors 
+is that they will show you basic application visibility out-of-the-box with little 
+configuration required. Legacy APM solutions have a default “evaluation” setting 
+that only monitors 10% of classes and methods by instrumenting standard 
+interfaces like servlets, EJB, web services, JMS and JDBC. What they are hoping is 
+that you won’t notice how few classes/methods that you can see in this mode. Why 
+is this important? This basic visibility is insufficient when it comes to finding the root 
+cause of performance issues because your application can contain thousands of 
+classes and methods.
+
+The important conclusion is that legacy APM agents require manual instrumentation 
+and manual instrumentation is a very technical and time-consuming task to do 
+correctly. It is time consuming because the cost of getting it wrong are high – you 
+
+6
+
+The Real Cost of Application PerformanceManagement (APM) Ownershipcan crash or significantly slow down your application. Thus, many APM vendors 
+provide instrumentation consultants that may spend 1-2 weeks with you to make 
+the appropriate trade-offs or compromises between visibility given and overhead 
+created. This intelligence for monitoring therefore has to come from an APM 
+administrator or the developers that built your application, and this knowledge 
+transfer sadly isn’t a five minute job. Even worse, it is not a one time job either, 
+given that your applications likely evolve several times a month or year with agile 
+releases and code changes. Your instrumentation will get out of date quickly if you 
+don’t update it.
+
+Fortunately, not every APM solution relies on “manual instrumentation” with manual 
+configuration of “PBD files” or “Sensor Packs.”
+
+The cost of agent deployment is therefore related to the complexity of the 
+agent install itself and the configuration required to get the visibility you need 
+in production from your APM solution. For APM solutions that require extensive 
+configuration, some vendors recommend doing this in a test environment so you 
+can verify visibility and agent overhead prior to any production deployment. On the 
+other hand, other APM solutions require minimal configuration and can run out of 
+the box in production with complete visibility so the effort and cost of deployment 
+can vary significantly.
+
+Let’s look at the common tasks and effort (mins) associated with monitoring an 
+application in production with, say, 200 business transaction types and 25 nodes:
+
+Solution A Solution B
+
+AppDynamics
+
+Autodiscovered
+Autodiscovered
+Autodiscovered
+Autodiscovered
+Not Required
+Not Required
+
+Optional
+Optional
+Optional
+
+Not Required
+
+ü
+
+120
+2
+.25
+
+Task
+
+Configure Business Transactions Rules
+
+Configure Alert and SLA Thresholds
+Configure Application Dashboards
+
+Configure App Server Metric Collection
+
+Ask Dev team for what to Instrument
+
+Configure Custom Instrumentation
+
+Perform Baseline Load Test
+
+Perform Load Test and APM Solution
+
+Validate APM Solution Overhead in Test
+
+Validate APM Solution Visibility in Test
+
+Install Agents in Production Nodes
+
+Time 
+(Min)
+200
+200
+180
+60
+240
+480
+60
+60
+480
+480
+120
+
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+ü
+
+Total Minutes Required
+Total Hours Required
+Total Days Required
+
+2560
+42.7
+5.3
+
+2180
+36.3
+4.5
+
+The effort (time) allocated to each of the above tasks is pretty conservative and will 
+of course vary across APM solutions. While a week might sound like a short amount 
+of time to monitor an application, it’s worth pointing out that this assumes all tasks 
+can be carried out sequentially with no delay. In reality, this is often impossible. 
+For example, finding the right people in development to sit down and tell you 
+what classes and method to instrument could take a few days depending on their 
+schedules. It’s the same case with finding a load test environment that’s available; 
+not every organization has a pre-production environment for every application. 
+If one is needed, it might need take weeks to provision or book. From speaking 
+with customers who have owned first generation APM solutions, in the past these 
+tasks can sometimes take weeks or months before an application is successfully 
+monitored in production. It’s this lack of solution agility that limits the value an APM 
+solution can have in production and for your organization. Time to value is therefore 
+critical for any APM solution if it is to deliver the benefits you need when you need 
+it the most.
+
+Sadly, the effort and deployment cost doesn’t stop there. Practicing agile 
+development methodology increases the frequency of change within an application 
+production environment. If an application code base changes, it can significantly 
+alter the components of an application and cause any APM configuration, 
+monitoring and dashboards to become out of date. For example, new business 
+transactions might be introduced and need defining, along with their thresholds 
+and associated classes and methods for instrumentation. While re-configuring an 
+APM solution for an agile release is less than configuring for a new application from 
+scratch, it can still take several hours of effort. Depending on your frequency of 
+application releases in production, it’s certainly worth taking this additional cost into 
+account when evaluating APM solutions.
+
+Remember, if you or your team doesn’t have the cycles to deploy or maintain your 
+APM solution, then you’re easily looking at $2,000 per day per APM consultant 
+depending on your deployment goals and objectives. While this may be acceptable 
+costs for many organizations, professional services simply adds to the total cost of 
+ownership of APM across the board. So if you want to get economies of scale and 
+an ROI for APM, you have to look at the bigger picture and factor in all spend.
+
+4. APM Ongoing Maintenance Costs 
+Some APM vendors deliver at least one major and one 
+minor release every 12 to 18 months depending on their 
+ability to innovate. These releases will typically contain 
+new features and updated platform support so they can 
+monitor your application as you upgrade your application 
+middleware, infrastructure and databases. The simple 
+
+question here relates to how much it costs to keep your APM solution current. How 
+much effort does it take to upgrade all the components of your APM solution? 
+
+8
+
+The Real Cost of Application PerformanceManagement (APM) OwnershipAnswers to these questions really depends on how big your APM Solution hardware 
+install is and how many applications and nodes you are monitoring. If you have 
+one management server and one database with 25 agents, then the cost will be 
+reasonably low. On the flip side, if you have ten management servers, ten databases, 
+and 2,500 agents, then the effort and associated cost could be significant.
+
+Solution upgrades are also a primary reason why APM as a Service is an attractive 
+proposition for organizations, as it limits the effort and cost associated with an 
+upgrade. The APM vendor in a SaaS deployment deals with all the upgrades of 
+management servers, databases, and APM infrastructure to ensure all components 
+(excl. node agents) are correctly upgraded for their customers.
+
+Depending on how many components your APM infrastructure has, you could be 
+looking at a two to three week full-time project just to upgrade your APM solution 
+every year so its up to date and can monitor your agile and evolving applications.
+
+Summary
+The real cost of owning application performance management isn’t just related  
+to purchasing or acquiring software licenses. Total cost has a more direct 
+relationship on how reliant an APM solution is on its administrator or users who 
+must configure, deploy and maintain the APM solution over time. Time is money: 
+the more time you manage your APM solution, the less time you’ll spend managing 
+your application performance. The less time you spend managing application 
+performance the less your ROI will be. APM must therefore be cost effective to buy, 
+deploy, use and maintain.
+
+Try it FREE at  
+
+www.appdynamics.com
+
+AppDynamics, Inc. 
+www.appdynamics.com
+
+Copyright © 2014 AppDynamics, Inc. All rights reserved. The term 
+APPDYNAMICS and any logos of AppDynamics are trademarked or 
+registered trademarks of AppDynamics, Inc.
+
+

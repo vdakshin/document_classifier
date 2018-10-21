@@ -1,0 +1,210 @@
+ 
+
+ 
+
+ 
+
+User Defined Contexts 
+          Technology Brief 
+
+ 
+
+PREDICTIVE SAN MANAGEMENT  
+Using VirtualWisdom’s User Defined Contexts (UDCs) for ‘What –If’ Analysis  
+Background 
+Today, most SAN management monitoring solutions are designed around troubleshooting, providing reactive 
+assistance to harried IT administrators and operations professionals.  Given the size and complexity of many 
+environments, this simply isn’t sufficient to avoid inevitable application slowdowns or outages. 
+For years, VirtualWisdom has enabled IT professionals to see low level physical layer issues, which are useful 
+predictors of problems higher in the infrastructure stack.  Beginning with VirtualWisdom release 2.0, Virtual 
+Instruments augmented this predictive ability through the addition of ‘User Defined Contexts’, or UDCs.  Amongst 
+other uses for UDCs, they add the ability to easily analyze existing metrics to help predict problems before they 
+occur.   
+
+User Defined Contexts 
+The UDC feature enables creation of ‘custom context’, specified by user-defined Group-By fields and values, 
+customizing the data that VirtualWisdom stores by augmenting it with information specific to a specific SAN. This 
+customization is done by adding information to the data collected by VirtualWisdom, and not by modifying the 
+collected data.  SAN owners can usefully apply a feature that enables them to group data in ways that are specifically 
+relevant to their networks, and especially the ability to group together several ports on a switch and report them as 
+one entity. UDCs allow custom grouping of data of any probe type and metric set.  The UDCs, based on key fields and 
+their attributes (such as Initiator, Initiator Name, Target, Target Name, or Channel), have the same behavior as 
+existing key fields with which VirtualWisdom users are already familiar, allowing the seamless use in all aspects of 
+VirtualWisdom, such as Reports, Alarms, and Recordings. UDCs also use metric fields, statistics gathered for a specific 
+key, such as Frames/Sec, Avg Command to 1st Data, and MB/sec. 
+UDCs enable the following functionality: 
+
+•  Create custom key fields such as Application or Server for any probe type and metric set. 
+•  Group data by custom key fields alone or by combinations of custom key fields and existing key fields. 
+
+ 
+
+             
+
+1 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+User Defined Contexts 
+          Technology Brief 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+•  Create report templates containing custom key fields. 
+•  Answer “what if” questions by simulating different scenarios using the summarized historical data in the 
+
+•  Create server, virtual machine, and cluster fields automatically for ProbeFCX when used in conjunction with 
+
+VirtualWisdom Server. 
+
+ProbeVM. 
+
+•  Create fabric fields automatically for all probe types. 
+•  Create filters and alarms using UDCs. 
+
+Sample Use Cases for “what-if” analysis 
+Host Consolidation: 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+This dashboard shows the metrics for 3 separate SAP servers. The final column shows the same metrics based on the 
+premise that the 3 servers are consolidated into one virtual server. 
+ 
+Storage Consolidation: 
+
+In this dashboard, 2 applications are using 2 different sets of 3 storage ports. The metrics for these are shown in the 
+first 2 columns. The third column shows what the situation would be should the 2 applications merge their use of 
+ports.  
+ 
+
+ 
+
+ 
+
+             
+
+2 
+
+ 
+
+Switch Restructure: 
+
+ 
+
+User Defined Contexts 
+          Technology Brief 
+
+In this dashboard, the top 4 columns show switch 1 and 2 as they are today. The next 2 columns show 30 ports from 
+switch 1 being moved to switch 2.  The bottom 2 widgets show a number of ports from both switch 1 and switch 2 
+being combined into a theoretical new switch 3.  Switch3 shows the top talkers and the MB/sec. 
+
+Summary 
+VirtualWisdom UDCs enables the grouping of data in ways that are relevant to specific networks.  UDCs allow custom grouping of 
+data of any probe type and metric set, and are thus useful for doing ‘what if’ analyses quickly and easily, using actual production 
+data. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+25 Metro Drive, Suite 400 
+ San Jose CA 95110 
+408-579-4000 
+http://www.virtualinstruments.com 
+
+Sales Information 
+sales@virtualinstruments.com 
+
+Customer Support  
+
+support@virtualinstruments.com 
+
+©2011 Virtual Instruments.  All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom®, Virtual 
+Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or 
+service names are or may be trademarks or service marks of, and are used to identify, products or services of their respective owners.   04/11 
+
+ 
+
+ 
+
+             
+
+3 
+
+

@@ -1,0 +1,390 @@
+VirtualWisdom Integration 
+Case Study 
+
+ 
+
+Integrating VirtualWisdom® into Enterprise Event 
+Management Frameworks 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Executive Summary 
+VirtualWisdom has comprehensive real-time alerting functionality.  Alerts and alarms can be generated on 
+defined thresholds on any metric, including storage access times, congestion, link errors, and SCSI errors, 
+with a variety of possible actions taken. These include writing log entries, sending SNMP traps or email, 
+generating trend reports, or executing external programs or scripts.  Large enterprises may use a combination 
+of the above techniques to achieve effective monitoring and management of their SAN and storage 
+infrastructure, including expedited troubleshooting, allowing the SAN Manager to prove whether the problem 
+is in the SAN or elsewhere, such as the application or server. 
+
+ 
+
+ 
+
+ 
+Most organizations will already have some form of event management framework in place and integration into 
+that framework is critical for success. This paper details the process of integrating VirtualWisdom alerting into 
+an IBM Tivoli® Netcool®/ OMNIbus operations management system. Similar processes are followed for other 
+enterprise management systems.  
+
+The customer is a large financial institution who has deployed VirtualWisdom for overall monitoring. They have 
+also "de-risked" their key business applications and are generating application specific alarms as well as 
+alarms on the overall infrastructure. The primary interface between VirtualWisdom and IBM Tivoli® 
+Netcool®/OMNIbus is via SNMP traps. They are also using email alerting for lower priority alarms. 
+
+Preparation - Alerting schema 
+Prior to implementing the alerting configuration, the Virtual Instruments services team did extensive planning 
+with the customer to understand their business requirements, the proposed process flow and the technical 
+requirements for integrating into the IBM Tivoli® Netcool®/OMNIbus operations management system.  One key 
+output of this discovery was that Tivoli system required a unique message ID that was cataloged to determine 
+what action the operations team needed to take for every event type. The message had to identify the 
+application impacted by the event as well as the event type. 
+
+On this basis, an alert schema was developed that met the criteria of the Tivoli team and was scalable to 
+cover the type and severity of alert and the number of applications required. 
+
+ 
+
+ 
+
+Summary:  
+
+VirtualWisdom 
+alerts and alarms 
+are often integrated 
+with existing 
+enterprise event 
+management 
+frameworks 
+
+VI Professional 
+Services engage 
+with the customer 
+to refine technical 
+requirements and 
+deployment details 
+
+Alert schemas 
+define the alarms, 
+thresholds, filters, 
+and actions 
+
+Baselining is 
+performed to 
+determine the 
+typical environment 
+performance 
+
+Implementation 
+testing ensures a 
+successful 
+production 
+implementation 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+Event 
+Type  
+Code     Event Description 
+
+10  Read ECT Threshold 
+
+15  Write ECT Threshold 
+
+*9  Link Error 
+
+*8  SCSI Error 
+
+17  CRC Error 
+
+16  C3D Serv/Stor 
+
+11  C3D ISL 
+
+14  Flapping Port1 
+
+13  Flapping Port2 
+
+12  Flapping Port3 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+App 
+Code     Application Description 
+
+Event 
+Severity 
+Code       Event Severity 
+
+01  App_A 
+
+02  App_B 
+
+03  Gen - nothing attached 
+
+00  Generic 
+
+04  App_C 
+
+05  App_D 
+
+06  App_E 
+
+07  App_F 
+
+08  App_G 
+
+09  App_H 
+
+10  App_I 
+
+11  App_J 
+
+12  APP_K 
+
+13  APP_L 
+
+14  APP_M 
+
+15  APP_N 
+
+16  APP_O 
+
+Schema table 
+
+0  Warning 
+
+1  Minor 
+
+2  Major 
+
+3  Critical 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+For example, VirtualWisdom would send a message starting with 10013 indicating that a READ Exchange 
+Completion Time had exceeded the critical threshold defined for Application APP_A.  
+
+Using the above schema, a table of required alarms was created.  This documented appropriate thresholds 
+and follow-up actions as well as the VirtualWisdom filters required to identify the application. Once agreed 
+with the customer, a copy was forwarded to the Tivoli team for cataloguing in their system. Depending on the 
+severity of the alert and the criticality of the application, the predetermined action ranged from an informational 
+email, a helpdesk task created for next day follow-up or a call-out of duty staff for immediate action 
+
+An example extract from the schema table is shown below. The schema contains in excess of 200 defined 
+alarms, with any application having up to18 specific alarms. 
+
+ 
+
+Preparation - Alarm Thresholds 
+Setting appropriate alarm thresholds was critically important to gain confidence in the solution.  The worst 
+thing that could happen would be to enable an alerting system and swamp the Operations Team with 
+excessive alarms. It was therefore imperative that the correct thresholds were set and the system was fully 
+tested before going live. 
+
+A baseline analysis of the customer environment was performed by the Virtual Instruments Professional 
+Services team. This determined typical performance of the environment with regard to error rates and system 
+response times.  At this point, a level of "housekeeping" was required to clean up minor errors highlighted by 
+the baseline report that may have contributed to the alarm loading.  One of the outputs of the analysis process 
+was a Virtual Instruments Best Practices document. This document highlights recommended alarms and 
+which are most relevant to the customer.  This was discussed with the customer and reviewed in conjunction 
+ 
+
+ 
+
+with their business Service Level Agreements to set the appropriate thresholds. 
+
+One strong feature which was appreciated by the customer was the flexibility of the Alerting system within 
+VirtualWisdom. This was particularly true for performance thresholds, where the customer was not too worried  
+about a short term breach, but needed to be alerted if the threshold was exceeded over a certain period 
+
+Implementation & Testing 
+Once agreed, the defined alarms were configured into VirtualWisdom. An example of the alarm configuration is 
+shown below 
+
+The VirtualWisdom MIB was also loaded into the IBM Tivoli® Netcool®/OMNIbus operations management 
+system. 
+
+All the alarms configured were initially set to "message only" actions. This meant that alarms generated were 
+limited to VirtualWisdom's internal logging system. This allowed the system to be checked before exposing the 
+generated alarms to the "outside world". The customer also had a test and development instance of their IBM 
+Tivoli® Netcool®/OMNIbus system. The syntax of the VirtualWisdom alarm messages and their correlation 
+with the Tivoli system catalogue could also be checked before live messages were sent into the operations 
+team. This carefully staged approach ensured that the level and quality of messaging originating from 
+VirtualWisdom was acceptable to and easy to interpret by the customer.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks 
+in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks of, and are used to identify, products or services of their respective 
+owners. 09/11b 
+
+ 
+
+

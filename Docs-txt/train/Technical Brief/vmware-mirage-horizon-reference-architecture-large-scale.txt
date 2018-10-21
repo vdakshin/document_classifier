@@ -1,0 +1,2228 @@
+VMware Mirage Large-Scale Reference ArchitectureVMware Mirage 5.0 and LaterSupporting the Backup and Migration of Large DeploymentsTECHNICAL WHITE PAPERTable of Contents
+
+Executive Summary  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+Mirage Solution Overview  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+  Solution Software Components   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+  VMware vSphere  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+ 
+ 
+  VMware Mirage   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+  VMware Mirage Components  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+  Mirage Management Server   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+ 
+  Mirage Server  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+ 
+ 
+  Mirage Web and Protection Manager  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+  Mirage Client   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+ 
+  Mirage Branch Reflectors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+ 
+ 
+  Mirage File Portal .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+  Performance Measurements  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+  Cacti Graphing Solution  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+ 
+  RRDtool v. 1.3   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+ 
+ 
+  SNMP Informant   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+  EMCO WakeOnLan  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+ 
+ 
+  SolarWinds IP Address Manager  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+  Hardware Components  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+  Server  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+ 
+  Network  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+ 
+ 
+  Storage   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+ 
+  Desktops  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+Use Case Overview   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+Reference Architecture Overview  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 10
+  Network Considerations and Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+  Storage Considerations and Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+  External Infrastructure Components   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 15
+  Endpoint Centralization   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 15
+Test Results: Centralization over Typical LAN  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 16
+  Total Centralization Time   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 16
+  Endpoint Centralization: Resource Consumption  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 19
+Test Results: Windows 7 Migration of 825 Endpoints over LAN  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 21
+
+T E C H N I C A L   W H I T E   P A P E R     /   2
+
+VMware MirageLarge-Scale Reference ArchitectureConclusion  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 24
+About the Authors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 24
+Acknowledgments  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 24
+References  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 25
+Appendix A: Reference Architecture Detail   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 26
+Appendix B: Mirage Server Recommendations for Mass Centralization   .  .  .  .  .  .  .  .  .  .  . 28
+Appendix C: Mirage Centralization Workflow  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 29
+Appendix D: Mirage Windows 7 Migration Workflow  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 30
+
+T E C H N I C A L   W H I T E   P A P E R     /   3
+
+VMware MirageLarge-Scale Reference ArchitectureExecutive Summary
+
+This VMware® Mirage™ large-scale reference architecture solves two common challenges faced by IT managers 
+today:
+
+1.  How to back up a large number of desktops deployed throughout the enterprise while protecting the 
+
+customization, applications, and data that personalize each system for its end user.
+
+2.  How to migrate thousands of desktops from Microsoft Windows XP to Windows 7 efficiently, with minimal 
+
+impact on IT resources and end-user productivity.
+
+Both tasks typically require a substantial investment in IT resources and the use of separate backup and PC 
+lifecycle management tools. VMware Mirage, however, performs both tasks efficiently. The test results in this 
+paper show that Mirage delivered even better results than initially expected. VMware Mirage
+
+•	Efficiently backed up desktops located on a local area network (LAN), slashing the amount of data transferred 
+
+to the data center by up to 32 percent through its deduplication and compression capabilities.
+
+•	Increased system performance to match increased network bandwidth, linearly decreasing the amount of 
+
+time required to back up desktops.
+
+•	Migrated up to 800 desktops concurrently from Windows XP to Windows 7 in a short time, requiring minimal 
+
+IT resources and bandwidth.
+
+•	Reduced end-user downtime and resulting productivity loss during the migration to 26 minutes on average.
+
+This reference architecture and the real-world testing behind it are provided to help guide the planning and 
+design of other successful Mirage implementations.
+
+T E C H N I C A L   W H I T E   P A P E R   /   4
+
+VMware MirageLarge-Scale Reference ArchitectureMirage Solution Overview
+
+VMware Mirage provides centralized image management for Windows desktops, with enhanced backup and 
+OS migration capabilities. Designed to simplify and reduce the cost of critical help desk tasks while minimizing 
+interruption to end users, VMware Mirage provides the following key capabilities:
+
+•	Seamless desktop backup, recovery, and repair – You can store full desktop snapshots in the data center 
+
+with synchronization of IT- or end-user-initiated changes. Centrally stored desktop images and periodic 
+endpoint snapshots allow IT to roll back (recover) partial or full desktops when needed. You can troubleshoot 
+and fix endpoints quickly with the Mirage Web Manager.
+
+•	Simplified Windows 7 migrations – Mirage accelerates the most common approaches to Windows 7 
+
+migrations: upgrading an existing Windows XP device to Windows 7 or migrating an end user’s profile and 
+files to a new Windows 7 machine.
+
+•	Layered endpoint management and application layering – Mirage enables you to manage PCs, or VMware 
+
+Horizon™ with View™ persistent virtual desktops, as a set of logical layers owned by either IT or the end 
+user. Update IT-managed layers while maintaining end-user files and personalization. It is easy to deploy 
+applications or VMware ThinApp® packages to any collection of end users with Mirage application layering 
+technology.
+
+•	Branch office optimization – The Mirage branch reflector allows IT to download any images and updates once 
+
+from the Mirage server across the WAN, using peer-to-peer technology to distribute them to other Mirage 
+clients in the branch office.
+
+•	Bring Your Own Device (BYOD) – You can install virtual images, which Mirage manages natively, onto 
+Windows PCs running VMware Workstation™, or onto VMware Fusion® Pro virtual desktops. The Fusion 
+desktops can run on Windows, Macintosh, or Linux computers. Mirage allows end users to leverage local 
+system resources for online and offline productivity.
+
+Solution Software Components
+This solution uses two major VMware software components:
+
+VMware vSphere
+The industry-leading virtualization platform for building cloud infrastructures, VMware vSphere® enables 
+users to run business-critical applications with confidence and respond quickly to business needs. vSphere 
+accelerates the shift to cloud computing for existing data centers and underpins compatible public cloud 
+offerings, forming the foundation for the industry’s best hybrid cloud model. 
+
+VMware Mirage
+Mirage software centralizes desktops in the data center for management and protection purposes, distributes 
+desktop workloads to the endpoints, where they can run with native efficiency, and optimizes the transfer of 
+data between endpoints and the data center.
+
+VMware Mirage Components
+Mirage consists of the following software components:
+
+Mirage Management Server
+The Mirage Management server controls and manages the Mirage server cluster and coordinates all Mirage 
+operations, including backup, migration, and operating system deployment.
+
+Mirage Server
+Mirage servers perform backups, migrations, and the deployment of base and app layers to endpoints. 
+Multiple Mirage servers can be deployed as a server cluster to provide system redundancy and support larger 
+organizations. 
+
+T E C H N I C A L   W H I T E   P A P E R   /   5
+
+VMware MirageLarge-Scale Reference ArchitectureMirage Web and Protection Manager
+These Web-based tools enable help desk personnel to respond efficiently to service queries and ensure that 
+endpoints are protected by Mirage backup capabilities. 
+
+Mirage Client
+The Mirage client enables an endpoint to be managed by Mirage. It supports both physical and virtual desktops 
+including those hosted by both Type 1 and Type 2 hypervisors.
+
+Mirage Branch Reflectors
+The role of a branch reflector is to offload the deployment of base layers and migration of endpoints from the 
+Mirage server cluster, reducing both time and network bandwidth required. Because this paper focuses on a 
+LAN deployment, branch reflectors were not required. It is possible to use branch reflectors in LAN scenarios, 
+but covering this use case fell outside the scope of this paper. Any Mirage endpoint can be configured as a 
+branch reflector and can be dedicated or shared with low-resource uses such as information kiosks.
+
+Mirage File Portal
+The Web-based Mirage file portal provides browser-based access to user files backed up by Mirage. Using any 
+device that has a Web browser, including smartphones and tablets, end users can access and restore their 
+critical data without having to be at their desks or usual computers.
+
+For links to more detailed information about Mirage capabilities, features, and system components, see the 
+References at the end of this document. 
+
+Remote Branch Site
+
+Data Center
+
+ Mirage Clients
+
+Branch Re(cid:31)ectors
+
+WAN
+
+Mirage
+Server Cluster
+
+Mirage Database, 
+Storage Volumes
+
+Load 
+Balancer
+
+Connection 
+
+Server
+
+Internet
+
+Mirage Management 
+Server with File Portal 
+and Web Manager
+
+File Portal and 
+Web Manager
+
+Access
+
+VPN
+
+Figure 1: Mirage Components
+
+Local Site
+
+Mirage Clients
+
+Mirage
+Management 
+Console
+
+T E C H N I C A L   W H I T E   P A P E R   /   6
+
+VMware MirageLarge-Scale Reference ArchitecturePerformance Measurements
+We used multiple tools to monitor the performance of all the hardware and software components during the 
+testing period. Testing components included
+
+Cacti Graphing Solution
+Cacti is a complete network graphing solution designed to harness the power of RRDtool data storage 
+and graphing functionality. Cacti provides a fast polling interval, advanced graph templates, multiple data 
+acquisition methods, and user management features out of the box. 
+
+RRDtool v. 1.3 
+RRDtool is the Open Source industry-standard, high-performance data logging and graphing system for time 
+series data.
+
+SNMP Informant 
+SNMP Informant uses the Simple Network Management Protocol (SNMP) to collect performance, state, 
+operational, and custom information.
+
+EMCO WakeOnLan
+All physical endpoints were powered on and off remotely. This utility allows powering up of multiple network 
+PCs and includes a MAC address detection feature that fulfilled a key requirement for this paper, enabling the 
+discovery of new physical endpoints as the project progressed.
+
+SolarWinds IP Address Manager
+We used this IP scanner to track changes between WakeOnLan database information and the physical machines 
+on the network that were currently powered on. The use of this optional tool simplified keeping track of IP-to-
+endpoint FQDN information.
+
+Hardware Components
+This reference architecture used the following hardware components:
+
+Server
+The architecture includes three HP ProLiant BL460c server blades that plug vertically into the BladeSystem 
+c7000 enclosure. Components of the HP ProLiant system include
+
+•	BL460c Gen8 Intel Xeon E5-2670 (2.60GHz/8-core/20MB/115W)  
+
+Processor Kit
+
+•	BLC VC 8GB FC 24-Port Option Kit
+
+•	2400W High-Efficiency Power Supply
+
+•	ProLiant BL460c Gen8 10Gb
+
+•	300GB 2.5” Internal Hard Drive – SAS – 10000RPM – Hot Pluggable
+
+•	Memory – 16GB – DIMM 240-pin – DDR3 – 1600MHz /  
+
+PC3-12800 – CL11 - registered – ECC
+
+•	Flex-10 10Gb 2-port 530FLB Adapter – network adapter – 2 ports
+
+•	BladeSystem c-Class 10Gb Short Range Small Form-Factor  
+
+Pluggable Option
+
+•	Virtual Connect Flex-10/10D module for c-Class BladeSystem
+
+T E C H N I C A L   W H I T E   P A P E R   /   7
+
+VMware MirageLarge-Scale Reference ArchitectureNetwork
+The HP 5400 zl Switch consists of advanced intelligent switches in the HP modular chassis product line, which 
+includes 6-slot and 12-slot chassis and associated zl modules and bundles. The foundation for the switch 
+series is a purpose-built, programmable ProVision ASIC with 10/100, Gigabit Ethernet, and 10 Gigabit Ethernet 
+interfaces, and integrated Layer 3 features. Components of the HP 5400 zl Switch include
+
+•	HP 5412-92G-PoE+-2XG v2 zl Switch with Premium Software
+
+- 1500W PoE+ zl Power Supply
+
+- 24-port Gig-T PoE+ v2 zl Module
+
+- 20-port Gig-T PoE+ / 2-port 10GbE SFP+ v2 zl Module
+
+•	1500W PoE+ zl Power Supply
+
+•	HP X132 10G SFP+ LC SR Transceiver
+
+•	HP 24-port Gig-T PoE+ v2 zl Module
+
+Storage
+HP StoreEasy 3830 Gateway Storage Blade is a converged storage platform from HP that supports both file 
+and application workloads over ubiquitous Ethernet. The HP StoreEasy3830 is built on industry-standard HP 
+ProLiant BL460c Generation 8 hardware. Components of the HP StoreEasy3830 system include
+
+•	BL460c Gen8 E5-2609 Kit
+
+•	6Gb SAS BL Switch Dual Pack
+
+•	D6000 Disk Enclosure
+
+•	300GB 6G SAS 15K 3.5 inch Dp ENT HDD
+
+•	D6000 Dual I/O Module Option Kit
+
+•	Smart Array P721m/2G FBWC Ctrlr
+
+•	Ext Mini SAS 2m Cable Desktop
+
+•	70 hard drives
+
+•	Maximum IOPS for the StoreEasy based on the number of drives
+
+Desktops
+HP RP5700 Small Form Factor Desktops feature
+
+•	Intel Pentium Dual Core E2160, 1.80GHz, 1MB L2 cache
+
+•	800MHz front side bus
+
+•	80GB internal 3.5 inch 7,200RPM ATA Hard Drive
+
+•	4GB of DDR2-Synch DRAM PC-5300
+
+•	Windows XP SP3 and Office 2007 SP3
+
+•	Miscellaneous applications (Adobe Reader and Flash, Java)
+
+•	An average of 10GB of unique user data
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   /   8
+
+VMware MirageLarge-Scale Reference ArchitectureUse Case Overview
+
+The Mirage large-scale reference architecture detailed in this document was designed to solve the two common 
+customer challenges cited in the Executive Summary: 
+
+1.  How to back up a large number of desktops deployed throughout the enterprise, protecting the unique 
+
+customization, applications, and data that personalize each system for its end user.
+
+2.  How to migrate thousands of desktops from Microsoft Windows XP to Windows 7 efficiently, with minimal 
+
+impact on IT resources and end-user productivity.
+
+To address these challenges, the customer first conducted a comprehensive assessment of existing desktops 
+and remote office infrastructures. The findings of this assessment were incorporated into the plan and design 
+project that resulted in this Mirage reference architecture.
+
+The test results describe how the customer used Mirage to back up and migrate 800 endpoints from Windows 
+XP to Windows 7. These endpoints, located in a corporate office supported by a Gigabit LAN circuit, typified 
+most of the desktops the customer intends to support with Mirage.
+
+OS Migration
+
+OS Migration
+
+OS Pivot
+
+Backup
+
+ Mirage Server
+
+Rollback
+
+Figure 2: Mirage Endpoint Migration and Backup
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   /   9
+
+VMware MirageLarge-Scale Reference ArchitectureReference Architecture Overview
+
+This customer has offices distributed throughout the world, but this reference architecture focuses mainly on 
+the endpoints that are located at corporate headquarters. All endpoints mentioned in this paper are located 
+near the data center, and can be backed up and migrated over the Gigabit Ethernet network. 
+
+The need to back up and migrate these endpoints was urgent because the desktops contained critical data that 
+was not yet saved in the data center. Dispatching technicians to each endpoint to migrate them individually 
+would be costly and inefficient. The customer wanted to avoid manual intervention, to minimize opportunities 
+for human error and free their technicians to perform other tasks, as well as to contain costs.
+
+The customer selected VMware Mirage based on a comprehensive assessment. To successfully design a Mirage 
+infrastructure, it is critical to understand endpoint configuration, health, and utilization, so a proper endpoint 
+assessment should include, at a minimum
+
+•	Machine make and model
+
+•	Operating system version, including whether it is 32- or 64-bit
+
+•	Total disk space and free disk space
+
+•	Amount of unique data that needs to be centralized 
+
+•	Presence of large files
+
+•	Applications installed 
+
+•	Required hardware drivers
+
+•	Peripheral device support
+
+During the migration, the customer’s endpoints contained an average of 34 percent unique data, which needed 
+to be backed up with Mirage before migration to make sure that users’ XP installations could be restored if 
+needed for any reason. By centralizing user data in the data center, the Mirage backup also protected user data 
+on remote desktops from intrusion or other security threats. 
+
+The first five endpoints identified for centralization and migration were not in use at the time. They remained 
+online 24 hours per day, so that Mirage was not interrupted by network downtime or by having to throttle, 
+or slow down, its operations to avoid affecting end-user productivity. The desktops were automatically 
+defragmented to eliminate disk fragmentation as an issue. 
+
+This created a good reference point on the back-end storage, the Mirage Single-Instance-Storage (SIS). It 
+also provided a good opportunity to demonstrate Mirage deduplication technology, which compares and 
+stores duplicate information only once. Although Windows OS and applications are seldom exactly the same, 
+centralizing five endpoints gave Mirage a good sampling of the information stored on those machines and a fair 
+representation of the common OS files and folders throughout the organization. We refer to this initial phase as 
+warming-up the Mirage SIS.
+
+The endpoints covered here were all located in a corporate office with a Gigabit Ethernet connection to the 
+Mirage server.
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 0
+
+VMware MirageLarge-Scale Reference ArchitectureThe configuration of critical Mirage infrastructure components, all of which are virtual machines, is summarized 
+in Table 1.
+
+QUANTITY
+
+DESCRIPTION
+
+VCPU
+
+RAM
+
+HDD
+
+1
+
+1
+
+1
+
+1
+
+1
+
+Mirage server
+(Mirage version 5.0)
+
+Mirage Management server
+(Mirage version 5.0)
+
+HP StoreEasy 3830 (Mirage 
+Storage)
+
+Microsoft SQL Database Server
+SQL Enterprise 2008 R2 SP2
+
+Active Directory server
+Windows 2008 R2 SP2
+
+8
+
+4
+
+2
+
+2
+
+2
+
+16
+
+16
+
+8
+
+8
+
+8
+
+40GB OS
+103GB on SSD (Mirage local cache)
+
+40GB OS
+
+40GB OS
+
+40GB OS
+100GB database
+
+40GB OS
+
+ 
+Table 1: Mirage Server Configuration
+
+Network Considerations and Configuration
+ Mirage leverages network connectivity between and among the following:
+
+•	Mirage server and NAS storage – Connections between the Mirage servers and storage should be dedicated/
+
+segregated, high-speed (LAN) connections, preferably 10 Gigabit Ethernet.
+
+•	Mirage server and clients – Connection speeds between clients and servers vary depending on the location of 
+
+endpoints, available bandwidth, network latency, and other network-limiting factors. 
+
+•	Mirage Management server, Mirage server, Mirage file and Web portals – Connections between the Mirage 
+
+system components require high-speed LAN connections and were installed within the same data center. 
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 1
+
+VMware MirageLarge-Scale Reference ArchitectureFigure 3 presents an overview of the design of this reference architecture.
+
+HP 5612 Switches
+
+Mirage File Portal Access VIP (HTTPS)
+
+Mirage Client (TCP/SSL 8000)
+
+LAN 
+
+Windows
+Laptop
+
+Windows
+Desktop
+
+IIS File Portal
+(HTTPS)
+
+Mirage Server
+(TCP/SSL 8000)
+
+Mirage 
+Management 
+Server
+
+Mirage
+Administrator
+
+TCP Ports
+135, 445
+
+TCP Port
+8443
+
+TCP Port 8444
+
+AD/DS Ports
+
+ 
+ 
+ 
+ 
+ 
+
+DNS/NTP
+Services
+
+AD/Directory
+
+Services
+
+HP Storage
+(CIFS Shares)
+
+Database
+
+Figure 3: Mirage Large-Scale Reference Architecture
+
+The health, capacity, and performance of the network all affect Mirage. The network can delay or disrupt 
+backups, OS deployment, and Windows migrations if not designed properly. As part of the project planning 
+and assessment, the following network-related information was carefully gathered and reviewed, as it should 
+be for future implementations based on this reference architecture:
+
+•	Network topology, including all circuit speeds, types, current level of utilization and latency, endpoint 
+
+distribution, and MTU sizes.
+
+•	Implementation of any WAN acceleration, traffic shaping, Quality of Service (QoS), Class of Service (CoS), or 
+
+priority queuing.
+
+•	Endpoint connectivity methods (LAN, WAN, VPN, or Internet).
+
+For information on deployments involving remote offices, see the Mirage Branch Office Reference Architecture.
+
+The Mirage server infrastructure is located in the customer’s primary data center, supported by Gigabit Ethernet 
+for applications and server-to-server communication, and by 10 Gigabit Ethernet for storage connectivity. 
+
+The customer’s firewalls and intrusion prevention and detection infrastructure had to be configured to support 
+Mirage. The default TCP/IP ports required are listed in Table 2, where external refers to communication between 
+the Mirage system and endpoints, and internal ports are used for communications between the Mirage 
+Management server, Mirage servers, the file portal, and supporting infrastructure, including storage, Active 
+Directory (AD), and Domain Name Service (DNS).
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 2
+
+VMware MirageLarge-Scale Reference ArchitectureCOMPONENT
+
+COMMUNICATION
+
+PORT
+
+PROTOCOL
+
+COMMENTS
+
+Mirage server 
+service
+
+External
+
+8000
+
+TCP 
+
+Mirage 
+Management 
+service
+
+Mirage server 
+service
+
+External
+
+8443
+
+TCP
+
+Internal
+
+135, 445
+
+TCP/UDP
+
+File portal
+
+Internal
+
+8444
+
+TCP
+
+File portal
+
+External
+
+80 or 
+443
+
+TCP
+
+Web 
+administration
+
+Internal
+
+8443
+
+TCP
+
+Web 
+administration
+
+External
+
+80 or 
+443
+
+TCP
+
+ 
+Table 2: Configuration of Mirage Network Ports
+
+The only port required for 
+communications between Mirage 
+clients and Mirage servers.
+ 
+SSL/TLS is optional.
+
+Used for communication between 
+Mirage Management console and 
+Mirage Management service. SOAP 
+message-level security applied.
+
+Used for control communication 
+between the Mirage Management 
+service and the Mirage server.
+ 
+You can limit access to this port to 
+incoming connections from the 
+Mirage Management service host.
+
+Used for communication between 
+the IIS server and the Mirage 
+Management server.
+
+Access to Web-based file/folder 
+recovery portal. HTTPS (SSL) access 
+is optional.
+
+Used for communication between 
+the IIS server and the Mirage 
+Management server.
+
+Access to Web-based administration 
+portal. HTTPS (SSL) access is 
+optional.
+
+Storage Considerations and Configuration
+Mirage requires storage volumes to store base layers, application layers, hardware drivers, and endpoint 
+backups. It is important to design the storage for Mirage properly to provide both for sufficient capacity and for 
+storage IOPS. Mirage can use local storage or network storage shared via CIFS/SMB. If multiple Mirage servers 
+are deployed in a cluster, use of CIFS/SMB file shares is recommended. Mirage does not support the use of 
+direct-attached storage. 
+
+Mirage storage performance is affected by the speed and health of the network between the endpoints and 
+the Mirage infrastructure and by the number of simultaneous endpoint operations performed. The faster 
+data moves to the Mirage server, the faster the information can be written to disk, if the storage system can 
+support it. If the storage does not have sufficient IOPS, Mirage throttles its operations, slowing them down to 
+accommodate available IOPS on the storage system. 
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 3
+
+VMware MirageLarge-Scale Reference ArchitectureWhen you plan centralization time for groups of endpoints, remember that an endpoint cannot be centralized 
+if it is not online, even with proper infrastructure resources in place. Policies to turn PCs off after a period of 
+inactivity, and power management configurations that turn them off, reduce the connectivity time and increase 
+the centralization time. This applies to mobile as well as stationary endpoints.
+
+As suggested in Figure 4, any reduction in connectivity time affects both the time needed for centralization and 
+network bandwidth utilization. Any increase in connectivity time reduces centralization time but also requires 
+greater utilization of network bandwidth. 
+
+Centralization
+
+Time
+
+Network Bandwidth 
+
+Storage IOPS
+
+Connectivity
+
+Time
+
+Figure 4: Mirage Centralization Considerations
+
+The storage configuration summarized in Table 3 was designed to provide sufficient IOPS and capacity for the 
+first series of remote endpoints. 
+
+QUANTITY
+
+DESCRIPTION
+
+STORAGE
+
+1
+
+1
+
+Mirage Single-Instance Storage 
+(SIS)
+
+Mirage server local cache
+
+12.5TB on a dedicated RAID-10 NFS volume hosted by an 
+HP StoreEasy 3826-based storage appliance optimized 
+for write caching, providing 22,000 write IOPS. 
+ 
+The RAID-10 volume was connected to a Windows 2008 
+R2 File Server that shared it with the Mirage system via 
+CIFS/SMB. 
+
+103GB VMDK stored on PCIe-based SSD storage 
+installed on an ESXi host, providing more than 40,000 
+write IOPS.
+
+ 
+Table 3: Mirage Storage Configuration
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 4
+
+VMware MirageLarge-Scale Reference ArchitectureExternal Infrastructure Components
+Mirage relies on specific infrastructure services that must be available in the data centers where it is deployed.
+
+•	Active Directory (AD) – Mirage uses Microsoft Windows 2008 or 2012 AD for authentication and policy 
+
+management purposes. 
+
+•	Domain Name Service (DNS) – Mirage relies on proper DNS name resolution to be able to communicate with 
+
+the various infrastructure components and the managed endpoints. 
+
+•	Network Time Protocol (NTP) – Although NTP services are not explicitly required for a Mirage installation, 
+
+making sure that critical systems use time synchronization is a best practice. Be sure to configure NTP 
+properly for all major infrastructure components, including servers, network equipment, storage appliances, 
+virtual machines, and AD controllers. 
+
+Endpoint Centralization
+After the Mirage infrastructure was implemented, the first step in preparing the initial endpoints for Windows 
+7 migration was to back up each desktop. This preserved critical user data and provided a way to recover in 
+case of failed migrations. Unlike competing migration solutions, such as Microsoft SCCM, Mirage centralization 
+provides a complete desktop backup and disaster recovery solution. 
+
+By design, Mirage backs up not only the unique user data on each desktop, but also what would be required 
+to restore each system’s unique configuration, including user personalization and applications, to the same or 
+different hardware. This gives the customer not just a way to recover from failed migrations, but an ongoing 
+system to protect critical user data and personalized desktops if they are ever lost or broken.
+
+The desktop assessment performed as part of the migration planning process revealed that the 800 desktops 
+in the corporate office used a total of 28TB of disk space. However, each had an average of only 28 percent 
+unique content, including user data and applications. The remaining 72 percent consisted of duplicate data 
+and applications, including Windows XP. With Mirage, this duplicate content needs to be backed up only once 
+before Mirage optimizes the centralization process with deduplication. To jumpstart the ability of Mirage to 
+deduplicate LAN-based systems, five Windows XP SP3 desktops running typical customer applications were 
+centralized in the data center first. This relieved Mirage of having to transfer copies of Windows XP, Office XP, 
+and other applications across the LAN multiple times.
+
+ 
+
+PC with
+
+Mirage Client
+
+User Data and 
+Applications
+
+Only unique (cid:31)les
+are copied across
+
+the network
+
+Windows OS
+
+Network-Optimized 
+
+Centralization
+
+825 Mirage Endpoints
+
+Figure 5: Desktop Centralization
+
+Mirage
+
+SIS 
+
+Mirage 
+
+Server Cluster
+
+Data Center
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 5
+
+VMware MirageLarge-Scale Reference ArchitectureTest Results: Centralization over Typical LAN
+
+To provide guidance for backing up endpoints located in a LAN, the endpoints used in all the migration tests 
+were centralized over a Gigabit LAN circuit. This enabled measuring the change in time and Mirage system 
+resources required to centralize the endpoints as the circuit speed stayed the same.
+
+Total Centralization Time
+To accurately measure the resource requirements for Mirage centralization, it is important to understand the 
+difference between sustained utilization time, upload manifest time, and total centralization time. 
+
+Sustained utilization time is the time during which Mirage centralization actively consumes system resources. It 
+includes only those times when at least 25 endpoints are being centralized.
+
+Upload manifest time begins when the administrator clicks the Finish button of the Centralize Endpoint wizard 
+and ends when the first endpoint starts sending information to the Mirage server.
+
+Total centralization time begins when the administrator clicks the Finish button of the Centralize Endpoint 
+wizard and ends when all endpoints complete centralization. 
+
+Table 4 shows the centralization time for different numbers of desktops being centralized, the average amount 
+of disk saving, and the upload manifest time for each test. 
+
+NUMBER OF 
+ENDPOINTS
+
+SUSTAINED 
+UTILIZATION   
+TIME
+
+5
+
+25
+
+50
+
+100
+
+250
+
+400
+
+800
+
+UPLOAD 
+MANIFEST 
+TIME
+
+3 minutes
+
+9 minutes
+
+TOTAL 
+CENTRALIZATION 
+TIME
+
+% DISK   
+SAVING
+
+TOTAL   
+DATA 
+TRANSFERRED
+
+TOTAL   
+DATA ON   
+ENDPOINTS
+
+1 hour 
+20 minutes
+
+4 hours 
+17 minutes
+
+73.6%
+
+18.6GB
+
+70.0GB
+
+76.5%
+
+92.9GB
+
+349.8GB
+
+1 hour 
+17 minutes
+
+4 hours 
+8 minutes
+
+7 hours 
+54 minutes
+
+21 minutes
+
+8 hours 
+15 minutes
+
+30.4%
+
+487GB
+
+696GB
+
+33 hours 
+9 minutes
+
+4 hours 
+2 minutes
+
+37 hours 
+11 minutes
+
+35.0%
+
+926GB
+
+1.41TB
+
+53 hours 
+26 minutes
+
+5 hours 
+36 minutes
+
+59 hours 
+2 minutes
+
+28.9%
+
+2.53TB
+
+3.52TB
+
+69 hours 
+15 minutes
+
+6 hours 
+59 minutes
+
+76 hours 
+14 minutes
+
+28.1%
+
+3.96TB
+
+5.47TB
+
+87 hours 
+32 minutes
+
+8 hours 
+22 minutes
+
+95 hours 
+54 minutes
+
+28.6%
+
+8.01TB
+
+11.2TB
+
+ 
+Table 4: Endpoint Centralization Time
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 6
+
+VMware MirageLarge-Scale Reference ArchitectureAs shown in Table 4, the percentage of disk saving varies for each test because each physical desktop in the 
+environment contains a different amount of unique data. For example, some users had 9GB of unique data, 
+others had 16GB, but on average, the amount of unique data was approximately 10GB. In general, a larger test 
+yields a more accurate sampling. Based on this environment (Windows XP SP3, Office 2007, and a few other 
+applications), Mirage deduplication enabled an average disk savings of 28–30 percent. The smaller tests were 
+not used to calculate the average.
+
+In the largest scenario, Mirage centralized all 800 endpoints over the Gigabit LAN in a period of three days, 23 
+hours, and 54 minutes, against a single Mirage server. Working on a larger scale, adding additional Mirage servers 
+shortens the centralization time even more. However, it is critically important to have proper planning of available 
+resources to support the addition of those Mirage servers. Simply augmenting the number of servers can minimize 
+the total time for centralization, but it also puts an additional workload on the network and storage resources. It is 
+also important to consider the total time that endpoints are expected be online every day.  
+
+Centralization
+
+Time
+
+Connectivity
+
+Time
+
+Network Bandwidth 
+
+Storage IOPS
+
+Figure 6: Resources to Consider when Adding Mirage Servers
+
+Between deduplication and compression, Mirage was able to achieve an average savings of 30 percent. This 
+means that only 70 percent of the content of the 800 endpoints, 19.6TB of the 28TB total, had to be transferred 
+across the LAN. This slashed both the time and bandwidth that would have been needed to back the desktops 
+up without these key capabilities.
+
+Mirage servers are built to sustain close to 100 percent utilization for a long period of time without causing 
+issues for endpoints or servers in the environment. They can run a large number of concurrent operations for 
+multiple days at full capacity. When running at full capacity, Mirage servers throttle endpoint transfer speed as 
+needed, which makes this a good solution for managing thousands of endpoints. As more storage resources 
+become available, Mirage servers allow the endpoints to increase their file transfer speed. 
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 7
+
+VMware MirageLarge-Scale Reference ArchitectureTo check the average transfer speed of any endpoint after it finishes centralizing, look at the transaction log 
+in the Mirage Management console. Find an endpoint that has finished centralizing, right-click, and choose 
+properties. The average transfer speed for endpoints varies considerably, sometimes by as much as several 
+MB/s. In this customer’s case, the best transfer speed was 2.6MB/s per endpoint. Figure 7 shows two examples 
+of this data. 
+
+Figure 7: Example Transfer Rates
+
+Another built-in network functionality in the Mirage server is throttling. Mirage limits the amount of parallel 
+data deduplication to avoid overloading the storage. Mirage pauses endpoints to temporarily keep them from 
+transferring data so that once an endpoint completes deduplication, the next machine continues its transfer. 
+The Mirage server performs throttling automatically and resumes the transfer as soon as bandwidth becomes 
+available again. 
+
+You can look at throttling in the Mirage Management console when a large number of concurrent endpoints 
+are centralizing. For instance, in one of the scenarios detailed in Table 4, there was endpoint throttling in 
+the concurrent centralization of 100, 250, 400, and 800 endpoints. Because the actual number of throttled 
+endpoints varies and is automatically managed by Mirage, no data was captured for this event, but it could be 
+seen briefly in the console, as shown in Figure 8.
+
+Figure 8: Throttled Endpoint
+
+As soon as the deduplication process was complete on the endpoints, the Mirage server stopped throttling 
+those endpoints, and centralization continued. This was 100 percent transparent to the end user.
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 8
+
+VMware MirageLarge-Scale Reference ArchitectureEndpoint Centralization: Resource Consumption
+In addition to LAN bandwidth, the Mirage system required sustained utilization of the following resources 
+during centralization:
+
+•	Mirage server CPU
+
+•	CIFS Storage server CPU
+
+•	Mirage CIFS Storage (SIS) IOPS
+
+•	Mirage server local cache IOPS 
+
+NUMBER OF DESKTOPS
+
+50
+
+100
+
+250
+
+400
+
+CPU UTILIZATION   
+MIRAGE SERVER 
+(% OF 6 VCPUS)
+
+CPU UTILIZATION 
+CIFS STORAGE SERVER 
+(% OF 2 CPUS)
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+70.28%
+
+80.24%
+
+79.33%
+
+81.09%
+
+89.83%
+
+93.97%
+
+96.97%
+
+94.88%
+
+1.7%
+
+1.95%
+
+2.1%
+
+2.3%
+
+3.4%
+
+4.8%
+
+5.1%
+
+5.6%
+
+ 
+Table 5: Mirage Server and Storage Server CPU Utilization Summary by Number of Endpoints
+
+NUMBER 
+OF 
+DESKTOPS
+
+MIRAGE SERVER LOCAL CACHE
+
+MIRAGE CIFS STORAGE (SIS)
+
+READ IOPS
+
+WRITE IOPS
+
+READ IOPS
+
+WRITE IOPS
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+50
+
+100
+
+250
+
+400
+
+54.59
+
+96.3
+
+52.87
+
+47.97
+
+174.50
+
+1390.39
+
+2307.16
+
+1545.43
+
+2880.48
+
+1325.72
+
+2892.14
+
+131.7
+
+1705.02
+
+2319.78
+
+2136.44
+
+2993
+
+2142.18
+
+3110.56
+
+133.44
+
+942.64
+
+1649.98
+
+1531.31
+
+2724.12
+
+1197.52
+
+2210.39
+
+102.92
+
+1199.4
+
+1967.71
+
+1970.75
+
+3000.46
+
+1553.71
+
+2615.22
+
+ 
+Table 6: Mirage Server Local Cache and CIFS Storage IOPS Summary by Number of Endpoints
+
+The resource utilization averages in these tables confirm that the Mirage infrastructure can support a large 
+number of concurrent operations, and that the Mirage server throttles its operation based on available 
+resources. Similarly, faster networks decrease the time required for centralization, but they also increase the 
+amount of resources needed for Mirage to handle faster endpoint communication. 
+
+Differences in endpoints and how they are used can also impact centralization time and the system resources 
+required. All the desktops centralized in this project were online 24 hours per day and did not have active users 
+or applications. By design, Mirage minimizes its impact on end-user productivity, throttling client activity by as 
+much as a factor of 10 if it detects the endpoint is in use. 
+
+T E C H N I C A L   W H I T E   P A P E R   /   1 9
+
+VMware MirageLarge-Scale Reference ArchitectureAll the endpoints centralized had the same hardware configuration and were automatically defragmented. 
+Differences in the age and performance of the hardware, the amount of unique data, and the number of hours 
+per day each endpoint is online and actively used all impact the amount of time required for Mirage to back 
+them up. Such factors are best evaluated by performing a comprehensive assessment of the desktops as part 
+of Windows 7 migration planning. Typically, Mirage is not permitted to use the entire circuit in order to save 
+bandwidth for other applications. When planning your migration, consult the test results for the network speed 
+that most closely matches the amount of bandwidth Mirage is permitted to use. 
+
+The endpoints during these tests were also online 24 hours per day with no active users. They also had the 
+same hardware configuration, with hard disks that were automatically defragmented using Raxco PerfectDisk. 
+Centralization of desktops that are not online as much, have active users, or differing hardware configurations 
+or levels of system health require different amounts of time and Mirage resources. Performing an assessment of 
+the endpoints to be centralized can help identify such factors.
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 0
+
+VMware MirageLarge-Scale Reference ArchitectureTest Results: Windows 7 Migration of  
+825 Endpoints over LAN
+
+This section describes the migration of up to 400 concurrent endpoints to Microsoft Windows 7.
+
+Using the Windows OS Migration wizard in the Mirage Management console, the administrator selected the 
+first five Windows XP desktops that completed centralization. Because the endpoints had been backed up by 
+Mirage centralization, the administrator had an easy way to fully recover any endpoint whose migration did not 
+succeed.
+
+Before completing the wizard and launching the migration, the administrator selected the Windows 7 base 
+layer, AD domain, and organizational unit (OU) for the desktops. 
+
+The desktops remained completely available while the Mirage server transferred Windows 7 to each endpoint, 
+in the background. Only after Windows 7 was completely transferred to each endpoint did the migration from 
+XP actually begin. These desktops did not have active users at the time, so Mirage automatically rebooted 
+them to begin the migration. If any users had been logged in to any of the endpoints, they would have been 
+prompted to reboot, giving them an opportunity to save open work and continue, or to delay their migration.
+
+During the reboot, Mirage replaced Windows XP with the Windows 7 base layer in an operation known as 
+the pivot. It then rebooted again, starting Windows 7 for the first time, performing hardware detection and 
+installation of the drivers from the Mirage driver library. During this time, Mirage displayed a series of screens 
+similar to the image in Figure 9. 
+
+Figure 9: Example of a Mirage “Do not turn off . . .” Message
+
+After driver installation and other required tasks were completed, the endpoints were added to the AD 
+domain, and the users’ Windows profile and data were migrated automatically from Windows XP. The desktop 
+then booted a final time, fully migrated to Windows 7 and available for use, with an average total amount of 
+downtime of only 26 minutes!
+
+The following tables show the migration time for different numbers of endpoints, ranging from 10 to 400 
+concurrent operations. Even with the increase in the total number of concurrent endpoints being migrated, 
+the total amount of time to complete the migration did not increase at the same rate. This was due mainly to 
+Mirage server local cache technology, which leverages the local server cache during the push of the Windows 7 
+base image to the various endpoints. Because the same image is sent to all endpoints, Mirage does not have to 
+go back to the Single-Instance Storage (SIS) every time. After the initial image is sent to the endpoints, Mirage 
+retains the information in its local cache.
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 1
+
+VMware MirageLarge-Scale Reference ArchitectureTime required to transfer Windows 7 to all endpoints
+
+Time required to complete migration on all endpoints
+
+Average endpoint downtime (user interrupted)
+
+Total migration time for all 10 endpoints
+
+Table 7: Time Required to Migrate 10 Endpoints to Windows 7
+
+Time required to transfer Windows 7 to all endpoints
+
+Time required to complete migration on all endpoints
+
+Average endpoint downtime (user interrupted)
+
+Total migration time for all 25 endpoints
+
+Table 8: Time Required to Migrate 25 Endpoints to Windows 7
+
+Time required to transfer Windows 7 to all endpoints
+
+Time required to complete migration on all endpoints
+
+Average endpoint downtime (user interrupted)
+
+Total migration time for all 50 endpoints
+
+Table 9: Time Required to Migrate 50 Endpoints to Windows 7
+
+Time required to transfer Windows 7 to all endpoints
+
+Time required to complete migration on all endpoints
+
+Average endpoint downtime (user interrupted)
+
+Total migration time for all 100 endpoints
+
+Table 10: Time Required to Migrate 100 Endpoints to Windows 7
+
+38 minutes
+
+47 minutes
+
+26 minutes
+
+1 hour 51 minutes
+
+51 minutes
+
+46 minutes
+
+26 minutes
+
+2 hours 3 minutes
+
+1 hour 3 minutes
+
+48 minutes
+
+26 minutes
+
+2 hours 17 minutes
+
+1 hour 4 minutes
+
+59 minutes
+
+26 minutes
+
+2 hours 29 minutes
+
+Time required to transfer Windows 7 to all endpoints
+
+2 hours 34 minutes
+
+Time required to complete migration on all endpoints
+
+Average endpoint downtime (user interrupted)
+
+Total migration time for all 250 endpoints
+
+Table 11: Time Required to Migrate 250 Endpoints to Windows 7
+
+Time required to transfer Windows 7 to all endpoints
+
+Time required to complete migration on all endpoints
+
+Average endpoint downtime (user interrupted)
+
+Total migration time for all 400 endpoints
+
+Table 12: Time Required to Migrate 400 Endpoints to Windows 7
+
+62 minutes
+
+26 minutes
+
+4 hours 2 minutes
+
+4 hours 7 minutes
+
+61 minutes
+
+26 minutes
+
+5 hours 34 minutes
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 2
+
+VMware MirageLarge-Scale Reference ArchitectureDuring the migration process, Mirage monitored the following resources for performance. These resources had 
+sustained utilization: 
+
+•	Local area network
+
+•	Mirage server CPU
+
+•	Mirage server read and write IOPS
+
+•	Mirage local cache read and write IOPS
+
+As noted, once the migration begins and the reference image is transferred to the Mirage server’s local cache, 
+there is not a lot of activity going back to the Mirage SIS. The fact that the Mirage server keeps the information 
+in its local cache is a good reason to put the local cache on very fast storage, such as SSD, when possible. The 
+following tables list the resource utilization figures for each migration done from Tables 7–12. 
+
+NUMBER OF 
+DESKTOPS
+
+CPU UTILIZATION MIRAGE SERVER 
+(% OF 8 vCPUS)
+
+CPU UTILIZATION CIFS STORAGE SERVER 
+(% OF 2 CPUS)
+
+10
+
+25
+
+50
+
+100
+
+250
+
+400
+
+AVERAGE
+
+14.70%
+
+27.90%
+
+38.10%
+
+47.50%
+
+58.90%
+
+65.90%
+
+PEAK
+
+41.90%
+
+70.00%
+
+85.00%
+
+95.90%
+
+96.90%
+
+97.60%
+
+ 
+Table 13: CPU Utilization Summary by Number of Desktops
+
+AVERAGE
+
+1.30%
+
+3.25%
+
+6.51%
+
+17.40%
+
+21.50%
+
+24.85%
+
+PEAK
+
+2.77%
+
+6.93%
+
+13.90%
+
+27.95%
+
+31.65%
+
+43.20%
+
+NUMBER 
+OF 
+DESKTOPS
+
+MIRAGE SERVER LOCAL CACHE
+
+MIRAGE CIFS STORAGE (SIS)
+
+READ IOPS
+
+WRITE IOPS
+
+READ IOPS
+
+WRITE IOPS
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+10
+
+25
+
+50
+
+100
+
+250
+
+400
+
+0.23
+
+0.46
+
+0.67
+
+1.35
+
+1.68
+
+4.96
+
+63.45
+
+78.07
+
+2131.00
+
+843.00
+
+2279.00
+
+407.00
+
+1335.00
+
+71.25
+
+89.10
+
+31.34
+
+117.70
+
+747.94
+
+1604.00
+
+4885.00
+
+945.00
+
+3254.00
+
+1295.63
+
+2491.00
+
+8104.00
+
+1585.00
+
+5251.00
+
+120.40
+
+240.05
+
+1901.00
+
+2863.00
+
+9531.00
+
+2456.00
+
+7345.00
+
+167.25
+
+416.14
+
+2791.00
+
+4440.00
+
+9855.00
+
+2725.00
+
+7010.00
+
+244.35
+
+665.81
+
+4468.00
+
+7107.30
+
+15766.30
+
+4364.00
+
+11213.30
+
+ 
+Table 14: I/O Summary by Local Cache and Mirage CIFS
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 3
+
+VMware MirageLarge-Scale Reference ArchitectureConclusion
+
+This reference architecture demonstrates that VMware Mirage enabled the customer to
+
+•	Eliminate the need to dispatch IT to migrate desktops manually.
+
+•	Save time, resources, and user productivity.
+
+•	Make it possible to migrate remote endpoints to Windows 7 on a scale that would not be practical otherwise. 
+
+In this case, after completing a comprehensive assessment, the customer was able to centralize 800 endpoints 
+in less than four days using a single Mirage server. Migration of up to 400 concurrent desktops took just over 
+five and a half hours. IT intervention was not required except to launch the migration and inspect the systems 
+upon completion. The average endpoint downtime during the complete Windows XP to Windows 7 migration 
+was only 26 minutes, which translated to only a minimal interruption of user productivity. 
+
+If you are considering a large-scale deployment of Mirage, we recommend that you engage technical resources, 
+such as VMware Professional Services or a certified partner, early in the planning process. VMware can make a 
+variety of resources available to you, from product documentation, case studies, and technical papers, to access 
+to people with hands-on experience in centralizing and migrating large numbers of desktops. 
+
+About the Authors
+
+Stephane Asselin is a Senior Architect on the VMware End-User Computing Technical Enablement team. He 
+has been involved in desktop deployments for over 17 years and has extensive field experience with VMware 
+End-User Computing and ecosystem products.
+
+Chris White is an Architect on the VMware End-User Computing Technical Enablement team. Over the past 
+18 years, he has worked in many areas of virtualization and was recently responsible for the design and 
+implementation of a very large-scale deployment of Horizon View.
+
+To comment on this paper, contact the VMware End-User Computing Solutions Management and Technical 
+Marketing team at twitter.com/vmwarehorizon.
+
+Acknowledgments
+
+This reference architecture is the result of collaboration between VMware Technical Enablement, Hewlett-
+Packard, and VMware Mirage Research and Development. VMware recognizes its partners’ generosity in 
+providing equipment, time, and expertise, without which this project would not have been possible. Special 
+thanks to
+
+•	Gary Gosson, Hewlett-Packard Technical Consultant
+
+•	Alex Hahn, Hewlett-Packard Technical Consultant
+
+•	Oded Sapir, Scale Testing Engineer, VMware Mirage Research and Development Group
+
+•	Shai Carlos Tsukroon, Senior Quality Engineer, VMware Mirage Research and Development Group
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 4
+
+VMware MirageLarge-Scale Reference ArchitectureReferences
+
+Horizon Branch Office Desktop
+
+VMware Compatibility Guide 
+
+VMware Mirage Branch Office Reference Architecture
+
+VMware Mirage Community
+
+VMware Mirage Documentation
+
+•	Installation Guide
+
+•	Administrator’s Guide
+
+•	Web Manager Guide
+
+•	Image Management for View Desktops using VMware Mirage
+
+•	VMware Mirage 5.0 Release Notes
+
+•	Release Notes
+
+VMware Mirage Download
+
+VMware Mirage Product Evaluation Center
+
+ 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 5
+
+VMware MirageLarge-Scale Reference ArchitectureAppendix A: Reference Architecture Detail
+
+The various elements in this reference architecture are summarized in the following tables:
+
+COMPONENT
+
+DESCRIPTION
+
+Mirage Management server
+
+ Mirage server
+
+SQL Server
+
+Active Directory server
+
+ 
+Table 15: Server Components
+
+COMPONENT
+
+Mirage endpoints
+
+ 
+Table 16: Endpoints (Desktops) 
+
+•	8	vCPUs
+•	16GB	of	RAM
+•	40GB	of	hard	disk
+•	Mirage	5.0
+•	Windows	Server	2008	R2	SP1
+
+•	8	vCPUs
+•	16GB	of	RAM
+•	40GB	of	hard	disk	for	OS
+•	103GB	for	local	cache
+•	Mirage	5.0
+•	Windows	Server	2008	R2	SP1
+
+•	Dual	vCPUs
+•	8GB	of	RAM
+•	40GB	of	hard	disk	for	OS
+•	Windows	Server	2008	R2	SP1
+•	MS	SQL	Server	2008	R2	–	Enterprise	Edition
+
+•	Dual	vCPUs
+•	8GB	of	RAM
+•	40GB	of	hard	disk	for	OS
+•	Windows	Server	2008	R2	SP1
+
+DESCRIPTION
+
+•	Intel	Pentium	Dual	Core	E2160,	1.80GHz,	1MB	L2	cache	8GB	of	RAM
+•	80GB	of	hard	disk	for	OS
+•	Windows	XP	SP3	and	Office	2007	SP3
+•	Miscellaneous	applications	(Adobe	Reader,	Java,	etc.)
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 6
+
+VMware MirageLarge-Scale Reference ArchitectureCOMPONENT
+
+DESCRIPTION
+
+Physical vSphere host for Mirage 
+server hosting
+
+•	Four	(4)	BL460c	Gen8
+•	Intel	Xeon	E5-2670	(2.60GHz/8-core/20MB/115W)	Processor	Kit
+•	BLC	VC	8GB	FC	24-Port	Option	Kit
+•	2400W	High-Efficiency	Power	Supply
+•	ProLiant	BL460c	Gen8	10Gb
+•	300GB	2.5”	Internal	Hard	Drive	–	SAS	–	10000RPM	–	Hot	Pluggable
+•	Memory	–	16GB	–	DIMM	240-pin	–	DDR3	–	1600MHz	/	PC3-12800	 
+  – CL11 – registered – ECC
+•	Flex-10	10Gb	2-port	530FLB	Adapter	–	network	adapter	–	2	ports
+•	BladeSystem	c-Class	10Gb	Short	Range	Small	Form-Factor	 
+  Pluggable Option
+•	256GB	RAM	total	per	host
+•	VMware	ESXi	5.5.0,	Build	1331820
+•	VMware	vCenter™	Server	5.5.0	Build	1312298
+
+ 
+Table 17: vSphere Infrastructure
+
+COMPONENT
+
+DESCRIPTION
+
+Performance measurement
+
+•	Cacti	graphing	solution	0.8.8b
+•	RRDTool	1.3
+•	SNMP	Informant
+
+vSphere monitoring
+
+ 
+Table 18: Infrastructure Monitoring
+
+•	vSphere	Log	Insight	1.0.4-1169900
+•	VMware	vCenter	Operations	Manager	5.7.2	Build	1314472
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 7
+
+VMware MirageLarge-Scale Reference ArchitectureAppendix B: Mirage Server Recommendations 
+for Mass Centralization
+
+The Mirage server is designed to handle a high volume of concurrent operations, given proper resources—CPU, 
+memory, network bandwidth, and storage IOPS—to support the workloads. Endpoint centralization is the 
+operation that consumes the largest amount of resources. When starting a large-scale Mirage project, if the 
+intent is to quickly centralize all the endpoints, whether to back them up or to start your migration, plan to 
+scale-out your infrastructure for that time period, until the initial mass centralization phase is complete. 
+
+Initial Mass
+Centralization
+
+ 
+
+Scale out to accommodate concurrent uploads
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+Initial Mass
+Centralization
+Elastic
+Initial Mass
+Infrastructure
+Centralization
+
+This reference architecture demonstrates that one Mirage server can accommodate the synchronization of 
+a large number of endpoints. The server reached maximum resource utilization at around 100 concurrent 
+operations. If you want to minimize that initial mass centralization time, adding more Mirage servers is the 
+best approach. However, if multiple Mirage servers are deployed in your organization, you need to place a load 
+balancer in front of your Mirage servers and use the FQDN of the load-balanced environment to deploy to the 
+endpoints. Mirage servers are easy to deploy and work extremely well in a virtualized environment. You are 
+encouraged to run them on virtual infrastructures. 
+
+Mirage servers are stateless —
+run great as virtual machines
+
+Scale out to accommodate concurrent uploads
+
+ware
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+Ongoing
+Elastic
+Snapshots
+Infrastructure
+Elastic
+Infrastructure
+
+Scale out to accommodate concurrent uploads
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+ware
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+V
+
+M
+
+ware
+
+Mirage servers are stateless —
+run great as virtual machines
+Mirage servers are stateless —
+run great as virtual machines
+
+Deploying multiple Mirage servers this way, you can provision more servers as needed and phase them out 
+once the initial mass centralization phase is complete.
+
+Scale down fewer concurrent uploads
+
+Ongoing
+Snapshots
+Ongoing
+Snapshots
+
+Scale down fewer concurrent uploads
+
+Scale down fewer concurrent uploads
+
+On average, an endpoint centralized with Mirage consumes about 15kb/s over a period of 24 hours. This is 
+important because after all the endpoints are centralized, the delta of information continues to sync back 
+to the Mirage server. That 15kb/s, although very small, could add up to a fair amount of continuous data 
+exchanged when multiplied by hundreds or thousands of machines. VMware Professional Services has a 
+Mirage centralization calculator that can help you estimate the time it might take to complete the initial mass 
+centralization. For more information, contact your VMware account team or VMware partner.
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 8
+
+VMware MirageLarge-Scale Reference ArchitectureAppendix C: Mirage Centralization Workflow
+
+Figure 10 is a logical representation of the high-level steps of a Mirage centralization process.
+
+Install 
+
+Mirage agent
+
+Start
+
+No
+
+Endpoint 
+appears in 
+
+Mirage?
+
+Yes
+
+Centralize with 
+upload policy 
+to datastore
+
+Centralization
+
+complete?
+
+Type of
+endpoint
+
+Wait for 
+
+centralization
+to complete
+
+No
+
+Laptop comes to
+
+base where
+centralized
+
+In-Place
+Migration
+
+Hardware 
+
+Replacement 
+
+Migration
+
+End
+
+End
+
+Encrypted
+
+Laptop
+Migration
+
+End
+
+Figure 10: Mirage Centralization Process Flow
+
+T E C H N I C A L   W H I T E   P A P E R   /   2 9
+
+VMware MirageLarge-Scale Reference ArchitectureAppendix D: Mirage Windows 7  
+Migration Workflow
+
+Figure 11 is a logical representation of the high-level steps of a Mirage migration process. In this workflow, after 
+the endpoint migration is complete, it is a good idea to archive the old image in case an end user needs to go 
+back to the previous operating system for any reason.
+
+Perform
+
+delta
+backup
+
+Download any 
+
+changes to 
+base image, 
+
+driver layer, and 
+USMT to endpoint
+
+Pre-stage 
+
+downloading layers
+(base, drivers) and
+
+USMT (cid:31)les to 
+
+endpoint
+
+Start
+
+Migration
+initiated
+
+Pivot
+
+PnP/USMT
+
+Reboot(s)
+
+Reboot(s)
+
+Delete from
+
+Mirage
+
+Retain in Mirage 
+
+for 10 days
+
+Yes
+
+Client
+satis(cid:31)ed
+
+Remove
+
+ Mirage client
+
+and Windows.Old
+
+directory
+
+End
+
+Figure 11: Mirage Migration Workflow
+
+No
+
+Issues
+resolved
+
+No
+
+Perform
+rollback
+
+Yes
+
+Migrate via
+
+alternate means
+
+End
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VMW-TWP-MIRAGELARGESCALEREFARCH-USLET-20141003-WEBVMware MirageLarge-Scale Reference Architecture

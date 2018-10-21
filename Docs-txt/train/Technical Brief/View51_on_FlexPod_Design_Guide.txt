@@ -1,0 +1,2073 @@
+	  
+
+ 	  	  
+
+ 
+ 
+
+S O L U T I O N S   G U I D E  
+
+	  	  
+ 	  	  	  	  
+
+VMware View 5.1 and FlexPod     
+
+Best Practices for Architecture, Design and Deployment 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+VMware View 5.1 and FlexPod     
+
+Table of Contents 
+
+	  	  
+Introduction .............................................................................................................................. 3	  
+1.	  
+1.1 Overview .............................................................................................................................. 3	  
+1.2 Audience .............................................................................................................................. 3	  
+1.3 Benefits of VMware View on FlexPod .................................................................................. 3	  
+2. Infrastructure Components ......................................................................................................... 4	  
+2.1 VMware View Overview ....................................................................................................... 4	  
+2.2 New Features in VMware View 5.1 ...................................................................................... 5	  
+2.3 VMware View Architecture ................................................................................................... 6	  
+2.4 FlexPod Overview .............................................................................................................. 10	  
+2.5 Cisco Unified Computing System Overview ....................................................................... 11	  
+2.6 NetApp Storage Overview .................................................................................................. 12	  
+3. VMware View Planning and Design Guidance ......................................................................... 13	  
+3.1 Planning Based on Types of Workers ................................................................................ 13	  
+3.2 VMware View ESX/ESXi Node ........................................................................................... 18	  
+3.3 Desktop Virtual Machine Configuration .............................................................................. 19	  
+3.4 vCenter and View Composer VM Configuration ................................................................. 21	  
+3.5 View Connection Server and Virtual Machine Configuration .............................................. 21	  
+3.6 View Transfer Server Virtual Machine Configuration and Storage ..................................... 22	  
+3.7 vSphere Clusters ................................................................................................................ 22	  
+3.8 Network Bandwidth Considerations ................................................................................... 23	  
+4. Cisco Best Practices ................................................................................................................. 25	  
+4.1 UCS Manager and UCS Service Profiles ........................................................................... 25	  
+4.2 VLAN Configuration ............................................................................................................ 25	  
+4.3 QoS Implementation ........................................................................................................... 26	  
+5. NetApp Best Practices .............................................................................................................. 26	  
+5.1 Deduplication ...................................................................................................................... 27	  
+5.2 Space Reclamation ............................................................................................................ 27	  
+5.3 Read and Write I/O Optimization ........................................................................................ 27	  
+5.4 Virtual Storage Tiering ........................................................................................................ 28	  
+6. References ............................................................................................................................... 28	  
+6.1 VMware .............................................................................................................................. 28	  
+6.2 Cisco .................................................................................................................................. 29	  
+6.3 NetApp ............................................................................................................................... 29	  
+
+ 
+ 
+
+ 
+
+2 
+
+	  	  
+	  
+
+1. Introduction 
+
+VMware View 5.1 and FlexPod     
+
+1.1 Overview 
+ 
+CIOs today are faced with the daunting task of building a strategy that satisfies the requirements of task 
+workers to power workers and desktops to mobile devices while at the same time meeting corporate 
+objectives for cost, security, and compliance.  In the past, enterprise IT organizations were forced to decide 
+either between delivery of robust computing services, or the reduction of cost/service levels.  
+ 
+The foundation for delivering efficient and scalable virtual desktops infrastructure is based on VMware® 
+View™ 5.1 and FlexPod®.  
+ 
+1.2 Audience 
+ 
+This information is intended for IT decision makers, architects, administrators, and others who need to 
+familiarize themselves with the components and capabilities of VMware View on FlexPod architecture. The 
+example architecture helps planners to understand the best practices and hardware requirements; for 
+efficiently and securely delivering Windows desktops and applications to their end workers. 
+ 
+1.3 Benefits of VMware View on FlexPod 
+ 
+FlexPod provides a scalable and unified solution for VMware View. The unique benefits of the combined 
+solution include: 
+ 
+Operational efficiency: The converged architecture reduces processes, minimizing operational challenges 
+like configuration errors and administrative costs.  FlexPod also reduces risk by leveraging a pre-validated 
+infrastructure stack that includes cooperative support from ecosystem of industry-leading partners – 
+VMware, NetApp, and Cisco. 
+ 
+Performance:  The ability to scale View desktops with FlexPod on-demand allows increased service levels 
+and resource optimization.  For example, a base FlexPod configuration can securely support 1,500 View 
+workers and scale up and out, or it can be used to accommodate other workloads simultaneously, such as 
+Exchange, SQL, and SharePoint.   
+ 
+Agility: Deploying View on FlexPod enables enterprises to rapidly deploy a pre-tested and validated virtual 
+desktop infrastructure to increase time to market for end-workers. 
+ 
+Flexibility: The combined solution offers seamless integration to existing technology, and protects and 
+leverages existing investments by incorporating existing infrastructure.   Both VMware View and FlexPod 
+provide proactive, predictive, and centralized management that can be integrated with third party tools.    
+ 
+ 
+ 
+
+ 
+
+ 
+
+3 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+2. Infrastructure Components 
+ 
+2.1 VMware View Overview 
+ 
+VMware View is a desktop virtualization solution that simplifies IT manageability and control, while delivering 
+a highly dependable end-user experience across devices and networks. 
+ 
+The VMware View solution helps IT organizations to automate desktop and application management, reduce 
+costs, and increase data security through centralization of the desktop environment. This centralization 
+results in greater end-user freedom and increased control for IT organizations. By encapsulating the 
+operating systems, applications, and user data into isolated layers, IT organizations can deliver a modern 
+desktop. It can then deliver dynamic and elastic desktop cloud services such as applications, unified 
+communications, and 3D graphics for real-world productivity and greater business agility.  When you 
+manage enterprise desktops with VMware View, the benefits include increased reliability, security, hardware 
+independence, and convenience. 
+ 
+Reliability and Security: Virtual desktops can be centralized by integrating with VMware vSphere™ and 
+virtualizing server, storage, and networking resources. Placing desktop operating systems and applications 
+on FlexPod in the datacenter provides the following advantages: 
+ 
+
+•  Access to data can easily be restricted. Sensitive data can be prevented from being copied onto a 
+
+•  Data backups can be scheduled anytime without considering when end workers' systems might be 
+
+remote employee's home computer. 
+ 
+
+turned off. 
+  
+
+•  Virtual desktops that are hosted in a datacenter experience little or no downtime. Virtual machines 
+
+can reside on high-availability clusters of VMware servers.  
+
+ 
+Virtual desktops can also be connected to back-end physical systems and Windows Terminal Services 
+servers. 
+ 
+Convenience: The unified management console is built for scalability on Adobe Flex, so that even the 
+largest View deployments can be efficiently managed from a single View Manager interface. Wizards and 
+dashboards enhance the workflow and facilitate drilling down to see details or change settings. 
+ 
+Manageability: Provisioning desktops for end users is a quick process. No one is required to install 
+applications one by one on each end user's physical PC. End workers connect to a virtual desktop complete 
+with applications. End workers can access their same virtual desktop from various devices at various 
+locations. 
+ 
+Using VMware vSphere to host virtual desktops provides the following benefits: 
+ 
+
+•  Administration tasks and management chores are reduced. Administrators can patch and upgrade 
+
+applications and operating systems without touching a user's physical PC. 
+ 
+
+•  Storage  management  is  simplified.    Using  VMware  vSphere,  you  can  virtualize  volumes  and  file 
+
+systems to avoid managing separate storage devices. 
+
+ 
+Hardware Independence: Virtual machines are hardware-independent. Because a View desktop runs on 
+FlexPod in the datacenter and is only accessed from a client device, a View desktop can use operating 
+systems that might not be compatible with the hardware of the client device. For example, although 
+Windows 7 can run only on Windows 7-enabled PCs, you can install Windows 7 in a virtual machine and 
+
+ 
+
+4 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+use that virtual machine on a PC that is not Windows 7-enabled. Virtual desktops run on PCs, Tablets, 
+Macs, Thin clients, and PCs that have been repurposed as thin clients. 
+ 
+VMware View offers the following security features, among others: 
+ 
+
+•  Use RSA SecurID two-factor authentication or smart cards to log on. 
+
+•  Use SSL tunneling to ensure that all connections are completely encrypted. 
+
+•  Use VMware High Availability to host desktops and to ensure automatic failover. 
+
+ 
+The following features provide centralized administration and management: 
+ 
+
+•  Use Microsoft Active Directory to manage access to virtual desktops and policies. 
+
+•  Use the Web-based administrative console to manage virtual desktops from any location. 
+
+•  Use a template, or master image, to quickly create and provision pools of desktops. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+•  Send updates and patches to virtual desktops without affecting user settings, data, or preferences. 
+
+ 
+Scalability features depend on the VMware virtualization platform to manage both desktops and servers: 
+ 
+
+• 
+
+Integrate with VMware vSphere to achieve cost-effective densities, high levels of availability, and 
+advanced resource allocation control for your virtual desktops. 
+ 
+
+•  Configure  View  Connection  Server  to  broker  connections  between  -  end  workers  and  the  virtual 
+
+desktops that they are authorized to access. 
+ 
+
+•  Use View Composer to quickly create desktop images that share virtual disks with a master image. 
+Using linked clones in this way conserves disk space and simplifies the management of patches 
+and updates to the operating system. 
+
+ 
+2.2 New Features in VMware View 5.1  
+ 
+VMware View 5.1 introduces many new features to enhance the deployment on FlexPod to support usability, 
+security, centralized control, and scalability. 
+ 
+View Storage Accelerator  
+ 
+View Storage Accelerator is a technology that reduces the total cost of ownership (TCO) since IT admins 
+can size the shared FlexPod array for steady state workloads rather than for peak workloads.  Therefore it 
+reduces the cost of the VDI deployment by decreasing the amount of storage that customers need to buy to 
+address peak workloads.  The Accelerator leverages a VMware vSphere (version 5.0 or later) platform 
+feature called Content Based Read Cache (CBRC) implemented inside the ESX/ESXi hypervisor. When 
+enabled for specific VMs, the host hypervisor scans the storage disk blocks to generate digests of the block 
+contents. When these blocks are read into the hypervisor, they are cached in the host based CBRC. 
+Subsequent reads of blocks with the same digest will be served from the in-memory cache directly.  This 
+significantly improves the desktop performance, especially during boot storms or anti-virus scanning storms 
+when a large number of blocks with identical contents are read. 
+ 
+ 
+ 
+ 
+
+ 
+
+5 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+Simplified Desktop Management  
+ 
+Simplified Desktop Management preserves user profiles and dynamically synchronizes them with a remote 
+profile repository. By preserving the user's profile between sessions, View Persona enables IT 
+administrators to provide a floating pool to workers who require their own dedicated desktop.  This enables 
+Windows XP to Windows 7 migrations; the View Persona Management agent can be installed without the 
+VMware View agent on physical desktops belonging to the same licensed VMware View desktop end-
+workers.  During a physical to virtual migration, an administrator can first install View Persona Management 
+on the physical desktop. When the same user accesses a virtual desktop with Persona Management 
+enabled, user data and settings are automatically synchronized.  
+ 
+Robust Performance over WAN using PCoIP 
+ 
+To provide a better user experience, VMware improved the performance of PCoIP over higher latency and 
+lossy networks by up to 8X.  View 5.1 now provides better performance over WAN links with latency up to 
+300ms round-trip time (RTT).  Additionally, performance is now more robust in lossy network environments, 
+with the ability to gracefully tolerate packet loss and also curtail bandwidth at higher loss rates to avoid 
+congestion problems.   Additional performance benefits of running PCoIP can be found here: 
+http://blogs.vmware.com/euc/2012/05/performance-does-matter-pcoip-vs-hdx.html 
+ 
+For additional details and features available in VMware View 5.1, see the release notes:  
+http://www.vmware.com/support/view51/doc/view-51-release-notes.html 
+ 
+Features Introduced in View 5.0 
+ 
+VMware View 5.1 is built upon the advancements released in View 5. View 5 included many enhancements 
+for end-user experience and IT control. Some of the more notable features include: 
+ 
+
+•  View Media Services for 3D Graphics: Enable View desktops to run basic 3D applications such 
+as Aero, Office 2010 or those requiring OpenGL or DirectX—without specialized graphics cards or 
+client devices. 
+ 
+
+•  View  Media  Services  for  Integrated  Unified  Communications:  Integrate  voice  over  IP  (VoIP) 
+and  the  View  desktop  experience  for  the  end  user  through  an  architecture  that  optimizes 
+performance for both the desktop and unified communications. 
+ 
+
+•  View Client for Android: Enables end workers with Android-based tablets to access View virtual 
+desktops.  Support  for  VMware  vSphere  5  leverages  the  latest  functionality  of  the  leading  cloud 
+infrastructure  platform  for  highly  available,  scalable,  and  reliable  desktop  services.  View  for  IOS 
+was released with View 4.5 and is available today for View 5.X. 
+
+ 
+ 
+2.3 VMware View Architecture 
+ 
+End workers start View Client to log on to View Connection Server. This server, which integrates with 
+Windows Active Directory, provides access to a virtual desktop hosted in a VMware vSphere environment, 
+blade or physical PC, or a Windows Terminal Services server. 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+6 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+Figure 1: Relationship between major components of VMware View deployment 
+ 
+
+ 
+ 
+Client Devices 
+ 
+A major advantage of using VMware View is desktops follow the end user regardless of device or location. 
+Workers can access their personalized virtual desktop from a company laptop, home PC, thin client device, 
+Mac, iPad, or other tablets.   This level of flexibility enables BYOD (Bring Your Own Device) functionality to 
+the enterprise. 
+ 
+From tablets, Mac, Linux, Windows laptops, and PCs, end workers can open View Client to display their 
+View desktop. Thin client devices use View thin client software and can be configured so that the only 
+application that workers can launch directly on the device is View Thin Client. Repurposing a legacy PC into 
+a thin client desktop can extend the life of the hardware by three to five years. For example, by using 
+VMware View on a thin desktop, you can use a new operating system such as Windows 7 on older desktop 
+hardware. 
+ 
+ 
+View Connection Server 
+ 
+This software service acts as a broker for client connections. View Connection Server authenticates workers 
+through Windows Active Directory and directs the request to the appropriate virtual machine, physical or 
+blade PC, or Windows Terminal Services server. View Connection Server provides the following 
+management capabilities: 
+ 
+
+•  Authenticating workers; entitling workers to specific desktops and pools 
+
+•  Assigning applications packaged with VMware ThinApp to specific desktops and pools 
+
+•  Managing local and remote desktop sessions 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+ 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+•  Establishing secure connections between workers and desktops 
+
+•  Enabling single sign-on 
+
+•  Setting and applying policies 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Inside the corporate firewall, you can install and configure a group of two or more View Connection Server 
+instances. Their configuration data is stored in an embedded LDAP directory and is replicated among 
+members of the group. 
+ 
+Outside the corporate firewall, in the DMZ, you can install and configure View Connection Server as a 
+security server. Security servers in the DMZ communicate with View Connection Servers inside the 
+corporate firewall. Security servers ensure that the only remote desktop traffic that can enter the corporate 
+data center is traffic on behalf of a strongly authenticated user. Workers can access only the desktop 
+resources that they are authorized to access. 
+ 
+Security servers offer a subset of functionality and are not required to be in an Active Directory domain. You 
+can install View Connection Server in a Windows Server 2008 server, preferably on a VMware virtual 
+machine. 
+ 
+ 
+View Client 
+ 
+The client software for accessing View desktops can run on a tablet, Windows, Linux, Mac PC, laptop, a thin 
+client, and more. 
+ 
+After logging on, workers can select from a list of virtual desktops that they are authorized to use. 
+Authorization can require Active Directory credentials, a UPN, a smart card PIN, or an RSA SecurID or other 
+two-factor authentication token. An administrator can configure View Client to allow end workers to select a 
+display protocol. Protocols include PCoIP and Microsoft RDP. The speed and quality of the PCoIP display 
+protocol has equivalent performance to a physical PC. 
+ 
+View Client with Local Mode (formerly called Offline Desktop) is a version of View Client that has been 
+extended to allow end workers to download virtual machines and use them on their local Windows systems 
+regardless of whether they have a network connection. 
+ 
+Features differ according to which View Client used. This guide focuses on View Client for Windows. The 
+following types of clients are not described in detail in this guide: 
+
+•  Various third-party thin clients and zero clients, available only through certified partners.  
+
+•  View Open Client, which supports the VMware partner certification program. View Open Client is 
+
+not an official View client and is not supported as such. 
+ 
+
+Details about View Client for tablets, Linux clients, and Mac clients. See the VMware View Clients 
+documentation at: https://www.vmware.com/support/viewclients/doc/viewclients_pubs.html 
+ 
+
+View Portal 
+ 
+To use View Portal, end workers on Windows, Linux, Mac PC, laptop can open a Web browser and enter 
+the URL of a View Connection Server instance. View Portal provides links for downloading the installers for 
+the full View Client. 
+ 
+By default, when you open a browser and enter the URL of a View Connection Server instance, the View 
+Portal page appears. It has links to the VMware Download site for downloading View Client. The links on the 
+
+ 
+
+8 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+View Portal page are configurable, however for example, you can configure the links to point to an internal 
+Web server, or you can limit which client versions are available on your own View Connection Server. 
+ 
+ 
+View Agent 
+ 
+You can install the View Agent service on all virtual machines, physical systems, and Terminal Service 
+servers that you use as source for View desktops. On virtual machines, this agent communicates with View 
+Client to provide features such as connection monitoring, virtual printing, View Persona Management, and 
+access to locally connected USB devices. 
+ 
+If the desktop source is a virtual machine, you first install the View Agent service on that virtual machine and 
+then use the virtual machine as a template or as a parent of linked clones. When you create a pool from this 
+virtual machine, the agent is automatically installed on every virtual desktop. 
+ 
+You can install the agent with an option for single sign-on. With single sign-on, workers are prompted to log 
+in only when they connect to View Connection Server and are not prompted a second time to connect to a 
+virtual desktop. 
+ 
+ 
+View Administrator 
+ 
+This web-based application allows administrators to:  
+
+•  Configure View Connection Server,  
+•  Deploy and manage View desktops 
+•  Control user authentication 
+•  Troubleshoot end user issues. 
+
+ 
+When you install a View Connection Server instance, the View Administrator application is also installed. 
+This application allows administrators to manage View Connection Server instances from anywhere without 
+having to install an application on their local computer. 
+ 
+ 
+View Composer 
+ 
+You can install this software service on a vCenter™ Server instance, which manages virtual machines or 
+install it on a separate server. View Composer then creates a pool of linked clones from a specified parent 
+virtual machine. This strategy reduces storage costs by up to 90 percent. 
+ 
+Each linked clone acts like an independent desktop, with a unique host name and IP address, yet the linked 
+clone requires significantly less storage because it shares a base image with the parent. 
+ 
+As the linked-clone desktop pools share a base image, you can quickly deploy updates and patches by 
+updating only the parent virtual machine. End workers' settings, data, and applications are not affected. You 
+can also use linked-clone technology for View desktops that you download and check out to use on local 
+systems. 
+ 
+Although with View 5.1, you can install View Composer on its own server host, a View Composer service 
+can operate with only one vCenter Server instance. Similarly, a vCenter Server instance can be associated 
+with only one View Composer service. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+9 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+vCenter Server 
+ 
+This service acts as a central administrator for VMware ESX/ESXi™ servers that are connected on a 
+network. vCenter Server, formerly called VMware VirtualCenter, provides the central point for configuring, 
+provisioning, and managing virtual machines in the datacenter. 
+ 
+In addition to using these virtual machines as sources for View desktop pools, you can use virtual machines 
+to host the server components of VMware View, including Connection Server instances, Active Directory 
+servers, and vCenter Server instances. 
+ 
+You can install View Composer on the same server as vCenter Server to create linked-clone desktop pools. 
+vCenter Server then manages the assignment of the virtual machines to FlexPod and manages the 
+assignment of CPU and memory resources to virtual machines. 
+ 
+You install vCenter Server in a Windows Server 2008 server, preferably on a VMware virtual machine. 
+ 
+ 
+View Transfer Server 
+ 
+This software manages and streamlines data transfers between the datacenter and View desktops that are 
+checked out for use on end workers' local systems. View Transfer Server is required to support desktops 
+that run View Client with Local Mode (formerly called Offline Desktop). 
+ 
+Several operations use View Transfer Server to send data between the View desktop in vCenter Server and 
+the corresponding local desktop on the client system. 
+ 
+
+•  When  a  user  checks  in  or  checks  out  a  desktop,  View  Manager  authorizes  and  manages  the 
+
+operation. View Transfer Server transfers the files between the datacenter and the local desktop. 
+ 
+
+•  View  Transfer  Server  synchronizes  local  desktops  with  the  corresponding  desktops  in  the 
+datacenter by replicating user-generated changes to the datacenter. Replications occur at intervals 
+that you specify in local-mode policies. You can also initiate replications in View Administrator. You 
+can set a policy that allows workers to initiate replications from their local desktops. 
+ 
+
+•  View Transfer Server distributes common system data from the data center to local clients. View 
+Transfer  Server  downloads  View  Composer  base  images  from  the  Transfer  Server  repository  to 
+local desktops. 
+
+ 
+
+ 
+
+2.4 FlexPod Overview 
+ 
+The FlexPod architecture is a modular or “pod-like” architecture that can vary in its exact configuration and 
+can easily be scaled as requirements change.  
+ 
+Specifically, FlexPod is a defined set of hardware and software that serves as an integrated foundation for 
+all virtualization solutions.  VMware View 5.1 built on FlexPod includes FAS NetApp® storage, Cisco® 
+Nexus networking, Cisco Unified Computing System™ (Cisco UCS), and VMware vSphere software. The 
+design is flexible enough that the networking, computing, and storage can fit in a single data center rack or 
+deployed according to a customer’s data center design. Port density enables the networking components to 
+accommodate multiple configurations of this kind.  
+ 
+One benefit of the FlexPod architecture is the ability to customize or “flex” the View environment to suit 
+customer’s requirements. The reference architecture detailed in this document highlights the resiliency, cost 
+benefit, and ease of deployment of a storage solution. A storage system capable of serving multiple 
+
+ 
+
+10 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+protocols across a single interface allows for customer choice and investment protection because it truly is 
+“wireonce” architecture.  
+ 
+
+Figure 2: FlexPod Configuration 
+ 
+
+ 
+
+ 
+The above image shows a configuration example of FlexPod including the components and the network 
+connections for a scalable VMware View 5.1 deployment.  This VMware View 5.1 design uses the Cisco 
+Nexus 5548UP and Cisco UCS B-Series and the NetApp FAS family of storage controllers.  
+ 
+2.5 Cisco Unified Computing System Overview 
+ 
+Cisco Unified Computing System is the first converged data center platform that combines industry-
+standard, x86-architecture servers with networking, and storage access into a single converged system. The 
+system is entirely programmable using unified model-based management to simplify and speed the 
+deployment of View.  
+ 
+The system’s x86-architecture rack-mount and blade servers are powered by Intel® Xeon® processors. 
+These industry-standard servers deliver world-record performance to power mission-critical workloads. 
+Cisco servers, combined with a simplified and converged architecture drive better IT productivity and 
+superior price/performance thereby ensuring lower total cost of ownership (TCO). Building on Cisco’s 
+strength in enterprise networking, Cisco’s Unified Computing System is integrated with a standards-based, 
+high-bandwidth, low-latency, virtualization-aware unified fabric. The system is wired once to support the 
+desired bandwidth and carries all traffic (IP, storage, management, virtual, etc); with security isolation, 
+visibility, and control equivalent to physical networks. The system meets the bandwidth demands of today’s 
+
+ 
+
+11 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+multicore processors, eliminates costly redundancy, and increases workload agility, reliability, and 
+performance. 
+ 
+Cisco Unified Computing System is designed from the ground up to be programmable and self integrating. 
+The entire hardware stack of a server, ranging from server firmware and settings to network profiles, is 
+configured through model-based management. With Cisco virtual interface cards, even the number and type 
+of I/O interfaces is programmed dynamically, making every server ready to power any workload at any time. 
+With model-based management, administrators can manipulate a model of a desired system configuration, 
+associate a model’s service profile with hardware resources, and the system configures itself to match the 
+model. This automation speeds provisioning and workload migration with accurate and rapid scalability. The 
+result is increased IT staff productivity, improved compliance, and reduced risk of failures due to inconsistent 
+configurations. 
+ 
+Cisco Fabric Extender technology reduces the number of system components to purchase, configure, 
+manage, and maintain by condensing three network layers into one. This represents a radical simplification 
+over traditional systems thereby reducing capital and operating costs while increasing business agility, 
+simplifying and speeding deployment, and improving performance. 
+ 
+Cisco Unified Computing System helps organizations to go beyond efficiency; it helps them become more 
+effective through technologies that breed simplicity rather than complexity. The result is flexible, agile, high-
+performance, self-integrating information technology, reduced staff costs with increased uptime through 
+automation, and more rapid return on investment. 
+ 
+This design guide highlights the use of the Cisco B200-M2, 6240 fabric interconnect and 5548 Access Layer 
+Switch to provide a resilient server platform balancing simplicity and performance for virtual desktop 
+deployments.  
+ 
+2.6 NetApp Storage Overview 
+ 
+For Data Management or Storage group, virtual desktops introduce a new requirement for datacenter 
+storage. To ensure optimal performance at the lowest cost, storage must be managed efficiently. NetApp 
+helps to resolve this problem through highly efficient de-duplication, cloning, data protection, and replication 
+technologies that not only guarantee reduced costs, but also simplify desktop data management throughout 
+the lifecycle of the information. The cascading effect of NetApp storage efficiency across all tiers of data 
+management means that storage costs drop as more virtual desktop workers are added to the system. 
+ 
+The NetApp Unified Storage Architecture offers customers an agile and scalable storage platform. All 
+NetApp storage systems use the Data ONTAP® operating system to provide SAN (FCoE, FC, iSCSI), NAS 
+(CIFS, NFS), and primary and secondary storage in a single unified platform so that all the workloads can be 
+hosted on the same storage array.   A single process for activities such as installation, provisioning, 
+mirroring, backup, and upgrading is used throughout the entire product line, from the entry level to 
+enterprise-class controllers. Having a single set of software and processes simplifies even the most complex 
+enterprise data management challenges. Unifying storage and data management software and processes 
+streamlines data ownership, enables companies to adapt to their changing business needs without 
+interruption, and reduces total cost of ownership. 
+ 
+In a shared infrastructure, the availability and performance of the storage infrastructure are critical because 
+storage outages or performance issues can affect thousands of workers. The storage architecture must 
+provide a high level of availability and performance. For detailed documentation about best practices, 
+NetApp and its technology partners have developed a variety of best practice documents. 
+ 
+NetApp’s VASA Provider 1.0, supporting the VMware vStorage APIs for Storage Awareness (VASA) is a set 
+of APIs that permits storage arrays to integrate with vCenter for management functionality.  VASA serves as 
+a link between the NetAPP FAS and VMware’s vCenter Server to collect data about storage capabilities, 
+topology, and other information.  It then delivers this data to the vCenter Server to enable policy 
+enforcement and simplify operational management of storage in a virtualized environment.  The software 
+
+ 
+
+12 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+specifically monitors if thin provisioned datastores have reached a defined threshold or if there have been 
+any changes to a published storage capability (for a volume or LUN).  
+ 
+3. VMware View Planning and Design Guidance 
+ 
+This architecture provides a standard, scalable design that you can adapt to your enterprise environment 
+and special requirements. This chapter includes key details about requirements for memory, CPU, storage 
+capacity, and network components; to give IT architects and planners a practical understanding of what is 
+involved in deploying VMware View on FlexPod.    
+ 
+These guidelines go beyond the scope of the tested architecture relative to this design guide but are based 
+on validations from VMware, NetApp, and Cisco. 
+ 
+3.1 Planning Based on Types of Workers 
+ 
+For many configuration elements, including RAM, CPU, and storage sizing requirements depend largely on 
+the type of workers who uses the virtual desktop and on the applications that must be installed. For 
+architecture planning, workers can be categorized into several types. 
+ 
+
+Table 1: Planning Based on Types of Workers 
+ 
+
+AUDIENCE 
+Task workers 
+
+Knowledge workers 
+
+Power workers 
+
+Employees who use desktops in local 
+mode only 
+
+Kiosk workers 
+
+DESCRIPTION 
+
+Task workers and administrative workers perform 
+repetitive tasks within a small set of applications, 
+usually at a stationary computer. The applications are 
+usually not as CPU and memory intensive as the 
+applications used by knowledge workers. Task workers 
+who work specific shifts might all log on to their virtual 
+desktops at the same time. Task workers include call 
+center analysts, retail employees, warehouse workers, 
+and so on. 
+
+Knowledge workers daily tasks include accessing the 
+Internet, using email, and creating complex 
+documents, presentations, and spreadsheets. 
+Knowledge workers include accountants, sales 
+managers, marketing research analysts, and so on. 
+
+Power workers include application developers and 
+people who use graphics intensive applications. 
+
+These workers download and run their View desktops 
+only on their local systems, which reduce datacenter 
+costs associated with bandwidth, memory, and CPU 
+resources. Scheduled replications ensure that systems 
+and data are backed up. Administrators configure how 
+often end workers' systems must contact View 
+Manager to avoid being locked out. 
+
+These workers need to share a desktop that is placed 
+in a public place. Examples of kiosk workers include 
+
+ 
+
+13 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+AUDIENCE 
+
+DESCRIPTION 
+
+students using a shared computer in a classroom, 
+nurses at nursing stations, and computers used for job 
+placement and recruiting. These desktops require 
+automatic login. Authentication can be done through 
+certain applications if necessary. 
+ 
+
+ 
+Estimating Memory Requirements for Virtual Desktops 
+ 
+RAM costs more for servers than it does for personal computers. As the cost of RAM is high as compared to 
+the overall server hardware costs, and total storage capacity required, determining the correct memory 
+allocation is crucial to planning your desktop deployment. 
+ 
+If RAM allocation is too low, storage I/O can be negatively affected because too much memory swapping 
+occurs. If the RAM allocation is too high, storage capacity can be negatively affected because the paging file 
+in the guest operating system and the swap and suspend files for each virtual machine will grow too large. 
+ 
+
+NOTE: This topic addresses issues regarding memory allocation for remote access to View desktops. If 
+workers run View desktops in local mode, on their client systems, the amount of memory used is some 
+proportion of that available on the client device. 
+ 
+Memory is required to run the host operating system on the client computer, plus memory is also required to 
+run View desktop's operating system and for applications on the client computer and View desktop. VMware 
+recommends that you have 2GB or more for Windows XP and Windows Vista, and 3GB or more for 
+Windows 7. 
+ 
+If you attempt to check out a desktop configured in vCenter Server that requires more memory than the local 
+client system can accommodate, you will not be able to check out the desktop unless you make changes to 
+Windows registry setting. For more instructions, see the VMware View Administration document. 
+ 
+RAM Sizing Impact on Performance 
+ 
+When allocating RAM, avoid choosing conservative settings. The following considerations are to be taken 
+into account: 
+ 
+
+• 
+
+Insufficient RAM allocations can cause excessive guest swapping, which generate I/O that causes 
+significant performance degradations and increases storage I/O load. 
+ 
+
+•  VMware ESX/ESXi supports sophisticated memory resource management algorithms such as 
+
+transparent memory sharing and memory ballooning, which can significantly reduce the physical 
+RAM required to support a given guest RAM allocation. For example, even though 2GB might be 
+allocated to a virtual desktop, only a fraction of that is consumed in physical RAM. 
+ 
+
+•  As  virtual  desktop  performance  is  sensitive  to  response  time,  on  ESX/ESXi  host,  set  nonzero 
+values  for  RAM  reservation  settings.  Reserving  some  RAM  guarantees  that  idle  but  in-use 
+desktops are never completely swapped out to disk. It can also reduce storage space consumed by 
+ESX/ESXi swap files. However, higher reservation settings affect the ability to overcommit memory 
+on an ESX/ESXi host and might affect VMotion maintenance operations. 
+
+ 
+ 
+
+ 
+
+ 
+
+14 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+RAM Sizing Impact on Storage 
+ 
+The amount of RAM allocated to a virtual machine is directly related to the size of the certain files that the 
+virtual machine utilizes. To access the files in the following list, use the Windows guest operating system to 
+locate the Windows page and hibernate files, and use the ESX/ESXi host's file system to locate the 
+ESX/ESXi swap and suspend files. 
+ 
+
+TABLE 2: RAM SIZING IMPACT ON 
+STORAGE 
+Windows page file 
+
+ 
+
+Windows hibernate file for laptops 
+
+ESX/ESXi swap file 
+
+ESX/ESXi suspend file 
+
+ 
+ 
+ 
+ 
+
+ 
+
+By default, this file is sized at 150 percent of 
+guest RAM. This file, which is by default located 
+at C:\pagefile.sys, causes thin-provisioned 
+storage to grow because it is accessed 
+frequently. On linked-clone virtual machines, the 
+page file and temporary files can be redirected to 
+a separate virtual disk that is deleted when the 
+virtual machines are powered off. Disposable 
+page-file redirection saves storage, slowing the 
+growth of linked clones, and also can improve 
+performance. Although you can adjust the size 
+also from Windows, doing so might have a 
+negative effect on application performance. 
+
+This file can equal 100 percent of guest RAM. 
+You can safely delete this file because it is not 
+required in View deployments, even if you use 
+View Client with Local Mode. 
+
+This file, which has a .vswp extension, is created 
+if you reserve less than 100 percent of a virtual 
+machine's RAM. The size of the swap file is 
+equal to the unreserved portion of guest RAM. 
+For example, if 50 percent of guest RAM is 
+reserved and guest RAM is 2GB, the ESX/ESXi 
+swap file is 1GB. This file can be stored on the 
+local datastore on the ESX/ESXi host or cluster. 
+
+This file, which has a vmss extension, is created 
+if you set the desktop pool logoff policy in a 
+manner that the virtual desktop is suspended 
+when the end user logs off. The size of this file is 
+equal to the size of guest RAM. 
+
+ 
+
+15 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+RAM Sizing for Specific Monitor Configurations When Using PCoIP 
+ 
+If you use PCoIP- the display protocol from VMware, the amount of extra RAM that the ESX/ESXi host 
+requires depends in part on the number of monitors configured for end workers and on the display 
+resolution.  The table lists the amount of overhead RAM required for various configurations. The amounts of 
+memory listed in the columns are in addition to the amount of memory required for other PCoIP functionality.  
+ 
+Table 3: - PCoIP Client Display Overhead 
+ 
+
+DISPLAY 
+RESOLUTION 
+STANDARD 
+
+WIDTH, IN 
+PIXELS 
+
+WIDTH, IN 
+PIXELS 
+
+1-MONITOR 
+OVERHEAD 
+
+2-MONITOR 
+OVERHEAD 
+
+VGA 
+
+SVGA 
+
+720p 
+
+UXGA 
+
+1080p 
+
+640 
+
+800 
+
+1280 
+
+1600 
+
+1920 
+
+WUXGA 
+
+1920 
+
+QXGA 
+
+ 
+
+2048 
+
+WQXGA 
+
+2560 
+
+480 
+
+600 
+
+720 
+
+1200 
+
+1080 
+
+1200 
+
+1536 
+
+1600 
+
+2.34MB 
+
+4.69MB 
+
+3.66MB 
+
+7.32MB 
+
+7.03MB 
+
+14.65MB 
+
+14.65MB 
+
+29.30MB 
+
+15.82MB 
+
+31.64MB 
+
+17.58MB 
+
+35.16MB 
+
+24.00MB 
+
+48.00MB 
+
+31.25MB 
+
+62.50MB 
+
+ 
+ 
+RAM Sizing for Specific Workloads and Operating Systems 
+ 
+As the amount of RAM required can vary widely, depending on the type of user, many companies conduct a 
+pilot phase to determine the correct setting for various pools of workers in their enterprise.  A good starting 
+point is to allocate 1GB for Windows XP, 32-bit Windows Vista, and Windows 7 desktops and 2GB for 64-bit 
+Windows 7 desktops. During pilot, monitor the performance and disk space used with various types of 
+workers and make adjustments till you find the optimal setting for each pool of workers. 
+ 
+
+ 
+
+16 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+ 
+Estimating CPU Requirements for Virtual Desktops 
+ 
+When estimating CPU requirements, you must gather information about the average CPU utilization for 
+various types of workers in your enterprise. In addition, calculate that another 10 to 25 percent of processing 
+power is required for virtualization overhead and peak periods of usage. 
+
+ 
+
+ 
+NOTE: This topic addresses issues regarding CPU requirements when accessing View desktops 
+remotely. If workers run a View desktop in local mode on their client systems, the View desktop uses the 
+available CPUs on the client device, up to 2 CPUs. 
+ 
+
+ 
+CPU requirements vary according to the user type. During pilot phase, use a performance monitoring tool, 
+such as Perfmon in the virtual machine, esxtop in ESX/ESXi, or vCenter performance monitoring tools, to 
+understand both the average and peak CPU use levels for each user group. Adhere to the following 
+guidelines: 
+ 
+
+•  Software  developers  or  other  power  uses  with  high-performance  needs  might  have  higher  CPU 
+requirements than knowledge and task workers. Dual virtual CPUs are recommended for compute-
+intensive tasks, if you need to play 720p video using the PCoIP display protocol, and for Windows 7 
+desktops. 
+ 
+
+•  Single virtual CPUs are generally recommended for other cases. 
+
+ 
+Because many virtual machines run on one server, CPU can spike if agents such as all antivirus agents 
+check for updates at exactly the same time. Determine which agents and how many agents could cause 
+performance issues and adopt a strategy for addressing these issues. For example, the following strategies 
+might be helpful in your enterprise: 
+ 
+
+•  Use View Composer to update images rather than having software management agents download 
+
+software updates to each individual virtual desktop. 
+ 
+
+•  Schedule antivirus and software updates to run at nonpeak hours, when few workers are likely to 
+
+be logged in. 
+ 
+
+•  Stagger or randomize when updates occur. 
+
+ 
+As an informal initial sizing approach, assume that each virtual machine requires 1/8 to 1/10 of a CPU core 
+as the minimum guaranteed compute power. That is, plan a pilot that uses 8 to 10 virtual machines per core. 
+For example, if you assume 8 virtual machines per core and have a 2-socket 8-core ESX/ESXi host, you can 
+host 128 virtual machines on the server during the pilot. Monitor the overall CPU usage on the host during 
+this period and ensure that it rarely exceeds a safety margin such as 80 percent to give enough headroom 
+for spikes. 
+ 
+ 
+Choosing the Appropriate System Disk Size 
+ 
+When allocating disk space, provide enough space for the operating system, applications, and additional 
+content that workers might install or generate. Usually this amount is smaller than the size of the disk that is 
+included on a physical PC. 
+ 
+Because datacenter disk space usually costs more per gigabyte than desktop or laptop disk space in a 
+traditional PC deployment, optimize the operating system image size. The following suggestions might help 
+to optimize the image size: 
+ 
+
+•  Remove unnecessary files. For example, reduce the quotas on temporary Internet files. Choose a 
+
+ 
+
+17 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+virtual disk size that is sufficient to allow for future growth, but is not unrealistically large. 
+ 
+
+•  Use  centralized  file  shares  or  a  View  Composer  persistent  disk  for  user-generated  content  and 
+
+user- installed applications. 
+
+ 
+The amount of storage space required must take into account the following files for each virtual desktop:  
+ 
+
+• 
+
+• 
+
+• 
+
+• 
+
+ 
+
+The ESX/ESXi suspend file is equivalent to the amount of RAM allocated to the virtual machine.  
+ 
+The Windows page file is equivalent to 150 percent of RAM.  
+ 
+Log files take up approximately 100MB for each virtual machine. 
+ 
+The virtual disk, or .vmdk file, must accommodate the operating system, applications, and future 
+applications, and software updates. The virtual disk must also accommodate local user data and 
+user- installed applications if they are located on the virtual desktop rather than on file shares. 
+
+If  you  use  View  Composer,  the  .vmdk  files  grow  over  time,  but  you  can  control  the  amount  of 
+growth by scheduling View Composer refresh operations, setting a storage over-commit policy for 
+View  desktop  pools,  and  redirecting  Windows  page  and  temporary  files  to  a  separate  non-
+persistent disk. 
+ 
+
+You can also add 15 percent to this estimate to ensure that workers do not run out of disk space. 
+ 
+3.2 VMware View ESX/ESXi Node 
+ 
+A node is a single VMware ESX/ESXi host that hosts virtual machine desktops in a VMware View 
+deployment. 
+ 
+VMware View is most cost-effective when you maximize the consolidation ratio, which is the number of 
+desktops hosted on an ESX/ESXi host. Although many factors affect server selection, if you are optimizing 
+strictly for acquisition price, you must find server configurations that have an appropriate balance of 
+processing power and memory. 
+ 
+There is no substitute for measuring performance under actual, real world scenarios, such as in a pilot to 
+determine an appropriate consolidation ratio for your environment and hardware configuration. Consolidation 
+ratios can vary significantly based on usage patterns and environmental factors. Use the following 
+guidelines: 
+ 
+
+• 
+
+•  As a general framework, consider compute capacity in terms of 8 to 10 virtual desktops per CPU 
+core.    For  information  about  calculating  CPU  requirements  for  each  virtual  machine,  see 
+“Estimating CPU Requirements for Virtual Desktops,” on page 16. 
+ 
+Think  of  memory  capacity  in  terms  of  virtual  desktop  RAM,  host  RAM,  and  overcommit  ratio.  
+Although you can have between 8 and 10 virtual desktops per CPU core, if virtual desktops have 
+1GB or more of RAM, you must also carefully consider physical RAM requirements. For information 
+about  calculating  the  amount  of  RAM  required  per  virtual  machine,  see  “Estimating  Memory 
+Requirements for Virtual Desktops,” on page 14. 
+ 
+Finally,  consider  cluster  requirements  and  any  failover  requirements.  For  more  information,  see 
+“Determining Requirements for High Availability,” on page 22. 
+
+• 
+
+ 
+ 
+ 
+
+ 
+
+18 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+Additional Recommendations Targeting Minimal Capital Expenditure 
+ 
+You can reduce the number of ESX/ESXi hosts required for your local mode pool if you increase the number 
+of virtual machines per ESX/ESXi host. An ESX/ESXi 4.1 host can accommodate up to 500 virtual machines 
+if most are not powered on at the same time, as is frequently the case for local mode pools. 
+ 
+Use the following recommendations to reduce the amount of bandwidth and I/O operations required by each 
+virtual machine and maximize the number of virtual machines on an ESX/ESXi host. 
+ 
+
+•  Set a View policy so that end workers must use their View desktops in local mode only. With this 
+
+setting, the virtual machines in the datacenter remain locked and powered off. 
+ 
+
+•  Set  local  mode  policies  so  that  end  workers  cannot  initiate  desktop  rollbacks,  data  backups,  or 
+
+check-ins to the datacenter. 
+ 
+
+•  Do not schedule automatic backups. 
+
+ 
+
+•  Do not turn on SSL for provisioning or downloading local mode desktops. 
+
+• 
+
+ 
+If the performance of View Connection Server is affected by the number of local desktops, set the 
+heartbeat  interval  to  be  less  frequent.  The  heartbeat  lets  View  Connection  Server  know  that  the 
+local desktop has a network connection. The default interval is five minutes. 
+
+ 
+ 
+3.3 Desktop Virtual Machine Configuration 
+ 
+As the amount of RAM, CPU, and disk space that virtual desktops require depend on the guest operating 
+system, separate configuration examples are provided for Windows XP, Windows Vista, and Windows 7 
+virtual desktops. 
+ 
+The example settings for virtual machines such as memory, number of virtual processors, and disk space 
+are VMware View-specific. 
+ 
+The guidelines listed in Table 4 are for a standard Windows XP virtual desktop running in remote mode. 
+ 
+
+Table 4:  Desktop Virtual Machine Example for Windows XP 
+ 
+
+ITEM 
+
+EXAMPLE 
+
+Operating System 
+
+32-bit Windows XP (with the latest service pack) 
+
+RAM 
+
+Virtual CPU 
+
+1GB (512MB low end, 2GB high end) 
+
+1 
+
+System Disk Capacity 
+
+16GB (8GB low end, 40GB high end) 
+
+ 
+
+19 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+ITEM 
+
+EXAMPLE 
+
+User Data Capacity 
+
+5GB (starting point) 
+
+ 
+ 
+The amount of system disk space required depends on the number of applications required in the base 
+image. VMware has validated a setup that included 8GB of disk space. Applications included Microsoft 
+Word, Excel, PowerPoint, Adobe Reader, Internet Explorer, McAfee Antivirus, and PKZIP. 
+ 
+The amount of disk space required for user data depends on the role of the end user and organizational 
+policies for data storage. If you use View Composer, this data is kept on a persistent disk. 
+ 
+The guidelines listed in Table 5 are for a standard Windows Vista virtual desktop running in remote mode. 
+Table 5- Desktop Virtual Machine Example for Windows Vista 
+ 
+
+ITEM 
+
+EXAMPLE 
+
+Operating System 
+
+32-bit Windows Vista (with the latest service pack) 
+
+RAM 
+
+Virtual CPU 
+
+1GB 
+
+1 
+
+System Disk Capacity 
+
+20GB (standard) 
+
+User Data Capacity 
+
+5GB (starting point) 
+
+ 
+The guidelines listed in Table 6 are for a standard Windows 7 virtual desktop running in remote mode. 
+
+Table 6- Desktop Virtual Machine Example for Windows 7 
+ 
+
+ITEM 
+
+EXAMPLE 
+
+Operating System 
+
+32-bit Windows 7 (with the latest service pack) 
+
+RAM 
+
+Virtual CPU 
+
+1GB 
+
+1 
+
+System Disk Capacity 
+
+20GB (slightly less than standard) 
+
+User Data Capacity 
+
+5GB (starting point) 
+
+ 
+
+20 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+3.4 vCenter and View Composer VM Configuration   
+ 
+You can install vCenter Server and View Composer on the same virtual machine or on separate hosts. 
+vCenter Server requires much more memory and processing power than a desktop virtual machine. 
+ 
+View Composer can create and provision up to 1,000 desktops per pool if you are using vSphere 4.1 or 
+later.  Beginning in View 5.1, Composer can now be installed in a separate virtual machine allowing the use 
+of the vCenter appliance and Composer in a View deployment. 
+ 
+View Composer can also perform a recompose operation on up to 1,000 desktops at a time. Desktop pool 
+size is limited by the following factors: 
+ 
+
+•  Each desktop pool can contain only one ESX/ESXi cluster 
+
+•  With View 5.1 and later and vSphere 5.0 and later, an ESXi cluster can contain more than 8 ESXi 
+
+ 
+
+ 
+
+hosts 
+ 
+
+•  Can include up to 32 hosts in a composer cluster when using NFS based datastores 
+
+•  Each CPU core has compute capacity for 8 to 10 virtual desktops. 
+
+• 
+
+ 
+The number of IP addresses available for the subnet limits the number of desktops in the pool. For 
+example,  if  your  network  is  set  up,  so  that  the  subnet  for  the  pool  contains  only  256  usable  IP 
+addresses, the pool size is limited to 256 desktops. 
+
+ 
+You can install vCenter Server and View Composer on a physical machine or a virtual machine, a virtual 
+machine is recommended. The ESX/ESXi host for this virtual machine can be part of a VMware HA cluster 
+to guard against physical server failures. 
+ 
+3.5 View Connection Server and Virtual Machine Configuration 
+ 
+When you install View Connection Server, the View Administrator user interface is also installed. This server 
+requires more memory and processing resources than a vCenter Server instance.  
+ 
+View Connection Server Configuration 
+ 
+You can install View Connection Server on a physical machine or a virtual machine, a virtual machine is 
+recommended.  The ESX/ESXi host for this virtual machine can be part of a VMware HA cluster to guard 
+against physical server failures. 
+ 
+View Connection Server Cluster Design Considerations 
+ 
+You can deploy multiple replicated View Connection Server instances in a group to support load balancing 
+and high availability. Groups of replicated instances are designed to support clustering within a LAN- 
+connected single-datacenter environment. VMware does not recommend using a group of replicated View 
+Connection Server instances across a WAN due to the communication traffic required between the grouped 
+instances. In scenarios where a View deployment is required to span datacenters, create a separate View 
+deployment for each datacenter. 
+ 
+Maximum Connections for View Connection Server 
+ 
+Provides information about the tested limits, regarding the number of simultaneous connections that a 
+VMware View deployment can accommodate. 
+ 
+
+ 
+
+21 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+This example assumes that you are using VMware View with vSphere 4.1 or later and vCenter Server 4.1 or 
+later. It also assumes that View Connection Server is running on a 64-bit Windows Server 2008 R2 
+Enterprise operating system. 
+ 
+PCoIP Secure Gateway connections are required if you use security servers for PCoIP connections from 
+outside the corporate network. Tunneled connections are required if you use security servers for RDP 
+connections from outside the corporate network and for USB and multimedia redirection (MMR) acceleration 
+with a PCoIP Secure Gateway connection. You can pair multiple security servers to a single connection 
+server. 
+ 
+3.6 View Transfer Server Virtual Machine Configuration and 
+Storage 
+ 
+View Transfer Server is required to support desktops that run View Client with Local Mode (formerly called 
+Offline Desktop). This server requires less memory than View Connection Server. 
+ 
+View Transfer Server Configuration 
+ 
+You must install View Transfer Server on a virtual rather than a physical machine and the virtual machine 
+must be managed by the same vCenter Server instance as the local desktops that will manage it.  
+ 
+Storage and Bandwidth Requirements for View Transfer Server 
+ 
+Several operations use View Transfer Server to send data between the View desktop in vCenter Server and 
+the corresponding local desktop on the client system. When a user checks in or checks out a desktop, View 
+Transfer Server transfers the files between the datacenter and the local desktop. View Transfer Server also 
+synchronizes local desktops with the corresponding desktops in the datacenter by replicating user-
+generated changes to the datacenter. 
+ 
+If you use View Composer linked-clones for local desktops, the disk drive on which you configure the 
+Transfer Server repository must have enough space to store your static image files. Image files are View 
+Composer base images. Faster the network storage disks, the performance better will be. For information 
+about determining the size of base image files, refer to VMware View Administration document. 
+ 
+Each Transfer Server instance can theoretically accommodate 60 concurrent disk operations, although 
+network bandwidth will likely be saturated at a lower number. VMware tested 20 concurrent disk operations, 
+such as 20 clients downloading a local desktop at the same time, over a 1GB per second network 
+connection. 
+ 
+3.7 vSphere Clusters 
+ 
+VMware View deployments can use VMware HA clusters to guard against physical server failures. With 
+View 5.1 and later and vSphere 5 and later, if you use View Composer and store replica disks on NFS 
+datastores, the cluster can contain up to 32 servers or nodes. 
+ 
+VMware vSphere and vCenter provide a rich set of features for managing clusters of servers that host View 
+desktops. The cluster configuration is also important because each View desktop pool must be associated 
+with a vCenter resource pool. Therefore, the maximum number of desktops per pool is related to the number 
+of servers and virtual machines that you plan to run per cluster. 
+ 
+
+ 
+
+22 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+In very large VMware View deployments, vCenter performance and responsiveness can be improved by 
+having only one cluster object per datacenter object, which is not the default behavior. By default, VMware 
+vCenter creates new clusters within the same datacenter object. 
+ 
+ 
+Determining Requirements for High Availability 
+ 
+VMware vSphere, through its efficiency and resource management, lets you achieve industry-leading levels 
+of virtual machines per server. But achieving a higher density of virtual machines per server means that 
+more workers are affected if a server fails. 
+ 
+Requirements for high availability can differ substantially based on the purpose of the desktop pool. For 
+example, a stateless desktop image (floating-assignment) pool might have different recovery point objective 
+(RPO) requirements than a stateful desktop image (dedicated-assignment) pool. For a floating-assignment 
+pool, an acceptable solution might be to have workers log on to a different desktop if the desktop they are 
+using becomes unavailable. 
+ 
+In cases where availability requirements are high, proper configuration of VMware HA is essential. If you use 
+VMware HA and are planning for a fixed number of desktops per server, run each server at a reduced 
+capacity. If a server fails, the capacity of desktops per server is not exceeded when the desktops are 
+restarted on a different host. 
+ 
+For example, in an 8-host cluster, where each host is capable of running 128 desktops, and the goal is to 
+tolerate a single server failure, make sure that no more than 128 * (8 - 1) = 896 desktops are running on that 
+cluster. You can also use VMware DRS (Distributed Resource Scheduler) to help balance the desktops 
+among all 8 hosts. You get full use of the extra server capacity without letting any hot-spare resources sit 
+idle. Additionally, DRS can help rebalance the cluster after a failed server is restored to service. 
+ 
+You must also make sure that storage is properly configured to support the I/O load that results when many 
+virtual machines restart at once in response to a server failure. Storage IOPS has the most effect on how 
+quickly desktops recover from a server failure. 
+ 
+ 
+3.8 Network Bandwidth Considerations 
+ 
+For display traffic, many elements can affect network bandwidth, such as protocol used, monitor resolution 
+and configuration, and the amount of multimedia content in the workload. Concurrent launches of streamed 
+applications can also cause usage spikes. 
+ 
+As the effects of these issues can vary widely, many companies monitor bandwidth consumption as part of a 
+pilot project. As a starting point for a pilot, you should plan for 150 to 200Kbps of capacity for a typical 
+knowledge user. 
+ 
+With PCoIP display protocol, if you have an enterprise LAN with 100Mb or a 1Gb switched network, your 
+end workers can expect excellent performance under the following conditions: 
+ 
+
+Two monitors (1920x1080) 
+
+• 
+•  Heavy use of Microsoft Office applications 
+•  Heavy use of Flash-embedded Web browsing 
+• 
+• 
+•  Network-based printing 
+
+Frequent use of multimedia with limited use of full screen mode 
+Frequent use of USB-based peripherals 
+
+ 
+This information was excerpted from the information guide called PCoIP Display Protocol: Information and 
+Scenario-Based Network Sizing Guide. 
+
+ 
+
+23 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+ 
+ 
+Optimization Controls Available with PCoIP 
+ 
+If you use the PCoIP display protocol from VMware, you can adjust several elements that affect bandwidth 
+usage. 
+ 
+
+•  You can adjust the size of the image cache on Windows and Linux client systems, from 50MB to 
+
+300MB. Image caching reduces the amount of display data that must be retransmitted. 
+ 
+
+•  You  can  configure  the  image  quality  level  and  frame  rate  used  during  periods  of  network 
+congestion.  The quality level setting allows you to limit the initial quality of the changed regions of 
+the  display  image.  Unchanged  regions  of  the  image  progressively  build  to  a  lossless  (perfect) 
+quality. You can adjust the frame rate from 1 to 120 frames per second. 
+ 
+This control works well for static screen content that does not need to be updated or in situations 
+where only a portion needs to be refreshed. 
+ 
+
+•  You can also turn off the build-to-loss less feature altogether if instead of progressively building to 
+
+• 
+
+perfect quality (lossless), you choose to build to perceptual lossless. 
+ 
+
+•  You can control which encryption algorithms are advertised by the PCoIP endpoint during session 
+
+negotiation. By default, both Salsa20-256round12 and AES-128-GCM algorithms are available. 
+ 
+
+•  With  regards  to  session  bandwidth,  you  can  configure  the  maximum  bandwidth,  in  kilobits  per 
+second, to correspond to the type of network connection, such as a 4Mbit/s Internet connection. 
+The bandwidth includes all imaging, audio, virtual channel, USB, and control PCoIP traffic. 
+ 
+
+•  You can also configure a lower limit, in kilobits per second, for bandwidth that is reserved for the 
+session, so that a user does not have to wait for bandwidth to be available. You can specify the 
+Maximum Transmission Unit (MTU) size for UDP packets for a PCoIP session, from 500 to 1500 
+bytes. 
+ 
+
+•  You can specify the maximum bandwidth that can be used for audio (sound playback) in a PCoIP 
+
+session. 
+
+ 
+
+WAN Support and PCoIP 
+ 
+For wide-area networks (WANs), you must consider bandwidth constraints and latency issues. The PCoIP 
+display protocol provided by VMware adapts to varying latency and bandwidth conditions. 
+ 
+If you use the RDP display protocol, you must have a WAN optimization product to accelerate applications 
+for workers in branch offices or small offices. With PCoIP, many WAN optimization techniques are built into 
+the base protocol. 
+ 
+
+•  WAN  optimization  is  valuable  for  TCP-based  protocols  such  as  RDP  because  these  protocols 
+require  many  handshakes  between  client  and  server.  The  latency  of  these  handshakes  can  be 
+quite  large.  WAN  accelerators  spoof  replies  to  handshakes  so  that  the  latency  of  the  network  is 
+hidden  from  the  protocol.  Because  PCoIP  is  UDP-based,  this  form  of  WAN  acceleration  is 
+unnecessary. 
+ 
+
+•  WAN accelerators also compress network traffic between client and server, but this compression is 
+usually  limited  to  2:1  compression  ratios.  PCoIP  is  able  to  provide  compression  ratios  of  up  to 
+100:1 for images and audio. 
+
+ 
+
+ 
+ 
+
+ 
+
+24 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+Bandwidth Requirements for Various Types of Users 
+ 
+While determining minimum bandwidth requirements for PCoIP, plan with the following estimates: 
+ 
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+100 to 150 Kbps average bandwidth for basic office productivity desktop, typical office applications 
+with no video, no 3D graphics, and default Windows and VMware View settings. 
+ 
+50 to 100 Kbps average bandwidth for an optimized office productivity desktop, typical office 
+applications with no video, no 3D graphics, with Windows desktop settings optimized and VMware 
+View optimized. 
+ 
+400 to 600 Kbps average bandwidth for virtual desktops utilizing multiple monitors, 3D, Aero, and 
+Office 2010. 
+ 
+500 Kbps to 1 Mbps minimum peak bandwidth to provide headroom for bursts of display changes. 
+In general, size your network using the average bandwidth, but consider peak bandwidth to 
+accommodate bursts of imaging traffic associated with large screen changes. 
+ 
+2 Mbps per simultaneous user running 480p video, depending on the configured frame rate limit 
+and the video type. 
+
+ 
+The estimate of 50 to 150 Kbps per typical user is based on the assumption that all workers are operating 
+continuously and performing similar tasks over an 8 to 10 hour day. 50 Kbps bandwidth usage figure is from 
+View Planner testing on a LAN with the Build-to-Lossless feature disabled. Situations may vary where some 
+workers may be fairly inactive and consume almost no bandwidth, allowing more workers per link. 
+Therefore, these guidelines are intended to provide a starting point for more detailed bandwidth planning 
+and testing. 
+ 
+ 
+4. Cisco Best Practices  
+4.1 UCS Manager and UCS Service Profiles 
+ 
+Cisco UCS Service Profile templates within the Cisco UCS Manager allow IT administrators to create a 
+custom hardware baseline for the type of virtual desktop workload and for as many servers as required.  
+Service profiles can be abstracted from the specifics of a given server to create a service profile template. 
+This templates defines policies that can be applied any number of times to provision any number of servers.  
+ 
+In addition, using service profiles, Cisco UCS Manager provides logical grouping capabilities for both 
+physical servers and service profiles and their associated templates. This pooling or grouping, combined 
+with fine-grained role-based access, allows businesses to treat a farm of compute blades as a flexible 
+resource pools. These pools can be reallocated in real time to meet the needs of virtual desktop user pools 
+while maintaining any organizational overlay on the environment that they want.  
+ 
+From a View perspective, service profile templates can be used to define firmware policies, enable BIOS 
+settings, configure the local disk array, configure memory speed, and select a boot sequence. Once created, 
+these templates can be deployed to as many blades as required. 
+ 
+4.2 VLAN Configuration 
+
+In Cisco UCS, a named VLAN creates a connection to a specific external LAN. This VLAN isolates traffic to 
+that external LAN, which includes any broadcast traffic. 
+
+ 
+
+25 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+In View instances, a VLAN is reserved for the kernel traffic (connection to vCenter) and is put into a separate 
+network and assigned a unique IP address. A second is reserved for vMotion, used for virtual desktop 
+mobility, and again placed in a separate VLAN and assigned a second unique IP address.  Neither of these 
+interfaces is seen by the virtual desktops.   For security reasons, the virtual desktops do not have access to 
+these VLANs. One final reserved “vETH” may be created if the vSphere hypervisor datastore is connected 
+via Ethernet-based storage (NFS). The Ethernet-based storage traffic should also be isolated into its own 
+VLAN.  
+
+Additional VLANs will be created for the virtual desktops. The IP addresses may be statically defined or 
+acquired via Dynamic Host Configuration Protocol (DHCP). The addresses assigned and subnet mask 
+needs to be created according to the size of the virtual desktop pool. Virtual desktops can migrate only 
+within the same pool (subnet, VLAN, and so on).  
+
+ 
+
+4.3 QoS Implementation 
+ 
+QoS should be implemented where there is contention for limited network resources (like bandwidth and 
+queues inside switches) in key network switches and access points. The network maintains awareness of 
+the virtual machine user session, permitting quality- of-service (QoS) and security policies to be applied at 
+the virtual desktop level and then prioritizing media and applications across VDI sessions. Service policies 
+that constrain the amount of bandwidth that is dedicated to a given protocol are defined and applied at this 
+point. These same queuing and bandwidth configurations can be placed anywhere there is a rate transition 
+from high bandwidth to low bandwidth connectivity. 
+ 
+ 
+Specific QoS recommendations for View 5.1 include: 
+ 
+
+• 
+
+•  Ensure guaranteed network bandwidth for PCoIP traffic during congestion. In general, set PCoIP 
+traffic  to  have  80%  of  the  remaining  bandwidth  after  the  higher  priority  traffic  is  allocated.  For 
+example,  consider  a  network  that  guarantees  20%  of  a  link  bandwidth  for  critical  traffic  such  as 
+VoIP.  PCoIP  should  be  set  to  receive  80%  of  the  remaining  bandwidth,  or  64%.  This  lets  other 
+protocols, such as file transfers or web traffic, to transfer some traffic without starving the PCoIP 
+sessions. 
+ 
+To  ensure  proper  delivery  of  PCoIP,  tag  it  in  Quality  of  Service  (QoS)  so  that  it  competes  fairly 
+across the network with other real-time protocols. Also prioritize PCoIP above other non-critical and 
+latency-tolerant protocols (such as file transfers or print jobs). Failure to tag PCoIP properly in a 
+congested network environment leads to PCoIP packet loss and a poor user experience, as PCoIP 
+adapts down in response. 
+ 
+Tag and classify PCoIP as interactive real-time traffic. Generally, you will classify PCoIP just below 
+VoIP, but above all other TCP-based traffic. While this recommendation is likely to have a far larger 
+impact in a WAN scenario, consider it a best practice for LAN environments as well. 
+
+• 
+
+ 
+5. NetApp Best Practices  
+ 
+This section of the solution guide provides a high-level overview of the components and features that should 
+be considered when deploying a VMware View infrastructure on NetApp.  
+ 
+
+ 
+
+26 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+5.1 Deduplication 
+ 
+Data deduplication is a means of reducing storage space. It works by eliminating redundant data and 
+ensuring that only one unique instance of the data is actually retained on storage media, such as disk or 
+tape. Redundant data is replaced with a pointer to the unique data copy.   
+ 
+NetApp deduplication saves space on primary storage by removing redundant copies of blocks within a 
+volume hosting hundreds of virtual desktops.  This process is transparent to the application and user, and it 
+can be enabled and disabled on the fly. In a VMware View environment, deduplication provides significant 
+space savings, given that each VM is an identical copy of the OS, applications, and patches. Note that not 
+all data within a VDI environment is ideal for deduplication. Data such as swap and other transient data 
+should not be deduplicated. Deduplication is also ideal for user and persona (profile) data stored in CIFS 
+home directories.  
+ 
+Deduplication Guidelines 
+
+•  Deduplication is configured and operates on the flexible volumes only. 
+•  Data can be deduplicated up to 255:1 without consuming additional space. 
+•  Each storage platform has different deduplication limits. 
+•  Each volume has dense and nondense size limits. 
+•  Deduplication is configured using the command line. 
+•  Data ONTAP 7.2.5.1, 7.3P1, or later is required. 
+•  Both a sis and NearStore® must be licensed for deduplication to work. 
+•  Deduplication must be run before Snapshot copies are created or SnapMirror or SnapVault 
+
+updates are run. 
+
+ 
+5.2 Space Reclamation 
+ 
+A virtual machine can be thinly or thickly provisioned. When a VM is thinly provisioned, storage for that VM 
+is not preallocated on the storage controller. This allows for oversubscription of a storage controller, which 
+helps increase overall utilization. The drawback to thin provisioning of VMs is that they are storage efficient 
+only on Day 1.  Once thinly provisioned, the VM is written and storage is then allocated in the VM and thus 
+in the shared storage controller. Even if the data is deleted within the guest, the storage controller storage 
+continues to be allocated. NetApp VSC 2.1.1 introduces a technology called space reclamation that can be 
+used on any Windows VM that uses New Technology File System (NTFS) and resides on an NFS datastore. 
+This technology allows the storage controller to reclaim its storage space that would otherwise be wasted. 
+ 
+When a VM is thin provisioned, the amount of storage used within the guest equals the amount of storage 
+on the storage controller. When data is added to the virtual machine, it is consumed on the storage 
+controller. When some of the data is deleted in the virtual machine, nothing happens to the storage. Space 
+reclamation brings storage efficiency to thin provisioning by returning wasted space back to the storage 
+controller 
+ 
+5.3 Read and Write I/O Optimization 
+ 
+View desktops can be both read and write intensive at different times during the lifecycle of the desktop, 
+depending on the user activity and the desktop maintenance cycle. The performance-intensive activities are 
+experienced by most large-scale deployments and are referred to as storm activities, such as boot storms, 
+login storms, and virus scan or definition update storms. 
+ 
+A boot storm is an event in which some or all virtual desktops boot simultaneously, creating a large spike in 
+I/O. This can happen as a result of rolling out mass OS updates and having to reboot, desktop redeploy 
+operations, new application installation, maintenance windows, server failures, or any number of practical 
+
+ 
+
+27 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+issues or interruptions. Daily login storms and virus scan storms also create similar I/O spikes. With virtual 
+desktops using a shared infrastructure, these peaks in I/O affect the entire desktop environment. The 
+environment must be able to handle both the read- and write- intensive scenarios in the desktop lifecycle. 
+The typical methods for addressing these peaks are increasing cache for ESX servers, storage devices, 
+spindle count, and the number of storage arrays. 
+ 
+ 
+5.4 Virtual Storage Tiering 
+ 
+Virtual Storage Tiering (VST) is performed natively within Data ONTAP and can be extended with the use of 
+Flash Cache.  Flash Cache is a PCI Express card that can be installed on many of the current NetApp 
+storage controller systems.  Flash Cache is the hardware component and the software component is called 
+FlexScale 
+ 
+VST can be extended with the use of Flash Cache. As long as that block has not been evicted from both 
+caches, all subsequent reads are performed from main memory or Flash Cache, thereby improving 
+performance by not having to go to disk. Again, the more heavily the data is deduplicated and the more 
+frequently accessed, the longer it stays in cache. Transparent storage array caching combined with NetApp 
+disk deduplication provides cost savings on many levels. 
+ 
+The decision of using Flash Cache in addition to Data ONTAP VST is based on the amount of deduplicated 
+data and the percentage of reads within the environment. As workers of the VMware View environment 
+create more data, the amount of deduplicated data changes, thus affecting the cache hit rate. Thus, more 
+cache might be required if the data becomes more unique (even after running regular deduplication 
+operations on the new data). 
+ 
+The net result of VST is that customers can buy less storage because of read cache and allow the disk to be 
+used for write I/O. Because of deduplication and VST, the end-user experience is greatly enhanced. 
+ 
+ 
+6. References 
+ 
+6.1 VMware 
+ 
+VMware View 5.1 Architecture and Planning Guide: http://pubs.vmware.com/view-
+51/topic/com.vmware.ICbase/PDF/view-51-architecture-planning.pdf 
+ 
+VMware View Installation: http://pubs.vmware.com/view-51/topic/com.vmware.ICbase/PDF/view-51-
+installation.pdf 
+ 
+VMware View Administration: http://pubs.vmware.com/view-51/topic/com.vmware.ICbase/PDF/view-51-
+administration.pdf   
+ 
+VMware View Security: http://pubs.vmware.com/view-51/topic/com.vmware.ICbase/PDF/view-51-
+security.pdf 
+ 
+VMware View Upgrades: http://pubs.vmware.com/view-51/topic/com.vmware.ICbase/PDF/view-51-
+upgrades.pdf 
+ 
+VMware View User Profile Migration: http://pubs.vmware.com/view-51/topic/com.vmware.ICbase/PDF/view-
+51-profile-migration.pdf 
+
+ 
+
+28 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+ 
+VMware View Integration: http://pubs.vmware.com/view-51/topic/com.vmware.ICbase/PDF/view-51-
+integration.pdf 
+ 
+Configuration Maximums VMware vSphere 5.0: 
+http://www.vmware.com/pdf/vsphere5/r50/vsphere-50-configuration-maximums.pdf 
+ 
+VMware View 5 with PCoIP Network Optimization Guide: http://www.vmware.com/files/pdf/view/VMware-
+View-5-PCoIP-Network-Optimization-Guide.pdf 
+ 
+VMware View Persona Management Deployment Guide: http://www.vmware.com/files/pdf/view/VMware-
+View-Persona-Management-Deployment-Guide.pdf 
+ 
+Mobile Secure Desktop - Validated Design Guide: http://www.vmware.com/files/pdf/view/Mobile-Secure-
+Desktop-Design-Guide.pdf 
+ 
+6.2 Cisco 
+ 
+Cisco Unified Computing System: http://www.cisco.com/en/US/products/ps10265/index.html 
+ 
+Cisco Unified Computing System C-Series Servers: 
+http://www.cisco.com/en/US/products/ps10493/index.html 
+ 
+Cisco Unified Computing System B-Series Servers: 
+http://www.cisco.com/en/US/products/ps10280/index.html 
+ 
+Cisco Virtualization Experience Infrastructure CVD for VMware View: 
+http://www.cisco.com/en/US/docs/solutions/Enterprise/Data_Center/VXI/CVD/VXI_CVD_VMware.html 
+ 
+Cisco UCS Manager Configuration Common Practices and Quick-Start Guide: 
+http://www.cisco.com/en/US/prod/collateral/ps10265/ps10281/whitepaper_c11-697337.html 
+ 
+Understanding Service Profile for Cisco UCS Blade: 
+http://www.cisco.com/en/US/prod/collateral/ps10265/ps10281/white_paper_c11-590518.html 
+ 
+6.3 NetApp 
+ 
+NetApp Storage stems: www.netapp.com/us/products/storage-systems/  
+ 
+NetApp FAS3200 Storage Systems: http://www.netapp.com/us/products/storage-systems/fas3200/ 
+ 
+NetApp TR-3437: Storage Best Practices and Resiliency Guide: http://www.netapp.com/us/library/technical-
+reports/tr-3437.html 
+ 
+NetApp TR-3749: NetApp and VMware vSphere Storage Best Practices: 
+http://www.netapp.com/us/library/technical-reports/tr-3749.html 
+ 
+NetApp TR-3884: FlexPod for VMware Solutions Guide: http://www.netapp.com/us/library/technical-
+reports/tr-3884.html 
+
+ 
+
+29 
+
+	  	  
+
+VMware View 5.1 and FlexPod     
+
+ 
+NetApp FAS/V-Series VASA Provider 1.0 Installation and Administration Guide: 
+https://library.netapp.com/ecm/ecm_get_file/ECMP1117738 
+ 
+NetApp TR-3437: Storage Subsystem Resiliency Guide:  http://media.netapp.com/documents/tr-3437.pdf 
+ 
+NetApp TR-3450: Active-Active Controller Overview and Best Practices Guidelines: 
+http://media.netapp.com/documents/tr-3450.pdf 
+ 
+NetApp TR-3298: RAID-DP: NetApp Implementation of RAID Double Parity for Data Protection: 
+http://media.netapp.com/documents/tr-3298.pdf 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2010 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+30 
+
+

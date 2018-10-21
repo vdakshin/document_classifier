@@ -1,0 +1,930 @@
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Pearson SuccessMaker and  
+
+ 
+
+ 
+
+Waterford Early Learning Software with 
+
+ 
+
+ 
+
+VMware® View™  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+April 2012 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E  
+
+ 
+
+ 
+
+ 
+
+Disaster Recovery for praireFyre Media Contact Center using View 
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+ 
+
+ 
+
+Table of Contents 
+
+Introduction .................................................................................................................................... 3 
+
+Solution Overview .......................................................................................................................... 3 
+
+VMware View ............................................................................................................................... 4 
+
+Test Methodology .......................................................................................................................... 6 
+
+Test Architecture ............................................................................................................................ 6 
+
+Test Results – Observations........................................................................................................ 8 
+
+Recommendations ....................................................................................................................... 9 
+
+Conclusion .................................................................................................................................... 11 
+
+Resources ..................................................................................................................................... 12 
+
+Acknowledgements ..................................................................................................................... 14 
+
+Appendix A: Hardware and System Host Configuration ......................................................... 15 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+ 
+Pearson and SuccessMaker are registered trademarks of Pearson Education, Inc. or its direct or indirect affiliates. 
+ 
+Waterford is a trademark of Waterford Institute, Inc. in the United States and other countries and is used pursuant to a license with Waterford Institute, Inc. 
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / I I    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Introduction 
+Pearson SuccessMaker and Waterford Early Learning instructional software products provide elementary 
+and middle school learners with adaptive, personalized paths for the mastery of essential reading, math 
+and science concepts, and deliver outcome-based data to inform educational decision-making. 
+
+Pearson customers can now deploy both SuccessMaker and Waterford Early Learning on the VMware 
+View virtual desktop infrastructure (VDI) platform. This allows Pearson to deliver their award winning 
+educational software using highly available managed desktops and thin endpoint devices.  
+
+VMware View enables school districts to: 
+
+  Deliver rich, personalized virtual desktops as a managed service from a virtualization platform that is 
+
+built to deliver the entire desktop – operating system, applications, and user data – using multiple 
+types of clients including thick, thin, and zero clients.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+Enable desktop administrators to virtualize the operating system, applications, and user data and 
+manage modern desktops for end-users. By using View, the school district can deliver content to 
+many different types of client devices anywhere and at any time.  
+
+Improve business agility while providing a flexible, high performance desktop experience for end-
+users, across a variety of network conditions. 
+
+Provide centralized automated management of View components for increased control and cost 
+savings. View greatly limits the IT resource requirements needed to support the system and the need 
+for IT support technicians to be physically present to make repairs.  
+
+Significantly reduce the time and effort expended on IT maintenance for desktop support. For 
+example, when a student’s desktop malfunctions or fails, View enables a designated administrator to 
+reset the desktop to its pristine image rapidly and remotely in minutes, with no direct intervention. 
+
+This paper describes the functional testing that was conducted to validate both Pearson SuccessMaker 
+and Waterford Early Learning solutions with VMware View. It also describes the advantages, technical 
+considerations, and recommendations for using each solution.  
+
+This paper is intended for experienced infrastructure architects and engineers who are responsible for the 
+VMware virtualization environment. It assumes that the reader has knowledge of the related VMware 
+and Pearson products and technologies. 
+
+Solution Overview 
+Pearson and VMware jointly conducted tests using VMware View 4.5 to demonstrate the feasibility of 
+Pearson early learning solutions being deployed within a VDI framework. SuccessMaker 3 and Waterford 
+Early Learning version 4.4 were tested in a VMware vSphere virtualization environment with VMware 
+View. For more information, see Appendix A: Hardware and System Host Configuration later in this paper.  
+
+The goals for this functional testing included: 
+
+  Validate that a VMware View infrastructure provides the performance needed for an acceptable 
+
+student experience including audio and video playback, and audio recordings.  
+
+  On three unique endpoint device categories – thick, thin, and zero client devices – validate that an 
+
+acceptable student experience can be achieved including audio and video playback, and audio 
+recordings. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 3    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+  On the transmission protocols – Remote Desktop Protocol (RDP) and PC over IP (PcoIP) – validate 
+
+that an acceptable student experience can be achieved including audio and video playback, and audio 
+recordings. This testing includes both unidirectional and bidirectional audio testing. 
+
+As a result of this testing Pearson fully supports VMware View as an approved deployment infrastructure 
+for use with SuccessMaker 3 and Waterford Early Learning version 4.4. Please see the Recommendations 
+section later in this paper for more details on a full VMware View infrastructure configuration for Pearson 
+software.  
+
+VMware View 
+
+View enables school districts running the VMware View desktop virtualization environment to deliver 
+Pearson educational solutions via highly available virtual desktops to student endpoint devices. By using 
+View, a school district can employ Pearson solutions through a familiar, personalized Windows 
+environment as a managed service, from a number of different types of devices, anywhere and at any 
+time. Endpoint devices may include Windows, Macintosh, and Linux desktops, nettops, laptops, iPhone 
+operating system (iOS) and Android tablets, and thin and zero clients.i 
+
+View allows administrators to maintain centralized control, operational efficiency, and the security of 
+virtual desktop systems, applications, and associated data from the datacenter, rather than from the 
+user’s PC. View eliminates the need to rebuild or reimage physical desktops and applications, which is 
+resource-intensive and costly. No direct on-premises intervention by IT support personnel is required, 
+which eliminates downtime when the children cannot use their computers. 
+
+View also enables IT departments to manage virtual desktops from the datacenter or through remote 
+administration. This is valuable for school district IT departments that are often resource-constrained. 
+View enables administrators to easily configure the virtual desktop environment, create administrators, 
+provision and deploy View desktops, set up user authentication, configure policies, and manage 
+virtualized applications.  
+
+For more information on VMware View, see the Resources section later in this paper. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 4    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+Figure 1 depicts the typical system architecture of the VMware View environment. 
+
+Figure 1. VMware View typical system architecture 
+
+ 
+
+ 
+
+From the desktop, View can enable a number of different clients including: 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Zero client (PCoIP hardware). This hardware device is purpose-built for presenting View desktops. It 
+has no operating system. It is simple to use and requires little maintenance. Zero clients provide for 
+dramatic cost improvements because they make the client device less vulnerable and hardware-
+independent. 
+
+Thin client. This platform-independent hardware device is built for use with VDI solutions. It runs a 
+custom-built operating system and it has View Client software pre-installed. 
+
+Thick client. This is a Windows PC or Macintosh computer that has View Client installed locally to 
+access View desktops. 
+
+Tablet client. This is a tablet device that has the VMware Client software pre-installed. 
+
+For more detailed information about VMware View, see the Resources section later in this paper.  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 5    
+
+Thin ClientDesktopLocalModeVMWAREVIEW MANAGERVMWAREVIEWCOMPOSERVMWARETHINAPPCentralized VirtualDesktopsLinkedClonesPlatformVMware vSphereFor DesktopsManagementVMware View Manager,VMware View Composer,VMware ThinAppUser ExperiencePCoIP, Print,Multi-Monitor Display,Multimedia,USB Redirection,Local ModeParent Image 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Test Methodology 
+SuccessMaker and Waterford Early Learning were tested in a virtualization environment to demonstrate 
+that VMware View successfully provides the foundation for an acceptable, scaled student experience 
+under typical workload conditions. The team documented the testing results as “pass” or “fail” and 
+detailed relevant issues and mitigations as needed.  
+
+The test environment employed a standard out-of-the-box configuration of both SuccessMaker and 
+Waterford Early Learning, allowing the joint Pearson-VMware test team to follow typical use cases for 
+these applications on thick, thin, zero client, and physical desktop computers. Note that no changes were 
+made to Pearson software products beyond normal software setup for either the client- or server-side of 
+the solution. 
+
+No automated testing was performed and all results were identified by the test staff. 
+
+The testing was set up primarily to perform the functional validation of SuccessMaker 3 and Waterford 
+Early Learning version 4.4 to include: 
+
+  Verify that the student experience performs as expected. 
+
+  Verify that the deployment technologies do not introduce product defects. 
+
+ 
+
+Flash animation: Verify compatibility of Adobe Flash-based courseware with audio and full-motion 
+video. 
+
+  Audio playback: Verify that audio playback performs as expected with both analog and USB audio 
+
+headset devices. 
+
+  Audio recording: Verify that audio recordings are clear and static free for fluency courses, and 
+
+without choppiness or degradation with both analog and USB audio headset devices. 
+
+  Network bandwidth utilization: Baseline the percent of bandwidth used between the physical 
+
+endpoint device and virtual machine server when running Pearson software. Tests were performed 
+for thick, thin, and zero clients between the endpoint device and VDI virtual machine host. 
+
+ 
+
+Concurrency: Verify the effect of concurrent SuccessMaker and Waterford students on infrastructure 
+performance. 
+
+Test Architecture 
+VMware provided the facilities that were used to conduct the functional testing of SuccessMaker and 
+Waterford Early Learning on the VMware virtualization platform with View. Figure 2 depicts the high level 
+architecture that was used for this testing. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 6    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+Figure 2. High level architecture for testing Pearson software with VMware View 
+
+ 
+
+ 
+
+The lab environment was provided using the VMware data centers in Palo Alto, California. For more 
+information, see Appendix A: Hardware and System Host Configuration later in this paper. 
+
+The architecture used in this testing included:  
+
+ 
+
+Client configuration  
+
+ 
+
+Thick, thin, and zero clients in a VDI deployment. 
+
+  All clients were connected to a 100 Mbps shared Local Area Network (LAN) environment. View 
+
+connections were made from these devices to View desktops residing in a metropolitan area 
+network (MAN) environment. The lab hosting the ESXi servers were inter-connected to each 
+other using a 1 Gbps network. 
+
+ 
+
+Thin and zero clients utilized 100 Mbps network technologies only. All devices were capable of 
+gigabit speeds. 
+
+  Bandwidth measurement was performed using Wireshark 1.4.1.  
+
+  Network speed was locked at 100 Mbps to perform baseline bandwidth testing. 
+
+ 
+
+PCoIP and RDP protocols were tested on all endpoint devices. 
+
+ 
+
+Server configuration  
+
+ 
+
+Two physical servers were used to consolidate three server virtual machines and the client 
+virtual machines. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 7    
+
+OSVMware vCenterServerVMware ESXiVMware ESXiVirtual DesktopsOSVMware View ManagerOSPearson SuccessMakeror Waterford Early Learning ServerThin ClientZero ClientLaptop100Mbps SwitchDAS HDDRAID 1DAS HDDRAID 1 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+ 
+
+The three server virtual machine were used as follows: 
+
+  One for SuccessMaker and Waterford Early Learning combined 
+
+  One for VMware View Manager Server with no other View components installed 
+
+  One for VMware vCenter server for managing the vSphere and View infrastructure 
+
+ 
+
+The View Manager and vCenter servers were configured as separate virtual machines sharing the 
+same vCenter cluster.    
+
+ 
+
+Storage configuration: The testing architecture utilized direct-attached storage (DAS) hard drive 
+technology with each VMware ESXi host. DAS was comprised of a number of hard drives that were 
+installed locally on the server. DAS is commonly used as the low cost alternative to other storage 
+methods such as a storage area network (SAN).   
+
+Test Results – Observations 
+
+The test results demonstrate that running SuccessMaker and Waterford Early Learning software in a 
+VMware View environment enables a solution that can be deployed, managed, and maintained 
+effectively to satisfy virtual desktop initiatives.   
+
+The results of the testing include: 
+
+1.  All use cases passed under more than one endpoint and protocol combination. However, not all 
+
+combinations provided acceptable performance under all conditions. The limitations are described in 
+this paper. 
+
+2.  Slightly higher network utilization was observed due to bi-directional audio and video streaming 
+
+traffic. 
+
+3.  All use cases where SuccessMaker and Waterford Early Learning were used by students 
+
+simultaneously passed under more than one endpoint and protocol combination. Zero client 
+endpoint devices with the Teradici PCoIP protocol performed well with no video or audio anomalies. 
+Excellent results were seen with bi-directional audio for fluency recording in both Pearson 
+applications. 
+
+Note: VMware does not provide support for the Teradici bi-directional audio drivers. Customers using 
+zero clients along with the Teradici bi-directional audio driver should contact Teradici for more 
+information. 
+
+4.  Windows-based thin and thick clients used the Teradici PCoIP communication protocol, which met 
+student experience criteria. Linux based endpoint devices encountered driver incompatibilities and 
+the Teradici protocol was a software version behind its Windows counterparts. 
+
+5.  RDP did not perform well on any endpoint device, causing video jitter, screen refresh delays, lost 
+
+audio, and no audio recording. 
+
+6.  The SuccessMaker 3 student experience was the same in both Intel® Xeon® Processor 5500 series 
+
+(Nehalem)1 and non-Nehalem server configurations. 
+
+                                                                 
+1 For more information, go to: 
+http://www.intel.com/pressroom/archive/releases/2009/20090330corp_sm.htm?wapkw=nehalem%20CPU%20spec#story  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 8    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Recommendations  
+
+The test results demonstrate that VMware View is fully compatible with SuccessMaker and Waterford 
+Early Learning software when the virtual infrastructure solution is architected to meet the specific needs 
+of the software technologies used in these Pearson products such as Flash animation, uncompressed 
+analog video, and audio recording. 
+
+Figure 3 depicts a typical architecture for deploying SuccessMaker or Waterford Early Learning solutions 
+with VMware View 4.5. Contact your Pearson Account Executive or Pearson Sales Engineer for complete 
+details.   
+
+Figure 3. Typical architecture for deploying Pearson software with VMware View 
+
+1 Gbps Switch 
+
+ 
+
+As a result of the joint Pearson-VMware test effort, the best practices recommended for using these 
+Pearson products on a VMware View 4.5 virtual desktop infrastructure are: 
+
+1.  Use zero clients and the Teradici PCoIP protocol as the preferred desktop device to receive complete 
+
+compatibility and the best overall experience. Zero clients do not require configuration, and they 
+prevent students from tampering with the system. Zero clients are operating system agnostic and 
+require the least maintenance, decreasing the total cost of ownership (TCO). 
+
+2.  Use a gigabit-to-the-desktop infrastructure solution if available for an optimal experience. Subsequent 
+
+testing over a pure gigabit network demonstrated ideal conditions for the most intensive full-motion 
+video delivery. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 9    
+
+OSVMware vCenterServerNFS/iSCSISANVMware ESXiVMware ESXiVirtual DesktopsOSVMware View ManagerOSPearson SuccessMakeror Waterford Early Learning ServerThin ClientZero ClientLaptop100Mbps SwitchDAS SSDDAS SSD 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+3. 
+
+In some configurations, one-gigabit Active/Active iSCSI SAN solutions may not provide enough disc 
+throughput when scaling either of the Pearson products with the described VDI. Higher bandwidth 
+iSCSI SAN solutions provide more flexibility for growth and the ability to meet changing desktop 
+requirements throughout the school year. 
+
+4.  Use linked-clones to create virtual machines to minimize storage costs. With View, linked-clone 
+
+desktop pools (desktop images) can share virtual disks with a specified parent virtual machine using a 
+single, centralized master image.  
+
+5.  VMware recommends implementing a stateless virtual desktop architecture to enable an automatic 
+
+virtual desktop refresh every time the user logs off. The stateless architecture enables the virtual 
+desktop to be reset to its “gold” image, which keeps it in an optimal state. The stateless virtual 
+desktop architecture is ideally suited for student desktops where the image is consistent from user to 
+user. 
+
+6.  Configure the vSphere infrastructure management virtual machines on a separate host from View 
+
+Virtual Desktop infrastructure to achieve the best performance. Install the Pearson software server as 
+a virtual machine on a separate host, using the same infrastructure as the View components.  
+
+Note: The SuccessMaker and Waterford Early Learning products are not customer-installable. Please 
+contact your Pearson representative for information concerning consulting and installation services to 
+deploy these products in the customer enterprise/wide area network (WAN). 
+
+7.  Store Replica disk on high-performance disks such as DAS Solid State Drives (SSDs) to speed up server 
+
+performance during desktop provisioning. Store the Master disk on highly-available storage such a 
+SAN.  
+
+8.  When used, apply storage tiering to store persona on SAN/NAS storage to ensure high availability and 
+redundancy. For more information about View persona management, see the Resources section later 
+in this paper.  
+
+9.  Use the View Administrator console on a granular level to give instructors limited permissions to 
+
+manage the desktops remotely, such as to reset or refresh the desktops. View allows its administrator 
+functionality to be offloaded discretely. This allows the school district to address desktop issues 
+efficiently with limited resources, without requiring IT intervention.   
+
+In addition to the findings in this testing, the recommendations list a number of common best practices 
+for VMware View that are applicable to Pearson Success Maker and Waterford Early Learning 
+deployments. For more information, see the VMware View documentation listed in the Resources section 
+later in this paper.  
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 0    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Conclusion 
+In joint collaboration, Pearson and VMware are working together to certify that Pearson instructional 
+software products perform well with VMware View, and to create flexible deployment options for school 
+districts that are cost effective and provide for a lower TCO. This paper describes the validation testing 
+that was conducted to ensure Pearson SuccessMaker and Waterford Early Learning solutions work as 
+expected with VMware View under typical application workload conditions.   
+
+Results demonstrate that VMware View 4.5 is fully compatible with SuccessMaker 3 and Waterford Early 
+Learning version 4.4 when deployed appropriately. Running this software in a VMware vSphere 
+environment enables a solution that can be deployed, managed, and maintained efficiently.    
+
+As a result of this testing, Pearson fully supports VMware View as an approved deployment infrastructure 
+for use with the SuccessMaker and Waterford Early Learning solutions. Please see the recommendations 
+for more details on a full VMware View Infrastructure configuration for Pearson software.  
+
+In addition, VMware View 5 provides an order of magnitude improvement over the earlier versions of 
+View in terms of bandwidth efficiency. View 5.0 provides PCoIP optimization controls that utilize up to 74 
+percent less bandwidth (70 percent less over the WAN) than View 4.5. With View 5, students on virtual 
+desktops enjoy an improved user experience in a variety of bandwidth conditions. For more detailed 
+information, see the View 5.0 comparison report in the Resources section later in this paper.  
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 1    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Resources 
+For more information about VMware and Pearson products and the storage platforms, view the following 
+links and references. 
+
+VMware View 
+
+  Desktop Virtualization Products: 
+
+http://www.vmware.com/products/desktop_virtualization/  
+
+  VMware View 5: 
+
+http://www.vmware.com/products/view/overview.html 
+
+  VMware View Documentation including Administration Guide and View Architecture and Planning 
+
+Guide: 
+http://www.vmware.com/support/pubs/view_pubs.html    
+
+  VMware Infrastructure 3 Documentation including hardware compatibility list and release notes: 
+
+http://www.vmware.com/support/pubs/vi_pubs.html   
+
+ 
+
+The VMware Reference Architecture for Stateless Virtual Desktops with VMware View 4.5: 
+http://www.vmware.com/files/pdf/VMware-View-45-Stateless-RA-brief.pdf   
+
+  Desktop Virtualization with VMware View 5.0 Compared to View 4.6: 
+
+http://www.vmware.com/files/pdf/view/PT-Test-Report-VMware-View-5-Compared-to-View-4-6.pdf  
+
+  VMware vSphere™ Storage Appliance:  
+
+http://www.vmware.com/products/datacenter-virtualization/vsphere/vsphere-storage-
+appliance/overview.html        
+
+  VMware View™ Persona Management: 
+
+http://www.vmware.com/files/pdf/view/VMware-View-Persona-Management-Deployment-
+Guide.pdf 
+
+VMware References 
+
+ 
+
+Featured VMware Documentation Sets: 
+http://www.vmware.com/support/pubs/  
+
+  VMware Licensing Help Center: 
+
+http://www.vmware.com/support/licensing/  
+
+ 
+
+ 
+
+Performance Troubleshooting for VMware vSphere 4: 
+http://www.vmware.com/resources/techresources/10066  
+
+Performance Best Practices for VMware vSphere 4.1: 
+http://www.vmware.com/resources/techresources/10161  
+
+  Best Practices  including VIOPS: 
+
+http://communities.vmware.com/community/viops  
+
+  VMware Product Podcasts: 
+
+http://www.vmware.com/technical-resources/podcasts/  
+
+ 
+
+Knowledge Base: 
+http://kb.vmware.com  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 2    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+  VMware KB TV: 
+
+http://blogs.vmware.com/kbtv/  
+
+  VMware TV: 
+
+http://www.youtube.com/user/vmwaretv  
+
+  VMworld TV: 
+
+http://www.youtube.com/user/VMworldTV  
+
+  VMware KB TV: 
+
+http://www.youtube.com/user/VMwareKB  
+
+Pearson Education, Inc. 
+
+ 
+
+ 
+
+ 
+
+Pearson: Their Learning, Their Future, Their Way: 
+http://bluetoad.com/publication/?m=18739&l=1 
+
+Pearson Web Site, Pre K – 12 Education, Supplemental Curriculum: 
+http://www.pearsonschool.com/index.cfm?locator=PSZu6o 
+
+SuccessMaker®: A Digital Learning Curriculum by Pearson: 
+http://www.pearsonschool.com/index.cfm?locator=PSZyM6&PMDbSiteId=2781&PMDbSolutionId=6
+724&PMDbSubSolutionId=&PMDbCategoryId=806&PMDbSubCategoryId=933&PMDbSubjectAreaId=
+&PMDbProgramId=55601  
+
+  Waterford Early Learning™: 
+
+http://www.pearsonschool.com/index.cfm?locator=PSZyLj&PMDbSiteId=2781&PMDbSolutionId=672
+4&PMDbSubSolutionId=&PMDbCategoryId=806&PMDbSubCategoryId=&PMDbSubjectAreaId=&PMD
+bProgramId=32503  
+
+ 
+
+Pearson Community Connection, Support Knowledge Base: 
+http://support.pearsonschool.com/   
+
+Storage Platforms 
+
+  VMware Compatibility Guide for a complete list of compatible storage devices: 
+
+http://www.vmware.com/pdf/vi35_san_guide.pdf  
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 3    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Acknowledgements 
+The following individuals contributed to the creation of this paper: 
+
+ 
+
+Laurynas Kavaliauskas, Technical Alliance Manager, VMware 
+
+  Biswapati Bhattacharjee, Member of Technical Staff, VMware 
+
+  Mike Acton, Engineering Product Owner, Waterford, and QuickReads, Pearson  
+
+  Andrew Budwill, Field Systems Engineer, Pearson  
+
+ 
+
+Chris Hillard, Engineering Product Owner, SuccessMaker, Pearson  
+
+  Brian Kane, Engineering Product Owner, SuccessMaker and Waterford, Pearson  
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 4    
+
+ 
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Appendix A: Hardware and System Host 
+Configuration 
+Table 1 describes the configuration of VMware ESX® host servers and storage in the solution architecture. 
+
+Table 1. Hardware configuration 
+
+Hardware 
+
+Servers 
+
+Configuration 
+
+ 
+
+ 
+
+Virtual Machine: Table 3 describes the configuration of virtual 
+machines running on ESX host servers in the solution architecture. 
+
+Host: Hewlett Packard Proliant BL460c G1: 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3 GHz dual eight-core Xeon E5450 
+
+16 GB memory 
+
+4 GB FC SAN 
+
+1000 Mbps connection 
+
+ESX 4.1.0, 64-bit  
+
+500 GB of local storage  
+
+Installed Software 
+
+Table 2 lists the software used in the solution architecture. 
+
+Table 2. Software 
+
+Software Provider 
+
+Software Configuration 
+
+VMware  
+
+Pearson Software 
+
+ 
+
+ 
+
+VMware vSphere 4.1, View 4.5 
+
+SuccessMaker 3, Waterford Early Learning version 4.4 
+
+Client Configurations 
+
+Table 3 describes the configuration of clients used in the solution architecture. 
+
+Table 3. Virtual machines 
+
+Client Type 
+
+Hardware Configuration  
+
+Thick Client 1 
+
+  Dell Model D420, Core Solo CPU (single core, 1 GHz, 1.5 GB memory, 4200 disk I/O) 
+
+Thick Client 2 
+
+  Dell E6400 Core 2 Duo CPU (2 cores, 2.5 GHz, 4 GB memory, 7200 disk I/O) 
+
+Thin Client 
+
+  Wyse R90LW WES, AMD Sempron (single core, 1.5 GHz, 1 GB memory) 
+
+Zero Client 1 
+
+  Wyse P20 D200 
+
+ 
+
+Teradici 1100P PCoIP CPU 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 5    
+
+Pearson SuccessMaker and Waterford Early Learning Software with VMware® View™ 
+
+ 
+
+Client Type 
+
+Hardware Configuration  
+
+Zero Client 2 
+
+  Samsung NC240 
+
+  Teradici 1100P PCoIP CPU 
+
+ 
+
+ 
+
+                                                                 
+i Based on the type of device and available drivers, some product functionality could be diminished or 
+unavailable. Contact your Pearson Account Executive or Pearson Sales Engineer for complete details. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 6    
+
+

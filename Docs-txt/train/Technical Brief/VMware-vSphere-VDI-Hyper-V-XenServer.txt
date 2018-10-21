@@ -1,0 +1,1496 @@
+Why Choose  VMware® vSphere™ 5  for VDI?Comparison to Microsoft Hyper-V and Citrix XenServer WHITE PAPERTable of Contents
+
+Overview   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+The Leading Virtualization Platform on the Market  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+  vSphere is the Recognized Virtualization Leader  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 3
+  vSphere is the Most Proven, Trusted, and Widely Deployed Platform  .  .  .  .  .  .  .  .  .  .  .  . . 4
+  vSphere Is Supported by the Largest Ecosystem  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 4
+  vSphere Provides the Best Security for Virtual Environments  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 4
+Standardize on a Common Cloud  
+Infrastructure Platform   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+Maximizes the Benefits of Desktop Virtualization with VMware View  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+Key Features and Benefits Comparison with Competing Virtualization Products  .  .  .  . 6
+Summary  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 16
+
+W H I T E   P A P E R   /   2
+
+Why Choose VMware vSphere 5 for VDI?Overview 
+
+Today, Virtualization Desktop Infrastructure (VDI) is a key initiative for many organizations looking to reduce  
+administrative overhead while providing a more secure, flexible and reliable desktop computing environment 
+for end users. Proper planning and good decision making are required to ensure a successful deployment. 
+Choosing the right virtualization platform to host the virtual desktop implementation is often the first major 
+decision and— to a large degree— can make or break the entire transformation. Important considerations 
+when choosing the best VDI platform include: 
+
+•	Does	the	platform	provide	the	features,	reliability,	and	high	availability	to	meet	the	business	requirements?
+
+•	Is	the	platform	reliable	and	proven?
+
+•	Does	the	platform	provide	a	secure	foundation	for	all	the	virtual	desktops?
+
+•	Can	the	infrastructure	be	standardized	on	the	same	platform	as	the	existing	server	virtualization?
+
+•	How	will	the	choice	made	today	impact	future	migration	to	a	cloud	environment?
+
+•	How	does	the	VDI	platform	choice	impact	options	for	a	VDI	solution?
+
+Based on the above criteria, the best choice for most VDI deployments is vSphere because:
+
+1.  vSphere is the leading virtualization platform and provides unbeatable reliability, high availability, 
+
+business continuity, and fault tolerance.
+
+2.  Customers can standardize on a common cloud infrastructure platform from the desktop through the 
+
+datacenter and to the cloud.
+
+3.    VMware View and vSphere integration maximizes the benefits of the leading virtualization platform  
+
+for VDI.
+
+This paper takes a look at each of these attributes in the context of the unique needs of the VDI market. 
+
+W H I T E   P A P E R   /   3
+
+Why Choose VMware vSphere 5 for VDI?The Leading Virtualization Platform  
+on the Market
+
+VMware pioneered x86 server virtualization over ten years ago and has firmly established vSphere as the 
+virtualization industry leader as recognized by customers, press and analysts.
+
+vSphere is the Recognized Virtualization Leader
+VMware’s culture of innovation continues to propel virtualization and cloud computing into the future. 
+Despite competitors’ best efforts to catch up, vSphere maintains a significant technical lead. Features unique 
+to vSphere and the benefits of those features are discussed in detail later in this paper. Regarding VMware, 
+InfoWorld stated in 2011: “It’s easy to see that VMware has the best, most feature-rich solution on the market. 
+It’s years ahead of the competition in many ways and will likely continue to lead the field for many years to 
+come.” Competitors often claim that recent or future product releases have “caught up” to VMware or are “near 
+parity” with VMware solutions—in reality, what they have actually accomplished is to deliver a first-generation 
+feature that allows them to check a box. In contrast, VMware has gone on to develop the second, third, and 
+fourth generations of these features. With VMware vSphere 5.0, VMware has raised the bar even higher with 
+enhancements that will retain vSphere’s status as the best virtualization platform available. Gartner has placed 
+VMware in the leaders’ quadrant of its x86 Virtualization Magic Quadrant, and VMware is the only vendor to 
+receive that ranking each year.
+
+vSphere is the Most Proven, Trusted, and Widely Deployed Platform
+VMware virtualization solutions are built on a robust foundation proven in production environments and chosen 
+by over 250,000 customers, including: 
+
+•	100%	of	Fortune	100
+
+•	100%	of	Fortune	Global	100
+
+•	99%	of	Fortune	1000
+
+•	97%	of	Fortune	Global	500
+
+Among the world’s leading Fortune 1000 companies, VMware has been adopted across all industries, including:
+
+•	100%	of	manufacturers
+
+•	100%	of	healthcare	companies
+
+•	100%	of	technology	companies
+
+•	100%	of	retailers
+
+•	100%	of	transportation	companies
+
+•	97%	of	financial	services	companies
+
+•	95%	of	telecommunications/media/entertainment	companies
+
+Over	94	percent	of	ESX	and	ESXi	deployments	are	in	production	environments—an	example	of	how	both	large 	
+and small companies trust VMware for their business-critical workloads.
+
+W H I T E   P A P E R   /   4
+
+Why Choose VMware vSphere 5 for VDI?vSphere Is Supported by the Largest Ecosystem
+VMware	works	closely	with	its	large	ecosystem	of	partners	(software	vendors,	system	OEMs,	and	peripheral 	
+manufacturers) to certify their products with the VMware vSphere platform—usually requiring and delivering 
+product certifications when first released. Working with such a wide variety of technology vendors means 
+that VMware technology works across the broadest array of IT environments. VMware vSphere supports 
+more guest operating systems than any other x86 virtualization platform; in fact, it supports more versions 
+of	Windows	than	Microsoft.	VMware’s	hardware	compatibility	list	(HCL)	includes	more	than	2000	servers, 	
+1500	storage	devices,	800	storage	controllers,	and	450	network	I/O	cards—more	than	any	of	its	competitors. 	
+VMware has also worked with a broad set of software partners to help ensure that vSphere is compatible 
+with other software and that other applications will run on vSphere. There are over 1600 ISV partners with 
+over 3000 applications qualified to run on vSphere. In a highly virtualized environment, management can be 
+complex—for this reason, VMware maintains the industry’s largest ecosystem of virtualization management 
+vendors. Our management partners typically support vSphere first which provides customers with the most 
+choice	and	flexibility	in	selecting	hardware,	application,	and	management	components	that	best	suit	their	cost/
+performance needs while leveraging their existing technology investments.
+
+vSphere Provides the Best Security for Virtual Environments
+Highly	virtualized	environments	introduce	new	security	challenges	that	traditional	security	solutions	cannot 	
+address on their own. VMware, with the vShield family of products, offers a better approach to security than 
+other virtualization vendors. VMware vSphere provides virtualization-aware security and compliance features 
+that work with existing solutions to enable adaptive and cost-effective protection within a single management 
+framework. VMware’s new security model is the foundation for trusted and scalable virtual infrastructures. 
+
+Standardize on a Common Cloud  
+Infrastructure Platform 
+
+Server virtualization reduces the total cost of ownership (TCO) by reducing the number of physical servers  
+requiring less cooling and less power—at the same time increasing flexibility, agility, and resilience. The majority 
+of customers have realized these benefits by using VMware vSphere, and now want to extend these benefits 
+achieved with server virtualization to the desktop environment. In the future, they may want to embrace cloud 
+computing, and move all applications and data to the cloud. Choosing the right platform for these initiatives 
+is a very important investment. The good news is that the best server virtualization platform makes the best 
+desktop virtualization platform and the best cloud platform—vSphere. By hosting VDI on vSphere, customers 
+have the opportunity to standardize on a common infrastructure platform by leveraging their investment in 
+vSphere. When customers are ready to move to the cloud, they can again take advantage of the complete 
+cloud stack built on top of vSphere. Choosing vSphere as the VDI platform gives customers the opportunity to 
+standardize on a common cloud infrastructure platform from the desktop through the datacenter and to the 
+cloud. In contrast, mixed environments often result in more management complexity and higher operation cost.
+
+W H I T E   P A P E R   /   5
+
+Why Choose VMware vSphere 5 for VDI?Maximizes the Benefits of Desktop 
+Virtualization with VMware View
+
+VMware vSphere supports most of the major VDI solutions, including the market leader, VMware View. VMware 
+View as the VDI solution deployed on vSphere maximizes the benefits of vSphere as the VDI platform for the 
+following reasons:
+
+•	View	leads	in	integration	with	new	vSphere	capabilities	as	they	are	introduced.	At	VMware,	R&D	teams	for 	
+both View and vSphere work closely together to make sure that View takes full advantage of vSphere’s new 
+capabilities as soon as they become available. Other VDI vendors typically become certified for new vSphere 
+releases at a much later time.
+
+•	View	can	directly	leverage	advanced	features	provided	by	vSphere.	VMware	vSphere	5.0	introduced	fully 	
+virtualized 3D graphics—a graphics solution that does not require any additional hardware on the host side. 
+View 5.0 quickly took advantage of this feature to expand the use cases for VDI by enabling support for basic 
+3D applications such as Windows Aero and Office 2010 with no additional hardware cost. 
+
+•	Built	on	the	vSphere	vShield	technology,	vShield	Endpoint	for	View	is	the	only	solution	that	offloads	antivirus 	
+and antimalware agent processing to a dedicated secure virtual appliance delivered by VMware partners. 
+The solution is designed to leverage existing investments by allowing customers to manage antivirus and 
+antimalware policies for virtualized environments with the same management interfaces they use to secure 
+physical	environments.	VMware	vShield	Endpoint:
+
+-  Improves consolidation ratios and performance by eliminating antivirus “storms”
+
+-  Streamlines antivirus and antimalware deployment and monitoring in View environments
+
+-  Satisfies compliance and audit requirements through logging of antivirus and antimalware activities
+
+•	With	all	the	great	benefits	described	above,	View	on	vSphere	actually	lowers	the	total	cost	of	VDI,	making	it 	
+more	affordable	to	customers.	View	is	the	only	VDI	solution	that	includes	vSphere	Enterprise	Plus	for	Desktop 	
+with unlimited vRAM entitlement in all license packages with no additional license cost. Customers do not 
+have to spend extra money on the platform if they deploy VMware View on vSphere. 
+
+W H I T E   P A P E R   /   6
+
+Why Choose VMware vSphere 5 for VDI?Key Features and Benefits Comparison with 
+Competing Virtualization Products
+
+VMware vSphere features and benefits position it far ahead of competing products from Microsoft and Citrix as 
+a platform for desktop virtualization. 
+
+Note:	Microsoft	capabilities	in	this	table	are	based	on	features	of	Hyper-V	R2	SP1	as	managed	by	System	Center	
+Virtual	Machine	Manager	2008	R2.	Citrix	capabilities	in	the	table	are	based	on	XenServer	5.6	SP2.	Certain	Citrix 	
+features	require	extra-cost	editions	of	XenServer.	
+
+KEY FEATURES AND BENEFITS
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Bare-Metal Architecture. Robust virtualization 
+layer directly on the server hardware, providing 
+near-native VM performance, reliability and 
+scalability.
+
+Only true 
+bare- 
+metal 
+architecture
+
+Requires entire 
+Windows Server 
+2008 or a large 
+portion of Windows 
+Server 2008
+
+Requires a 
+Linux	OS	in	the	
+Domain 0 
+management 
+partition
+
+Small Footprint.	Highest	reliability	and	smallest	
+attacking surface against security threats.
+
+Fully Virtualized 3D Graphics. Support non-
+hardware accelerated 3D graphics to run 3D 
+applications	in	VMs.	Expand	VDI	use	cases.
+
+A compact, 
+144MB	
+hypervisor
+
+Microsoft	Hyper-V	
+R2 SP1 with Server 
+Core has a 3.6 GB 
+footprint
+
+XenServer	5.6	
+including its 
+Linux	Dom	0	
+has a >1GB disk 
+footprint
+
+Yes
+
+No
+
+No
+
+W H I T E   P A P E R   /   7
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+RAM over-commitment. Allow configuring 
+VM memory that safely exceeds the physical 
+server memory. Increase memory utilization 
+and VM density.
+
+Yes
+
+Depends on only 
+ballooning and 
+impacts VM 
+performance 
+
+Depends on 
+only ballooning 
+and impacts VM 
+performance
+
+T
+N
+E
+M
+E
+G
+A
+N
+A
+M
+
+ 
+
+Y
+R
+O
+M
+E
+M
+
+ 
+
+D
+E
+C
+N
+A
+V
+D
+A
+
+Transparent page sharing. Allow storing 
+identical memory pages across multiple 
+VMs only once. Utilize available memory 
+more efficiently.
+
+Memory ballooning. Shift memory 
+dynamically from idle VMs to active ones by 
+artificially inducing memory pressure within 
+idle VMs. Utilize available memory more 
+efficiently.
+
+Memory compression. Selectively compress 
+memory pages to delay the need to swap to 
+disk when under memory pressure. Maintain 
+VM performance longer.
+
+VM memory resource shares. Prioritize 
+memory allocations to VMs by assignable 
+shares. Prioritize memory usage based on 
+use cases.
+
+Swap to host cache. Allow swapping 
+memory pages to extend to local or 
+network SSD devices. Minimizes 
+performance impact by swapping.
+
+Yes
+
+No
+
+No
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Only supported in 
+Windows Server 
+2008 R2 SP1, not in 
+Server Core
+
+Not dynamic. 
+Will not change 
+the size of 
+balloon based 
+on VM memory 
+usage
+
+No
+
+No
+
+No
+
+No
+
+No
+
+No
+
+W H I T E   P A P E R   /   8
+
+Why Choose VMware vSphere 5 for VDI?VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Yes
+
+Windows Firewall
+
+No
+
+KEY FEATURES AND BENEFITS
+
+Host firewall. Protect management 
+interface with a service-oriented and 
+stateless	firewall.	Eliminates	the	use	of	
+iptables, and rule sets define port rules for 
+each service.
+
+Layer 2 network security policies. Enforce	
+security	for	VMs	at	the	Ethernet	layer.	
+Disallow promiscuous mode sniffing of 
+network traffic, MAC address changes, and 
+forged source MAC transmits.
+
+Yes
+
+No
+
+No
+
+No
+
+No
+
+No
+
+Y
+T
+I
+
+R
+U
+C
+E
+S
+
+Control network access to sensitive areas 
+of the virtual datacenter such as the DMZ 
+or servers with sensitive data subject to PCI 
+or	SOX	compliance	regulations,	efficiently	
+within shared environments.
+
+VMware 
+vShield
+
+No
+
+Securely bridge, firewall, or isolate traffic 
+across logical trust or organizational 
+boundaries. Allow sharing computing 
+resource pools without compromise on 
+security.
+
+VMware 
+vShield
+
+APIs for management, policy enforcement 
+and access to logging and auditing tools. 
+Allow easy integration of third party 
+security solutions.
+
+VMware 
+vShield API
+
+No
+
+No
+
+Y Support for powerful physical server 
+
+systems. Increase desktop consolidation 
+ratio.
+
+T
+I
+L
+I
+
+B
+A
+L
+A
+C
+S
+
+160 logical 
+CPUs and 2TB 
+RAM
+
+64	logical	CPUs	and	
+1TB of RAM
+
+64	logical	CPUs	
+and 512GB RAM
+
+Number of powered-on VMs supported. 
+Increase desktop consolidation ratio.
+
+512 powered-on 
+VMs
+
+384	powered-on	
+VMs
+
+Undocumented
+
+W H I T E   P A P E R   /   9
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+Physical servers. Rigorous testing and 
+certification of a wide range of server 
+systems from major vendors. Broad vendor 
+options for cost, performance, and 
+standardization.
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Support over 
+1600 servers
+
+Only support 
+servers qualified for 
+Windows Server 
+2008 R2
+
+143	server	
+models certified 
+(as of 
+5/23/2011)
+
+Storage. Rigorous testing and certification 
+of a wide range of storage systems from 
+major vendors. Broad vendor options for 
+cost, performance, and standardization.
+
+Support over 
+1200 storage 
+arrays
+
+Only support arrays 
+qualified for 
+Windows Server 
+2008 R2
+
+Support for Fibre Channel,  iSCSI, NAS 
+shared storage types and local SCSI/SAS/
+SATA storage. Broad vendor options for 
+cost, performance, and standardization.
+
+Yes
+
+Hyper-V	R2	doesn’t	
+support NAS
+
+Y
+T
+
+I
+L
+I
+
+B
+A
+R
+E
+P
+O
+R
+E
+T
+N
+
+I
+
+117	arrays	
+certified, only 
+50 certified 
+with 
+StorageLink	(as	
+of	5/23/2011)
+
+No NAS 
+support with 
+StorageLink,	
+non-shared 
+H/W	iSCSI	only
+
+Integrated virtual shared storage array. 
+Provide virtual shared storage volumes 
+using	local	disks.	Enable	shared	storage	at	
+the lowest cost.
+
+Yes
+
+No
+
+No
+
+Support for leading edge storage and 
+networking technologies.	More	cost/
+performance options.
+
+10	GigE	,	
+Infiniband  
+and	FCoE		
+
+Support 10GB and 
+FCoE	but	not	
+Infiniband
+
+No support for 
+FCoE	or	
+Infiniband
+
+W H I T E   P A P E R   /   1 0
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+G
+N
+
+I
+L
+U
+D
+E
+H
+C
+S
+
+ 
+
+E
+C
+R
+U
+O
+S
+E
+R
+
+ 
+
+D
+E
+T
+U
+B
+
+I
+
+R
+T
+S
+I
+
+D
+
+G
+N
+
+I
+
+K
+R
+O
+W
+T
+E
+N
+
+Aggregate resources across many servers 
+into shared resource pools. Manage 
+resources independent of the physical 
+servers that contribute the resources.
+
+Flexible hierarchical organization. 
+Organize resource pools hierarchically to 
+match available IT resources to the business 
+organization. DRS ensures that resource 
+utilization is maximized while business units 
+retain control and autonomy of their 
+infrastructure. Resource pools can be 
+flexibly added, removed, or reorganized as 
+business needs or organization change.
+
+Isolation between resource pools. Make 
+allocation changes within a resource pool 
+without impacting other unrelated resource 
+pools. For example, any allocation changes 
+in the resource pool dedicated to a given 
+business unit do not impact other resource 
+pools.
+
+Rich port policies and easy configuration. 
+Allow specification of all information 
+needed to enable a port: NIC teaming policy, 
+VLAN	tagging,	Layer	2	security,	and	traffic	
+shaping. Allow configuration of multiple 
+virtual ports as a group.
+
+Load-based teaming. Allow dynamic 
+adjustment of the teaming algorithm so that 
+the load is always balanced across a team of 
+physical adapters on a vNetwork Distributed 
+Switch.
+
+Network vMotion. Retain network runtime 
+state centrally as virtual machines live 
+migrate from server to server in shared DRS 
+clusters; simplifying network 
+troubleshooting and monitoring.
+
+Third-party distributed virtual switches. 
+Enable	monitoring	and	control	of	virtual	
+networking environments through the 
+familiar interfaces of third-party networking 
+tools, with the capability to plug in third-
+party software virtual switches such as the 
+Cisco Nexus 1000V.
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+No,	Hyper-V	R2	
+doesn’t have 
+resource pools
+
+No,	Hyper-V	R2	
+doesn’t have 
+resource pools or 
+DRS
+
+Limited,	cannot	
+subdivide 
+resources of 
+pooled hosts 
+
+Lacks	
+hierarchical 
+resource pools
+
+No,	Hyper-V	R2	
+doesn’t have 
+resource pools
+
+No, no 
+hierarchical 
+resource pools
+
+No support for port 
+groups
+
+No support for 
+port groups
+
+Yes
+
+No
+
+No,	lacks	LACP	
+support
+
+Yes
+
+No
+
+Yes
+
+No
+
+Yes
+
+No
+
+W H I T E   P A P E R   /   1 1
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+Support Software FCoE. Allow access to 
+LUNs	over	FCoE	without	needing	a	
+dedicated	HBA	or	third-party	FCoE	driver	
+installed on the host.
+
+Online addition or removal of nodes. Add 
+a host to or delete a host from a storage 
+volume without pausing or halting the 
+processing of other hosts. 
+
+Shared data file system. Enable	multiple	
+hosts to read and write from the same 
+storage	location	concurrently.	Ensure	that	
+individual servers are not single points of 
+failure and enable resource balancing across 
+multiple servers because VMs are hardware 
+independent and portable across servers.
+
+E
+G
+A
+R
+O
+T
+S
+
+Dynamic volume resizing. Aggregate 
+multiple storage disks into a single volume. 
+Add	new	heterogeneous	LUNs	to	a	volume	
+on	the	fly.	Grow	existing	LUNs	(on	arrays	
+that support this feature) and resize 
+volumes on the fly.
+
+Automatic volume re-signaturing. Simplify 
+the use of array-based snapshot technology. 
+Re-signaturing automatically recognizes 
+snapshot volumes.
+
+Caching. Uses volume, device, object and 
+buffer caching to improve performance.
+
+Built-in storage access multi-pathing. 
+Ensure	shared	storage	availability	with	SAN	
+multi-pathing for Fibre Channel or iSCSI 
+SAN, and NIC teaming for NAS. 
+
+Hot add and hot extend virtual disks. Add 
+virtual disks or extend virtual disks non-
+disruptively to a running VM to increase 
+available resources 
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Yes
+
+No
+
+No
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+No,	Hyper-V	R2	
+doesn’t allow online 
+additions or 
+removal of hosts
+
+No true cluster file 
+system; CSV is a 
+hybrid; coordinator 
+node controls 
+access
+
+No, requires third-
+party SAN tools to 
+grow and shrink 
+LUNs
+
+No
+
+No
+
+Limited	support,	
+requires third-party 
+tools
+
+Yes
+
+No hot extend. 
+
+Only if 
+XenServer	host	
+is not the 
+cluster master 
+host
+
+XenServer	does	
+not provide a 
+cluster file 
+system but 
+does allow 
+multiple hosts 
+to access virtual 
+disks on a 
+common 
+storage volume
+
+No
+
+No
+
+Not 
+documented
+
+Multi-pathing 
+requires RDAC 
+MPP support in 
+array, limited 
+HCL
+
+Hot	add	only,	
+no hot extend
+
+W H I T E   P A P E R   /   1 2
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Distributed journaling. Recover virtual 
+machines faster and more reliably in the 
+event of server failure.
+
+Customizable reports and topology maps. 
+Increase visibility into storage space 
+utilization with per VM, per datastore and 
+other reports. Resolve configuration-related 
+issues with storage-specific topology maps.
+
+Centralized datastore management. 
+Create, configure, organize, and secure 
+datastores centrally for more granular 
+control over storage.
+
+SMI-S-compliant management interfaces. 
+Monitor virtual storage using any standard 
+SMI-S–aware storage management tool. 
+
+N-port ID virtualization. Assign individual 
+worldwide port names to each VM to enable 
+QoS analysis on a per VM basis using third-
+party SAN tools.
+
+E
+G
+A
+R
+O
+T
+S
+
+Profile-driven storage. Classify datastores 
+into various Storage Profiles based on the 
+service levels and required performance 
+characteristics. Reduce time for storage 
+planning/configuration.	
+
+APIs for storage hardware acceleration. 
+Provide	interface	to	offload	specific	storage	
+operations to compliant storage hardware. 
+With storage hardware assistance, a host 
+performs these operations faster and 
+consumes less CPU, memory, and storage 
+fabric bandwidth.
+
+APIs for multi-pathing. Support for third-
+party multi-pathing plug-in extension 
+modules	from	vendors	such	as	EMC,	Dell/
+Equallogic	and	others	to	enhance	high	
+availability and load balancing for critical 
+applications.
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+No
+
+No
+
+No
+
+No
+
+No
+
+Yes
+
+Yes
+
+No
+
+Yes
+
+Limited,	PowerPath	
+for Windows
+
+No
+
+Limited	reports,	
+no topology 
+maps
+
+Yes, requires 
+StorageLink
+
+Yes, requires 
+StorageLink
+
+No
+
+No
+
+StorageLink	
+partially 
+exposes array 
+features, limited 
+choice of 
+supported 
+arrays
+
+Limited	to	
+arrays 
+supporting 
+RDAC MPP 
+
+W H I T E   P A P E R   /   1 3
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Yes
+
+No
+
+No
+
+APIs for storage awareness. Allow storage 
+arrays to integrate with management tool 
+via server-side plug-ins or vendor providers. 
+Allow administrators to be aware of the 
+topology, capabilities, and state of the 
+physical storage devices available to the 
+cluster.
+
+APIs for data protection.	Enables	backup	
+software to perform centralized VM backups 
+without the disruption and overhead of 
+running backup tasks from inside each VM.
+
+Data recovery.	Enables	quick,	simple,	and	
+complete data protection and 
+de-duplication for VMs. Utilizes disk-based 
+storage to enable speedy recovery of VMs.
+
+Live migration over distance. Move a 
+running VM when the source and 
+destination hosts are more than 5ms 
+roundtrip time latency apart. 
+
+Concurrent live migration of multiple VMs. 
+
+Yes
+
+Yes
+
+Support max 
+RTL	of	10ms
+
+4	to	8	VMs	
+concurrently
+
+E
+G
+A
+R
+O
+T
+S
+
+N
+O
+
+I
+T
+A
+R
+G
+
+I
+
+M
+
+ 
+
+M
+V
+
+Live migration across different storages 
+with no disruption or downtime. 
+
+Live migration across different types of 
+storage (FC, iSCSI, NFS and even local 
+storage) 
+
+Live migration of VMs with snapshots and 
+the migration of linked clones. 
+
+Cold migration. Move VMs that are shut 
+down from one server to another or virtual 
+machine disks from one storage array to 
+another.
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+No
+
+No
+
+No
+
+No
+
+No
+
+No
+
+One VM only
+
+One VM only
+
+No,	Hyper-V	R2	
+Quick Storage 
+Migration is not live
+
+No
+
+No
+
+Yes
+
+No
+
+No
+
+No
+
+No
+
+W H I T E   P A P E R   /   1 4
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+Resource checks before restarting VMs. 
+Ensure	that	capacity	is	always	available	in	
+order to restart all VMs affected by server 
+failure.	HA	continuously	monitors	capacity	
+utilization and “reserves” spare capacity to 
+be able to restart VMs. 
+
+HA scalability. 
+
+Y
+T
+I
+L
+I
+
+B
+A
+L
+I
+
+A
+V
+A
+
+ 
+
+H
+G
+
+I
+
+H
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Yes
+
+No
+
+No
+
+Undocumented
+
+Supports 512 
+VMs per host, 
+32 hosts per 
+cluster and 
+3000 VMs per 
+cluster.
+
+No, Microsoft 
+Failover Clustering 
+limited	to	16	hosts/
+cluster
+
+HA healthcheck and cluster operational 
+status.	Monitor	current	HA	operational	
+status, including the specific status and 
+errors	for	each	host	in	the	HA	cluster.
+
+Memory fault isolation. Detects and 
+quarantines physical memory regions that 
+exhibit frequent correctable errors. Improve 
+VM and host availability.
+
+Yes
+
+Yes
+
+No
+
+No
+
+No
+
+No
+
+W H I T E   P A P E R   /   1 5
+
+Why Choose VMware vSphere 5 for VDI?KEY FEATURES AND BENEFITS
+
+Comprehensive inventory model. Manage 
+the complete inventory of VMs, applications, 
+resource pools, and physical servers with 
+greater visibility into object relationships. 
+The new inventory model provides the 
+flexibility to organize objects into folders 
+and create two separate hierarchical views. 
+
+Reports.	Export	management	data	to	HTML	
+and	Excel	formats	for	integration	with	other	
+reporting	tools	and	offline	analysis.	
+
+Patch management. Datacenter-wide 
+actionable patch compliance dashboard. 
+Zero downtime host patching. Recalled 
+patch handling notifies of recalls and 
+prevents installation of recalled patches.
+
+Custom roles and permissions. Enhance	
+security and flexibility with user-defined 
+roles. 
+
+Host profiles. Establish	standard	
+configurations for hosts and automate 
+compliance to these configurations, 
+simplifying operational management of 
+large-scale environments and reducing 
+errors due to misconfigurations.
+
+VMWARE   
+VSPHERE 5 
+
+WINDOWS SERVER 
+2008 MICROSOFT 
+HYPER-V R2 SP1
+
+CITRIX 
+XENSERVER 5.6 
+SP2
+
+Yes
+
+No
+
+No
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+No
+
+Requires SCVMM 
+and SCCM
+
+No
+
+No
+
+Yes, requires 
+Authorization 
+Manager
+
+No 
+customization
+
+No
+
+No
+
+S
+E
+C
+
+I
+
+V
+R
+E
+S
+
+ 
+
+T
+N
+E
+M
+E
+G
+A
+N
+A
+M
+
+ 
+
+D
+E
+T
+A
+R
+G
+E
+T
+N
+
+I
+
+N
+O
+
+I
+T
+A
+M
+O
+T
+U
+A
+
+ 
+
+D
+N
+A
+
+ 
+
+T
+N
+E
+M
+Y
+O
+L
+P
+E
+D
+
+ 
+
+T
+S
+O
+H
+
+Auto deploy. Simplify host deployment and 
+compliance by creating hosts from 
+configuration templates. New hosts are 
+automatically provisioned based on rules 
+defined by user.
+
+Yes
+
+No
+
+No, requires 
+in-depth setup in 
+Systems Center 
+Configuration 
+Manager
+
+Table 1: Key Features and Benefits Comparison of VMware vSphere 5 Enterprise Plus, Microsoft Hyper-V R2 SP1, and Citrix XenServer 5 .6 SP2 . 
+
+W H I T E   P A P E R   /   1 6
+
+Why Choose VMware vSphere 5 for VDI?Summary
+
+VDI is a key initiative for many organizations on the journey toward cloud-based end-user computing in the 
+post-PC era. VDI provides organizations a competitive edge in technology. Choosing the right virtualization 
+platform for VDI is both challenging for customers and critical to the success of this great transformation. As 
+the pioneer and leader in virtualization, VMware vSphere stands as the leader against the competition as the 
+best platform for VDI. It provides an unmatched feature set in reliability, performance, scalability, security, 
+and high availability. It has been deployed in hundreds of thousands of customer production environments 
+running their most critical business applications. VMware vSphere supports VMware View, the leading VDI 
+solution, a choice which allows customers to standardize on a common platform for all their IT initiatives, 
+today and tomorrow, and dramatically cuts the cost of adoption of these innovative solutions.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VMW-WP-VSPHERE5-WHYCHOOSE-USLET-20120531-WEBWhy Choose VMware vSphere 5 for VDI?

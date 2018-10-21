@@ -1,0 +1,338 @@
+ 
+
+ 
+
+Global Financial Institution 
+Case Study 
+
+Challenges:  
+
+• 
+
+• 
+
+• 
+
+Implementing new projects 
+and infrastructure with a 
+limited ability to determine 
+the impact in uptime and 
+performance 
+Improving performance in a 
+wide variety of virtual and 
+non-virtual environments  
+Diagnosing SAN problems 
+with a “trial and error” 
+approach 
+
+Solution:  
+• 
+
+Virtual Instruments 
+NetWisdom and professional 
+services consulting 
+
+Customer Benefits:  
+• 
+
+Helps maximize virtual 
+hardware loads 
+Ensures maximum application 
+performance 
+Gives unbiased answers to 
+avoid vendor finger pointing 
+Verifies vendor marketing 
+claims by using to test and set 
+up POCs 
+Enables real time 
+performance tuning 
+Allows growth of the virtual 
+infrastructure to include 
+heavy-hitter databases on the 
+same physical machine 
+Provides historical 
+information on new queries 
+performance on databases to 
+detect efficiency of queries  
+and impact on performance 
+Troubleshoots issues faster 
+and more precisely 
+Accurately scopes of the size 
+of SAN operations  
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+ 
+Credit Card Issuer Deploys Virtual Instruments’ 
+NetWisdom to Help Ensure Application Performance & 
+Accelerate Bringing New Projects Online Faster 
+Overview and IT Environment 
+This Virtual Instruments customer is one of the leading credit card issuers in the US today. 
+Though relatively new to the market, it has gained a strong foothold through co-branded credit 
+cards and a focus on customer satisfaction.  As a result, this organization is one of the fastest 
+growing institutions in the market. 
+Their IT department supports multiple data centers spread throughout North America, with 
+several data warehouses totaling over 35TB, generating heavy I/O workloads (over 40,000 IOPS 
+sustained).  Because IT is considered a weapon against their competitors, their goal is to 
+continue to push the envelope and to be more leading edge.  Projects are expected to be turned 
+around quickly, while maintaining 99.99% uptime.  Storage is primarily split between tier 1 and 
+tier 2 EMC arrays.  Servers mostly run AIX and Windows, but their IT department supports 
+virtually every flavor of OS within their SAN. 
+Because this institution considers IT to be a competitive edge, there is pressure to not only 
+maintain superior customer-facing application performance and overall high application 
+availability, but also to deploy the newest technologies quickly.  Existing measurement tools and 
+testing methodologies were simply not up to the challenge of optimizing existing applications, 
+improving customer service, and making technology leaps all at the same time. 
+
+Solution Evaluation  
+As a big EMC shop, the IT department first attempted to solve the performance monitoring issue 
+by using EMC’s WLA (Workload Analyzer). WLA was not able to offer the most critical metrics.  
+SANscreen (then from Onaro) was also brought in for a proof of concept, and was immediately 
+eliminated from consideration for performance monitoring due to the lack of granularity it could 
+provide for user experiences.  SANscreen was, however, retained for use for its core strength, 
+change management. 
+Virtual Instruments’ NetWisdom was the only product found to give detailed views of the 
+essential SAN performance and utilization data to base decisions on, as well as troubleshooting 
+performance issues.  NetWisdom clearly provided both the raw data and the polished graphing 
+utilities to help solve problems. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Global Financial Institution 
+Case Study 
+
+NetWisdom Value 
+Once deployed, NetWisdom became an indispensible SAN optimization tool for the team.  It’s 
+been used to troubleshoot large data warehouse performance issues, solve an SRDF replication 
+issue, verify new vendor’s marketing claims, test various configuration settings for a new OS 
+platform, and even monitor for failing SFPs. 
+NetWisdom has enabled accelerated deployments by providing real-time visibility to rollouts; to 
+ensure that all is performing as expected, with no mis-configurations or version 
+incompatibilities.  By providing measurements in a de-duplication proof of concept, IT was able 
+to validate this new technology without negatively impacting the SAN infrastructure. 
+On an ongoing basis, the IT department has reduced both the number of trouble tickets and has 
+resolved issues much faster.  For instance, by measuring the historical trends of database 
+queries on applications, performance problems that may have eventually occurred have been 
+averted.  By supplying unbiased, third-party metrics and analysis to the key SAN vendors, finger 
+pointing has effectively been eliminated. 
+
+NetWisdom Example Use Case 
+The backup administrator was complaining that his level zero backups of a particular system 
+were taking a long time to complete. He had consulted with the application owner and they had 
+determined that the best time to run a backup would be after 7pm and before 2am. Users 
+typically would leave around 5:30-6pm, and a batch processing schedule would kick off around 
+2am. Any extra disk activity between 7pm and 2am should not face any contention for disk IO. 
+After using NetWisdom, the IT department learned that the quiet time was from 11pm-6am. It 
+turned out that users were queuing up one final command, hitting enter, and leaving for the 
+day. This increased load would run until about 10:30pm. Batch processing, as it turns out, was 
+relatively light on the disks themselves. The backup administrator was able to reduce his backup 
+window by sliding the backup times into the quiet disk periods. 
+
+NetWisdom Going Forward 
+The near-term plan for NetWisdom includes rolling out more software and Fiber Channel probes 
+to specifically and directly monitor the most critical databases.  By instrumenting WAN links, IT 
+will be able to more accurately predict replication needs.  Finally, the NOC will begin to use the 
+NetWisdom Dashboard to monitor and view SAN performance in real-time. 
+
+NetWisdom Experience 
+According to the SAN team, NetWisdom is the most used and the single most useful tool in their 
+storage management tool-bag.  Other IT teams are requesting read access to it, and it has 
+“saved countless hours of troubleshooting, and given the whole department a new direction in 
+improving performance”. 
+
+Lessons Learned … the Customer Perspective 
+According to the SAN team, “your first goal is to understand what your goals are”.   You have to 
+have a clear understanding of what results your upper management is seeking.  What’s 
+important?  Is it agility, cost effectiveness, stability, or ultimately, application performance?  
+With those metrics in mind, you can utilize NetWisdom to proactively manage your 
+environment.   
+A basic trick is to “arm yourself with as much information as possible”.  It’s all too common to 
+see SANs that are over-designed on purpose, and usually over-provisioned because of a lack of 
+information and data about what is truly going on within your infrastructure).  It’s a sad fact that 
+the SAN guys don’t have all the magical tools that our IP network brothers get.  NetWisdom can 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+“I must show our SAN’s 
+
+performance and pitfalls to 
+the CIO every quarter.  I use 
+only NetWisdom to prepare 
+
+that report.” 
+
+“My organization has used 
+
+NetWisdom to solve 
+
+countless issues. Each issue 
+has more than paid for its 
+
+purchase.” 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+ 
+
+Global Financial Institution 
+Case Study 
+
+help. Knowing when your ever growing demand from a specific server actually requires an 
+additional HBA is invaluable.  Being able to see it’s traffic pattern (on the SAN), and to see its 
+heavy traffic moments and its less intensive moments can mean the difference between a level0 
+backup failing and it completing within the backup window without investing in another HBA 
+(and more cables, and another switch port).   
+According to Ryan Perkowski, the SAN Manager, “The NetWisdom experience will seem a bit 
+odd at first, having the type and amount of information at your fingertips.  Once you get over 
+the ‘drinking from a fire-hose‘ feeling, you instantly start to see its power.  Trending out usage, 
+actually seeing a non-biased response time on exchanges, or even just showing block sizes on 
+the SAN in real-time is invaluable as you attempt to squeak out a little more performance every 
+day.”   
+Managing and optimizing a SAN is a daunting task at best.  SANs grow fast, are hard to maintain, 
+and consume a big percentage of the overall IT budget.   Ryan adds, “Virtual Instruments’ 
+NetWisdom is a must in any SAN. There are metrics gathered and data stored by NetWisdom 
+that other groups already take for granted. NetWisdom has given us the ability to participate as 
+a peer with these other groups during root cause analysis sessions. Our only regret is not 
+installing it sooner, as its historical data and trending ability would have greatly improved our 
+quarterly review sessions”. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+“Virtual Instruments’ 
+
+NetWisdom is a must in any 
+SAN. The kinds of metrics 
+
+gathered and data stored by 
+
+NetWisdom are already 
+
+taken for granted by other IT 
+
+groups. NetWisdom has 
+given me the ability to 
+
+participate as a peer with 
+these other groups during 
+
+root cause analysis 
+
+sessions.” 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+100 Enterprise Way, Suite C-3  
+Scotts Valley, CA 95066  
+ 
+Phone: 831-439-4000  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+Phone: 831-439-4080  
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2009 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 6/09 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

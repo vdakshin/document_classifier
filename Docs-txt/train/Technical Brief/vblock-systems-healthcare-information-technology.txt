@@ -1,0 +1,793 @@
+ 
+Vblock Systems and Healthcare Information Technology 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Table of Contents 
+
+VBLOCK™ SYSTEMS 
+AND HEALTHCARE INFORMATION 
+TECHNOLOGY 
+
+October 2012 
+
+ 
+
+ 
+
+WHITE PAPER 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+1 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ...............................................................................................................................3 
+About VCE and Vblock™ Systems ..........................................................................................4 
+Healthcare trends ......................................................................................................................5 
+Electronic health records .........................................................................................................5 
+Health information exchange ...................................................................................................6 
+Computerized provider order entry...........................................................................................6 
+Accountable care organizations ...............................................................................................6 
+Future trends ...........................................................................................................................7 
+Healthcare IT transformation with Vblock systems ................................................................8 
+Advanced converged infrastructure  .........................................................................................9 
+Reduced IT complexity and improved agility ............................................................................9 
+Low cost ................................................................................................................................10 
+Scalability ..............................................................................................................................10 
+Continuous availability ...........................................................................................................10 
+AlwaysOn Point of Care .........................................................................................................11 
+Security .................................................................................................................................11 
+Data protection ......................................................................................................................12 
+Support  .................................................................................................................................13 
+Extensive partner ecosystem .................................................................................................13 
+Summary .................................................................................................................................14 
+Next steps ..............................................................................................................................14 
+Additional references .............................................................................................................14 
+
+ 
+
+ 
+
+ 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Introduction 
+
+Healthcare reforms mandated by the Health Information Technology for Economic and Clinical Health 
+(HITECH) Act are putting increasing pressure on healthcare IT to provide complex applications at a 
+lower cost without sacrificing quality of care, performance, or security.  
+
+Meeting the challenges presented by healthcare reform demands an IT infrastructure that is swift, 
+agile, and economical—enabling healthcare providers and organizations to adapt to change quickly 
+and cost-effectively. 
+
+VCE represents the next evolution of IT, one focused on the next generation data center and the 
+future of cloud computing. With Vblock™ Systems, VCE seeks to eliminate challenges that consume 
+today’s data center resources. 
+
+Vblock systems are optimized information technology systems that ensure secure and predictable 
+performance through pre-engineered, modular infrastructure that enables standardized processes and 
+operations. Vblock systems enable faster development and deployment of applications, improved 
+utilization of resources, and lower operational costs. 
+
+VCE healthcare solutions built on the Vblock system help healthcare IT to accelerate technology 
+adoption and promote innovation, while maximizing adaptability and protecting investments. VCE 
+healthcare solutions provide the technology and support that enable healthcare IT to deliver critical 
+patient data at lower cost to healthcare providers at the point of care.  
+
+Vblock Systems and Healthcare Information Technology 
+
+ 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+3 
+
+ 
+
+ 
+
+About VCE and Vblock™ Systems 
+
+VCE designs and delivers Vblock systems, which seamlessly integrate leading compute, network, and 
+storage technologies. Through intelligent discovery, awareness, and automation, Vblock systems 
+provide the highest levels of virtualization and application performance. 
+
+Each Vblock system has a base configuration, which consists of a minimum set of compute and 
+storage components as well as fixed network resources. Within the base configuration, certain 
+hardware aspects can be customized. Together, the components offer balanced CPU, I/O bandwidth, 
+and storage capacity relative to the compute and storage arrays in the system.  
+
+The Vblock System 300 is an agile and efficient data center class system, providing modular and 
+scalable performance. It features a high-density, compact fabric switch, tightly-integrated fabric-based 
+blade servers, and best-in-class unified storage. 
+
+The Vblock System 700 is tailored to the needs of the largest enterprises running thousands of virtual 
+machines and is designed to meet the most demanding requirements for business-critical enterprise 
+resource planning (ERP), customer relationship management (CRM), database, messaging, and 
+collaboration services. It includes the industry’s best director-class fabric switch, the most advanced 
+fabric-based blade server, and the most trusted storage platform. 
+
+For more information, go to http://www.vce.com/vblock. 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Healthcare trends 
+
+The HITECH Act, enacted as part of the American Recovery and Reinvestment Act (ARRA) of 2009, 
+was signed into law on February 17, 2009, to promote the adoption and meaningful use of health 
+information technology. The HITECH Act provides the Department of Health & Human Services 
+(HHS) with the authority to establish programs to improve health care quality, safety, and efficiency.  
+
+To comply with the HITECH Act and Patient Protection and Affordable Care Act (PPACA) 
+requirements and to manage the resulting massive growth of electronic protected health information 
+(ePHI), healthcare providers and organizations are increasingly adopting strategies and technologies 
+such as: 
+
+  Electronic health records (EHR) 
+  Health information exchange (HIE) 
+  Computerized provider order entry (CPOE) 
+  Accountable care organizations (ACOs) 
+
+Electronic health records 
+
+The Medicare and Medicaid Electronic Health Records (EHR) Incentive Programs provide incentive 
+payments to eligible professionals, eligible hospitals, and critical access hospitals (CAHs) as they 
+adopt, implement, upgrade, or demonstrate meaningful use of certified EHR technology to improve 
+patient care. EHR systems serve many purposes and address some of the key challenges to the 
+healthcare system in several ways. Some of the many benefits EHR provides are: 
+
+  Timely, accurate, and easily accessible documentation of interactions with patients 
+  Secure and compliant access to view medical history and insurance information 
+  Access to lab work and test results 
+  Ability to send and receive electronic prescription requests to pharmacies (reducing fraud, risk 
+
+of error and other problems) 
+
+  Alerts to health care providers to dangerous drug interactions 
+  Ability to make and receive referrals 
+
+No single EHR solution can provide an answer to all the challenges the industry faces, but 
+government recognition of healthcare IT and EHRs as a long-term solution has greatly accelerated 
+deployment.  
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+5 
+
+ 
+
+ 
+
+Health information exchange 
+
+Health Information Exchange (HIE) enables the process of reliable and interoperable electronic 
+health-related information sharing in a manner that protects the confidentiality, privacy, and security of 
+information. 
+
+The HIE implementation challenge is to create a standardized interoperable model that is patient 
+centric, trusted, longitudinal, scalable, sustainable, and reliable. HIEs, enabled by technology, are 
+expected to improve the quality of care and patient safety and reduce healthcare costs. 
+
+Computerized provider order entry 
+
+The computerized provider order entry (CPOE) program offers financial incentives for medication 
+orders directly entered by any licensed healthcare professional authorized to enter orders into the 
+medical record per state, local, and professional guidelines.  
+
+One benefit of directly entering orders into a computer is the reduction of errors due to poor 
+handwriting. Computerized order entry also allows access to drug interaction and patient data to 
+support the professional’s decisions.  
+
+Implementation of CPOE is being increasingly encouraged as an important solution to the challenge 
+of reducing medical errors, and improving health care quality and efficiency. 
+
+Accountable care organizations 
+
+Accountable Care Organizations (ACOs), as provided for in the Patient Protection and Affordable 
+Care Act of 2010, coordinate and direct patient care for Medicare and Medicaid recipients across 
+multiple disciplines while striving to contain costs and emphasize high-quality care. 
+
+An ACO is characterized by a payment and care delivery model that seeks to tie provider 
+reimbursements to quality metrics and reductions in the total cost of care for an assigned population of 
+patients. A group of coordinated health care providers form an ACO, which then provides care to a 
+group of patients. The ACO may use a range of payment models. The ACO is accountable to the 
+patients and the third-party payer for the quality, appropriateness, and efficiency of the health care 
+provided. 
+
+The fundamental challenge to ACOs is ensuring the rapid, seamless flow of patient information from 
+one organization to another. 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Future trends 
+
+Stage 3 and beyond of the HITECH Act will present even more challenges to healthcare providers 
+and organizations. These challenges will expand the healthcare provider landscape to include: 
+
+  Decision support for national high-priority decisions 
+  Access to self-management tools 
+  Electronic transition care plans 
+ 
+
+Improved population and public health through access to age-, gender-, and immunization 
+history-based recommendations 
+
+To best equip their users with new systems that comply with these evolving regulatory requirements 
+and enable better patient outcomes at a lower cost, healthcare IT professionals will look to invest in: 
+
+  Flexible, scalable infrastructure with low operational overhead that speeds simple, reliable 
+
+systems to caregivers at the point of care 
+
+  Business intelligence (BI) applications that combine data from clinical, operational, financial, 
+
+and other systems to improve patient care, prevent clinical errors, and reduce healthcare 
+operational costs 
+
+Vblock systems will help healthcare IT providers and organizations repurpose IT resources to focus 
+on meeting healthcare transformation challenges today, and as they move forward to meet Stage 3 
+requirements. 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+Healthcare IT transformation with Vblock systems 
+
+In response to government regulations and technological changes affecting the healthcare 
+environment, healthcare IT organizations are being called upon to provide innovative and 
+cost-effective ways to deliver healthcare solutions that demonstrate meaningful use of EHR, and 
+facilitate and support the culture of accountable care. 
+
+To comply with current and future regulatory requirements, healthcare IT must create, implement, and 
+support new patient care models that provide coordinated end-to-end delivery of services across the 
+complete patient care continuum from the hospital campus to community-based facilities to the home 
+with realtime data entry by mobile medical personnel and realtime data-driven medical decisions. 
+
+Healthcare IT transformation presents many complex challenges. To enable healthcare providers and 
+organizations to achieve meaningful use faster, more efficiently, and cost-effectively, with robust 
+security to help meet privacy and compliance needs, Vblock systems offer: 
+
+  Advanced converged infrastructure 
+  Reduced IT complexity and improved agility 
+  Low cost through server consolidation and standardization 
+  Scalability through standardized units of infrastructure and virtualization 
+  Continuous availability by eliminating downtime and service interruptions 
+  AlwaysOn Point of Care desktops 
+  Compliance with industry standard security guidelines 
+  Data protection solutions utilizing industry-leading technologies 
+
+For additional information on Vblock solutions for healthcare IT, go to 
+http://www.vce.com/products/industries/healthcare. 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Advanced converged infrastructure  
+
+Virtualization and converged infrastructure provide the 
+foundation required for the operational efficiencies necessary to 
+keep up with evolving regulatory requirements and new care 
+delivery models.  
+
+VCE, formed by Cisco and EMC with investments from 
+VMware and Intel, accelerates the adoption of converged 
+infrastructure and cloud-based computing models that 
+dramatically reduce the cost of IT while improving time to 
+market for our customers. VCE, through the Vblock System, 
+delivers the only fully integrated and fully virtualized cloud 
+infrastructure system in the industry. 
+
+Case study:  
+IDC Research  
+
+IDC research (April, 2012) 
+performed a primary research 
+study of five companies that 
+implemented Vblock systems in 
+their enterprise data centers.  
+Findings 
+
+
+Reduced calendar time for 
+deployment of new 
+infrastructure from five 
+weeks to one week 
+Reduced staff time to 
+configure/test/deploy by 75% 
+Compared with their prior IT 
+environment, reductions in 
+infrastructure hardware costs 
+and IT staff time lowered the 
+average annual datacenter 
+cost by 68% per 100 users 
+
+VCE drives roadmap alignment between Cisco, EMC, and 
+VMware. We are particularly focused on VMware alignment 
+and being the best converged infrastructure foundation for 
+VMware technologies. We have deep engineering relationships 
+with the Cisco, EMC, and VMware teams that produce their 
+flagship data center products. 
+
+
+
+
+
+At its December 2011 data center conference, Gartner 
+conducted an audience poll on implementing converged 
+infrastructure projects. The attendees voted VCE as “most 
+competent” of all other vendors, demonstrating the reputation we have earned among large 
+enterprises, even when compared to established IT heavyweights. 
+
+Reduced IT complexity and improved agility  
+
+Vblock systems reduce IT complexity and improve IT agility through virtualization and automation, 
+which allows limited healthcare IT resources to focus on enhancing the user experience and 
+implementing the innovative healthcare solutions required to meet meaningful use and accountable 
+care objectives. 
+
+Some of the ways in which the converged infrastructure of Vblock systems reduce complexity are: 
+
+  Automation of standard IT operations allows IT staff to concentrate on implementing EHR and 
+
+other advanced healthcare technologies 
+
+  More efficient operational and clinical workflow improves quality of patient care  
+ 
+  Virtualization reduces time to launch new applications 
+
+Increased operational efficiency improves staff productivity 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+Low cost 
+
+Vblock systems can serve as a standardized infrastructure for a vast array of business-critical and 
+clinical applications, which means that applications can share pools of compute, network, and storage 
+resources. Moreover, shared infrastructure simplifies IT staffing and training. 
+
+Server consolidation and improved resource utilization are only the beginning of the story. VCE 
+customers also realize cost reduction from simplified provisioning and management, integrated patch 
+release, and a single source for warranty and support. 
+
+Scalability 
+
+Healthcare organizations are at different phases in their IT transformation and have different compute, 
+storage, and virtualization requirements. VCE offers a family of Vblock systems to meet the needs of 
+any provider or business. Each system delivers predictable units of performance and scales across a 
+wide range of application requirements. With Vblock systems, you never have to worry about whether 
+your IT infrastructure can support your growing organization. 
+
+Through significant standardization, VCE is able to provide dramatically simplified customer 
+experiences. Infrastructure can be scoped, ordered, installed, and brought up and running faster than 
+any “build your own” or reference architecture methodology. In addition, many of the time-consuming 
+and resource-consuming aspects of running a data center can be aggregated to significantly lower 
+cost of ownership while freeing IT personnel to focus time and energy on improving healthcare service 
+delivery and patient care. 
+
+Continuous availability  
+
+Today’s healthcare providers and organizations must operate around the clock. Vblock systems 
+provide a virtualized data center tailored to healthcare providers’ needs for continuous performance. 
+Vblock systems provide continuous availability for mission-critical applications that must remain in 
+operation and be recoverable within minutes of a disaster.  
+
+EMC VPLEX is an innovative business continuity and workload mobility solution that can easily move 
+business applications within or between Vblock systems located in the same data center or 
+metropolitan area. VPLEX can also mirror business-critical data, deliver zero data loss, and ensure 
+automatic near-zero application recovery time. Working in conjunction with VMware vMotion, VPLEX 
+is a hardware and software solution for Vblock systems that provides enhanced availability for 
+business continuity and dynamic workload mobility. 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+10 
+
+ 
+
+ 
+
+AlwaysOn Point of Care 
+
+Transformation of the point-of-care desktop has become an urgent 
+priority for hospital IT professionals as well as hospital caregivers. 
+Desktops and patient care applications must be immediately 
+accessible and available to caregivers even in the event of site failures 
+and outages. 
+
+AlwaysOn Point of Care from VMware and VCE is a managed 
+network/connectivity solution optimized for the specific, stringent 
+requirements of medical organizations. It integrates technology and 
+solutions from VMware, VCE, and our thriving ecosystem of partners. 
+The solution leverages mobile, wireless, and wired networks that are 
+customized to health care industry requirements. 
+
+AlwaysOn Point of Care desktops are ideally hosted on Vblock 
+platforms, which are pre-configured infrastructure platforms sized to 
+support specific workloads. These platforms are available to run both 
+on the customer site, as well as in a hosted (cloud) facility. 
+
+Security 
+
+Today, healthcare providers are using clinical applications such as 
+CPOE, EHR, and radiology, pharmacy, and laboratory systems. 
+Health plans are providing access to claims and care management, 
+as well as member self-service applications. While this means that the 
+medical workforce can be more mobile and efficient, the rise in the 
+adoption rate of these technologies increases the potential security 
+risks and makes protecting the confidentiality, integrity, and availability 
+of electronic protected health information (EPHI) even more critical.  
+
+Case study:  
+Molina Healthcare, Inc. 
+
+Molina an agile infrastructure that 
+would meet increased demand for 
+services supporting government-
+funded healthcare programs.  
+Solution 
+Standardize on Vblock System 
+700 and Vblock System 300.    
+Benefits 
+
+
+
+
+
+
+
+
+Deployment of Vblock 
+systems and application 
+migration in only five days 
+Improved TCO due to a 4:1 
+reduction in data center 
+footprint and decreased 
+power and cooling usage 
+Application and storage 
+performance boosts of 25-40 
+percent  
+Increased availability of 
+critical health applications, 
+enabling faster and more 
+reliable rollout of EMRs in 
+more than 30 clinics 
+
+The HIPAA Security Standards for the Protection of Electronic Protected Health Information (the 
+Security Rule) establish a national set of security standards for protecting certain health information 
+that is held or transferred in electronic form. The Security Rule requires appropriate administrative, 
+physical, and technical safeguards to ensure the confidentiality, integrity, and security of EPHI. In 
+general, the standards, requirements, and implementation specifications apply to any healthcare 
+provider, health plan, or healthcare clearinghouse that transmits EPHI. 
+
+VCE utilizes parent company and industry standard guidelines and practices in hardening the 
+configuration of Vblock systems to assure confidentiality, integrity, availability, and interoperability. 
+This methodology allows for integration of third-party validated security solutions to allow providers to 
+address the challenges of today’s ever-increasing regulatory requirements such as those defined in 
+the HIPAA Security Rule and HITECH. Additionally, VCE deployment, implementation, and support 
+services can help providers deploy Vblock systems in a secure, compliant state and maintain required 
+security controls throughout the technology lifecycle.  
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Data protection 
+
+Many healthcare organizations and providers have geographically dispersed sites that create, 
+process, and store data locally. Loss of data at any site could result in economic loss, but more 
+importantly, could result in medical errors leading to patient injury or loss of life. The HIPAA Security 
+Rule requires covered healthcare entities to establish a contingency plan to respond to emergencies 
+that could adversely affect electronic protected health information. The Contingency Plan must include 
+data backup, disaster recovery, and emergency mode operation plans. 
+
+VCE Vblock™ Data Protection consists of a family of solutions leveraging technology from EMC, 
+Cisco, and VMware that scale from one to many platforms within and across data centers.  
+
+Vblock Data Protection provides enhanced backup and recovery, data replication, business continuity, 
+and workload mobility to deliver reliable and predictable data protection for Vblock systems. Solutions 
+include: 
+
+  EMC Avamar: Streamlined backup and recovery hardware and software that handles client-
+
+side data deduplication before transmission across the network to the backup target. Minimizes 
+backup bottlenecks in data-intensive, virtual environments. 
+
+  EMC Avamar plus Data Domain: Client-side and target-based deduplication backup and 
+
+recovery. Leverages high-speed technology to reduce your backup data storage footprint at the 
+target device by 10x to 30x. 
+
+  EMC RecoverPoint: Replication solution that can roll back to any point in time, using 
+
+snapshots taken as frequently as seconds apart for an improved recovery point objective 
+(RPO). Efficiently migrates data from an old platform to a new one or from one Vblock platform 
+to another. 
+
+  EMC VPLEX: Innovative workload mobility and business continuity solution. Easily moves 
+
+business applications within or between Vblock platforms located in the same data center or 
+metro area. EMC VPLEX can also mirror business-critical data, deliver zero data loss, and 
+ensure automatic near-zero application recovery time.  
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+Support  
+
+VCE provides our customers and partner organizations with VCE™ 
+Support for their Vblock systems, dramatically simplifying the 
+infrastructure support process. Our industry-leading support is 
+delivered by people who are expertly-trained in all aspects of Vblock 
+systems and are equipped with state-of-the-art support and 
+collaboration technologies underlying proven support workflow 
+processes. 
+
+VCE Support ensures the coordination of technical support resources 
+spanning all aspects of Vblock systems, including the proper 
+functioning and integration of components from Cisco, EMC, and 
+VMware. VCE Support leverages the people, processes, and 
+technology best practices from across this ecosystem to simplify and 
+streamline the support process  
+
+The VCE Support portfolio provides customers with the flexibility to 
+choose the level of support that best aligns with their business 
+objectives. 
+
+  VCE Core Support: A foundational, integrated level of support 
+
+that is standard on all Vblock systems. 
+
+  VCE Plus Support: An enhanced, higher-touch support option 
+
+with proactive deliverables and capabilities across the Vblock 
+system installed base. 
+
+Case study:  
+Holy Name Medical 
+Center 
+
+Holy Name was running out of 
+physical space for its data center 
+and had inadequate disaster 
+recovery capabilities. 
+Solution 
+VCE Professional Services and 
+CDI, the integrator and reseller, 
+helped Holy Name implement 
+Vblock systems in just two weeks. 
+ Benefits 
+
+
+Hundreds of thousands of 
+dollars saved in server 
+expenditures 
+Accelerated delivery of new 
+servers from weeks to minutes 
+Server restores completed in 
+under an hour versus days 
+
+
+
+
+
+  VCE Premier Support: A customer-centric, strategic support relationship for the installed base 
+
+of Vblock systems.  
+
+Extensive partner ecosystem 
+
+Built upon best practices embodied by VCE’s investor companies, Cisco, VMware, EMC, and Intel, 
+the VCE Technology Alliance Partners (TAP) Program offers participants Vblock Ready certification, 
+validation, or joint solution development, increased market presence and revenue potential, and the 
+ability to provide customer assurance that solutions are tested and will work predictably on a Vblock 
+system. 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+Summary 
+
+The challenge to healthcare IT organizations today is to equip healthcare service providers and 
+caregivers to deliver better patient care at a lower cost. Successful implementation requires both 
+advanced clinical systems and a speedy, flexible, and reliable computing, storage, and network 
+infrastructure. 
+
+Implementation of meaningful use technologies such as EHR, HIE, and CPOE is growing in response 
+to regulatory requirements, incentive programs, and the threat of penalties for non-compliance. 
+However, if the IT infrastructure supporting these technologies is inadequate, these initiatives can 
+harm rather than help the customer experience. 
+
+The unique converged infrastructure of the Vblock system provides a high-performance, highly 
+reliable environment for critical clinical and business applications without requiring additional data 
+center space or operations staff. 
+
+VCE and Vblock systems offer comprehensive solutions that facilitate the transformation of the 
+healthcare IT environment to allow IT providers and organizations to focus on more value-added 
+activities that support the business and improve patient care today and in the future. 
+
+Next steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+Additional references 
+
+  Vblock Solutions For Healthcare IT (http://www.vce.com/products/industries/healthcare) 
+  Molina Healthcare Ramps Up Fast for Claims Processing Spikes with Vblock 
+
+(http://www.vce.com/asset/documents/molina-casestudy.pdf) 
+
+  Holy Name Medical Center Safeguards Critical Health-Care Applications with Vblock 
+
+Infrastructure Platforms (http://www.vce.com/asset/documents/holy-name-casestudy.pdf) 
+  AlwaysOn Point of Care Solution Brief (http://www.vce.com/asset/documents/healthcare-
+
+alwayson-brief.pdf) 
+
+  Vblock Fastpath Desktop Virtualization Systems (http://www.vce.com/products/solutions/vdi) 
+  Richard L. Villars, Randy Perry, and Jed Scaramella, Converging the Datacenter Infrastructure: 
+
+Why, How, So What, IDC, May 2012 (http://vblock.vce.com/IDCVblockROI) 
+
+ 
+
+ 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+14 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to http://www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright © 2012 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+© 2012 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+15 
+
+ 
+
+

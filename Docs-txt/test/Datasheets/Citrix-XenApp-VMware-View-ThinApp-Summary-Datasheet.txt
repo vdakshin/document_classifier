@@ -1,0 +1,250 @@
+Enhancing a Citrix XenApp Implementation 
+with VMware View and ThinApp
+
+AT A GLANCE
+
+Would you like to increase the value of your Citrix XenApp 
+implementation	and	speed	your	journey	to	the	cloud?	Are	
+you	considering	enhancing	your	productivity	tools	with	
+virtual	desktops	and	virtual	applications?	VMware	View™		
+and	VMware	ThinApp™	can	help	you.	
+
+Implementing	VMware	View	and	VMware	ThinApp	are	the	
+first	steps	toward	embracing	the	next-generation	
+technologies	to	access	your	data,	your	desktops,	and	your	
+applications	from	the	cloud.	View	provides	the	virtual	
+desktop infrastructure while ThinApp provides the 
+application	virtualization	technology—together	they	will	
+help	you	to	modernize	your	work	environment.
+
+If	you	are	ready	for	a	desktop	virtualization	solution,	and	
+you	want	to	keep	your	XenApp	implementation,	VMware	
+View	readily	incorporates	XenApp	into	its	infrastructure.	In	
+addition,	if	you	are	already	familiar	with	VMware	vSphere	
+for	server	virtualization,	managing	vSphere	as	the	
+infrastructure	behind	VMware	View	will	be	easy	for	you.
+
+View
+Desktop
+
+XenApp
+XeXenAApplica
+XeeennnnAAAAppppppppp
+Applications
+plicati
+iicccaaaaaaaaaatttttttttttiiiiiiiiioooooonnnnss
+
+ThinApp
+ThinApp
+App
+pp
+Virtualplications
+Virtual
+Applic
+Applications
+ll
+plic
+
+Figure 1: The Combined Solution of View, XenApp, and ThinApp 
+
+VMware View Enhances XenApp
+VMware View’s virtual desktop infrastructure enhances  
+Citrix XenApp in various ways:
+
+•	Isolates	users
+
+•	Reduces	capital	expenses	and	operational	costs
+
+•	Leverages	the	power	and	ease	of	management	of	 
+
+vSphere/ESX/ESXi
+
+Isolates users
+By	adding	VMware	View	to	your	environment,	you	provide 	 
+users	with	their	own	desktops,	including	their	own	operating 	
+system	and	applications.	Users	do	not	conflict	with	each	other. 	
+XenApp	provides	users	with	a	shared	operating	system	and 	
+shared	applications,	and	this	can	create	conflict	of	resources 	
+between	users.	
+
+Reduces capital expenses and operational costs
+Virtual	desktop	environments	take	less	effort	to	manage	and	use 	
+less	expensive	hardware	than	standard	computing.	Companies 	
+have	realized	tremendous	savings	by	converting	their	more 	
+expensive	PC	hardware	to	smaller,	less	expensive	thin	clients. 	
+Administrators	have	also	benefited	by	saving	time	and	gaining 	
+control	through	a	centralized	management	platform.	Users	still 	
+enjoy	the	flexibility	and	mobility	of	anywhere	access	to	their 	
+desktop.		
+
+Leverages the power and ease of management of  
+vSphere/ESX/ESXi
+If	you	already	have	VMware	ESX/vSphere,	you	are	familiar	with 	
+the	ease	of	management	and	industry-leading	capabilities	that 	
+vSphere	provides.	VMware	View	and	vSphere	are	tightly 	
+integrated	and	together	provide	unique	capabilities	such	as	fully 	
+virtualized	3D	graphics	and	storage	cost	savings	from	View 	
+Storage	Accelerator	that	are	not	available	with	other	virtual 	
+desktop	solutions.	Plus	the	underlying	infrastructure	is	familiar. 	 
+If	you	have	used	VMware	vSphere	to	virtualize	your	XenApp 	
+Servers,	you	can	use	your	vSphere	expertise	to	run	View	virtual 	
+desktops	on	the	same	familiar	infrastructure.	
+
+If	you	are	adding	a	virtual	desktop	solution	to	your	XenApp 	
+environment,	VMware	View	has	the	following	advantages	over 	
+other	solutions	on	the	market:
+
+•	View	directly	leverages	the	power	of	vSphere
+
+•	View	is	easier	to	deploy	and	manage
+
+•	View	has	lower	total	cost	of	ownership
+
+VMware	View	is	the	leading	virtual	desktop	solution	providing 	
+greater	flexibility,	exceptional	user	experience	and	lower	total 	
+cost	of	ownership.	
+
+D ATA S H E E T   /   1
+
+Enhancing a Citrix XenApp Implementation 
+with VMware View and ThinApp
+
+Citrix	XenApp	can	publish	ThinApp	applications,	and	VMware	
+View	desktops	can	display	Citrix	XenApp	applications,	as	in	the	
+following	figure.
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+Figure 2: XenApp Applications, Including a ThinApp Package, on a View Virtual Desktop 
+
+ThinApp	simplifies	a	XenApp	environment.	Placing	one	copy	of	a	
+ThinApp	virtualized	application	on	a	file	share	is	much	simpler	
+than	installing	multiple	copies	of	XenApp	applications	on	multiple	
+servers	in	server	farms.	If	you	stream	packages	from	the	ThinApp	
+file	share	to	the	XenApp	Server	via	a	LAN,	and	then	present	
+applications	from	the	XenApp	Server	over	the	WAN	or	Internet	to	
+end	users,	you	can	take	advantage	of	the	combined	ThinApp-
+XenApp	solution.
+
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ThinApp virtual 
+applications 
+streaming 
+over LAN to 
+XenApp Server
+
+XenApp
+Server
+
+XenApp applications
+(including ThinApp 
+virtual applications)
+remotely displayed 
+over WAN or Internet
+to endpoints
+
+ThinApp
+Repository
+
+LAN
+
+WAN or Internet
+
+Laptop
+
+Tablet
+
+Desktop
+
+Endpoints
+
+Figure 3: ThinApp Virtual Applications Streamed to a XenApp Server, Then Remotely 
+Displayed to Endpoints
+
+Whether	you	are	considering	the	cost	and	simplicity	advantages 	
+of	a	virtual	desktop	infrastructure	or	the	ease	of	management 	
+and	enablement	gained	from	application	virtualization,	VMware 	
+has	a	solution	to	match	your	needs.	VMware	View	Premier 	
+comes	with	both	ThinApp	and	vSphere,	the	leading	server 	
+virtualization	platform	for	VDI,	providing	all	the	virtualization 	 
+you	need	in	one	convenient	package,	at	one	great	price. 	 
+All	components	integrate	directly	with	XenApp	and	add 	
+tremendous	value	to	any	XenApp	environment	while	taking	you 	
+closer	to	your	journey	to	the	cloud. 	
+
+VMware ThinApp Enhances XenApp
+VMware	View	Premier	package	comes	with	ThinApp,	the	leading 	
+application	virtualization	platform.	This	powerful	combination	is 	
+a	critical	enabler	for	your	journey	to	the	cloud.	Presenting 	
+ThinApp	virtual	applications	through	Citrix	XenApp	provides	the 	
+following	benefits:
+
+Requires only a single application instance
+With	ThinApp	in	a	XenApp	implementation,	you	need	only	one 	
+copy	of	the	virtualized	application	stored	on	a	ThinApp	file 	
+share.	With	other	applications	presented	with	XenApp,	you	must 	
+install	the	same	application	on	each	of	the	XenApp	Servers	in 	
+your	server	farm,	and	each	of	these	native	installations	must	be 	
+individually	maintained.
+
+Eliminates application conflict
+To	avoid	application	conflicts,	Citrix	isolates	applications	from 	
+each	other	via	XenApp	silos,	which	requires	additional	hardware. 	
+ThinApp	isolates	applications	with	software,	not	hardware. 	
+ThinApp	virtual	applications	are	already	isolated	from	each	other 	
+and	therefore	can	be	placed	on	the	same	XenApp	Server.
+
+Enables quick recovery
+If	a	XenApp	Server	fails,	you	have	to	reinstall	the	entire	XenApp 	
+server.	However,	if	you	have	stored	your	virtual	applications 	
+separately	on	a	ThinApp	file	share,	you	have	only	the	baseline 	
+XenApp	server	to	reinstall,	and	you	do	not	have	to	reinstall	the 	
+applications.
+
+Simplifies and speeds updates
+With	a	standard	Citrix	XenApp	setup,	you	must	update	each 	
+natively	installed	application	on	each	XenApp	Server,	and	you 	
+need	to	take	each	server	offline	to	update	the	applications.	If	you 	
+use	ThinApp	to	virtualize	applications,	you	update	only	the 	
+single	application	on	the	file	share,	and	ThinApp	applications	can 	
+be	updated	automatically	while	in	use.
+
+Virtualizes IE6 and enables migration to Windows
+ThinApp	allows	you	to	virtualize	Microsoft	Internet	Explorer	6 	
+(IE6),	and	you	can	package	IE6	along	with	a	legacy	application 	
+that	depends	upon	IE6	or	an	older	version	of	Java.	Users	can	run 	
+virtual	IE6	alongside	a	later	version	of	native	IE	on	the	same 	
+desktop.	The	migration	to	Windows	7	or	to	later	Windows 	
+versions	becomes	easier	if	you	have	the	option	of	carrying 	
+forward	any	IE6-dependent	legacy	applications.
+
+Integrating VMware View and VMware ThinApp  
+with Citrix XenApp Is Easy
+VMware	View	virtual	desktops	give	your	users	isolated	use	of 	 
+the	operating	system	and	applications,	just	as	with	a	physical 	
+desktop,	but	with	less	cost.	Placing	shortcuts	on	View	desktops 	
+to	XenApp-presented	ThinApp	virtual	applications	gives	users 	
+the	best	of	all	three	solutions.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at
+http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be 
+trademarks of their respective companies. Item No: VMW-DS-XENAPPIMPLEM-USLET-20120508-WEB
+
+

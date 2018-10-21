@@ -1,0 +1,2131 @@
+VMware® Horizon Mirage™  Branch Office  Reference ArchitectureSupporting the Backup and Migration of  Remote Endpoints to Microsoft Windows 7WHITE PAPER Table of Contents
+
+Executive Summary  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+VMware Horizon Mirage Overview  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+  VMware Horizon Mirage Components  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 4
+Use Case Overview   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 6
+Reference Architecture Overview  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+  Virtual Infrastructure   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+  Network Considerations and Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 9
+  Storage Considerations and Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+  External Infrastructure Components   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+Test Results: Windows 7 Migration of Ten Endpoints over T1 WAN  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+  Centralization   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+  Creating the Branch Reflector  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 15
+ 
+“Warming Up” the Branch Reflector  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 16
+  Migration of Ten Remote Endpoints to Microsoft Windows 7  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 17
+Test Results: Centralization over Typical Network Circuit Speeds   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 19
+  Total Versus Sustained Utilization Time  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 19
+  Test Results  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 19
+References  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 25
+About the Authors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 25
+Appendix A (Reference Architecture Detail)   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 26
+
+W H I T E   P A P E R   /   2
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureExecutive Summary
+
+The VMware® Horizon Mirage™ Branch Office Reference Architecture detailed in this document is designed to 
+solve two common challenges faced by IT managers today:
+
+1.  How to back up desktops deployed throughout the enterprise, protecting the unique customization, 
+
+applications, and valuable data that personalize each system for its end user
+
+2.  How to efficiently migrate remote desktops from Microsoft Windows XP to Windows 7 with minimal 
+
+impact on both IT resources and end-user productivity
+
+Both tasks typically require a substantial investment in IT resources and the use of separate backup and PC 
+lifecycle–management tools. VMware developed Horizon Mirage to efficiently meet both challenges.
+
+As the test results included in this document show, VMware Horizon Mirage can:
+
+•	Efficiently	back	up	remote	desktops	located	across	slow	wide	area	network	(WAN)	circuits,	slashing	the 	
+amount of data transferred to the datacenter by 46 percent through its deduplication and compression 
+capabilities
+
+•	Increase	system	performance	to	match	increased	network	bandwidth,	linearly	decreasing	the	amount	of	time 	
+required to back up desktops
+
+•	Migrate	10	remote	desktops	from	Windows	XP	to	Windows	7	in	only	2	hours	and	33	minutes,	requiring 	
+minimal	IT	resources	and	WAN	bandwidth
+
+•	Minimize	end-user	downtime	(and	resulting	productivity	loss	during	the	migration)	to	just	22	minutes	on 	
+average
+
+The test results and architectural information in this document are provided to help guide the plan and design 
+of other successful Horizon Mirage infrastructures.
+
+ 
+
+ 
+
+W H I T E   P A P E R   /   3
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureVMware Horizon Mirage Overview
+
+VMware Horizon Mirage provides centralized image management for Windows desktops with enhanced levels 
+of backup and OS migration capabilities. Designed to simplify and reduce the cost of critical help desk tasks, 
+while minimizing interruption to end users, VMware Horizon Mirage provides the following key capabilities:
+
+Seamless Desktop Backup, Recovery, and Repair
+Store full desktop snapshots in the datacenter with synchronization of IT- or end-user-initiated changes. 
+Centrally stored desktop images and periodic endpoint snapshots allow IT to recover partial or full desktops 
+when needed. Troubleshoot and fix endpoints quickly with an easily accessible Web administration interface.
+
+Simplified Windows 7 Migrations
+Accelerate	the	most	common	approaches	to	Windows	7	migrations:	upgrading	an	existing	Windows	XP	device 	
+to	Windows	7	or	migrating	an	end	user’s	profile	and	files	to	a	new	Windows	7	machine.
+
+Layered Endpoint Management and Application Layering
+Manage PCs, or VMware Horizon View™ persistent virtual desktops, as a set of logical layers owned by either IT 
+or	the	end	user.	Update	IT-managed	layers	while	maintaining	end-user	files	and	personalization.	Easily	deploy 	
+applications or VMware ThinApp® packages to any collection of end users with Horizon Mirage application-
+layering technology.
+
+Branch Office Optimization
+The Mirage Branch Reflector allows IT to download any images and updates once from the Mirage Server across 
+the	WAN,	using	peer-to-peer	technology	to	distribute	them	to	other	Mirage	Clients	in	the	branch	office.
+
+Bring Your Own Desktop (BYOD)
+Install Horizon Mirage-managed images natively onto Windows PCs, or onto VMware Fusion® Pro virtual 
+desktops on Windows, Mac, or Linux desktops and laptops. Mirage allows end users to leverage local system 
+resources for online and offline productivity.
+
+VMware Horizon Mirage Components
+Horizon Mirage consists of the following system components:
+
+Mirage Management Server
+The Mirage Management Server is the main component that controls and manages the Mirage Server cluster, 
+and coordinates all Horizon Mirage operations including backup, migration, and operating system deployment.
+
+Mirage Server
+The Mirage Servers perform backups, migrations, and the deployment of base and application layers to 
+endpoints. Multiple Mirage Servers can be deployed as a server cluster to provide system redundancy and 
+support larger organizations. 
+
+Mirage Web and Protection Manager
+These Web-based tools enable help-desk personnel to efficiently respond to service queries, and ensure that 
+endpoints are protected by Horizon Mirage backup capabilities. 
+
+Mirage Client
+The Mirage Client enables an endpoint to be managed by Horizon Mirage. It supports both physical and virtual 
+desktops,	including	those	hosted	by	both	Type	1	and	Type	2	hypervisors.
+
+Mirage Branch Reflector
+Branch Reflectors offload the deployment of base layers and migration of endpoints from the Mirage Server 
+cluster, reducing both time and network bandwidth required. Any Horizon Mirage endpoint can be configured 
+as a Branch Reflector, and can be dedicated or shared with low-resource uses such as information kiosks.
+
+W H I T E   P A P E R   /   4
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureMirage File Portal
+The Web-based File Portal provides browser-based access to user files backed up by Horizon Mirage. Using 
+any device with a Web browser, including smartphones and tablets, end users do not have to be at their PC to 
+access and restore their critical data.
+
+The References section has links to more detailed information about VMware Horizon Mirage capabilities, 
+features, and system components.  
+ 
+ 
+
+ 
+
+Remote Branch Site
+
+Mirage Clients
+
+Branch Re(cid:31)ectors
+
+Datacenter
+
+WAN
+
+Mirage
+Server Cluster
+
+Mirage Database, 
+Storage Volumes
+
+Load
+Balancer
+
+Mirage Management 
+Server with File Portal 
+and Web Manager
+
+Internet
+
+Mirage
+Management 
+Console
+
+File Portal and 
+Web Manager
+
+Access
+
+VPN
+
+Mobile 
+Users
+
+Local Site
+
+Mirage Clients
+
+Figure 1: Horizon Mirage Components
+
+ 
+
+W H I T E   P A P E R   /   5
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureUse Case Overview
+
+The Horizon Mirage Branch Office Reference Architecture detailed in this document is designed to solve two 
+common customer challenges: 
+
+1.  How to back up endpoints deployed throughout the enterprise, protecting the unique customization, 
+
+applications, and valuable data that personalize each system for its end user 
+
+2.  How to efficiently migrate thousands of remote endpoints from Microsoft Windows XP to Windows 7 with 
+
+minimal impact on both IT resources and end-user productivity
+
+To prepare to meet both of these challenges using VMware Horizon Mirage, the customer conducted a 
+comprehensive assessment of their desktops and remote office infrastructures. The findings of this assessment 
+were	incorporated	into	a	plan	and	design	project,	resulting	in	the	Reference	Architecture	detailed	in	this 	
+document.
+
+This	paper	also	includes	test	results	that	detail	the	use	of	this	Horizon	Mirage	system	to	back	up	and	migrate	10	
+remote	endpoints	from	Windows	XP	to	Windows	7.	The	10	endpoints	were	located	in	a	remote	office	supported	by	
+a	T1	WAN	circuit,	and	are	typical	of	the	majority	of	desktops	the	customer	intends	to	support	with	Horizon	Mirage. 
+
+OS Migration
+
+OS Migration
+
+Branch Re(cid:31)ector
+
+Backup
+
+Rollback
+
+ Mirage Server
+
+ 
+
+Figure 2: Horizon Mirage Endpoint Migration and Backup
+
+ 
+
+W H I T E   P A P E R   /   6
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureReference Architecture Overview
+
+The customer in this use case decided to implement VMware Horizon Mirage to meet their goals for endpoint 
+backup	and	Windows	migration.	Prior	to	deployment,	they	launched	a	plan	and	design	project,	including	a 	
+comprehensive assessment, to help better understand the desktops and environment supporting the migration. 
+To properly design the Horizon Mirage infrastructure, it is critical to understand endpoint configuration, health, 
+and	utilization.	Endpoint	assessments	should	include	at	a	minimum:
+
+•	Machine	make	and	model
+
+•	Operating	system	version	including	whether	the	system	is	32-	or	64-bit
+
+•	Total	disk	space	and	free	disk	space
+
+•Estimated	amount	of	unique	data	that	must	be	centralized 	
+
+•	Presence	of	large	files
+
+•	Applications	installed	
+
+•	Required	hardware	drivers
+
+•	Peripheral	device	support
+
+It is important to note that for this Reference Architecture a thorough desktop assessment was conducted, and 
+the information above is known and understood.
+
+During	the	migration,	the	customer	observed	that	their	endpoints	had	an	average	of	60	percent	unique	data. 	
+The customer required the data on these desktops to be backed up using Horizon Mirage before migration, 
+to	ensure	they	could	roll	back	to	the	user’s	XP	installation	in	case	the	migration	was	not	successful.	The 	
+backup would also provide the customer a way to protect the valuable user data on the remote desktops by 
+centralizing it in the datacenter. 
+
+Simplifying	the	project,	the	first	10	endpoints	identified	for	centralization	and	migration	would	not	be	in	use, 	
+and	would	be	online	24	hours	a	day.	This	meant	Horizon	Mirage	would	not	be	interrupted	by	periods	of	time	off 	
+the	network,	or	by	having	to	throttle	its	operations	to	avoid	affecting	end-user	productivity.	The	desktops	were 	
+also automatically defragmented, which meant disk fragmentation would not be an issue.  
+
+However,	the	endpoints	were	located	in	a	remote	office	separated	from	the	Mirage	Server	by	a	T1	WAN,	of 	
+which	Horizon	Mirage	was	limited	to	using	1Mb.	Fortunately,	Horizon	Mirage	is	designed	specifically	to	support 	
+migration of remote desktops.
+
+Table	1	details	the	configuration	of	the	first	10	desktops	backed	up	and	migrated	to	Windows	7.
+
+COMPONENT
+
+DESCRIPTION
+
+10	Horizon	Mirage	endpoints
+
+Table 1: Horizon Mirage Endpoint Configuration
+
+Dual-core,	2.6GHz	CPU
+8GB	RAM
+60GB	hard	disk	for	OS
+Windows	XP	SP3	and	Office	2007	SP3
+Miscellaneous applications  
+(Adobe	Reader,	Adobe	Flash,	Java)
+
+W H I T E   P A P E R   /   7
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureAfter	completing	the	desktop	assessment	and	project	plan,	the	customer	designed	a	Horizon	Mirage 	
+infrastructure	to	meet	the	identified	requirements.	Table	2	details	the	configuration	of	critical	Horizon	Mirage 	
+infrastructure components.
+
+QUANTITY
+
+DESCRIPTION
+
+vCPU*
+
+RAM*
+
+HDD*
+
+1
+
+1
+
+1
+
+1
+
+1
+
+Horizon Mirage Server
+
+Horizon Mirage 
+Management Server
+
+Windows File Server 
+(Horizon	Mirage	Storage)
+
+Microsoft SQL Database 
+Server
+
+Active Directory server
+
+6
+
+2
+
+2
+
+2
+
+2
+
+8
+
+8
+
+8
+
+8
+
+8
+
+40GB	OS
+103GB	on	SSD
+(Horizon	Mirage	Local	Cache)
+
+40GB	OS
+
+40GB	OS
+
+40GB	OS
+100GB	Database
+
+40GB	OS
+
+Table 2: Horizon Mirage Server Configuration
+
+Virtual Infrastructure 
+The	Horizon	Mirage	infrastructure	was	hosted	on	VMware	vSphere®	ESXi™	servers	as	specified	in	Table	3.
+
+COMPONENT
+
+DESCRIPTION
+
+vSphere host for  
+Horizon Mirage Servers
+
+vSphere host for  
+Horizon Mirage endpoints
+
+Table 3: VMware vSphere ESXi Configuration
+
+•	Enterprise-level	server
+•	Four	(4)	2.612GHz	AMD	Opteron	Hex	(6)	Core	CPUs 
+			(24	cores	total)
+•	128GB	RAM
+•	1.6GB	LSI	Nytro	WarpDrive	SSD	drive	(PCIe)
+•	2	x	143GB	10,000	RPM	SAS	drives	for	ESXi
+
+•	Enterprise-level	server
+•	Four	(4)	2.612GHz	AMD	Opteron	Hex	(6)	Core	CPUs 
+			(24	cores	total)
+•	128GB	RAM
+•	1.6GB	LSI	Nytro	WarpDrive	SSD	drive	(PCIe)
+•	2	x	143GB	10,000	RPM	SAS	drives	for	ESXi
+
+W H I T E   P A P E R   /   8
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureNetwork Considerations and Configuration
+Horizon Mirage leverages network connectivity for:
+
+•	Connectivity between Mirage Server and NAS storage – Connection speeds between the Mirage Servers and 
+storage	should	be	a	dedicated	and	segregated	high-speed	(LAN)	connection,	preferably	10-gigabit	Ethernet.
+
+•	Connectivity between Mirage Server and clients – Connection speeds between clients and servers will vary, 
+depending on the location of endpoints, available bandwidth, network latency, or other network-limiting 
+factors. 
+
+•	Connectivity between Horizon Mirage system components	(Mirage	Management	Server,	Mirage	Server,	
+Mirage	File/Web	Portal)	–	Connection	speeds	between	the	Horizon	Mirage	system	components	require	high-
+speed	LAN	connections,	and	as	such	will	be	installed	within	the	same	datacenter. 	
+
+Figure	3	depicts	the	Horizon	Mirage	Branch	Office	Reference	Architecture.
+
+Windows
+Desktops
+
+Remote Branch Network
+
+Horizon Mirage
+Administrator
+
+TCP Port
+8443
+
+Mirage Server(s)
+(TCP/SSL 8000)
+
+IIS File Portal
+(HTTPS)
+
+Mirage 
+Management 
+Server
+
+TCP Ports
+135,445
+
+TCP Port 8444
+
+AD DS Ports
+
+ 
+ 
+
+DNS/NTP
+Services
+
+Active Directory 
+Domain Service
+
+Storage
+(Windows File Server)
+
+SQL
+Database
+
+ 
+
+Figure 3: Horizon Mirage Branch Office Reference Architecture
+
+W H I T E   P A P E R   /   9
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureThe health, capacity, and performance of the network have a direct impact on Horizon Mirage. These factors 
+can delay or disrupt backups, operating system deployment, and Windows migrations if not designed properly. 
+As	part	of	the	project	planning	and	assessment,	the	following	network-related	information	should	be	carefully 	
+gathered and reviewed for better understanding of the networking conditions and configurations:
+
+•	Network	topology	including	all	circuit	speeds,	types,	and	current	level	of	utilization	and	latency;	endpoint 	
+distribution;	and	MTU	sizes
+
+•	Implementation	of	any	WAN	acceleration,	Traffic	Shaping,	Quality	of	Service	(QoS),	Class	of	Service	(CoS),	or 	
+priority queuing
+
+•	Endpoint	connectivity	methods	(LAN,	WAN,	VPN,	or	Internet)
+
+The customer has several offices distributed throughout the world. A large number of endpoints are located 
+near	the	datacenter,	and	as	such	can	be	backed	up	and	migrated	over	the	gigabit	Ethernet	network.	However, 	
+the	customer	also	has	endpoints	located	in	several	remote	offices	served	by	relatively	slow	WAN	links.	The 	
+customer especially needed help with the backup and migration of these remote endpoints. The remote-office 
+desktops contain critical data that is not currently saved in the datacenter, and dispatching technicians to 
+remote offices to migrate endpoints would be too expensive.
+
+The	first	10	endpoints	backed	up	and	migrated	in	this	Reference	Architecture	are	typical	of	the	customer’s 	
+remote	workforce.	They	were	located	in	an	office	across	a	1.544Mb	(T1)	WAN	link	with	80	milliseconds	of 	
+latency,	typical	of	healthy	cross-country	U.S.	WAN	circuits. 	
+
+To	preserve	bandwidth	for	other	applications,	Horizon	Mirage	was	limited	to	using	1Mb	of	the	total	1.544Mb 	
+WAN	bandwidth.	
+
+The	Horizon	Mirage	server	infrastructure	was	located	in	the	customer’s	primary	datacenter.	This	datacenter 	
+is	supported	by	gigabit	Ethernet	for	applications	and	server-to-server	communication,	and	both	10-gigabit 	
+Ethernet	and	4-gigabit	Fibre	Channel	for	storage	connectivity. 		
+
+The	customer’s	firewalls	and	intrusion	prevention	and	detection	infrastructure	were	also	configured	to	support 	
+Horizon	Mirage.	The	default	TCP/IP	ports	required	are	listed	in	Table	4.	Note	that:
+
+•	External refers to communication between the Horizon Mirage system and endpoints, including Branch 
+Reflectors.
+
+• Internal ports are used for communication between the Mirage Management Server, Mirage Servers, and the 
+File	Portal	and	supporting	infrastructure	including	storage,	Active	Directory,	and	DNS.
+
+COMPONENT
+
+COMMUNICATION
+
+PORT
+
+PROTOCOL
+
+COMMENTS
+
+Mirage Server 
+Service
+
+External
+
+8000
+
+TCP 
+
+Branch Reflector
+
+External
+
+8001
+
+TCP
+
+Mirage 
+Management 
+Service
+
+External
+
+8443
+
+TCP
+
+The only port required for 
+communications between  
+Mirage Clients and  
+Mirage Servers.
+
+SSL/TLS is optional.
+
+Used for communication between 
+the Branch Reflector and the local 
+peers at the remote site.
+
+Used for communication between 
+Mirage Management Console and 
+Mirage Management Service. 
+SOAP Message-level Security 
+applied.
+
+W H I T E   P A P E R   /   1 0
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureCOMPONENT
+
+COMMUNICATION
+
+PORT
+
+PROTOCOL
+
+COMMENTS
+
+Mirage Server 
+Service
+
+Internal
+
+135,	445
+
+TCP/UDP
+
+File Portal 
+(optional)
+
+File Portal 
+(optional)
+
+Web 
+Administration 
+(optional)
+
+Web 
+Administration 
+(optional)
+
+Internal
+
+8444
+
+TCP
+
+External
+
+80	or	
+443
+
+TCP
+
+Internal
+
+8443
+
+TCP
+
+External
+
+80	or	
+443
+
+TCP
+
+Table 4: Horizon Mirage Network Ports Configuration
+
+Used for control communication 
+between the Mirage Management 
+Service and the Mirage Server.
+
+You can limit access to this port to 
+incoming connections from the 
+Mirage Management Service host.
+
+Used for communication between 
+the IIS server and the Mirage 
+Management Server.
+
+Access to Web-based file and 
+folder recovery portal. HTTPS 
+(SSL)	access	is	optional.
+
+Used for communication between 
+the IIS server and the Mirage 
+Management Server.
+
+Access to Web-based 
+administration	portal.	HTTPS	(SSL)	
+access is optional.
+
+Storage Considerations and Configuration
+Horizon Mirage requires storage volumes to store base layers, application layers, hardware drivers, and endpoint 
+backups. It is important to properly design the storage for Horizon Mirage so that both sufficient capacity and 
+storage IOPS are provided. Horizon Mirage can use local storage or network storage shared via CIFS/SMB. If 
+multiple Mirage Servers are to be deployed in a cluster, CIFS/SMB file shares must be used, as Horizon Mirage 
+does not support customers using direct-attached storage. 
+
+It is important to remember that both the speed and health of the network between the endpoints and the 
+Horizon Mirage infrastructure directly impact Horizon Mirage storage performance, as do the number of 
+simultaneous endpoint operations performed. The faster data moves to the Mirage Server, the faster the 
+information can be written to disk—if the storage system can support it. If the storage does not have sufficient 
+IOPS, Horizon Mirage will throttle its operations, increasing the amount of time it takes to perform each 
+operation. 
+
+W H I T E   P A P E R   /   1 1
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureFor	this	Reference	Architecture,	the	storage	configuration	in	Table	5	was	designed	to	provide	sufficient	IOPS 	
+and capacity for the first series of remote endpoints.
+
+QUANTITY
+
+DESCRIPTION
+
+STORAGE
+
+1
+
+1
+
+Single	Instance	Store	(SIS)
+
+Mirage Server Local Cache
+
+1TB	VMDK	stored	on	a	dedicated	RAID-10	NFS	
+volume hosted by a ZFS-based storage appliance 
+optimized by SSD write caching providing 
+20,000	write	IOPS	
+
+The	RAID-10	volume	was	connected	to	a	
+Windows	2008	R2	File	Server	that	shared	it	with	
+the Horizon Mirage system via CIFS/SMB. 
+
+103GB	VMDK	stored	on	PCIe-based	SSD	storage	
+installed	in	an	ESXi	host	providing	more	than	
+40,000	write	IOPS
+
+Table 5: Horizon Mirage Storage Configuration
+
+External Infrastructure Components
+Horizon Mirage relies on specific infrastructure services that must be available in the datacenters where it is 
+deployed:
+
+•	Active Directory	–	Horizon	Mirage	uses	Microsoft	Windows	2008	Active	Directory	for	authentication	and 	
+policy-management purposes. 
+
+•	Domain Name Services (DNS)	–	Horizon	Mirage	relies	on	proper	DNS	name	resolution	to	be	able	to 	
+communicate with the various infrastructure components and the managed endpoints. 
+
+•	Network Time Protocol (NTP) –	Although	NTP	Services	are	not	explicitly	required	for	a	VMware	Horizon 	
+Mirage installation, ensuring that critical systems use time synchronization is a best practice. Be sure to 
+properly	configure	NTP	for	all	major	infrastructure	components	including	servers,	network	equipment,	storage 	
+appliances, virtual machines, and Active Directory controllers. 
+
+ 
+
+W H I T E   P A P E R   /   1 2
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureTest Results: Windows 7 Migration of Ten 
+Endpoints over T1 WAN
+
+This	section	describes	the	migration	of	10	remote-office	Windows	7	desktops	over	a	T1	WAN	and	reports	the 	
+measurements taken during the migration process.
+
+Centralization
+After	implementing	the	Horizon	Mirage	infrastructure,	the	first	step	to	prepare	the	remote	office	for	Windows	7 	
+migration was backup of each desktop. The backup preserved critical user data, and provided a way to recover 
+desktops in case of failed migrations. Unlike competing migration solutions such as Microsoft SCCM, VMware 
+Horizon Mirage includes a complete desktop backup and disaster-recovery solution. The Horizon Mirage backup 
+process is known as centralization. 
+
+By design, Horizon Mirage backs up not only the unique user data on each desktop, but also items that are 
+required	to	restore	each	system’s	unique	configuration	to	the	same	or	different	hardware.	These	user-specific 	
+items include user personalization and applications. This backup design not only provides the customer a 
+way to recover from failed migrations, but also provides an ongoing system to protect critical user data and 
+personalized desktops if they are ever lost or broken. 
+
+The	desktop	assessment	performed	as	part	of	the	migration-planning	process	revealed	that	the	10	desktops	in 	
+the	remote	office	totaled	325GB	in	used	disk	space.	However,	each	desktop	had	an	average	of	only	60	percent 	
+unique	content,	including	user	data	and	applications.	The	remaining	40	percent	was	comprised	of	duplicate 	
+data and applications, including the current Windows XP operating system. Horizon Mirage requires only a 
+single	backup	of	this	duplicate	content	before	it	can	optimize	centralization	using	deduplication.	To	“jumpstart” 	
+the	Horizon	Mirage	deduplication	of	WAN-based	systems,	a	Windows	XP	SP3	desktop	running	typical	customer 	
+applications was centralized in the datacenter first. This prevented Horizon Mirage from having to transfer a 
+copy	of	Windows	XP,	Office	XP,	and	other	applications	across	the	WAN,	as	shown	in	Figure	4. 	 
+
+Remote Site
+
+T1 Link Speed
+
+Mirage
+
+SIS 
+
+Mirage Server
+
+Cluster
+
+ 
+
+Laptop (or PC) with 
+
+Mirage Client
+
+Figure 4: Desktop Centralization
+
+The	10	desktops	were	separated	from	the	Horizon	Mirage	infrastructure	by	a	simulated	T1	WAN.	To	ensure 	
+bandwidth was available for other applications, Horizon Mirage was limited by the network to a maximum of 
+1Mb	of	the	1.544Mb	T1	circuit.		
+
+Horizon	Mirage	completed	centralization	of	all	10	endpoints	over	this	1Mb	of	bandwidth	in	22.16	days,	with	the 	
+average	desktop	taking	18.16	days	to	back	up.	The	limiting	factor	that	slowed	the	centralization	process	was 	
+WAN	bandwidth.	During	centralization,	the	WAN	sustained	an	average	utilization	of	0.98Mb,	98	percent	of 	
+the	1Mb	that	Horizon	Mirage	was	granted.	As	further	detailed	in	 Centralization over Typical Network Circuit 
+Speeds, increasing the network bandwidth available to Horizon Mirage decreases the amount of time required 
+to perform centralizations.
+
+W H I T E   P A P E R   /   1 3
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureBetween deduplication and compression, Horizon Mirage achieved an average savings of 44 percent. That 
+savings	means	that	only	56	percent	of	the	content	in	the	10	endpoints,	183GB	of	the	325GB	total,	had	to	be 	
+transferred	across	the	WAN.	This	slashed	both	the	time	and	expensive	WAN	bandwidth	that	would	have	been 	
+required to back up the desktops without these key capabilities.
+
+In	addition	to	WAN	bandwidth,	the	Horizon	Mirage	system	required	sustained	utilization	of	the	following 	
+resources during centralization:
+
+•	Mirage	Server	CPU
+
+•	CIFS	Storage	Server	CPU
+
+•	Mirage	CIFS	Storage	(SIS)	IOPS
+
+•	Mirage	Server	Local	Cache	IOPS
+
+The	resource	utilization	averages	detailed	in	Tables	6	and	7	validate	that	the	Horizon	Mirage	infrastructure	is 	
+designed to support more desktops and more simultaneous operations located across faster network circuits. 
+
+ 
+ 
+ 
+SYSTEM
+
+Mirage	Server	(%	of	6	CPUs)
+
+CIFS	Storage	Server	(%	of	2	CPUs)
+
+Table 6: Mirage Server and Storage Server CPU Utilization
+
+TOTAL IOPS
+
+AVERAGE
+
+PEAK
+
+0.30%
+
+0.03%
+
+2.80%
+
+2.56%
+
+ 
+ 
+ 
+SYSTEM
+
+READ IOPS
+
+WRITE IOPS
+
+TOTAL IOPS
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+Mirage Server Local Cache
+
+0.23
+
+59.29
+
+5.23
+
+7.77
+
+5.48
+
+Mirage	CIFS	Storage	(SIS)
+
+0.46
+
+113.18
+
+6.59
+
+66.22
+
+7.21
+
+62.72
+
+120.72
+
+Table 7: Mirage Server Local Cache and CIFS Storage IOPS
+
+In the same way that faster networks decrease the time required for centralization, they also increase the 
+amount of resources required by Horizon Mirage to handle faster endpoint communication. This is further 
+detailed in Centralization over Typical Network Circuit Speeds.
+
+Differences	in	endpoints	and	the	way	endpoints	are	used	can	also	impact	centralization	time	and	the	system 	
+resources	required.	The	10	desktops	centralized	in	this	project	were	online	24	hours	a	day	and	did	not 	
+have active users or applications. By design, Horizon Mirage endeavors to minimize its impact on end-user 
+productivity,	throttling	client	activity	by	a	factor	of	10	if	it	detects	the	endpoint	is	in	use.	The	10	endpoints 	
+centralized	were	also	automatically	defragmented	and	had	the	same	hardware	configuration.	Differences	in 	
+the age and performance of the hardware, the amount of unique data, and the number of hours per day each 
+endpoint	is	online	and	actively	used,	all	affect	the	amount	of	time	required	for	Horizon	Mirage	to	back	them 	
+up. Such factors are best evaluated by performing a comprehensive assessment of the desktops as part of 
+Windows	7	migration	planning.
+
+W H I T E   P A P E R   /   1 4
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureCreating the Branch Reflector
+After the remote endpoints were successfully backed up via Horizon Mirage centralization, the next step to 
+prepare	for	their	migration	to	Windows	7	was	to	deploy	a	Mirage	Branch	Reflector	(BR).	The	Branch	Reflector 	
+is simply a desktop that offloads the process of transferring desktop images to each endpoint during operating 
+system migrations and deployments. This prevents Horizon Mirage from having to transfer the same desktop 
+image	across	the	WAN	multiple	times	to	support	multiple	endpoints	at	a	remote	site,	saving	both	time	and 	
+expensive	WAN	bandwidth.		
+
+The	Branch	Reflector	simply	requires	a	Windows	7–based	PC	with	sufficient	system	resources	to	support	its 	
+use to transfer desktop images. The system could be an endpoint used for other low-resource purposes, such 
+as a desktop acting as an information kiosk. This use of shared resources can reduce the amount of dedicated 
+hardware necessary to perform the migration, with the caveat that other utilizations of the Branch Reflectors 
+could slow their Horizon Mirage operations. 
+
+For	this	project,	the	customer	elected	to	implement	dedicated	Branch	Reflectors,	using	extra	systems	in 	
+their remote sites identified during the pre-migration assessment. The dedicated Branch Reflectors helped 
+the	customer	migrate	remote	endpoints	as	efficiently	as	possible,	with	a	best-practice	maximum	of	30 	
+simultaneous migrations planned for each BR.
+
+Because these extra desktops at each site were running Windows XP, the first step in making them Branch 
+Reflectors	was	to	use	Horizon	Mirage	to	migrate	them	to	Windows	7.	Using	the	 base layer created as part of 
+the preparation for migration, Horizon Mirage was used to migrate the desktop designated to become the first 
+Branch	Reflector	in	15	hours	and	43	minutes.	Of	this	time,	15	hours	and	3	minutes	were	required	to	transfer	the 	
+Windows	7	base	layer	over	the	WAN.	After	the	image	was	transferred,	however,	Horizon	Mirage	required	only 	
+40	minutes	to	completely	migrate	the	desktop	to	Windows	7,	including	migration	of	user	data	and	adding	the 	
+system to Active Directory, as detailed in Table 8.
+
+Time	required	to	transfer	Windows	7	to	endpoint
+
+15	hours	3	minutes
+
+Time	required	to	perform	Windows	7	migration
+
+40	minutes
+
+Total time required to migrate endpoint to Windows 7
+
+15 hours 43 minutes
+
+Table 8: Time Required to Create Branch Reflector
+
+During creation of the Branch Reflector, the following system resources had sustained utilization: 
+
+•	Mirage	CIFS	Storage	IOPS
+
+•	WAN	bandwidth
+
+ 
+ 
+ 
+SYSTEM
+
+READ IOPS
+
+WRITE IOPS
+
+TOTAL IOPS
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+Mirage	CIFS	Storage	(SIS)
+
+4.24
+
+277.67
+
+0.65
+
+254.6
+
+5.02
+
+533.27
+
+Table 9: Mirage Storage IOPS During Migration of Branch Reflector to Windows 7
+
+W H I T E   P A P E R   /   1 5
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureAVERAGE BANDWIDTH 
+UTILIZED
+
+PERCENTAGE OF BANDWIDTH 
+RESERVED FOR HORIZON MIRAGE
+
+PERCENTAGE OF TOTAL   
+T1 CIRCUIT BANDWIDTH
+
+0.76Mb
+
+76%
+
+49%
+
+Table 10: WAN Utilization During Migration of Branch Reflector
+
+After	the	remote	endpoint	was	migrated	to	Windows	7,	the	Horizon	Mirage	administrator	centrally	configured 	
+it	to	be	a	Branch	Reflector	using	the	Mirage	Management	Console.	This	took	just	a	few	minutes,	requiring	the 	
+administrator to simply designate the endpoint as a Branch Reflector, and configure the system to require other 
+endpoints to always use it. This setting means that endpoints always use Branch Reflectors to receive image 
+transfers. If a Branch Reflector does not have part of the image required in its cache, the endpoint will wait until 
+the Branch Reflector has retrieved the necessary files from the Mirage Server. This prevents the endpoints from 
+connecting	directly	to	the	Mirage	Server	across	the	WAN.	If	the	customer	had	been	more	concerned	about 	
+delayed	migrations	waiting	for	caching	Branch	Reflectors	than	WAN	bandwidth,	the	system	could	have	been 	
+left at the default setting to not require endpoints to always use Branch Reflectors.
+
+“Warming Up” the Branch Reflector
+In	order	for	the	Branch	Reflector	to	be	effective,	it	must	cache	a	copy	of	the	files	necessary	to	create	each	base 	
+layer used for desktop deployment and migration. Horizon Mirage intelligently re-uses any existing files on the 
+Branch	Reflector	before	requesting	the	Mirage	Server	to	send	them	across	the	WAN.	This	includes	the	entire 	
+Windows	7	operating	system	and	any	applications	installed	on	the	BR.	This	limits	what	Branch	Reflectors	must 	
+cache	across	the	network	to	just	applications	and	operating	system	components	that	aren’t	already	on	the	BR, 	
+and the hardware drivers required by each endpoint. 
+
+If	the	customer’s	base	layers	are	substantially	different	than	the	system	supporting	the	Branch	Reflector, 	
+the files not already on the BR must be cached before the BR will be able to deploy them. If the size of this 
+additional	content	is	significant,	the	Branch	Reflector	can	be	“warmed	up,”	or	pre-cached,	using	one	of	the 	
+following methods:
+
+•	Migrate	a	small	number	of	endpoints	using	the	BR	before	performing	a	mass	migration.
+
+-	This	will	transfer	the	required	files	across	the	WAN	to	the	Branch	Reflector.
+
+•	Manually	copy	the	base	layers	to	the	Branch	Reflector.
+
+•	Prepare	Branch	Reflectors	centrally	and	ship	them	pre-cached	to	remote	sites.
+
+For	this	project,	had	the	customer	elected	to	ship	a	BR	to	the	remote	site,	they	would	have	avoided	the	15	hours 	
+required	to	transfer	Windows	7	across	the	WAN	to	migrate	the	system	that	became	the	Branch	Reflector.	In 	
+this case, however, the customer preferred to have Horizon Mirage automate migration of the Branch Reflector 
+across	the	WAN,	and	prevent	IT	from	having	to	expend	the	resources	required	to	prepare	and	ship	systems	to 	
+remote offices.  
+
+The	base	layer	used	to	create	the	Branch	Reflector	was	also	identical	to	the	base	layer	used	to	migrate	the	10	
+remote endpoints. Therefore, only a minimal amount of additional files had to be transferred from the Mirage 
+Server	across	the	WAN	to	the	Branch	Reflector	to	support	the	migration,	as	detailed	in	Table	11. 
+
+Size of Mirage Branch Reflector cache before migration
+
+2.04GB
+
+Size of Branch Reflector cache after migration
+
+2.30GB
+
+Growth of Branch Reflector cache during migration
+
+.26GB (266MB)
+
+Table 11: Growth of Branch Reflector Cache During the Migration
+
+W H I T E   P A P E R   /   1 6
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureMigration of Ten Remote Endpoints to Microsoft Windows 7
+With the Branch Reflector in place, the Horizon Mirage infrastructure was ready to begin migrating endpoints 
+in	the	remote	office	to	Windows	7.	Using	the	Windows	7	Migration	wizard	in	the	Mirage	Management	Console, 	
+administrators	selected	the	first	10	Windows	XP	desktops	that	had	completed	centralization.	As	they	had	been 	
+backed up by Horizon Mirage centralization, administrators had an easy way to fully recover any endpoint had 
+its migration not been successful.
+
+Before	completing	the	wizard	and	launching	the	migration,	the	Windows	7	base	layer	created	for	the	migration 	
+was	selected,	and	the	correct	Active	Directory	domain	and	organizational	unit	(OU)	for	the	desktops	also 	
+specified. 
+
+Shortly	after	the	migration	started,	the	Branch	Reflector	in	the	remote	office	began	transferring	the	Windows	7 	
+base	layer	to	each	desktop	over	the	local	area	network	(LAN).	This	prevented	the	Mirage	Server	from	having	to 	
+transfer	the	same	files	to	each	endpoint	over	the	WAN. 	
+
+While	the	Branch	Reflector	transferred	Windows	7	to	each	endpoint	in	the	background,	the	desktops	remained 	
+completely	available	for	use	in	the	event	they	were	needed.	Only	after	Windows	7	had	been	completely 	
+transferred to each endpoint did the migration from XP actually begin. Since these desktops did not have active 
+users, the Horizon Mirage system automatically rebooted them to begin the migration. Had users been logged 
+in to any system, they would have been prompted to reboot, giving them an opportunity to save open work 
+and continue, or to delay their migration.
+
+During	the	reboot,	Horizon	Mirage	replaced	Windows	XP	with	the	Windows	7	base	layer	in	an	operation	known 	
+as the pivot.	It	then	rebooted	again,	starting	Windows	7	for	the	first	time	to	perform	hardware	detection	and 	
+install the drivers already copied to the endpoint by the Branch Reflector from the Horizon Mirage driver library. 
+After driver installation and other tasks required to finalize the migration, the endpoints were added to the 
+Active	Directory	domain	and	each	user’s	Windows	profile	and	data	were	automatically	migrated	from	Windows 	
+XP.	The	desktop	then	booted	a	final	time,	fully	migrated	to	Windows	7,	and	was	available	for	use.	The	average 	
+total	amount	of	time	the	endpoint	was	unavailable	was	just	22	minutes,	as	shown	in	Table	12.
+
+Time	required	to	transfer	Windows	7	from	Branch	Reflector	
+to all endpoints
+
+1	hour	34	minutes
+
+Time required to finalize migration on all endpoints
+
+59	minutes
+
+Average	endpoint	downtime	(user	interrupted)
+
+22	minutes
+
+Total migration time for all 10 endpoints
+
+2 hours 33 minutes
+
+Table 12: Time Required to Migrate Ten Remote Endpoints to Windows 7
+
+Note	that	during	the	migration,	neither	the	Horizon	Mirage	system	infrastructure	in	the	datacenter	nor	the	WAN 	
+showed	any	significant	utilization,	as	detailed	in	Table	13.	Only	the	following	system	resources	had	sustained 	
+utilization: 
+
+•	Wide	Area	Network
+
+•	Branch	Reflector	CPU
+
+•	Branch	Reflector	read	and	write	IOPS
+
+•	Branch	Reflector	memory
+
+•	Branch	Reflector	network	card
+
+W H I T E   P A P E R   /   1 7
+
+VMware Horizon Mirage Branch Office  Reference Architecture 
+ 
+ 
+RESOURCE
+
+WAN	utilization
+
+Branch	Reflector	CPU	usage	(%	of	2	CPUs)
+
+Branch Reflector read IOPS
+
+Branch Reflector write IOPS
+
+Branch Reflector memory usage
+
+BANDWIDTH UTILIZATION
+
+AVERAGE
+
+PEAK
+
+0.08Mb
+
+32.03
+
+89.6
+
+2.2
+
+871MB
+
+1Mb
+
+69.73
+
+200.83
+
+25.82
+
+977MB
+
+Branch Reflector network utilization
+
+130.59Mb
+
+309.54Mb
+
+Table 13: Resource Utilization During Windows 7 Migration with Branch Reflector
+
+After the migration was launched, it was offloaded to the Branch Reflector in the remote office. This slashed 
+both	the	time	and	WAN	bandwidth	required,	compared	to	the	WAN	migration	of	the	first	XP	endpoint	that	was 	
+used	to	create	the	Branch	Reflector.	Table	14	details	this	comparison.
+
+MIGRATE 1 ENDPOINT 
+OVER 1 MEGABIT WAN
+
+MIGRATE 10 ENDPOINTS 
+WITH BRANCH REFLECTOR
+
+Total migration time
+
+15	hours	40	minutes
+
+2	hours	33	minutes
+
+Average	WAN	bandwidth	utilized
+
+0.76Mb
+
+0.08Mb
+
+Table 14: Time Comparison: Windows 7 Migration over WAN vs . LAN with BR 
+
+The	Branch	Reflector	was	able	to	migrate	ten	times	as	many	machines	in	13	hours	and	7	minutes	less	time	than 	
+it	took	the	central	server	to	migrate	a	single	system	over	the	WAN.	The	Branch	Reflector	also	offloaded	nearly 	
+all	the	WAN	communication	required	for	the	migration.	This	reduced	WAN	utilization,	from	76	percent	of	the 	
+bandwidth	allocated	to	Horizon	Mirage	to	migrate	a	single	desktop	over	the	WAN,	to	just	8	percent	during	the 	
+migration	of	10	times	as	many	endpoints	within	the	remote	office. 	
+
+Using the innovative features of VMware Horizon Mirage, the customer was able to efficiently migrate ten 
+remote	desktops	in	just	over	two-and-a-half	hours,	with	no	IT	intervention	required,	other	than	launching	the 	
+migration	and	inspecting	the	systems	afterward.	With	just	22	minutes	of	average	endpoint	downtime	during 	
+the complete operating system migration, Horizon Mirage also minimized interruption of user productivity 
+to the least amount of time possible. Combined with preventing the need to dispatch IT to manually migrate 
+desktops,	the	savings	in	time,	resources,	and	user	productivity	provided	by	Horizon	Mirage	enables	Windows	7 	
+migrations of remote endpoints that would not be practical otherwise.    
+
+With	the	first	ten	endpoints	successfully	migrated	to	Windows	7,	the	customer	can	now	continue	efficiently 	
+migrating	up	to	30	remote	desktops	at	a	time	using	the	Branch	Reflector.	If	more	than	30	simultaneous 	
+migrations must be supported, adding another Branch Reflector will be as easy as enabling one of the migrated 
+Windows	7	endpoints	using	the	central	Mirage	Management	Console.
+
+W H I T E   P A P E R   /   1 8
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureTest Results: Centralization over Typical 
+Network Circuit Speeds
+
+To provide guidance for backing up endpoints located in remote offices supported by other common network 
+speeds,	the	10	endpoints	used	in	the	T1	migration	test	were	also	centralized	over	5Mb,	10Mb,	and	44.74Mb	(T3) 	
+WAN	circuits	and	100Mb	and	1Gb	LAN	circuits.	This	enabled	measurement	of	the	difference	in	time	and	Horizon 	
+Mirage system resources required to centralize the endpoints as the circuit speed increased.
+
+Total Versus Sustained Utilization Time
+In order to accurately measure the actual resource requirements for Horizon Mirage centralization, it is 
+important	to	understand	the	difference	between	Total Centralization Time and Sustained Utilization Time.
+
+Total Centralization Time is the time required for all endpoints to complete centralization, measured from the 
+beginning to the end of the upload process.
+
+Sustained Utilization Time is the amount of time Horizon Mirage centralization actively consumes system 
+resources. Sustained Utilization Time measures the plateau of resource utilization by analyzing only times when 
+at least five endpoints were centralizing. This plateau was observed to be:
+
+•	>75	percent	of	the	total	centralization	time	for	T3	circuit	tests
+
+•	>85	percent	for	the	10Mb	and	100Mb	circuits
+
+•	>95	percent	of	the	total	time	required	for	the	1Mb,	5Mb,	and	1Gb	circuit	tests
+
+Measuring the amount of sustained utilization reveals actual resource requirements diluted by averages based 
+on total time.
+
+Test Results
+As	detailed	in	the	tables	and	graphs	below,	the	amount	of	time	required	to	centralize	the	10	endpoints 	
+decreased with each increase in network circuit speed.
+
+ 
+
+ 
+
+10Mb
+
+5Mb
+
+1Mb
+
+Duration of Centralization: Average, Total and Sustained (in Days)
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+Average Length of Centralization
+Total Centralization Time
+Sustained Utilization
+
+Figure 5: Duration of Centralization in Days
+
+ 
+
+W H I T E   P A P E R   /   1 9
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureCIRCUIT 
+SPEED
+
+AVERAGE   
+LENGTH OF 
+CENTRALIZATION
+
+TOTAL 
+CENTRALIZATION 
+TIME
+
+SUSTAINED 
+UTILIZATION
+
+SUSTAINED:   
+% OF   
+TOTAL TIME
+
+1Mb
+
+5Mb
+
+10Mb
+
+18.16
+
+3.42
+
+1.84
+
+22.16
+
+4.44
+
+2.19
+
+21.27
+
+4.24
+
+1.9
+
+95.98%
+
+95.50%
+
+86.77%
+
+Table 15: Duration of Centralization – 1Mb, 5Mb, and 10Mb Circuits (Days)
+
+Duration of Centralization: Average, Total and Sustained (in Hours)
+
+Gigabit
+
+100Mb
+
+44.74Mb 
+(T3)
+
+0.00
+
+2.24
+
+4.48
+
+7.12
+
+9.36
+
+12.00
+
+14.24
+
+Average Length of Centralization
+Total Centralization Time
+Sustained Utilization
+
+Figure 6: Duration of Centralization in Hours
+
+CIRCUIT 
+SPEED
+
+44.74Mb	
+(T3)
+
+AVERAGE   
+LENGTH OF 
+CENTRALIZATION
+
+TOTAL 
+CENTRALIZATION 
+TIME
+
+SUSTAINED 
+UTILIZATION
+
+SUSTAINED:   
+% OF   
+TOTAL TIME
+
+11:12:18
+
+14:07:12
+
+10:52:00
+
+76.96%
+
+100Mb
+
+04:00:08
+
+Gigabit
+
+02:31:34
+
+04:43:26
+
+03:16:59
+
+04:16:00
+
+90.32%
+
+03:08:00
+
+95.44%
+
+Table 16: Duration of Centralization – T3, 100Mb, and 1Gb Circuits (in Hours)
+
+W H I T E   P A P E R   /   2 0
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureFor each increase in network circuit speed, the Horizon Mirage system also increased sustained utilization of the 
+following resources:
+
+•	WAN	bandwidth
+
+•	Mirage	Server	CPU
+
+•	CIFS	Storage	Server	CPU
+
+•	Mirage	CIFS	Storage	(SIS)	IOPS
+
+•	Mirage	Server	Local	Cache	IOPS
+
+ 
+
+ 
+ 
+ 
+ 
+CIRCUIT SPEED
+
+1Mb
+
+5Mb
+
+10Mb
+
+44.74Mb	(T3)
+
+100Mb
+
+1Gb*
+
+BANDWIDTH UTILIZATION
+
+AVERAGE 
+(MEGABITS)
+
+% OF   
+CIRCUIT
+
+0.98
+
+4.76
+
+9.92
+
+41.56
+
+96.37
+
+117.38
+
+97.70%
+
+95.18%
+
+99.17%
+
+92.88%
+
+96.37%
+
+11.46%
+
+Table 17: Centralization Bandwidth Utilization
+*	With	gigabit	Ethernet,	the	network	circuit	was	no	longer	the	bottleneck. 	
+
+ 
+
+Average Bandwidth Utilization per Circuit Speed During 
+Sustained Centralization (in Megabits)
+
+117.38
+
+93.37
+
+0.98
+
+1Mb
+
+4.76
+
+5Mb
+
+41.56
+
+9.92
+
+10Mb
+
+44.74Mb (T3)
+
+100Mb
+
+Gigabit
+
+Figure 7: Average Bandwidth Utilization per Circuit Speed in Megabits
+
+ 
+
+ 
+
+W H I T E   P A P E R   /   2 1
+
+VMware Horizon Mirage Branch Office  Reference Architecture 
+
+Average Horizon Mirage Server CPU Utilization (% of 6 vCPUs)
+During Sustained Centralization
+
+27.27%
+
+19.06%
+
+0.30%
+
+1Mb
+
+1.38%
+
+5Mb
+
+7.62%
+
+1.64%
+
+10Mb
+
+44.74Mb (T3)
+
+100Mb
+
+Gigabit
+
+Figure 8: Average Horizon Mirage Server CPU Utilization During Sustained Centralization
+
+Horizon Mirage Server Cache: Average Total IOPS During 
+Sustained Centralization
+
+555.31
+
+435.66
+
+197.57
+
+52.50
+
+10Mb
+
+44.74Mb (T3)
+
+100Mb
+
+Gigabit
+
+7.21
+1Mb
+
+27.19
+
+5Mb
+
+Figure 9: Horizon Mirage Server Cache Average Total IOPS During Sustained Centralization
+
+ 
+
+ 
+
+ 
+
+W H I T E   P A P E R   /   2 2
+
+VMware Horizon Mirage Branch Office  Reference Architecture 
+
+Horizon Mirage CIFS / SMB Storage: Average Total IOPS
+During Sustained Centralization
+
+555.31
+
+435.66
+
+197.57
+
+52.50
+
+10Mb
+
+44.74Mb (T3)
+
+100Mb
+
+Gigabit
+
+7.21
+1Mb
+
+27.19
+
+5Mb
+
+Figure 10: Horizon Mirage CIFS / SMB Storage Average Total IOPS During Sustained Centralization
+
+Average Windows CIFS / SMB Storage Server CPU Utilization (5 of 2 vCPUs)
+During Sustained Horizon Mirage Centralization
+
+37.25%
+
+30.66%
+
+0.03%
+1Mb
+
+1.41%
+
+5Mb
+
+10.43%
+
+2.84%
+
+10Mb
+
+44.74Mb (T3)
+
+100Mb
+
+Gigabit
+
+ 
+
+Figure 11: Average Windows CIFS / SMB Storage Server CPU Utilization
+
+ 
+
+W H I T E   P A P E R   /   2 3
+
+VMware Horizon Mirage Branch Office  Reference Architecture 
+ 
+CIRCUIT 
+SPEED
+
+1Mb
+
+5Mb
+
+10Mb
+
+44.74Mb	 
+(T3)
+
+CPU UTILIZATION
+
+READ IOPS
+
+WRITE IOPS
+
+TOTAL IOPS
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+0.30%
+
+2.80%
+
+0.23
+
+59.29
+
+5.23
+
+7.77
+
+5.48
+
+62.72
+
+1.38%
+
+1.64%
+
+5.78%
+
+2.36
+
+289.82
+
+23.64
+
+32.73
+
+26.07
+
+318.58
+
+10.45%
+
+4.79
+
+524.8
+
+50.33
+
+74.5
+
+55.23
+
+574.8
+
+7.62%
+
+17.70%
+
+23.9
+
+1586.6
+
+199.39
+
+265.4
+
+223.64
+
+1771.7
+
+100Mb
+
+19.06%
+
+26.70%
+
+41.07
+
+811.4
+
+462.93
+
+559.3
+
+504.4
+
+1319.4
+
+1Gb
+
+27.27%
+
+47.77%
+
+25.54
+
+517.3
+
+568.26
+
+1081.4
+
+594.18
+
+1157
+
+Table 18: Horizon Mirage Server CPU Utilization and Local Cache IOPS
+
+ 
+ 
+CIRCUIT 
+SPEED
+
+1Mb
+
+5Mb
+
+CPU UTILIZATION
+
+READ IOPS
+
+WRITE IOPS
+
+TOTAL IOPS
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+AVERAGE
+
+PEAK
+
+0.03%
+
+2.56%
+
+0.46
+
+113.18
+
+6.59
+
+66.22
+
+7.21
+
+120.72
+
+1.41%
+
+12.60%
+
+3.98
+
+405.80
+
+22.79
+
+185.83
+
+27.19
+
+434.80
+
+10Mb
+
+2.84%
+
+17.25%
+
+7.58
+
+417.90
+
+44.44
+
+233.95
+
+52.50
+
+501.43
+
+44.74Mb	 
+(T3)
+
+10.43%
+
+33.67%
+
+31.18
+
+985.93
+
+165.87
+
+410.85
+
+197.50
+
+1048.90
+
+100Mb
+
+30.66%
+
+54.25%
+
+71.15
+
+571.80
+
+364.01
+
+773.60
+
+435.66
+
+869.50
+
+1Gb
+
+37.25%
+
+64.70%
+
+89.90
+
+325.98
+
+464.91
+
+683.95
+
+555.31
+
+896.10
+
+Table 19: Horizon Mirage Storage Server CPU Utilization and Horizon Mirage Storage IOPS
+
+Note:	The	1Mb,	5Mb,	10Mb,	and	T3	circuits	had	80	milliseconds	of	latency,	typical	of	a	healthy	cross-country 	
+U.S.	WAN.	Horizon	Mirage	was	also	not	limited	in	the	amount	of	bandwidth	it	could	use	by	Quality	of	Service 	
+(QoS),	Class	of	Service	(CoS),	or	similar	technology.	Typically,	Horizon	Mirage	will	not	be	permitted	to	use	the 	
+entire circuit in order to save bandwidth for other applications. Customers should consult the test results for the 
+network speed that most closely matches the amount of bandwidth Horizon Mirage is permitted to use.  
+
+The	endpoints	during	these	tests	were	online	24	hours	a	day	with	no	active	users.	They	also	had	the	same 	
+hardware configuration, with hard disks that were automatically defragmented using Raxco PerfectDisk. 
+Desktops	that	are	not	online	as	much,	or	have	active	users,	differing	hardware	configurations,	or	differing	levels 	
+of	system	health	will	require	different	amounts	of	time	and	Horizon	Mirage	resources	to	centralize.	Performing 	
+an assessment of the endpoints to be centralized can help identify such factors.
+
+W H I T E   P A P E R   /   2 4
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureReferences
+
+VMware Horizon Mirage Documentation
+
+-	Installation	Guide
+
+-	Administrator’s	Guide
+
+-	Web	Manager	Guide
+
+- Managing Horizon View Desktops with Horizon Mirage
+
+VMware Horizon Mirage Reviewer’s Guide
+
+VMware Horizon Mirage 4.3 Release Notes
+
+VMware Compatibility Guide
+
+Horizon Branch Office Desktop
+
+VMware Horizon Mirage Community
+
+VMware Horizon Mirage Evaluation
+
+About the Authors
+
+Mark	Ewert	is	an	architect	in	the	VMware	End-User	Computing	Technical	Enablement	and	Lighthouse	teams, 	
+with	over	20	years	of	experience	in	enterprise	IT	architecture	and	the	large-scale	management	of	end-user 	
+devices.
+
+Stephane	Asselin	is	an	architect	in	the	VMware	End-User	Computing	Technical	Enablement	team.	Stephane 	
+has	been	involved	in	desktop	deployments	for	over	15	years,	and	has	extensive	field	experience	with	VMware 	
+End-User	Computing	and	ecosystem	products.
+
+ 
+
+W H I T E   P A P E R   /   2 5
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureAppendix A (Reference Architecture Detail)
+
+COMPONENT
+
+DESCRIPTION
+
+Mirage Management Server
+
+Mirage Server
+
+SQL Server
+
+Active Directory server
+
+Windows CIFS / SMB server
+
+Dual vCPUs
+8GB	RAM
+40GB	hard	disk
+Mirage	v4.2.3
+Windows	Server	2008	R2	SP1
+
+Dual vCPUs
+8GB	RAM
+40GB	hard	disk	for	OS
+103GB	for	local	cache
+Horizon	Mirage	v4.2.3
+Windows	Server	2008	R2	SP1
+
+Dual vCPUs
+8GB	of	RAM
+40GB	hard	disk	for	OS
+Windows	Server	2008	R2	SP1
+MS	SQL	Server	2008	R2	–	Standard	Edition
+
+Dual vCPUs
+8GB	RAM
+40GB	hard	disk	for	OS
+Windows	Server	2008	R2	SP1
+
+Dual	2.61GHz	CPUs
+8GB	RAM
+40GB	hard	disk	for	OS
+Windows	Server	2008	R2	SP1
+
+Table 20: Server Components
+
+COMPONENT
+
+DESCRIPTION
+
+Horizon Mirage endpoints
+
+Table 21: Endpoints (Desktops)
+
+Dual	vCPUs	(configured	as	one	dual	core	CPU)
+8GB	of	RAM
+60GB	of	hard	disk	for	OS
+Windows	XP	SP3	and	Office	2007	SP3
+Miscellaneous	applications	(Adobe	Reader,	Raxco	
+PerfectDisk,	Java,	and	others)
+
+W H I T E   P A P E R   /   2 6
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureCOMPONENT
+
+DESCRIPTION
+
+Physical vSphere host for  
+Mirage Server hosting
+
+Physical vSphere host for  
+Horizon Mirage endpoints
+
+Four	(4)	2.612GHz	AMD	Opteron	Hex	(6)	Core	CPUs	
+(24	cores	total)
+128GB	RAM
+1.6GB	LSI	Nytro	WarpDrive	SSD	Drive	(PCIe)
+VMware	ESXi	5.1.0,	Build	1157734
+VMware	vCenter™	Server	5.1.0	Build	1235232
+
+Four	(4)	2.612GHz	AMD	Opteron	Hex	(6)	Core	CPUs	
+(24	cores	total)
+128GB	RAM
+1.6GB	LSI	Nytro	WarpDrive	SSD	Drive	(PCIe)
+VMware	ESXi	5.1.0,	Build	1157734
+vCenter	Server	5.1.0	Build	1235232
+
+Table 22: VMware vSphere Infrastructure
+
+COMPONENT
+
+DESCRIPTION
+
+ZFS-based enterprise  
+storage appliance
+
+Volumes supporting  
+Mirage Server
+
+Volumes supporting endpoints
+
+Table 23: Storage System
+
+Dual	quad	core	Intel	CPUs,	40GB	RAM	for	read/write	
+cache
+128GB	Samsung	SLC	SSD	for	write	caching	(ZFS	ZIL)
+240GB	OCZ	MLC	SSD	for	read	caching	(ZFS	L2ARC)
+Separate	physical	volumes	for	each	different	type	of	
+system component
+
+6	x	2TB	SATA	drives
+ZFS	RAID	Z2	(similar	to	RAID	6)
+NFS	over	10	Gigabit	Ethernet	between	vSphere	host
+
+6	x	1.5TB	SATA	drives
+ZFS	RAID	Z2	(similar	to	RAID	6)
+Two	(2)	x	four	(4)	Gb	Fibre	Channel	between	ESXi	and	
+enterprise storage appliance
+
+W H I T E   P A P E R   /   2 7
+
+VMware Horizon Mirage Branch Office  Reference ArchitectureCOMPONENT
+
+Physical network
+
+Virtual network
+
+DESCRIPTION
+
+Enterprise	Gigabit	switch
+Intel	10	Gigabit	Network	Interface	Cards	(NICs)
+Direct connect between vSphere host and enterprise 
+storage appliance
+Multiple	VLANs,	physical	segments	and	IP	subnets
+
+vSphere	5.1	Distributed	Virtual	Switches	(DVS)	with	
+multiple	NICs	and	LACP	for	endpoints	and	Mirage	
+system networks
+vSphere	5.1	Standard	Virtual	Switches	(SVS)	for	10	
+Gigabit	storage	connectivity
+
+WAN	emulation
+
+WANem	WAN	Emulator	v3
+
+Table 24: Network Infrastructure
+
+COMPONENT
+
+DESCRIPTION
+
+Performance measurement
+
+Cacti	graphing	solution,	v.	0.8.8b
+RRDTool	v.	1.3
+SNMP-Informant
+
+vSphere monitoring
+
+Table 25: Infrastructure Monitoring
+
+vSphere	Log	Insight	v1.0.4-1169900
+VMware	vCenter	Operations	Manager™	5.7.2	Build	
+1314472
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VMW-WP-HORIZMIRAGEREFARCH-USLET-20140219-WEBVMware Horizon Mirage Branch Office  Reference Architecture

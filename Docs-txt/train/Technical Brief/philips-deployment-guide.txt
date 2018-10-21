@@ -1,0 +1,1047 @@
+ 
+
+ 
+
+ 
+
+Running Philips IntelliSpace Portal with 
+
+VMware vMotion, DRS and HA on 
+
+vSphere 5.1 and 5.5 
+
+September 2014 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E  
+
+ 
+
+ 
+
+Running Philips Application Name with VMware vMotion, DRS and HA on vSphere  
+
+Table of Contents 
+
+Introduction .................................................................................................................................... 3 
+Executive Summary ....................................................................................................................... 3 
+VMware and Philips Overview ...................................................................................................... 4 
+Philips Suite Overview ................................................................................................................. 4 
+VMware Virtual Infrastructure ...................................................................................................... 5 
+Philips Architecture and Deployment .......................................................................................... 6 
+Philips Test Process and Results ................................................................................................. 7 
+
+vMotion ........................................................................................................................................ 7 
+
+Distributed Resource Scheduling(DRS)                                                                                      9                                                                                                
+
+High Availability ............................................................................................................................ 9 
+Hardware and Software Configuration ....................................................................................... 12 
+Virtual Machine Configuration .................................................................................................... 15 
+Workload Used .......................................................................................................................... 15 
+Deployment Best Practices ......................................................................................................... 16 
+Technical Support ........................................................................................................................ 17 
+Conclusions .................................................................................................................................. 17 
+Resources ..................................................................................................................................... 18 
+Acknowledgements ...................................................................................................................... 18 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / I I    
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Introduction 
+
+Virtualization is rapidly transforming the IT landscape and fundamentally changing the way that people 
+compute. Today’s powerful x86 computer hardware was originally designed to run only a single OS. This 
+approach introduced a tight coupling between Operating System (OS) and hardware.  Virtualization breaks 
+that bond between the OS and hardware by making it possible to run multiple OS and applications on the 
+same computer at the same time, increasing the utilization and flexibility of hardware.   
+ 
+This document provides direction to those interested in running vMotion, DRS and High Availability (HA) 
+using the Philips® IntelliSpace® Portal on VMware® vSphere™ 5.1 and 5.5. It provides basic information on 
+the architecture of Philips IntelliSpace Portal, as well as the value of utilizing the VMware platform.  Finally, 
+the document outlines some best practices for utilizing the two product sets together in your datacenter.   
+
+Executive Summary 
+
+One of the largest challenges that customers have to contend with in any environment is how to deal with 
+planned downtime.  In the physical world servers always need to be powered down at some point,  firmware 
+upgrades, adding or removing hardware, or to upgrade to newer hardware. The same is true in the VMware 
+virtual world. 
+ 
+VMware has pioneered a unique technology that minimizes planned downtime and allows workloads running 
+on one physical ESX host server to be “hot” migrated (moved live) to another ESX host server, without any 
+impact to end users. While this sounds like magic, VMware customers have been using vMotion technology 
+successfully since it was first delivered in 2003. 
+ 
+VMware designed vMotion to handle two different use cases. It is the fundamental technology that enables 
+each of these capabilities:  
+ 
+
+1.  Minimizing planned downtime with operator managed (manual) vMotion. 
+2.  Automated server load balancing with VMware® Distributed Resource Scheduler (DRS).  
+
+ 
+In case of Server and operating system failures the best way to minimize downtime is by using VMware High 
+Availability (HA).  
+ 
+
+1.  Monitors virtual machines to detect operating system and hardware failures. 
+2.  Restarts virtual machines on other physical servers in the resource pool without manual 
+
+intervention when server failure is detected. 
+
+3.  Protects applications from operating system failures by automatically restarting virtual machines 
+
+when an operating system failure is detected. 
+
+ 
+You may want to know what impact VMware vMotion, DRS and HA will have on your applications when 
+virtual machines are moved from one physical server to another or when there is server or operating system 
+failure. The first question is around transactional integrity: will all your data be available after the migration 
+completes? The second question is around understanding transaction rate and overall impact to SLAs: will 
+anything be negatively impacted by vMotion? This white paper provides data that will help answer these 
+questions. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 3    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+VMware and Philips Overview 
+
+VMware (NYSE:VMW), the global leader in virtualization and cloud infrastructure, delivers customer-proven 
+solutions that accelerate IT by reducing complexity and enabling more flexible, agile service delivery. 
+VMware enables enterprises to adopt a cloud model that addresses their unique business challenges. 
+VMware’s approach accelerates the transition to cloud computing while preserving existing investments and 
+improving security and control.  
+
+Philips Suite Overview 
+
+IntelliSpace Portal is a software solution that allows radiologists and clinicians to access, review, analyze, 
+diagnose, and present medical images quickly, efficiently, and collaboratively with the latest technology with 
+a single advanced visualization and analysis solution from Philips. It works across clinical specialties, across 
+modalities, and across hospitals. With Philips IntelliSpace Portal, physicians discover how the powerful 
+combination of intelligence, integration, and interpretation transform the way they work, think, and care for 
+patients. This single multi-modality and multi-vendor* advanced visualization and analysis solution gives 
+physicians measurement and quantification capabilities to support their efforts in diagnostic objectiveness 
+and consistency.  
+
+* Please contact your local Philips representative for details on multi-vendor coverage. 
+
+ 
+
+Figure 1: Philips Suite Overview 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 4    
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+VMware Virtual Infrastructure 
+
+VMware’s leading virtualization solutions provide multiple benefits to IT administrators and users. VMware 
+virtualization creates a layer of abstraction between the resources required by an application and operating 
+system, and the underlying hardware that provides those resources. A summary of the value of this 
+abstraction layer includes the following: 
+
+VMware vSphere virtualization solutions provide for: 
+
+  Consolidation. VMware virtualization allows multiple application servers to be consolidated onto one 
+
+physical server, with little or no decrease in overall performance. This helps to minimize or eliminate 
+underutilized server hardware, software, and infrastructure.  
+
+  Manageability. The live migration of virtual machines from server to server and its associated storage 
+is performed with no downtime using VMware vSphere® vMotion®, which simplifies common operations 
+such as hardware maintenance, and VMware vSphere® Storage vMotion®.  
+
+  Availability. High availability can be enabled to reduce unplanned downtime and enable higher service 
+
+levels for applications. VMware vSphere® High Availability (HA) ensures that, in the event of an 
+unplanned hardware failure, the affected virtual machines are automatically restarted on another host in 
+a VMware cluster.  
+
+  Automation. VMware automated load balancing takes advantage of vMotion and Storage vMotion to 
+
+migrate virtual machines among a set of VMware® ESXi® hosts. VMware vSphere® Distributed 
+Resource Scheduler™ (DRS) and VMware vSphere® Storage DRS™ enable automatic resource 
+relocation and optimization decisions for virtual machines and storage.  
+
+  Provisioning. VMware virtualization encapsulates an application into an image that can be duplicated or 
+
+moved, greatly reducing the cost of application provisioning and deployment.   
+
+ 
+
+ 
+
+ 
+
+Figure 2: VMware vSphere Virtual Infrastructure 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 5    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Philips Architecture and Deployment  
+
+Philips IntelliSpace Portal was designed with a basic client – server architecture in mind. The Portal server is 
+responsible for the following actions: 
+
+  Session management – Managing user authentication, Resource management and licensing. 
+
+  Servlet running – Each application is divided into an Applet (Client side) and Servlet (Server side). While 
+
+the applet is responsible for UI and simple manipulations, the Servlet performs the CPU and memory 
+intensive renderings and calculations. 
+
+  DICOM node – the Portal Server functions additionally as a DICOM node in the hospital’s network, 
+
+receiving images and studies directly from CT/MR Scanner, PET/SPECT Cameras, PACS units etc. 
+There images and studies are later viewed by the users connecting from their Portal Clients. 
+
+The following image is a (High Level) block diagram of the Philips IntelliSpace Portal’s architecture: 
+
+ 
+
+Figure 3: Philips Architecture 
+
+ 
+ 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 6    
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Philips Test Process and Results 
+
+In this exercise, VMware worked with Philips to test the behavior of Philips IntelliSpace Portal with vMotion, 
+DRS and HA on vSphere 5.1 and 5.5. To make this testing relevant to real-world environments we used the 
+Philips IntelliSpace Portal clients running CPU heavy scenarios. Given the mission-critical nature of the 
+application, they need to verify that there were no failures during the VMware vMotion & DRS and verify that 
+all the services properly come up after VMware HA. 
+
+The primary objectives of testing was to check if vMotion, DRS and HA works resiliently on VMware virtual 
+infrastructure. The joint tests were also designed to provide answers to a common set of questions, and to 
+derive and document a set of best practices that can be used by our customers. 
+
+Specifically, key areas under investigation were: 
+
+  Client and server stability during vMotion and DRS scenarios. The clients were constantly running load 
+tests consisting of CPU and disk heavy activities during the vMotion and DRS procedures. Clients are 
+expected to stay connected to the server during these procedures 
+
+  Server recovery using HA features. It is expected that the server reboots on a different host and 
+
+immediately resume work. 
+
+vMotion 
+
+VMware vMotion technology moves running virtual machines from one physical server to another with no 
+impact on end users. VMware vMotion keeps your IT environment up and running, giving you 
+unprecedented flexibility and availability to meet the increasing demands of your business and end use. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 4: VMware vMotion 
+
+VMware vMotion: 
+
+  Moves entire running virtual machines instantly. Performs live migrations with zero downtime, 
+
+undetectable to the user. 
+
+  Manages and schedules live migrations with ease at pre-defined times without an administrator’s 
+presence, with the reliability and manageability that is derived from a production-proven product. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 7    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+  Performs multiple concurrent migrations of a virtual machine running any operating system, across any 
+
+type of hardware and storage that is supported by vSphere, complete with an audit trail. 
+
+  Moves online workloads from one ESXi Server host machine to another in order to maintain service 
+
+levels and performance goals.  
+
+  Continuously and automatically optimizes virtual machine placement within resource pools. Proactively 
+
+moves virtual machines away from failing or underperforming servers.  
+
+  Performs hardware maintenance without the need to schedule downtime and disrupt business 
+
+operations. 
+
+The entire state of a virtual machine is encapsulated by a set of files stored on shared storage, such as 
+Fibre Channel or iSCSI Storage Area Network (SAN) or Network Attached Storage (NAS). VMware storage 
+Virtual Machine File System (VMFS) allows multiple installations of VMware ESXi® to access the same 
+virtual machine files concurrently. 
+
+The active memory and precise execution state of the virtual machine is rapidly transferred over a high 
+speed network, allowing the virtual machine to instantaneously switch from running on the source ESXi host 
+to the destination ESXi host. vMotion keeps the transfer period imperceptible to users by keeping track of 
+on-going memory transactions in a bitmap.  
+
+)
+
+ 
+
+(
+
+%
+U
+P
+C
+M
+V
+ 
+r
+e
+v
+r
+e
+S
+P
+S
+I
+
+ 
+
+vMotion Test with ISP Server VM
+
+30
+
+25
+
+20
+
+15
+
+10
+
+5
+
+0
+
+ 
+
+Before vMotion
+
+After vMotion
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90 100 110 120 130 140 150 160 170
+
+Time in Seconds
+
+Figure 5: ISP Server Virtual Machine (VM) CPU Utilization during vMotion  
+
+ 
+
+ 
+
+ 
+
+Testing Results Summary 
+
+ 
+
+1.  The Philips IntelliSpace VM was subjected to full load while the vMotion was triggered. The 
+
+average vMotion time was approximately between 50 to 60 seconds with no major impact on the 
+performance. 
+
+2.  While loading the Images the migration of the Philips IntelliSpace VM did not cause any noticeable 
+
+impact on the VM. 
+
+3.  We were able to browse the Images before and after vMotion without any problems. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 8    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Distributed Resource Scheduling (DRS) 
+
+VMware DRS and vCenter provide a view and management of all resources in the cluster. A  
+global scheduler within vCenter enables resource allocation and monitoring for all virtual  
+machines running on ESX Servers that are part of the cluster. 
+
+ 
+
+Figure 6:  Distributed Resource Scheduling 
+
+ 
+
+DRS provides several additional benefits to IT operations:- 
+ 
+
+  Day-to-day IT operations are simplified as staff members are less affected by localized events and 
+dynamic changes in their environment. Loads on individual virtual machines invariably change, but 
+automatic resource optimization and relocation of virtual machines reduces the need for 
+administrators to respond, allowing them to focus on the broader, higher-level tasks of managing 
+their infrastructure 
+
+  DRS simplifies the job of handling new applications and adding new virtual machines. Starting up 
+
+new virtual machines to run new applications becomes more of a task of high level resource 
+planning and determining overall resource requirements, than needing to reconfigure and adjust 
+virtual machines settings on individual ESX Server machines 
+
+  DRS simplifies the task of extracting or removing hardware when it is no longer needed, or 
+
+replacing older host machines with newer and larger capacity hardware. To remove hosts from a 
+cluster, you can simply place them in maintenance mode, so that all virtual machines currently 
+running on those hosts get reallocated to other resources of the cluster. After monitoring the 
+performance of remaining systems to ensure that adequate resources remain for currently running 
+virtual machines, you can remove the hosts from the cluster to allocate them to a different cluster, 
+or remove them from the network if the hardware resources are no longer needed. Adding new 
+resources to the cluster is also straightforward, as you can simply drag and drop new ESX Server 
+hosts into a cluster 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 9    
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+DRS Test with ISP Server VM
+
+30
+
+25
+
+20
+
+15
+
+10
+
+5
+
+0
+
+Before vMotion
+
+After vMotion
+
+ 
+)
+
+ 
+
+(
+
+%
+U
+P
+C
+M
+V
+ 
+r
+e
+v
+r
+e
+S
+P
+S
+I
+
+ 
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90 100 110 120 130 140 150 160 170
+
+Time in Seconds
+
+Figure 7: ISP Server VM CPU Utilization during DRS  
+
+ 
+
+ 
+Testing Results Summary 
+
+ 
+
+1.  The Philips IntelliSpace VM was subjected to full load and no failures were observed while the DRS 
+
+triggered and vMotion was in process. The vMotion time was around 50 to 60 seconds. 
+
+2.  While loading the Images the migration of the Philips IntelliSpace VM did not cause any noticeable 
+
+impact on the VM. 
+
+3.  We were able to browse the Images before and after vMotion without any problems. 
+4.  VMware DRS was tested on VSphere 5.1 and 5.5 
+ 
+
+High Availability 
+
+vSphere High Availability (HA) delivers the availability needed by many applications running in virtual 
+machines, independent of the operating system and application running in it. HA provides uniform, cost-
+effective failover protection against hardware and operating system failures within your virtualized IT 
+environment. 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 0    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Figure 5: vSphere High Availability (HA) 
+
+ 
+
+ 
+
+Figure 8: High Availability  
+
+In this scenario, ISP Server VM was enabled for VMware HA. After the host failure the ISP Server VM came 
+up cleanly on the other host in the cluster and the clients were able to connect to the server VM 
+successfully.  
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 1    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+HA Test with ISP Server VM
+
+HA triggered and VM restarts after 90 seconds
+
+Before HA
+After HA
+
+ 
+
+ 
+
+30
+
+25
+
+20
+
+15
+
+10
+
+5
+
+0
+
+)
+
+ 
+
+(
+
+%
+U
+P
+C
+M
+V
+ 
+r
+e
+v
+r
+e
+S
+P
+S
+I
+
+ 
+
+10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200 210 220 230 240 250 260 270
+
+Time in seconds 
+
+Figure 9: ISP Server VM CPU Utilization during High Availability  
+
+ 
+
+Testing Results Summary 
+
+ 
+
+1.  High Availability was enabled on the cluster with 2 ESX Hosts (Host A and Host B) and Philips 
+
+IntelliSpace VM was configured on Host A. 
+
+2.  VMware HA was triggered by rebooting Host A. 
+
+3. 
+
+It was observed that the VM restarts cleanly on Host B and both the clients are reconnected 
+successfully 
+
+4.  Normal operations like loading and browsing images were carried out to verify that all the basic 
+
+functionality was working fine. 
+
+5.  The above tests were done on ESX 5.1 and ESX 5.5 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 2    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+ 
+
+Hardware and Software Configuration 
+
+The following section provides details on the hardware and software used in the testing. 
+
+ 
+
+ 
+
+Figure 10: ESX Host and VM distribution  
+
+The following table describes the configuration of ESX host servers and storage in the Philips test 
+configurations. 
+
+Table 1: ESX Host Hardware 
+
+H A R D W A R E  
+
+C O N F I G U R A T I O N    
+
+ HP Proliant DL380p Gen8 
+
+Two HP Proliant DL380p G8 Servers. Each server is equipped with: 
+
+  Intel(R) Xeon(R) E5-2680 @2.70 GHz  
+
+  Sockets: 2 
+
+  Number of Cores per Socket: 8 
+
+  Hyperthreading: Enabled                                                                                                                                   
+
+  32 GB RAM 
+
+  4 X 1 Gigi NICS and 4 x 10 Gigi NICS per ESX Host 
+
+EMC VNX 5700 
+
+  200 GB, 15K RPM  
+
+  8 Gbps  Fibre Channel   
+
+Storage 
+  
+  
+  
+  
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 3    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Installed Software 
+
+Table 2 lists the software used for the Philips solution running on VMware virtual infrastructure. 
+
+ 
+
+Table 2: Software Installed for Philips Testing on VMware Virtual Infrastructure 
+
+VMware  
+
+I N S T A L L E D   S O F T W A R E 
+
+VMware vSphere ESX 5.5, Build 1331820  
+VMware vSphere ESX 5.1, Build 1065491 
+ 
+
+Microsoft 
+
+  Windows Server 2008 R2 Standard, 64 bit 
+
+  Windows 7, 64 bit 
+
+Philips 
+
+  IntelliSpace Portal Application 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 4    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Virtual Machine Configuration 
+
+The following table describes the configuration of virtual machines running on ESX host servers in the 
+Philips test configurations. 
+
+Table 3: Virtual Machine Configuration 
+
+V I R T U A L   M A C H I N E  
+
+H A R D W A R E   C O N F I G U R A T I O N    
+
+1 ISP Server VM  
+ 
+
+2 Clients VM’s 
+
+Each configured with:- 
+ 
+  12 vCPUs 
+
+  32 GB memory 
+
+  Ethernet card (10 Gbps Network) 
+
+  Disk storage 1 x 25 GB, 1 x 55 GB and 1 x 40 GB 
+
+  vmdk only 
+
+  4 vCPUs 
+
+  4 GB memory 
+
+  Ethernet card(10 Gbps Network) 
+
+  Disk storage 1 X 32 GB 
+
+  vmdk only 
+
+Workload Used 
+
+To accomplish the testing, Philips tools were used to simulate the loads as per below:-   
+
+Two clients connected to the server with Client1 running CTV with 8000 images. Loading and exiting in a 
+loop and Client2 running AVA with 500 images performing a bone removal Algorithm. The above clients 
+were also used to run the CCA and perform segmentation and exits in a loop. 
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 5    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Deployment Best Practices 
+
+Here are some of the best practices derived from configuration and testing of the Philips application in a 
+VMware virtual infrastructure environment: 
+
+1.  When using Intel-based systems, confirm that the BIOS settings enable VT and EPT options on all ESX 
+
+hosts. Hyperthreading should be turned off. 
+
+2.  Configure the VMs and the VMkernel on a separate network interface card (NIC) on a separate vSwitch. 
+
+3.  Use VMware paravirtualized vmxnet3 adapter for better network throughput. 
+
+4. 
+
+Install VMware tools on the virtual machines. The VMware Tools package provides support required for 
+shared folders and for drag and drop operations. Other tools in the package support synchronization of 
+time in the guest operating system and the host, automatic grabbing and releasing of the mouse cursor, 
+copying and pasting between guest and host, and improved mouse performance in some guest 
+operating systems.  
+
+5.  Consider using server-class network interface cards (NICs) for the best performance and configure 
+
+paravirtualized vmxnet3 adapters for better network throughput. 
+
+6.  Disconnect or disable unused or unnecessary physical hardware devices, such as: 
+
+–  COM ports 
+
+–  LPT ports 
+
+–  USB controllers 
+
+–  Floppy drives 
+
+–  Optical drives (that is, CD or DVD drives) 
+
+Disconnecting or disabling devices will help free up interrupt resources. For example, traditionally, some 
+devices, such as USB controllers, operate on a polling scheme that consumes extra CPU resources.  
+Some PCI devices reserve blocks of memory, making that memory unavailable to ESXi. HA Failover 
+Architecture.   
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 6    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Technical Support  
+
+ 
+ 
+
+For technical support regarding virtualization, Philips IntelliSpace Portal customers should contact their local 
+Philips technical support representative. 
+
+ 
+
+Conclusions 
+
+Overall, testing results show that, running VMware vMotion, DRS and HA with Philips IntelliSpace Portal, 
+perform well. Furthermore, it has potential to reduce cost, increase service levels and simplify the 
+manageability of applications. 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 7    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Running Philips IntelliSpace Portal with VMware vMotion, DRS and HA on vSphere  5.5 
+ 
+
+Resources  
+
+Customers can find more information about VMware and Philips products using the links listed below. 
+
+VMware Resources 
+
+  VMware official website: 
+
+http://www.vmware.com/ 
+
+  VMware Support Center 
+
+https://www.vmware.com/support/vsphere 
+
+  VMware download Web site: 
+
+https://www.vmware.com/download/ 
+
+  VMware Performance Tuning Paper: 
+
+http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.5.pdf 
+
+ 
+
+I/O Compatibility Guide for a complete list of compatible networking devices: 
+
+http://www.vmware.com/guides?src=WWW_BestMatch_US#utm_source=WWW_BestMatch_US&utm_
+medium=src&utm_campaign=src-tagged-url 
+
+ 
+
+Philips Resources 
+
+  Philips Web site:  
+
+http://www.philips.com/intellispaceportal  
+
+Acknowledgements 
+
+The following individuals contributed to the creation of this deployment guide: 
+
+  Balayya Kamanboina, VMware 
+
+  Miki Cohen, Philips  
+
+  Raj Singh, VMware 
+
+ 
+
+ 
+
+Note: 
+Philips and IntelliSpace are registered trademarks of Koninklijke Philips 
+N.V. in the United States and/or other countries 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 8    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+

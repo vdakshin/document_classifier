@@ -1,0 +1,454 @@
+Technology Brief 
+ 
+
+Instrumenting and Optimizing Fibre Channel over 
+Ethernet (FCoE) with Virtual Instruments 
+
+Fibre Channel over Ethernet (FCoE) is a protocol that enables the encapsulation of fibre channel 
+frames over selected full duplex Ethernet (IEEE 802.3) networks. The goal is to provide I/O 
+consolidation over Ethernet, reducing network complexity and cost in the datacenter.  To enable 
+FCoE, a modified version of Ethernet most commonly known as Converged Enhanced Ethernet 
+(CEE), which Cisco calls DCE, is being designed to provide lossless networking.  FCoE is being 
+touted as a server-side edge network connection, where Converged Network Adapters (CNAs) 
+would eventually replace traditional fiber channel host bus adapters (HBAs) and 10GigE network 
+interface cards (NICs).  These would be connected to FCoE “top-of-rack” switches that would then 
+be directly connected to a traditional fibre channel switch.  
+ 
+
+ 
+To help our customers understand the impact of FCoE on their SAN and virtualized infrastructures, 
+this paper briefly explains … 
+
+ 
+
+1.  Where the industry is today  
+2.  Benefits and risks of deploying FCoE 
+3.  Where the industry is likely to go 
+4. 
+5.  How Virtual Instruments’ products can help 
+
+Importance of instrumentation & monitoring when FCoE is implemented 
+
+ 
+
+ 
+
+ 
+
+Summary:  
+
+ 
+
+• 
+
+• 
+
+• 
+
+FCoE Background 
+FCoE standards have 
+been ratified, and 
+along with Converged 
+Enhanced Ethernet 
+(CEE), intent is to 
+reduce networking 
+complexity in the 
+datacenter 
+ 
+ 
+
+FCoE Availability 
+Vendors such as 
+Cisco, Intel, QLogic, 
+Emulex and Brocade 
+offer FCoE products 
+today, in what is 
+referred to as “top of 
+rack” solutions 
+ 
+ 
+
+FCoE Risk and 
+Reality 
+According to Gartner, 
+the technologies 
+needed to fulfill the 
+promises of the 
+economic benefits of 
+FCoE are still at least 
+3 years away 
+
+As traffic shares 
+ports, line cards and 
+inter-switch links, 
+avoiding congestion 
+(hot spots) becomes 
+extremely difficult 
+
+Without proper 
+network 
+instrumentation, you 
+have no visibility and 
+no ability to manage 
+the quality of service  
+
+ 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+FCoE today and in the near term 
+
+Vendors such as Cisco, Intel, QLogic, Emulex, Brocade and others are now releasing FCoE optical 
+products (adapters and switches) today, in what are referred to as “top-of-rack” solutions.  With the 
+immaturity of the protocol and these products, we believe that fibre channel will continue to be the 
+interconnect of choice at the high end of the market.  Mission-critical servers will continue to use 
+fibre channel HBAs for connectivity for at least the next 3 to 5 years. 
+
+• 
+
+FCoE benefits   
+
+Cost savings from FCoE are expected to come from the reduction of cables, ports and rack-space 
+consumption from having both fibre channel and Ethernet switches in a single rack.  With hundreds 
+of servers in a rack supporting up to 1,000 virtual machines, the traditional way of connecting to 
+these servers with individual FC cards and NICs is costly. Converged network adapters (CNAs) 
+reduce the number of cables in the rack by about two-thirds. Two 20Gb cables from the CNAs 
+connect each server to a top-of-rack switch. This switch then connects to the existing Ethernet and 
+FC networks.  The benefits of this approach are touted to be lower cost blades and server racks 
+that are easier to maintain, have lower heat, space, and power requirements, and will be more 
+reliable. 
+
+Since the protocol is still Fibre Channel underneath the traffic that runs on it can work with current 
+fibre channel networks and management software packages, even though it’s on Ethernet cabling. 
+This can potentially be a large benefit to the higher end of the enterprise market where customers 
+have huge investments in Fibre Channel storage and have already invested in SAN monitoring, 
+provisioning, performance analysis and data protection tools, as well as in the personnel needed to 
+keep these networks running well. 
+
+ 
+
+FCoE risks and reality 
+In a Gartner report “Myth: Single FCoE Data Center Network = Fewer Ports, Less Complexity 
+and Lower Costs” dated March 11, 20101
+technologies needed to fulfill the economic promises aren’t there yet.  He states that when two 
+networks are overlaid on a single infrastructure, complexity increases significantly.  As traffic shares 
+ports, line cards and inter-switch links, avoiding congestion (hot spots) becomes extremely difficult.  
+Over time, emerging standards, such as Transparent Interconnection of Lots of Links (TRILL) may 
+make it easier to avoid these hot spots, but mature standards-compliant implementations are at 
+least three years away. 
+
+, Research Vice President Joe Skorupa states the 
+
+Today, CNAs continue to more expensive than HBAs and customers still need to buy and maintain 
+fibre channel switches/directors, so there’s no financial benefit to FCoE.  Migrating to FCoE sounds 
+good on paper, but a key concern for network administrators is how to protect existing network 
+performance when FCoE moves in.  In the past, network planners brought in Fibre Channel 
+equipment because of the guarantees it provided through its dedicated link architecture: 
+guaranteed performance, guaranteed latency, and guaranteed robustness.  Ethernet is well-known 
+for not providing these guarantees.  The biggest issue in the convergence of fiber channel and 
+Ethernet is that Ethernet was designed to be a 'best effort' network.  Ethernet allows for occasional 
+packet drops when networking gear is flooded with traffic. This is fine, given that the TCP/IP 
+networking protocol has checks built in, allowing clients to re-request packets that may have gone 
+missing during transmission.  Fibre Channel is essentially an encapsulation of SCSI commands and 
+runs with the expectation that data sent to and from storage gear and servers will get to its final 
+destination in a timely fashion, with no possibility of packet loss.  
+
+To resolve these differences, Converged Enhanced Ethernet (CEE ) is being developed.  Cisco calls 
+this Data Center Ethernet (DCE).   Under CEE, the IEEE committee and vendors are working on 
+standards to deal with Priority Flow Control (PFC), which allows multiple network protocols to share 
+an Ethernet link without interfering with each other.  A developing bandwidth management 
+
+ 
+ 
+ 
+VI Aids the 
+Transition to FCoE 
+Today, Virtual 
+Instruments offers 
+FCoE support from 
+the host to the LUN 
+with our 
+VirtualWisdom 
+software,  and our 
+hardware TAPs, 
+probes,  and protocol 
+analyzers 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+“The barriers to a single 
+network range from a 
+
+dearth of available 
+
+products and the price 
+premium charged for 
+those products to the 
+requirement to 'forklift 
+upgrade' your entire 
+
+network, to long-
+
+standing organizational 
+
+conflicts." 
+
+Joe Skorupa 
+Research Vice President 
+Gartner 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+                                                            
+1 Full report is available to Gartner clients 
+
+ 
+
+ 
+
+standard, known as Enhanced Transmission Selection, provides the consistent scheduling required 
+for converged networking, allowing bursty workloads to use unused Ethernet bandwidth that may 
+have been allocated to other traffic types.  Additionally, another standard provides congestion 
+management capabilities, allowing CEE switches to notify endpoints of congestion issues and 
+request them to throttle back traffic.  
+
+In order for network administrators to feel confident enough to migrate to FCoE, they will need to be 
+able to test and verify real-world performance against the marketing claims of FCoE equipment 
+manufacturers.  While the standard drafts are as good as they sound, developers and 
+administrators still need a way to verify that a particular implementation has been successful in 
+meeting latency requirements.   Administrators will need to be able to verify end-to-end 
+performance.  An FCoE link is comprised of an Ethernet link accessing Fibre Channel storage.  
+Measuring performance up to the transition point fails to take into account all of the unexpected 
+problems when crossing protocol domains.    
+
+And finally, there is a challenge in bringing two organizations together, the networking team and the 
+storage team.  On top of that, FCoE will require coordination among many storage, network, 
+adapter, switch vendors, and others.  The need for a referee will be greater than ever.  These IT 
+groups and vendors use very different management tools, reflecting the different views of the 
+network.  At the end of the day they all have to work together to ensure zero data loss and 
+adequate application response time. 
+
+And while there are still challenges around FCoE implementation and deployments, it’s not the 
+purpose of this paper to outline them all.  Our focus here is purely on the challenges of maintaining 
+performance and availability in today’s infrastructure for your business-critical applications.  
+
+In FCoE environments, it’s more important than in a traditional fibre channel-only environment to 
+instrument the network.  Without proper instrumentation, because of the converged network, there 
+is no visibility or ability to manage the quality of service all the way to the host.   If there are 
+problems with the fibre channel infrastructure it may not be possible to tell which portion of that 
+10G path is FC traffic vs all the other Ethernet-based traffic.  With instrumentation the integrity of 
+the Initiator-Target-LUN relationship is maintained and can measure the I/O associated with FC 
+communications.  And with instrumentation all of the players - IT staff and vendors – are provided 
+with a common, vendor-independent set of metrics to make intelligent decisions. 
+Virtual Instruments and FCoE 
+Today, Virtual Instruments’ products monitor fibre channel traffic from the Initiator (host) to the 
+Target (LUN).  The Converged Network Adapter is operating as both a NIC and as a virtual HBA, 
+with an HBA driver stack, a WWN and fibre channel ID.  So today, VirtualWisdom can be used to 
+instrument, monitor, measure, and optimize a mixed FC and FCoE storage network.  So, if you see 
+the benefits of building an FCoE infrastructure from the edge to the host, you should be cautious 
+and ensure that you don’t lose visibility into the data path.  Virtual Instruments can be used to: 
+Instrument  
+
+Having all of the relevant information to optimize performance and solve virtual 
+infrastructure and SAN-related problems requires capturing both directions of every SCSI 
+I/O transaction from start to finish, for every server/volume combination 
+(initiator/target/LUN). Only with this complete information can an IT organization go about 
+resolving performance or availability problems.  As a key part of the Virtual Instruments 
+solution, the Traffic Access Point (TAP) is the device that enables full instrumentation of the 
+Fibre Channel network. It “taps” the network, generally between the FC switch and the 
+storage system. With TAPs installed on all key links within the data center, users can deploy 
+a number of devices that monitor and diagnose link performance without any further 
+latency, interruption or downtime.   
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+“The promise that a 
+single converged data 
+center network would 
+require fewer switches 
+and ports doesn’t stand 
+up to scrutiny.  This is 
+because as networks grow 
+beyond the capacity of a 
+single switch, ports must 
+be dedicated to 
+interconnecting switches.  
+In large mesh networks, 
+entire switches do nothing 
+but connect switches to 
+one another.  As a result, a 
+single converged network 
+actually uses more ports 
+than a separate local area 
+network (LAN) and storage 
+area network (SAN).  
+Additionally, since more 
+equipment is required, 
+maintenance and support 
+costs are unlikely to be 
+reduced.”   
+Joe Skorupa, 
+Research Vice President 
+Gartner 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Monitor, Measure, and Optimize for Performance and Availability 
+
+Virtual Instruments SAN Performance Probe monitors and measures I/O performance from 
+the server to the LUN, and utilizes the SAN Availability Probe monitoring software to 
+correlate metrics from the fibre channel switch.  VirtualWisdom provides intelligent reports, 
+real-time alerts, and diagnosis tools to add SAN I/O intelligence to physical and virtualized 
+environments, enabling administrators to quickly troubleshoot application performance 
+problems and better balance the deployment of virtual machines based on real-time 
+measurements of I/O performance. 
+
+The future 
+
+Over the next few years, FCoE is expected to emerge as a SAN connectivity option for target 
+storage devices.  We agree with Gartner, and expect it to take a few years for these storage devices 
+to be production ready for mission-critical workloads.   When FCoE is ready to host the crown 
+jewels of corporate data, Virtual Instruments will be ready with a native FCoE Probe to ensure the 
+performance and availability of the end to end FCoE SAN.   
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 09/11 
+
+ 
+
+

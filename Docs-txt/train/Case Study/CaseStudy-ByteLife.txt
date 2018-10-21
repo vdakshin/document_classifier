@@ -1,0 +1,239 @@
+CASE STUDY 
+ByteLife
+
+Guaranteeing Performance and Availability of Critical 
+Applications in an EMC® VPLEX™ Environment
+
+ByteLife Uses VirtualWisdom® to Complement 
+EMC VPLEX in Two Data Centers for Real-Time 
+End-to-End Infrastructure Performance Monitoring 
+
+Company Background
+ByteLife is a data infrastructure company that builds, manages and guarantees 
+critical business information systems. Its clients are companies whose latency 
+sensitive transactions must be guaranteed against performance degradation or 
+loss, which means that their data centers need to be 100% available. ByteLife’s 
+main competencies are built around data centers: automation, management, 
+virtualization, storage, networking, backup and archiving. Its primary technology 
+partners are EMC, Cisco, VMware, VCE and Virtual Instruments. ByteLife 
+customers are leading banks and telecommunication companies in the Nordic 
+region and Baltic states such as Swedbank, Danske Bank, SEB, First Data, ABLV 
+Bank, and the TeliaSonera AB companies EMT, Elion, Omnitel, TEO, and LMT. 
+Founded in 2005, ByteLife has offices in the three Baltic states and Sweden. The 
+company’s 2012 revenue was more than 10 million euros.
+
+Customer Challenge
+ByteLife recognizes that as the demands and complexities placed on data 
+centers by mission-critical applications continue to increase, so does the 
+need to guarantee their performance and availability. To show customers how 
+to optimize performance and availability in a real-world setting, Tarmo 
+
+Challenges
+
+•  Need to guarantee 
+
+performance and availability of 
+mission-critical applications
+
+•  Lack of visibility to assess 
+
+the entire infrastructure and 
+get the data needed to make 
+intelligent decisions about 
+performance at every layer of 
+the infrastructure
+
+•  Other vendor tools 
+
+cannot monitor the entire 
+infrastructure
+
+•  Eliminate risk to infrastructure 
+
+associated with the 
+introduction of storage 
+virtualization (VPLEX)
+
+Solution
+
+•  VirtualWisdom platform with 
+SANInsight TAP Patch Panels, 
+SAN Availability ProbeSW, SAN 
+Performance Probe and Virtual 
+Server Probe VM
+
+I strongly recommend that 
+customers use VirtualWisdom 
+Performance Probes to 
+monitor VPLEX environments. 
+VirtualWisdom adds visibility 
+into the application layer and 
+quantifies any perceived 
+VPLEX performance 
+impacts in real-time.
+
+Tarmo Katmuk
+SOLUTIONS ARCHITECT, BYTELIFE
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Customer Benefits
+
+•   Sub-second latency metrics 
+allow for proactive detection 
+of problems that can disrupt 
+application performance and 
+availability
+
+•   End-to-end view of the EMC 
+VPLEX environment and real-
+time root cause identification 
+•   Ability to proactively identify 
+
+slow application response 
+times and improve cycle times 
+and the customer experience
+
+•   Application performance 
+
+issues readily identified and 
+remediated
+
+•   Ability to de-risk data center 
+migration while accelerating 
+adoption of storage 
+virtualization (VPLEX)
+
+Our plan is to include Virtual 
+Instruments Traffic Access 
+Points (TAPs) to every major 
+storage project – VPLEX, 
+VMAX, or whatever storage 
+we are selling – to proactively 
+monitor the environment.
+
+Tarmo Katmuk
+SOLUTIONS ARCHITECT, BYTELIFE
+
+Katmuk, ByteLife solutions architect, set out to create a small-scale version 
+of an actual data center with two separate, but connected, data centers 
+running applications independently. 
+
+IT Environment
+The storage environment in the two ByteLife data centers includes EMC® 
+VNX5300™ unified storage arrays with approximately 20 terabytes capacity. EMC® 
+Fully Automated Storage Tiering for Virtual Pools (FAST VP) enables ByteLife to 
+automate tiering among various drive types from SATA to Fibre Channel to Flash 
+Drives. Fast Cache is used to speed up I/O response times within the storage 
+array. EMC VPLEX virtual storage technology is installed in both data centers 
+and provides application mobility and collaboration, ensuring availability during 
+planned and unplanned downtime scenarios. The host environment is FCoE 
+connected to Cisco Nexus 5000, and VPLEX is a full Fibre Channel front end and 
+back end solution. VPLEX is connected to MDS switches in both data centers 
+with the VPLEX connection going through Cisco 10 gigabit Ethernet switches 
+(there is a 10 gigabit link between VPLEXs). The data centers feature Cisco® UCS 
+B-Series blade servers, and the hypervisor used is VMware ESX 5.1, which is more 
+than enough for ByteLife’s test environment. The Oracle RAC environment - a 
+complicated real application cluster environment - has been tested extensively.
+
+IT Challenge
+The most significant challenge in deploying mission-critical, latency sensitive 
+applications is guaranteeing the performance and availability of the 
+underlying infrastructure when new components like storage virtualization 
+are introduced. The need for end-to-end performance visibility requires a 
+holistic approach that continuously measures and monitors variations in 
+latency at a sub-second level. It was tricky for Tarmo to measure latency 
+because each component in the data center chain had its own native 
+monitoring or configuration tool, but there was no end-to-end view of the 
+overall infrastructure. He attempted to resolve this by measuring latency, 
+response time and I/O with and without VPLEX in the configuration and then 
+comparing the delta.
+
+The Virtual Instruments Solution 
+ByteLife established a partnership with Nicolas Kollerstedt, Virtual 
+Instruments Regional Sales Manager, in 2012 when VirtualWisdom® was 
+added to its data centers to make them 100% available. The VirtualWisdom 
+platform drives improved performance and availability against infrastructures 
+supporting mission-critical applications, provides unbiased, real-time 
+performance health and utilization metrics, and delivers end-to-end visibility. 
+While ByteLife has a long-term partnership with EMC, Tarmo concluded 
+that none of the EMC tools could monitor the holistic environment - from 
+the storage layer up to the application layer and everything in between. 
+He concluded that Virtual Instruments offers the only real-time monitoring 
+solution that is simple to use while giving him an end-to-end view of the 
+environment. Tarmo finds the time stamp functionality especially useful as 
+it allows him to slide back and forth to get a historical picture of exactly 
+what was happening in the infrastructure at a specific time. Moreover, 
+VirtualWisdom does not introduce additional complexity or latency into the 
+environment. “If you go for an EMC VPLEX solution,” notes Tarmo, “I strongly 
+suggest you have Virtual Instruments Traffic Access Points (TAPs) installed 
+in front of VPLEX so customers can proactively monitor the environment 
+
+and identify in real-time any issues that could cause latency.” For example, if the VPLEX system is overloaded, Tarmo 
+can decide whether to add more capacity to the data center or move applications from one data center to another. 
+He emphasizes that Virtual Instruments gives customers peace of mind through preventative maintenance and 
+prescriptive guidance when they virtualize their storage using EMC VPLEX. More important, VirtualWisdom end-to-end 
+performance metrics enabled ByteLife to accelerate their VPLEX deployment, eliminate performance blind spots, and 
+more accurately predict infrastructure needs. Tarmo and Nicolas plan to include TAPs in every major project they’re 
+collaborating on that includes storage – VPLEX, VMAX, or whatever brand of storage they are working with. 
+
+Virtual Server ProbeVM
+
+Servers & VMs
+
+SAN Availability ProbeSW
+
+FC Switch Fabric
+
+SANInsignt® TAP Patch Panel
+
+VPLEX
+
+VirtualWisdom Server
+
+SAN Performance ProbeFC8-HD48
+
+SAN Performance ProbeFC8-HD
+
+AND/OR
+
+SAN Performance ProbeFC8
+
+Storage Arrays
+
+Comprehensive VirtualWisdom software and hardware deployment in an EMC VPLEX environment
+
+Corporate Headquarters
+25 Metro Drive, 
+San Jose, CA 95110 · USA
+Phone: 408-579-4000
+Fax: 408-579-4001
+
+European Headquarters
+46 New Broad Street
+London EC2M 1JH
+Phone: +44 (0) 203-651-5685
+
+Asia Pacific Headquarters
+8 Cross Street Level 28
+PWC Building, Singapore 048424
+Phone: +65 6850-7841
+
+Sales
+sales@virtualinstruments.com
+Phone: 888-522-2557
+Support
+support@virtualinstruments.com
+
+©2013  Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or 
+may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13
+
+

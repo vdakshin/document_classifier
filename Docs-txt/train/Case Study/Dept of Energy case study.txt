@@ -1,0 +1,305 @@
+Case Study 
+
+ 
+
+ 
+
+U.S. Agency Uses VirtualWisdom® and a Health Audit 
+Service engagement to Optimize the VMware vSphere 
+and Fiber Channel SAN Environment 
+
+IT Environment 
+
+The Agency datacenter environment consists of blade servers running VMware’s vSphere, 
+Brocade 5100 switches, and EMC CLARiiON storage arrays. 
+
+IT Challenges 
+
+The primary areas of optimization focus are resource contention, utilization, performance, and 
+potential root cause(s) for outages/slowdowns affecting the applications in the data center. 
+The Agency wishes to increase their ability to proactively prevent potential issues which could 
+result in slower application performance or SAN outages.  
+
+Solution Deployment 
+
+The Virtual Instruments Health Audit Service was implemented in Spring 2011.  Metrics were 
+gathered for 15 days, after which the VI PS team delivered the Audit report to the Agency IT 
+management team.   The Health Audit Service is designed to measure, analyze and make 
+recommendations on resource contention, utilization, performance, and potential root cause(s) 
+for outages/slowdowns.  
+
+VirtualWisdom Value 
+
+Once deployed, VirtualWisdom became an indispensible SAN optimization tool for the team.  
+The value they see is focused around 4 areas: 
+1.  SAN Resiliency – VirtualWisdom collects and reports on the existence of congestion.  
+Also, VirtualWisdom detects if conditions exist that would affect the fault-tolerance and 
+resilience of the data paths within the fabric. One example of this is where disk 
+multipathing is used (e.g. a host has access to a disk LUN over multiple paths) but one of 
+the paths may not be active or the paths are over 50% utilized, in which case a path 
+outage would result in the remaining path being saturated.  
+
+ 
+
+ 
+
+SUMMARY 
+
+Challenges:  
+
+•  Diagnosing SAN 
+problems with a 
+“trial and error” 
+approach 
+
+•  Implementing new 
+
+projects and 
+infrastructure with 
+a limited ability to 
+determine the 
+impact in uptime 
+and performance 
+
+Solution:  
+
+•  Virtual 
+
+Instruments 
+VirtualWisdom 
+and the Virtual 
+Instruments 
+Health Audit 
+Service 
+
+Customer Benefits:  
+
+•  Application 
+
+Performance and 
+SAN Resiliency –
+VirtualWisdom 
+collects and 
+reports on I/O 
+transaction 
+performance and 
+latency as well as 
+detects the 
+existence of 
+congestion   
+
+•  Problem 
+
+Resolution – 
+VirtualWisdom is 
+used to bring 
+quicker resolution 
+to issues with the 
+SAN 
+
+•  Proactive 
+
+Monitoring - 
+VirtualWisdom is 
+used to monitor 
+the SAN and 
+
+VirtualInstruments.com 
+
+ 
+
+For all the servers that are running multiple-HBA ports, the goal is to have both HBAs with 
+I/O loads within a certain range of equality if they are configured in an Active/Active 
+fashion. Similarly, the traffic should be balanced on all the multi-pathed ISL (if applicable) 
+and storage ports. It is important to optimize performance but it is even more critical to 
+ensure that the active paths are not single points of failure. Any failure on the only active 
+port could cause a complete outage to the applications supported by these devices. 
+
+VirtualWisdom’s multipath verification and redundancy showed that 2.3% of the HBAs are 
+balanced while 56.8% are Active/Active but not balanced. The other 18.2% of the servers 
+are configured as Active/Passive. Peers could not be identified for 4.5% of the HBAs.  VI 
+recommended that the environment should be reviewed to ensure that all servers are 
+performing per their configuration.  Also, they should find HBAs that don’t have peers, 
+don’t require redundancy, or are actually do have peers with mismatched nicknames. The 
+imbalanced HBAs should be checked to verify that they are all zoned to the same storage 
+array or are behaving as expected.  Report graph follows: 
+
+ 
+ 
+ 
+
+provide proactive 
+alerts based on 
+specific 
+measurement 
+thresholds and 
+events 
+
+•  Predictive Cost 
+
+Containment 
+VirtualWisdom is 
+used to help 
+optimize existing 
+SAN infrastructure 
+
+ 
+
+ 
+
+2.  Performance optimization.  VirtualWisdom collects and reports on I/O transaction 
+
+performance and latency and detects the existence of congestion.  Though the 
+infrastructure response times in the Agency environment are acceptable, as exchanges 
+time averaged less than 10 ms., VirtualWisdom detected a recurring nightly pattern of high 
+latency around 22:20 hours. In some servers, the traffic congestion results in average 
+exchanges reaching 200ms. The duration of high latency lasted for about 8 to 20 minutes 
+depending on clusters.  
+
+In the graph below, the SAN Performance Probe Performance Trend dashboard shows 
+high latency starting at 22:00 nightly. The one-hour Summary shows periodic events over 
+multiple days.   
+
+2                                                    VIRTUAL INSTRUMENTS CUSTOMER CASE STUDY 
+ 
+
+ 
+
+ 
+
+Additionally, VMware Distributed Resource Scheduler (DRS) takes note of utilization 
+disparity and moves VMs back and forth between servers every other day. DRS was 
+detecting the nightly spikes and was using its algorithms to move workload around, but 
+due to the nature of the workload it was not an effective balancing of workload. It appears 
+that DRS was just creating more work for the cluster by performing these VMotion 
+activities. The DRS threshold level was reviewed to make sure that it was working as 
+intended.   
+
+3.  Proactive Monitoring - VirtualWisdom is used to monitor the infrastructure and provide 
+
+proactive alerts based on specific measurement thresholds and events. HBA queue depths 
+are used to manage the maximum number of outstanding commands at any one time from 
+an HBA to a storage port and/or LUN. VirtualWisdom identified several servers with queue 
+depths that are set higher than are generally recommended. In a non-virtualized server 
+environment, a queue depth setting of 8 or less may be appropriate to allow servers in the 
+shared environment to have equal access to the same storage port. This helps reduce the 
+number of slow-draining devices in the SAN. In the Agency environment, several servers 
+which were not part of clusters appeared to have queue depth settings higher (32) than 
+typically recommended. 
+
+4. 
+
+ Predictive Cost Containment – VirtualWisdom is used to help optimize existing 
+infrastructure (and thereby reduce or delay the requirement for future investment) as well 
+as serve as a baseline to provide valuable I/O workload input in future infrastructure 
+strategic architecture and design decisions.  VI found that the Agency SAN is largely 
+underutilized with some pockets of high utilization. This is not unusual and in fact, is a 
+common situation in nearly every SAN environment that VI reviews.  At the Agency, 
+storage ports’ average utilization peaked at 46% while one-week average utilization of the 
+busiest ports averaged 2.9%. Even with overall low utilization, load balancing between 
+storage ports will help smooth out the pockets of high demand, improving overall system 
+stability during peak demand. 
+
+Summary 
+
+As the Agency’s operation continues to grow, the challenge of ensuring that mission-critical 
+storage networks are, available 24x7 without disruption will also increase.  VirtualWisdom 
+enables administrators to set up alarms and trigger events to closely monitor and responded 
+to critical SAN links (ISL, RDF, etc).  VirtualWisdom’s reporting capability allows users to create 
+a report card for the environment on a timeframe of their choosing.  VirtualWisdom increases 
+resource utilization, storage and server administrator operational efficiency, allowing the 
+Agency to automatically monitor virtualized servers and SAN health while proactively avoiding 
+congestion and bottlenecks without having to increase head count. 
+ 
+
+3                                                    VIRTUAL INSTRUMENTS CUSTOMER CASE STUDY 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 9/19/11 
+
+4                                                    VIRTUAL INSTRUMENTS CUSTOMER CASE STUDY 
+ 
+
+

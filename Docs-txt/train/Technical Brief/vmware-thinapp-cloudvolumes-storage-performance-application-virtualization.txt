@@ -1,0 +1,777 @@
+Enhanced Management  and Performance of  VMware® ThinApp®  Virtual Applications with  CloudVolumes Shared VMDKsWHITE PAPERTable of Contents
+
+Introduction   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+How CloudVolumes Works  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+Streaming and Local Deployment Modes for ThinApp Packages  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 4
+  Using CloudVolumes ThinApp Edition in a Virtual Desktop Infrastructure   .  .  .  .  .  .  .  . . 5
+  Caching of CloudVolumes-ThinApp VMDKs within VMware vSphere  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+Managing CloudVolumes-ThinApp VMDKs  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+Testing of CloudVolumes ThinApp Edition  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+  Accelerated Launch-Time Performance with CloudVolumes VMDKs  .  .  .  .  .  .  .  .  .  .  .  .  . . 9
+  Network Utilization Savings with CloudVolumes  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 11
+CloudVolumes Writable Volumes for a Persistent Look-and-Feel  
+with Nonpersistent Pooled Desktops   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 13
+Scripting and Automation with CloudVolumes .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  14
+Summary  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 15
+Additional Resources  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 16
+About the Authors and Contributors  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 16
+
+W H I T E   P A P E R   /   2
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsIntroduction
+
+Large numbers of organizations throughout the world use VMware® ThinApp® to deliver virtualized 
+applications to end users in centralized virtual desktop infrastructure (VDI) and RDSH-based environments. 
+CloudVolumes ThinApp Edition complements ThinApp by enhancing the ease of management, speed of 
+deployment, and responsiveness of applications, all while leveraging existing storage infrastructure.
+
+With CloudVolumes ThinApp Edition, you can utilize any VMware vSphere® datastore and make individual 
+ThinApp packages instantly available to users logging in to their virtual desktops, in real time or on demand.
+
+How CloudVolumes Works
+
+CloudVolumes has broad applicability beyond enhancing ThinApp; let us first look at the general use of 
+the product. CloudVolumes enables desktop applications, server applications, files, and data shared across 
+multiple virtual machines to be placed into virtual volumes (VMDK files) and makes these volumes dynamically 
+attachable to all virtual machines. Once attached, the contents of these volumes instantaneously appear as 
+if part of the virtual machine. The applications contained in the volumes appear and function as if they were 
+natively installed. These volumes can be placed on any class of storage that vSphere supports (SAN accessed 
+via Fibre Channel or iSCSI, NFS, locally attached storage, and so on). 
+
+CloudVolumes is not inline in the storage path; instead, it operates as a broker—attaching or detaching 
+volumes from virtual machines at boot, in real time while a user is logged in, or at user login. Reads and writes 
+from the virtualized applications are sent directly from the virtual machine (where the multiple volumes 
+appear as one local disk) to the underlying storage.
+
+Now, let us look at how CloudVolumes works specifically with ThinApp. CloudVolumes ThinApp Edition allows 
+you to place ThinApp packages into a read-only, shared virtual disk (a CloudVolumes-ThinApp VMDK) that can 
+be located on any vSphere datastore. This CloudVolumes-ThinApp VMDK can then be dynamically attached 
+to any user’s virtual desktop based on Active Directory user and group entitlements. A single CloudVolumes-
+ThinApp VMDK can be attached to all virtual desktops at once, avoiding the need for streaming or deploying 
+duplicate local copies of ThinApp packages. The result is significant storage savings, reduced network traffic, 
+and easier application management.
+
+The CloudVolumes solution uses the storage you already have to leverage the efficiency of ThinApp 
+application virtualization. You can utilize CloudVolumes ThinApp Edition along with your existing ThinApp 
+packages to completely remove I/O traffic from the network and improve application launch times, yet still 
+maintain isolation between the applications and the operating system. CloudVolumes is synergistic with 
+the read-only nature of ThinApp application packages. The CloudVolumes turnkey solution provides better 
+application management and more predictable performance, while removing the network as a limiting factor, 
+which allows you to leverage high-speed, enterprise-class storage.
+
+W H I T E   P A P E R   /   3
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsStreaming and Local Deployment Modes for 
+ThinApp Packages
+
+In standard usage, VMware ThinApp has the unique advantage of allowing you to determine whether to use 
+streaming or local deployment mode, or to adopt a hybrid approach that lets you stream a set of ThinApp 
+virtual applications from a central location while deploying other ThinApp packages locally. (The same 
+virtualized application packages can be used for either mode.) 
+
+Most IT organizations choose to utilize the streaming deployment mode of ThinApp because it is a one-to-
+many model that leverages centralized file-share resources and requires no disk space on the endpoints. For 
+organizations in security-sensitive environments, VMware ThinApp is the only major application virtualization 
+solution that provides a no-agent, no-residue application-delivery mechanism. While this is an efficient model, 
+it requires some method to register ThinApp packages on target systems. To effectively use streaming mode, 
+IT must design and manage the centralized storage for both redundancy and load. At the same time, network 
+congestion caused by hundreds or even thousands of users launching and re-launching these applications over 
+the network must be factored into the network design.
+
+On the other hand, local deployment mode can be used to create a distributed local-deployment model. In this 
+model, ThinApp packages are copied to each individual virtual desktop. This eliminates the need for centralized 
+storage and also reduces network load, but this requires additional local storage on each virtual desktop for the 
+ThinApp packages.
+
+W H I T E   P A P E R   /   4
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsUsing CloudVolumes ThinApp Edition in a Virtual Desktop Infrastructure
+With CloudVolumes ThinApp Edition in a virtual desktop infrastructure, you get the advantages of both 
+streaming and local deployment modes for ThinApp packages. ThinApp virtual applications can be placed on a 
+shared virtual disk (VMDK) on any available storage that vSphere supports, including local storage, SSD, NAS, 
+or SAN. This arrangement permits thousands of virtual desktops to share a common ThinApp package without 
+the need to stream or copy the package locally. 
+
+Figure 1 shows how CloudVolumes ThinApp Edition complements a VMware Horizon View™ virtual desktop 
+environment. 
+
+OS
+
+CloudVolumes
+
+Agent
+
+View 
+Composer
+
+Parent
+Image
+
+CloudVolumes Manager
+
+Desktop Pool
+
+Hypervisor
+
+OS
+
+OS
+
+OS
+
+OS
+
+OS
+
+OS
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+OS
+
+OS
+
+OS
+
+OS
+
+OS
+
+OS
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+AD Users and Groups
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+VMDK1
+
+VMDK2
+
+VMDK3
+
+VMDK4
+
+VMDK5
+
+VMDK6
+
+VMDK7
+
+VMDK8
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+ThinApp 
+Virtual Apps
+
+CloudVolumes-ThinApp VMDKs
+
+Figure 1: ThinApp Packages in CloudVolumes Shared VMDKs, Shared with Many Virtual Machines at Once
+
+Storage
+
+W H I T E   P A P E R   /   5
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsCloudVolumes ThinApp Edition has two parts: the CloudVolumes Manager administrative UI and the 
+CloudVolumes Agent. The CloudVolumes Manager is a stateless Web service installed into one or more virtual 
+machines. It gets its configuration information from a SQL Server database. Multiple Web servers can be used 
+for high availability or load balancing, provided they point to the same SQL Server database. The CloudVolumes 
+Manager is configured to work with VMware vCenter™, as well as with Microsoft Active Directory. In a Horizon 
+View environment with ThinApp packages, the CloudVolumes Manager maintains the associations between 
+shared CloudVolumes-ThinApp VMDKs and specific users or groups in Active Directory. The CloudVolumes 
+Manager communicates with VMware vCenter to attach or detach the CloudVolumes-ThinApp VMDKs on 
+user login and logout. The VMDKs containing the ThinApp packages assigned to a user are attached, in real 
+time, to a virtual desktop as the user logs in to the virtual desktop. When the user logs out of their virtual 
+desktop, the VMDKs are automatically detached. If multiple users are entitled to a ThinApp package located in 
+a CloudVolumes-ThinApp VMDK, that same VMDK is concurrently attached to each virtual desktop. The SQL 
+database stores both configuration and auditing records (login activity, changes to entitlement, use of ThinApp 
+packages, and so on).
+
+The vSphere hypervisor manages Horizon View virtual desktops and desktop pools. CloudVolumes Agent 
+is installed into the base image of the desktop pool so that all virtual desktops in the pool are automatically 
+capable of receiving ThinApp packages from CloudVolumes shared VMDKs. CloudVolumes Agent is comprised 
+of a Windows service and a Windows mini-filter driver and has an on-disk footprint of less than one megabyte. 
+The function of CloudVolumes Agent is to
+
+•	Notify	the	CloudVolumes	Manager	whenever	a	user	logs	in	to	or	out	of	a	virtual	desktop
+•	Automatically	register	the	ThinApp	packages	contained	in	the	VMDK	(using	 ThinReg to update the Start 
+Menu and file associations) after the VMDKs are attached to the virtual desktop by the CloudVolumes 
+Manager
+
+This entire process is transparent to the user and typically completes within seconds of a login, and well before 
+the user even sees their desktop. Users are unaware that the CloudVolumes Agent is installed onto the desktop, 
+and continue to interact with ThinApp virtualized applications in the same way they do without CloudVolumes.
+
+The VMDKs containing ThinApp packages can be automatically generated from a script that synchronizes with 
+the existing ThinApp repository on a CIFS share. This script copies ThinApp packages into a shared VMDK. For 
+more on scripting with CloudVolumes ThinApp Edition, see Scripting and Automation with CloudVolumes.
+
+Caching of CloudVolumes-ThinApp VMDKs within VMware vSphere
+Because CloudVolumes-ThinApp VMDKs are read-only, they can be shared across multiple virtual machines 
+concurrently. As a result, they are ideal candidates for hypervisor-based read caching.
+
+Normally, when the ThinApp packages are located on a CIFS file share or in a VMDK on shared storage (such 
+as an EMC storage array or a NetApp filer), running the ThinApp application requires the vSphere hypervisor to 
+read in the ThinApp package from its remote location across the network or through Fibre Channel. Having to 
+send all read I/O from the vSphere hypervisor to the remote storage location adds latency. 
+
+Caching solutions check a local cache (either RAM or a local disk of the vSphere machine) for the data a virtual 
+machine is trying to read from the VMDK. If the data is located in the cache, then the read requests can be 
+satisfied within the vSphere machine itself, and the read requests never reach the back-end storage. If the data 
+is not located in the cache, it is read once and then cached locally within the hypervisor-based cache.
+
+Because the CloudVolumes-ThinApp VMDKs are shared across all virtual machines and are read-only, after a 
+ThinApp package is used once, it is served from the local cache for any other access across all virtual machines 
+located on that same vSphere server. This not only improves the performance and responsiveness of the 
+ThinApp applications, but also improves the overall latency of the back-end storage by eliminating all the read 
+I/O previously generated by the ThinApp application.
+
+W H I T E   P A P E R   /   6
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsManaging CloudVolumes-ThinApp VMDKs
+
+Figure 2 shows the AppStacks window of the CloudVolumes Manager UI, which can be used to create or 
+update the CloudVolumes-ThinApp VMDKs and track their usage. An AppStack is a CloudVolumes-ThinApp 
+VMDK that can contain one or multiple ThinApp packages.
+
+ 
+
+ 
+ 
+ 
+
+Figure 2: CloudVolumes AppStacks Window Showing a Single CloudVolumes-ThinApp VMDK
+
+Figure 3 shows the window of the CloudVolumes Manager UI where you can view the CloudVolumes-ThinApp 
+VMDKs that are currently in use, and the virtual machines the VMDKs are attached (mounted) to.
+
+ 
+
+Figure 3: CloudVolumes Attachments Window Showing Where CloudVolumes-ThinApp VMDKs Are Currently Used
+
+W H I T E   P A P E R   /   7
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsFigure 4 shows the window of the CloudVolumes Manager UI where you can view historical usage data for 
+auditing a given user or CloudVolumes-ThinApp VMDK.
+
+Figure 4: CloudVolumes Activity Log with Searchable Auditing Records
+
+Figure 5 shows how a CloudVolumes-ThinApp VMDK can be entitled (assigned) to one or more Active 
+Directory users, computers, or groups.
+
+ 
+
+Figure 5: Assigning a CloudVolumes-ThinApp VMDK to All Domain Users
+
+ 
+
+W H I T E   P A P E R   /   8
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsTesting of CloudVolumes ThinApp Edition
+
+The Reference Architecture Workload Code (RAWC) was used to test VMware ThinApp with a CloudVolumes 
+solution in a VMware Horizon View Lab. RAWC simulated a workload where ThinApp virtual applications 
+(Microsoft Office applications and Adobe Reader) were launched every 15 seconds for more than 1.5 hours 
+to establish a true average launch time for the applications over a variety of storage and virtual machine 
+configurations.
+
+We tested launch times and network utilization.
+
+For testing, we used the following product versions:
+
+•	Horizon	View	5.3	with	64-bit	Windows	7	desktops
+
+•	ThinApp	5.0
+
+•	CloudVolumes	ThinApp	Edition
+
+•	VMware	vCenter	5.5	and	ESXi	5.1.0,	build	716946
+
+Accelerated Launch-Time Performance with CloudVolumes VMDKs
+Figure	6	shows	a	comparison	of	average	launch	times	for	virtualized	Microsoft	Word	2010	from	a	remote	CIFS 	
+share versus from storage controlled by CloudVolumes ThinApp Edition. (In both cases, the ThinApp package 
+resides	remotely	from	the	virtual	machine	on	the	same	EMC	VNX	storage	appliance.)
+
+Virtual application launch time was significantly slower from the CIFS share than from the CloudVolumes-
+ThinApp VMDK. In addition, the launch time increased drastically with more virtual desktops accessing the 
+application from the CIFS share, while launch time increased very little with more desktops accessing the virtual 
+application from the CloudVolumes-ThinApp VMDK. This reduced application launch time with CloudVolumes 
+enables you to scale your Horizon View environment with little impact to application performance.
+
+7.07
+
+6.66
+
+6.53
+
+100 VMs
+CloudVolumes
+50 VMs
+CloudVolumes
+10 VMs
+CloudVolumes
+
+100 VMs
+CIFS
+50 VMs
+CIFS
+10 VMs
+CIFS
+
+0.00
+
+5.00
+
+16.40
+
+12.70
+
+10.00
+15.00
+Launch Time (Seconds)
+
+23.73
+
+20.00
+
+25.00
+
+Figure 6: Microsoft Word 2010 ThinApp Virtual Application Launch Time from a CIFS Share Compared to a CloudVolumes-ThinApp VMDK
+
+W H I T E   P A P E R   /   9
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsAlso, when the ThinApp package is located in a CloudVolumes-ThinApp VMDK shared by multiple machines 
+(leveraging CloudVolumes to do the dynamic attachment), and the ThinApp package has already been 
+launched from another virtual machine, higher responsiveness is observed than when the ThinApp package is 
+located	within	each	virtual	machine’s	C:	drive	(the	virtual	machine’s	own	VMDK),	as	shown	in	Figure	7.	This	is 	
+true even when both the virtual machine’s own VMDK and the CloudVolumes-ThinApp VMDK are located on 
+the same storage. 
+
+MS Word
+CloudVolumes
+
+MS Word
+C: Drive
+
+MS PowerPoint
+CloudVolumes
+
+MS PowerPoint
+C: Drive
+
+MS Excel
+CloudVolumes
+
+MS Excel
+C: Drive
+
+5.00
+
+3.43
+
+2.88
+
+3.40
+
+3.10
+
+3.35
+
+0.00
+
+1.00
+
+2.00
+
+3.00
+
+4.00
+
+5.00
+
+6.00
+
+Launch Time (Seconds)
+
+   
+
+Figure 7: Launch Time of ThinApp Packages from the Virtual Machine’s C: Drive VMDK Compared to a Shared CloudVolumes-ThinApp VMDK 
+
+W H I T E   P A P E R   /   1 0
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsNetwork Utilization Savings with CloudVolumes
+Often organizations with tens of thousands of virtual desktops prefer to deploy ThinApp packages locally to 
+the base image to avoid the network congestion created when thousands of desktops stream an application 
+like Microsoft Outlook over the network at the same time in the morning. A major benefit of combining 
+ThinApp packages with CloudVolumes ThinApp Edition is that this solution requires neither network streaming 
+of the application into each virtual machine, nor local deployment of the ThinApp package.
+
+The following graphs illustrate specific tests that compare network utilization when the ThinApp package is 
+streamed to the virtual machine from a CIFS share versus stored on a shared VMDK attached at the hypervisor 
+level by the CloudVolumes Manager at user login.
+
+When the test was performed with the ThinApp packages streamed from a CIFS share to one virtual machine, 
+the	average	data	receive	rate	was	362KBps,	as	shown	in	Figure	8.
+
+ 
+
+Figure 8: Network Usage Loading a Streaming ThinApp Package from a CIFS Share after User Login
+
+ 
+
+W H I T E   P A P E R   /   1 1
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsWith the ThinApp packages instead located on a CloudVolumes-ThinApp VMDK, the average data receive rate 
+was	less	than	0.1	KBps,	as	shown	in	Figure	9.
+
+Figure 9: Network Usage Loading a ThinApp Package from a CloudVolumes-ThinApp VMDK after User Login
+
+ 
+
+W H I T E   P A P E R   /   1 2
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsCloudVolumes Writable Volumes for a 
+Persistent Look-and-Feel with Nonpersistent 
+Pooled Desktops 
+
+CloudVolumes ThinApp Edition also provides a mechanism for making nonpersistent virtual desktops appear 
+to end users as persistent desktops (a “hybrid persistence” model). A CloudVolumes writable volume can 
+be combined with Horizon View nonpersistent desktop pools to store both user-installed applications and 
+customizations that a user adds to the ThinApp sandbox. The writable volume is a VMDK which is unique to 
+each user and which is attached at login along with the shared CloudVolumes-ThinApp VMDKs.
+
+CloudVolumes Manager
+
+Horizon View
+Nonpersistent Desktop Pool
+
+OS
+
+OS
+
+OS
+
+OS
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+OS
+
+OS
+
+OS
+
+OS
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+
+Agent
+
+CloudVolumes
+Writable VMDKs
+
+User-1 Volume
+
+User-1
+
+User-2
+
+User-3
+
+User-n
+
+User 
+
+Personalizations
+User-Installed 
+
+Apps
+
+User-2 Volume
+
+User 
+
+Personalizations
+User-Installed 
+
+Apps
+
+User-3 Volume
+
+User 
+
+Personalizations
+User-Installed 
+
+Apps
+
+User-n Volume
+
+User 
+
+Personalizations
+User-Installed 
+
+Apps
+
+OS
+
+CloudVolumes
+
+Agent
+
+View 
+Composer
+
+Parent
+Image
+
+CloudVolumes-
+ThinApp VMDKs
+
+ThinApp Virtual
+Internet Explorer
+ThinApp Virtual
+Microsoft O(cid:31)ce
+
+ThinApp Virtual
+Adobe Reader
+ThinApp Virtual
+Google Chrome
+
+ThinApp Virtual
+Visual Studio
+ThinApp Virtual
+QuickBooks
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Figure 10: Writable VMDKs for Nonpersistent Desktop Pools Provide a Persistent Look and Feel
+
+ 
+
+W H I T E   P A P E R   /   1 3
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsFigure	10	shows	users	accessing	nonpersistent	pooled	desktops,	with	CloudVolumes-ThinApp	VMDKs	attached 	
+at login for ThinApp packages, and writable CloudVolumes VMDKs attached for personalizations and user-
+installed applications. Each user has a single associated writable VMDK, and each user can have more than one 
+attached CloudVolumes-ThinApp VMDK.
+
+Pooled nonpersistent desktops paired with the persistent look-and-feel provided by a CloudVolumes writable 
+volume significantly reduces the ongoing cost of VDI management and storage. You maintain only a single 
+OS image and a single copy of applications, but users still have all the flexibility and capability of a persistent 
+desktop—they can have administrator rights, install their own applications, and customize their applications and 
+settings. You can leverage the cost savings of Horizon View nonpersistent desktop pools, while giving each user 
+the unique desktop experience they expect.
+
+For	a	1,000-user	VDI	environment,	instead	of	having	1,000	persistent	desktops,	you	need	to	create	only	as 	
+many	nonpersistent	desktops	as	there	are	concurrent	users.	If	no	more	than	100	out	of	the	1,000	users	are 	
+ever	logged	in	at	the	same	time	(peak	concurrency	of	100),	then	only	100	desktops	are	needed	to	support	all 	
+1,000	users.	Boot	storms	are	eliminated	because	the	pool	of	100	desktops	can	be	booted	up	in	stages	prior	to 	
+the time when users start logging in. When users start logging in, they are instantly logged in to any available 
+desktop.
+
+If	one	vSphere	hypervisor	server	is	required	to	handle	100	concurrent	Horizon	View	virtual	desktop	sessions, 	
+and	1,000	users	need	the	capabilities	of	a	persistent	desktop,	only	one	vSphere	server	is	needed	for	a	Horizon 	
+View	nonpersistent	pool	of	100	desktops	if	you	use	a	CloudVolumes	writable	volume	to	create	the	illusion	of 	
+persistent desktops.
+
+By contrast, any solution requiring one desktop per named user (even if some users are logged out), would 
+require at least two vSphere servers because there is a limit of 512 virtual machines registered to named users 
+per VMware vSphere hypervisor. CloudVolumes provides considerable savings in hardware (both storage and 
+servers) because the requirements are based on the number of concurrent users rather than the total number 
+of users.
+
+Scripting and Automation with CloudVolumes
+
+Everything in the CloudVolumes Manager UI is also available through a command-line interface or by leveraging 
+the Web-based SDK (a RESTful API). Therefore, it is easy to integrate these capabilities into an existing 
+orchestration process. 
+
+For example, you can use a batch script that checks a CIFS share for new or removed ThinApp packages and 
+automatically adds them to a CloudVolumes-ThinApp VMDK. 
+
+W H I T E   P A P E R   /   1 4
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsSummary
+
+CloudVolumes ThinApp Edition gives IT the best of both ThinApp deployment worlds—better performance 
+than local deployment mode coupled with the ease of management of streaming mode—while allowing for the 
+broader use of nonpersistent desktop pools. 
+
+CloudVolumes places ThinApp packages into shared read-only VMDKs which are utilized by end users natively 
+from their virtual desktops as if the ThinApp packages were part of the C: drive. No network traffic is generated, 
+as I/O follows the vSphere storage stack and can be managed dynamically through the CloudVolumes 
+administrative interface. IT organizations can further optimize the environment by placing the CloudVolumes 
+VMDKs with ThinApp packages onto high-speed locally attached SSDs optimized for read access. This places 
+ThinApp virtual applications into cost-effective, high-performance storage containers, without expensive SAN 
+IOPS. This elegant solution empowers IT to provide scalable growth and performance, significant storage 
+savings, and simpler application management while end users benefit from better performance than with 
+locally deployed ThinApp packages.  
+
+CloudVolumes ThinApp Edition
+
+•	Deploys	ThinApp	packages	from	shared	VMDKs	on	any	datastore	that	VMware	vSphere	supports
+
+•	Manages	a	single	virtual	disk	containing	ThinApp	packages	which	can	be	shared	across	all	users 	
+
+•	Automatically	creates	file	associations	and	shortcuts	at	login	for	all	ThinApp	packages	the	user	is	entitled	to
+
+•	Increases	user	density	per	VMware	vSphere	host	and	decreases	the	amount	of	hardware	required	to	support 	
+end users
+
+•	Significantly	reduces	network	usage	for	ThinApp	packages
+
+•	Increases	performance	and	responsiveness	of	ThinApp	packages
+
+W H I T E   P A P E R   /   1 5
+
+Enhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKsAdditional Resources
+
+CloudVolumes ThinApp Edition
+
+VMware ThinApp
+
+VMware ThinApp Streaming Execution Mode
+
+Application Registration with VMware ThinApp
+
+VMware ThinApp Reference Architecture
+
+Demo videos of CloudVolumes
+
+CloudVolumes Desktop Edition
+
+CloudVolumes Server Edition
+
+About the Authors and Contributors
+
+The authors of this paper are Shaun Coleman, Vice President of Products for CloudVolumes, and  
+Tina de Benedictis, Senior Technical Marketing Manager, End-User Computing, VMware.
+
+The following people contributed to the content and review of this paper:
+
+•	Matt	Conover,	Chief	Technology	Officer	of	CloudVolumes 	
+
+•	Aaron	Black,	Product	Manager	for	ThinApp	at	VMware
+
+•	Fred	Schimscheimer,	Product	Line	Marketing	Manager,	End-User	Computing,	VMware
+
+•	Harry	Labana,	independent	industry	advisor	and	consultant	specializing	in	end-user	computing
+
+To comment on this paper, contact us at twitter.com/vmwarehorizon.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VMW-WP-ENHANCECLDVOLVMDK-20140124-WEBEnhanced Management and Performance of VMware ThinApp  Virtual Applications with CloudVolumes Shared VMDKs

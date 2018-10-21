@@ -1,0 +1,1436 @@
+www.vce.com
+
+Vblock® System 340
+and VMware Horizon 6.0 with View
+
+Document revision 1.0
+November 2014
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Contents
+
+Contents
+
+Introduction.................................................................................................................................................3
+Solution overview................................................................................................................................... 3
+Key results..............................................................................................................................................4
+Purpose..................................................................................................................................................5
+Audience................................................................................................................................................ 5
+
+Technology overview................................................................................................................................. 6
+Vblock System 340.................................................................................................................................6
+VMware vSphere 5.5..............................................................................................................................9
+VMware Horizon View............................................................................................................................ 9
+
+Architecture...............................................................................................................................................11
+Logical configuration............................................................................................................................ 11
+VDI management infrastructure........................................................................................................... 13
+VDI desktop infrastructure....................................................................................................................14
+Hardware and software........................................................................................................................ 15
+
+Performance validation............................................................................................................................ 16
+Test environment..................................................................................................................................16
+Test methodology.................................................................................................................................16
+Test procedure..................................................................................................................................... 18
+VSImax and View session concurrency............................................................................................... 18
+VSImax and View session concurrency.........................................................................................18
+Test 2: Host performance for RDSH virtual desktops....................................................................21
+
+Design considerations............................................................................................................................. 25
+Virtual infrastructure............................................................................................................................. 25
+VMware vSphere cluster configurations........................................................................................ 25
+Infrastructure and management servers........................................................................................27
+Storage design..................................................................................................................................... 27
+Network design.....................................................................................................................................29
+Horizon View configuration...................................................................................................................29
+Desktop pool configuration...................................................................................................................30
+RDSH virtual machine configuration.................................................................................................... 30
+
+References.................................................................................................................................................32
+
+Conclusion................................................................................................................................................ 33
+
+Next steps..................................................................................................................................................34
+
+2
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Introduction
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Introduction
+
+Solution overview
+
+Desktop virtualization is a key initiative for many organizations looking to reduce administrative overhead
+while providing a more secure, flexible, and reliable desktop computing environment for end users.
+
+Virtual Desktop Infrastructure (VDI) technologies are becoming increasingly important for organizations
+for several reasons including the demand for greater security and compliance, workforce mobility,
+business agility, mobile and Bring Your Own Device initiatives, and operational savings. Total cost of
+ownership (TCO) advantages continue to drive VDI adoption and companies continue to look for ways to
+better manage costs associated with software licenses and IT deployments as well as ongoing usage,
+maintenance, and technical support costs.
+
+In addition to VDI services, Remote Desktop Services (also called terminal services, server-based
+computing, and presentation virtualization), a component of Microsoft Windows, allows a user to access
+applications and data on a remote computer over a network using a remote display protocol.
+
+Remote Desktop Services is functionally similar to VDI in that it hosts the users' desktop environments on
+remote servers; however, it differs from VDI in two important ways. A VDI service provides individual
+desktop operating system instances for each user and delivers full desktop environments. Remote
+Desktop Services sessions run in a single shared server operating system and provide connections to
+both individual applications and full desktops as needed.
+
+Based on real-world test scenarios, user workloads, and infrastructure system configurations, this solution
+architecture features VMware Horizon 6 (with View) running on the Vblock® System 340.
+
+Extensive testing of mixed workload use cases and environments on the Vblock 340 has yielded
+exceptional performance. For this solution, the Vblock 340 utilizes Cisco UCS rack mount servers with
+EMC VNX 5600 storage to support a scalable and cost-effective deployment on VMware vSphere 5.5.
+Validation of the solution included both VDI and Remote Desktop Session Host (RDSH) configurations.
+
+Users may not need an entire desktop or may need access to other applications in other systems in
+addition to their desktop. One of the significant benefits of using VMware Horizon View for this solution is
+that it supports application publishing using Microsoft Remote Desktop Services.
+
+Note: This paper contains a solution architecture that is intended for a real-world deployment and mix of
+
+desktop applications. As a result, the test metrics reflect a lower density of virtual desktops to
+blades than is possible in tests designed to show maximum potential VDI densities. The results
+outlined in this solution architecture are specific to the Vblock 340. You may experience different
+results in your environment.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+3
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Introduction
+
+Key highlights
+
+Extensive user experience and operations testing of VMware Horizon 6 (with View) on the Vblock System
+340, including Login VSI performance benchmark testing, revealed excellent performance at an extremely
+low cost.
+
+Key results demonstrate that the Vblock System 340 easily supports a deployment of 1000 Linked-Clone
+or RDSH session-based desktops with 100 percent concurrency and acceptable CPU, memory, and
+storage use, along with acceptable application response times.
+
+The results are summarized here and further described later in this paper.
+
+• All 1000 Linked-Clone desktops were:
+— Deployed in 1 hour and 45 minutes.
+
+— Recomposed in 2 hours and 53 minutes.
+
+— Refreshed in 59 minutes.
+
+• An average steady-state IOPS of 12169 was observed on the VNX 5600 during the execution of
+
+the workload.
+
+•
+
+1000 RDSH session-based virtual desktops were validated.
+
+4
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Introduction
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Purpose
+
+This document describes the architecture, design guidelines, validation, and performance data for a
+Vblock System 340 with VMware Horizon 6 (with View) deployment.
+
+We have used the results of this validation to demonstrate that the Vblock 340 meets the functional and
+technical requirements of a high-density user desktop deployment in VMware Horizon View
+environments.
+
+Audience
+
+This document is intended for enterprise and service provider decision-makers and system administrators
+deploying large-scale end-user computing environments with VMware Horizon 6 (with View) on the
+Vblock System 340.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+5
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Technology overview
+
+Technology overview
+
+Vblock System 340
+
+To ensure the performance and responsiveness needed to support massively scalable solutions, all
+VMware Horizon View desktops were hosted on the VCE Vblock System 340.
+
+The Vblock System 340 is an agile and highly scalable converged infrastructure for rapid deployment or
+expansion of virtualized data centers, cloud environments, and service provider implementations. Pre-
+engineered, pre-configured, and validated, the Vblock 340 arrives ready to meet your specific workload
+and service level agreement (SLA) requirements, while minimizing the costs and risks to your business
+operations. It can handle a mix of different workloads that may include virtual desktop infrastructure (VDI),
+Microsoft Exchange Server, Oracle, and SAP enterprise applications, as well as vertical industry
+solutions.
+
+6
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Technology overview
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+The following diagram provides a high-level overview of the components in the Vblock 340 architecture:
+
+Compute components
+
+The Cisco UCS data center platform combines x86-architecture blade and rack servers with networking
+and storage access into a single system. Innovations in the platform include a standards-based, unified
+network fabric, Cisco Virtual Interface Card (VIC), and Cisco UCS Extended Memory Technology. A wire-
+once architecture with a self-aware, self-integrating, intelligent infrastructure eliminates the need for
+manual assembly of components into systems.
+
+Cisco UCS B-Series two-socket blade servers deliver record-setting performance to a wide range of
+workloads. Based on Intel Xeon processor E7 and E5 product families, these servers are designed for
+virtualized applications, and reduce CapEx and OpEx through converged network fabrics and integrated
+systems management.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+7
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Technology overview
+
+Fabric extenders (FEX) within the Cisco UCS chassis connect to Cisco fabric interconnects over
+converged Ethernet. Up to eight 10 GbE ports on each FEX connect northbound to the fabric
+interconnects, regardless of the number of blades in the chassis. These connections carry IP and storage
+traffic.
+
+Each fabric interconnect has multiple ports reserved by VCE for 10 GbE ports. VCE has reserved some of
+these ports to connect to upstream access switches within the Vblock 340. These connections form a port
+channel to the Cisco Nexus switch and carry IP traffic destined for the external network 10 GbE links. In a
+unified storage configuration, this port channel can also carry NAS traffic to the X-Blades within the
+storage layer.
+
+Each fabric interconnect also has multiple ports reserved by VCE for Fibre Channel (FC) ports. These
+ports connect to Cisco SAN switches. These connections carry FC traffic between the compute layer and
+the storage layer. In a unified storage configuration, port channels carry IP traffic to the X-Blades for NAS
+connectivity. For SAN connectivity, SAN port channels carrying FC traffic are configured between the
+fabric interconnects and the upstream Cisco MDS or Nexus switches.
+
+Storage components
+
+EMC VNX series are fourth-generation storage platforms that deliver industry-leading capabilities. They
+offer a unique combination of flexible, scalable hardware design and advanced software capabilities that
+enable them to meet the diverse needs of today's organizations.
+
+The VNX series platform implements a modular architecture that integrates hardware components for
+block, file, and object with concurrent support for native NAS, iSCSI, Fibre Channel, and FCoE protocols.
+Optimized for VMware virtualized applications, they feature flash drives for extendable cache and high
+performance in the virtual storage pools. Automation features include self-optimized storage tiering and
+application-centric replication.
+
+Regardless of the storage protocol implemented at startup (block or unified), the Vblock 340 can include
+cabinet space, cabling, and power to support the hardware for all of these storage protocols. This
+arrangement makes it easier to move from block storage to unified storage with minimal hardware
+changes.
+
+For this solution, the Vblock 340 uses the VNX storage platform as primary storage for user data and
+VMware Horizon View virtual desktops. User data and View persona data are directed to a CIFS share
+presented from the VNX 5600 in the Vblock 340. Placing the virtual desktops on the VNX storage
+increases desktop footprint capacity.
+
+Networking components
+
+The Cisco Nexus Series Switches in the network layer provide 10 or 40 GbE IP connectivity between the
+Vblock 340 and the outside world. In the unified storage architecture, the switches also connect the fabric
+interconnects in the compute layer to the X-Blades in the storage layer.
+
+In the segregated architecture, the Cisco MDS 9000 series switches in the network layer provide Fibre
+Channel (FC) links between the Cisco fabric interconnects and the EMC VNX storage. These FC
+connections provide block level devices to blades in the compute layer. In unified network architecture,
+there are no Cisco MDS series storage switches. FC connectivity is provided by the Cisco Nexus 5548UP
+switches or Cisco Nexus 5596UP switches.
+
+8
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Technology overview
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Ports are reserved or identified for special Vblock 340 services such as backup, replication, or
+aggregation uplink connectivity. The Vblock 340 contains two Cisco Nexus 3048 switches to provide
+management network connectivity to the different components of the Vblock System. These connections
+include the EMC VNX service processors, Cisco UCS fabric interconnects, Cisco Nexus 5500UP
+switches or Cisco Nexus 9396PX switches, and power output unit (POU) management interfaces.
+
+VMware vSphere 5.5
+
+VMware vSphere 5.5 provides a scalable and extensible platform that forms the foundation for
+virtualization management in the Vblock System 340.
+
+VMware vSphere 5.5 is the latest release of the flagship virtualization platform from VMware. The core
+VMware vSphere components are the VMware vSphere Hypervisor (ESXi) and VMware vCenter Server
+for management.
+
+VMware vSphere ESXi is a bare-metal hypervisor that installs directly on top of the physical server and
+partitions it into multiple virtual machines (VMs). Each VM shares the same physical resources as the
+other VMs and they can all run at the same time. Unlike other hypervisors, all management functionality
+of VMware vSphere is possible through remote management tools. There is no underlying operating
+system, reducing the install footprint to less than 150MB.
+
+Deployed in a cluster configuration, the hypervisors can scale up to 32 nodes per cluster. The cluster
+allows dynamic allocation of resources, such as CPU, memory, and storage. The cluster also provides
+workload mobility and flexibility with the use of VMware vMotion and Storage vMotion technology.
+
+In a VDI environment, VMware vCenter creates:
+
+• Virtual machine folders to organize VDI VMs
+• Resource pools to segregate physical resources for different groups of VDI VMs
+• VDI virtual machines
+• Snapshots
+
+VMware Horizon View
+
+VMware Horizon View delivers virtualized and remote desktops and applications through a single platform
+and supports end users with access to all of their Windows and online resources through one unified
+workspace.
+
+VMware Horizon View provides unified access to virtual desktops and applications from a wide variety of
+devices. It allows IT to manage desktops, applications, and data centrally while increasing flexibility and
+customization at the endpoint for the user. It enables levels of availability and agility of desktop services
+unmatched by traditional PCs at about half the total cost of ownership (TCO) per desktop.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+9
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Technology overview
+
+Unlike other desktop virtualization products, VMware Horizon View is a tightly integrated, end-to-end
+solution built on the industry-leading virtualization platform, VMware vSphere. VMware Horizon View
+allows customers to:
+
+• Deliver desktops and applications through a single platform
+• Provide a consistent end user experience across devices, locations, media, and connections
+• Dynamically allocate resources with virtual storage, compute, and networking to simply and cost-
+
+effectively manage and deliver desktop services on-demand
+
+• Extend business continuity and disaster recovery features to their desktops
+
+10
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Architecture
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Architecture
+
+Logical component configuration
+
+This solution requires two VMware vCenter instances: one for infrastructure and management and one for
+Viewdesktops and RDSH virtual machines.
+
+The infrastructure and management vCenter manages two clusters, one each for the following
+components:
+
+• Vblock System element managers
+• View infrastructure VMs
+
+The View desktop vCenter manages two clusters, one each for the following components:
+
+• View desktops
+• RDSH virtual machines (VMs)
+
+Note: VMware recommends that you do not mix RDSH workloads with VDI desktops.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+11
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Architecture
+
+The following diagram illustrates placement of the logical components in the solution.
+
+12
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Architecture
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+VDI management infrastructure
+
+The VDI management components reside on the AMP in the Vblock System 340.
+
+The View infrastructure and management components reside in a dedicated cluster of two B200 M3 blade
+servers in the AMP vCenter.
+
+The following diagram illustrates the logical configuration of management components.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+13
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Architecture
+
+VDI desktop infrastructure
+
+The VDI desktop infrastructure resides on a separate vCenter instance.
+
+We deployed a dedicated vCenter instance with two clusters: one cluster for View desktops and one
+cluster for RDSH VMs.
+
+14
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Architecture
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Hardware and software
+
+This solution was tested on Vblock System 340 with Cisco UCS compute and Cisco Nexus networking
+components, and EMC VNX 5600 storage.
+
+The following tables summarize the hardware and software used to validate this solution:
+
+Layer
+
+Compute
+
+Storage
+
+Network
+
+Component
+
+Cisco UCS 5108 blade chassis
+
+Cisco UCS C220 M3 rack server
+
+Cisco UCS B200 M3 blade server (2 Intel Xeon 8-core E5-2697
+CPUs, 256GB RAM)
+
+EMC VNX 5600 storage system
+
+Cisco Nexus 3048 Switch
+
+Cisco Nexus 5548UP Switch
+
+Cisco Nexus 6248UP Fabric Interconnect
+
+Quantity
+
+4
+
+2
+
+20
+
+1
+
+2
+
+2
+
+2
+
+Software
+
+VMware vCenter Server
+
+VMware ESXi
+
+VMware Horizon (with View)
+
+Microsoft SQL Server
+
+Microsoft Server
+
+Version
+
+5.5
+
+5.5
+
+6.0
+
+2012 Standard
+
+2008 R2 SP1
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+15
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Validation
+
+Validation
+
+Workload generation and measurement
+
+For this solution, we used the Login VSI workload generation and measurement tool to generate and
+measure rigorous and realistic desktop workloads.
+
+Login VSI is an industry-standard tool designed to measure the maximum capacity of VDI infrastructures
+by simulating unique user workloads. The simulated users work with the same applications as typical
+employees, such as Microsoft Word, Excel, Outlook, and Internet Explorer. The results of several testing
+measurements are compiled into a metric known as VSImax, which quantifies the maximum capacity of
+VDI workloads running on a given infrastructure while delivering an acceptable user experience.
+
+Test methodology
+
+We used Login VSI to simulate application workloads and measure in-session resource utilization and
+response times to validate utilization and user experience.
+
+Login VSI testing
+
+Login Virtual Session Indexer (Login VSI) is the industry-standard benchmarking tool for measuring the
+performance and scalability of centralized desktop environments such as Virtual Desktop Infrastructure
+(VDI).
+
+We used Login VSI to generate a reproducible, real-world test case that simulated the execution of
+various applications, including Microsoft Internet Explorer, Adobe Flash video, and Microsoft Office
+applications. The objective of the testing was to determine how many virtual desktop users, or sessions,
+each solution could support on the system under test.
+
+Workload
+
+We configured Login VSI to run a pre-defined knowledge workload against a VMware Horizon View pool
+of 1000 virtual desktops, with the tests set up to log users in to the virtual desktops incrementally every 30
+seconds between sessions per physical host (blade). We used a knowledge worker workload because it
+consumes more memory and CPU resources due to the increased number of applications simultaneously
+running, which addresses most hosted virtual desktop user classes.
+
+During testing, Login VSI sessions were initiated by launchers (simulated user endpoints) that ran on
+separate compute and storage infrastructure. Forty launchers were utilized, each running an average of
+25 sessions. Each launcher was configured with two vCPUs and 6GB of vRAM, following Login VSI sizing
+guidelines.
+
+Other test parameters included:
+
+• Once a session has been started, the knowledge worker workload repeats every 12 minutes.
+
+16
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Validation
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+The knowledge worker workload opens up to five applications simultaneously.
+
+• During each loop, the response time is measured every two minutes.
+•
+•
+• Approximately two minutes of idle time is included to simulate real-world users.
+
+The type rate is 160ms for each character.
+
+Metrics
+
+We measured response times for the following transactions:
+
+Transaction
+
+Description
+
+FCTS
+
+FCTL
+
+NSLD
+
+NFO
+
+ZHC*
+
+ZLC*
+
+CPU
+
+IO
+
+UMEM
+
+Copy a text document from VSIshare to temp directory.
+
+Copy a local random text file from local temp directory to home drive
+
+VSI-Notepad starts and loads a 1500KB document.
+
+Measure how long it takes to show the file-open dialog in VSI notepad.
+
+Create a zip file with high compression.
+
+Create a zip file with low compression.
+
+Calculates a large array of random data.
+
+Write the CPU random data file to disk.
+
+The percentage of memory used by the sessions.
+
+Deployment and recompose testing
+
+Deployment and recompose time measurements are often overlooked in VMware Horizon View designs
+because they are considered infrequent events. However, deployment and recompose times are critical
+beyond the initial setup for several reasons:
+
+• Deployment and recompose events have a direct impact on the IT agility and responsiveness.
+Consider the example of a large company that completes an acquisition and must roll out a
+corporate desktop and applications to all the newly acquired employees. Deployment times are
+directly correlated to the speed at which this can be accomplished.
+
+•
+
+Linked-Clone VDI images are recomposed and redeployed periodically to apply OS patches or
+application updates, which requires a maintenance window. The recompose operation must be
+completed as rapidly as possible.
+
+• Many customers employ a regular, automated recompose policy by setting desktops to Refresh
+
+on Logoff.
+
+To simulate a more realistic test than simple creation of image clones, all pool deployment and
+recompose timing tests included the duration of the master image cloning process and virtual desktop
+customization, power on, domain registration, and View Agent registration.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+17
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Validation
+
+Test procedure
+
+During testing, we measured CPU utilization, memory utilization, storage processor utilization, and
+application response times.
+
+We used the following test procedure to ensure consistent results.
+
+1 Clean start of all desktop virtual machines (VMs) and clients before each test.
+
+2 Restart all the launchers before the test.
+
+3
+
+Idle all desktop VMs and client launchers until startup services on the operating system settle
+down and memory and CPU on the launchers show no usage.
+
+4 Execute at least two Login VSI loops in each active test phase session.
+
+5
+
+Log off all users after VSI completion.
+
+6 Generate test run reports and data.
+
+VSImax and View session concurrency
+
+Test 1: Linked-Clone desktops
+
+First, we tested 1000 Linked-Clone virtual desktops with 100 percent concurrency.
+
+Highlights
+
+Test results showed VSImax not reached.
+
+At this level of session concurrency, host CPU resources are consumed up to 75 present on average and
+memory resources are consumed up to 95 percent on average. All 1000 desktops demonstrated normal
+performance. The sustained upper CPU utilization threshold for most production implementations is 85
+percent.
+
+Highlights of the test include:
+
+• Desktop access using PCoIP protocol and knowledge worker workload (with Flash enabled by
+
+default)
+
+• VSImax not reached
+• Excellent host performance (memory consumed up to 95 percent and CPU consumed up to 75
+
+percent)
+
+• Average steady state IOPS of 12169 on VNX 5600 (75 percent writes, 25 percent reads)
+
+18
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Validation
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Application and host performance
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+19
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Validation
+
+Storage performance
+
+We captured the performance of the VNX 5600 Storage Processors (SP A and SP B) during the 1000
+VDI Linked-Clone desktop testing. We observed that the overall utilization was less than 40% on average
+for the respective workload.
+
+Desktop pool deployment and recompose
+
+We observed fast, consistent, and reliable desktop pool deployments even with background workloads in
+the compute and shared storage environments. We measured the time to deploy a 1000-desktop Linked-
+Clone pool and observed that all 1000 desktops were deployed in 1 hour and 45 minutes.
+
+20
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Validation
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+We observed similarly fast, consistent, and reliable desktop pool recompose operations. We measured
+the time to recompose a 1000-desktop Linked-Clone pool and observed that all 1000 desktops were
+recomposed in 2 hours and 53 minutes.
+
+Test 2: RDSH session-based virtual desktops
+
+Next, we tested 1000 Remote Desktop Session Host (RDSH) session-based virtual desktops with 100
+percent concurrency.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+21
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Validation
+
+Highlights
+
+Test results showed VSImax not reached.
+
+At this level of session concurrency, host CPU resources are consumed up to 60 percent on average and
+memory resources consumed up to 50 percent on average. All 1000 RDSH sessions demonstrated
+normal performance.
+
+Highlights of the test include:
+
+• Desktop access using PCoIP protocol and knowledge worker workload (with Flash enabled by
+
+default)
+
+• VSImax not reached
+• Excellent host performance (memory consumed up to 60 percent and CPU consumed up to 50
+
+percent)
+
+• Average steady state IOPS of 3243 on VNX 5600 (75 percent writes, 25 percent reads)
+
+22
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Validation
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Application and host performance
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+23
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Validation
+
+Storage performance
+
+We captured the performance of the VNX 5600 Storage Processors (SP A and SP B) during the 1000
+RDSH session-based desktop testing. We observed that the overall utilization was less than 20% on
+average for the respective workload.
+
+24
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Design guidelines
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Design guidelines
+
+Virtual infrastructure
+
+VMware vSphere cluster and data store configurations
+
+The following diagrams illustrate cluster and data store layouts.
+
+VDI management infrastructure
+
+We created a dedicated cluster on the AMP vCenter to host the VDI management components. The
+cluster consisted of two UCS B200 M3 blade servers configured to use two 600 GB FC LUNs from the
+VNX 5600.
+
+VDI desktop infrastructure
+
+For the VDI desktop infrastructure, we deployed a dedicated vCenter and created two clusters. The VDI
+desktop cluster consisted of 10 UCS B200 M3 blade servers. We configured the blades with the following
+shared FC LUNs from the VNX 5600:
+
+16 x 1.8TB data store for VDI clones
+
+•
+• One 500GB data store for Master VMs
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+25
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Design guidelines
+
+• One 750GB data store for Replica disks
+
+26
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Design guidelines
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Remote Desktop Session Host infrastructure
+
+For the RDSH infrastructure, we created a single cluster with eight UCS B200 M3 blade servers. We
+configured the blades with two shared 900 GB FC LUNs from the VNX 5600.
+
+Infrastructure and management servers
+
+Two vCenter instances were deployed, one for infrastructure and management servers and one for
+desktops.
+
+We used the vCenter on the Vblock System 340 AMP for managing infrastructure servers. For View
+desktops, we deployed a dedicated vCenter Server instance, in conformance with VMware Horizon 6
+(with View) architecture planning guidelines.
+
+All additional vCenter roles (Inventory, Single Sign-On, vCenter Server) for the desktop vCenter were
+divested to separate servers to avoid any resource contention that might have resulted from combining
+roles on a busy vCenter Server.
+
+Server resources were sized according to current best practices from VMware.
+
+Storage
+
+During testing, we used the EMC VNX 5600 for Linked-Clone system disk storage, and we redirected
+user and user persona data to a CIFS share configured in the same VNX 5600.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+27
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Design guidelines
+
+Storage pools
+
+The following table lists the storage pool configurations in the VNX 5600:
+
+Storage pool
+
+Replica image
+
+Fast Cache
+
+View desktops with
+Fast Cache
+
+View infrastructure
+VMs
+
+RAID type
+
+5
+
+1+0
+
+5
+
+5
+
+LUN requirements
+
+Disk type
+
+200 GB EFD
+
+200 GB EFD
+
+300 GB SAS at 15K
+RPM
+
+10
+
+10
+
+110
+
+300 GB SAS at 15K
+RPM
+
+5
+
+No. of Drives
+
+Total capacity
+
+1.2 TB
+
+1000 GB
+
+30 TB
+
+1.2 TB
+
+The following table lists the LUNs that you must create and present to the ESXi blades for running View
+desktop workloads:
+
+Component
+
+LUN size
+
+Quantity
+
+Virtual
+desktop pool
+size
+
+1000
+
+VDI infrastructure
+
+VDI desktops
+
+Master VMs
+
+Replica Disks
+
+RDSH VMs
+
+User Persona (optional)
+
+600 GB
+
+1.8 TB
+
+500 GB
+
+750 GB
+
+900 GB
+
+2 TB
+
+Virtual desktop storage capacity
+
+The following table lists the storage requirements for each virtual desktop type:
+
+Virtual desktop type
+
+Capacity
+
+Linked-Clone virtual
+desktop
+
+Linked-Clone Replica disks
+(one per desktop data
+store)
+
+30 GB
+
+44 GB
+
+Full-Clone virtual desktop
+
+44 GB
+
+Number
+
+1000
+
+16
+
+1000
+
+28
+
+2
+
+16
+
+1
+
+1
+
+2
+
+1
+
+Total capacity
+
+30 TB
+
+704 Gb
+
+43 TB
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Design guidelines
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Network
+
+For this solution, the Vblock System 340 was configured with a unified storage architecture.
+
+Cisco Nexus switches
+
+Each fabric interconnect in the Vblock 340 has multiple ports reserved for 10GbE ports. These
+connections form a port channel to the Cisco Nexus switch and carry IP traffic destined for the desktop
+network 10GbE links. In a unified storage configuration, this port channel can also carry IP traffic to the
+storage layer.
+
+The Cisco Nexus 5548UP switches in the network layer provide 10GbE IP connectivity between the
+infrastructure and the external network. In a unified storage architecture, the switches connect the fabric
+interconnects in the compute layer to the storage layer also.
+
+View infrastructure networking
+
+We used the vSphere Standard Switch (vSwitch 0) for the View management and infrastructure servers
+with a redundant 10 GbE uplink to the Nexus 5548UP.
+
+View desktop networking
+
+We deployed a vSphere Distributed Switch (vDS) for View desktops with a redundant 10GbE uplink to the
+Nexus 5548UP.
+
+IP network components
+
+To support the Ethernet and SAN requirements in the traditional segregated network architecture, two
+Cisco Nexus 5548UP switches provide both 10GbE Ethernet and Fibre Channel (FC) connectivity.
+
+The Cisco Nexus 5548UP switches have 32 integrated, low-latency unified ports, each providing line-rate
+10GB Ethernet or FC connectivity. The Cisco Nexus 5548UP switches each have one expansion slot that
+can be populated with a 16-port unified port expansion module.
+
+Horizon View configuration
+
+VMware Horizon View is a tightly integrated, end-to-end solution built on the industry-leading virtualization
+platform, VMware vSphere.
+
+For this validation, we installed the following core systems:
+
+Two connection servers
+
+•
+• A dedicated vCenter with roles split to separate servers as follows:
+
+— vCenter
+
+— vCenter Single Sign-On (SSO)
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+29
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Design guidelines
+
+— vCenter Inventory Service
+
+— vCenter Web Client
+
+— vCenter Update Manager
+
+• View Composer running on a separate standalone server
+
+Desktop pool configuration
+
+VMware Horizon 6 (with View) offers the ability to create and provision pools of desktops as its basis of
+centralized management.
+
+To validate this solution, we deployed a single Automatic Floating Linked-Clone desktop pool with 1000
+desktops.
+
+Configuration of the Linked-Clone pool conformed to a typical knowledge worker profile with the exception
+of the Storage Overcommit policy. The Storage Overcommit policy must be set to Aggressive with any
+storage platform that has an inline deduplication or data reduction capability.
+
+Virtual machine configurations
+
+In production environments, virtual machine configurations vary based on individual use case
+requirements.
+
+Master virtual machines
+
+We configured the virtual hardware of the master desktop virtual machine according to standard Login
+VSI specifications. The master image used in this test environment underwent VDI optimization as
+defined in the VMware Horizon with View Optimization Guide for Windows 7 and Windows 8.
+
+Note: VMware strongly recommends that the Windows image be optimized when master images are
+
+prepared for use with Horizon View.
+
+Attribute
+
+Desktop OS
+
+VMware virtual hardware
+
+VMware tools version
+
+Virtual CPU
+
+Virtual memory
+
+OS page file
+
+vNICs
+
+Virtual network adapter 1
+
+Specification
+
+Microsoft Windows 7, 64-bit
+
+Version 9
+
+Up-to-date
+
+2
+
+4096MB
+
+1.5GB starting and maximum
+
+1
+
+VMXNET 3
+
+30
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Design guidelines
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Attribute
+
+Virtual SCSI controller 0
+
+Virtual disk (VMDK)
+
+Virtual floppy drive 1
+
+Virtual CD/DVD drive 1
+
+Horizon View Agent
+
+Installed applications (per Login VSI standards)
+
+Specification
+
+LSI Logic SAS
+
+40Gb
+
+Removed
+
+Removed
+
+6.0
+• Microsoft Office 2010
+•
+•
+•
+•
+,
+
+Adobe Acrobat Reader 10
+Doro PDF Printer
+FreeMind
+Notepad
+
+RDSH virtual machines
+
+A Remote Desktop Session Host (RDSH) is a server computer that has Windows Remote Desktop
+Services and View Agent installed. An RDSH hosts applications and desktop sessions that users can
+access remotely. An RDSH can be a physical or a virtual machine. The ESXi host for an RDSH virtual
+machine can be part of a VMware HA cluster to guard against physical server failures.
+
+The following table lists specifications for an RDSH virtual machine:
+
+Attribute
+
+Operating system
+
+RAM
+
+Virtual CPU
+
+System disk capacity- VMDK
+
+Virtual SCSI adapter type
+
+Virtual network adapter
+
+1 NIC
+
+Virtual SCSI controller 0
+
+Specification
+
+Windows Server 2008 R2 SP1
+
+64 GB
+
+4
+
+70 GB
+
+LSI Logic SAS (the default for Windows Server 2008)
+
+VMXNET 3
+
+1 Gigabit
+
+LSI Logic SAS
+
+Maximum number of client connections (including
+session-based remote desktop connections and remote
+application connections)
+
+50
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+31
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+References
+
+References
+
+Refer to the following technical resources for additional information.
+
+VMware
+
+• Server and Storage Sizing Guide for Windows 7 desktops in a Virtual Desktop Infrastructure
+• VMware Horizon with View Optimization Guide for Windows 7 and Windows 8
+• Workload Considerations for Virtual Desktop Reference Architectures
+• Storage Considerations for VMware Horizon View 5.2
+
+VCE
+
+• VCE End User Computing
+
+EMC
+
+• Sizing EMC VNX Series for VDI Workloads
+
+Cisco
+
+• Cisco Desktop Virtualization Solutions with VMware Horizon View
+• Design Considerations for Increasing VDI Performance and Scalability with Cisco Unified
+
+Computing System
+
+Login VSI
+
+•
+
+Login VSI Technical Documentation
+
+32
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Conclusion
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Conclusion
+
+VDI can help save time and money, provide greater defense against catastrophic failure, improve update
+speeds, and provide an easy way to customize desktops for certain users or groups of users.
+
+This solution architecture provides service providers and organizations with detailed design
+considerations for providing a centrally managed, robust, scalable, and secure hosted and virtual shared
+desktop environment on the Vblock 340using VMware Horizon View. When designing and estimating
+capacity for this solution architecture, we adhered closely to published VMware, Cisco, and EMC sizing
+and estimation standards, and best practices for VDI deployments.
+
+The Vblock 340 provides an enterprise-class IT infrastructure for VDI rollouts, ensuring the response
+times, security, availability, and agility IT requires. It has been engineered for greater scalability and
+performance to support large enterprise deployments of mission-critical applications, cloud services, VDI,
+mixed workloads, and application development and testing. VMware Horizon View is the industry's
+leading desktop virtualization platform and the only solution built expressly to deliver desktop as a
+service.
+
+Our test results demonstrate that the Vblock System 340 easily supports a deployment of 1000 Linked-
+Clone or RDSH session-based desktops with 100 percent concurrency and acceptable CPU, memory,
+and storage use, along with acceptable application response times. Rapid desktop pool deployment and
+recompose times show that desktop maintenance is feasible even with extensive background workloads
+running simultaneously.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+33
+
+Vblock® System 340 and VMware Horizon 6.0 with View
+
+Next steps
+
+Next steps
+
+To learn more about this and other solutions, contact your To learn more about this and other solutions,
+contact your VCE representative or visit www.vce.com.
+
+34
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+www.vce.com
+
+About VCE
+
+VCE,  formed  by  Cisco  and  EMC  with  investments  from  VMware  and  Intel,  accelerates  the  adoption  of  converged
+infrastructure and cloud-based computing models that dramatically reduce the cost of IT while improving time to market for
+our  customers.  VCE,  through  Vblock  Systems,  delivers  the  industry's  only  fully  integrated  and  fully  virtualized  cloud
+infrastructure system. VCE solutions are available through an extensive partner network, and cover horizontal applications,
+vertical industry offerings, and application development environments, allowing customers to focus on business innovation
+instead of integrating, validating, and managing IT infrastructure.
+
+For more information, go to http://www.vce.com.
+
+© 2014 VCE Company, LLC. All rights reserved. VCE, Vblock, VCE Vision, and the VCE logo are registered trademarks or
+trademarks of VCE Company, LLC. and/or its affiliates in the United States or other countries. All other trademarks used
+herein are the property of their respective owners.
+
+35
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+

@@ -1,0 +1,2620 @@
+ 
+
+  
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+ 
+
+SAN TROUBLESHOOTING GUIDE  
+
+Table of Contents 
+
+Connectivity .................................................................................................. 2 
+Class 3 Discards .............................................................................................................................. 2 
+CRC Errors ....................................................................................................................................... 5 
+Frame Errors ................................................................................................................................... 7 
+Code Violation Errors ................................................................................................................... 10 
+Loss of Sync .................................................................................................................................. 13 
+Loss of Signal ................................................................................................................................ 16 
+Link Resets  ................................................................................................................................... 19 
+Link Failures .................................................................................................................................. 22 
+Excessive Aborts ........................................................................................................................... 24 
+Excessive Cancelled Transactions  ................................................................................................ 26 
+Configuration .............................................................................................. 28 
+HBA Queue Depth ........................................................................................................................ 28 
+Multipath Failure / Verification .................................................................................................... 31 
+Performance ............................................................................................... 34 
+Excessive Latency ......................................................................................................................... 34 
+Conclusion .................................................................................................. 38 
+
+ 
+
+  
+
+1 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+ 
+
+ 
+
+I. 
+
+Connectivity 
+
+Class 3 Discards 
+What is a Class 3 Discard? 
+A Class 3 Discard occurs when a switch drops a Fibre Channel frame. The switch notes that it has dropped the 
+frame but no notification is provided to either the initiator or the target. If a switch doesn’t have sufficient credit to 
+route a frame, it will drop it so that frames to other links can continue to be routed. Higher-level functions on the 
+host or storage array are typically designed to overcome the problem of the missing frame.  
+
+What is a Class of Service? 
+Fibre Channel is capable of providing different levels of service, which define the characteristics of frame delivery.  
+For most enterprise SANs, Class 3 is the most common configuration and does not guarantee routing of frames or 
+have the overhead of hand-shaking that would be required in order to ensure that each frame gets routed. 
+ 
+
+Class 
+
+Description 
+
+ 
+
+Class 3 
+
+ 
+
+Class 2 
+
+ 
+
+Class 1 
+
+The most common class of service for enterprise SAN environments.  Class 3 is a 
+connectionless service that uses datagrams.  It does not acknowledge receipt of 
+transmissions and is sometimes referred to as “fire and forget.” 
+
+Not common in enterprise SANs.  Class 2 is a connectionless service that explicitly 
+acknowledges each packet received and provides notification of delivery failure.  Class 2 
+is deployed for certain control aspects within FICON (IBM mainframe communications 
+over Fibre Channel), although FICON data transfers use Class 3. 
+
+Also not seen in enterprise SANs.  Class 1 is a dedicated connection service in which the 
+entire bandwidth of the link between two ports is used only for communication between 
+the two ports.  It provides for complete end-to-end flow control on a link.  Class 1 is used 
+within the FC-AV standard for avionic data transfers. 
+
+Why are Class 3 Discards a Problem? 
+If a Fibre Channel frame is dropped by a switch, no notification is provided to either the initiator or the target. 
+Higher-level functions at the host or target are required to recover from the loss, and the processing can be 
+disruptive to the environment. These dropped frames have several side effects. The multiple full exchange requests 
+attempted in order to complete a single problematic data request will cause increased utilization as well as a 
+significant delay in completing the data request. A high volume of Class 3 Discards may also cause a switch to 
+perform a Link Reset, in order to re-negotiate the number of buffer-to-buffer credits it has available. Leaving the 
+root cause of a Class 3 Discard unresolved also leaves the SAN in a state that is more likely to see a significant 
+diminishment of service or an outage caused by compounding root causes.  
+ 
+Required to identify: ProbeSW (software only), though ProbeFC8 hardware may be required to resolve. 
+What are Common Causes of Class 3 Discards? 
+A Class 3 Discard occurs when the switch receives a frame and is unable to pass it along to the next point on the 
+path to its destination. Class 3 Discards can happen for several reasons:  
+•  The outbound link is being reset and therefore cannot accept any frames for transmission (including during 
+
+ 
+
+  
+
+2 
+
+ 
+
+server reboots) 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+•  The source does not have authority to talk to the destination, typically due to zoning restrictions 
+•  The destination no longer exists 
+•  The switch does not have sufficient buffer-to-buffer credits for the outbound link (as with an overloaded target 
+or congested ISL). If Class 3 Discards are being observed due to credit issues, there will be serious performance 
+issues in the SAN fabric. 
+
+A cyclical pattern of Class 3 Discards usually indicates either a host or a target that is trying to communicate with 
+something that is no longer a part of the fabric, or that it is no longer allowed to communicate with (un-zoned). For 
+example, a server has a device mounted that it can no longer get to, or a storage array is attempting to 
+communicate with an old control host. In both instances, Class 3 Discards are expected to occur on either the host 
+or target port. 
+ 
+How to Spot a Class 3 Discard 
+ProbeSW keeps track of the number of Class 3 Discard events which have occurred. This information can be viewed 
+and filtered on the dashboard and in reports. 
+ 
+Correlating Class 3 Discards with Other Events 
+Class 3 Discards may occur simultaneously with other events. For example, during a server reboot, Loss Of Sync, 
+Loss Of Signal and Link Failure/Link Reset events may occur. Each time the server loses its link, any outstanding 
+exchanges in flight are dropped (usually while traversing an ISL), often indicated as Class 3 Discards. 
+How to Resolve Class 3 Discards 
+Compare to Link Resets 
+The first step is to determine whether a Link Reset occurred immediately prior to the Class 3 Discard. If so, it is very 
+likely that the Link Reset caused the Class 3 Discard (possibly as part of a server re-boot) and the investigation 
+should be re-focused to find the cause of the Link Reset. Once the Link Reset is resolved, the Class 3 Discard will 
+likely be resolved as well. If the Class 3 Discard is not immediately preceded by a Link Reset, it may be caused by a 
+zoning or buffer-to-buffer credit issue. 
+ 
+Check for Zoning Problems 
+A zoning problem may occur with a request from either a host or a target. A constant stream of Class 3 Discards 
+over time is often the result of a zoning issue on the host side or on an ISL. The first step is to determine whether 
+the requestor is a host or a target.  
+Host Zoning 
+If the requestor is a host, compare the host requests to the zoning table. If the host is requesting a device which it is 
+not zoned to, the next step is to fix the invalid zoning. This is likely to resolve the Class 3 Discard problem. If the host 
+requests are valid however, move on to examining the target. 
+ 
+Target Zoning 
+Note: Use the ProbeFC8 to determine which devices the target is trying to reach. Compare the requests to the 
+zoning table. If the target is requesting a device which it is not zoned to, the next step is to fix the invalid zoning. 
+This is likely to resolve the Class 3 Discard problem. If the target requests are valid however, the problem is likely 
+being caused by a lack of buffer-to-buffer credits. 
+Buffer-to-Buffer Credit Issues 
+A switch may exceed its buffer-to-buffer credits for a destination either by sending a higher volume of data than the 
+target can process, or by sending a very high number of small frames (management frames for example). In fact, if a 
+very large number of Class 3 Discards occur, a switch may initiate a Link Reset in order to re-negotiate the number 
+
+ 
+
+  
+
+3 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ISL 
+
+of buffer-to-buffer credits it has available.  
+High Utilization 
+The first step is to check the utilization on the outbound link. If the utilization on the outbound link is very high, the 
+likely problem is an insufficient number of buffer-to-buffer credits. 
+ 
+High Volume of Small Frames 
+If the outbound link utilization is not very high, the next step is to determine whether a large number of very small 
+frames are being sent. To do this, compare the amount of data being sent (in MB per second) with the volume of 
+frames being sent (in frames per second) on the outbound link. If this comparison shows that a large number of very 
+small frames are being sent, the likely problem is an insufficient number of buffer-to-buffer credits. 
+Other Causes 
+There are other potential causes which generally are too complex to diagnose in this document. An example would 
+be Class 3 Discards for a link that spans an FCIP link, where the WAN link drops but the Fibre Channel switch is not 
+aware of the FCIP outage. At this point we recommend engaging Virtual Instruments Professional Services to assist 
+with further troubleshooting support. 
+ 
+Ongoing Monitoring 
+Class 3 Discards should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert on 
+any of them. Set up alarms for each type of location:  
+• 
+•  Storage link 
+•  Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Class 3 Discards. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+4 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+CRC Errors 
+What is a CRC Error? 
+A CRC Error occurs when a frame containing a bad CRC (Cyclic Redundancy Check) checksum is received by a switch. 
+When this happens, it means that some portion of the frame or its data has been corrupted and must be re-sent. 
+ 
+Each time a frame is assembled for transmission, a CRC algorithm is applied to the frame’s data, resulting in a 4-byte 
+checksum value which is then stored in the frame. Upon reception of a frame, the same algorithm is applied to the 
+received frame’s data. If the resulting checksum value does not match what was sent in the frame’s CRC Error Check 
+field, a CRC Error has occurred. In this case, a Code Violation or other bit-level corruption has altered the frame’s 
+data or possibly the CRC Error Check field itself. 
+ 
+Why are CRC Errors a Problem? 
+CRC Errors usually indicate physical issues with links, including problematic cables, transceivers or interference. 
+These errors, and the related Code Violation Errors and Frame Errors which may accompany them, are important 
+disruptions to connectivity. They cause performance problems by forcing devices to request and re-send frames 
+which were corrupted. These unnecessary errors on the SAN cost precious switch CPU time, as each error is dealt 
+with individually for no gain in fabric performance or stability.  
+ 
+CRC Errors may also lead to Aborts and multiple attempts by servers to access the same data. On storage ports, CRC 
+Errors can induce long timeouts (30 seconds or more). Every effort should be made to track down these types of 
+errors as they can seriously impact ISLs, highly-utilized links and application performance. 
+ 
+Required to identify: ProbeSW (software only) 
+What are Common Causes of CRC Errors?  
+• 
+• 
+• 
+• 
+• 
+“Dirty” optics are often the result of dust, micro-scratches and finger oil from physical handling. Faulty cables are 
+the most likely cause of CRC Errors, however. 
+ 
+How to Spot a CRC Error 
+ProbeSW keeps track of the number of CRC Errors which have occurred in frames received by the switch. This 
+information can be viewed and filtered on the dashboard and in reports. 
+ 
+Correlating CRC Errors with Other Events 
+A CRC Error often occurs simultaneously with other errors which flag the bit-level corruption of a frame’s content:  
+• 
+• 
+Consistent and repeated Code Violation Errors or Frame Errors will cause a Loss Of Sync event. Continued CRC and 
+Frame Errors can also lead to the generation of Abort Sequences. 
+ 
+CRC Errors in the presence of Loss Of Sync, Loss Of Signal or Link Reset events may indicate a Flapping HBA. Also 
+known as a Flopping HBA, this is an active HBA port which randomly changes state because it has no SFP attached, 
+or its SFP is uncovered with no cable attached.  
+ 
+ 
+
+CRC Errors are usually caused by physical problems with the optics: 
+Faulty, dirty or mismatched cables 
+Failing or dirty SFP transceivers 
+Failing or dirty patch panels 
+Poor cable management, exceeding minimum bend radius, kinked cables, etc. 
+
+Code Violation Errors 
+Frame Errors 
+
+ 
+
+  
+
+5 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+From the Fibre Channel ASIC to the SERDES (Serializer / Deserializer) on either device 
+From the SERDES to the physical transmitter (generally a GBIC or fixed media transmitter) on either device 
+
+How to Resolve CRC Errors 
+CRC Errors often indicate faulty cabling. Dirty or failing SFPs or patch panels may also cause these problems. 
+Resolving them usually requires examining, testing, cleaning and/or replacing SFPs, cables or patch panels until the 
+issues cease. The best place to start is often replacing the cable(s) that make up the problematic link. 
+ 
+It is also important to note that many components can be involved when a CRC Error or other bad frame 
+transmission occurs. Generally between two devices connected together in a point-to-point fashion, there are six 
+potential places where errors can occur (ten if you count the hardware probe or TAP). These are:  
+• 
+• 
+•  On either transmit wire between the devices 
+If you add the ProbeFC8 hardware in-line, the additional components required to analyze in-line are: two SFPs and 
+on more cable, in which either transmitting wire can fail. 
+Another possible source of CRC Errors is a port with nothing connected to it. This could be an active port with no 
+SFP attached or with an uncovered SFP that has no cable attached. It could also be a port whose server has no HBA 
+driver installed (and possibly has no running operating system). Every effort should be made to track down and 
+disable such ports (and cover any uncovered SFPs), in order to eliminate the potential performance impact of CRC 
+Errors (as well as Code Violation and Frame Errors) which may be generated by them. This problem is also known as 
+a Flapping HBA or Flopping HBA. 
+ 
+Once the physical issues have been resolved, it is a good idea to establish alarms for any CRC Errors that occur on 
+any link. Initially the alarms may be limited (using filters) to ISLs, then to storage ports, then to all ports as the 
+overall health of the SAN improves. Creating multiple levels of notification will escalate the worst problems so they 
+can be dealt with quickly. 
+ 
+Ongoing Monitoring 
+CRC Errors should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert on any of 
+them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) or the 
+particular application they are impacting. The most efficient approach is to resolve the existing CRC Errors quickly 
+and then set up alarms. 
+ 
+Set up alarms for each type of location:  
+• 
+• 
+•  Host link 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+ 
+Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any CRC Errors. If there are 
+delays in resolving existing CRC Errors, you may set up your initial alarms before resolving them, with thresholds or 
+filters that exclude the existing CRC Errors. Be sure to adjust your alarms to eliminate those exclusions as soon as 
+they are resolved.  
+ 
+
+ISL 
+Storage link 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
+
+6 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Frame Errors 
+What is a Frame Error? 
+A Frame Error occurs when a frame with an embedded Code Violation or other bit-level error within the frame is 
+detected. This will result in a CRC Error for the frame. A frame which is terminated with an EOFa, EOFni or EOFdti 
+delimiter also causes a Frame Error. 
+ 
+The End Of Frame delimiter (EOF) defines the end of a frame and carries additional information regarding the type 
+of frame and its validity. For Fibre Channel Class 3 transport, there are two normal EOF conditions and three error 
+conditions:  
+EOFn - End Of Frame Normal - a normal condition which indicates that the frame is not the last frame in a sequence 
+EOFt - End Of Frame Terminate - a normal condition which indicates that the frame is the last frame in a sequence 
+EOFa - End Of Frame Abort - an error condition which indicates that the Initiator was unable to complete the frame 
+normally. The Initiator indicates that the transmission has been aborted by terminating the frame with EOFa. The 
+receiving port will discard any frame with EOFa. 
+EOFni - End Of Frame Normal-Invalid - a frame error condition which indicates that an error has been detected by 
+the topology between the originating and destination port. The switching device may replace the standard EOFn or 
+EOFt with EOFni to indicate that it has detected an error in the frame. 
+EOFdti - End Of Frame Disconnect/Deactivate-Terminate-Invalid - Mostly related to Class 1 transport, unlikely to be 
+seen in enterprise SANs. 
+Why are Frame Errors a Problem? 
+Frame Errors usually indicate physical issues with links, including problematic cables, transceivers or interference. 
+Bad EOF conditions could indicate issues internal to the transmitting device. These errors, and the related Code 
+Violations, CRC Errors and Loss Of Sync events which may accompany them, are important disruptions to 
+connectivity. They cause performance problems by forcing devices to request and re-send frames which were 
+corrupted. These unnecessary errors on the SAN cost precious switch CPU time, as each error is dealt with 
+individually for no gain in fabric performance or stability.  
+ 
+Frame Errors may also lead to Aborts and multiple attempts by servers to access the same data. On storage ports, 
+Frame Errors can induce long timeouts (30 seconds or more). Every effort should be made to track down these 
+types of errors as they can seriously impact ISLs, highly-utilized links and application performance. 
+ 
+Required to identify: ProbeFC8 hardware. 
+What are Common Causes of Frame Errors? 
+Frame Errors are usually caused by physical problems with the optics: 
+ 
+• Faulty, dirty or mismatched cables 
+• Failing or dirty SFP transceivers 
+• Failing or dirty patch panels 
+• Poor cable management, exceeding minimum bend radius, kinked cables, etc. 
+ 
+“Dirty” optics are often the result of dust, micro-scratches and finger oil from physical handling. 
+ 
+How to Spot a Frame Error 
+ProbeFC8 keeps track of the number of Frame Errors which have occurred on the link being monitored. This 
+information can be viewed and filtered on the dashboard and in reports. 
+ 
+ 
+
+ 
+
+ 
+
+  
+
+7 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Correlating Frame Errors with Other Events 
+A Frame Error often occurs simultaneously with other errors which flag the bit-level corruption of a frame’s content: 
+• Code Violation Errors 
+• CRC Errors 
+ 
+Code Violations or other bit-level errors within an otherwise valid frame are likely to be flagged as a CRC Error by a 
+switch when it receives the frame and re-calculates the CRC based on its content. That CRC Error will be noted by 
+ProbeSW. Using the ProbeFC8 hardware, the cause of the CRC Error may be seen as a Frame Error on the link where 
+the problem originated.  
+ 
+Three Frame Errors or Code Violation Errors in a row will cause a Loss Of Sync event. Continued Frame and CRC 
+Errors can also lead to the generation of Abort Sequences. 
+ 
+Frame Errors in the presence of Loss Of Sync, Loss Of Signal or Link Reset events may indicate a Flapping HBA, active 
+HBA port which randomly changes state because it has no SFP attached, or its SFP is uncovered with no cable 
+attached.  
+ 
+How to Resolve Frame Errors 
+Frame Errors often indicate faulty cabling. Dirty or failing SFPs or patch panels may also cause these problems. 
+Resolving them usually requires examining, testing, cleaning and/or replacing SFPs, cables or patch panels until the 
+issues cease.  The best place to start is often replacing the cable(s) that make up the problematic link. 
+ 
+It is also important to note that many components can be involved when a Frame Error or other bad frame 
+transmission occurs. Generally between two devices connected together in a point-to-point fashion, there are six 
+potential places where errors can occur (ten if you count the hardware probe or TAP). These are:  
+
+From the Fibre Channel ASIC to the SERDES (Serializer / Deserializer) on either device 
+From the SERDES to the physical transmitter (generally a GBIC or fixed media transmitter) on either device 
+
+• 
+• 
+•  On either transmit wire between the devices 
+When you add the ProbeFC8 hardware in-line, the additional components required to analyze in-line are:  two SFPs, 
+and one more cable, in which either transmitting wire can fail. 
+Another possible source of Frame Errors is a port with nothing connected to it. Every effort should be made to track 
+down and disable such ports (and cover any uncovered SFPs), in order to eliminate the potential performance 
+impact of Frame Errors (as well as Code Violation and CRC Errors) which may be generated by them. This problem is 
+also known as a Flapping HBA or Flopping HBA. 
+ 
+Once the physical issues have been resolved, it is a good idea to establish alarms for any Frame Errors that occur on 
+any link. Initially the alarms may be limited (using filters) to ISLs, then to storage ports, then to all ports as the 
+overall health of the SAN improves. Creating multiple levels of notification will escalate the worst problems so they 
+can be dealt with quickly. 
+ 
+Ongoing Monitoring 
+Frame Errors should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert on any 
+of them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) or the 
+particular application they are impacting. The most efficient approach is to resolve the existing Frame Errors quickly 
+and then set up alarms. 
+ 
+Set up alarms for each type of location: 
+• ISL 
+• Storage link 
+
+ 
+
+ 
+
+  
+
+8 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+• Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+ 
+Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Frame Errors. If there are 
+delays in resolving existing Frame Errors, you may set up your initial alarms before resolving them, with thresholds 
+or filters that exclude the existing Frame Errors. Be sure to adjust your alarms to eliminate those exclusions as soon 
+as they are resolved.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+9 
+
+ 
+
+Code Violation Errors 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+What is a Code Violation Error? 
+A Code Violation (CV) Error is generally a bit-level corruption of the structure or content of a Fibre Channel frame or 
+primitive.  The starting delimiter may be missing, or one of the symbols in a frame may be an invalid character (also 
+known as an Encoding or Decoding Error).  The number of ones and zeroes in a data stream may be unbalanced 
+(also known as a Disparity Error).  All of these are considered Code Violations. 
+
+Why are Code Violation Errors a Problem? 
+Code Violation Errors usually indicate physical issues with links, including problematic cables, transceivers or 
+interference.   
+ 
+These errors, and the related Frame Errors, CRC Errors and Loss Of Sync events which may accompany them, are 
+important disruptions to connectivity.  They cause performance problems by forcing devices to request and re-send 
+frames which were corrupted.  These unnecessary errors on the SAN cost precious switch CPU time, as each error is 
+dealt with individually for no gain in fabric performance or stability.   
+ 
+Code Violation Errors may also lead to Aborts and multiple attempts by servers to access the same data.  On storage 
+ports, Code Violation Errors can induce long timeouts (30 seconds or more).  Every effort should be made to track 
+down these types of errors as they can seriously impact ISLs, highly-utilized links and application performance. 
+ 
+Required to identify: ProbeFC8 hardware. 
+
+What are Common Causes of Code Violation Errors? 
+Code Violation Errors are usually caused by physical problems with the optics: 
+•  Faulty, dirty, mismatched or disconnected cables 
+•  Failing or dirty SFP transceivers 
+•  Failing or dirty patch panels 
+•  Poor cable management, exceeding minimum bend radius, kinked cables, etc. 
+ 
+“Dirty” optics are often the result of dust, micro-scratches and finger oil from physical handling. Something as 
+simple as a pulled cable can create millions or even billions of Code Violation Errors.  A transceiver losing its light 
+unexpectedly can also generate these errors. 
+
+How to Spot a Code Violation Error 
+ProbeFC8 keeps track of the number of Code Violation Errors which have occurred on the link being monitored.  
+This information can be viewed and filtered on the dashboard and in reports. 
+
+Correlating Code Violation Errors with Other Events 
+A Code Violation Error often occurs simultaneously with other errors which flag the bit-level corruption of a frame’s 
+content: 
+•  Frame Errors 
+•  CRC Errors 
+ 
+Code Violations or other bit-level errors within an otherwise valid frame are likely to be flagged as a CRC Error by a 
+switch when it receives the frame and re-calculates the CRC based on its content.  That CRC Error will be noted by 
+ProbeSW.  Using the ProbeFC8 hardware, the cause of the CRC Error may be seen as a Code Violation Error on the 
+link where the problem originated.  
+ 
+Three Code Violation Errors in a row will cause a Loss Of Sync event.  Continued Code Violation Errors can also lead 
+
+ 
+
+  
+
+10 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+to the generation of Abort Sequences. 
+ 
+Note: If very large numbers (i.e. several billion per interval) of Code Violation Errors are observed continuously on a 
+port and that port appears to be working correctly in all other respects, there may be an issue with the probe 
+instrumenting that link.  The probe may be configured to a different link speed than the link is running at, or there 
+may be a connectivity issue between the probe and the TAP.  In this case, it is recommended to contact Virtual 
+Instruments Support for assistance in resolving the issue. 
+
+How to Resolve Code Violation Errors 
+Code Violation Errors often indicate faulty or unintentionally disconnected cabling.  Dirty or failing SFPs or patch 
+panels may also cause these problems.   
+ 
+Such events and errors will occur from time to time with the moving of equipment or configuration changes.  In 
+those cases, corresponding change control log entries should always exist.  If not, there could be actual physical 
+problems with the optics. 
+ 
+Resolving Code Violation Errors usually requires examining, testing, cleaning and/or replacing SFPs, cables or patch 
+panels until the issues cease.  In some cases, setting the ports to fixed link speeds can help.  The best place to start 
+is often replacing the cable(s) that make up the problematic link. 
+ 
+It is also important to note that many components can be involved when a Code Violation Error or other bad frame 
+transmission occurs.  Generally between two devices connected together in a point-to-point fashion, there are six 
+potential places where errors can occur (ten if you count the hardware probe or TAP).  These are: 
+•  From the Fibre Channel ASIC to the SERDES (Serializer / Deserializer) on either device 
+•  From the SERDES to the physical transmitter (generally a GBIC or fixed media transmitter) on either device 
+•  On either transmit wire between the devices 
+ 
+When you add the ProbeFC8 hardware in-line, the additional components required to analyze in-line are:  two SFPs, 
+and one more cable, in which either transmitting wire can fail. 
+ 
+Once the physical issues have been resolved, it is a good idea to establish alarms for any Code Violation Errors that 
+occur on any link.  Initially the alarms may be limited (using filters) to ISLs, then to storage ports, then to all ports as 
+the overall health of the SAN improves.  Creating multiple levels of notification will escalate the worst problems so 
+they can be dealt with quickly. 
+ 
+Ongoing Monitoring 
+Code Violation Errors should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert 
+on any of them.  The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) 
+or the particular application they are impacting.  The most efficient approach is to resolve the existing Code 
+Violation Errors quickly and then set up alarms. 
+ 
+Set up alarms for each type of location: 
+• 
+•  Storage link 
+•  Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+
+ISL 
+
+ 
+
+  
+
+11 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+Alarm thresholds should be set to “>0.”  This means alarming on the occurrence of any Code Violation Errors.  If 
+there are delays in resolving existing Code Violation Errors, you may set up your initial alarms before resolving 
+them, with thresholds or filters that exclude the existing Code Violation Errors.  Be sure to adjust your alarms to 
+eliminate those exclusions as soon as they are resolved. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+12 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Loss of Sync 
+What is a Loss Of Sync Event? 
+A Loss Of Sync event occurs when two devices lose the synchronization signal between them for a specific period of 
+time. Fibre Channel clock synchronization between the transmitter and the receiver is achieved by an encoding 
+technique that includes the clocking information in the data stream. If for any reason the data is corrupted (due to 
+Code Violations or single-bit errors), clock synchronization may be lost and transmission may be interrupted until 
+the clock synchronization is regained. The Fibre Channel standards dictate that three or more consecutive Code 
+Violations will trigger a Loss Of Sync condition. 
+ 
+Why are Loss Of Sync Events a Problem? 
+Loss Of Sync events usually indicate physical issues on links. These events, and the related Code Violation Errors and 
+Loss Of Signal events which may accompany them, are important disruptions to connectivity. They cause 
+performance problems by forcing devices to request and re-send frames which were corrupted. These unnecessary 
+errors on the SAN cost precious switch CPU time, as each error is dealt with individually for no gain in fabric 
+performance or stability.  
+ 
+Loss Of Sync events may also lead to Aborts and multiple attempts by servers to access the same data. On storage 
+ports, Loss Of Sync events can induce long timeouts (30 seconds or more). Every effort should be made to track 
+down these types of errors as they can seriously impact application performance. 
+ 
+Required to identify: ProbeSW (software only). 
+What are Common Causes of Loss Of Sync Events? 
+Since three or more Code Violations in a row will cause a Loss Of Sync event, the same physical problems which can 
+cause a Code Violation Error can also cause a Loss Of Sync: 
+· Faulty, dirty, mismatched or disconnected cables 
+· Failing or dirty SFP transceivers 
+· Failing or dirty patch panels 
+· Poor cable management, exceeding minimum bend radius, kinked cables, etc. 
+· An SFP losing its light unexpectedly 
+· A device being reset or rebooted 
+· A device being removed from or added to the loop 
+How to Spot a Loss Of Sync Event 
+ProbeSW keeps track of the number of Loss Of Sync events which have been noticed by a switch. This information 
+can be viewed and filtered on the dashboard and in reports. 
+ 
+Correlating Loss Of Sync Events with Other Events 
+Three Code Violation Errors in a row will cause a Loss Of Sync event. Continued Loss Of Sync events can also lead to 
+Loss Of Signal events and Abort Sequences. 
+Operation of a Fibre Channel port is governed by a port state machine. This defines the operation of the port, 
+including initialization, normal operation and how it responds to various error conditions. The error handling 
+defined in the state machine is very relevant to four key link metrics recorded by the VirtualWisdom ProbeSW 
+software probe: Loss Of Sync, Loss Of Signal, Link Reset and Link Failure. These metrics are closely inter-related and 
+often occur together. It is important understand the relationship between them when interpreting data recorded by 
+VirtualWisdom.  
+ 
+A Link Failure state is entered when either Loss Of Sync or Loss Of Signal persists for longer than the 
+
+ 
+
+  
+
+13 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+Receiver_Transmitter Time Out Value (R_T_TOV), which is 100mS. Thus a Link Failure should be considered a more 
+serious condition than Loss Of Sync or Loss Of Signal and will always been seen with these metrics. Strictly, Loss Of 
+Signal and Loss Of Sync will precede the Link Failure. However, considering that ProbeSW is polling switches at a 
+minimum of 5-minute intervals, the combined metrics will be seen in the same time period. 
+ 
+A Link Reset event is triggered on link timeout as well as on completion of link initialization. Thus a Link Reset will 
+occur when recovering from Link Failure. It is important to note that a Link Reset is not always an error condition - a 
+port will always reset as part of the initialization process. Thus a port coming online will always reset as part of the 
+process. 
+ 
+Loss Of Sync events in the presence of Code Violation Errors, Loss Of Signal events or Link Reset events may indicate 
+a Flapping HBA. Also known as a Flopping HBA, this is an active HBA port which randomly changes state because it 
+has no SFP attached, or its SFP is uncovered with no cable attached. This can cause millions (or even billions) of 
+Code Violation Errors, creating a massive CPU overhead on the SAN switch. Resolving these events and errors 
+proactively avoids many application slowdowns. 
+ 
+How to Resolve Loss Of Sync Events 
+Loss Of Sync events often indicate physical link problems with cables, SFPs or patch panels. They may also be caused 
+by devices being reset, rebooted, added or removed. Such events will occur from time to time with the moving of 
+equipment or configuration changes. In those cases, corresponding change control log entries should always exist. 
+The log may be the best place to begin tracking down the cause of a Loss Of Sync event. 
+If the log does not indicate any intentional reconfiguration or other manipulation of equipment, cables or SFPs, 
+there could be actual physical problems with the optics. In that case, replacing the cables and SFPs on the link may 
+help. 
+ 
+Another possible source of Loss Of Sync events is a port with nothing connected to it. This could be an active port 
+with no SFP attached or with an uncovered SFP that has no cable attached. It could also be a port whose server has 
+no HBA driver installed (and possibly has no running operating system). Every effort should be made to track down 
+and disable such ports (and cover any uncovered SFPs), in order to eliminate the potential performance impact of 
+Loss Of Sync events (as well as Code Violation, Frame and CRC Errors) which may be generated by them. This 
+problem is also known as a Flapping HBA or Flopping HBA. 
+ 
+In many cases, resolving Loss Of Sync events requires examining, testing, cleaning and/or replacing SFPs, cables or 
+patch panels until the issues cease. Once the existing problems have been resolved, it is a good idea to establish 
+alarms for any Loss Of Sync events that occur on any link. Initially the alarms may be limited (using filters) to ISLs, 
+then to storage ports, then to all ports as the overall health of the SAN improves.  
+ 
+Ongoing Monitoring  
+Loss Of Sync events should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert 
+on any of them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) 
+or the particular application they are impacting. Set up alarms for each type of location:  
+• 
+•  Storage link 
+•  Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+ 
+
+ISL 
+
+ 
+
+  
+
+14 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Loss Of Sync events. If there 
+are delays in resolving existing Loss Of Sync events, you may set up your initial alarms before resolving them, with 
+thresholds or filters that exclude the existing Loss Of Sync events. Be sure to adjust your alarms to eliminate those 
+exclusions as soon as they are resolved. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+15 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Loss of Signal 
+What is a Loss Of Signal Event? 
+A Loss Of Signal event occurs when the amount of light on a receiving port drops below a predetermined threshold, 
+to a point deemed too low for data to be considered valid.  
+ 
+Why are Loss Of Signal Events a Problem? 
+Loss Of Signal events may indicate a failing SFP, cable problem, server reboot or storage port reset. They can lead to 
+a path going down, and if the HBA or storage port cannot failover for some reason, may lead to application 
+downtime. 
+ 
+These events, and the related Code Violation Errors and Loss Of Sync events which may accompany them, are 
+important disruptions to connectivity. They cause performance problems by forcing devices to request and re-send 
+frames which were corrupted. These unnecessary errors on the SAN cost precious switch CPU time, as each error is 
+dealt with individually for no gain in fabric performance or stability.  
+ 
+Loss Of Signal events may also lead to Aborts and multiple attempts by servers to access the same data. On storage 
+ports, Loss Of Signal events can induce long timeouts (30 seconds or more). Every effort should be made to track 
+down these types of errors as they can seriously impact ISLs, highly-utilized links and application performance. 
+ 
+Required to identify: ProbeSW (software only). 
+ 
+What are Common Causes of Loss Of Signal Events? 
+A Loss Of Signal event is caused by an SFP losing its light unexpectedly. This may happen due to: 
+• Failing or dirty SFP transceivers 
+• Faulty, dirty, mismatched or disconnected cables or patch panels 
+• Poor cable management, exceeding minimum bend radius, kinked cables, etc. 
+• A device or storage port being reset or rebooted 
+ 
+How to Spot a Loss Of Signal Event 
+ProbeSW keeps track of the number of Loss Of Signal events which have been noticed by a switch. This information 
+can be viewed and filtered on the dashboard and in reports. 
+ 
+Correlating Loss Of Signal Events with Other Events 
+Operation of a Fibre Channel port is governed by a port state machine. This defines the operation of the port, 
+including initialization, normal operation and how it responds to various error conditions. The error handling 
+defined in the state machine is very relevant to four key link metrics recorded by the VirtualWisdom ProbeSW 
+software probe: Loss Of Sync, Loss Of Signal, Link Reset and Link Failure. These metrics are closely inter-related and 
+often occur together. It is important understand the relationship between them when interpreting data recorded by 
+VirtualWisdom.  
+ 
+A Link Failure state is entered when either Loss Of Sync or Loss Of Signal persists for longer than the 
+Receiver_Transmitter Time Out Value (R_T_TOV), which is 100mS. Thus a Link Failure should be considered a more 
+serious condition than Loss Of Sync or Loss Of Signal and will always been seen with these metrics. Strictly, Loss Of 
+Signal and Loss Of Sync will precede the Link Failure. However, considering that ProbeSW is polling switches at a 
+minimum of 5-minute intervals, the combined metrics will be seen in the same time period. 
+ 
+A Link Reset event is triggered on link timeout as well as on completion of link initialization. Thus a Link Reset will 
+occur when recovering from Link Failure. It is important to note that a Link Reset is not always an error condition - a 
+port will always reset as part of the initialization process. Thus a port coming online will always reset as part of the 
+
+ 
+
+  
+
+16 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+process. 
+ 
+Loss Of Signal events in the presence of Code Violation Errors, Loss Of Sync events or Link Reset events may indicate 
+a Flapping HBA. Also known as a Flopping HBA, this is an active HBA port which randomly changes state because it 
+has no SFP attached, or its SFP is uncovered with no cable attached. This can cause millions (or even billions) of 
+Code Violation Errors, creating a massive CPU overhead on the SAN switch. Resolving these events and errors 
+proactively avoids many application slowdowns. 
+ 
+If a server is rebooted, it is likely that a series of Loss Of Sync, Loss Of Signal and Link Reset events will occur. The 
+Link Reset event may also be followed by one or more Class 3 Discards as any exchanges in progress are dropped 
+when the link goes down. 
+ 
+A build-up of Loss Of Sync events may occur just prior to a Loss Of Signal event. The dashboard below shows Code 
+Violation Errors which have led to Loss Of Sync events, which have in turn led to Loss Of Signal events. They can lead 
+to a path going down, and if the HBA or storage port cannot failover for some reason, may lead to application 
+downtime. 
+ 
+How to Resolve Loss Of Signal Events 
+Loss Of Signal events indicate loss of light, often due to physical link problems with cables, SFPs or patch panels. 
+They may also be caused by devices timing out or being reset, rebooted, added or removed. Such events will occur 
+from time to time with the moving of equipment or configuration changes. In those cases, corresponding change 
+control log entries should always exist. The HBA and change control logs may be the best place to begin tracking 
+down the cause of a Loss Of Signal event. 
+ 
+If the change control log does not indicate any intentional reconfiguration or other manipulation of equipment, 
+cables or SFPs, there could be actual physical problems with the optics. In that case, replacing cables and SFPs on 
+the link may help. 
+ 
+Another possible source of Loss Of Signal events is a port with nothing connected to it. This could be an active port 
+with no SFP attached or with an uncovered SFP that has no cable attached. It could also be a port whose server has 
+no HBA driver installed (and possibly has no running operating system). Every effort should be made to track down 
+and disable such ports (and cover any uncovered SFPs), in order to eliminate the potential performance impact of 
+Loss Of Signal events (as well as Code Violation, Frame and CRC Errors) which may be generated by them. This 
+problem is also known as a Flapping HBA or Flopping HBA. 
+ 
+In many cases, resolving Loss Of Signal events requires examining, testing, cleaning and/or replacing SFPs, cables or 
+patch panels until the issues cease. 
+ 
+Once the existing problems have been resolved, it is a good idea to establish alarms for any Loss Of Signal events 
+that occur on any link. Initially the alarms may be limited (using filters) to ISLs, then to storage ports, then to all 
+ports as the overall health of the SAN improves. Creating multiple levels of notification will escalate the worst 
+problems so they can be dealt with quickly. 
+ 
+Ongoing Monitoring 
+Loss Of Signal events should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert 
+on any of them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) 
+or the particular application they are impacting. The most efficient approach is to resolve the existing Loss Of Signal 
+events quickly and then set up alarms. 
+ 
+Set up alarms for each type of location: 
+• ISL 
+
+ 
+
+  
+
+17 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+• Storage link 
+• Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+ 
+Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Loss Of Signal events. If there 
+are delays in resolving existing Loss Of Signal events, you may set up your initial alarms before resolving them, with 
+thresholds or filters that exclude the existing Loss Of Signal events. Be sure to adjust your alarms to eliminate those 
+exclusions as soon as they are resolved. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+18 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Link Reset 
+What is a Link Reset? 
+A Link Reset is part of the port initialization and error recovery protocol. When a port needs to force a reset of the 
+link, it will start transmitting Link_Reset primitive sequences, which tell the device at the other end of the link to 
+also enter the Link Reset process.  
+A Link Reset occurs as part of the normal port initialization process, so a new device coming online will reset the link 
+just before it comes online. A Link Reset also occurs when a switch needs to re-negotiate the number of buffer-to-
+buffer credits it has available. The switch clears its receive buffers (through processing or discarding the contents) as 
+part of this reset process. A Link Reset can also occur during a server reboot or as a result of a pulled cable. 
+ 
+Why are Link Resets a Problem? 
+A Link Reset may indicate that a very large number of frames are being discarded by a switch due to an overloaded 
+target, congested ISL, unreachable device or zoning change. It can also indicate problems such as pulled cables or 
+server reboots. 
+ 
+These events, as well as the related errors and timeouts which may accompany them, are important disruptions to 
+connectivity. They may also lead to Class 3 Discards, Link Failures, Aborts and Logouts. All of these conditions are 
+likely to cause performance problems by dropping frames, sequences and exchanges, forcing devices to request and 
+re-send lost data. Every effort should be made to track down the root cause of any Link Reset as it can seriously 
+impact ISLs, highly-utilized links and application performance.  
+ 
+Required to identify: ProbeSW (software only). 
+What are Common Causes of Link Resets?  
+
+• 
+
+Very large number of Class 3 Discards due to an overloaded target, congested ISL, unreachable device or zoning 
+change 
+Pulled or faulty cable 
+Server reboot 
+
+• 
+• 
+How to Spot a Link Reset 
+ProbeSW keeps track of the number of Link Resets which have been noticed by a switch. This information can be 
+viewed and filtered on the dashboard and in reports, by channel. Channel 1 reports the number of Link Resets 
+received by the switch (resets initiated by the device at the other end of the link). Channel 2 reports the number of 
+Link Resets transmitted by the switch (where the switch is initiating the Link Reset process). Differences in counts 
+on each channel may assist in diagnosing issues. 
+ 
+Correlating Link Resets with Other Events 
+A very large number of Class 3 Discards immediately prior to a Link Reset indicates that the reset is the switch 
+attempting to re-negotiate the number of buffer-to-buffer credits it has available. This is likely due to a credit 
+balance problem between the switch and a connected device. 
+ 
+Link Resets in the presence of Code Violation Errors, Loss Of Sync events or Loss Of Signal events may indicate a 
+pulled cable. This same combination could also be caused by a Flapping HBA. This can cause millions (or even 
+billions) of Code Violation Errors, creating a massive CPU overhead on the SAN switch.  
+ 
+If a server is rebooted, it is likely that a series of Loss Of Sync, Loss Of Signal and Link Reset events will occur. A Link 
+Reset may also be followed by one or more Class 3 Discards as any exchanges in progress are dropped when the link 
+goes down. A Link Failure is also likely to occur, due to the lengthy amount of time spent in these states during the 
+reboot. 
+ 
+If the device initiating the Link Reset does not receive notification that the device at the other end has 
+
+ 
+
+  
+
+19 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+acknowledged the reset request within the R_T_TOV (Receiver_Transmitter_Time Out Value, 100 mS default), a Link 
+Failure will be reported. 
+ 
+A Logout and subsequent Login may also occur if a target goes through a Link Reset and does not reestablish 
+communication with the Initiator within a set amount of time. 
+ 
+Operation of a Fibre Channel port is governed by a port state machine. The error handling defined in the state 
+machine is very relevant to four key link metrics recorded by the VirtualWisdom ProbeSW software probe: Loss Of 
+Sync, Loss Of Signal, Link Reset and Link Failure. These metrics are closely inter-related and often occur together.  
+ 
+A Link Reset event is triggered on link timeout as well as on completion of link initialization. Thus a Link Reset will 
+occur when recovering from Link Failure. It is important to note that a Link Reset is not always an error condition - a 
+port will always reset as part of the initialization process. Thus a port coming online will always reset as part of the 
+process. 
+ 
+How to Resolve a Link Reset 
+Compare for Prior Class 3 Discards 
+The first step is to determine whether a large number of Class 3 Discards occurred immediately prior to the Link 
+Reset. If so, it is very likely that the Class 3 Discards caused a switch to initiate the Link Reset and the investigation 
+should be re-focused to find the cause of the Class 3 Discards.  
+ 
+Check for Server Reboots and Pulled Cables 
+A Link Reset may be caused by an intentional server reboot or pulled cable. Such events will occur from time to time 
+with the moving of equipment or configuration changes. In those cases, corresponding change control log entries 
+should always exist. 
+ 
+A server reboot, whether intentional or not, is usually indicated by a Link Failure as well (immediately following a 
+Link Reset). This condition, like a Link Reset, is visible using VirtualWisdom dashboards and reports. 
+ 
+The next step in the process then, is to use these resources to determine whether server reboots or pulled cables 
+are the cause of the Link Reset. 
+ 
+Check for Problematic Connections 
+If the change control log does not indicate any intentional reboot, reconfiguration or other manipulation of 
+equipment, cables or SFPs, there could be actual physical problems with the optics. In that case, replacing the 
+cables and SFPs on the link may help. 
+ 
+Another possible source of a Link Reset is a port with nothing connected to it. This could be an active port with no 
+SFP attached or with an uncovered SFP that has no cable attached. It could also be a port whose server has no HBA 
+driver installed (and possibly has no running operating system). Every effort should be made to track down and 
+disable such ports (and cover any uncovered SFPs), in order to eliminate the potential performance impact of Link 
+Resets and other events/errors which may be generated by them. This problem is also known as a Flapping HBA or 
+Flopping HBA. 
+ 
+In many cases, resolving a Link Reset can require examining, testing, cleaning and/or replacing SFPs, cables or patch 
+panels until the issues cease. 
+ 
+Ongoing Monitoring 
+Link Resets should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert on any of 
+them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) or the 
+particular application they are impacting. The most efficient approach is to resolve the existing Link Resets quickly 
+and then set up alarms. 
+
+ 
+
+  
+
+20 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+ 
+
+ 
+
+ 
+Set up alarms for each type of location: 
+• ISL 
+• Storage link 
+• Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied.  Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Link Reset. If there 
+are delays in resolving existing Link Resets, you may set up your initial alarms before resolving them, with 
+thresholds or filters that exclude the existing Link Resets. Be sure to adjust your alarms to eliminate those 
+exclusions as soon as they are resolved.  
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+  
+
+21 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Server in the process of rebooting 
+Server becoming inaccessible for some other reason (such as a failing HBA) 
+Timeout during a Loss Of Sync, Loss Of Signal or Link Reset condition for some other reason 
+
+Link Failure 
+What is a Link Failure? 
+A Link Failure occurs when a Loss Of Sync or Loss Of Signal condition persists for longer than the Receiver-
+Transmitter Timeout Value (R_T_TOV), which is specified as 100mS. This generally indicates that a server is 
+rebooting or is otherwise inaccessible. 
+ 
+Why are Link Failures a Problem? 
+A Link Failure may simply indicate a planned server reboot. However it may also indicate many possible HBA, 
+connection or utilization problems which are preventing access to a server and setting the stage for a larger outage. 
+At best, these conditions are likely to cause performance problems by dropping frames, sequences and exchanges, 
+forcing devices to request and re-send lost data. Every effort should be made to track down the root cause of any 
+Link Failure as it can seriously impact ISLs, highly-utilized links and application performance. 
+ 
+Required to identify: ProbeSW (software only). 
+What are Common Causes of Link Failures?  
+• 
+• 
+• 
+ 
+How to Spot a Link Failure 
+ProbeSW keeps track of the number of Link Failures which have been noticed by a switch. This information can be 
+viewed and filtered on the dashboard and in reports. 
+ 
+Correlating Link Failures with Other Events 
+Operation of a Fibre Channel port is governed by a port state machine. This defines the operation of the port, 
+including initialization, normal operation and how it responds to various error conditions. The error handling 
+defined in the state machine is very relevant to four key link metrics recorded by the VirtualWisdom ProbeSW 
+software probe: Loss Of Sync, Loss Of Signal, Link Reset and Link Failure. These metrics are closely inter-related and 
+often occur together. It is important understand the relationship between them when interpreting data recorded by 
+VirtualWisdom.  
+ 
+A Link Failure state is entered when either Loss Of Sync or Loss Of Signal persists for longer than the 
+Receiver_Transmitter Time Out Value (R_T_TOV), which is 100mS. Thus a Link Failure should be considered a more 
+serious condition than Loss Of Sync or Loss Of Signal and will always been seen with these metrics. Strictly, Loss Of 
+Signal and Loss Of Sync will precede the Link Failure. However, considering that ProbeSW is polling switches at a 
+minimum of 5-minute intervals, the combined metrics will be seen in the same time period. 
+ 
+A Link Reset event is triggered on link timeout as well as on completion of link initialization. Thus a Link Reset will 
+occur when recovering from Link Failure. It is important to note that a Link Reset is not always an error condition - a 
+port will always reset as part of the initialization process. Thus a port coming online will always reset as part of the 
+process. 
+ 
+In general, a timeout during a Loss Of Sync, Loss Of Signal or Link Reset condition will trigger a Link Failure. 
+ 
+If a server is rebooted, it is likely that a series of Loss Of Sync, Loss Of Signal and possibly Link Reset events will occur 
+just prior to the Link Failure. It may also be followed by one or more Class 3 Discards as any exchanges in progress 
+are dropped when the link goes down.  
+ 
+A Link Failure in the presence of Code Violation Errors, Loss Of Sync events or Loss Of Signal events may indicate a 
+Flapping HBA. Also known as a Flopping HBA, this is an active HBA port which randomly changes state because it has 
+
+ 
+
+  
+
+22 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+no SFP attached, or its SFP is uncovered with no cable attached. This can cause millions (or even billions) of Code 
+Violation Errors, creating a massive CPU overhead on the SAN switch. Resolving these events and errors proactively 
+avoids many application slowdowns. 
+ 
+How to Resolve a Link Failure 
+The most common cause of a Link Failure is a server reboot. This will occur from time to time with the moving of 
+equipment or configuration changes. In those cases, corresponding change control log entries should always exist. 
+This is the best place to begin when searching for the root cause of a Link Failure. 
+ 
+If the change control log does not indicate any intentional reboot, reconfiguration or other manipulation of 
+equipment, cables or SFPs, there could be actual physical problems with the optics which are preventing access to 
+the server. In that case, replacing the cables and SFPs on the link may help. 
+ 
+Another possible source of a Link Failure is a port with nothing connected to it. This could be an active port with no 
+SFP attached or with an uncovered SFP that has no cable attached. It could also be a port whose server has no HBA 
+driver installed (and possibly has no running operating system). Every effort should be made to track down and 
+disable such ports (and cover any uncovered SFPs), in order to eliminate the potential performance impact of Link 
+Failures and other events/errors which may be generated by them. This problem is also known as a Flapping HBA or 
+Flopping HBA. 
+ 
+A failing HBA may also be preventing access to the server. Since a timeout during a Loss Of Sync, Loss Of Signal or 
+Link Reset condition is what triggers a Link Failure, it may help to explore other errors and events which are 
+occurring at the same time as any of these conditions. 
+ 
+Ongoing monitoring 
+Link Failures should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert on any 
+of them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host link) or the 
+particular application they are impacting. The most efficient approach is to resolve the existing Link Failures quickly 
+and then set up alarms. 
+ 
+Set up alarms for each type of location: 
+• ISL 
+• Storage link 
+• Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+ 
+Alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Link Failure. If there are 
+delays in resolving existing Link Failures, you may set up your initial alarms before resolving them, with thresholds 
+or filters that exclude the existing Link Failures. Be sure to adjust your alarms to eliminate those exclusions as soon 
+as they are resolved. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+23 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Excessive Aborts 
+ 
+What is an Abort? 
+An Abort is the generation of an Abort Sequence (ABTS) Fibre Channel Frame by a host, in order to terminate a 
+sequence or exchange that has either timed out or encountered physical layer errors. It is the main method of 
+recovery from frame-level and sequence-level errors. 
+ 
+Why are Excessive Aborts a Problem? 
+An Abort indicates a significant communication problem, such as lost or dropped frames, CRC and other framing 
+errors, lack of credit or unexpected resets and reboots. An excessive number of Aborts usually indicates a persistent 
+problem, such as a failing HBA, continually-rebooting server, inaccessible device or problematic connection (faulty 
+cabling, SFPs or patch panels). Each Abort forces the Initiator to take appropriate steps to either retry or terminate 
+the exchange. Depending upon the devices involved, recovery from an Abort could take anywhere from 
+milliseconds to a minute or more. This can cause a very serious performance impact. 
+ 
+Required to identify: ProbeFC8 hardware. 
+What are Common Causes of Excessive Aborts? 
+An Abort can be caused by: 
+• Dropped frames resulting in out-of-order delivery of data 
+• Dropped frames resulting in a timeout 
+• No frames for a transaction 
+• CRC, Frame and Code Violation Errors in frames or sequences 
+• Lack of buffer-to-buffer credit 
+• Unexpected device resets and reboots 
+ 
+Excessive Aborts are likely to be caused by a persistent condition, such as a: 
+• Failing HBA 
+• Continually-rebooting server or target 
+• Problematic connection (due to faulty cabling, SFPs or patch panels) 
+• Device which has become inaccessible for some other reason 
+ 
+How to Spot an Abort; Correlating Aborts with Other Events 
+ProbeFC8 keeps track of the number of Abort Sequence Frames which have occurred on a link. This information can 
+be viewed and filtered on the dashboard and in reports. Aborts in the presence of: 
+• Class 3 Discards are likely due to dropped frames or lack of buffer-to-buffer credit 
+• CRC, Frame or Code Violation Errors, Loss Of Sync events or Loss Of Signal events are likely due to a problematic 
+connection 
+• Link Resets or Link Failures are likely due to unexpected device resets or reboots 
+ 
+How to Resolve Excessive Aborts 
+The best approach to resolve Excessive Aborts is to identify what is directly causing the Aborts (Code Violation 
+Errors for example), and then identify the root cause of that (a faulty cable in the example of Code Violation Errors). 
+The easiest cause to start with may be a server reboot or cable alteration. These will occur from time to time with 
+the moving of equipment or configuration changes. In those cases, corresponding change control log entries should 
+always exist. 
+If the change control log does not indicate any intentional reboot, reconfiguration or other manipulation of 
+equipment, cables or SFPs, there could be actual physical problems with the optics. Resolving Excessive Aborts may 
+
+ 
+
+  
+
+24 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+require examining, testing, cleaning and/or replacing SFPs, cables or patch panels until the issues cease. In some 
+cases, an HBA may need to be replaced as well. 
+ 
+Ongoing Monitoring 
+Aborts should be rare events in an enterprise SAN, therefore alarms should be set to detect and alert on any of 
+them. The level of urgency in resolving them may depend upon the location (storage link or host link) or the 
+particular application they are impacting. The most efficient approach is to resolve the existing Aborts quickly and 
+then set up alarms. 
+Set up alarms for each type of location: 
+• Storage link 
+• Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. Ideally the alarm thresholds should be set to “>0.” This means alarming on the occurrence of any Abort. 
+Initially however, it may be best to set them to alarm if a certain number of Aborts occur within a time period, to 
+address the worst-behaving links first. Be sure to adjust the alarms as soon as the initial Aborts are resolved. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+25 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Excessive Cancelled Transactions 
+What is a Cancelled Transaction? 
+A Cancelled Transaction is an indication of multiple exchanges being cancelled due to a variety of SCSI and Fibre 
+Channel Link Events. VirtualWisdom hardware probes and the portal server use a number of internal counters and 
+proprietary algorithms to monitor the status of transactions and detect when they have been cancelled. 
+ 
+Why are Excessive Cancelled Transactions a Problem? 
+A Cancelled Transaction indicates SCSI or Fibre Channel Link Events (such as Target Reset, LUN Reset, Clear Task Set, 
+Abort Task, Logout or Login) occurring during multiple exchanges, causing the entire transaction to be cancelled. An 
+excessive number of Cancelled Transactions usually indicates a persistent problem which must be resolved. 
+Cancelled Transactions may result in large amounts of overhead and multiple retries to exchange data. Depending 
+upon the devices involved, recovery from a Cancelled Transaction could take anywhere from milliseconds to a 
+minute or more. This can cause a very serious performance impact. 
+ 
+Required to identify: ProbeFC8 hardware 
+What are Common Causes of Excessive Cancelled Transactions?  
+ 
+A Cancelled Transaction is commonly caused by any of these events occurring during multiple exchanges:  
+
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+
+SCSI Target Reset 
+SCSI LUN Reset 
+SCSI Clear Task Set 
+SCSI Abort Task 
+FC Logout 
+FC Login 
+FC Link Up 
+ISL failure 
+Target port resets 
+
+How to Spot a Cancelled Transaction 
+From the ProbeFC8, VirtualWisdom flags the Initiator, Target, LUN devices that had Cancelled Transactions during 
+an interval by setting the Minimum Pending Exchanges metric to -1 (minus one) when events occur which cause 
+multiple exchanges to be cancelled. This information can be viewed and filtered on the dashboard and in reports. 
+The Minimum Pending Exchanges metric is associated with an Initiator-Target-LUN combination, so it is possible to 
+narrow down the location of the problem very simply. If there are Cancelled Transactions from multiple Initiators to 
+a single target, it is likely that the issue is on the target side of the SAN. Other VirtualWisdom metrics should be 
+checked for time correlation, Link Resets for example. 
+ 
+Other Events:  
+SCSI Reservation Conflicts are a normal part of the SCSI protocol and they are not actually errors. The SCSI protocol 
+uses the reservation to allow exclusive access to a LUN. It does this to prevent data corruption should there be 
+competing devices for the same LUN. Excessive Reservation Conflicts can cause poor response times however, as 
+devices must wait for access.  
+ 
+Ongoing Monitoring 
+Cancelled Transactions should be rare events in an enterprise SAN, therefore alarms should be set to detect and 
+alert on any of them. The level of urgency in resolving them may depend upon the location (ISL, storage link or host 
+link) or the particular application they are impacting. The most efficient approach is to resolve the existing Cancelled 
+Transactions quickly and then set up alarms. 
+
+ 
+
+  
+
+26 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+Set up alarms for each type of location: 
+• ISL 
+• Storage link 
+• Host link 
+ 
+You may also want to create specific alarms for high-priority applications to ensure the correct level of urgency is 
+applied. 
+ 
+Ideally the thresholds should be set to alarm on the occurrence of any Cancelled Transaction. Initially however, it 
+may be best to set them to alarm if a certain number of Cancelled Transactions occur within a time period, to 
+address the worst-behaving links first. Be sure to adjust the alarms as soon as the initial Cancelled Transactions are 
+resolved. VirtualWisdom flags the Initiator, Target, LUN devices that had Cancelled Transactions during an interval 
+by setting the Minimum Pending Exchanges metric to -1 (minus one). A filter for this can be used to find servers or 
+other Initiators that had transactions cancelled during a time period. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+27 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+ 
+
+II. 
+
+Configuration 
+
+ 
+HBA Queue Depth / Pending Exchanges 
+
+What is Queue Depth? 
+Storage Array Queue Depth is the maximum number of SCSI exchanges that can be open on a storage port at any 
+one time.  HBA Queue Depth is a setting on an individual Host Bus Adapter which specifies how many exchanges 
+can be sent to a target or LUN at one time. 
+
+Why Incorrectly-Set HBA Queue Depths Are a Problem 
+Default HBA Queue Depth values can vary a great deal by manufacturer and version.  They are often set higher than 
+what is optimal for most environments.  Setting Queue Depths too high can cause storage ports to be overrun or 
+congested.  This can lead to poor application performance and potentially to data corruption and loss of data.  A 
+common misunderstanding is that higher Queue Depth equates to higher performance, whereas in reality 
+performance can decrease if Queue Depths are set too high. 
+ 
+If an HBA Queue Depth is set too low, it could impair the HBA’s performance and lead to underutilization of the 
+storage port’s capacity.  This occurs because the network will be underutilized and because the storage system will 
+not be able to take advantage of its caching and serialization algorithms which can improve performance.  
+ 
+Queue Depth settings on HBAs can also be used to throttle servers so that the most critical servers are allowed 
+greater access to the necessary storage and network bandwidth.  If they are not set correctly, critical applications 
+may have to wait for data while lower-priority tasks proceed instead.  This can cause variable and erratic transaction 
+latency. 
+ 
+A useful analogy to help understand Queue Depth is to consider a shared office printer.  The size of an individual 
+print job is analogous to the HBA queue.  If one user is printing a 256-page print job and another user tries to print 
+an 8-page job, the second user will have to wait for the 256-page job to complete before printing can start.  This 
+results in a very long time to wait for completion.  If a rule is set that no print jobs can exceed 8 pages (Queue Depth 
+of 8), then every user gets more fair access to the printer and the average time to complete the job is much lower. 
+ 
+A properly-configured lower-tier SAN can often provide greater performance and reliability than a more expensive 
+higher-tier SAN that is poorly configured.  Proper Queue Depth settings probably have the biggest impact on 
+performance, yet they are largely ignored in most environments.  One of the biggest factors in ensuring availability 
+is ensuring that redundant systems are actually properly configured and working.  Managing Queue Depth is the 
+best way to prevent or minimize the severity of heavy load times in a SAN. 
+ 
+Storage manufacturers will reveal the number of simultaneous exchanges their front-end ports can handle, but will 
+rarely reveal at what point performance actually starts to degrade.  As the queue on the storage port approaches 
+50-60% saturation, the response times for each exchange remain fairly predictable and fast.  Once the storage port 
+queue begins to go beyond 60% utilized, the response time for each exchange goes up exponentially (at 60% a 10ms 
+response time is normal, at 65% a 20ms response time is normal, at 80% saturation a 200ms response time is 
+normal).  Proper tuning of the HBA Queue Depth setting should be made with this in mind - the ultimate goal is to 
+not push the storage port queue saturation beyond 50% utilized. 
+ 
+Required to identify: ProbeFC8 hardware. 
+
+What are Common Causes of Incorrectly-Set HBA Queue Depths? 
+
+ 
+
+  
+
+28 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+The most common cause of incorrectly-set HBA Queue Depths is utilizing the default settings provided by the HBA 
+driver vendor.  Industry defaults tend to be in the range of 32 to 256, significantly higher than optimal.  Most 
+settings have not taken into consideration the number of servers that are connecting to a storage port, the number 
+of LUNs available on that port, or the Queue Depth limits for each storage array accessed by a particular HBA.  
+Determining the optimal values requires the ability to measure aggregated Queue Depths in real time, regardless of 
+the storage vendor or device.  Another key factor is that the HBA Queue Depth setting is often outside of the 
+control of the SAN and Storage Team, as it is implemented by the team managing the servers (who may not have 
+the required knowledge to correctly set the parameter). 
+
+How to Spot an Incorrectly-Set HBA Queue Depth 
+By knowing the number of exchanges that are pending at any one time, it is possible to manage the storage Queue 
+Depths.  Pending Exchanges show how full the queues are actually getting.  Often the performance is best and more 
+predictable when there are low levels of queuing. 
+ 
+Without VirtualWisdom, the only way to confirm HBA Queue Depth settings is to check the HBA parameter setting 
+on each server, which is a time-consuming task and only provides a point-in-time check.  
+ 
+The VirtualWisdom ProbeFC8 Maximum Pending Exchanges  metric records the maximum number of Initiator-
+Target-LUN exchanges in progress during any time interval.  This value cannot exceed the HBA Queue Depth, so it 
+will typically indicate the current HBA Queue Depth setting. 
+ 
+The first step is to baseline the environment to determine which servers have optimal settings and which ones are 
+set too high or too low.  A good report to run lists the Initiator, Initiator Name and Maximum Pending Exchanges, 
+sorted descending by Maximum Pending Exchanges. 
+ 
+Unless storage ports have been dedicated to a server, the optimal HBA Queue Depth settings are in the range of 2 
+to 8.  A threshold can be set so that any HBA with a Maximum Pending Exchanges value greater than 8 (for 
+example) is flagged in red for further investigation. 
+ 
+HBAs connected to dedicated storage ports can utilize much higher Queue Depths.  The storage vendor should be 
+consulted for recommended maximums in this situation. 
+
+Correlating HBA Queue Depth with Other Events 
+Setting Queue Depths too high (the most common problem) can cause storage ports to be overrun or over-
+saturated. 
+ 
+The first indication of a Queue Depth problem will usually manifest itself as intermittent slowdowns on read 
+response times.  Typically, when a host has an extremely-high Queue Depth setting, its own response times will 
+suffer, as well as any other host on that storage port.  Since SCSI traffic is usually very bursty in nature, these initial 
+symptoms will be sporadic and infrequent.  As the storage port queue fills up more and more, the response time 
+impact will grow.  Eventually, the storage port response times will become incredibly high (500-1000ms), and the 
+queue will become saturated.  When this occurs, the storage port will answer any additional exchanges with a 
+‘queue full’ status message.  There is no standard for how HBAs should handle this response, and most simply re-
+transmit the exchange, compounding the issue. 
+
+How to Resolve Incorrectly-Set HBA Queue Depths 
+The first step toward resolving Queue Depth problems is to baseline the environment, in order to determine which 
+Initiators have optimal Queue Depth settings and which are set too high or too low.  To do this, run the report 
+described earlier (Initiator, Initiator Name and Maximum Pending Exchanges, sorted descending by Maximum 
+
+ 
+
+  
+
+29 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+• 
+
+Pending Exchanges with values greater than 8 highlighted in red). 
+ 
+This report can be used to compare the settings on the servers to the relative values of the application(s) which they 
+support.  Improperly set Queue Depths can lead to unpredictable performance and even brownouts.  Servers that 
+share storage ports should have a lower setting to avoid random slowdowns due to excessive load from a single 
+device.  The most critical systems should be set to higher Queue Depths than those which are less critical.  
+Dedicated storage ports can handle higher Queue Depth settings in order to achieve performance benefits. 
+ 
+For the HBA Queue Depth setting on servers, one should consider these points: 
+•  Are the top Initiators hosting your highest-priority applications? 
+•  Conversely, are the Initiators with a low Queue Depth setting hosting the lowest-priority applications?  If so, the 
+small Queue Depth might make sense.  If not, perhaps they are being inappropriately constrained (throttled) by 
+the Queue Depth configuration.   
+Load-balancing HBAs within the same server typically have the same Queue Depth setting.  The Storage 
+Virtualizer automatically manages the Storage-Virtualizer-to-Storage pending exchanges. 
+
+ 
+Where dedicated storage ports are not in use, Queue Depths should be set between 2 and 8.  A setting of 8 should 
+be reserved for the more latency-sensitive applications.  Dedicated storage ports should typically have settings as 
+high as possible.  This will allow more HBAs to request only the amount of data that they can consume, as well as 
+allow more hosts timely access to the data that is being requested. 
+ 
+While these recommendations are for typical environments that we have observed, it is important to also monitor 
+the latencies and determine what is best for a particular environment and application.  Furthermore, a review of 
+maximum Queue Depths should be made to ensure congestion occurs as infrequently as possible.  Queue Depth 
+settings should stay within a maximum vendor-specified range, however. 
+ 
+Ongoing Monitoring 
+Once the proper Queue Depth settings have been determined and established for an environment, it is a good idea 
+to create an alarm for any HBAs that are added to the SAN which don’t fall within the recommendations.  It is also a 
+good idea to create a filter in advance to exclude any servers which may not have to follow the policy. 
+ 
+Note that the following configuration uses a time-based re-arm.  This works unless you are using a rover on the link.  
+The re-arm is set by entering a condition which is always true, along with a frequency and time period that specifies 
+the desired re-arm time.  24 hours (60 sec/min * 60 min/hour * 24 hours = 86,400 seconds) in this case: 
+ 
+
+Probe Type 
+ 
+Metric Set 
+
+Xgig/ProbeFC8 version 1.1 
+ 
+SCSI 
+
+Group by 
+ 
+Filter 
+
+Initiator 
+ 
+Servers excluded from the HBA Policy 
+
+ 
+
+Metric Type 
+
+Operator  Threshold 
+
+Freq 
+
+Severity 
+
+Actions 
+
+ 
+
+ 
+ 
+ 
+
+Trigger  Maximum Pending  
+Re-arm 
+
+Exchanges 
+
+> 
+
+!= 
+
+8 
+
+-1 
+
+1 
+
+Minor 
+
+86,400 
+
+86,400 
+
+Normal 
+
+Email or 
+SNMP 
+Internal 
+
+Time 
+Period 
+1 
+
+ 
+
+  
+
+30 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Multipath Verification and Failure Detection 
+
+What is Multipathing, Multipath Verification and Multipath Failure? 
+Multipathing is a widely-deployed technique that ensures that data flow from a host to storage via SAN switches 
+has two completely independent and redundant paths.  This should ensure that any failure in one path, whether 
+due to hardware, software or configuration, results in minimal disruption to the application.  Depending on the 
+technology deployed and supported by the storage vendor, the multipathing can be Active/Passive or Active/Active.  
+Several different techniques are also used to either manually or automatically load balance across paths.  
+Active/Passive multipathing employs one live link, which carries the entire load, and one standby link, which is 
+passive and will take on the load in the event of the failure of the active link (failover).  Active/Active multipathing 
+means that both paths carry data and in the event of one path failing, the remaining link will take on the full load. 
+ 
+Multipath Verification is the act of verifying that I/O traffic is distributed across redundant, functioning paths in a 
+SAN.  Multipath Failure is the failure of one or more of those redundant paths. 
+
+Why is a Multipath Failure a Problem? 
+Multipath Failure removes the benefit of redundant paths between devices, risking a complete outage to the 
+applications supported by them, should the remaining path fail. 
+ 
+Required to identify: ProbeSW (software only), though ProbeFC8 hardware may be required to pinpoint certain 
+types of link failures. 
+ 
+VirtualWisdom’s ProbeSW software probe relies on a good nicknaming standard to be implemented in order to 
+detect multipath members.  Each HBA on a server should have a common prefix that reflects the server name.  For 
+example: Server1_H1 and Server 1_H2 to reflect the HBAs in Fabric 1 and Fabric 2. 
+
+What are Common Causes of Multipath Failures? 
+Multipath Failures are often caused by: 
+•  Failing HBAs 
+•  Failing switches 
+•  Zoning or configuration changes (human error) 
+•  Physical problems with the optics (failing, dirty or mismatched cables, SFPs or patch panels) 
+•  Planned maintenance: many enterprise customers rely on multipathing to ensure business continuity while one-
+half of the fabric is down for maintenance, albeit with a much greater risk of outage should the remaining path 
+fail during the maintenance period 
+
+ 
+
+Note that “dirty” optics are often the result of dust, micro-scratches and finger oil from physical handling. 
+
+How to Spot Multipath Failures and Problems with Multipath Verification 
+Using VirtualWisdom, specific reports can be run to identify which links have balanced multipaths, which ones are 
+currently acting as active/passive, and which ones don’t have an active redundant HBA.  Alarms can also be 
+configured to alert when active paths suddenly lose traffic (indicating Multipath Failures). 
+ 
+Important note: VirtualWisdom’s ProbeSW software probe can only detect levels of traffic.  It does not interact with 
+storage or multipathing software to confirm operation.  Thus when VirtualWisdom detects an Active/Passive 
+multipathing condition, it does so by detecting traffic on one HBA path and no traffic on the other HBA path on a 
+server.  There is an assumption made that the server is running multipathing software and it is configured and 
+working correctly.  There is no way to confirm that the multipathing software will failover correctly in the event of a 
+
+ 
+
+  
+
+31 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+path failure.  Similarly, VirtualWisdom detects an Active/Active multipathing connection by detecting equal levels of 
+traffic on two (or more) paths.  Again this is no guarantee that failover will correctly occur. 
+
+Correlating Multipath Failures with Other Events 
+As Multipath Failure is simply the failure of a single path within a multipathing environment, the same causes that 
+affect a single link can affect multipathing. 
+ 
+Pending Multipath Failures due to problems with the optics can often be predicted by examining physical layer 
+errors (CRC, Frame and Code Violation Errors, as well as Loss Of Sync, Loss Of Signal, Class 3 Discards, Link Resets 
+and Link Failures), Aborts and Cancelled Transactions on the paths in question. 
+ 
+Change requests should also be reviewed, to identify conditions or events which are not related to those requests.  
+In particular, zoning, configuration or cabling changes may have been made which inadvertently disable a 
+previously-verified multipath. 
+
+How to Prevent and Resolve Multipath Failures 
+Multipath verification and balancing is the art of distributing I/O traffic across redundant paths.  For example, when 
+one path is running at 80% capacity but another is running at only 3%, the risk of congestion and poor application 
+performance is significant.  More importantly, in the event of a Multipath Failure (usually due to a hardware 
+failure), there is no redundant path for the traffic to flow through and outages can result.  
+ 
+For all the servers that are running a dual-port HBA or two HBAs, the goal should be to have the I/O loads of both 
+HBAs within a certain range of equality.  Similarly, the traffic should be balanced on all the multipathed ISL and 
+storage ports.  This is important not only to optimize performance but to ensure that the active paths are not single 
+points of failure.  Any failure to the only active port could cause a complete outage to the applications supported by 
+these devices. 
+ 
+VirtualWisdom switch probes (ProbeSW) can identify which links have balanced multipaths, which ones are 
+currently acting as active/passive, and which ones don’t have an active redundant HBA or are imbalanced.  This is 
+done by running a report with the Attached Port WWN, the Attached Port Name and the MB/s sorted by the 
+Attached Port Name, combined with a filter for Attached Device Type = Server: 
+ 
+This report should be reviewed to ensure that all servers identified as Active/Passive do not have Active/Active 
+capabilities which they could be using.  Servers identified as being Active/Active should be checked to ensure that 
+they are properly configured and load-balanced.  This will significantly reduce the likelihood of unexpected outages 
+during hardware failures or maintenance activities. 
+ 
+Once all HBAs that lack redundancy or balance are brought online and balanced, there are a couple of alerts which 
+can be configured to ensure that the environment stays that way.  Note that a complete discussion of load 
+balancing and capacity planning is beyond the scope of this guide. 
+ 
+In searching for the underlying cause of a Multipath Failure, change requests should also be reviewed to identify 
+conditions or events which are not related to those requests.  In particular, zoning, configuration or cabling changes 
+may have been made which inadvertently disable a previously-verified multipath. 
+ 
+Pending Multipath Failures due to problems with the optics can often be predicted by examining physical layer 
+errors (CRC, Frame and Code Violation Errors, as well as Loss Of Sync, Loss Of Signal, Class 3 Discards, Link Resets, 
+Link Failures, Aborts and Cancelled Transactions) on the paths in question.  Some of these may require ProbeFC8 
+hardware to pinpoint specifically.   
+
+ 
+
+  
+
+32 
+
+ 
+Metric Set 
+
+ 
+Link 
+
+Group 
+by 
+ 
+Filter 
+
+ 
+No Filters Selected 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+Resolving Multipath Failures may require examining, testing, cleaning and/or replacing SFPs, cables or patch panels 
+until the issues cease.  In some cases, an HBA may need to be replaced as well. 
+ 
+Ongoing monitoring 
+Once all HBAs that lack redundancy or balance are brought online and balanced, there are a couple of alerts which 
+should be configured to ensure that the environment stays that way.  
+ 
+The first is to create an alarm which uses the Trigger and Re-arm conditions backwards, as if it were Arm and Alert.  
+The first sets the alarm to monitor any link that has traffic.  The Re-arm then notifies the user when the link has 
+been offline for an extended period of time.  The correct period of time without traffic will be specific to each 
+environment.  A good default starting point is 24 hours.  
+ 
+In the example below, 5-minute polling is assumed.  Note that any filters which are used to rule out devices should 
+be configured with Probe Name, Port Number and Port Module Number (rather than other port-identification items, 
+such as Attached Port WWN or Attached Device Type).  If the device disconnects from the switch, this other 
+identifying information will be cleared when the switch determines that nothing is connected.  This is likely to 
+prevent the filter from working as desired. 
+ 
+
+Probe Type 
+
+Switch/SNMP version 1.3 
+
+PortNumber – PortModuleNumber  
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Metric Type 
+
+Operator 
+
+Threshold 
+
+Freq 
+
+Trigger 
+Re-arm 
+
+MB / Sec 
+
+> 
+<= 
+
+0 
+0 
+
+2 
+288 
+
+Time 
+Period 
+2 
+288 
+
+Severity  Actions 
+
+Normal 
+Major 
+
+Internal 
+Email or SNMP 
+
+ 
+
+  
+
+33 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+ 
+
+Performance 
+
+III. 
+
+ 
+
+Excessive Latency 
+ 
+What is Latency and When is it Considered Excessive? 
+Latency is a measure of how long it takes for specific types of exchanges to fully complete across the SAN. It is most 
+accurately measured using the Exchange Completion Time (ECT) metric within VirtualWisdom. Excessive Latency is 
+when the time to complete I/O operations across the SAN fails to meet design goals and impacts application 
+performance.  
+ 
+Why is Excessive Latency a Problem? 
+Excessive Latency can be a sign of performance issues which need to be addressed before they cause applications to 
+become unusable or lead to network outages.  
+ 
+Required to identify: ProbeFC8 hardware. 
+What are Common Causes of Excessive Latency?  
+ 
+It is important to distinguish between two key potential contributors to Excessive Latency: those caused by 
+performance issues within the storage array and those caused by issues in the SAN Fabric. Excessive Latency within 
+the array can be caused by a number of reasons, including:  
+
+• 
+
+Inappropriate configuration which doesn't meet application requirements (wrong RAID type, use of high 
+capacity capacity/low performance drives for transactional workloads, incorrect cache configuration, etc.) 
+A change in workload from that originally designed for 
+Conflicting applications sharing the same disk groups 
+Background tasks which impact primary response times, such as synchronous replication 
+
+• 
+• 
+• 
+Excessive Latency in the SAN Fabric can often be caused by:  
+
+• 
+• 
+• 
+• 
+
+Exchanges terminated by Aborts (due to discarded packets or physical layer errors) 
+Cancelled Transactions (due to SCSI or Fibre Channel Link Events) 
+Switches dropping large numbers of packets (Class 3 Discards), primarily due to congestion 
+Large numbers of physical layer errors (such as CRC, Frame and Code Violation Errors) and timeouts due to a 
+variety of reasons including poor-quality connectivity 
+
+Slow-draining devices (devices requesting more information than they can consume) 
+Buffer-to-buffer credit issues 
+
+•  Devices with incorrectly-set Queue Depths 
+• 
+• 
+•  Unbalanced loads on storage arrays or ISLs 
+Configuration issues (by design or by error) 
+• 
+•  Delays introduced by the number of hops, transaction sizes and device incompatibility 
+•  Other possible issues with servers, HBAs and switches 
+How to Spot Excessive Latency 
+SAN performance is often misunderstood and the term is applied to many different measurements and methods. In 
+many cases it is only thought of in terms of a MB/sec or IOPS measurement. To really understand what is going on 
+beneath the surface, it is very important to measure how long each exchange takes to complete. By knowing the 
+minimum, maximum and average Exchange Completion Times for every device and LUN communicating on the 
+SAN, a true picture of performance can be seen. VirtualWisdom, coupled with the ProbeFC8 hardware, can track 
+Read, Write and Other Exchange Completion Times down to an Initiator, Target, LUN (ITL) granularity. 
+ 
+A very powerful feature of VirtualWisdom is to be able to track changes in transaction latency over time and 
+
+ 
+
+  
+
+34 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+visualize trends. The time-based dashboards allow correlation of trends and events with changes in the 
+environment. Thus if an increasing load is causing an upward trend in latency and changes to back-end storage 
+configuration are made, the impact on transaction latency can immediately be assessed. Alternatively, if a change in 
+configuration is made, such as adding a new server onto an array, the impact of this change on existing applications 
+can be measured, with clear graphical views showing the impact. 
+ 
+Latency spikes every once in a while on a SAN can be normal events. Prolonged periods of high latency however, 
+indicate an issue which needs to be addressed. Applications typically fall into three broad categories: transaction-
+based high-latency-sensitive, transaction-based moderate-latency-sensitive and batch-based. For all three 
+categories the maximum response time will often be in the 1000-3000mS range, even on a healthy SAN. When 
+maximum times start to exceed these values however, there is typically a problem. Because of the extreme latency 
+difference between the typical average and the typical maximum values, occasional outliers can occur without 
+impacting the application if they happen during low-I/O periods (preventing the typical maximum from being 
+averaged with many other transactions as it normally would). 
+ 
+If Exchange Completion Times of 30 seconds are seen, this will indicate that a SCSI command has failed due to a 
+timeout (30 seconds is the typical timeout value seen on many host operating systems) and further investigation 
+should be undertaken as to the reason. 
+ 
+The biggest difference between the three categories is for acceptable average response times over a one-minute 
+time period (excluding low-load outliers). For some high-latency-sensitive applications, the ideal response time is in 
+the 4-7mS range. For most applications, the response times should remain below 20-40mS as a high-end average. 
+For batch-based activities such as backups, MB/s or IOPS is often the best measurement to consider since this 
+affects how long the overall activity takes. For these applications though, the Exchange Completion Times and the 
+throughput times are often directly linked. 
+ 
+By viewing a one-day summary of the key SAN metrics, we can take a holistic view of a mission-critical application. 
+Here, the application has suffered a slowdown in Exchange Completion Times. While it may not yet have reached 
+the point where the application team complains, this insight allows the SAN team to proactively hunt down the 
+contributing factors.  
+ 
+Correlating Excessive Latency with Other Events 
+Excessive Latency in the presence of a large number of Class 3 Discards may be caused by a slow-draining device, 
+buffer-to-buffer credit issues, incorrectly-set Queue Depths or unbalanced loads. If many physical layer errors are 
+occurring at the same time, the underlying problem may actually be a cabling or SFP issue. Any of these conditions 
+may also eventually trigger Aborts or Cancelled Transactions. Buffer-to-buffer credit symptoms usually include both 
+Excessive Latency and large numbers of exchanges which remain pending. 
+ 
+Change requests should also be reviewed, to identify conditions or events which are not related to those requests. 
+ 
+When exchanges are taking longer than normal to complete, it is important to consider how many commands are 
+outstanding, how quickly the storage array is responding to each request and how the exchange times relate to the 
+demand in the environment. The “Performance – ITL ECT vs Demand” report shows the relationship between 
+demand for a specific ITL and performance. If high latency is detected but there appears to be no correlation to 
+demand, the “Performance – ITL ECT vs Queue” report should be run to check for a correlation with Queue Depth 
+settings or Pending Exchanges. 
+ 
+One important metric which should be reviewed in conjunction with Exchange Completion Time is Command to 
+First Data. This is the amount of time taken between the VirtualWisdom probe recording the SCSI Initiator Read 
+command and the first data being seen from the array. This can be thought of as the array "thinking time." The 
+Command to First Data will always be less than the ECT. If it is a high percentage compared to the overall ECT then 
+
+ 
+
+ 
+
+  
+
+35 
+
+ 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+there is most likely an array-based performance issue. This means that the majority of the entire exchange is spent 
+waiting for data to be delivered by the array. This could be a cache miss, busy controller, background replication 
+process or similar issue. Conversely, if the Command to First Data time is very small compared to the overall ECT, 
+the issue is most likely to reside in the SAN (congestion or a physical layer issue) or with the Initiator (slow-draining 
+device).  
+How to Resolve Excessive Latency 
+To resolve latency issues, it is important to consider how many commands are outstanding, how quickly the storage 
+array is responding to each request, how the exchange times relate to the demand in the environment and whether 
+recent change requests could be contributing to the problem. Remediation may include re-configuration, re-routing 
+or replacing equipment, depending upon the underlying cause. 
+ 
+Step 1: Identify Demand 
+The quickest way to identify and understand the performance is to look at the response times of the highest-
+granularity ITL issue. While this may not be best for alerts, it is often the best place to start in the reports. The 
+“Performance – ITL ECT vs Demand” report can be used to find any latency in the environment, as well as to 
+determine the relationship between the demand for the specific ITL and the performance. Note: Target-LUNs may 
+not be accessed continuously so there may be gaps in the report data, resulting in more scatter plots than solid 
+lines. 
+ 
+Step 2: Check Queue Depth and Pending Exchanges 
+If high latency is detected in Step 1 but there appears to be no correlation to demand, the “Performance – ITL ECT 
+vs Queue” report should be run to determine if the there is a correlation between the response times and the 
+Queue Depth settings or Pending Exchanges. See the section on “Queue Depths” for more detail. 
+ 
+Step 3: Examine Performance at the Initiator Level 
+Performance should also be configured and understood at the Initiator level. This is typically the closest match to 
+the values that Server teams are seeing and using to evaluate SAN health. It is also typically the best level to use 
+when setting alert thresholds. 
+ 
+It is often important to separate and categorize the performance by the size of the transactions, the types of 
+devices in the environment, and any tiering or other big differences in expected performance. Reporting and 
+understanding the performance at these different levels can be critical to the successful remediation of latency 
+problems. 
+ 
+Ongoing Monitoring 
+Once the response times are understood for the different categories of traffic, it is a good idea to create alarms for 
+when the performance is outside of the expected ranges. 
+ 
+Care needs to be used when establishing alarms with Initiator, Target-LUN grouping. The Group-by selection affects 
+the trigger and re-arm. Each device in the Group-by setting that matches a condition will have a separate alarm 
+event action triggered for it. It is therefore best to have the most stringent alarm policies specified at the Initiator 
+level and only use the full ITL level for reports or when integrated with an Event Correlation Engine. 
+ 
+Note: Target-LUNs may not be accessed continuously so there may be gaps in the report data, resulting in more 
+scatter plots than solid lines. 
+ 
+The following alerting configuration uses a time-based re-arm. This is done by setting a condition which is always 
+true, along with a frequency and time period that specifies the desired re-arm time. 24 hours (60 sec/min * 60 
+
+ 
+
+  
+
+36 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+ 
+
+min/hour * 24 hours = 86,400 seconds) in this case: 
+ 
+
+ 
+
+Xgig/ProbeFC8 version 1.1 
+SCSI 
+
+ 
+
+Group by 
+Filter 
+
+ 
+
+Initiator 
+Category A (B, etc) 
+
+ 
+
+Probe Type 
+Metric Set 
+
+ 
+
+ 
+Trigger 
+Re-arm 
+
+Metric Type 
+Avg  Read 
+Completion Time (ms) 
+
+Exchange 
+
+Operator 
+> 
+!= 
+
+Threshold 
+TBD 
+-1 
+
+Freq 
+TBD 
+86,400 
+
+Time Period 
+TBD 
+86,400 
+
+Severity 
+Minor 
+Normal 
+
+Actions 
+Email or SNMP 
+Internal 
+
+ 
+If any bad response times are detected by alerts, it is useful to know whether they are being seen at the Target-LUN 
+or Link (Target Port) level, or if only specific Initiators or ITLs are experiencing them. This can be seen with the 
+following reports: 
+• Performance – Target-LUN ECT vs Demand 
+• Performance – Link ECT vs Demand 
+• Performance – Target-LUN ECT vs Queue 
+• Performance – Link ECT vs Queue  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+37 
+
+ 
+
+             SAN Troubleshooting Guide 
+                    
+
+ 
+
+Conclusion 
+
+IV. 
+SAN troubleshooting is greatly enhanced with the right monitoring tools, but even with the best tools, it remains 
+somewhat of a specialized art.  We hope that this document helps to direct your efforts so that you may apply best 
+practices in order to simplify and shorten your troubleshooting efforts.  Significantly, if you follow the practices 
+outlined herein, you will discover that the time you spend troubleshooting will be lessened because you are finding 
+evidence of potential application performance or availability problems before they become serious. 
+This primer on SAN Troubleshooting is being made available through VI Marketing.  Content was developed by the 
+Virtual Instruments Professional Services team and will be updated by that team.  Suggestions are welcome and 
+should be directed at marketing@virtualinstruments.com and to the author, kurt.inman@virtualinstruments.com.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Sales Information 
+sales@virtualinstruments.com 
+
+25 Metro Drive, Suite 400 
+ San Jose CA 95110 
+408-579-4000 
+http://www.virtualinstruments.com 
+©2012 Virtual Instruments.  All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom®, Virtual 
+Instruments, SANInsight™ are trademarks or registered trademarks in the United States and/or in other countries. All other brands, 
+products, or service names are or may be trademarks or service marks of, and are used to identify, products or services of their respective 
+owners.   01/19/12 
+
+Customer Support  
+support@virtualinstruments.com 
+
+ 
+
+ 
+
+  
+
+38 
+
+

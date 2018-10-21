@@ -1,0 +1,252 @@
+1
+
+Large Financial Services 
+CASE STUDY
+
+Challenges
+• 
+
+Scaling up the IT environment to meet 
+business requirements for continual expan-
+sion of financial services while maintaining 
+a tight ‘return-on-investment’ model.
+Ramping up VMware ESX servers cre-
+ated serious performance issues and 
+outages.
+Expensive production storage and server 
+components were limited to non-produc-
+tion usage due to performance issues.
+Internal application, storage, and VM-
+ware server teams as well as external 
+storage and server vendor personnel 
+were spending hundreds of hours per 
+month trying to rectify problems. 
+
+Solution
+Virtual Instruments VirtualWisdom 
+
+• 
+• 
+• 
+• 
+• 
+• 
+
+Virtual Instruments ProbeV
+Virtual Instruments ProbeVM 
+Virtual Instruments TAP 
+Virtual Instruments ProbeFCX
+Virtual Instruments ROVER
+Virtual Instruments Protocol Analyzer 
+
+Virtual Instruments Virtual Infrastructure Opti-
+mization & Best Practices Service
+
+Virtual Instruments VirtualWisdom 
+Solution and Professional Services 
+help resolve VMwareTM performance 
+problems at Large Financial Services 
+Company
+
+VirtualWisdom enables ‘end-to-end’ view of I/O from VMware ESX Server through 
+SAN to disk array
+
+The large financial services company is a major international provider of financial services 
+and investment resources that help individuals and institutions meet their financial objec-
+tives. In addition to more than 300+ mutual funds, this company also offers discount 
+brokerage services, retirement services, estate planning, wealth management, securities 
+execution and clearance, life insurance and is continually expanding services to meet 
+customer needs. 
+
+The company had built out a large set of servers, Fibre Channel SANs, and Tier 1 storage 
+in order to setup a flexible environment for implementing virtualized physical servers. By us-
+ing VMware ESX, time to market for expanding business applications would be faster and 
+lower-cost than the traditional model of one application per physical server. 
+
+As the number of virtualized servers increased, the SAN infrastructure and connected 
+Tier 1 storage exhibited serious problems to the point of full production outages requiring 
+reboots of storage and/or servers. So much so that non-production test and development 
+servers had to be shut down to prevent congestion and retries every Sunday evening or 
+periodically when problems appeared. Eventually, all production applications were moved 
+to other environments to mitigate the business impact of the SAN problems.  
+
+For a period of eight months, the application, VMware server and storage IT teams, along 
+with personnel from their storage and server vendors worked through a litany of problems 
+all impacting the SAN.    
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+• 
+
+Benefits
+• 
+
+Restored use of expensive storage and 
+server components to production use, 
+using best practices to optimize perfor-
+mance and avoid performance issues 
+and outages.
+Have gained full understanding of the I/O 
+performance impact of VMware VMotion, 
+VMware Distributed Resource Scheduler 
+(DRS) and VMware High Availability (HA).
+Development of best practices for con-
+figuration and deployment of VMware 
+ESX virtual machines and servers with 
+their SAN.
+Dramatically reduced the admin resourc-
+es and effort needed to monitor and 
+troubleshoot the environment from ESX 
+server to storage array.
+
+2
+
+Large Financial Services 
+CASE STUDY
+
+VirtualWisdom Professional 
+Services worked with 
+the company’s storage 
+administration personnel 
+to develop ‘best practices’ 
+around queue depth settings 
+on the in-house storage. 
+
+ 
+
+The financial services company found that their point solution monitoring tools for VMware, Fibre 
+Channel switches, and storage arrays could not provide the information needed to resolve a 
+number of problems. These tools could only provide a limited view of the environment and none 
+provided insight into the Fibre Channel communications network. The company’s IT personnel 
+realized that they needed to see the ‘end-to-end’ I/O between the servers and the storage ar-
+rays to understand the impact of adding VMware virtual machines was having on the SAN.  
+
+The company identified Virtual Instruments’ VirtualWisdom as a possible solution to its SAN 
+monitoring problems and to directly help address their issues. Because the problems centered 
+on VMware ESX servers, the Virtual Instruments ProbeVM was essential as it provided I/O in-
+formation for each virtual machine and ESX server. I/O utilization data from the virtual machines 
+and ESX servers could be correlated with I/O information from the SAN into a single view to 
+optimize performance and accelerate problem resolution. 
+
+Virtual Instruments’ VirtualWisdom solution was installed and monitored by Virtual Instruments 
+Professional Services. Monitoring of the VMware ESX virtual machines and servers together with 
+the SAN revealed a number of issues that were affecting performance and availability.
+
+QuEuE DEpth SEttINgS
+VirtualWisdom showed that part of the latency issue was caused by incorrect Queue Depth 
+settings. During configuration, the queue depth settings were set too high on the storage array 
+Fibre Channel ports and this resulted in increasing latencies for various applications. Virtual-
+Wisdom Professional Services worked with the company’s storage administration personnel to 
+develop ‘best practices’ around queue depth settings on the in-house storage. 
+
+Over the course of the problem the storage vendor changed their recommendation for Queue 
+Depth settings. It was believed that this would help alleviate some of the problems. It wasn’t 
+clear if this change merely masked the underlying problem or if it had a direct impact on resolv-
+ing it. It also wasn’t clear what impact this change had on overall virtual infrastructure perfor-
+mance for all applications.
+
+VirtualWisdom showed that this change did indeed improve latency in the SAN environment 
+without impacting the overall latency as seen by the servers. Nevertheless, it showed that the 
+Queue Depth settings by themselves did not resolve the problem for all applications in the 
+environment or impact the reservation conflict storms seen when VMotion was applied to a SAN 
+under load. 
+
+uNEVENLy prOVISIONED StOrAgE pOrtS
+VirtualWisdom demonstrated that the server demand was not evenly distributed across the stor-
+age array controller ports. On an array with 32 ports there were two ports that were at or near 
+the upper limit of utilization. A handful of ports had moderate traffic while the remainder had little 
+or no traffic load to speak of (less than 3% on average). With proper layout it was assessed that 
+the same performance could easily be achieved by having only half as many storage ports. 
+
+The customer plans to use VirtualWisdom going forward to layout the load evenly across the 
+storage to maximize utilization, optimize performance and avoid unnecessary purchases of ad-
+ditional SAN hardware. 
+
+3
+
+Large Financial Services 
+CASE STUDY
+
+Other benefits that were derived 
+from the VirtualWisdom solution and 
+professional services included:
+
+• 
+
+• 
+
+Utilization of the existing vir-
+tual IT infrastructure could be 
+improved through tuning and 
+optimization
+Ongoing monitoring, reporting 
+and alerting with VirtualWisdom 
+is in the process of being imple-
+mented to ensure that perfor-
+mance continues to be optimal 
+and uninterrupted as the user 
+requirements in this environment 
+changes over time.
+
+DELAyED Or DrOppED trAFFIC
+One of the working theories by one of the storage vendors was that incompatibility between the 
+switches was the causing traffic to be dropped and was the source of the poor performance. 
+VirtualWisdom was able to prove conclusively that no frames were being dropped. The physi-
+cal layer was healthy and error free and all communication was completing successfully even 
+though it was with significant performance issues. This enabled the customer to focus on the 
+real root cause of the performance issues and not rely on the theories put forth by competing 
+storage vendors. 
+
+VMWArE VMOtION, DrS AND hA CAuSED SAN ‘rESEr VAtION StOrMS’ 
+VirtualWisdom demonstrated that during higher load times such as virus scans and backups, 
+VMotion and DRS can cause reservation storms that lead to unacceptable levels of latency and 
+VMotion failures. More appropriate Queue Depth settings were used to mitigate the impact of 
+these events. Care needs to be used that these settings don’t affect overall performance when 
+VMotion is not actively moving a VM. VirtualWisdom helped the user select optimal settings that 
+yielded good performance while minimizing the impact of VMotion. Even with proper settings, 
+monitoring with alerts is required to ensure that when multiple clusters access the same storage 
+they don’t cause outages while simply trying to optimize server memory. 
+
+SuMMAry
+The Virtual Instruments VirtualWisdom solution, including VirtualWisdom ProbeVM, along with 
+Virtual Instruments Virtual Infrastructure Optimization and Best Practices Services, were able to 
+help this leading financial services company to narrow down the sources of performance issues 
+and enable fast resolution that helped drive VMware ESX virtual machines and servers into full 
+production. This also had the benefit of increasing server consolidation ratios.
+
+Moving forward the company’s application, storage, and VMware IT groups now have the confi-
+dence that they can meet new business requirements in a timely and cost-effective fashion.
+
+100 Enterprise Way, Suite C-3
+Scotts Valley, CA 95066
+Phone: 831-439-4000
+
+Sales Information
+sales@virtualinstruments.com
+Phone: 831-439-4080
+
+Customer Support
+support@virtualinstruments.com
+www.virtualinstruments.com
+
+©2009 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice.         
+
+ 
+
+ 
+
+ 
+
+ 
+
+03/09
+
+

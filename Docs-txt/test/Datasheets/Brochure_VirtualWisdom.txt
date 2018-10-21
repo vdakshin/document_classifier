@@ -1,0 +1,331 @@
+Overview
+
+Overview
+
+VirtualWisdom® is the industry leading Infrastructure Performance Management Platform for your physical, virtual and cloud 
+computing environments. VirtualWisdom provides granular visibility into continuous, real-time performance, health and 
+utilization metrics throughout the open systems stack, driving improved performance and availability while lowering the total 
+cost of the infrastructure that supports mission-critical applications.
+
+The move to virtualized and cloud environments can help reduce CAPEX growth in servers, but this new 
+paradigm can’t contribute to controlling storage CAPEX or OPEX growth in maintenance costs and staff. In 
+addition, there’s often a revenue impact of downtime or unacceptable performance, which can also impact 
+brand equity and customer satisfaction. If one is not vigilant, the net effect of cloud-driven consolidation, 
+migration, and new technology roll-outs is increased risk and cycle time, often negating the very reason to 
+move to a cloud infrastructure in the first place.
+
+COST
+RISK
+
+CYCLE TIME
+
+For senior IT managers, VirtualWisdom® accelerates enterprise 
+transformation by helping you guarantee the benefits of reduced capital 
+expenditures, lower operational costs, and improved business agility 
+promised by server virtualization and the migration to a private cloud 
+infrastructure. By providing an end-to-end view of transactions, 
+VirtualWisdom cuts through the haze of virtualization. At the same time, it 
+reduces risk by guaranteeing superior I/O performance, which is the most 
+critical component to application performance. The key to maximizing I/O 
+performance is deploying instrumentation technology that directly 
+measures what is going on at a deep level in the transaction workflow, 
+from the virtual machine all the way to the storage array’s LUNs.
+
+IT organizations that manage high levels of complexity in their IT infrastructures require a sophisticated set of 
+capabilities to diagnose and prevent application slowdowns caused by the infrastructure, especially during 
+consolidation or migration. Complexity is driven by the heterogeneity of storage subsystems, host bus adapters 
+(HBAs), operating systems, fabric switches, virtualization platforms, multi-site replication, storage virtualization, 
+and the continued 50% annual growth of data and bandwidth utilization. The larger the server and SAN (Storage 
+Area Network) infrastructure, the greater the risk of problems. Data center consolidation, accelerated use of 
+server and storage virtualization, flat budgets, and the migration to a cloud computing environment further 
+complicate the infrastructure manager’s ability to track and optimize performance and availability.
+
+For infrastructure, SAN storage operations, and server managers, 
+VirtualWisdom provides very granular and continuous, real-time SAN
+I/O measurement capabilities from the VM to the LUN. It enables you to 
+reduce application response times, proactively avoid outages, and 
+dramatically improve resource utilization. VirtualWisdom helps identify 
+application performance bottlenecks in the SAN, resulting in 
+significantly higher performance and utilization.
+
+PERFORMANCE
+AVAILABILITY
+UTILIZATION
+
+VirtualWisdom,®  the Award-Winning Platform for IPM
+
+Virtual Instruments’ VirtualWisdom is the industry leading Infrastructure Performance Management (IPM) platform for customers’ 
+physical, virtual and private cloud computing environments. VirtualWisdom has been architected from the ground-up to measure and 
+ensure the performance, utilization and health of mission-critical systems infrastructure. The VirtualWisdom platform is comprised of the 
+VirtualWisdom Server software and three distinct probes that capture metrics from multiple data sources throughout the open system. 
+The platform server persists and correlates the granular metrics collected to deliver robust visibility, trending, alerting and reporting. 
+VirtualWisdom delivers the industry’s only real-time, unbiased and system-wide Infrastructure Performance Management solution.
+
+Virtual Server ProbeVM
+
+Servers & VMs
+
+VirtualWisdom Server
+
+SAN Availability ProbeSW
+
+FC Switch Fabric
+
+SANInsight® TAP Patch Panels
+
+SAN Performance ProbeFC8-HD48
+
+SAN Performance ProbeFC8-HD
+
+AND/OR
+
+SAN Performance ProbeFC8
+
+Storage Arrays
+
+VirtualWisdom® Server and Dashboard
+The VirtualWisdom Server is a robust, database-driven application that controls and collects metrics from all three probes. 
+The platform persists all metrics collected over time and organizes these metrics in both physical and logical groupings. 
+This enables advanced correlation and analysis across all layers of the open systems stack. This capability also delivers on 
+the requirements for real-time alerting, historic trending and reporting and advanced ‘what-if’
+
+modeling. The VirtualWisdom server also provides a fully customizable Dashboard UI, which displays a time-correlated, cross-domain view of 
+the performance, utilization and health of the system as a whole, based on the deep, granular metrics available from the probes. The 
+dashboard is entirely configurable, so the display and reports can be presented in a user-defined context that fits with the enterprise’s 
+operational process. It also provides for integration with third-party products and management frameworks.
+
+VirtualWisdom® Virtual Server Probe
+The Virtual Server Probe is a software-based probe that is integrated with VMware vCenter and collects more than 100 metrics on the 
+associated VMware estate. Some of the metrics captured by this probe include CPU utilization and status, memory utilization, disk I/O requests 
+and capacity, as well as network requests and utilization by Virtual Machine, ESX Host and Cluster. The metrics are then persisted and correlated 
+with the metrics from the other VirtualWisdom probes, enabling end-to-end correlation from virtual machine to the logical unit of storage.
+
+VirtualWisdom® SAN Availability Probe
+The SAN Availability Probe is a software probe that collects key data from SAN switches via SNMP. The software probes collect 
+comprehensive metrics for each port by attached device type. These metrics are aggregated and reported to the VirtualWisdom 
+Server on a time based interval. Each SAN Availability Probe monitors all the ports of a specific Fibre Channel switch and collects 
+the metrics for each port, (such as the number of frames and bytes), as well as the key faults for each port, (such as loss of 
+synchronization, link resets, link failures, packet discards, and CRC errors).
+
+SAN Performance Probes
+VI's family of hardware-based SAN Performance Probes are the most advanced, high capacity line-rate data 
+inspection and analysis devices available. They inspect, process and analyze every FC frame header and SCSI 
+Command on the SAN Fibre Channel links in real-time, at 2, 4 and 8 Gbits per second. They capture the true, 
+unaltered, I/O profile of the actual application traffic, detecting application performance slowdowns and transmission 
+errors by measuring every SCSI I/O transaction from start to finish. The SAN Performance Probe family consists of an 
+8-port entry level device, a high-density 16-port model, and the latest ultra high-density 48-port enterprise edition, all 
+in a 2U footprint. This product family delivers the full range of cost and density options customers require.
+
+SANInsight® TAP Patch Panel System
+Traffic Access Points (TAPs) provide a passive, fail-safe access point to Fibre Channel network traffic on the TAPped link. 
+
+This makes the ‘light’ available for real-time performance monitoring, deep problem diagnosis and protocol layer failure analysis. TAPs are 
+non-powered, non-mechanical devices that reflect a small portion of the signal through the TAP to another port, which provides a copy of the 
+light to upstream, out of band probes. The passive TAP does not introduce any latency or overhead, has no impact on application or SAN 
+performance and is integrated with several industry leading Fibre Channel Patch Panel Systems for simple deployment.
+
+Solutions: 
+Problems that Virtual Instruments Solves
+
+How can I mitigate the risk of moving 
+mission-critical applications to a private cloud infrastructure?
+Cloud computing offers many benefits, but IT staff lose the ability to “see” through 
+the cloud, jeopardizing their ability to troubleshoot problems and assure 
+performance meets application SLAs. It’s no secret that many companies are 
+reluctant to virtualize their most mission-critical applications, leaving 70%+ of 
+today’s enterprise applications still running on purely physical infrastructures. 
+What happens when an application slows? VirtualWisdom allows the private 
+cloud infrastructure to be instrumented, monitored, and constantly, yet 
+unobtrusively, measured to see how it is affecting applications. Traditional 
+management tools, even those from VMware, can’t see the effect of I/O on 
+performance. VirtualWisdom provides server and storage administrators a 
+common view from the virtual machine to the LUN, dramatically reducing the risk 
+of moving mission-critical applications to a private cloud infrastructure.
+
+How can I use VirtualWisdom® to improve business agility and reduce cycle time?
+VirtualWisdom delivers the required visibility to ensure a successful infrastructure 
+and application deployment. IT managers can monitor production deployment 
+rollouts in real time to ensure all is performing as expected, with no
+mis-configurations or version incompatibilities. VirtualWisdom finds performance 
+inhibitors before they bubble up to the application layer, accelerating new 
+deployments, consolidations and technology migrations. VirtualWisdom helps 
+validate new technologies by providing very granular and continuous real-time 
+measurements to determine the positive or negative performance impact of IT 
+infrastructure changes.
+
+How do I avoid future application performance degradations?
+Performance problems are avoided by proactively monitoring the infrastructure 
+with the complete set of VirtualWisdom probes. Proactively monitoring by setting 
+alarms and running periodic reports prevents performance issues and eliminates 
+more serious downtime issues. As one example, VirtualWisdom is the only 
+product that can measure real-time aggregated queue depth (regardless of 
+storage vendor or device) to ensure storage ports are optimized for maximum 
+application performance.
+
+How can I reduce risk and unplanned application downtime?
+Proactively monitoring the IT infrastructure with VirtualWisdom reduces downtime 
+by finding hidden problems. Every network has hidden issues, from physical layer 
+errors to configuration and load-balancing issues. Almost all application outages 
+are the result of a combination of these issues. By setting alerts key to these 
+issues, administrators can proactively eliminate them while they are still benign, 
+making SAN administration a proactive activity rather than a series of
+fire-fighting drills. Being able to effectively address potential issues before 
+application users report problems creates a more methodical process of ensuring 
+application availability and reducing risk.
+
+VirtualWisdom dashboard widget provides a real-time 
+view of application instance metrics, here, showing read 
+responses for two applications are unacceptable and 
+points to the SAN infrastructure as the culprit.
+
+Effect of SAN remediation is reﬂected in real-time view 
+of latency metrics
+
+VirtualWisdom provides a view of the entire data path. 
+Here, vCenter metrics (top row) are correlated with 
+physical link metrics (bottom row), enabling a more 
+accurate view of performance issues.
+
+VirtualWisdom does real time monitoring of the top 
+indicators of potential performance problems
+
+How can I resolve infrastructure problems 5X faster? 
+Time to problem resolution is decreased by monitoring transactions from the 
+VM to the LUN with the complete set of VirtualWisdom probes. The ability to 
+prove within minutes whether the SAN is to blame for slow application 
+performance focuses the right team on the task and allows other teams to 
+remain focused on other business imperatives. Running historical reports to 
+look back in time enables faster problem identification and resolution. 
+VirtualWisdom is the only product that can monitor and send an alert about 
+storage access times, congestion, link errors, and SCSI errors, and generate 
+trend reports that show the behavior of a heterogeneous SAN, by virtual 
+machine and by application. This information can reduce troubleshooting time 
+by up to 80% and allows the IT manager to immediately prove whether the 
+problem is in the SAN, the application, or the server. This simple first step 
+speeds troubleshooting by days, weeks, or even months.
+
+How can I reduce my storage costs by >40% through better tiering?
+With VirtualWisdom, IT organizations can use lower-cost Tier II storage to 
+provide Tier I performance using latency data and other information to properly 
+plan and optimize the environment. This is combined with real-time alerting 
+capabilities to prevent user impact as demands change, enabling IT to realize 
+huge CAPEX savings. The organization can use Tier II or Tier III storage for all 
+applications except those that actually demand other Tier I attributes. When the 
+decision is based on performance, VirtualWisdom offers the real-time analysis 
+that proves the effect of the storage arrays on application response time. The 
+ability to use less expensive storage can result in 40-50% cost per terabyte 
+savings and reduce floor space, power, and cooling requirements by up to 80%.
+
+How can I proactively determine how storage virtualization impacts performance?
+Storage virtualization adds a new layer of abstraction into the SAN 
+infrastructure. Most storage and SAN managers have no idea how the storage 
+virtualization products impact application performance. By using 
+VirtualWisdom to establish a baseline, the performance impact will be 
+immediately known and quantified.
+
+How can I lower storage networking costs by >25% via SAN consolidation?
+We have consistently found that SANs at larger companies are significantly 
+over-provisioned, with average network utilization rates of less than 10%. 
+VirtualWisdom can help you reclaim underutilized SAN ports and avoid 
+acquiring additional expensive core switch ports, storage ports, related cables, 
+and SFPs. Buy only what you need. Running reports that show latency and 
+throughput per port enable the comparison and recommendation of 
+optimizations that balance utilization and increase consolidation.
+
+How can I accelerate the deployment of 
+mission-critical applications on virtual servers? 
+Today, >50% of mission-critical applications are still running on physical 
+servers. Although there are other potential reasons for the lack of
+mission-critical application deployments (e.g. security), a huge impediment is 
+the risk to application performance and availability. VirtualWisdom (with the 
+Virtual Server Probe) enables VMware and SAN administrators to work together 
+to ensure that SAN-related performance issues are mitigated or completely 
+avoided. This enables IT to provision substantially more mission-critical 
+applications, reduce cycle times, and improve virtualization ROI.
+
+This dashboard widget clearly shows a latency problem 
+in the SAN by identifying an Exchange Completion Time 
+of over 41 milliseconds, at the server port.
+
+This widget shows that the busiest ports on the SAN 
+vary between 13% and 2% utilization.
+
+Here, you can see time-correlated metrics, including 
+average CPU utilization, disk I/O latency, and the worst ITL 
+Exchange Completion Times. Together, these widgets offer 
+real-time evidence of the effect of conﬁguration changes.
+
+Virtual Instruments Services
+
+In addition to our product Installation, Training and Support services, Virtual Instruments offers a full complement of 
+professional services that help our customers augment their existing IT staff with highly trained infrastructure performance 
+management experts. Your organization can accelerate achieving optimal utilization of VirtualWisdom and the associated 
+benefits by leveraging Virtual Instruments Professional and Managed Services.
+
+Professional Services 
+A robust portfolio of professional services is available to support a range of requirements from point-in-time projects, to 
+augmenting customers’ staff, to accelerating operationalization of the platform. These services are arranged
+in three specific categories. 
+
+Critical Infrastructure Audits (CIA) are a family of services that include all the required people, process and technology to 
+deliver expert assistance in discovery, monitoring and analysis of the performance, health and utilization of a specific 
+environment. This service can be focused on a variety of desired outcomes, from assessing the baseline and benchmarking 
+to capacity planning, performance tuning, risk assessment and mitigation. These services can be performed as a general 
+assessment or facilitate a specific project such as a migration, consolidation or technology refresh. 
+
+SOS-4-IPM Emergency Services are designed to offer immediate expert assistance to end-users, integrators, and vendors 
+who require deep expertise in troubleshooting urgent problems and rapidly pinpointing root cause. By deploying the full 
+capabilities of the VirtualWisdom performance management platform, combined with our extensive expertise and proven 
+practices, Virtual Instruments is unique in our ability to identify and resolve emergencies that rapidly bring back 
+mission-critical applications to optimal performance
+
+Expert Services are a portfolio of services available to existing customers to support project based requirements for ongoing 
+configuration, integration, and customization of VirtualWisdom performance management, alerting and reporting capabilities. 
+These services are designed to advance our customers' operationalization of the technology to deliver higher orders of value 
+from proactive management to infrastructure optimization and business alignment. They can include delivery of best 
+practices, baseline reporting, advanced analysis and alert investigation. In many cases, these services are delivered in direct 
+support of specific customer initiatives and projects related to technology refreshes. 
+
+Managed Services 
+The Virtual Instruments Managed Service (VIMS) is a subscription based service offering that provides customers with all the 
+expertise required to operate and manage the VirtualWisdom platform as well as the activities required for proactive 
+infrastructure performance management. VIMS provides a lead VirtualWisdom Operator and matrixed services staff, and the 
+documented processes deliver monthly Health, Utilization and Performance reports, alert notification management and 
+urgent incident response.
+
+VirtualWisdom® Complements Your Current Management Solutions
+
+Today’s most common management solutions—such as Enterprise Management Frameworks, Storage Resource Managers, 
+Virtual Server Monitors, Application Performance Monitors, and SAN Fabric Managers—all lack physical, continuous real-time 
+monitoring of the I/O path from the VM to the LUN at a very granular level. These legacy management products typically poll 
+devices and average the metrics over 5 - 20 minute periods, which is insufficient to identify and resolve problems, especially 
+intermittent problems and complex problems that have more than a single cause. The VirtualWisdom platform is the only 
+product that can non-intrusively optimize the performance and availability of applications by measuring and correlating actual 
+I/O traffic data from the VM, Physical Server, Switch Fabric and Storage LUN.
+
+Corporate Headquarters
+25 Metro Drive, 
+San Jose, CA 95110 · USA
+Phone: 408-579-4000
+Fax: 408-579-4001
+
+European Headquarters
+46 New Broad Street
+London EC2M 1JH
+Phone: +44 (0) 203-651-5685
+
+Asia Paciﬁc Headquarters
+8 Cross Street Level 28
+PWC Building, Singapore 048424
+Phone: +65 6850-7841
+
+Sales
+sales@virtualinstruments.com
+Phone: 888-522-2557
+Support
+support@virtualinstruments.com
+
+©2013 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or 
+may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13
+
+

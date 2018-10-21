@@ -1,0 +1,233 @@
+VI READY VALUE GUIDE
+
+Virtual Instruments Summary
+Virtual Instruments’ Infrastructure Performance Management (IPM) platform monitors an 
+organizations’ IT infrastructure supporting mission-critical applications, providing real-time visibility 
+into the performance, availability and health of the entire computing environment—enabling 
+operational efficiency and hyper-fast mean time to resolution.
+
+Why VI is needed:
+Mission-critical applications must always be available and operating at peak performance to 
+satisfy demanding end-users. Enabling this has required IT infrastructures—from server to 
+storage—to be virtualized and abstracted to a point of never-ending  complexity.  Guaranteeing 
+application availability and performance in this "new normal" state requires an unbiased, 
+real-time understanding of how the IT infrastructures supporting mission-critical applications is 
+performing.   
+
+VirtualWisdom® IPM Architecture
+
+Not having TAPs installed in 
+your IT infrastructure is as 
+dangerous as not having a fire 
+sprinkler system installed in 
+your office infrastructure!
+
+Chief Operations Officer –
+Major Insurance Firm
+
+Why VI READY?
+
+(cid:127) VI READY is defined as an infrastructure that is already fitted with TAPs.
+(cid:127) Being VI READY is an insurance policy that when an 
+
+infrastructure is compromised, resolution via the VirtualWisdom 
+IPM platform will be quick, easy and without interruption.
+
+(cid:127) Being VI READY eliminates costly downtime.
+
+What is a TAP?
+(cid:127) A TAP is a passive optical device that reads light directly off the wire without impacting 
+
+performance.  
+
+(cid:127) A TAP creates a passive, non-impacting entrance point for acquiring real-time data with 
+
+sub-second granularity for the VirtualWisdom IPM platform.
+(cid:127) A TAP creates acute visibility that cuts-through infrastructure
+
+complexity and the haze of virtualization.
+
+(cid:127) A TAP  provides a  view into all transactions and traffic flowing throughout
+
+heterogeneous IT infrastructures.
+
+(cid:127) A TAP operates “out-of-band” by diverting a minute portion of the light signal through to the 
+
+VirtualWisdom IPM platform for failure analysis, fast trouble shooting, and performance 
+monitoring and tuning.
+
+(cid:127) TAPs are rapidly becoming an industry standard, and manufactured by leading data center 
+
+component companies including Corning.
+
+The Value
+Proactive Protection – Tapping an infrastructure  guarantees that when a VI assessment or  VI 
+troubleshooting service is needed the environment is VI READY.
+Application Performance Guarantee - VirtualWisdom IPM is the only solution that measures an 
+application’s performance in real-time throughout the IT infrastructure that supports it. Other 
+solutions measure an average over time which is inadequate when running critical 
+applications in high IO computing environments.
+
+Infrastructure Availability Guarantee – VirtualWisdom IPM is heterogeneous and unbiased, and 
+collects data from various devices without vendor or product dependences. The 
+VirtualWisdom IPM platform eliminates vendor finger pointing, supports vendor innocence 
+and accountability, and gets to the root cause of issues quickly.
+
+Operational Efﬁciency – VirtualWisdom IPM lowers risk and cost, and aligns infrastructure with 
+business and application requirements. 
+
+(cid:127) TAP Patch Panel System - provides a passive, real-time access point enabling a  
+
+view into Fibre Channel network traffic. The TAP can be integrated into a Fibre Channel 
+Patch Panel for simple deployment
+
+(cid:127) VirtualWisdom Probes – Through VI’s agentless tapping architecture, VI probes 
+
+continuously capture system-wide performance, utilization and health metrics throughout 
+heterogeneous physical, virtual and cloud computing environments.  
+
+(cid:127) VirtualWisdom Dashboard –is a real-time summary display that correlates and analyzes 
+data from all VirtualWisdom probes into a single view.  Its intuitive interface is used to 
+view infrastructure activity and create reports and alarms.
+
+When to TAP
+(cid:127) Infrastructure upgrades
+(cid:127) New infrastructure device and component installations
+
+(Server, Switch, SAN, Storage, etc.)
+
+(cid:127) Disaster recovery, migrations and consolidation projects 
+(cid:127) During scheduled maintenance windows
+(cid:127) Cloud initiatives
+(cid:127) Limited infrastructure visibility is stopping/postponing the movement of applications to the   
+
+cloud because of the inability to guarantee an applications performance and availability
+
+Who Cares?
+Organizations with large complex heterogeneous infrastructures and Fibre-channel SAN 
+deployments that support mission critical applications—where continuous performance and 
+availability is critical to the success of the business. 
+
+Physical Plant Teams –  VI READY is an IT “best practice” being endorsed by top IT 
+executives worldwide – VirtualWisdom validates the complete infrastructure from cable 
+structure to host.
+IT Operations – Need to transform infrastructure management from reactive to proactive.
+Application Owners – Need to establish and exceed application performance SLA’s.
+Storage Teams – Always singled-out as the culprit for performance degradation. 
+VirtualWisdom increases productivity, quickly identifies root causes of issues, eliminates 
+vendor finger-pointing and aligns application workloads to proper resources.
+CIO/CFO/CEO – Enable their teams to do more with less, and do it better - VirtualWisdom 
+guarantees performance of business operations, efficiency and profitability.
+
+EXPLORATORY  QUESTIONS
+
+Environment
+
+“Do you have a large, complex Fiber-Channel Environment?”
+
+Health
+
+“Is your business impacted if your applications are not available?”
+
+Performance
+
+Guarantee
+
+“Is increasing infrastructure performance, driving greater utilization of 
+existing resources, and lowering operating expenses important to you?”
+
+“How important is it for you and your organization to guarantee performance,     
+health and availability of your IT infrastructure supporting mission-critical 
+applications?”
+
+How to Get Started
+1. VI READY - TAP the Physical Infrastructure
+
+Tapping is the 1st step to accelerating problem resolution.  Installing TAPs when  new 
+infrastructure (Server, SAN, Storage, etc.) devices are deployed ensures that your 
+infrastructure is VI Ready.
+
+2. VI Services 
+
+VI offers a suite of portable services that can be deployed quickly into VI READY 
+infrastructures
+
+(cid:127) VI SOS-4-IPM – Service –  Emergency 24X7 “fly-in” Infrastructure troubleshooting service
+(cid:127) Critical Infrastructure Audit- When the infrastructure needs a tune-or an assessment to 
+
+improve performance, availability and health
+
+3. Continuous Real-Time Infrastructure Monitoring (Hardware/Software)
+
+Monitoring with TAPs, hardware and software probes enables continuous optimization of 
+performance, utilization, and availability for mission critical applications and infrastructure. 
+
+Sell TAPs f Engage Virtual Instruments Services f Sell Virtual Instruments Solutions
+
+VI Ready
+Sell TAP Patch Panels 
+at time of storage or 
+networking purchase
+
+VI Services
+Health Scan
+SOS4IPM
+Proof of Value
+
+Implement Full Solution 
+with HW & SW
+VirtualWisdom
+Virtual Server Probe
+SAN Availability Probe
+SAN Performance Probe
+
+FAQ
+1. Aren’t TAPs disruptive to my infrastructure?
+
+a. TAPs are integrated with several industry leading  Fibre Channel patch panel 
+
+systems for easy deployment.
+
+b. TAPs can be installed during any infrastructure change or maintenance window.
+
+2. Won’t TAPs degrade the FC signal and introduce latency?
+
+a. The passive TAP does not introduce any latency or overhead and has no impact 
+
+on application or infrastructure performance.
+
+3. How do TAPs work?
+
+a. TAPs are non-powered, non-mechanical devices that use a fiber optical coupler to 
+
+reflect a small portion of the signal to a monitoring port without interrupting or 
+impacting live network traffic.
+
+4. How many TAP ports do I need?
+
+a. Best practice is to match the number of TAP ports to the number of storage ports 
+
+that need monitoring.
+
+5. I already have monitoring tools, why do I need VirtualWisdom IPM?
+
+a. These tools are great for providing SAN management capabilities; VirtualWisdom 
+
+IPM complements them and adds value by enabling unbiased, real-time 
+system-wide infrastructure performance management. 
+
+6. Is an integrated TAP solution better than one that is not?
+
+a. Yes, typically integrated solutions add a “ Zero–U” footprint that improves rack 
+
+utilization, and can be added or removed without interruption to the live network 
+link.
+
+Resources
+Contact Virtual Instruments
+More information on VirtualWisdom®
+virtualinstruments.com/products/about-virtualwisdom
+Partner Contacts
+dl-partneropportunities@virtualinstruments.com
+
+

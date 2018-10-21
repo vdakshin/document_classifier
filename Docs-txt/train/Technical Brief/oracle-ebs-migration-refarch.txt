@@ -1,0 +1,2352 @@
+ 
+Zero Downtime Bi-Directional Physical to Virtual Migration for 
+Oracle EBS R12 with RAC on Vblock Systems 
+
+Table of Contents 
+
+www.vce.com 
+
+ 
+
+ 
+
+ 
+
+ZERO DOWNTIME BI-DIRECTIONAL PHYSICAL 
+TO VIRTUAL MIGRATION FOR ORACLE EBS 
+R12 WITH RAC ON VBLOCK™ SYSTEMS 
+
+Version 2.0 
+February 2013 
+ 
+
+ 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ............................................................................................................................... 5 
+Solution overview .................................................................................................................... 5 
+Benefits of deployment on Vblock™ Systems .......................................................................... 5 
+About this paper ...................................................................................................................... 6 
+Audience ................................................................................................................................. 6 
+Feedback ................................................................................................................................. 6 
+Technology overview ............................................................................................................... 7 
+Vblock Systems ....................................................................................................................... 7 
+Vblock System 720 ............................................................................................................... 7 
+Vblock System 320 ............................................................................................................... 7 
+Oracle Database 11g Release 2 Enterprise Edition ................................................................. 8 
+Oracle Real Application Clusters ............................................................................................. 8 
+Oracle E-Business Suite Release 12 ....................................................................................... 8 
+Desktop tier .......................................................................................................................... 9 
+Application tier ...................................................................................................................... 9 
+Database tier ...................................................................................................................... 10 
+Top-level directory structure ............................................................................................... 10 
+EMC Unified Infrastructure Manager 2.1 ................................................................................ 11 
+Architecture overview............................................................................................................. 12 
+Validation environment .......................................................................................................... 13 
+Validation methodology ......................................................................................................... 14 
+Validation objectives .............................................................................................................. 14 
+Hardware components ........................................................................................................... 15 
+Software components ............................................................................................................ 15 
+Storage layout ....................................................................................................................... 15 
+Migrating an Oracle RAC to a virtual environment (P2V) ..................................................... 18 
+Prerequisites .......................................................................................................................... 18 
+Overview of the steps ............................................................................................................ 18 
+Phase 1: Creating the physical Oracle RAC .......................................................................... 19 
+Step 1: Create the Oracle RAC .......................................................................................... 19 
+Step 2: Provision the Oracle RAC....................................................................................... 21 
+Step 3: Activate the Oracle RAC ........................................................................................ 22 
+Step 4: Create, provision, and activate the ESXi server ...................................................... 22 
+Step 5: Add the ESXi server to vCenter .............................................................................. 23 
+Phase 2: Creating the virtual Oracle RAC .............................................................................. 24 
+Step 1: Create a virtual machine ........................................................................................ 24 
+Step 2: Create a virtual machine template .......................................................................... 25 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Step 3: Allocate storage for the virtual node ....................................................................... 27 
+Step 4: Install Oracle Clusterware ...................................................................................... 28 
+Step 5: Configure SSH for User Equivalence ..................................................................... 29 
+Step 6: Extend Oracle software to the new node ................................................................ 29 
+Step 7: Add Oracle RAC instance on new node ................................................................. 31 
+Step 8: Register the instance with the listener on the new node ......................................... 32 
+Step 9: Rebuild the context files on the database tier ......................................................... 33 
+Step 10: Rebuild the context files on the application tier ..................................................... 34 
+Step 11: Run Gather Schema Statistics ............................................................................. 34 
+Phase 3: Creating additional virtual nodes ............................................................................. 35 
+Phase 4: Removing the physical nodes from the cluster ........................................................ 35 
+Step 1: Remove the instance and database software from the physical node .................... 35 
+Step 2: Remove Clusterware from the physical node ......................................................... 36 
+Step 3: Delete the physical node ........................................................................................ 36 
+Step 4: Perform post-removal tasks .................................................................................... 37 
+Step 5: Power down the server and disassociate the service profile ................................... 38 
+Step 6: Deactivate and release the service blades ............................................................. 39 
+Phase 5: Adding a Physical Node to the Oracle RAC Cluster (V2P) ...................................... 40 
+Step 1: Reactivate the Oracle RAC service ........................................................................ 40 
+Step 2: Add the physical Oracle RAC node ........................................................................ 41 
+Using VMware vMotion to reduce planned downtime .......................................................... 44 
+Performing live migration ....................................................................................................... 44 
+Verifying the live migration is non-disruptive .......................................................................... 49 
+Scalability and performance considerations for Oracle EBS and RAC .............................. 50 
+Conclusion .............................................................................................................................. 51 
+Appendix A: Configuring SSH for User Equivalence ........................................................... 52 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+Deployment and maintenance of Oracle applications such as E-Business Suite (EBS) in a purely 
+physical environment can be difficult. The multi-tier architecture of Oracle E-Business Suite makes it 
+an ideal candidate for virtualization. With Vblock™ Systems, the deployment of Oracle EBS on a virtual 
+platform can be accomplished securely and safely, without affecting production environments.  
+
+Transitioning to a virtualized infrastructure can simplify Oracle EBS application management, and 
+deliver superior levels of availability, performance, and scalability. Migration of physical environments 
+can be performed with zero downtime by leveraging the virtualization technologies available in Vblock 
+Systems and Oracle Real Application Cluster (RAC). A Vblock System with EMC Ionix Unified 
+Infrastructure Manager (UIM) software can quickly provision virtual systems Oracle EBS and Real 
+Application Cluster (RAC) environments. 
+
+Running multiple Oracle EBS components on virtual machines on the same physical Vblock System 
+provides consolidation benefits such as less hardware, data center space, and power consumption, 
+while lowering total cost of ownership (TCO) and providing higher return on investment (ROI). 
+
+Solution overview 
+
+This paper presents a structured approach to migrating a physical Oracle RAC to a virtual Oracle RAC 
+running Oracle EBS. This approach meets many of the challenges presented by virtualization of 
+Oracle databases and applications. The following table describes how the solution addresses the 
+main challenges to virtualizing Oracle EBS and similar applications. 
+
+Challenge  
+Customers want to use a Vblock System to 
+run tier 1 applications such as Oracle EBS in a 
+virtualized environment. However, they are 
+concerned about Oracle’s support policy 
+requirement that reported issues be 
+reproduced on a physical server. 
+
+Solution 
+This solution demonstrates a non-disruptive method for 
+migrating a physical Oracle database to VMware virtual 
+machines, and then addresses performing this migration 
+in reverse in order to meet Oracle support requirements. 
+
+Customers want to combine the built-in 
+virtualization mechanisms of Oracle EBS and 
+Real Application Clusters (RAC) with VMware 
+High Availability (HA) technology to guarantee 
+very high uptime. 
+
+Oracle RAC 11g Release 2 (11g R2) is designed to be 
+fault tolerant and to provide real-time HA with continuous 
+database uptime. The use of VMware vMotion with 
+VMware vSphere provides HA for Oracle EBS and RAC 
+11g R2 at both virtual and physical levels. 
+
+Benefits of deployment on Vblock™ Systems 
+
+With a Vblock System, customers can deploy all of their current applications in virtualized server 
+environments with minimal or no modifications to operating systems, application versions, or other 
+business software. Vblock Systems provide the ability to easily create snapshots and clones, 
+application consistency on remote replication, and database refresh without sacrificing flexibility, 
+openness, and optimization. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Deployment of Oracle EBS in the virtualized environment of a Vblock System provides the following 
+key benefits: 
+
+  Decreased server sprawl and increased server utilization by running multiple Oracle EBS 
+
+components in virtual machines consolidated onto fewer systems.  
+
+  Dynamic migration of Oracle instances on virtual machines to other systems to perform 
+
+hardware maintenance or system changes without disruption to end users. 
+Improved operational agility with both vertical and horizontal scaling to accommodate dynamic 
+workloads. 
+
+ 
+
+  Provisioning of new pre-configured Oracle EBS environments in minutes using VMware 
+
+vSphere templates. 
+
+  Automatic detection of failed physical servers running Oracle application instances in production, 
+and automatic restart of failed Oracle application virtual machines with VMware High Availability 
+(HA). 
+
+About this paper 
+
+This paper presents a structured approach to non-disruptive migration of a physical Oracle RAC 
+database to a virtualized environment and addition of physical RAC nodes to the virtual cluster for 
+support and problem resolution. 
+
+This paper describes how to:  
+
+  Create a physical Oracle RAC and migrate it non-disruptively to a virtual environment on a 
+
+Vblock System. 
+
+  Add a physical Oracle RAC node to a cluster to meet support requirements by Oracle to re-
+
+produce problems on a physical environment. 
+
+  Use VMware vMotion to perform live, non-disruptive migration of virtual machines to different 
+
+hosts for planned maintenance. 
+
+Audience 
+
+Oracle database administrators, storage architects, VMware administrators, VCE customers, and 
+individuals tasked with evaluating, acquiring, managing, operating, or deploying Oracle EBS in a 
+virtualized data center environment will benefit from reading this paper. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment 
+applies, and your feedback. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Technology overview 
+
+This solution uses the following major hardware and software components and technologies:  
+
+  Vblock Systems 
+  Oracle Database 11g R2 Enterprise Edition 
+  Oracle RAC 11g R2 
+  Oracle E-Business Suite Release 12 
+  EMC UIM 2.1 
+
+Vblock Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+For more information, go to www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+Oracle Database 11g Release 2 Enterprise Edition 
+
+In Oracle Database 11g R2, Oracle Automatic Storage Management (ASM) and Oracle Clusterware 
+have been integrated into a single set of binaries and named Oracle Grid Infrastructure. This now 
+provides all cluster and storage services required to run an Oracle RAC database. 
+
+Oracle Real Application Clusters 
+
+Oracle RAC, with Oracle Database 11g Enterprise Edition, enables a single database to run across a 
+cluster of servers, providing fault tolerance, performance, and scalability with no application changes 
+necessary. In line with Oracle’s support position for Oracle products running on VMware, the solution 
+described in this paper was deployed using Oracle RAC 11.2.0.2.  
+
+Note:  For Oracle's support policy on Oracle products running on VMware, refer to My Oracle Support Doc [ID 
+
+249212.1] in support.oracle.com. 
+
+Oracle E-Business Suite Release 12 
+
+Oracle E-Business Suite architecture is a framework for multi-tiered distributed computing. In the 
+Oracle E- Business Suite model, services are distributed among multiple levels or tiers. A service is a 
+process or a group of processes that exercise some business logic and provide a particular 
+functionality. A tier is a logical grouping of services that is not limited by physical nodes or machines. 
+Each tier can consist of one or more nodes, and each node can accommodate more than one tier. For 
+example, a single machine can contain database, application, and desktop tiers; in the same way, a 
+database can reside on one of many application servers or on a separate machine by itself. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Figure 1. Oracle E-Business Suite tiers 
+
+Desktop tier 
+
+ 
+
+The desktop tier is normally the client Web browser. The user interface for the desktop tier is provided 
+through HTML for self-service applications and a Java applet for forms. The desktop client is installed 
+on demand and then stored locally for future use. The forms client applet is packaged as JAR files 
+and mainly represents the presentation layer of Oracle forms. The JAR files are also downloaded on 
+first use. The forms client must run within a Java Virtual Machine (JVM) and is supplied by Oracle 
+JInitiator. 
+
+Application tier 
+
+The application tier hosts one or more servers that process the business logic. It communicates 
+between the desktop tier and database. The application tier, also commonly known as the middle tier, 
+includes the following major components: Web Server, Forms Server, Concurrent Processing Server, 
+Business Intelligence System, Reports Server, Admin Server, and Discover Server. These 
+components usually run as services on the application tier and may run on one or more nodes. For 
+more details about the components, refer to Oracle Applications Concepts [B10642-01]. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+Database tier 
+
+The database tier contains the RDBMS Oracle home, along with the Applications database, which 
+stores all the data maintained by Oracle Applications. It also contains Oracle Applications processing 
+code stored inside the Applications database to optimize performance. The database does not directly 
+communicate with desktop clients; instead, it works with application tier services that mediate the 
+communication between the desktop and database tier. 
+
+Top-level directory structure 
+
+An Oracle EBS Release 12 system uses components from many Oracle products. These product files 
+are stored in a number of top-level directories on the database and application servers (Figure 2).  
+
+These top-level directories are: 
+
+  The db/apps_st/data (DATA_TOP) directory is located on the database node machine and 
+
+contains database data files for Oracle Applications. 
+
+  The db/tech_st/11.1.0 directory is located on the database node machine and contains Oracle 
+
+11g database software. 
+
+  The apps/apps_st/appl (APPL_TOP) directory is located on the application node machine, and 
+contains Oracle Applications product directories such as General Ledger (GL), and Purchasing 
+(PO). 
+
+  The apps/apps_st/comn (COMMON_TOP) directory contains common directories and files such 
+
+as log files and Java libraries shared across different products. 
+
+  The apps/tech_st/10.1.2 directory is the top-level technology stack directory for Oracle 
+
+Developer 10g (Forms and Reports). 
+
+  The apps/tech_st/10.1.3 directory is the top-level technology stack directory for the components 
+
+of Oracle Application Server 10.1.3. The most significant components used in Oracle 
+Applications R12 are Oracle HTTP Server (Apache) and Oracle Components for Java (OC4J), 
+which runs most of the code written in Java. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+10 
+
+ 
+
+ 
+
+Figure 2. Oracle top-level directory structure 
+
+EMC Unified Infrastructure Manager 2.1 
+
+ 
+
+EMC Ionix UIM provides simplified management for Vblock Systems, including provisioning, 
+configuration, change, and compliance management. This solution uses UIM to simplify the tasks 
+required to provision a Vblock System for an Oracle RAC implementation. UIM provides the 
+functionality to package portions of the compute, storage, and network resources of a Vblock System. 
+Once in a service, the resources can be reserved, deployed, allocated, and managed as a single 
+entity through UIM. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Architecture overview 
+
+VCE solutions are designed to reflect and validate real-world deployments. The solution in this paper 
+describes a live, non-disruptive migration of the two-node physical Oracle RAC 11g R2 database 
+underlying Oracle EBS to a virtualized four-node Oracle RAC 11g R2 database. 
+
+Figure 3 shows the high-level architecture of this solution. 
+
+Figure 3. High-level solution architecture 
+
+Figure 4 shows the logical configuration of the components used to implement the solution. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+Figure 4. Vblock System architecture 
+
+Validation environment 
+
+ 
+
+The validated solution was built on an Oracle EBS 12.1.1 application configured as follows: 
+
+  Application tier: virtualized 2-node application server, FC SAN connected (or NAS NFS over IP) 
+  Database tier: physical 2-node Oracle RAC 11.2.0.2 database, FC SAN connected 
+
+The Oracle RAC nodes communicated with each other through a dedicated 1-Gb private network 
+VLAN, which also synchronized cache across the various database instances. Two 4-Gb Fibre 
+Channel (FC) switches provided FC SAN connectivity. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+13 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Validation methodology 
+
+Validation of the solution was conducted in several phases, as shown in Figure 5. 
+
+ 
+
+ 
+
+Figure 5. Solution validation phases 
+
+The validation phases consisted of: 
+
+Physical to virtual (P2V) 
+
+  Phase 1—Create a single-instance Oracle database on a physical machine. 
+  Phase 2—Convert the Oracle single-instance database to an Oracle RAC cluster. Add a second 
+
+physical node to the cluster. 
+
+  Phase 3—Add two virtual machines to the cluster. 
+  Phase 4—Add two additional virtual machines to the cluster. Drop the physical nodes from the 
+
+cluster (V2P). 
+
+Virtual to physical (V2P) 
+
+  Phase 5—Add two physical machines back into the cluster. 
+
+Validation objectives 
+
+The purpose of this validation was to: 
+
+  Provide customers with a non-disruptive method to migrate their Oracle RAC databases from 
+
+their current physical environment to a virtualized environment. 
+
+  Provide customers with a non-disruptive method to migrate their virtualized (on VMware) Oracle 
+
+RAC database environment to a physical environment if Oracle support mandates it. 
+
+  Demonstrate how customers can reduce planned downtime of Oracle EBS applications using 
+
+VMware vMotion to move virtual machines from one physical server to another non-disruptively. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+14 
+
+ 
+
+ 
+
+Hardware components 
+
+A virtual Oracle RAC can be deployed on a Vblock System 320, Vblock System 720, or any Vblock 
+System that provides SAN connectivity.  
+
+The following table details the Vblock System 700 hardware components used for the solution.  
+
+Component 
+Cisco UCS  
+
+Quantity 
+1 
+
+Configuration 
+12 x CPU cores, 192 GB memory 
+2 x 6120 Fabric Interconnects 
+4 x Cisco B250-M2 blades (database tier) 
+2 x B200-M1 or higher performance blades (application 
+tier) 
+
+Storage 
+
+Network 
+
+1 
+
+2 
+
+EMC storage 
+
+Cisco MDS 9222i Switch 
+
+Software components 
+
+The following table details the software used for the solution. 
+
+Component 
+Oracle E-Business Suite  
+
+Enterprise Linux (EL) 
+
+VMware vSphere 
+
+Oracle RAC 
+
+EMC UIM 
+
+Quantity 
+1 
+
+Configuration 
+Release 12.1.1 
+
+5 
+
+4 
+
+1 
+
+1 
+
+5.4 
+
+4.1 
+
+Version 11.2.0.2 
+
+2.1 
+
+Storage layout 
+
+Raw device mapping (RDM) allows a special file in a VMFS volume to act as a proxy for a raw device. 
+The mapping file contains metadata used to manage and redirect disk accesses to the physical 
+device. It provides some of the advantages of a virtual disk in the VMFS file system, while keeping 
+some advantages of direct access to physical device characteristics. 
+
+VMware recommends the use of RDM with virtual machine clusters that need to access the same raw 
+LUN for failover scenarios. The setup is similar to a virtual machine cluster that accesses the same 
+virtual disk file, but an RDM file replaces the virtual disk file. The VMFS must be configured in shared 
+access mode, to allow more than one virtual machine to open the mapping file simultaneously. 
+
+Figure 6 shows raw device mappings for the Oracle database. Figure 7 shows the layout of Oracle 
+database storage mapped to the virtualization layer. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+15 
+
+ 
+
+ 
+
+Figure 6. Oracle database storage layout 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+16 
+
+ 
+
+ 
+
+Figure 7. Mapping Oracle database storage to virtual layer 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+17 
+
+ 
+
+ 
+
+Migrating an Oracle RAC to a virtual environment (P2V) 
+
+Vblock Systems allow the live migration of virtual machines from one physical server to another using 
+VMware vMotion technology. An administrator can take a virtual machine offline for maintenance or 
+upgrading without subjecting users to downtime. 
+
+One of the most significant advantages of live migration is that it facilitates proactive maintenance. If a 
+failure is suspected, the potential problem can be resolved before disruption of service occurs. Live 
+migration can also be used for workload balancing. 
+
+The following procedures describe how to create a two-node physical Oracle RAC, migrate the 
+physical Oracle RAC to a virtual environment, and then release the physical Oracle RAC infrastructure 
+resources for other uses. 
+
+Prerequisites 
+
+EMC UIM is used to help simplify the process of creating the Oracle RAC. Before you begin, make 
+sure that UIM: 
+
+ 
+
+ 
+
+Is installed according to the instructions in the EMC Ionix Unified Infrastructure Manager Version 
+2.1 Installation Guide. 
+Is configured with the correct VLANs and Storage Groups according to the instructions in the 
+EMC Ionix Unified Infrastructure Manager Version 2.1 Administration and User Guide. 
+
+  Has a service offering defined for an Oracle service. Vblock System resources are allocated for 
+
+services through the service offerings. Refer to the EMC Ionix Unified Infrastructure Manager 
+Version 2.1 Administration and User Guide for instructions to create service offerings. 
+
+Overview of the steps 
+
+  Create, provision, and activate the physical Oracle RAC 
+  Create, provision, and activate an ESXi server 
+  Migrate the physical Oracle RAC to a virtual Oracle RAC 
+  Remove the physical nodes from the cluster 
+  Deactivate and release the service blades 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+18 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Phase 1: Creating the physical Oracle RAC  
+
+This procedure creates, provisions, and activates an Oracle RAC service. Created services are 
+moved to the Service Manager and are put into a planned state. Services in the planned state can be 
+customized and edited within the boundaries defined by the service offering. Once planning is 
+complete, the resources of the service can be provisioned and activated on a Vblock System. 
+
+Step 1: Create the Oracle RAC 
+
+1.  From the Administration, Service Catalog view, select a Service Offering (in this example, 
+
+OracleRAC). 
+
+2.  Click Create Service. 
+3.  Enter the Name and Description of the service. When naming the service, ensure that the 
+
+Is between 2 and 32 characters. 
+
+service name: 
+a. 
+b.  Does not contain spaces. 
+c.  Contains only alphanumeric or the following special characters: decimal point (.), dash (-), 
+
+colon (:), underscore (_). 
+
+4.  Select the specific Vblock System on which the service will be deployed, and click OK.  
+
+5.  From the Administration, Service Manager view, select the service to edit (in this example, 
+
+MyOracleRACService).  
+
+6.  On the General tab, click Edit. 
+7. 
+
+In the Edit General dialog box, select Do not install OS. 
+Note:  UIM does not support automatic installation of Red Hat Linux, so it will be installed manually in a 
+later procedure. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+19 
+
+ 
+
+ 
+
+8.  On the Servers tab, click Add or Edit. 
+9. 
+
+In the Edit Server dialog box: 
+a.  Specify ora-node1 as the first host, and select Gold. Click Save. 
+b.  Specify ora-node2 as the second host, and select Gold. Click Save. 
+Note:  Gold is the pool of blades defined as appropriate for this service offering during the setup phase of 
+UIM. 
+
+ 
+
+10.  Leave the Storage layout with the default settings, which were defined in the Service Offering 
+
+according to Oracle RAC best practices. 
+
+11.  On the Network tab, click Add or Edit. 
+12.  Define the networking requirements (public network, heartbeat, and Oracle intercommunications) 
+
+to be bound to the blades. 
+
+Note: 
+service and the external networks after the service is activated. 
+
+The network profile is used to set up the connectivity that will be used between the servers of the 
+
+13.  Click Save to save the network profile. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+20 
+
+ 
+
+ 
+
+ 
+
+Step 2: Provision the Oracle RAC 
+
+Provisioning allocates and reserves the resources, and configures the necessary hardware. Once 
+allocated, the resources are unavailable to other services. For example, the necessary storage is 
+allocated from the storage pools, the UCS service profiles are created on the UCS, and the blades are 
+reserved. If the option to install an operating system is selected, the operating system is installed at 
+this time. 
+
+To provision the Oracle RAC service: 
+
+ From the Administration, Service Manager view, select the service to provision. 
+
+1. 
+2.  Click Provision.  
+3.  Follow the progress of the provisioning on the Details, Service History view.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+21 
+
+ 
+
+ 
+
+4. 
+
+ 
+If provisioning is successful, activate the service. If not, troubleshoot the issue. Refer to EMC Ionix 
+Unified Infrastructure Manager Version 2.1 Administration and User Guide for troubleshooting 
+information. 
+
+Step 3: Activate the Oracle RAC 
+
+Provisioning allocates and reserves the necessary components for the service, as well as installs the 
+operating system on the blades, if applicable. Activating the service turns on the system. The UCS 
+service profiles are booted on the equipment, which includes activating the network paths and fabric 
+paths.  
+
+Note:  The operating system will be installed manually and started in a later procedure. 
+
+To activate the Oracle RAC service: 
+
+1.  From the Administration, Service Manager view, select the service to activate. 
+2.  Click Activate. MyOracleRACService has now been provisioned and activated on ora-node1 and 
+
+ora-node2. 
+
+Step 4: Create, provision, and activate the ESXi server  
+
+The ESXi server provides the virtualization capabilities that aggregate and present the host hardware 
+to virtual machines as a normalized set of resources. Use UIM to provision an ESXi server to 
+instantiate the physical infrastructure for the virtual Oracle RAC nodes. 
+
+1.  From the Service Catalog, select the ESXi server service offering (in the example, 
+
+vSphereInfrastructure). 
+
+2.  Click Create Service. 
+3.  Optionally, go to the Service Manager tab to customize the default settings of the service offering. 
+
+a.  Select the service to customize from the list of services. 
+b.  Click Edit. 
+c.  Make the necessary changes to the Server, Network, and Storage profiles. 
+
+4.  Go to the Service Manager tab to provision and activate the service. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+5.  After activating the service, establish connectivity between the ESXi servers and the networks 
+
+selected for service operations. 
+
+Note:  Make sure you connect the blades with the appropriate networks for public network, heartbeat, and 
+Oracle intercommunications. 
+
+Step 5: Add the ESXi server to vCenter 
+
+ 
+
+After activating the ESXi server service, add it to VMware vCenter using the Connect Host wizard, 
+which prompts for a host name, user ID, and password. Adding the ESXi server to vCenter enables 
+administrators to perform management tasks on virtual machines that reside on the ESXi server.  
+
+Note:  Refer to the VMware vSphere Datacenter Administration Guide for detailed instructions on adding a host 
+
+to vCenter.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+23 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Phase 2: Creating the virtual Oracle RAC 
+
+Now that you have created the physical Oracle RAC and provisioned an ESXi server, create the 
+virtual Oracle RAC. 
+
+Step 1: Create a virtual machine 
+
+Create a single virtual machine to use as a database node, and install the operating system on it. This 
+virtual machine will be used to create a template from which to clone other virtual machines. 
+
+1.  Use VMware vSphere to create a new virtual machine (oel5u4-rac1) with the settings shown in 
+
+the following screen. 
+
+2.  After creating the virtual machine, install the Enterprise Linux (EL) operating system on it. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+24 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Step 2: Create a virtual machine template 
+
+For rapid deployment of new virtual machines into the cluster, create a virtual machine template. A 
+template is a master copy of a virtual machine that you can use to create and provision other virtual 
+machines.  
+
+In VMware vSphere, use the Clone Virtual Machine to Template wizard as shown in the following 
+screen.  
+
+The template in this document was configured with the requirements and pre-requisites detailed in the 
+following table. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+25 
+
+Description 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+26 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CPU  
+
+Memory  
+
+Operating system  
+
+Kernel  
+
+OS users (users created and 
+passwords set)  
+
+OS groups  
+
+Software pre-installed  
+
+4 vCPUs  
+
+20 GB  
+
+Enterprise Linux 5.4 
+
+2.6.18-164.el5  
+
+Username: grid UserID:1100  
+Username: oracle UserID:1101  
+
+Group: oinstall GroupID:500 
+Group: asmadmin GroupID:1100 
+Group: dba GroupID:400 
+Group: asmdba GroupID:1200 
+Group: asmoper GroupID:1201  
+
+Oracle ASMLIB support library  
+ 
+ 
+ 
+
+oracleasm-2.6.18-164.el5-2.0.5-1.el5.x86_64.rpm 
+oracleasmlib-2.0.4-1.el5.x86_64.rpm 
+oracleasm-support-2.1.4-1.el5.x86_64.rpm  
+
+RPM packages installed (as Oracle 
+prerequisites)  
+
+System Configuration (as Oracle 
+prerequisites)  
+
+See the relevant Oracle installation guide:  
+  Oracle Real Application Clusters Installation Guide 11g 
+
+Release 2 (11.2) for Linux  
+
+  Oracle Grid Infrastructure Installation Guide 11g Release 2 
+
+(11.2)  
+
+Step 3: Allocate storage for the virtual node 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+27 
+
+ 
+
+ 
+
+Allocate storage for the virtual node using RDM, which allows the migration of virtual machines with 
+VMware vMotion. The mapping file acts as a proxy to allow migration of the virtual machine using the 
+same mechanism that exists for virtual disk files.  
+
+Select physical compatibility mode. Physical mode for a raw device mapping specifies minimal SCSI 
+virtualization of the mapped device, allowing the greatest flexibility for SAN management software. 
+Physical mode also allows virtual to physical clustering for cost-effective high availability. 
+
+1.  Use the Hardware tab on the Virtual Machine Properties screen to add RDMs for the virtual 
+
+node (oel5u4-rac1). 
+
+2.  Repeat the procedure until all of the LUNs are added to the virtual machine. 
+
+Step 4: Install Oracle Clusterware 
+
+Oracle RAC enables you to create a cluster of Oracle databases so that they operate as a single 
+entity. Oracle RAC uses Oracle Clusterware to create a cluster. Install the Oracle Grid Infrastructure 
+11g R2 on the virtual machine. Use the instructions in Oracle Grid Infrastructure Installation Guide 11g 
+Release 2 for Linux. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+28 
+
+ 
+
+ 
+
+Step 5: Configure SSH for User Equivalence 
+
+Before adding the new virtual node to Oracle RAC, set up Secure Shell (SSH) for User Equivalence 
+on the virtual node for the grid and oracle users. Refer to Appendix A: Command Examples for an 
+example of how to set up SSH for user equivalence. 
+
+Step 6: Extend Oracle software to the new node 
+
+This procedure describes how to add the virtual node to the cluster. 
+
+Note:  For additional information, refer to Adding and Deleting Oracle RAC Nodes for Oracle E-Business Suite 
+Release 12 [ID 1134753.1] or Oracle Clusterware Administration and Deployment Guide 11g Release 2 
+(11.2).  
+
+1.  Before adding the node to the cluster, run the Cluster Verification Utility (CVU) to validate that the 
+
+new virtual node meets all Oracle prerequisites. 
+Execute the following command from the primary physical node (oel5u4-node1) as the grid user: 
+
+[root@oel5u4-node1 /]# su – grid 
+[grid@oel5u4-node1 ~]$ cluvfy stage -pre nodeadd -n oel5u4-rac1 
+
+2.  After successful validation, add the new virtual node (oel5u4-rac1) to the cluster. The following 
+
+example shows the standard Oracle-supplied script run as the grid user: 
+
+[grid@oel5u4-node1 ~]$ cd $Oracle_HOME/oui/bin 
+[grid@oel5u4-node1 bin]$ ./addNode.sh "CLUSTER_NEW_NODES={oel5u4rac1}" 
+ "CLUSTER_NEW_PRIVATE_NODE_NAMES={oel5u4-rac1-priv}" 
+"CLUSTER_NEW_VIRTUAL_HOSTNAMES={oel5u4-rac1-vip}” 
+
+3.  Run orainstRoot.sh and root.sh on the new node (oel5u4-rac1). 
+
+[root@oel5u4-rac1 ~]# /u01/app/oraInventory/orainstRoot.sh 
+[root@oel5u4-rac1 ~]# /u01/app/11.2.0/grid/root.sh 
+
+4.  Verify the node has been added successfully. Execute the following command as a grid user from 
+
+the primary node (oel5u4-node1): 
+
+[grid@oel5u4-node1 admin]$ cluvfy stage -post nodeadd -n oel5u4-rac1 
+
+5.  Copy the updated Oracle_HOME from the primary node in the cluster (oel5u4-node1) to the new 
+
+node. 
+
+[root@oel5u4-node1 ~]# su - oracle  
+[oracle@oel5u4-node1 ~]$ cd $Oracle_HOME/oui/bin 
+
+6.  Execute the following to add the new node: 
+
+a.  Run the addNode.sh script on the primary node (oel5u4-node1). 
+b.  Run root.sh and rootcrs.pl on the virtual node (oel5u4-rac1). 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+29 
+
+ 
+
+ 
+
+ 
+
+[oracle@oel5u4-node1 bin]$ ./addNode.sh "CLUSTER_NEW_NODES={oel5u4-rac1}" 
+[root@oel5u4-rac1 ~]# /u01/app/oracle/product/11.2.0/dbhome_1/root.sh 
+[root@oel5u4-rac1 ~]# /u01/app/11.2.0/grid/crs/install/rootcrs.pl 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+30 
+
+ 
+
+ 
+
+Step 7: Add Oracle RAC instance on new node 
+
+After creating a virtual node and adding it to the physical Oracle RAC, use the Database Configuration 
+Assistant (DBCA) to add a new instance to the new node. 
+
+Note:  DBCA uses the listener named LISTENER. You can run DBCA on any existing Oracle RAC node, but the 
+
+listener must be enabled and running on that node. 
+
+1.  Enable the listener on the physical node (oel5u4-node1). 
+
+[grid@oel5u4-node1 ~]$ srvctl enable listener -l listener -n oel5u4-node1 
+
+2.  Register the instance (VIS1) with the listener on the physical node (oel5u4-node1). 
+
+Static registration: 
+[grid@oel5u4-node1 ~]$ vi /u01/app/11.2.0/grid/network/admin/listener.ora 
+Add followings 
+ SID_LIST_LISTENER= 
+    (sid_list= 
+       sid_desc= 
+      (GLOBAL_DBNAME=VIS1) 
+      (Oracle_HOME=/u01/app/oracle/product/11.2.0/dbhome_1) 
+      (SID_NAME=VIS1) 
+          ) 
+    ) 
+
+3.  Start the listener on the physical node (oel5u4-node1). 
+
+grid@oel5u4-node1 ~]$ srvctl start listener -l listener -n oel5u4-node1 
+
+4.  Verify the listener is running. 
+
+[grid@oel5u4-node1 ~]$ lsnrctl status listener 
+
+5.  Launch DBCA to add an instance (VIS3) to the virtual node. 
+
+a.  Select Oracle Real Application Clusters (RAC) database. Click Next. 
+b.  Select Instance Management. Click Next. 
+c.  Select Add an Instance. Click Next. 
+d.  Click Next to accept the default instance name (VIS3) or change it. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+31 
+
+ 
+
+ 
+
+e.  Check the summary window.  
+Note: 
+Guide 11g Release 2 (11.2). 
+
+For additional information, refer to Oracle Real Application Clusters Administration and Deployment 
+
+Step 8: Register the instance with the listener on the new node 
+
+1.  Remove the listener entry for the physical node (oel5u4-node1). 
+
+[grid@oel5u4-node1 ~]$ vi /u01/app/11.2.0/grid/network/admin/listener.ora 
+Delete the followings: 
+SID_LIST_LISTENER= 
+   (sid_list= 
+      (sid_desc= 
+         (GLOBAL_DBNAME=VIS1) 
+         (Oracle_HOME=/u01/app/oracle/product/11.2.0/dbhome_1) 
+         (SID_NAME=VIS1) 
+      ) 
+   ) 
+
+2.  Stop and disable the listener on the physical node (oel5u4-node1). 
+
+[grid@oel5u4-node1 ~]$ srvctl stop listener -l listener -n oel5u4-node1 
+[grid@oel5u4-node1 ~]$ srvctl disable listener -l listener -n oel5u4-node1 
+
+3.  Modify the local_listener parameter on the new virtual node (oel5u4-rac1). 
+
+[oracle@oel5u4-rac1 ~]$ sqlplus / as sysdba 
+SQL> alter system set 
+local_listener='(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168
+.104.17)(PORT=1521))))'; 
+
+4.  Register the instance with the listener on the new virtual node. 
+
+SQL> alter system register; 
+System altered. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+32 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Step 9: Rebuild the context files on the database tier 
+
+The context file stores all the configuration details of your Oracle Applications system. After you 
+modify this file, run adconfig.pl to make the configuration changes. 
+
+1.  Generate a new context file (VIS3_oel5u4-rac1.xml) on the new node. 
+
+[oracle@oel5u4-rac1 bin]$ ./adbldxml.pl appsuser=apps appspasswd=apps 
+/u01/app/oracle/product/11.2.0/dbhome_1/appsutil/VIS3_oel5u4-rac1.xml 
+[oracle@oel5u4-rac1 bin]$ 
+
+2. 
+
+In the new context file, set the value of s_virtual_hostname to point to the hostname for the new 
+virtual database node. 
+
+vi /u01/app/oracle/product/11.2.0/dbhome_1/appsutil/VIS3_oel5u4-rac1.xml 
+Changed to :      <host oa_var="s_virtual_hostname">oel5u4-rac1-vip</host> 
+
+3.  Run adconf.pl to apply the changes to the new virtual database node. 
+
+ [oracle@oel5u4-rac1 ~]$ cd $Oracle_HOME/appsutil/bin 
+[oracle@oel5u4-rac1 bin]$ perl adconfig.pl 
+Enter the full file path to the Context file: 
+/u01/app/oracle/product/11.2.0/dbhome_1/appsutil/VIS3_oel5u4-rac1.xml 
+
+4.  Edit the context file on each physical node in the cluster with the following change to the 
+
+DB_LISTENER.  
+
+[oracle@oel5u4-node1 ~]$ vi $Oracle_HOME/appsutil/VIS1_oel5u4-node1.xml 
+   <DB_LISTENER oa_var="s_db_listener">VIS</DB_LISTENER> 
+Changed to: 
+  <DB_LISTENER oa_var="s_db_listener">LISTENER_EBS</DB_LISTENER> 
+
+5.  Run adautocfg.sh to update the change on these nodes. The example below is for oeL5u4-
+
+node1. 
+
+[oracle@oel5u4-node1 ~]$ $Oracle_HOME/appsutil/scripts/VIS1_oel5u4-
+node1/adautocfg.sh 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+33 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Step 10: Rebuild the context files on the application tier 
+
+1.  Modify the context file on both application nodes (oel5u4-app1 and oel5u4-app2) to include the 
+
+VIP connection for the new virtual node. 
+
+<jdbc_url 
+oa_var="s_apps_jdbc_connect_descriptor">jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS
+_LIST=(LOAD_BALANCE=YES)(FAILOVER=YES)(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-
+node1-vip.mordor.vce)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-node2-
+vip.mordor.vce)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-rac1-
+vip.mordor.vce)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=VIS)))</jdbc_url> 
+
+2.  Run adconfig.sh on each application node to update it with the connection information for the 
+
+new virtual node. 
+
+[applmgr@oel5u4-app1 ~]$ $AD_TOP/bin/adconfig.sh 
+contextfile=/u01/local/oracle/VIS/inst/apps/VIS_oel5u4-
+app1/appl/admin/VIS_oel5u4-app1.xml 
+
+Note: 
+using a Web browser in future. 
+
+The following optional step is to make sure that you can connect to either of the application nodes 
+
+3.  Run adconfig.sh on oel5u4-app1 again.  
+
+Step 11: Run Gather Schema Statistics 
+
+Run a standard application concurrent request, Gather Schema Statistics, to ensure the Oracle EBS 
+environment is functioning with no connectivity issues between the application and database tiers. For 
+more information on how to run the concurrent request, refer to the Oracle Applications System 
+Administrator User Guide. 
+
+1.  Restart the application tier. 
+2.  Run Gather Schema Statistics. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+34 
+
+ 
+
+ 
+
+ 
+
+Phase 3: Creating additional virtual nodes 
+
+Use the Deploy Template option in VMware vSphere and the template created earlier (oel5u4-rac1) 
+to create additional virtual database nodes. In the deployment described in this paper, four virtual 
+database nodes were created (oel5u4-rac1, oel5u4-rac2, oel5u4-rac3, and oel5u4-rac4). 
+
+Phase 4: Removing the physical nodes from the cluster 
+
+After the Oracle RAC has been migrated to virtual nodes, you can remove the corresponding physical 
+nodes. After removing the instance and the database software, deactivate the physical Oracle RAC 
+database service. 
+
+Note:  The commands in the following procedures relate to physical node oel5u4-node2. Repeat the procedures 
+
+for the other physical node: oel5u4-node1. 
+
+Step 1: Remove the instance and database software from the physical node 
+
+1.  Shut down the application tier. 
+
+[applmgr@oel5u4-app1 scripts]$ ./adstpall.sh apps/apps 
+
+2.  On any virtual node (for example, oel5u4-Rac1), make sure the listener is running on that node. 
+3.  As oracle user, use the Database Configuration Assistant (DBCA) to remove the Oracle RAC 
+
+instance from the physical node you want to remove (oel5u4-node2). 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+35 
+
+ 
+
+ 
+
+4.  Stop and disable the listener on the virtual node (oel5u4-rac1). 
+5.  Stop and disable the listener on the physical node (oel5u4-node2).  
+6.  Update the inventory on the physical node by running the following commands as oracle user. 
+
+[oracle@oel5u4-node2 bin]$ ./runInstaller -updateNodeList 
+Oracle_HOME=/u01/app/oracle/product/11.2.0/dbhome_1 CLUSTER_NODES={oel5u4-
+node2} -local 
+
+7.  Remove Oracle_HOME from the physical node. 
+
+[oracle@oel5u4-node2 deinstall]$ ./deinstall -local 
+
+8.  Update the Oracle RAC inventory. 
+
+[oracle@oel5u4-rac1 bin]$ ./runInstaller -
+updateNodeListOracle_HOME=/u01/app/oracle/product/11.2.0/dbhome_1 
+"CLUSTER_NODES={oel5u4-rac1,oel5u4-rac2,oel5u4-rac3,oel5u4-rac4}"  
+
+9.  Verify the node has been removed from inventory.xml. 
+
+[oracle@oel5u4-rac4 ~]$ vi /u01/app/oraInventory/ContentsXML/inventory.xml 
+
+Step 2: Remove Clusterware from the physical node 
+
+Execute the following to remove the Oracle Clusterware, 
+
+[root@oel5u4-node2 ~]# cd /u01/app/11.2.0/grid/crs/install 
+[root@oel5u4-node2 install]# ./rootcrs.pl -deconfig -force 
+
+Step 3: Delete the physical node  
+
+From one of the virtual nodes (for example, oel5u4-rac1), remove the physical node from the cluster. 
+
+1.  As root user, remove the physical node (oel5u4-node2) from the cluster. 
+
+[root@oel5u4-rac1 ~]# cd /u01/app/11.2.0/grid/bin 
+[root@oel5u4-rac1 bin]# ./crsctl delete node -n oel5u4-node2 
+
+2.  On the physical node you are removing, run the following to update the inventory. 
+
+[grid@oel5u4-node2 bin]$ ./runInstaller -updateNodeList 
+Oracle_HOME=/u01/app/11.2.0/grid "CLUSTER_NODES={oel5u4-node2}" CRS=TRUE -
+silent -local 
+
+3.  As grid user, de-install the Oracle Clusterware on the physical node you are deleting. 
+
+[grid@oel5u4-node2 ~]$ /u01/app/11.2.0/grid/deinstall/deinstall –local 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+36 
+
+ 
+
+ 
+
+4.  Run the following commands as the root user or the administrator on the physical node (oel5u4-
+
+node2). Press Enter after you finish running the commands. 
+Note: 
+on the local node after execution completes on all of the remote nodes. 
+
+The deconfig commands can be executed in parallel on all remote nodes. Execute the command 
+
+/tmp/deinstall2011-03-03_07-41-06PM/perl/bin/perl  
+-I/tmp/deinstall2011-03-03_07-41-06PM/perl/lib 
+-I/tmp/deinstall2011-03-03_07-41-06PM/crs/install 
+/tmp/deinstall2011-03-03_07-41-06PM/crs/install/rootcrs.pl -force  -deconfig –
+paramfile 
+"/tmp/deinstall2011-03-03_07-41-06PM/response 
+deinstall_Ora11g_gridinfrahome1.rsp" 
+
+5. 
+
+ Run the following to update the inventory. 
+
+[grid@oel5u4-rac1 bin]$ ./runInstaller -updateNodeList 
+Oracle_HOME=/u01/app/11.2.0/grid "CLUSTER_NODES={oel5u4-rac1,oel5u4-
+rac2,oel5u4-rac3,oel5u4-rac4}" CRS=TRUE –silent 
+
+6.  Verify the physical node was deleted. 
+
+[grid@oel5u4-rac1 bin]$ cluvfy stage -post nodedel -n oel5u4-node 
+
+Step 4: Perform post-removal tasks 
+
+1.  Update the application tier and database tier. 
+
+[oracle@oel5u4-rac1 ~]$ sqlplus apps/apps 
+SQL> exec fnd_conc_clone.setup_clean; 
+
+2.  Reconfigure the context on every existing database node. For example: 
+
+[oracle@oel5u4-node1 ~]$ $Oracle_HOME/appsutil/scripts/VIS1_oel5u4-
+node1/adautocfg.sh 
+
+3.  Edit the context file on the two application nodes to remove the deleted physical node. 
+4.  Run adconfig.sh on both application nodes. 
+
+[applmgr@oel5u4-app1 ~]$ $AD_TOP/bin/adconfig.sh 
+contextfile=/u01/local/oracle/VIS/inst/apps/VIS_oel5u4-
+app1/appl/admin/VIS_oel5u4-app1.xml 
+[applmgr@oel5u4-app2 ~]$ $AD_TOP/bin/adconfig.sh 
+contextfile=/u01/local/oracle/VIS/inst/apps/VIS_oel5u4-
+app2/appl/admin/VIS_oel5u4-app2.xml 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+37 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5.  Run autoconfig.sh on oel5u4-app1 again. 
+
+[applmgr@oel5u4-app1 ~]$ $AD_TOP/bin/adconfig.sh 
+contextfile=/u01/local/oracle/VIS/inst/apps/VIS_oel5u4-
+app1/appl/admin/VIS_oel5u4-app1.xml 
+
+6.  Restart the application tier. 
+
+[applmgr@oel5u4-app1 admin]$ cd $ADMIN_SCRIPTS_HOME 
+[applmgr@oel5u4-app1 scripts]$ ./adstrtal.sh apps/apps 
+
+7.  Run a standard application concurrent request, Gather Schema Statistics, to ensure the Oracle 
+EBS environment is functioning with no connectivity issues between the application and database 
+tiers. For more information on how to run the concurrent request, refer to the Oracle Applications 
+System Administrator User Guide. 
+
+Step 5: Power down the server and disassociate the service profile 
+
+In the navigation pane, click the Servers tab. 
+
+1.  Log in to UCS Manager. 
+2. 
+3.  Select the service profile for the blade.  
+4.  Select KVM Console from the right-click menu. 
+5. 
+6.  Click OK. 
+7.  Click OK again to shut down the server. The server begins shutting down. 
+
+In the console, click Shutdown Server. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+38 
+
+ 
+
+ 
+
+8.  On the FSM tab, monitor status of blade shutdown to make sure it finishes. 
+
+Step 6: Deactivate and release the service blades 
+
+ 
+
+Deactivating a service shuts down the UCS service profiles while preserving the service configuration 
+and resources. Once a service is inactive, the blades can be released for use in another service or for 
+an application outside of UIM. 
+
+During deactivation, the service profiles are booted down. All of the configuration and resources are 
+preserved, identities such as MAC addresses and World Wide Port Names (WWPNs) are kept intact, 
+and the storage is preserved on the storage array. Optionally, the blades can be released after the 
+service is deactivated. The storage, however, must stay reserved to ensure the data is preserved for 
+reactivation. 
+
+1.  From the Administration, Service Manager view, select the active service to deactivate (in the 
+
+example, MyOracleRACService). 
+
+2.  Click Deactivate. 
+3.  Wait for deactivation to complete, which is indicated by an Inactive status. 
+4.  Click Release Blades. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+39 
+
+ 
+
+ 
+
+ 
+
+Phase 5: Adding a Physical Node to the Oracle RAC Cluster (V2P) 
+
+The following sections describe how to add a physical node (oel5u4-node2) to the virtualized Oracle 
+RAC. This operation enables you to meet any support requirement by Oracle to reproduce problems 
+in a physical environment. 
+
+To add a physical server to the cluster, use UIM to reactivate the physical Oracle RAC service, and 
+then add a physical node to the Oracle RAC. Reactivate the service to turn the system on. The UCS 
+service profiles are booted on the equipment, which reactivates the network paths and fabric paths. 
+
+Step 1: Reactivate the Oracle RAC service 
+
+1.  Confirm that the Vblock System setup will still support the service. 
+
+a.  Go to the Administration, Vblock Systems tab. 
+b.  Locate the Vblock System on which you are reactivating the service. 
+c.  Check the alert and status messages in the first column of the row and respond as indicated 
+
+in the UIM online help. 
+
+2.  Validate that the service is still in compliance. 
+
+a.  From the Administration, Service Manager view, select the inactive service to activate. 
+b.  Click Verify Compliance. 
+c.  Once the test is finished, check the Alert column and respond as indicated in the UIM online 
+
+help. 
+
+3.  From the Administration, Service Manager view, select the service to activate (in the example, 
+
+MyOracleRACService). 
+
+4.  Click Activate. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+40 
+
+ 
+
+ 
+
+Step 2: Add the physical Oracle RAC node 
+
+ 
+
+1.  Configure SSH for User Equivalence for the node you are adding. Refer to Appendix A: 
+
+Command Examples for an example of configuring SSH for User Equivalence. 
+
+2.  Execute the following to verify the node does not already exist. 
+
+[grid@oel5u4-rac1 ~]$ cluvfy stage -pre nodeadd -n oel5u4-node2 
+
+3.  Extend Oracle Clusterware to the new node. 
+
+Note:  Refer to the checks and steps in Oracle Clusterware Administration and Deployment Guide 11g 
+Release 2 (11.2). 
+
+[grid@oel5u4-node1 bin]$ ./addNode.sh "CLUSTER_NEW_NODES={oel5u4rac1}" 
+"CLUSTER_NEW_PRIVATE_NODE_NAMES={oel5u4-rac1-priv}" 
+"CLUSTER_NEW_VIRTUAL_HOSTNAMES={oel5u4-rac1-vip}” 
+
+4.  When the script has completed successfully and script output has been validated, run root.sh on 
+
+the new node as root user. 
+
+[root@oel5u4-node2 ~]# /u01/app/11.2.0/grid/root.sh 
+
+5.  Extend the Oracle software to the new node.  
+
+Execute the following from $Oracle_HOME/oui/bin on an existing node in the cluster: 
+
+[root@oel5u4-rac1 ~]# su – oracle 
+[oracle@oel5u4-rac1 ~]$ cd $Oracle_HOME/oui/bin 
+[oracle@oel5u4-rac1 bin]$ ./addNode.sh "CLUSTER_NEW_NODES={oel5u4-node2}" 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+41 
+
+ 
+
+ 
+
+ 
+
+ 
+
+6.  Run root.sh on the new node: 
+
+[root@oel5u4-node2 ~]# /u01/app/oracle/product/11.2.0/dbhome_1/root.sh 
+
+7.  Optionally, execute rootcrs.pl to check the Cluster Ready Services (CRS) resource for errors. 
+
+ [root@oel5u4-node2 ~]# /u01/app/11.2.0/grid/crs/install/rootcrs.pl 
+
+8.  Add an Oracle RAC database instance to the new node.  
+
+Note:  Refer to Oracle Real Application Clusters Administration and Deployment Guide 11g Release 2 
+(11.2) for detailed instructions. 
+a.  Make sure the listener is running on any existing database node (for example, oel5u4-rac1). 
+b.  As oracle user on any existing database node, run the Database Configuration Assistant 
+
+(DBCA) to add an Oracle RAC database instance (VIS7). 
+
+9. 
+
+ Rebuild the context on the database tier. 
+a.  Generate a context file on the new physical node (oel5u4-node2). 
+
+[oracle@oel5u4-node2 .ssh]$ cd $Oracle_HOME/appsutil/bin 
+
+b.  Edit the context file to the following to change the hostname of the new node to its VIP 
+
+hostname. 
+
+         <jdbc_url 
+oa_var="s_apps_jdbc_connect_descriptor">jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS
+_LIST=(LOAD_BALANCE=YES)(FAILOVER=YES)(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-rac4-
+vip.mordor.vce)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-rac1-
+vip.mordor.vce)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-rac2-
+vip.mordor.vce)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-rac3-
+vip.mordor.vce)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=oel5u4-node2-
+vip.mordor.vce)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=VIS)))</jdbc_url 
+
+c.  On the newly added physical node, alter the local_listener parameter to make it aware of the 
+
+new database instance (VIS7). 
+
+[oracle@oel5u4-rac1 ~]$ sqlplus / as sysdba 
+SQL> alter system set 
+local_listener='(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168
+.104.17)(PORT=1521))))'; 
+
+d.  Run adconfig.sh on all physical database nodes. For example: 
+
+[oracle@oel5u4-node2 bin]$ cd $Oracle_HOME/appsutil/bin 
+[oracle@oel5u4-node2 bin]$ perl adconfig.pl 
+Enter the full file path to the Context file: 
+/u01/app/oracle/product/11.2.0/dbhome_1/appsutil/VIS7_oel5u4-node2.xml 
+
+10.  Run autoconfig.sh on each application nodes (oel5u4-app1 and oel5u4-app2). 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+42 
+
+ 
+
+ 
+
+11.   Run autoconfig.sh on oel5u4-app1 again. 
+12.  Start the application tier. 
+13.  Run a standard application concurrent request, Gather Schema Statistics, to ensure the Oracle 
+EBS environment is functioning with no connectivity issues between the application and database 
+tiers. For more information on how to run the concurrent request, refer to the Oracle Applications 
+System Administrator User Guide. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+43 
+
+ 
+
+ 
+
+Using VMware vMotion to reduce planned downtime 
+
+VMware vMotion allows users to perform the live migration of virtual machines from one physical 
+server to another with zero downtime, continuous availability, and complete transaction integrity. Live 
+migration of virtual machines allows hardware maintenance to be performed without scheduling 
+downtime and disrupting business operations. 
+
+VMware vMotion is a key technology for creating a dynamic, automated, and self-optimizing data 
+center. This application makes it possible to service hardware and software with no disruption so that 
+you can manage your Oracle EBS applications without the risk of the application going offline. 
+
+For maintaining high availability, vMotion enables you to: 
+
+  Perform hardware maintenance without scheduled downtime. 
+  Proactively migrate virtual machines away from failing or underperforming servers. 
+  Keep your resources optimized to align with business priorities. 
+
+The migration of a virtual machine with vMotion preserves the precise execution state, the network 
+identity, and the active network connections. As a result, there is zero downtime and no disruption to 
+the user. This ensures that your Oracle EBS applications remain online, even under conditions in 
+which a non-virtualized instance of the application becomes unavailable. 
+
+Performing live migration 
+
+In this example, the virtual machine (oel5u4-app1) is an Oracle EBS application node, and the virtual 
+machine is migrated to a different physical host: 
+
+1.  Login to the VMware vSphere Client. 
+2. 
+
+In the navigation pane, right-click the virtual machine (oel5u4-app1), and then select Migrate from 
+the menu. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+44 
+
+ 
+
+ 
+
+3.  Select Change Host. Click Next. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+45 
+
+ 
+
+ 
+
+4.  Select the destination host or cluster (192.168.50.94). Click Next. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+46 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5.  For better performance, select High Priority for vMotion Priority. Click Next. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+47 
+
+ 
+
+ 
+
+ 
+
+ 
+
+6.  Click Finish to start the migration. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+48 
+
+ 
+
+ 
+
+Verifying the live migration is non-disruptive 
+
+Verify that the live migration is non-disruptive: 
+
+1.  Log in to Oracle EBS. 
+2.  Run the Concurrent program, Gather Schema Statistics. 
+
+3. 
+
+In vSphere Client, migrate the virtual machine (oel5u4-App1) back to the original host 
+(192.168.50.95) while Gather Schema Statistics is running. 
+a. 
+
+In the navigation pane, right-click the virtual machine (oel5u4-App1), and then select Migrate 
+from the menu. 
+
+ 
+
+b.  Select Change Host. Click Next. 
+c.  Select the destination host or cluster (192.168.50.95). Click Next. 
+d.  Select High Priority. Click Next. 
+e.  Click Finish to start the migration. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+49 
+
+ 
+
+ 
+
+Scalability and performance considerations for Oracle EBS 
+and RAC  
+
+There are several factors to consider when sizing Oracle E-Business Suite systems for RAC 
+environments on a Vblock System. These include: 
+
+  Virtual machine configuration (vCPUs, memory, network configuration) 
+  Network configuration with Cisco switches 
+  Storage performance and sizing for the EMC VMAX 
+  Oracle Release12 EBS configuration 
+
+Virtual machine configuration takes advantage of the VMware Distributed Resource Scheduler (DRS) 
+load distribution technology to balance the workload of each virtual machine in the Vblock System 
+used to host the Oracle EBS application. 
+
+VMware DRS continuously monitors utilization across a resource pool and allocates available 
+resources among virtual machines according to need. When a virtual machine experiences increased 
+load, VMware DRS first evaluates its priority against established resource allocation rules and policies, 
+and allocates additional resources if necessary. Resources are allocated to the virtual machine by 
+either migrating it to another server with more available resources or by allocating more resources on 
+the same server by migrating other virtual machines to different servers. The live migration of virtual 
+machines to different physical servers is completely transparent to end users. 
+
+Network performance is an important consideration when sizing the performance of Oracle EBS 
+applications. By tuning the Cisco Nexus switches deployed within a Vblock System, you can optimize 
+the available network traffic sent between all of the nodes within the application, concurrent managers, 
+and database tiers for Oracle EBS. In addition, to enhance performance and to scale out, either 
+software-based load balancing can be deployed for Oracle or hardware-based load balancers, such 
+as Cisco ACE, can be implemented to take advantage of enhanced performance and security. 
+
+The storage array used with the Vblock System should be tuned based on best practices available 
+from Oracle and EMC. In addition, tuning the Oracle application tier servers and database server will 
+allow further performance and scalability enhancements. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+50 
+
+ 
+
+ 
+
+Conclusion 
+
+With Vblock Systems, VCE delivers the industry's first completely integrated IT offering that combines 
+best-in-class virtualization, networking, computing, storage, security, and management technologies 
+with end-to-end vendor accountability. 
+
+This paper was written to demonstrate the simplicity and ease with which you can virtualize a physical 
+Oracle RAC database on a Vblock System. Virtualizing Oracle EBS applications on a Vblock System 
+provides a number of key values: 
+
+  Containment of server sprawl and increased server utilization. 
+  Dynamic, non-disruptive migration of Oracle instances on virtual machines to other systems to 
+
+perform hardware maintenance or system changes without disruption. 
+Improved operational agility through live virtual machine migration to accommodate dynamic 
+workloads. 
+
+ 
+
+  Fast provisioning of pre-configured Oracle EBS environments using vSphere templates. 
+  Automatic detection and restart of failed Oracle EBS virtual machines with VMware HA. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+51 
+
+ 
+
+ 
+
+Appendix A: Configuring SSH for User Equivalence  
+
+Configuring SSH for User Equivalence provides a secure means of copying files and executing 
+programs on nodes in the cluster without requiring passwords prompts. Secure Shell configuration is 
+covered in detail in the Oracle Real Application Clusters Installation Guide and Oracle Grid 
+Infrastructure Installation Guide.  
+
+Note:  Refer to Appendix E in Oracle Grid Infrastructure Installation Guide 11g Release 2 (11.2) for further details 
+
+on manual set up of SSH. 
+
+The main steps to configure SSH for User Equivalence are: 
+
+1.  Create authentication keys (rsa and dsa) using ssh-keygen on the new virtual node (oel5u4-
+
+rac1) as the grid user. 
+
+2.  Authorize access to the new virtual node using the local key by copying the public key into the 
+~/.ssh/authorized_keys file (for example, [grid@oel5u4-rac1 .ssh]$ cat id_rsa.pub 
+>> authorized_keys) 
+ Copy the ~/.ssh/authorized_keys files to other systems to allow access from the local system (for 
+example, [grid@oel5u4-node1 .ssh]$ scp authorized_keys oel5u4-
+rac1:/home/grid/.ssh) 
+
+3. 
+
+4.  Repeat this procedure for each newly added virtual node and other existing physical nodes in the 
+
+cluster. 
+
+The following is an example of configuring SSH for User Equivalence. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+52 
+
+ 
+
+ 
+
+[root@oel5u4-rac1 ~]# su – grid 
+[grid@oel5u4-rac1 ~]$ /usr/bin/ssh-keygen -t rsa 
+Generating public/private rsa key pair. 
+Enter file in which to save the key (/home/grid/.ssh/id_rsa): 
+Created directory '/home/grid/.ssh'. 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/grid/.ssh/id_rsa. 
+Your public key has been saved in /home/grid/.ssh/id_rsa.pub. 
+The key fingerprint is: 
+f0:97:07:16:37:38:29:3f:d0:b7:9f:23:9f:d9:41:27 grid@oel5u4-
+rac1.mordor.vce[grid@oel5u4-rac1 ~]$ /usr/bin/ssh-keygen -t dsa 
+Generating public/private dsa key pair. 
+Enter file in which to save the key (/home/grid/.ssh/id_dsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/grid/.ssh/id_dsa. 
+Your public key has been saved in /home/grid/.ssh/id_dsa.pub. 
+The key fingerprint is: 
+f9:0b:06:c4:44:2f:cf:2a:0c:eb:68:03:cd:be:87:16 grid@oel5u4-
+rac1.mordor.vce 
+[grid@oel5u4-rac1 ~]$ cd .ssh 
+[grid@oel5u4-rac1 .ssh]$ cat id_rsa.pub >> authorized_keys 
+[grid@oel5u4-rac1 .ssh]$ cat id_dsa.pub >> authorized_keys 
+[grid@oel5u4-node1 ~]$ cd .ssh 
+[grid@oel5u4-node1 .ssh]$ ssh oel5u4-rac1 cat 
+/home/grid/.ssh/authorized_keys >> authorized_keys 
+[grid@oel5u4-node2 .ssh]$ ssh oel5u4-rac1 cat 
+/home/grid/.ssh/authorized_keys >> authorized_keys 
+[grid@oel5u4-node1 .ssh]$ scp authorized_keys oel5u4-rac1:/home/grid/.ssh 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+53 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+

@@ -1,0 +1,281 @@
+Information Brief 
+
+ 
+
+De-Risking Oracle Migrations with VirtualWisdom®  
+Executive Summary 
+Whether migrating to a new data center, upgrading a SAN or deploying new storage arrays, an 
+Oracle migration project is never trivial. Oracle OLTP systems typically support business-critical 
+processes, while Oracle warehouses handle large data volumes and essential analysis.  Downtime 
+can be extremely costly, sometimes reaching hundreds of thousands of dollars an hour. 
+
+Virtual Instruments reduces the risks of storage migration, helping organizations find and correct 
+potential problems before the migration and trouble-shooting problems quickly to keep migrations on 
+schedule. Using the VirtualWisdom™ platform, teams can benchmark performance before and after 
+the migration and promptly fix any problems that might derail the project.  This document describes 
+how VirtualWisdom reduces the risks of Oracle infrastructure changes and describes best practices 
+for using VirtualWisdom as part of a migration project 
+
+Assessing the Risks of Oracle Migration 
+For a Fortune 500 company, the investment in an Oracle environment can exceed $100 million, 
+including software, hardware and consulting.  Making changes, even for necessary upgrades and 
+technology refreshes, is inherently risky. The risk is higher for applications supporting business-
+critical processes. 
+
+The Oracle DBA can protect the integrity of the data during migration using adequate care.  More 
+often, the problems encountered during major Oracle transitions have to do with unexpected 
+performance issues that are difficult to identify and correct.  These problems can have serious 
+implications: 
+
+  Degraded performance of critical applications.  Even subtle changes can introduce 
+
+unexpected performance problems. When performance problems affect time-critical ERP or 
+CRM applications using Oracle, the costs can be quite high.   
+
+  Project delays.  For significant performance issues, you may have no choice but to delay the 
+
+migration or roll back to older equipment. Project delays can extend for months while you 
+search for the root cause, incurring costs for extending support on old systems, licensing, 
+extensive consulting time, and lost opportunities. 
+
+Summary:  
+
+VirtualWisdom provides 
+unprecedented visibility into 
+performance across the 
+entire Oracle infrastructure, 
+from the application to the 
+storage. 
+
+Use VirtualWisdom to 
+baseline and track 
+application performance 
+before, during and after a 
+major Oracle migration. 
+
+Rapid root cause analysis 
+reduces the risk of project 
+delays and rollbacks. 
+
+VirtualWisdom enables pre-
+migration storage analysis 
+that can uncover 
+infrastructure problems 
+otherwise difficult to detect.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+  Over provisioning in the wrong places.  To fix or prevent performance issues, companies 
+
+often over-provision the storage environment. This might mean putting every Oracle 
+application on the most expensive, high-performance storage, or over-provisioning front end 
+ports on the SAN controller. 
+
+ 
+
+ 
+
+ 
+
+Tracking Performance Across Oracle Applications and Infrastructure 
+Oracle applications are highly dependent on storage performance – OLTP systems need low latency 
+read/writes, while data warehouses need to read massive amounts of data quickly.  When it comes to 
+performance problems, the storage environment is usually guilty until proven innocent.  The storage 
+administrator is often left with the difficult task of either finding the problem (in the devices or the 
+storage network) or proving that it lies elsewhere. 
+
+The multiple layers of abstraction make it even more difficult to isolate problems. Once, databases 
+were connected to direct-attached storage.  Today there's a layer of virtualization within the storage 
+cloud, the SAN network, and often the server environment as well. 
+
+What's missing is the ability to track system-level I/O performance from the application through the 
+infrastructure.  Without this visibility, any storage migration will hold inherent risk that is difficult to 
+quantify or mitigate. 
+
+Virtual Instruments and Oracle Migration 
+VirtualWisdom™ from Virtual Instruments brings visibility into the storage environment, with the ability 
+to track and measure performance from the application through the entire physical and/or virtual 
+infrastructure.  Using VirtualWisdom provides the necessary data to make intelligent decisions about 
+capacity, utilization and performance and to accelerate and de-risk Oracle migration projects. 
+
+The complete solution platform includes VirtualWisdom software and hardware and SANInsight 
+physical layer access hardware products. Together, these products provide an unprecedented level 
+of physical and virtual infrastructure visibility for Oracle installations running in complex, 
+heterogeneous Fibre Channel Storage Area Networks.  
+
+Using VirtualWisdom, you can track infrastructure and read/write response time throughout the 
+Oracle environment.  This insight lets you benchmark existing performance before a migration and 
+find any issues or problems with the new environment before committing production systems to it.  
+You can also set application-specific SLAs and monitor and alert on those levels both during and 
+after the migration. 
+
+ 
+
+ 
+
+VirtualWisdom offers configurable dashboards to monitor read/write performance throughout the 
+infrastructure for the entire Oracle environment, at any level of granularity.  For example, you can 
+monitor response times across specific applications:  
+
+Or you can drill down to the Initiator / Target / LUN exchange completion times for writes on a port-
+by-port basis. 
+
+ 
+
+ 
+
+By drilling down to specific components, you can determine the performance impact of infrastructure 
+changes, including hardware upgrades, firmware revisions and SAN modifications.   
+
+With this new visibility, teams can adopt several best practices to better manage and reduce the 
+potential risk of Oracle migrations. 
+
+Best Practice #1 – Benchmarking Existing Performance 
+Before performing any migration, use VirtualWisdom to establish the baseline performance on the 
+existing infrastructure.  
+
+Use these baselines to measure the effect of the migration on performance for critical applications. 
+One major retailer used VirtualWisdom to benchmark 600 applications both before and after a 
+migration to prove to internal auditors that the change did not impair performance. 
+
+Also, a careful baseline analysis can uncover problems that may become bigger post-migration. For 
+example, e-commerce company using VirtualWisdom to benchmark the infrastructure before 
+upgrading to an 8Gb SAN uncovered ports that were outside of specification at 8Gb and others that 
+were borderline at 4Gb.  By addressing these issues pre-migration, the company headed off potential 
+problems in production. 
+
+Best Practice #2 – Performing Pre-migration Storage Analysis 
+Use VirtualWisdom to do a pre-migration analysis of the infrastructure and its performance 
+implications before flipping the switch.  Many infrastructure and configuration issues are particularly 
+
+ 
+
+ 
+
+important to troubleshoot, such as zone configuration naming problems, multipathing configuration 
+and queue depth configuration.  By testing and addressing these issues before the transition you 
+reduce the risk of outages, slowdowns and project delays. 
+
+Best Practice #3 – Comparing Post-migration Performance   
+Once you have successfully made the migration, use VirtualWisdom to benchmark the performance 
+of each application and compare it to the pre-migration performance. If there are problems, 
+application-by-application benchmarking lets you prioritize remediation efforts.  
+
+Some problems don't show up until you're actually running in production on the new infrastructure. 
+Finding and fixing them quickly can be critical for the overall success of the migration project.  
+VirtualWisdom can help you track down the root cause of problems rapidly. With real-time 
+monitoring, you can find the intermittent problems that fall in the sampling gaps of traditional 
+monitoring tools.  
+
+Best Practice #4 – Establishing Application-Specific SLAs 
+Using VirtualWisdom, you can establish separate SLAs for each application or component. For 
+example, you could set separate performance level thresholds (such as 5 millisecond response times) 
+for Oracle ERP and CRM applications, and create alerts for faults. For data warehouse applications, 
+track throughput as the warehouse grows and use this information to plan capacity based on 
+performance needs. 
+
+Summary 
+No matter how critical the application, the Oracle infrastructure is never truly static.  Over time you 
+need to upgrade various components of the infrastructure. The risk of performance problems grows 
+greater during times of change. Using VirtualWisdom gives you the ability to track and monitor 
+performance from the application through the infrastructure, and to pinpoint and resolve problems 
+before they become serious. This new visibility reduces the risk of infrastructure change and protects 
+critical application performance and investments. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+European Headquarters 
+One Kingdom Street 
+Paddington Central * London W2 6BD 
+Phone:  44 (0) 203 402 3353 
+
+Sales 
+sales@virtualinstruments.com 
+Support 
+support@virtualinstruments.com 
+ 
+
+©2012 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or 
+servicemarks of, and are used to identify, products or services of their respective owners. 7/12 
+ 
+
+

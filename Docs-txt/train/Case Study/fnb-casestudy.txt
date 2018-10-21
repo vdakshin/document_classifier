@@ -1,0 +1,189 @@
+FIRST NATIONAL BANK REDUCES DATA 
+
+CENTER FOOTPRINT WITH VBLOCK 
+
+South	aFRiCan	bank	migRateS	33,000	ex Change	mailboxeS	to	ReduCe 	
+data	CenteR	Spa Ce	and	eneRgy	expendituReS	S aVing	30%	annually
+
+First National Bank (FNB) is the third-largest bank in South Africa, providing 
+personal, commercial, and corporate banking services to more than six million 
+customers. With a history dating back to 1838, FNB has maintained its position by 
+developing new products and services to meet market needs. This has led to an 
+increasing dependence on IT services to keep the business running. 
+
+With real estate prices on the rise, the cost of data center space was growing. IT 
+realized they needed to be able to consolidate space and grow services without 
+growing footprint. Their approach was to leverage a Microsoft Exchange migration 
+to reign in data center growth while improving services to the business. 
+
+FNB upgraded to Exchange 2010 and consolidated the entire email infrastructure 
+onto Vblock™ Systems. The new infrastructure has provided FNB with improved 
+performance, reliability, and streamlined maintenance along with the agility to 
+support future Exchange requirements and additional applications.
+
+FinanCial	SeRViCeS
+
+	 Client
+
+First National Bank, the 
+third-largest bank in South 
+Africa, serving six million 
+customers
+
+	 Challenge
+
+Manage massive Exchange 
+email rollout and enable 
+more agile, scalable platform 
+for growth 
+
+	 Solution
+
+Vblock Systems
+
+	 ReSultS
+
+Improve performance and 
+reliability of Exchange 
+platform and enable faster 
+delivery of IT resources  
+to support new product  
+and services
+
+www.vce.com
+
+“In the financial services 
+business, speed is of the 
+essence. By accelerating 
+back-end deployments, 
+Vblock	Systems	can	help	us	
+improve	time	to	market for 
+our business managers when 
+they launch new products 
+and services.”  
+— Tony Wilson, manager, 
+Microsoft environment,  
+First National Bank
+
+the	Challenge
+In recent years, the FNB’s employees 
+have become more dependent on email 
+to perform their job functions. As a result, 
+FNB’s Exchange 2003 email infrastructure 
+had grown across multiple sites in South 
+Africa. As the Exchange environment 
+was aging and becoming decentralized, 
+the IT organization was increasingly 
+consumed with managing email-related 
+administration and maintaining availability. 
+
+The lack of a reliable business continuity 
+solution sometimes resulted in outages 
+that impacted employee productivity. In 
+fact, Exchange-related issues often took 
+four or five hours to resolve.
+
+With both real estate prices and 
+support costs on the rise, the Exchange 
+environment had become too costly  
+and incapable of supporting the  
+growing business. 
+
+the	Solution
+After closely evaluating various 
+competitive solutions, FNB decided to 
+implement two Vblock Systems to serve 
+as the infrastructure for its Exchange 
+2010 environment and 33,000 Exchange 
+mailboxes. The infrastructure is completely 
+virtualized with VMware vSphere.
+
+Exchange is protected using Microsoft 
+Exchange Server 2010 Database 
+Availability Group (DAG) replication. 
+For streamlined management, FNB uses 
+VMware vCenter Operations Management 
+Suite and EMC Unified Infrastructure 
+Manager (UIM).
+
+StorTech, the reseller and systems 
+integrator, and VCE Professional  
+Services worked with FNB to deploy  
+the Vblock Systems. 
+
+the	Results
+With the Vblock Systems, FNB has 
+successfully executed three major 
+initiatives: an Exchange 2003 to 
+Exchange 2010 upgrade, migration of 
+33,000 mailboxes and consolidation  
+of its Exchange infrastructure from  
+12 to two sites. 
+
+The Vblock Systems have enabled the 
+bank to accelerate its journey to private 
+cloud, reduce the company’s impact on 
+the environment and gain tremendous 
+agility in supporting growth and change. 
+The new consolidated infrastructure 
+has provided FBN with several specific 
+improvements, including:
+
+•  Reduced data center footprint by  
+
+30% percent with a 40:18 consolidation 
+ratio for Exchange servers. 
+
+•  Achieved 30% in annual cost savings 
+
+related to power, cooling and real 
+estate expenditures.
+
+•  Doubled CPU utilization to derive 
+
+greater performance from its existing 
+infrastructure and postpone future 
+server upgrades.
+
+•  Deployed disaster recovery solution, 
+
+reducing RTO from 3 hours to  
+just minutes. 
+
+•  Reduced time to complete IT’s 
+
+administration activities, such as 
+patches and antivirus updates, by  
+50 percent.
+
+Because the Exchange project has  
+been so successful, the bank’s IT 
+organization is exploring use of the 
+Vblock Systems to support other 
+initiatives, including Infrastructure as  
+a Service and virtual desktops. 
+
+Looking ahead, the improved flexibility 
+and scalability enabled by the Vblock 
+Systems translates into tremendous 
+business value for FNB especially as the 
+bank considers running other application 
+environments on the Vblock Systems.  
+By being able to provision virtual 
+machines in two to three hours versus 
+four to six weeks for physical hardware, 
+First National Bank expects business 
+managers will be able to improve time  
+to market when they launch new  
+products and services and gain a  
+valuable competitive advantage.
+
+ 
+Copyright © 2012 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC. and/or its  
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners.
+
+www.vce.com
+
+the	WoRld’S	moSt	adVanCed	ConVeRged	inFRa StRuCtuRe
+
+

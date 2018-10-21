@@ -1,0 +1,353 @@
+ 
+
+VirtualWisdom 
+increases the benefits 
+of Vblock™ systems  
+
+•  Reduces the risk of 
+
+virtualizing more mission 
+critical applications 
+
+•  Reduces the risk of 
+
+deploying more VMs per 
+physical server 
+
+•  Enables more aggressive 
+use of tiered storage by 
+improved tiered storage 
+planning and ability to prove 
+performance SLAs 
+
+•  Enables operational (OpEx) 
+savings through improved 
+operations and faster Vblock 
+performance troubleshooting 
+
+•  Provides better adherence 
+to, and monitoring of SLAs 
+and external regulations  
+
+•  Leads to improved cycle 
+time through accelerated 
+application deployments  
+
+•  Reduces unplanned 
+
+downtime 
+
+ 
+
+ 
+
+ Technical Brief 
+
+ 
+
+ 
+Ensuring Performance & Availability of your 
+VCE Vblock™ Infrastructure Platform Series 
+700 with VirtualWisdom® 
+
+ 
+
+ 
+
+Introduction 
+
+Leading IT organizations continue to shift to increased use of virtualization and private cloud 
+computing to lower the cost of IT operations and to ensure a more agile IT infrastructure that 
+responds more quickly to changing business priorities.  The VCE Vblock™ Infrastructure 
+Platform Series 700 simplifies and accelerates deployment of a virtualized infrastructure by 
+integrating state-of-the art Cisco, EMC and VMware components.  Vblock™ systems are 
+carefully configured to ensure maximum compatibility between components as well as 
+assurance that upgrades, patches, and management changes are all handled in a pre-tested, 
+coordinated fashion.    
+
+What Vblock™ Infrastructure Platforms lack is comprehensive end-to-end real-time monitoring 
+that ensures the performance and availability of the infrastructure that supports your business-
+critical applications.  Virtual Instruments VirtualWisdom® is an innovative real-time end to end 
+monitoring and optimization solution that helps IT organizations realize the full economic 
+benefits of networked storage and server virtualization, including environments running VCE’s 
+Vblock™ Infrastructure Platforms. VirtualWisdom dramatically reduces the risk of infrastructure 
+problems that would affect your end-users and your revenues. 
+
+VirtualWisdom’s Value Add 
+VirtualWisdom enables:  
+
+•  Operational (OpEx) savings through faster Mean Time to Resolution (MTTR) and fewer 
+
+trouble-tickets 
+
+•  Capital expenditure (CapEx) savings by eliminating over-provisioning and over-tiering  
+•  Better adherence to, and monitoring of performance and availability SLAs  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+• 
+• 
+• 
+
+ Technical Brief 
+
+ 
+
+ 
+
+Improved cycle time through accelerated application and SAN deployments  
+Increased use of server virtualization and more VMs per server 
+Increased deployment of mission-critical applications on Vblock platforms 
+
+VirtualWisdom Infrastructure Optimization Platform 
+
+VirtualWisdom provides comprehensive instrumentation and measurement capabilities of the 
+SAN and virtualized infrastructure that improve application response time, accelerate storage 
+I/O performance, increase availability, and improve server and SAN utilization. VirtualWisdom is 
+the only solution that can non-intrusively improve the performance of virtualized applications in 
+real-time by analyzing actual I/O traffic data from the VM to the LUN.  VirtualWisdom monitors, 
+records, and analyzes every transaction from the virtual server to the LUN, enabling an 
+unmatched level of application availability and performance assurance.   
+
+How VirtualWisdom Complements Vblock™ Management Tools 
+
+Though the VCE Vblock suite of management tools does some basic level of performance 
+monitoring, it lacks physical, real-time monitoring of every transaction in the entire I/O path, and 
+cannot prove where in the system an application performance problem is occurring.  
+VirtualWisdom collects crucial link layer data, as well as the higher level data from the switches 
+and servers, and offers unprecedented cross-domain correlation across the entire environment.  
+VirtualWisdom is the only platform that can non-intrusively optimize the performance of 
+applications, in continuous real-time, by measuring actual I/O traffic data.  The vendor-supplied 
+management tools from Cisco, EMC and VMware are primarily used for provisioning, 
+administering and capacity planning for their own devices.  These tools also provide a high 
+level, non real-time view of performance that is insufficient for business-critical applications.   
+To these vendor-supplied tools, VirtualWisdom: 
+•  Adds continuous real time monitoring and filtering that calculates statistics based on 
+seeing every SAN transaction, while adding no latency or risk.  Vblock™ management 
+products use polling or averaging techniques that simply do not see every transaction and 
+frequently miss the causes of business-impacting problems. 
+Instantly proves whether or not the I/O subsystem is the cause of application slowdowns, 
+often reducing root cause analysis from weeks/days to hours/minutes.   
+
+• 
+
+•  Due to physical layer access to the I/O, reduces time spent on problem resolution with early 
+
+detection of I/O performance bottlenecks and transmission faults, also contributing to 
+problem avoidance. 
+
+•  Enables “what if” analyses using actual production data, substantially improving capacity 
+
+planning and optimization of the Vblock™ infrastructure. 
+
+•  Adds event recording and real time (to the millisecond) capture capabilities and does not 
+rely on “averages” or polling, which often occurs in 5 minute or longer intervals.  Polling 
+and averaging invariably miss meaningful transaction events, leading to increased risk to 
+application availability and performance. 
+
+•  Adds the ability to gather in-depth Fibre Channel network statistics such as pending 
+
+exchanges, to tune the system for maximum performance. 
+
+•  Adds the ability to determine if configuration changes and infrastructure upgrades are 
+
+affecting performance by examining end to end I/O latency, not just latency at the 
+component level.  The net benefit of this is that it accelerates the deployment and reduces 
+the risk of implementing virtualized I/O-intensive business-critical applications such as 
+Oracle, SAP, DB2, SQL, and Exchange  
+
+•  Eliminates all performance risks in tiering decisions by measuring the actual effect of the 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ Technical Brief 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+• 
+
+• 
+
+• 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+Virtual Instruments 
+25 Metro Drive 
+San Jose, CA 95110 
+www.virtualinstruments.com 
+
+Sales Information  
+sales@virtualinstruments.com 
+Phone: 408-579-4080  (US & 
+Canada), +44 (0) 203-402-3353 
+(European Headquarters) 
+
+Customer Support  
+support@virtualinstruments.com  
+ 
+©2012 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice. 
+VirtualWisdom®, Virtual Instruments, 
+SANInsight are trademarks or registered 
+trademarks in the United States and/or in 
+other countries. All other brands, 
+products, or service names are or may be 
+trademarks or service marks of, and are 
+used to identify, products or services of 
+their respective owners.    03/12 
+
+ 
+
+move on application response time.  Vblock™ management tools typically use only IOPS, 
+MB/s or access frequency to recommend moving data to another tier.   
+Lowers overall downtime by generating predictive data on potential virtual infrastructure 
+problems 
+Improves virtualized application performance by enabling administrators to optimally 
+balance virtualized workloads based on I/O response time to each LUN, not just CPU and 
+memory utilization 
+Lowers overall operating expenses and capital expenses through ESX / ESXi server 
+modeling and higher utilization of Vblock™ assets 
+
+Topology example 
+
+ 
+
+Vblock™ Infrastructure Platform Series 700 Enhanced by VirtualWisdom 
+
+The preceding diagram shows how VirtualWisdom architecturally complements the Vblock™ 
+Series 700.  Virtual Instruments TAP Patch Panels are inserted in between the Cisco MDS 
+Fabric switches and the EMC VMAX storage arrays.  TAP Patch Panels replace standard non-
+tapped patch panels and provide access to the physical FC protocol layer in a non-intrusive 
+way that has no impact on performance or data transmission.  The Tapped Patch Panels send a 
+portion of the fiber optic signal to the VirtualWisdom SAN Performance Probe for aggregation 
+by the VirtualWisdom Server.  The VirtualWisdom Server also gathers data from the 
+VirtualWisdom Virtual Server Probe that interfaces with the vCenter Server and the 
+VirtualWisdom SAN Availability Probe which gathers data from the Cisco MDS switches.  All 
+performance, utilization, and transmission data is collected, correlated and analyzed by the 
+VirtualWisdom Server through its dashboard and reporting GUI. 
+
+Summary 
+
+VirtualWisdom increases the value of the VCE Vblock™ environment via more aggressive use of 
+tiered storage, faster troubleshooting, full monitoring of performance and availability SLAs, 
+whilst in parallel lowering the risk of deploying more VMs per server and virtualizing mission 
+critical applications. 
+
+ 
+
+ 
+
+

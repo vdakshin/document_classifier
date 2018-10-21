@@ -1,0 +1,430 @@
+ 
+
+ 
+ 
+ 
+THE ROLE OF VBLOCK™ 
+INFRASTRUCTURE PLATFORMS  
+IN THE EANTC CLOUD MEGA TEST 
+
+ 
+March 2012 
+
+© 2012 VCE Company, LLC. All rights reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+Table of Contents 
+
+Executive Summary ......................................................................................................................... 3 
+Next Steps ....................................................................................................................................... 8 
+
+Overview of EANTC Cloud Mega Test ............................................................................................ 3 
+Role of the Vblock Platform ............................................................................................................. 5 
+Why the Vblock Platform Was Used................................................................................................ 7 
+Conclusion ....................................................................................................................................... 8 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Executive Summary 
+In its “Mega Test” series, Light Reading is causing a stir in the technology industry by testing the end-to-end 
+infrastructure that is required to deliver a wide range of services. It has tested media infrastructure. It has tested 
+mobile infrastructure. And now in its third installment, it is testing the infrastructure for the cloud. Vblock™ 
+Infrastructure Platforms are at the heart of this test. 
+
+With the release of its EANTC Cloud Mega Test, Light Reading documents performance of an end-to-end cloud 
+infrastructure that delivers a variety of functionality to end-users. There are enterprise- and business-oriented 
+services such as CRM software in the cloud. In addition, there are consumer-oriented services such as mobile 
+video in the cloud. Light Reading tests application users’ experience directly, and it tests esoteric necessities of 
+the cloud, such as DHCPv6, that most end-users don’t even know exist. 
+
+One thing is consistent in the Cloud Mega Test, however. That consistency is the presence of the Vblock platform 
+at the center of the largest data center in the test. It is used to run the software applications that create the 
+tremendously diverse set of workloads in the test, all in a highly virtualized environment. It is literally the only 
+converged infrastructure platform that could have been used to fill this role. From a simple, pre-engineered and 
+pre-tested design that enables rapid deployment, to management capabilities that automate routine tasks across 
+all its components, to its virtualization awareness that transforms the notion of what it means to virtualize 
+applications, all of these factors made the Vblock platform essential to the success of the Cloud Mega Test. 
+
+Overview of EANTC Cloud Mega Test 
+The EANTC Cloud Mega Test was a first-of-its-kind, comprehensive test of the broad collection of elements 
+required to deliver services from the cloud. The program tested not only cloud-based data center infrastructure but 
+also the applications that run in the cloud, as well as the network required to deliver cloud-based functionality to 
+end-users. Figure 1 on the next page shows a high-level architectural representation of the functions and 
+elements that comprised the Cloud Mega Test. 
+
+The test itself was conducted by a third-party testing agency, the European Application and Network Testing 
+Center (EANTC), which is an independent technology validation laboratory and consultancy based in Germany. 
+EANTC was engaged by Light Reading, which coordinated the test and published results. Cisco Systems was a 
+major participant in the test, along with a number of other manufacturers of infrastructure and applications, 
+including VCE. 
+
+As stated before, the overall goal of the test was to demonstrate the most effective ways in which cloud-based 
+services could be delivered to end-users. As a result, individual elements were not explicitly tested or evaluated. 
+Rather, the main focus of the test was the functionality required by the end-to-end combination of elements 
+needed to deliver cloud-based services. 
+
+As such, readers of the EANTC test results as published by Light Reading are not going to find detailed reports on 
+the individual elements in the test. Instead, the test results discuss how various functions performed in the delivery 
+of cloud services. Examples include policy control, quality of service, business applications, consumer video, 
+security, and location-identifier separation. 
+
+ 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+3 
+
+ 
+
+ 
+Figure 1.  EANTC Cloud Mega Test Architectural Overview 
+
+ 
+
+ 
+
+Naturally, in order to test application functionality, EANTC had to have infrastructure on which to instantiate those 
+applications. As any seasoned IT professional knows, what an end-user perceives as an “application” or a 
+“service” is typically comprised of dozens of discrete functions executing across a variety of platforms. Some of 
+those functions run in the network, and others run in the data center. Some functionality is delivered to the 
+application pre-packaged in an appliance or system format, whereas others are more flexibly packaged as 
+software to be installed on general-purpose compute platforms. 
+
+When it came to the general-purpose compute platforms, Cisco had an obvious choice on hand. As the provider 
+of a large majority of equipment for the Cloud Mega Test, Cisco suggested that its Unified Computing System, or 
+UCS, be used as the platform on which to run the software-based applications in the data center. And as a natural 
+extension of that, Cisco further suggested that the Vblock platform from VCE be deployed as the converged 
+infrastructure solution in the largest data center evaluated in the test.   
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+4 
+
+ 
+
+The Vblock platform integrates computing technology from Cisco UCS servers, storage technology from EMC 
+Symmetrix VMAX or VNX arrays, networking from the Cisco Nexus family of switches, virtualization technology 
+from VMware ESX and vSphere, and management technology from all three VCE parent companies: VMware, 
+Cisco, and EMC. This tightly integrated, pre-engineered, and pre-tested packaging of components enabled the 
+test-bed engineers to quickly and easily implement a gamut of technologies in a single converged infrastructure 
+solution. This approach meant that the engineers could move on to the business of testing the functionality of the 
+cloud without delay or complication. 
+ 
+
+ 
+Figure 2.  Vblock Platform in the Mega Test Lab 
+
+ 
+
+ 
+
+Role of the Vblock Platform 
+The Vblock platform performed a number of roles within the EANTC Cloud Mega Test as the converged 
+infrastructure solution for the primary data center created for the test. Because the Vblock platform has been 
+designed from the ground up to handle virtualized workloads, it made the ideal solution to manage the mix of 
+workloads that the Cloud Mega Test required. Those workloads are noted below: 
+  Cisco Media Suite. An explosion of rich media experiences, and video in particular, has been a trend that 
+
+has emerged simultaneously with the arrival of the cloud. In fact, the two are often closely tied together. 
+Companies such as Netflix offer a cloud-based alternative to the bricks-and-mortar video rental store. The 
+Cisco Media Suite allows a provider of cloud-based consumer video services to automate the workflow 
+involved in acquiring, transforming, delivering, and monetizing the high volumes of large media assets 
+involved in such a service. It includes not only the workflow engine itself, but also specific functionality 
+within the workflow, such as encoding, transcoding, entitlement, etc., that are required by any provider of 
+this type of service. The Cisco Media Suite (CMS), along with the Cisco Media Processor (CMP) and 
+Cisco Transcode Manager (CTM), was all implemented on the Vblock platform. 
+
+  Cisco Content Distribution System. Continuing to strengthen the ties between the cloud and media, the 
+Cisco Content Distribution System (CDS) provides a simple way for providers of cloud-based services to 
+implement a content delivery network, or CDN. This CDN can support any number of services, but it is 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+5 
+
+ 
+
+particularly suited to the delivery of video services for consumers or enterprises. The system is designed 
+to efficiently store, cache, and stream large volumes of content, as would be required by online, mobile, or 
+set-top-based video-on-demand services focused on Internet-based content. In the data center, the 
+Content Adaptation Engine (CAE) component of the CDS system was run on the Vblock platform. The 
+CAE software running on the Vblock platform performed all of the near-line functions required to feed the 
+content delivery network, including content retrieval, bulk transcoding and transrating, rewrapping, and 
+dynamic catalog creation. 
+
+  Siebel Customer Relationship Management Software. Media is not the only driver for the cloud. 
+
+Whether a cloud is implemented by a service provider as a revenue-generating offer or by an enterprise 
+looking to more effectively deliver IT services, there is a good chance that enterprise business 
+applications including but certainly not limited to customer relationship management (CRM) software is 
+likely to run on that cloud. The EANTC Cloud Mega Test team chose Siebel CRM as a representative 
+enterprise-class business application to provide a test environment that precisely matched real-world 
+business applications. The Web and presentation tiers for the entire Siebel CRM suite used in the Cloud 
+Mega Test were deployed on the Vblock platform. This system emulated a 1,200-seat call center running 
+on the Vblock platform, against which the test engineers ran simulated transactions to a cloned copy of a 
+real CRM database to test both performance and reliability. 
+
+  BMC Software Cloud Lifecycle Manager. In order to effectively implement a cloud, automation of the 
+
+individual infrastructure platforms is not enough. It is also necessary to implement an overarching 
+management and orchestration (M&O) system for the entire data center and network environments. 
+Often, these systems run on the very cloud they are going to be orchestrating. For the Cloud Mega Test, 
+the Cloud Lifecycle Manager (CLM) from BMC Software was used. The entire BMC CLM system was 
+deployed on the Vblock platform, which included not only the CLM components that interact with the 
+discrete elements in the network and data center, but also those that create the end-user or subscriber 
+portal used for self-service ordering and automated fulfillment. 
+
+  DHCPv6 Servers. IPv6 is one of those nitty-gritty details that no one likes to think about. In fact, the 
+
+industry’s reluctance to do exactly that has led to the situation in which it now finds itself, where IP (v4) 
+address space is quickly becoming exhausted and a new solution is needed quickly. Especially as mobile 
+devices and machine-to-machine communications proliferate, IPv6 is going to be a critical element of any 
+successful cloud implementation. That means that it is critical to test whether the cloud can quickly and 
+efficiently assign and reclaim those IPv6 addresses as devices arrive, leave, and move around in the 
+cloud. Just like everyone prefers to think about the paint and paper that go into a house, it’s the lumber 
+and nails that need the most testing. The DHCP servers that handed out those IPv6 addresses to the 
+large number of emulated IPv6 devices in the Cloud Mega Test were all implemented on the Vblock 
+platform running the Cisco Network Registrar (CNR) in VMware-based virtual machines. 
+
+  Ixia IxNetwork and IxLoad Network and Application Simulation Software. Of course, it’s important to 
+
+test that the cloud infrastructure is capable of handling the volumes of traffic, applications, and data 
+created by the industry’s steady and relentless march to the cloud. In the context of a test, it’s naturally 
+not possible to deploy the number of actual devices or applications that would provide a realistic load on 
+the cloud infrastructure. The media, business, and management applications tested in the Mega Test 
+were just a small sample of the possibilities. Any real cloud is likely to have orders of magnitude that are 
+much more. Ixia Corporation provides the next best thing: a simulated application and network load 
+generator that a testing agency can use to mimic real-world conditions under a variety of circumstances. 
+Ixia’s IxLoad and IxNetwork applications were also deployed on the Vblock platform. 
+
+Diversity is the key fact to note about the workloads listed above and deployed on the Vblock platform for the 
+EANTC Cloud Mega Test. There are consumer-focused, entertainment-centric applications, and enterprise-
+focused business applications. There are batch processes, transaction-oriented processes, and near-real-time 
+processes. There are user-facing workloads and back-office workloads. And the Vblock platform was able to 
+handle all of these workloads effortlessly, deployed under tight time frames, and tested to rigorous standards. 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+6 
+
+ 
+
+The role of the Vblock platform in the EANTC Cloud Mega Test was to provide a converged infrastructure platform 
+capable of running a wide variety of workloads with a broad range of performance requirements in a highly 
+virtualized environment. The platform had to be quick to deploy, simple to manage, and stable in operation so as 
+to not interfere with the actual tests. The fact that the Vblock platform is barely mentioned in any of the test reports 
+is a testament that it filled its role precisely as required. 
+
+Why the Vblock Platform Was Used 
+The previous section hints at a few of the reasons that the Vblock platform was used in the EANTC Cloud Mega 
+Test. However, there were more reasons. Specifically, the Vblock platform provided many benefits to the large, 
+extended team of both technical and business leaders responsible for making the EANTC Cloud Mega Test 
+happen.   
+
+On the technical side, designers, deployment specialists, equipment operators, test engineers, and others had to 
+place a large amount of equipment and software into service in a short amount of time. It all had to work properly 
+from the outset, or else the test would be of their implementation and operations skills, not of the functionality of 
+the cloud. Moreover, it had to be easy to manage as EANTC progressed through its tests, with various 
+applications being deployed and decommissioned for different phases of the test. 
+
+On the business side, managers were concerned with the time frames too, because extended deployment 
+translated into either increased cost or reduced scope. This concern was not only true of deployment but also of 
+the test itself. The longer the downtime between test phases, the more costly the overall test would be as well. 
+Therefore, nimbleness was a critical factor for business success. In addition, stability factored into the business 
+equation. Any glitches related to the infrastructure not specifically under test would mean further delays and 
+repeats, or possible forfeiture of the opportunity to complete a particular test phase.   
+
+In slightly greater detail, what follows are just a few of the reasons that Cisco suggested the Vblock platform for 
+the converged infrastructure solution in the EANTC Cloud Mega Test: 
+  Time to Service. Getting the cloud up and running was critical for the Cloud Mega Test. As mentioned 
+
+previously, the focus of the test was on the end-to-end cloud infrastructure and services. The time it took 
+to build and QA the infrastructure was not part of the test. Thus, any delays in implementation, integration, 
+or quality assurance would take away from—and add expense to—the program without adding to its 
+value. The Vblock platform was the best way to implement a fully functional cloud data center in the 
+shortest possible time. 
+
+  Design Simplicity. The team responsible for the test was able to rely on the fact that the Vblock platform 
+
+is pre-integrated and pre-tested to a stringent set of constraints. These restrictions could be taken as a 
+given in the test design process, freeing designers to focus on more important elements of the actual 
+Cloud Mega Test instead of repeating design and integration processes common and well established 
+throughout the data center infrastructure industry. 
+
+  Platform Stability. The test team knew that integration and quality-control issues can often arise when 
+various elements of compute, storage, data center networking, virtualization, and element management 
+systems are brought together. Due in part to design simplicity, but also largely a result of the enormous 
+effort invested by VCE to thoroughly engineer and test every Vblock platform, the test team was able to 
+largely avoid those issues, relying on the stability of the platform to perform as specified. 
+
+  Virtualization Awareness. For the broad range of mixed workloads to successfully coexist in a highly 
+virtualized environment, the compute, network, and storage elements of the converged infrastructure 
+solution had to be virtualization-aware. Because the Vblock platform includes the Cisco UCS servers and 
+Cisco Nexus family of switches, as well as the VMAX platform from VCE, the test team knew they were 
+getting a converged infrastructure solution tightly integrated with virtualization technology from VMware. 
+
+  Capacity. Large-scale enterprise-class and carrier-class storage arrays were required to house the 
+
+tremendous volume of application data being used in the test. These storage arrays included video assets 
+that consume substantial amounts of storage capacity as well as a sizable amount of structured data from 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+7 
+
+ 
+
+business applications. All of this capacity was required for the applications tested within the scope of the 
+program, and the Vblock Series 700MX that was used included an EMC Symmetrix VMAX storage array 
+to provide ample capacity with plenty of room to demonstrate growth capabilities. 
+
+  Automated Management. The test plan called for a large number of tests to be performed in a short 
+
+period that the budget for the program allocated to the actual testing. Any delays in changing the test-bed 
+configuration from one test phase to another would extend the time required for testing. That would mean 
+either fewer tests would be performed, or the tests would take longer and therefore cost more. The 
+management solutions integrated into every Vblock platform helped the test team to automate these 
+processes as much as possible, enabling them to maximize the testing time allocated within the project 
+scope. 
+
+The above is just a sampling of the benefits that the EANTC Cloud Mega Test team derived from using a Vblock 
+platform as the heart of the largest data center in their test infrastructure. Individual participants might cite details 
+such as the convenience of knowing that specific compute blades have been tested with the certain storage 
+firmware revisions, eliminating that task from their to-do list. Or they might cite the technical proficiency of the VCE 
+engineering team that stood behind the Vblock platform to ensure smooth and rapid deployment. Regardless, the 
+Cloud Mega Test had at its heart a Vblock platform, and that one simple factor was a critical element in the 
+overwhelming success of the test. 
+
+Conclusion 
+The EANTC Cloud Mega Test was a tremendously complex undertaking. It tested infrastructure from the data 
+center, across the network, and all the way out to the end-user. The test didn’t focus on only one narrow definition 
+of the cloud, such as a certain business application or a specific way of delivering video to consumers. Rather, it 
+tested a broad swath of applications that might run in the cloud—and it ran them all together. It was a grueling test 
+for the infrastructure on which clouds are built. 
+
+Naturally, a large number of these very diverse workloads run in the primary data center from which the cloud 
+services are delivered. At the heart of that data center, running these workloads in a highly virtualized 
+environment, was the Vblock platform. Everything from near-real-time applications to transaction-based 
+applications to batch workloads ran in a virtual environment on the Vblock platform. 
+
+The benefits that the Vblock platform provided to the test team were clear. It simplified the test environment, 
+reducing time to service and the cost. It automated operations, ensuring that the full and tightly scheduled test 
+plan could be executed in the limited time frame provided. Moreover, it transformed the way that the test team 
+designed and implemented the test, providing a converged infrastructure platform that was pre-tested and pre-
+integrated to maximize capabilities in the virtualized environment. 
+
+While the end-to-end cloud infrastructure was clearly the superstar of the EANTC Cloud Mega Test, as intended 
+by Light Reading, the Vblock platform performed quietly, effectively, and flawlessly behind the scenes in support 
+of a very complex and demanding operation. 
+
+Next Steps  
+To learn more about the EANTC Cloud Mega Test, visit the VCE Mega Test site at 
+http://www.vce.com/cloudmegatest.   
+
+To learn more about how to enjoy the benefits of pervasive virtualization with Vblock Infrastructure Platforms, visit 
+http://www.vce.com or contact an authorized VCE reseller.  
+
+ 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED “AS IS.” VCE MAKES NO REPRESENTATIONS 
+OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN THIS PUBLICATION, AND 
+SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR MERCHANTABILITY OR FITNESS FOR A 
+PARTICULAR PURPOSE.  
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ABOUT VCE 
+VCE, the Virtual Computing Environment Company formed by Cisco and EMC with investments from 
+VMware and Intel, accelerates the adoption of converged infrastructure and cloud-based computing models 
+that dramatically reduce the cost of IT while improving time to market for our customers. VCE, through the 
+Vblock platform, delivers the industry's first completely integrated IT offering with end-to-end vendor 
+accountability. VCE's prepackaged solutions are available through an extensive partner network, and cover 
+horizontal applications, vertical industry offerings, and application development environments, allowing 
+customers to focus on business innovation instead of integrating, validating and managing IT infrastructure. 
+For more information, go to www.vce.com. 
+ 
+
+ 
+Copyright © 2012 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC. 
+and/or its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+© 2012 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+9 
+
+ 
+
+

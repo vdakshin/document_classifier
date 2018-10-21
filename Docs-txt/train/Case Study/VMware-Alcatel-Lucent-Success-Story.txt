@@ -1,0 +1,430 @@
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ 
+
+ 
+
+Alcatel-Lucent® Wireless Cloud Element, Powered by VMware  
+  
+
+ 
+
+   
+
+ 
+
+  
+
+The network enables the cloud, and 
+communications service providers 
+run the networks. That's a very 
+powerful combination. The Alcatel-
+Lucent® WCE solution, powered by 
+VMware vSphere®, offers lower 
+latency, better control of bandwidth, 
+and the ability to provide a 
+guaranteed quality of service for 
+virtual RNCs. This enables service 
+providers to adjust to rapid change.  
+
+— Adolfo Hernandez, President, of Alcatel-
+Lucent's Software, Services & Solutions Group 
+
+KE Y   HI G HLIG HTS  
+
+Challenge  
+
+To enable communication service providers 
+to run the Alcatel -Lucent® Wireless Cloud 
+Element (WCE) using a centrally-managed, 
+cloud computing architecture. 
+
+Solution  
+Alcatel-Lucent® Wireless Cloud Element 
+solution that is powered by the VMware ® 
+virtualization and cloud computing platform. 
+For more information, contact an Alcatel -
+Lucent sales representative. 
+
+Highlights  
+  Provides a unified cloud architecture that 
+
+enables computing resources and 
+infrastructure on demand. 
+
+  Host s network function types on a range of 
+
+industry standard, high-volume servers, 
+switches, and storage. 
+
+  Enables multiple, fully virtualized Radio 
+
+Network Controllers (RNCs), and provides 
+rapid scaling to quickly and efficiently 
+support massive RNC operations. 
+
+  Reduces the total cost of ownership (TCO) 
+
+with significant savings from reduced 
+hardware and infrastructure. 
+
+  Increases the return on investment (ROI) 
+
+due to operational efficiencies and 
+increased flexibility though virtualization. 
+
+  As a foundation technology, VMware 
+
+virtualization enables next gen solutions 
+and network function virtualization. 
+
+Alcatel-Lucent® Wireless Cloud Element, 
+Powered by VMware, Enables Flexible, 
+Scalable, High Performance Virtual RNCs 
+
+ 
+
+"Alcatel-Lucent® is truly leading with innovation in the Radio Network 
+
+Controller market. Their Wireless Cloud Element Radio Network 
+
+Controller (WCE RNC) is available now and it offers true network 
+
+function virtualization on VMware. The Alcatel-Lucent WCE RNC is a key 
+
+industry differentiator that offers a virtualized user plane, as well as 
+
+control plane, that is cloud ready."  
+
+Sanjay Katyal, VMware Vice President of the Global Strategic Alliances Organization  
+
+ 
+
+Alcatel-Lucent® wants to deliver a “carrier cloud” to communications service 
+providers  One that brings the benefits of the cloud to service provider 
+networks and business operations  using secure, reliable, high-
+performance communications networks. This includes a unified Wireless 
+Cloud Element (WCE) that allows service providers to enable fully 
+virtualized Radio Network Controllers (RNCs). This success story describes 
+how Alcatel-Lucent developed their WCE solution, powered by the VMware 
+vSphere®, and the excellent results they achieved in this effort. 
+
+Introduction  
+
+The mission of Alcatel-Lucent (http://www.alcatel-lucent.com/) is to realize 
+the potential of a connected world. Alcatel-Lucent is at the forefront of 
+global communications, providing products and innovations in IP and cloud 
+networking, as well as ultra-broadband fixed and wireless access, to 
+service providers and customers worldwide. Alcatel-Lucent is a recognized 
+leader for innovation in making global communications more sustainable, 
+affordable, and accessible. With a revenue of $14.45 billion in fiscal 2012, 
+Alcatel-Lucent has over 72,000 employees worldwide. 
+
+Alcatel-Lucent Wireless Cloud Element  
+
+The public cloud model enables applications and data storage to be 
+accessed on demand from data centers across the internet. However, 
+some services require a level of quality and performance that the public 
+cloud model is unable to provide.  
+
+The Alcatel-Lucent® Wireless Cloud Element (WCE) solution delivers a 
+highly flexible, scalable, high performance, cost efficient unified cloud 
+computing architecture. 
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /1  
+
+ 
+ 
+
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ Alcatel-Lucent® Wireless Cloud Element, Powered by VMware   
+
+ 
+
+“Network functions virtualization 
+consolidates many network equipment 
+types to industry standard high-
+volume servers, switches, and storage 
+using virtualization. These network 
+equipment types can be moved to, or 
+instantiated in, various network 
+locations, without the need to install 
+new equipment. The benefits include 
+reduced CAPEX and OPEX, reduced 
+time-to-market and improved ROI." 
+
+— See http://www.etsi.org/technologies-
+
+clusters/technologies/nfv  
+
+ 
+
+The Alcatel-Lucent WCE solution provides the same cloud architecture that 
+enables a data center to deliver virtually unlimited computing resources. It 
+uses virtualization to decouple the one-to-one relationship between the 
+physical network element and network functions, where multiple virtual 
+RNCs can share a single data center.  
+
+The WCE solution spans a wide variety of deployment models. These 
+include single- or multi-technology (WCDMA/LTE) solutions, large 
+configurations built by adding additional commodity hardware, and software 
+deployment on top of an existing cloud. Virtualization of the controller 
+applications and independence from the computing platform addresses the 
+entire market, while controlling verification costs. 
+
+The WCE solution delivers lower latency, better control of bandwidth, and 
+the ability to provide a guaranteed quality of service (QoS). By doing so, 
+the WCE solution allows service providers to meet the stringent 
+performance demands of consumers and enterprises. The virtualization of 
+network functions consolidates many network equipment types into a range 
+of industry standard, high-volume servers, switches, and storage.  
+
+PROFILE 
+
+ 
+
+In addition, the WCE solution implements network functions in software to 
+enable them to be moved or instantiated at various network locations, 
+without requiring new equipment to be installed, and it maintains code 
+compatibility.  
+
+Industry 
+Global communications sy stems /  services 
+
+Corporate Headquarters 
+3 av. Octave Gréard 
+
+75007 Paris, France 
+
+US Executiv e Offices 
+
+600-700 Mountain Avenue 
+
+Murray Hill, New Jersey, U.S.A. 
+
+Solution 
+
+Wireless Cloud Element (WCE)  
+
+ 
+
+V M WARE   AT  WO RK  
+
+VMw are vSphere 5.5 / ESXi 5.5  
+
+  VMware vSphere® 5.5 Enterprise 
+
+Edition ® 
+
+  ESXi ® 5.5 
+
+VMw are v Center 
+
+  VMware ® vCenter Server® 5.5 
+
+ 
+
+DE P LOY ME NT  E NV I RO NME NT 
+
+Primary application 
+
+Wireless Cloud Element (WCE) 
+
+Alcatel-Lucent WCE, Powered by VMware  
+
+Alcatel-Lucent chose VMware®, a key partner, to power WCE’s high 
+performance cloud architecture using its VMware vSphere 5.5 virtualization 
+and cloud computing platform, with the ESXi 5.5 hypervisor. Alcatel-Lucent 
+picked VMware vSphere because it provides an optimal platform that is 
+flexible, scalable, highly available, and secure. VMware vSphere is also 
+best suited to increase the consolidation of network equipment types to 
+industry standard, high volume servers and infrastructure. 
+
+Optimal, Agile, Secure Cloud Architecture  
+
+For the WCE solution, VMware’s cloud architecture provides for:  
+
+  Multi-tenancy: W-CDMA and LTE applications share physical 
+
+resources. Multi-tenancy provides for secure segregation of resources 
+and data through instance isolation and VMware resource pools. 
+
+  Horizontal scalability: Flexible configurations control the number of 
+
+virtual machines used within a single tenant, taking advantage of large-
+scale computing resources. 
+
+  Elastic capacity: Provides the elasticity needed to extend and 
+increase resources on demand, and to rapidly expand resource 
+capabilities. 
+
+  Power control: As capacity breathes throughout the day, hardware 
+
+using operating system power control, can cycle up and down, thereby 
+increasing energy efficiency. 
+
+  Geographic redundancy: Ensures that a fault in one location does not 
+
+disable the entire system, providing for reliability and availability. 
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /2  
+
+ 
+ 
+
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ Alcatel-Lucent® Wireless Cloud Element, Powered by VMware   
+
+ 
+
+  Zero-downtime maintenance: Using the inherent capabilities of 
+
+virtualization, shadow tenants can be created for fast enablement and 
+rapid deployment of new software or fixes during maintenance and 
+upgrade procedures.  
+
+For the WCE solution, VMware vSphere 5.5 virtualization abstracts the 
+physical hardware from the x86 Linux Redhat Enterprise guest operating 
+systems. VMware vSphere provides for rapid integration, rapid allocation of 
+computing resources, and rapid access to resources on demand. It 
+facilitates operational efficiencies, including faster response times, 
+immediate access to datacenter resources, extensive security to safeguard 
+virtual servers, personal information, and data, and simplified management.  
+
+The WCE solution uses VMware vSphere® Distributed Resource 
+Scheduler™ (DRS) in semi-automatic mode for virtual machine assignment. 
+DRS anti-affinity rules provide for high availability, and to ensure that active 
+and standby virtual machines do not reside on the same physical host. 
+
+VMware vSphere® High Availability® (HA) ensures that applications run 
+reliably in the event of an unplanned hardware failure. When a host failure 
+occurs and the active  virtual machine fails, VMware HA auto-restarts the 
+active virtual machine on the first available host in the VMware cluster to 
+standby mode, making the system redundant and highly available again in 
+a few minutes.  
+
+VMware® vCenter Server® provides for centralized monitoring, including 
+aggregating all resident virtual machines and hosts. vCenter uses patented 
+analytics and an integrated approach to dramatically simplify management 
+tasks, such as to provide sufficient CPU and memory resources. vCenter 
+proactively ensures health, efficiency, and compliance with IT policies.  
+
+Scalable, High Performance, Reliable Virtual Infrastructure  
+
+The Alcatel-Lucent WCE solution uses VMware infrastructure to enable 
+virtual networking elements that are similar to those used in the physical 
+environment, but with some advanced capabilities. 
+
+The VMware infrastructure used in the WCE solution includes: 
+
+  Virtual network interface card (vNIC). Provides support for at least 8 
+VMXNET3  vNICs per virtual machine. Each virtual machine has its own 
+vNIC.  
+
+  Virtual Distributed Switch (vDS). A vSphere vDS acts as a single 
+
+virtual switch across all associated hosts that is managed by 
+administrators, thereby ensuring a consistent network configuration.  
+
+  VLANs. Provides support to enable virtual networks to join physical 
+
+VLANs or to support QoS policies. VLAN tagging on the source or 
+destination IP is based on the vNICs. 
+
+  LBT load balancing. LBT is an advanced vDS feature that provides for 
+
+dynamic balancing of traffic between port groups. 
+
+  Central Management. Network policies on vDS get pushed down to 
+
+the host automatically when the host gets added to the distributed 
+switch. 
+
+  
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /3  
+
+ 
+
+ 
+
+ 
+
+The Results  WCE with Virtual RNC = Carrier Grade Performance  
+
+Alcatel-Lucent and VMware worked together to test the WCE solution 
+running the virtual RNC. The initial results have been very encouraging. 
+They demonstrate that the Alcatel-Lucent WCE running on the VMware 
+platform delivers excellent carrier-grade performance. All of the testing 
+results passed well within acceptable limits. The key results include: 
+
+  Significantly, the virtual RNC surpassed the capacity that any Alcatel-
+Lucent RNC has ever achieved. The load level greatly exceeded the 
+capacity of the traffic generators and the test infrastructure had to be 
+expanded in order to continue scaling. 
+
+  The  virtual RNC was able to immediately take advantage of the next 
+
+generation of hardware, leverage the  virtualization benefits provided by 
+the VMware ESXi hypervisor, and realize a greater than 50 percent 
+capacity gain with no software changes. 
+
+  Regression tests on all of the standard traffic profiles show excellent 
+key performance indicators (KPIs) at rates that greatly exceeded the 
+capabilities of the currently deployed RNC.  
+
+  The  virtual RNC was able to span multiple shelves of computing 
+
+equipment on the first attempt, demonstrating the strength of 
+virtualization to decouple applications from the physical environment.  
+
+  The multi-shelf test also demonstrated the decoupling of the 
+
+virtualization environment itself, as two versions of the VMware ESXi 
+hypervisor where used simultaneously. This type of situation may be 
+present during an infrastructure upgrade. 
+
+  The shadow upgrade procedure has proven to be remarkably powerful 
+
+for the virtual RNC. Packet data connections were demonstrated to 
+automatically reconnect after the upgrade. The cell site activation 
+occurred so rapidly after shadow upgrade that the data users were 
+unaware of the magnitude of change in the network. 
+
+  Elastic growth was tested within a virtual RNC under load by adding UE 
+Management Unit nodes (UMUs) to a virtual RNC already running twice 
+the maximum capacity of the 9370 RNC. Traffic was immediately 
+dispatched to the UMUs. Within 20 to 30 seconds, the traffic in the 
+virtual RNC was evenly distributed across all of the UMUs. 
+
+The test results show that the Alcatel-Lucent WCE solution offers one of 
+the most advanced systems available. Alcatel-Lucent WCE provides for the 
+dynamic allocation of resources using an elastic, highly available cloud 
+architecture, powered by VMware. It also delivers best-in-class 
+performance when running on Linux-based software 
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /4  
+
+© 2013 VMware Corporation. All rights reserved. This success story is for informational purposes only. VMWARE MAKES NO WARRANTIES, EXPRESS OR IMPLIED, IN THIS SUMMARY. 
+VMware, the VMware logo, vSphere, and the  vSphere logo are either registered trademarks or trademarks of VMware Corporation in the United States and/or other countries. All other trademarks 
+are property of their respective owners. Document published November 2013.  
+
+ PARTNER SUCCESS STORY  Alcatel-Lucent® Wireless Cloud Element, Powered by VMware   

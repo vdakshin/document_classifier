@@ -1,0 +1,207 @@
+PARTNER SALES GUIDE 
+
+FOR EMC ENVIRONMENTS
+
+Virtual Instruments Summary
+VI is the leader in end-to-end Infrastructure Performance Management (IPM) for 
+physical, virtual and cloud computing environments—helping IT organizations monitor, 
+troubleshoot and optimize the performance of mission-critical applications. 
+
+VirtualWisdom® is VI’s IPM platform that provides real-time visibility into the 
+performance, health and utilization of heterogeneous open system 
+environments—enabling IT organizations to guarantee availability and performance of 
+mission critical applications, while lowering total cost of infrastructure ownership.
+
+VI and EMC2 Select Strategic Infrastructure Partnership:
+Together EMC and VI are transforming cloud infrastructures, making them simpler 
+to manage and more efficient to operate. The combined solutions deliver a 
+powerful, efficient, and reliable infrastructure, enabled with real-time monitoring to 
+ensure critical workloads and SLA’s are aligned to the infrastructure. 
+
+VirtualWisdom® Architecture
+
+ProbeVM
+
+ProbeSW
+
+Servers & VMs
+
+FC Switch Fabric
+
+Not buying 
+VirtualWisdom for 
+your SAN is like 
+hospitals not buying 
+heart monitors.
+
+Storage Arrays
+
+Senior Storage Engineer,
+Large US Based Manufacturer
+
+Virtual Server Probe
+
+SAN Performance Probe
+
+SANInsight® TAP Patch Panel
+
+•  VirtualWisdom Dashboard correlates data from all probes into a single view in real time
+•  SAN Availability Probe monitors FC switches via SNMP for physical errors 
+•  SAN Performance Probe & TAPs monitors FC links in real-time ensuring application performance
+•  Virtual Server Probe monitors performance & utilization of virtual servers
+
+Phase 3
+
+Phase 4
+
+Phase 2
+
+Transforming IT with VirtualWisdom 
+The journey of transforming IT begins with gaining insight and ends with strategic optimization. 
+Virtualized environment complexity coupled with constantly changing infrastructure(s) has 
+created "Fabric Blindness" which is an ongoing threat to information availability and IT agility.
+Steps to Transforming IT with VI
+Phase 1
+
+Visibility: Data collected from all points correlated, analyzed and 
+populated into VirtualWisdom
+De-Risking: Flagged issues in infrastructure addressed, Application 
+workloads analyzed and stabilized
+Operational Excellence: Applications optimized, ongoing stability 
+achieved, proactive alerting initiated
+Strategic Optimization: Business SLAs aligned with architecture and 
+resources, Infrastructure efficiency and cost under control
+VirtualWisdom Benefits to EMC Customers
+Guarantees application performance: Real-time end-to-end view of all transactions 
+from the VM to all heterogeneous storage arrays, including EMC® VMAX®, EMC® 
+VNX®, EMC® DataDomain®, EMC® VPLEX, and Vblock™  systems; ensures 
+uninterrupted access and performance of mission-critical applications
+Guarantees application availability: Real-time alerts enables proactive addressing 
+of problems before they impact business operations
+Reduces troubleshooting time: Real-time analysis dramatically expedites 
+troubleshooting by proving conclusively whether the problem lies in the SAN or elsewhere; 
+VirtualWisdom accelerates SAN troubleshooting by days, weeks or even months
+Improves resource utilization: Reduce over-provisioning without risking or 
+impacting performance; attain complete insight into cloud infrastructure
+Lowers risk and cost: Avoid costly application outages and slowdowns, and extend 
+budget by using resources more efficiently 
+Build a better cloud infrastructure: Eliminate the risk of deploying mission-critical 
+applications in a private cloud through dedicated, comprehensive monitoring, 
+measurement and analysis to ensure SLA adherence
+
+Resources
+Contact EMC Select Team
+Scott.Ammidown@emc.com
+More information on VirtualWisdom
+Look up Virtual Instruments on Powerlink
+virtualinstruments.com/products/about-virtualwisdom
+Partner Contacts
+dl-partneropportunities@virtualinstruments.com
+
+Ordering
+VirtualWisdom is available via 
+Direct Express and Channel 
+Express via EMC Select
+
+Adding Value
+VirtualWisdom® gives EMC a significant advantage over competitors by cutting 
+through virtualization layers and delivering real-time visibility. Customers benefit 
+from real-time transparency, improved performance and availability, and lower total 
+cost for supporting and optimizing infrastructure performance.
+Who To Target
+Customers with mission-critical applications; they require the most powerful, 
+efficient, end-to-end, virtualized environment. They must be monitored in real-time 
+to maintain mission critical application SLA’s. 
+
+Existing EMC customers with critical or revenue generating applications
+Performance and availability are crucial to business profitability
+New EMC deployments 
+Proactively protecting infrastructures guarantees application performance
+Complex physical infrastructures
+Lack visibility/transparency which impacts business operations
+Rapidly growing virtual environments
+Virtualization greatly limits visibility and capability to monitor the success of 
+business-critical deployments
+New cloud initiatives
+Moving mission critical applications to the cloud is being stopped/postponed 
+because of the inability to guarantee availability and performance
+
+CUSTOMER 
+CHALLENGES
+
+EXPLORATORY 
+QUESTIONS
+
+Visibility
+
+Availability
+
+Performance
+
+Utilization
+
+“Can you tell me about your infrastructure and how it is changing?”
+“What is the business impact if your mission critical applications are not 
+performing?”
+
+“Can you tell me about any SAN related slowdowns or outages you have 
+had recently?”
+“What’s the value to your organization if you could reduce the risk of 
+virtualizing mission-critical applications?”
+
+“How do you ensure that your critical applications are tuned for optimal 
+performance?”
+“How do you establish, monitor and maintain your performance SLAs?”
+
+“Do you plan on any new storage or SAN switch purchases in the near future?”
+“Do you have a clear understanding of how your resources are being 
+utilized?”
+
+What To Sell: Products and Services
+VI READY - TAP the Physical Infrastructure
+Tapping is the 1st step to accelerating problem resolution.  Installing TAPs when 
+new SAN and storage infrastructure is deployed, ensures that your customer’s 
+infrastructure is VI Ready
+Deliver Services or Proof of Value
+Deliver proactive health scan services, emergency troubleshooting services, or give 
+visibility to the customer of VI’s technical and business value with a Proof of Value (POV)
+Comprehensive Real-Time Infrastructure Monitoring (Hardware/Software)
+Monitoring with TAPs, hardware and software probes - Continuous optimization of 
+performance, utilization, and availability for mission critical applications and infrastructure
+
+Sell TAPs f Engage Virtual Instruments Services f Sell Virtual Instruments Solutions
+
+VI Ready
+Sell TAP Patch Panels 
+at time of storage or 
+networking purchase
+
+VI Services
+Health Scan
+SOS4SANS
+Proof of Value
+
+Implement Full Solution 
+with HW & SW
+VirtualWisdom
+Virtual Server Probe
+SAN Availability Probe
+SAN Performance Probe
+
+How to Overcome Objections
+“I already have ProSphere and Watch-4-Net, Why do I need VirtualWisdom?”
+Answer: These tools and are great for providing SAN management capabilities, 
+VirtualWisdom complements them and add value by enabling real-time performance 
+management of mission-critical applications. VirtualWisdom provides detailed performance 
+metrics down to the second!
+“TAPs can be very disruptive, I am not sure I want them in my environment!”
+Answer: They are passive devices and add zero degradation to the infrastructure. TAPs 
+are very easily installed during a maintenance window or as you deploy new storage 
+infrastructure. 
+“I do not have a budget right now, how can I justify this to my CFO?”
+Answer: If the business impact of an outage can be quantified, then payback can 
+be almost immediate, otherwise payback is typically within a year as problem 
+resolution times and trouble tickets are dramatically reduced and SAN purchases 
+are more strategically aligned to the needs of the business. 
+
+

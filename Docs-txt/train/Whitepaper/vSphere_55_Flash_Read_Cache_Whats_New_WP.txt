@@ -1,0 +1,432 @@
+What’s New in  
+VMware vSphere®  
+Flash Read Cache®
+
+T E C H N I C A L   M A R K E T I N G   D O C U M E N T A T I O N
+v   0 . 1 / S Ep T E M b E R   2 0 1 3
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+Table of Contents
+
+Introduction  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+1.1  Software-Defined Datacenter   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 3
+1.2  Software-Defined Storage   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 3
+1.3  What is vSphere Flash Read Cache?   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 3
+1.3.1  vSphere Flash Read Cache Infrastructure  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 4
+1.3.2  Virtual Flash Read Cache Software  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 5
+1.4  vSphere Flash Read Cache Integration with vSphere   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 6
+1.5  vSphere Flash Read Cache Use Cases  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 7
+2. Requirements  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 8
+2.1  vSphere Requirements  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.1.1  vCenter Server  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.1.2  vSphere Hosts  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.1.3  Virtual Machines  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.2  Storage Requirements  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.2.1  Flash-Based Devices (SSD, Flash Cards)   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.3  Network Requirements   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+2.3.1  Network  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 8
+3. Installation and Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 9
+3.1  Virtual Flash Resource Configuration  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 9
+3.2  Virtual Flash Resource Properties  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 10
+3.3  Configuration of Virtual Flash Host Swap Cache   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 10
+3.4  Configuration of Virtual Flash Read Cache  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . . 10
+Conclusion   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+Acknowledgments  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+About the Author   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 12
+
+T E C H N I C A L   W H I T E  p A p E R   /   2
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+Introduction
+
+1.1  Software-Defined Datacenter
+The annual user conference for VMware, VMworld 2012, featured the introduction of its software-defined 
+datacenter (SDDC), a visionary cloud architecture in which all the pillars of the datacenter, including compute, 
+storage, networks and the associated services, are virtualized. 
+
+In this white paper, we focus on one pillar of the software-defined datacenter of VMware® – storage.  
+Focusing on this pillar, we draw attention to a new product released with VMware vSphere® 5.5 called  
+VMware vSphere Flash Read Cache®, looking at its role in the pillar and its part in the overall vision of SDDC.
+
+1.2  Software-Defined Storage
+The plan of VMware for SDDC focuses on a set of VMware initiatives around local storage, shared storage and 
+storage/data services. In essence, we want to make vSphere a platform for storage services.
+
+Software-defined storage is designed to provide storage services and service-level agreement automation 
+through a software layer on hosts that integrates with and abstracts the underlying hardware.
+
+This document examines in detail vSphere Flash Read Cache, a solution that provides persistent Flash-based 
+storage tier services by utilizing local Flash-based devices on vSphere hosts.
+
+1.3  What is vSphere Flash Read Cache?
+vSphere Flash Read Cache is a new Flash-based storage solution from VMware that is fully integrated with 
+vSphere. The vSphere Flash Read Cache design is based on a framework that enables the virtualization and 
+management of local Flash-based devices in vSphere.
+
+The framework provides a centralized management platform for all locally attached Flash-based devices, and it 
+maximizes their utilization throughout virtualized infrastructures.
+
+The vSphere Flash Read Cache framework design is based on the following two major components:
+
+•	vSphere	Flash	Read	Cache	infrastructure	
+•	vSphere	Flash	Read	Cache	software
+
+T E C H N I C A L   W H I T E  p A p E R   /   3
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+vSphere Flash Read Cache Software
+
+vSphere Flash Read Cache Infrastructure
+
+vSphere
+
+CPU Pool
+
+Memory Pool
+
+Flash Pool
+
+New
+
+SAN/NAS
+
+Figure 1.
+
+vSphere Flash Read Cache enables the pooling of multiple Flash-based devices into a single consumable 
+vSphere construct called a Virtual Flash Resource. The Virtual Flash Resource is consumed and managed in the 
+same way CPU and memory are done today in vSphere.
+
+1.3.1  vSphere Flash Read Cache Infrastructure
+The vSphere Flash Read Cache infrastructure integrates the vSphere hosts’ locally attached Flash-based devices 
+into the vSphere storage stack. This integration delivers a Flash management platform that enables the pooling 
+of Flash-based devices into a Virtual Flash Resource.
+
+The vSphere Flash Read Cache infrastructure becomes the resource manager and broker for the consumption of 
+the Virtual Flash Resources and it also enforces admission control policies. The Virtual Flash Resource construct 
+is a shared resource and consumable by two features called Virtual Flash Host Swap Cache for VMware vSphere 
+Hypervisor and Virtual Flash Read Cache for virtual machines.
+
+T E C H N I C A L   W H I T E  p A p E R   /   4
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+APP
+OS
+
+vSphere Flash 
+Read Cache
+
+vSphere Flash 
+Read Cache
+
+vSphere Flash 
+Read Cache
+
+vSphere Flash Read Cache Infrastructure
+
+vSphere
+
+SSD
+
+SSD
+
+SSD
+
+SSD
+
+SSD
+
+Flash as a New Tier in vSphere
+
+Figure 2.
+
+The vSphere hypervisors consume the Virtual Flash Resource in the form of a Virtual Flash Host Swap Cache for 
+host memory–caching purposes. Virtual Host Flash Swap Cache replaces the swap to SSD feature previously 
+introduced with vSphere 5.0.
+
+A vSphere hypervisor can utilize as much as 4TB of the Virtual Flash Resource total available capacity for  
+Virtual Flash Host Swap Cache. Regardless of the power state of the vSphere hypervisor, the assigned  
+Virtual Flash Resource capacity is reserved and it is never returned to the Virtual Flash Resource for virtual 
+machine consumption.
+
+1.3.2  Virtual Flash Read Cache Software
+The Virtual Flash Read Cache software is natively built into the vSphere core hypervisor. Virtual Flash Read 
+Cache provides a write-through cache mode that enhances the performance of virtual machines without the 
+modification of applications and operating systems (OSs).
+
+T E C H N I C A L   W H I T E  p A p E R   /   5
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+The performance enhancements are introduced to virtual machines based on the placement of the virtual  
+Flash read cache. The Virtual Flash Read Cache is placed directly in the virtual machine’s virtual disk data path. 
+
+Virtual machines do not respond to the described behavior and the allocation of Virtual Flash Read Cache. At 
+this point, the caching software provides the suitable algorithms to manage the virtual machines’ I/O requests.
+
+VMDK1 Without
+
+vSphere Flash Read Cache
+
+APP
+OS
+
+VMDK2 with
+
+vSphere Flash Read Cache
+
+vSphere Flash Read Cache Software
+
+vSphere Flash Infrastructure
+
+vSphere
+
+SSD
+
+SSD
+
+Figure 3.
+
+Virtual machines consume the Virtual Flash Resource in the form of a write-through cache mode also known as 
+read mode. The Virtual Flash Read Cache working sets are assigned in the form of reservations on a per-VMDK 
+basis. Virtual machines consume only their individual Virtual Flash Read Cache working set when they are 
+powered on.
+
+1.4  vSphere Flash Read Cache Integration with vSphere
+vSphere Flash Read Cache tight integration with vSphere 5.5 delivers support and compatibility with vSphere 
+enterprise features such as VMware vSphere vMotion®, VMware vSphere High Availability (vSphere HA) and 
+VMware vSphere Distributed Resource Scheduler™ (vSphere DRS). 
+
+T E C H N I C A L   W H I T E  p A p E R   /   6
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+After they are powered on, Virtual Flash Read Cache–enabled virtual machines can be migrated with vSphere 
+vMotion. vSphere DRS automates the initial placement of virtual machines based on resource availability. 
+Advanced vSphere Flash Read Cache content migration settings, shown by the VMware 
+
+vSphere Web Client, provide the ability to migrate or discard the virtual machine’s Virtual Flash Read Cache 
+content during migration events.
+
+•	Always migrate the cache contents – Virtual machine migration proceeds only if all of the cache contents can 
+
+be migrated to the destination host. (Guaranteed)
+
+•	Do not migrate the cache contents – Drops the write-through cache. Cache is rewarmed on the  
+
+destination host.
+
+Figure 4.
+
+1.5  vSphere Flash Read Cache Use Cases
+vSphere Flash Read Cache enhances virtual machine performance by accelerating the performance of read-
+intensive workloads in a vSphere environment. 
+
+For the most part, workloads with read-intensive operations and high percentages of data locality requirements 
+are good candidates for vSphere Flash Read Cache. A majority of the targeted candidates are categorized 
+through database warehousing and enterprise server workloads such as Web proxy servers, monitoring servers 
+and many others.
+
+Another use case for vSphere Flash Read Cache is Virtual Desktop Infrastructure (VDI). VDI workloads such as 
+VMware Horizon View™ can benefit from using vSphere Flash Read Cache in cases when a virtual machine’s 
+swap disks are vSphere Flash Read Cache enabled. In this case, vSphere Flash Read Cache acts as a cache tier 
+between memory and swap disk located on storage. This might help when virtual machines are overprovisioned 
+in terms of memory resources.
+
+T E C H N I C A L   W H I T E  p A p E R   /   7
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+2. Requirements
+
+The following section details the hardware and software requirements necessary to create and enable  
+vSphere Flash Read Cache. 
+
+2.1  vSphere Requirements
+2.1.1  vCenter Server
+vSphere Flash Read Cache is supported on vSphere 5.5 and later with VMware vCenter Server™ 5.5 or later. 
+vSphere Flash Read Cache can be managed by both the Windows version of vCenter Server and the  
+VMware vCenter Server Appliance™. vSphere Flash Read Cache is exclusively managed by and configured via 
+vSphere Web Client version 5.5.
+
+2.1.2  vSphere Hosts
+vSphere Flash Read Cache is supported on vSphere 5.5 and later. Although vSphere Flash Read Cache works 
+with a single vSphere host, using multiple hosts in a cluster enables vSphere Flash Read Cache to leverage other 
+vSphere features such as vSphere vMotion, vSphere DRS and vSphere HA.
+
+2.1.3  Virtual Machines
+vSphere Flash Read Cache is available only to virtual machines with hardware version 10 (VMX-10). All legacy 
+virtual machine hardware must be upgraded to hardware version 10 to use Virtual Flash Read Cache.
+
+2.2  Storage Requirements
+2.2.1  Flash-Based Devices (SSD, Flash Cards)
+Each vSphere 5.5 host must have at least one enterprise-level SSD or PCIe Flash card. Check the  
+VMware Hardware Compatibility List (HCL) for an up-to-date list of supported Flash-based devices. 
+
+2.3  Network Requirements
+2.3.1  Network
+In cluster environments, all vSphere hosts should be configured with vSphere vMotion capabilities to leverage 
+vSphere DRS.
+
+T E C H N I C A L   W H I T E  p A p E R   /   8
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+3. Installation and Configuration
+
+This section provides a description of the installation and configuration process of the following  
+vSphere Flash Read Cache features:
+
+•	Virtual	Flash	Resource
+•	Virtual	Flash	Host	Swap	Cache
+•	Virtual	Machine	Virtual	Flash	Read	Cache	
+
+3.1  Virtual Flash Resource Configuration
+vSphere 5.5 is the first release that supports the new vSphere Flash Read Cache feature. Configuring a Virtual 
+Flash Resource is accomplished by navigating to the vSphere host’s management settings and selecting the 
+Virtual Flash Resource Management object within the vSphere Web client. 
+
+Users can add capacity to the Virtual Flash Resource by selecting single or multiple Flash-based devices and 
+adding them to the pool. 
+
+Upon completion of this task, a new file system called VFFS is created to pool together all Flash-based devices 
+for consumption by vSphere hosts and virtual machines.
+
+Figure 5.
+
+T E C H N I C A L   W H I T E  p A p E R   /   9
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+3.2  Virtual Flash Resource Properties
+The size of a Virtual Flash Resource is determined by the number of Flash devices added per vSphere host. 
+Metadata overhead should be taken into consideration. The vSphere Flash resource configuration maximum 
+settings are as follows:
+
+•	One	Virtual	Flash	Resource	(VFFS)	per	vSphere	host
+•	Eight	Flash	devices	per	Virtual	Flash	Resource	(VFFS)
+•	4TB	physical	Flash-based	device	size
+•	400GB	of	Virtual	Flash	Read	Cache	per	Virtual	Machine	Disk	(VMDK)	file
+•	4TB	of	Virtual	Flash	Host	Swap	Cache	per	vSphere	host
+•	32TB	Virtual	Flash	Resource	total	size	
+
+3.3  Configuration of Virtual Flash Host Swap Cache
+After the Virtual Flash Resource has been created, configuring the Virtual Flash Host Swap Cache can be done 
+by navigating to the Virtual Flash Resource Management object within the vSphere Web client and selecting the 
+Cache Configuration settings.
+
+Figure 6.
+
+3.4  Configuration of Virtual Flash Read Cache
+After the Virtual Flash Resource has been configured, the Virtual Flash Read Cache working set can be added on 
+a per-VMDK basis by editing the virtual machine’s hardware settings. The Virtual Flash Read Cache settings are 
+available only to virtual machines with virtual hardware version 10. 
+
+T E C H N I C A L   W H I T E  p A p E R   /   1 0
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+Figure 7.
+
+The virtual machine Virtual Flash Read Cache block size can be modified in the advanced screen of  
+Virtual Flash Read Cache settings. Virtual Flash Read Cache supports block sizes from 4KB to 1,024KB. 
+
+Figure 8.
+
+T E C H N I C A L   W H I T E  p A p E R   /   1 1
+
+What’s New in VMware vSphere  
+Flash Read Cache 
+
+Conclusion 
+
+vSphere Flash Read Cache is the new storage solution developed by VMware, included in vSphere 5.5. It 
+provides a Flash persistent layer that is optimized for the consumption of Flash-based devices and integration 
+with other key vSphere features.
+
+Because the use of a host-based write-through cache is transparent to applications, the solution enables 
+vSphere virtual infrastructures to use the Virtual Flash Resources without having to modify applications. The 
+Virtual Flash Read Cache solution enhances the performance of read-intensive workloads and provides seamless 
+integration with vSphere enterprise features such as vSphere vMotion, vSphere HA and vSphere DRS.
+
+Acknowledgments
+
+I would like to thank Sankaran Sivathanu, senior engineer of the MTS group, for contributing to this paper, and  
+to Cormac Hogan, senior technical marketing architect of the Cloud Infrastructure Product Marketing group, 
+Kiran Madnani, senior product manager of the storage platform, and James Senicka, group manager of 
+Technical Marketing Cloud Infrastructure Product Marketing, for reviewing this paper.
+
+About the Author 
+
+Rawlinson is a senior technical marketing manager in the Cloud Infrastructure Technical Marketing group  
+at VMware, focused on storage virtualization technologies. Previously, he was an architect in the  
+Cloud Infrastructure and Management Professional Services organization of VMware focused on vSphere  
+and cloud enterprise architectures for the Fortune 100 and 500 customers of VMware. 
+
+Rawlinson is among the first VMware Certified Design Experts (VCDX#86) and the author of multiple books 
+based on VMware and other technologies.
+
+•	Follow	Rawlinson’s	blogs:
+
+ –  http://blogs.vmware.com/vsphere/storage 
+ –  http://www.punchingclouds.com
+
+•	Follow	Rawlinson	on	Twitter:	
+
+ –  @PunchingClouds 
+
+T E C H N I C A L   W H I T E  p A p E R   /   1 2
+
+vMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www .vmware .com
+Copyright © 2013 VMware, Inc . All rights reserved . This product is protected by U .S . and international copyright and intellectual property laws . VMware products are covered by one or more patents listed 
+at http://www .vmware .com/go/patents . VMware is a registered trademark or trademark of VMware, Inc . in the United States and/or other jurisdictions . All other marks and names mentioned herein may be 
+trademarks of their respective companies . Item No: TBD 
+Docsource: OIC-13VM004 .06
+
+

@@ -1,0 +1,3449 @@
+ 
+Vblock Systems with SAP Application Active/Active Clustering 
+with Mobility and VPLEX Solution Architecture 
+
+Table of Contents 
+
+www.vce.com 
+
+ 
+
+ 
+
+ 
+
+VBLOCK™ SYSTEMS WITH SAP APPLICATION 
+ACTIVE/ACTIVE CLUSTERING WITH MOBILITY 
+AND EMC VPLEX  
+
+Version 2.0 
+February 2013 
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ............................................................................................................................... 5 
+Solution overview .................................................................................................................... 5 
+Solution benefits ...................................................................................................................... 6 
+About this document ................................................................................................................ 6 
+Audience ................................................................................................................................. 7 
+Feedback ................................................................................................................................. 7 
+Technology overview ............................................................................................................... 8 
+Vblock™ Systems ..................................................................................................................... 8 
+Vblock System 720 ............................................................................................................... 8 
+Vblock System 320 ............................................................................................................... 9 
+SAP ECC ................................................................................................................................. 9 
+SAP IDES ................................................................................................................................ 9 
+EMC VPLEX ............................................................................................................................ 9 
+EMC VPLEX Metro ............................................................................................................. 10 
+EMC VPLEX Witness ......................................................................................................... 10 
+VMware vSphere 5.0 and vCenter ESXi ................................................................................ 10 
+Oracle Clusterware for 11gR2 (11.2.0.3) ............................................................................... 10 
+Oracle Database 11gR2 (11.2.0.3) ........................................................................................ 10 
+GeoSynchrony (5.0.1) ............................................................................................................ 10 
+Architecture overview............................................................................................................. 11 
+Logical layout ......................................................................................................................... 11 
+Physical layout ....................................................................................................................... 12 
+Hardware components ........................................................................................................... 13 
+Software components ............................................................................................................ 13 
+Design considerations............................................................................................................ 14 
+Sizing requirements and best practices used for the solution................................................. 14 
+Configuration overview .......................................................................................................... 15 
+Network configuration ............................................................................................................ 16 
+Storage configuration ............................................................................................................. 21 
+Disk and file systems layout ............................................................................................... 21 
+Storage details for Symmetrix VMAX and VPLEX Metro .................................................... 23 
+Virtualization configuration ..................................................................................................... 24 
+Application configuration ........................................................................................................ 25 
+Implementation and best practices for SAP deployed applications ..................................... 25 
+Implementation and best practices for VPLEX Metro .......................................................... 25 
+Solution validation .................................................................................................................. 26 
+Test 1: SAP and Oracle Active Mobility zero downtime .......................................................... 26 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test environment ................................................................................................................ 26 
+Test procedure ................................................................................................................... 27 
+Test results ......................................................................................................................... 30 
+Test 2: SAP and Oracle availability with VPLEX site failure ................................................... 30 
+Test environment ................................................................................................................ 31 
+Test procedure ................................................................................................................... 31 
+Test results ......................................................................................................................... 31 
+Test 3: Network failure and SAP availability ........................................................................... 32 
+Test environment ................................................................................................................ 32 
+Test procedure ................................................................................................................... 39 
+Test results ......................................................................................................................... 39 
+Test 4: Storage failure and SAP availability ........................................................................... 44 
+Test environment ................................................................................................................ 44 
+Test procedure ................................................................................................................... 44 
+Test results ......................................................................................................................... 44 
+Conclusion .............................................................................................................................. 45 
+Next steps ............................................................................................................................. 45 
+References .............................................................................................................................. 46 
+SAP .................................................................................................................................... 46 
+Oracle ................................................................................................................................. 46 
+VMware .............................................................................................................................. 46 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+SAP is one of the key enterprise applications in today’s data centers, with one of the largest market 
+shares. Business continuity is one of the main challenges for implementers, managers, and users of 
+SAP software. A solution that benefits overall business continuity while it reduces overall total cost of 
+ownership (TCO), and that improves and simplifies high availability, is a great value. 
+
+This document describes the Vblock™ Systems solution for active/active mobility with EMC VPLEX 
+Metro and Oracle Real Application Clusters (RAC). The solution demonstrates: 
+
+  High availability, scalability, and mobility between data centers 
+  Local scalability within a data center 
+  Application resiliency when faced with application, storage, network, VPLEX, and Oracle RAC 
+
+node failures 
+
+  Use of EMC VPLEX Metro, which provides: 
+
+-  Low-cost fabric support illustrated by the people, processes, and technologies needed for a 
+standard SAP high availability solution that gives a recovery point objective (RPO) = 0 and a 
+recovery time objective (RTO) = 0. 
+
+-  Easier management compared with a standard SAP high availability solution 
+
+  VMware, which provides improved resource usage 
+
+Solution overview 
+
+Most SAP applications have three single points of failure: the message server, database server, and 
+the enqueue server. Losing any of these three components causes the SAP application to fail. In a 
+traditional SAP environment, resiliency of these three components is accomplished with different 
+clustering technologies in an active/passive manner. These conventional methods of providing 
+resiliency and availability can be very costly and make the maintenance and testing of these 
+landscapes difficult.  
+
+This document addresses a comprehensive solution that is important for improving business 
+continuity in companies using SAP systems. The Vblock System with SAP mobility clustering 
+architecture uses VPLEX Metro technology to enable high availability of SAP applications through 
+active/active clustering of these applications. This solution increases SAP resiliency by protecting 
+single points of failure within the SAP topology. It extends the protection of the entire application from 
+active/passive to active/active while greatly enhancing the protection of the entire SAP application. 
+
+The solution decreases the number of manual actions that SAP administrators and IT operations must 
+perform for their organization to maintain a high degree of operational excellence as required by SAP 
+best practices. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The following tests were performed to demonstrate how VPLEX Metro provides continuous, 
+synchronous application availability in the event of multiple types of failures in a multi-tier SAP 
+environment: 
+
+  Host or node failure: SAP Oracle RAC node failure 
+  Storage array failures of: disk, controller, array 
+  VPLEX failures:  
+
+-  VPLEX node failure 
+-  VPLEX handles WAN failure 
+-  VPLEX Witness provides arbitration in case of link failure between VPLEX site clusters 
+
+  Data center or site failure 
+
+Solution benefits 
+
+This solution demonstrate the following customer benefits: 
+
+  Multiple application and database node failures can be tolerated without suffering loss in 
+
+application or database availability. This failure tolerance comes from implementing a highly 
+available design at both the application and database layer for SAP and Oracle, with multiple 
+virtual machines and redundant network and storage configuration. For example, VPLEX 
+failures on data center 1 do not impact availability of the applications and database on data 
+center 2. 
+
+  Network failures do not impact performance or availability of the SAP application. 
+  No data loss occurs in the event of storage failures (disk, controller, arrays), and application 
+
+availability and functionality perform without incident. 
+
+  Online active/active mobility of application and database hosts, with no loss in downtime and a 
+
+minimal level of performance loss for the SAP and Oracle environment, due to the flexible 
+architecture deployed. 
+
+About this document 
+
+The purpose of this paper is to document the solution architecture in a business environment on 
+Vblock Systems. Objectives are to provide: 
+
+  Setup and best practice recommendations, including storage configurations, design, sizing, 
+
+software, and hardware that constitute an SAP deployed application 
+
+  A description of a live migration, demonstrating mobility for a live SAP application and database  
+  Deployment and high availability best practices for an SAP ERP system, including message 
+
+server and Oracle database, on EMC VPLEX Metro with Vblock Systems 
+for both data center sites 
+
+  Test descriptions, results, and analyses  
+
+  A description of demonstrated unlimited scalability of SAP application and database, across data 
+center sites using SAP with Oracle RAC and VPLEX Metro technology, by adding new instances 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Note: 
+
+The theoretical capacity of our current lab setup (four SAP application servers + four Oracle RAC nodes, 
+B200 M2) is about 47,000 SAPs, limited by the number of SAP application servers. It can certainly scale 
+up to 200k-300k SAPs by adding more SAP application servers before maxing out the four Oracle RAC 
+server capacities. Still, since Oracle RAC nodes are also scalable, there is no “real” capacity limitation 
+from the server side before a network or storage bottleneck is reached. 
+
+This document serves as guidance in future-proofing the architecture for up to three sizing profiles: 
+
+  User-based sizing: number of supported simultaneous users  
+  Workload-based sizing: number of cycles consumed during different workload parameters 
+  Performance-based sizing: business-driven performance requirements 
+
+Audience 
+
+This architecture paper is intended for individuals responsible for upgrade requirements and paths. It 
+also is intended for administrators and architects, as well as technical engineering staff, IT managers, 
+IT planners and other IT professionals who are evaluating, acquiring, managing, operating, or 
+deploying SAP in a virtualized data center environment. System and network or application 
+administrators, as well as all Vblock Systems existing and potential customers with a current or future 
+SAP implementation, will also benefit from the information in this paper. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment 
+applies, and your feedback. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+Technology overview 
+
+The solution uses the following hardware and software components and technologies: 
+
+  Vblock Systems 
+  SAP ECC  
+  SAP IDES 
+  EMC VPLEX  
+  VMware vSphere 5.0 and VMware vCenter ESXi 
+  Oracle Clusterware for 11gR2 (11.2.0.3) 
+  Oracle Database 11gR2 (11.2.0.3) 
+  GeoSynchrony (5.0.1) 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+For more information, go to www.vce.com. 
+
+SAP ECC 
+
+SAP ERP Central Component (ECC) was used to validate the solution. The SAP application is 
+integrated enterprise resource planning (ERP) software. It targets business software requirements of 
+midsize and large organizations in most industries and sectors. SAP ECC  allows for open 
+communication within and among all company functions, as well as with other businesses outside the 
+firewall, due to its Services Oriented Architecture (SOA).  
+
+SAP IDES 
+
+The SAP IDES 7.x system was implemented on the ABAP SAP Central Services (ASCS) instance 
+architecture, and then the Oracle 11gR2 Automatic Storage Management (ASM) RAC on EMC VNX 
+storage on VPLEX was added to the system.  
+
+EMC VPLEX  
+
+EMC VPLEX is an enterprise-class, storage federation technology that aggregates and manages 
+pools of Fibre Channel (FC) attached storage within and among data centers. VPLEX resides 
+between the servers and the FC-attached storage, and presents local and distributed volumes to 
+hosts.  
+
+VPLEX enables dynamic workload mobility and continuous availability within and between Vblock 
+Systems components over distance. It provides simultaneous access to storage devices at two sites 
+through creation of VPLEX Distributed Virtual Volumes, supported on each side by a VPLEX cluster.  
+
+For more information on VPLEX, refer to the EMC VPLEX 5.0 Architecture Guide.  
+
+For more information on options for deploying a business continuity and workload mobility solution for 
+Vblock Systems with EMC VPLEX Metro, refer to the white paper Recommended Solutions for EMC 
+VPLEX Metro with Vblock Infrastructure Platforms. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+EMC VPLEX Metro 
+
+EMC VPLEX Metro with EMC AccessAnywhere delivers distributed federation and enables 
+active/active block-level access to data between two sites within synchronous distances of up to a 5-
+millisecond round-trip time. VPLEX Metro, in combination with VMware vMotion, allows transparent 
+movement and relocation of virtual machines and their corresponding applications and data over 
+distance. AccessAnywhere enables a single copy of data to be shared, accessed, and relocated over 
+distance. 
+
+EMC VPLEX Witness 
+
+EMC VPLEX Witness is an optional component designed for deployment in customer environments 
+where the regular bias rule sets are insufficient to provide seamless zero or near-zero recovery time 
+objective (RTO) failover in the event of site disasters and EMC VPLEX cluster failures. 
+
+By reconciling its own observations with the information reported periodically by the clusters, VPLEX 
+Witness enables the cluster(s) to distinguish between inter-cluster network partition failures and 
+cluster failures, and to resume I/O automatically in these situations. 
+
+For more information, refer to the EMC VPLEX Metro Witness Technology and High Availability 
+TechBook. 
+
+VMware vSphere 5.0 and vCenter ESXi 
+
+VMware vSphere is the virtualization platform that provides the foundation for the private cloud. The 
+core VMware vSphere components are the VMware ESXi Enterprise hypervisor and VMware vCenter 
+Server for management. The VMware vSphere ESXi hypervisor runs in the Vblock Systems. 
+
+Oracle Clusterware for 11gR2 (11.2.0.3) 
+
+Oracle Clusterware provides high availability for SAP resources, as it does for Oracle resources.  
+
+Oracle Database 11gR2 (11.2.0.3) 
+
+Oracle 11gR2 is the latest version of the enterprise database software platform from Oracle. It 
+provides a feature-rich list of functionality including new partitioning, availability, and performance 
+enhancements for mission-critical applications. 
+
+GeoSynchrony (5.0.1) 
+
+GeoSynchrony is the VPLEX storage operating software, which runs on top of a specially built 
+hardened Linux kernel with native optimizations to minimize I/O latency and maximize throughput. The 
+extended distance and global versions (Geo and Global) are based on asynchronous technology and 
+begin reading data before it fully arrives, and even anticipate what data will arrive next, according to 
+EMC. EMC calls the new approach AccessAnywhere. See the VPLEX Metro description earlier in this 
+list. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+10 
+
+ 
+
+ 
+
+Architecture overview 
+
+This architecture creates a virtualized SAP and Oracle environment. It provides SAP application and 
+database unlimited scalability across data center sites with Oracle RAC and VPLEX technology by 
+adding new instances for both data center sites. The Vblock Systems mobility clustering solution uses 
+EMC VPLEX Metro technology to enable high availability of SAP applications through active/active 
+clustering of the critical servers in an SAP environment, including the message server and the 
+database server. This solution increases SAP resiliency by protecting single points of failure within the 
+SAP topology. It extends the protection of the entire application to active/active while also greatly 
+enhancing the protection of the entire SAP application. 
+
+Logical layout 
+
+Figure 1 shows the overall logical architecture of the environment.  
+
+Figure 1. Solution architecture 
+
+VPLEX and Oracle 11gR2 RAC were built in a stretched cluster configuration across two data center 
+sites for disaster recovery protection in an active-active business continuity configuration. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Physical layout 
+
+Figure 2 shows the solution topology.  
+
+ 
+
+Figure 2. Physical layout 
+
+As shown in the diagram, SAP ABAP and SAP Central Services (ASCS) instance architecture was 
+installed on Vblock Systems, one in each data center: Data Center 1 and Data Center 2. VMware fault 
+tolerance coverage (FC) extended to the ASCS instance in Data Center 2. 
+
+Data Center 1 contained two cluster nodes that communicated with the secondary data center in a 
+stretch cluster configuration with all four nodes active. 
+
+VMAX storage was virtualized by VPLEX in the Vblock System. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+Hardware components 
+
+The following table describes the hardware resources used in testing this solution. 
+
+Category 
+
+Compute 
+
+Network 
+
+Storage 
+
+Components 
+
+Cisco Unified Computing System (UCS):  
+6 UCS B200 M2 blade servers, with 192 GB memory each 
+
+At each site: 
+ 
+ 
+ 
+ 
+ 
+
+2 Nexus 5548 Ethernet switches 
+2 Cisco MDS 9148 FC switches 
+1 Cisco MDS 9148 FC switch (for VPLEX connectivity) 
+1 Anue FC distance simulator 
+1 Anue Ethernet distance simulator 
+
+At each site: 
+ 
+ 
+
+1 EMC Symmetrix VMAX with two engines 
+1 VPLEX cluster with single engine 
+
+Software components 
+
+The following software resources were used in testing this solution: 
+
+  SAP ECC 
+  SAP IDES 7 
+  EMC VPLEX Metro 
+  EMC VPLEX Witness 
+  vSphere 5.0  
+  vCenter ESXi 
+  Oracle Clusterware for 11gR2 (11.2.0.3) 
+  Oracle Database 11gR2 (11.2.0.3) 
+  GeoSynchrony 5.0.1 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+Design considerations 
+
+This section describes the design, configuration, and integration of the hardware and software in the 
+test environment to demonstrate high availability of an SAP ERP system on VPLEX Metro with Vblock 
+Systems. VPLEX Metro AccessAnywhere active/active clustering technology allows read/write access 
+to distributed volumes across synchronous distances where the volumes have the exact same SCSI 
+LUN identity. VPLEX Metro, in combination with SAP’s replicated enqueue server and Oracle RAC, 
+extends the protection of the entire application from active/passive to active/active while greatly 
+simplifying the protection of the entire SAP application. The entire environment is virtualized. 
+
+This section describes the implementation and best practices for deployed SAP applications and the 
+implementation and best practices for VPLEX Metro in this solution architecture. 
+
+Sizing requirements and best practices used for the solution 
+
+The infrastructure deployed for the testing follows the guidelines from SAP and Oracle for best 
+practices with high availability.  
+
+We consulted the following reference guides and support notes from SAP, Oracle, EMC, and 
+VMware. For links to the guides and support notes, see the References section of this paper. 
+
+ 
+
+Installation Guide SAP NetWeaver 7.0 Including Enhancement Package 2 ABAP on Linux: 
+Oracle 
+
+  Database Upgrade Guide Upgrade to Oracle Database 11g Release 2 (11.2) UNIX for Oracle 
+
+Patch Set Release 11.2.0.2 and 11.2.0.3 – SAP 
+
+  The following SAP notes: 
+
+-  1027012 - MOpatch 
+-  1431793 - Oracle 11.2.0 Upgrade Scripts before applying bundle patch 
+-  1524205 - Oracle 11.2.0: Database Software Installation 
+-  1431797- Oracle 11.2.0: Troubleshooting the Database Upgrade 
+-  968377 - Oracle: parallel_min_servers for the database monitor 
+-  527843 - Oracle RAC support in the SAP environment 
+-  1431800 - Oracle 11.2.0: Central Technical Note 
+-  1550133 - Oracle Automatic Storage Management (ASM) 
+
+  Configuration of SAP NetWeaver for Oracle Grid Infrastructure 11.2.0.2 and Oracle Real 
+
+Application Clusters 11g Release 2: A Best Practices Guide 
+
+  SAP with Oracle Real Application Clusters 11g Release 2 and Oracle Automatic Storage 
+
+Management Release 2 Advanced Configurations and Techniques 
+
+  Moving your SAP Database to Oracle Automatic Storage Management 11g Release 2 A Best 
+
+Practices Guide 
+
+  Oracle Real Application Clusters Installation Guide 11g Release 2 (11.2) for Linux and UNIX  
+
+Part Number E10813-06 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+14 
+
+ 
+
+ 
+
+  Oracle Database Backup and Recovery User's Guide 11g Release 1 (11.1) Part Number 
+
+B28270-03 
+
+  The following Oracle Support Notes: 
+
+-  970166.1 - INS-20702 "checkFreeDiskSpace" Reported During 11gR2 Installation  
+-  1056195.1 - INS-20702 Reported during 11gR2 Installation on getSharedPartitionListCVU 
+-  1210883.1 - 11gR2 Grid Infrastructure Redundant Interconnect and 
+
+ora.cluster_interconnect.haip 
+
+-  1323995.1 - ASM Crashes as HAIP Does not Failover When Two or More Private Network 
+
+Fails 
+
+-  1366211.1 - root.sh Fails to Start HAIP as Default Gateway is Configured for Private Network 
+
+VLAN 
+
+  EMC Disaster Avoidance for Mission Critical SAP: Next Generation Disaster Recovery with 
+VPLEX, Symmetrix VMAX, VNX, VMware vSphere HA, Brocade Networking, Oracle RAC, 
+SUSE SLES 
+
+  Oracle Databases on VMware Best Practices Guide 
+
+In the design for SAP and Oracle, a fully populated environment called IDES was deployed to 
+simulate a customer’s SAP business environment with a four-node Oracle 11gR2 RAC and ASM 
+cluster to provide redundancy and availability against application, system and database node failure.  
+
+Configuration overview 
+
+For the SAP application layer, four application servers were deployed to provide the optimal level of 
+performance and availability.  
+
+For the Oracle database layer, a four-node Oracle 11gR2 RAC (11.2.0.3) clustered environment was 
+configured with four Oracle 11gR2 ASM instances.  
+
+For SAP support and validated configuration, Oracle 11gR2 RAC and ASM must be deployed on 
+version 11.2.0.2 or later. The SAP ECC 6.x system was deployed initially with a single Oracle 11.2.0.1 
+Database instance and then upgraded to a four-node Oracle 11.2.0.3 RAC and ASM clustered 
+environment to fulfill these requirements from SAP.   
+
+To simulate a customer data center environment, two VMware sites were deployed for the primary 
+data center and the secondary site, as shown below in the left navigation panel in Figure 3. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+15 
+
+ 
+
+ 
+
+Figure 3. Two VMware sites deployed to simulate customer environment 
+
+ 
+
+Network configuration 
+
+For the SAP application servers, the network configuration was deployed and mapped to both 
+VMware data centers, as shown in Figure 4. 
+
+Figure 4. Network configuration mapping 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+16 
+
+ 
+
+ 
+
+ 
+
+ 
+
+A dvPortGroup-SAP-RAC_Data switch was used as part of a VMware distributed port group for each 
+of the SAP application servers. The individual network configuration for the SAP application host is 
+shown in Figure 5. 
+
+Figure 5. Network configuration of the SAP application host 
+
+ 
+
+For the Oracle RAC node virtual machines, redundant network configuration was implemented for 
+best practice standards from SAP, Oracle, and VMware, as shown in Figure 6. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+17 
+
+ 
+
+ 
+
+Figure 6. Network redundancy 
+
+Each of the Oracle RAC node virtual machines used a dvPortGroup-RAC_Heartbeat distributed port 
+group switch for internode cluster communication purposes. A secondary distributed port group and 
+switch dvPortGroup-SAP-RAC-Data was used for redundancy. 
+
+In the Oracle 11gR2 RAC configuration at the RHEL5 Linux operating system layer, the following 
+network settings were implemented based on best practices from SAP and Oracle. 
+
+ 
+
+The following code describes the network settings: 
+
+SQL> select * from V$CONFIGURED_INTERCONNECTS; 
+NAME            IP_ADDRESS       IS_ SOURCE 
+--------------- ---------------- --- -------------------------- 
+eth1:1          169.254.109.36   NO 
+eth0            192.168.104.121  YES 
+eth0:1          192.168.104.111  YES 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+18 
+
+ 
+
+ 
+
+In addition, with the Oracle 11gR2 (11.2.0.3) RAC environment, the new feature called highly 
+available IP (HAIP) is required and must be configured as a floating IP address. HAIP is verified by the 
+crsctl stat command as shown in the following code. 
+
+[root@ie1db1 ~]# /oracle/11203/grid/bin/crsctl stat res -t -init 
+--------------------------------------------------------------- 
+NAME           TARGET  STATE        SERVER                STATE_DETAILS       
+--------------------------------------------------------------- 
+Cluster Resources 
+---------------------------------------------------------------  
+ora.cluster_interconnect.haip 
+      1        ONLINE  ONLINE       ie1db1      
+
+Oracle 11gR2 RAC requires network configuration for the Oracle listener as well as virtual IP (VIP) 
+network interfaces and the single client access network (SCAN) which must be allocated in the DNS 
+server: 
+
+[root@ie1db1 ~]# /oracle/11203/grid/bin/crsctl stat res -t 
+NAME           TARGET  STATE        SERVER                   STATE_DETAILS       
+Local Resources 
+ONLINE  ONLINE       ie1db1                                       
+               ONLINE  ONLINE       ie1db2                                       
+               ONLINE  ONLINE       ie1db3                                       
+               ONLINE  ONLINE       ie1db4                                       
+ora.LISTENER.lsnr 
+               ONLINE  ONLINE       ie1db1                                       
+               ONLINE  ONLINE       ie1db2                                       
+               ONLINE  ONLINE       ie1db3                                       
+               ONLINE  ONLINE       ie1db4                                       
+ora.net1.network 
+               ONLINE  ONLINE       ie1db1                                       
+               ONLINE  ONLINE       ie1db2                                       
+               ONLINE  ONLINE       ie1db3                                       
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+19 
+
+ 
+
+ 
+
+ 
+
+ 
+
+               ONLINE  ONLINE       ie1db4                                       
+Cluster Resources 
+ora.LISTENER_SCAN1.lsnr 
+      1        ONLINE  ONLINE       ie1db4                                       
+ora.ie1db1.vip 
+      1        ONLINE  ONLINE       ie1db1                                       
+ora.ie1db2.vip 
+      1        ONLINE  ONLINE       ie1db2                                       
+ora.ie1db3.vip 
+      1        ONLINE  ONLINE       ie1db3                                       
+ora.ie1db4.vip 
+      1        ONLINE  ONLINE       ie1db4                                       
+ora.scan1.vip 
+      1        ONLINE  ONLINE       ie1db4                                       
+
+The following code shows the public and private network configuration for the Oracle RAC cluster. 
+Further verification was completed for the network interfaces used with the four-node Oracle 11gR2 
+RAC clustered environment by using the oifcfg command as shown in the following code: 
+
+[root@ie1db1 ~]# /oracle/11203/grid/bin/oifcfg getif 
+eth0  192.168.104.0  global  public 
+eth1  192.168.105.0  global  cluster_interconnect 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+20 
+
+ 
+
+ 
+
+Storage configuration 
+
+For the SAP and Oracle environment, four Oracle 11gR2 ASM instances were created and multiple 
+ASM disk groups were deployed for redundancy according to best practices from SAP, Oracle, EMC 
+and VMware. 
+
+Disk and file systems layout  
+
+The following table describes the disk layout that was deployed for the four-node Oracle 11gR2 
+(11.2.0.3) RAC and ASM environment: 
+
+Host 
+ie1db1 
+
+ie1db2 
+
+ie1db3 
+
+ie1db4 
+
+ASM instance 
++ASM1 
+
++ASM2 
+
++ASM3 
+
++ASM4 
+
+The following table shows the data layout for SAP and Oracle: 
+
+ASM disk group 
+SAP_DATA 
+
+Purpose 
+SAP application data 
+
+ASM version 
+11.2.0.3.0 
+
+11.2.0.3.0 
+
+11.2.0.3.0 
+
+11.2.0.3.0 
+
+Size 
+512001 MB 
+ 
+
+102398 MB 
+
+FRA 
+
+OCR 
+
+VOTE 
+
+SAP_REDO 
+
+SAP_REDOM 
+
+Fast recovery area for backups 
+and archive logs 
+
+Oracle Cluster Registry for 
+Oracle Clusterware membership 
+
+51199 MB 
+
+Vote disk for Oracle  
+
+Oracle online redo log files 
+
+Oracle online redo log mirror 
+
+8189 MB 
+
+102398 MB 
+
+102398 MB 
+
+All of the Oracle 11gR2 RAC nodes shared access to the ASM disk groups and ASM instances for 
+availability purposes in the event that one of more of the ASM instances was not available or online.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+21 
+
+ 
+
+ 
+
+The following output from the ASMCMD utility and Oracle 11gR2 SQL*PLUS query against 
+V$ASM_DISKGROUP provides validation of the ASM environment: 
+
+ASMCMD> ls 
+FRA/ 
+OCR/ 
+SAP_DATA/ 
+SAP_REDO/ 
+SAP_REDOM/ 
+VOTE/ 
+ASMCMD> lsct 
+DB_Name  Status     Software_Version  Compatible_version  Instance_Name  Disk_Group 
++ASM     CONNECTED        11.2.0.3.0          11.2.0.3.0  +ASM1          OCR     
+IE1      CONNECTED        11.2.0.3.0          11.2.0.0.0  IE11           SAP_DATA 
+IE1      CONNECTED        11.2.0.3.0          11.2.0.0.0  IE11           FRA     
+IE1      CONNECTED        11.2.0.3.0          11.2.0.0.0  IE11           SAP_REDO 
+ 
+[grid@ie1db1 ~]$ asmcmd 
+ASMCMD> lsdg 
+State    Type    Rebal  Sector  Block       AU  Total_MB  Free_MB  Req_mir_free_MB  
+Usable_file_MB  Offline_disks  Voting_files  Name 
+MOUNTED  EXTERN  N         512   4096  1048576    102398    87879                0           
+87879              0             N  FRA/ 
+MOUNTED  EXTERN  N         512   4096  1048576     51199    50752                0           
+50752              0             N  OCR/ 
+MOUNTED  EXTERN  N         512   4096  1048576    512001   242138                0          
+242138              0             N  SAP_DATA/ 
+MOUNTED  EXTERN  N         512   4096  1048576    102398   101584                0          
+101584              0             N  SAP_REDO/ 
+MOUNTED  EXTERN  N         512   4096  1048576    102398   102212                0          
+102212              0             N  SAP_REDOM/ 
+MOUNTED  EXTERN  N         512   4096  1048576      8189     7978                0            
+7978              0             Y  VOTE/ 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+SQL> select name, state, total_mb from v$asm_diskgroup; 
+
+NAME                           STATE         TOTAL_MB 
+------------------------------ ----------- ---------- 
+FRA                            MOUNTED         102398 
+OCR                            MOUNTED          51199 
+SAP_DATA                       MOUNTED         512001 
+SAP_REDOM                      MOUNTED         102398 
+SAP_REDO                       MOUNTED         102398 
+VOTE                           MOUNTED           8189 
+
+Storage details for Symmetrix VMAX and VPLEX Metro 
+
+Symmetrix VMAX storage 
+
+Storage on the Vblock System 700 is provided by the EMC Symmetrix VMAX Series architecture 
+featuring the scalable Virtual Matrix Architecture. The Virtual Matrix is redundant and dual active. It 
+supports all global memory references, messaging, and management operations, including internal 
+discovery and initialization, path management, load balancing, failover, and fault isolation within the 
+array. The Symmetrix VMAX array contains from one to eight VMAX Engines. Each VMAX Engine 
+contains two integrated directors. Each director has two connections to the VMAX Matrix Interface 
+Board Enclosure (MIBE) through the System Interface Board (SIB) ports.  
+
+Because every director has two separate physical paths to every other director through the Virtual 
+Matrix, this interconnect is highly available with no single point of failure. This design eliminates the 
+need for separate interconnects for data, control, messaging, environmental, and system test. A single 
+highly available interconnect suffices for all communications between the directors, which reduces 
+complexity. 
+
+The Symmetrix VMAX design is based on an individual Symmetrix VMAX Engine with redundant 
+CPU, memory, and connectivity on two directors for fault tolerance. Symmetrix VMAX Engines 
+connect to and scale out linearly through the Virtual Matrix Architecture, which allows resources to be 
+shared within and across VMAX Engines. 
+
+Note:  Refer to www.vce.com/vblock for detailed information on the Vblock Systems architecture.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+23 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VPLEX Metro storage 
+
+EMC VPLEX Metro, working with VMware vMotion, is a hardware and software solution for Vblock 
+Systems that provides enhanced availability for business continuity and dynamic workload mobility. 
+
+VPLEX Metro allows data to be distributed and shared across sites and presents the same 
+information, at the same time, in two separate locations that are accessible simultaneously. Multiple 
+users can access a single copy of data from two locations, allowing instant access to information in 
+real time. VPLEX Metro thus eliminates the operational overhead and time used to copy and to 
+distribute data across locations. It also increases availability and resiliency by allowing volumes to be 
+mirrored within and across locations. This mirroring provides non-stop application availability in the 
+event of a component failure.  
+
+VPLEX Metro solves many of the business continuity and workload mobility challenges facing 
+enterprises today. With VPLEX Metro, organizations can: 
+
+  Transparently move and relocate VMware ESXi virtual machines with their corresponding 
+
+applications and data over synchronous distances between Vblock systems 
+Increase workload resiliency through automatic component failover with the VPLEX N+1 
+clustering architecture 
+
+ 
+
+  Manage and move heterogeneous block storage data non-disruptively over synchronous 
+
+distances from a single interface 
+
+  Start small with a single VPLEX engine and grow the cluster by adding more engines 
+
+VMware vMotion leverages the virtualized converged infrastructure of the Vblock systems to move an 
+entire running VM instantaneously from one server to another. VMware Dynamic Resource Scheduler 
+uses vMotion to continuously monitor utilization across resource pools and to intelligently align 
+resources with business needs. 
+
+Virtualization configuration 
+
+We performed the following steps to configure virtualization:  
+
+1.  Four virtual machines were created and deployed for the SAP application layer. 
+2.  Four Oracle 11gR2 RAC database virtual machine nodes were created and deployed for the 
+
+database layer. 
+
+3.  Two Microsoft virtual machines were created and deployed for the mixed workload environment 
+
+with SAP and Oracle. 
+
+4.  VMware vMotion was configured along with Storage vMotion to provide for active/active mobility 
+
+functionality with SAP, Oracle, and Microsoft applications. 
+
+5.  Redundant virtual network (vNIC) interfaces were configured for all four Oracle RAC cluster virtual 
+
+machine nodes. 
+
+In order to use the active/active mobility solution, VMware vMotion and Storage vMotion were 
+implemented for the SAP, Oracle, and Microsoft environments. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+24 
+
+ 
+
+ 
+
+Application configuration 
+
+We followed standard best practices from SAP, Oracle, VMware, and EMC for the installation and 
+configuration of the SAP and Oracle environment, to replicate a customer business environment that 
+is supported by SAP, Oracle, VMware, and EMC. We made a modification to introduce a mixed 
+workload with Microsoft application servers, to demonstrate the value proposition of deploying multiple 
+applications on the Vblock System across data centers.  
+
+Implementation and best practices for SAP deployed applications 
+
+In this solution, SAP ABAP SAP Central Services (ASCS) instance architecture was installed on 
+Vblock Systems, one in each data center.   
+
+Implementation and best practices for VPLEX Metro 
+
+The entire VPLEX Metro solution on Vblock Systems is fully described in the following paper: 
+Recommended Solutions for EMC VPLEX Metro with Vblock Infrastructure Platforms at 
+www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+25 
+
+ 
+
+ 
+
+Solution validation 
+
+To validate this solution, we performed functional testing for four use cases:  
+
+  Test 1: SAP and Oracle Active Mobility zero downtime  
+  Test 2: SAP and Oracle availability with VPLEX site failure  
+  Test 3: Network failure and SAP availability 
+  Test 4: Storage failure and SAP availability 
+
+Test 1: SAP and Oracle Active Mobility zero downtime  
+
+In this test, we co-located two third-party application virtual machines with Microsoft Exchange and 
+Microsoft SQL Server on Data Center 1, during a workload for SAP. During quarter-end processing for 
+SAP, the sample customer had a business requirement to migrate both virtual machines to Data 
+Center 2 using the Mobility feature. The purpose was to offload processing resources to the standby 
+site to free up resources for the SAP application on the primary site.  
+This test had the following objectives: 
+
+  Demonstrate that functionality and availability of the SAP and Oracle application is not affected 
+
+by multiple database node failures on the primary data center site.  
+
+  Demonstrate the ability to relocate application servers from the primary to the secondary data 
+
+center site in the event of a failure, with no downtime or impact to the SAP application. 
+
+  Show that the SAP application is not affected by a database instance crash on the primary site. 
+  Provide a sample customer mixed workload scenario to simulate mobility for a third party 
+
+application with SAP and Oracle. 
+
+Test environment 
+
+The test environment was set up as described in the previous sections, with the following additional 
+configurations: 
+
+  Simulated load on the primary SAP site was created by running the transaction SGEN to 
+
+produce a heavy load on the SAP and Oracle environment. 
+
+  Failures were simulated by powering off two of the database RAC nodes for Oracle on the 
+
+primary data center site.  
+
+  VMware vMotion configuration for the vSphere 5.0 environment was set up with minimal 
+
+requirements from VMware according to best practices for SAP and Oracle. 
+
+The test VMware configuration is illustrated in Figure 7, with the primary data site highlighted in the 
+left navigation panel. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+26 
+
+ 
+
+ 
+
+Figure 7. Test VMware configuration 
+
+Test procedure 
+
+We used the following procedure to verify the test objectives: 
+
+1.  Generated a load for SAP and Oracle application by running the SGEN transaction for SAP to 
+
+simulate production load test. 
+
+2.  Ran SAP transaction code AL08 to monitor application server and user status during testing. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+27 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3.  Selected the Migrate option from vCenter for the SAP application servers to initiate the relocation 
+
+of the application to the standby data center site. 
+
+ 
+
+4.  VMware vSphere 5 provides dual options for active/active mobility. To migrate only the host or 
+
+storage, in the Select Migration Type screen we clicked Change host. 
+vMotion can be used to relocate the data store for the application storage in the event of a 
+maintenance activity or disaster on the primary site. In the test case, the application server hosts 
+for SAP were relocated to the secondary data center site. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+28 
+
+ 
+
+ 
+
+5. 
+
+In the Select Destination screen, selected SAP_Oracle_Metro_Cluster_Site_2 as the migration 
+destination for the SAP application server.  
+For the mixed workload test, after SGEN was executed on the SAP application layer, vMotion was 
+used to offload resources from Data Center 1 to free up resources for SAP quarter-end processing 
+by relocating the Microsoft virtual machines to Data Center 2. 
+
+6.  Because the relocation was critical, in the vMotion Priority screen selected High priority 
+
+(Recommended) to expedite the migration process to Data Center 2. VMware vMotion provides 
+options on level of priority concerning when to move the application host to the standby site. 
+In the Ready to Complete screen, clicked Finish.  
+After the parameters were input to the vMotion tasks, VMware vCenter performed the 
+administrative tasks of relocating the application server host to Data Center 2. 
+
+7. 
+
+8.  Demonstrated availability of SAP and Oracle 11gR2 RAC environment by simulating dual node 
+
+failure for the Oracle RAC cluster. 
+
+9.  Verified availability of the SAP application by executing SAP transactions AL08 and ST04 from the 
+
+SAPGUI application. 
+
+10.  Verified Oracle RAC cluster availability by executing the following commands from a surviving 
+
+cluster node: 
+
+crsctl check cluster -all  
+srvctl status database -d IE1 
+
+11.  Powered on the failed database node servers. 
+12.  Restarted the two failed Oracle RAC nodes. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+29 
+
+ 
+
+ 
+
+Test results 
+
+These tests produced the following results: 
+
+  The application remained online with minimal degradation in performance, during the failure of 
+
+the two Oracle database RAC nodes on the primary site.  
+
+  The relocation of the two Microsoft application hosts from site 1 to site 2 freed up resources for 
+
+the SAP application, with no impact on either environment. 
+
+  No impact occurred at the database level as a result of the dual node crash on the primary site. 
+  Both database nodes that crashed were successfully brought back online, and they rejoined the 
+
+cluster without errors. 
+
+By implementing a highly available design at both the application and database layer for SAP and 
+Oracle with multiple virtual machines and redundant network and storage configuration, multiple 
+application and database node failures were tolerated without suffering loss in application or database 
+availability. 
+
+The flexible architecture deployed with two data center sites allowed for online active/active mobility of 
+application and database hosts with zero loss in downtime and a minimal level of performance loss for 
+the SAP and Oracle environment.  
+
+In addition, by using the functionality of VMware vMotion, a mixed workload environment with SAP 
+and Oracle was able to load balance and distribute applications across the data center with minimal 
+service interruption and no outage required when additional resources are needed from the 
+application layer. This, in turn, provided a high level of service to fulfill mission-critical service level 
+agreements that demand 24x7x365 availability. 
+
+Test 2: SAP and Oracle availability with VPLEX site failure  
+
+This test shows that potential VPLEX failures on Data Center 1 do not impact availability of the 
+applications and database on Data Center 2. 
+
+The objectives of this test were to: 
+
+  Demonstrate that a primary VPLEX failure on the primary data center site does not impact 
+
+availability of the SAP and Oracle application. 
+
+  Demonstrate that the application remains available even in the event of failure of one or more 
+
+components with VPLEX on the primary site. 
+ Show that VPLEX node failure does not impact the application and database. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+30 
+
+ 
+
+ 
+
+Test environment 
+
+The test environment was set up as described in the previous sections, with the following additional 
+configurations: 
+
+  Site 1 had a VPLEX with two SAP application hosts and ASCS host as well as two Oracle RAC 
+
+virtual machine nodes. 
+
+  Site 2 had a VPLEX with two SAP application hosts and two Oracle RAC virtual machine nodes. 
+  Site 3 had a VPLEX cluster Witness host as a virtual machine. 
+  The Oracle RAC configuration was configured as a stretch cluster across both data center sites. 
+  Storage was configured with a VMAX system at each data center site. 
+  The primary and secondary sites each had a dedicated Vblock System 700 that contained Cisco 
+
+UCS blades. 
+
+Test procedure 
+
+We used the following procedure to verify that potential VPLEX failures on one site do not impact the 
+availability of the applications and database on the others: 
+
+1.  Disabled the front-end VPLEX ports on the primary site.  
+2.  Ran a single-user test from SAP to verify application availability. 
+3.  Verified Oracle RAC database availability during failure. 
+
+Test results 
+
+  On Data Center 1, both Oracle RAC nodes crashed during the VPLEX site failure. 
+  The SAP application servers crashed and the SAP application failed in hang condition. 
+  The SAP ASCS server remained online and was not impacted. 
+  The Oracle RAC nodes on the secondary site remained online and were not impacted by the 
+
+VPLEX failure on site 1. 
+
+  The SAP application servers on the secondary site remained online. 
+  The Oracle RAC database remained online and functional after the primary site VPLEX failure. 
+
+To achieve these results, administrator-users must log in to a server group, rather than logging in to a 
+server, because the server group login connects to Data Center 2, where the SAP application servers 
+remain online after the VPLEX failure. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+31 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 3: Network failure and SAP availability 
+
+This test demonstrated that network failures in this test environment do not interrupt SAP application 
+availability. 
+
+The objectives of this test were to: 
+
+  Show that network failure does not impact performance or availability of the SAP application. 
+  Show that Oracle RAC interconnect WAN failure from split brain does not affect availability of the 
+
+SAP application. 
+
+  Show that VPLEX WAN failure does not impact SAP availability. 
+  Verify VPLEX Witness function by simulating network failure between site 1 and site 2. 
+
+Test environment 
+
+The test environment was set up as described in the previous sections, with the following additional 
+preparations: 
+
+  Ran transaction SGEN on the SAP application to generate load. 
+  Produced network failure on Data Center 1 for VPLEX WAN failure. 
+  Produced interconnect failure between Data Center 1 Oracle RAC nodes and Data Center 2 
+
+Oracle RAC nodes. 
+
+  Produced VPLEX WAN failure on Data Center 1 to create a business scenario of WAN failure 
+
+between the two data center sites. 
+
+See the Figure 2 topology diagram and the following configuration tables. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+32 
+
+ 
+
+ 
+
+Site 1 Oracle configuration  
+
+Host name 
+
+Location 
+
+IE1DB1 
+
+Data center 1,  
+blade 2 
+
+ie1db1-vip 
+(scan VIP) 
+
+  
+
+Function or 
+purpose 
+Oracle RAC DB 
+node 1 
+
+Guest 
+OS 
+RHEL 5, 
+64 bit OS 
+
+# of 
+vCPU 
+8 
+
+  
+
+  
+
+  
+
+VLAN 
+# 
+104 
+
+104 
+
+NIC 
+
+vNIC1 
+
+VIP 
+(cluster 
+SCAN) 
+
+vNIC2 
+
+105 
+
+  
+
+  
+
+Memory 
+(GB) 
+32 
+
+  
+
+ 
+  
+
+  
+
+Type 
+vmdk 
+
+vmdk 
+
+ 
+See 
+note 1 
+
+See 
+note 1 
+
+  
+
+  
+
+  
+
+  
+
+Guest 
+OS 
+RHEL 5, 
+64 bit 
+OS 
+
+  
+
+  
+
+Type 
+vmdk 
+
+vmdk 
+
+  
+
+  
+
+  
+
+  
+ 
+
+# of 
+vCPU 
+8 
+
+Memory 
+(GB) 
+32 
+
+  
+
+  
+
+VLAN 
+# 
+104 
+
+  
+
+  
+
+ 
+See 
+note 1 
+
+See 
+note 1 
+
+ VIP (cluster SCAN) 
+
+104 
+
+  
+
+ 
+  
+
+  
+
+  
+
+  
+ 
+
+ 
+
+105 
+
+  
+ 
+
+ 
+
+  
+
+Storage 
+  
+
+  
+
+  
+
+Mount point 
+/oracle 
+
+Size (GB) 
+16 
+
+/oracle/client 
+
+2 
+
+Total from above 
+
+18 
+
+NFS 
+requirement 
+
+/sapmnt/IE1/profile 
+
+  
+
+  
+
+/sapmnt/IE1/global 
+
+/sapinstall 
+
+Host name 
+
+Location 
+
+IE1DB2 
+
+Data center 1, blade 
+3 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+Function or 
+purpose 
+Oracle RAC DB 
+node 2 
+
+ie1db2-vip 
+(scan VIP) 
+
+  
+
+Storage 
+  
+
+  
+
+  
+
+  
+
+ 
+
+  
+
+ 
+
+Mount point 
+/oracle 
+
+Size (GB) 
+16 
+
+/oracle/client 
+
+2 
+
+Total from above 
+
+18 
+
+NFS 
+requirement 
+
+/sapmnt/IE1/profile 
+
+/sapmnt/IE1/global 
+
+/sapinstall 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+  
+
+  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+33 
+
+ 
+
+ 
+
+Disks shared among all RAC nodes: 
+
+ASM DGs 
+
+DG name 
+
+  
+  
+
+SAP_DATA 
+
+SAP_DATA_STAGE 
+
+SAP_REDO 
+
+SAP_REDOM 
+
+SAP_FRA 
+
+OCR 
+
+Voting 
+
+Size 
+(GB) 
+
+500 
+
+600 
+
+100 
+
+100 
+
+100 
+
+50 
+
+8 
+
+Type 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+VMAX 
+TDev ID 
+
+174 
+
+179 
+
+17F 
+
+180 
+
+181 
+
+133 
+
+132 
+
+UCS 
+host 
+LUN # 
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+1 
+
+0 
+
+OS dev 
+ID 
+
+Comment 
+
+/dev/sdf 
+
+See note 2 
+
+/dev/sdg 
+
+See note 2 
+
+/dev/sdh 
+
+See note 2 
+
+/dev/sdi 
+
+See note 2 
+
+/dev/sdj 
+
+See note 2 
+
+/dev/sde 
+
+See note 2 
+
+/dev/sdd 
+
+See note 2 
+
+Site 1 SAP application virtual machine configuration 
+
+Host name 
+
+Location 
+
+Function or purpose 
+
+Guest 
+OS 
+
+# of vCPU 
+
+Memory 
+(GB) 
+
+VLAN 
+# 
+
+SAP ASCS instance 
+
+RHEL 5  1 
+
+IE1ASCS 
+
+  
+
+Storage 
+
+ 
+  
+
+  
+
+  
+
+  
+
+  
+
+Data center 1,  
+Blade 1 
+
+  
+
+Mount point 
+/usr/sap/ 
+
+/sapmnt/IE1 
+
+/home 
+
+/sapinstall 
+
+/oracle/client 
+
+Total from above 
+
+NFS requirement 
+
+/sapmnt/IE1/profile 
+
+  
+
+  
+
+Host name 
+
+IE1APP1 
+ 
+
+/sapmnt/IE1/global 
+
+/sapinstall 
+
+Location 
+Data center 1,  
+Blade 1 
+
+ 
+
+  
+
+Size (GB) 
+10 
+
+10 
+
+8 
+
+40 
+
+2 
+
+70 
+
+Exported to all virtual 
+machines 
+
+Exported to all virtual 
+machines 
+
+Exported to all virtual 
+machines 
+
+Function or purpose 
+
+2 
+
+  
+
+104 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+  
+
+Type 
+
+ 
+vmdk 
+
+vmdk 
+
+vmdk 
+
+vmdk 
+
+  
+
+ 
+
+ 
+ 
+See note 1 
+
+See note 1 
+
+See note 1 
+
+See note 1 
+
+10 G 
+
+/dev/sdd 
+
+30 G 
+
+/dev/sdc 
+
+ 
+
+40 G 
+
+Guest 
+OS 
+
+/dev/sdb 
+
+# of vCPU 
+
+ 
+Memory 
+(GB) 
+
+VLAN 
+# 
+
+SAP app server 1 
+
+RHEL 5  4 
+
+16 
+
+104 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+34 
+
+ 
+
+ 
+
+Storage 
+  
+
+  
+
+  
+
+  
+
+  
+
+Mount point 
+/usr/sap/ 
+
+/sapmnt/IE1 
+
+/home 
+
+/oracle/client 
+
+Total from above 
+
+NFS requirement 
+
+/sapmnt/IE1/profile 
+
+  
+
+  
+
+Host name 
+
+IE1APP1 
+
+Storage 
+  
+
+  
+
+  
+
+  
+
+  
+
+/sapmnt/IE1/global 
+
+/sapinstall 
+
+Location 
+Data center 1,  
+blade 1 
+
+Mount point 
+/usr/sap/ 
+
+/sapmnt/IE1 
+
+/home 
+
+/oracle/client 
+
+Size (GB) 
+10 
+
+10 
+
+8 
+
+2 
+
+  
+
+  
+
+ 
+
+Size (GB) 
+10 
+
+10 
+
+8 
+
+2 
+
+30 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+Type 
+vmdk 
+
+vmdk 
+
+vmdk 
+
+vmdk 
+
+  
+
+ 
+
+ 
+
+See note 3 
+ 
+
+See note 3 
+
+See note 3 
+
+See note 3 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Function or purpose 
+
+ 
+Guest 
+OS 
+
+ 
+# of 
+vCPU 
+
+Memory 
+(GB) 
+
+VLAN # 
+
+SAP app Server 1 
+
+RHEL 5  4 
+
+16 
+
+104 
+
+Type 
+vmdk 
+
+vmdk 
+
+vmdk 
+
+vmdk 
+
+  
+
+ 
+
+ 
+
+ 
+
+ 
+See note 3 
+
+See note 3 
+
+See note 3 
+
+See note 3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Total from above 
+
+30 
+
+NFS requirement 
+
+/sapmnt/IE1/profile 
+
+mounted from VM0 
+
+/sapmnt/IE1/global 
+
+mounted from VM0 
+
+/sapinstall 
+
+mounted from VM0 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+35 
+
+ 
+
+ 
+
+Site 2 Oracle VM configuration  
+
+Host name 
+
+Location 
+
+IE1DB3 
+
+Data center 2,  
+blade 2 
+
+Function or 
+purpose 
+Oracle RAC DB 
+node 3 
+
+Guest 
+OS 
+RHEL 
+5, 64 bit 
+OS 
+
+# of 
+vCPU 
+8 
+
+Memory 
+(GB) 
+32 
+
+ 
+
+ 
+
+ie1db1-vip 
+(scan VIP) 
+
+  
+
+  
+
+  
+
+  
+
+  
+VIP (cluster SCAN) 
+
+VLAN 
+# 
+104 
+
+104 
+
+ 105 
+
+  
+
+Type 
+vmdk 
+
+vmdk 
+
+ 
+See note 
+1 
+
+See note 
+1 
+
+ 
+  
+
+  
+
+Storage 
+  
+
+Mount point 
+/oracle 
+
+Size (GB) 
+16 
+
+  
+
+  
+
+/oracle/client 
+
+2 
+
+Total from above 
+
+18 
+
+NFS 
+requirement 
+
+/sapmnt/IE1/profile 
+
+  
+
+  
+
+/sapmnt/IE1/global 
+
+/sapinstall 
+
+Host name 
+
+Location 
+
+IE1DB4 
+
+Data center 2,  
+blade 3 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+Function or 
+purpose 
+Oracle RAC DB 
+node 4 
+
+  
+
+  
+
+  
+
+  
+
+# of 
+vCPU 
+8 
+
+Guest 
+OS 
+RHEL 
+5, 64 bit 
+OS 
+
+ie1db2-vip 
+(scan VIP) 
+
+  
+
+  
+
+  
+
+  
+
+Memory (GB) 
+
+32 
+
+  
+
+  
+
+  
+VIP (cluster SCAN) 
+
+VLAN 
+# 
+104 
+
+104 
+
+  
+
+ 105 
+
+Type 
+vmdk 
+
+vmdk 
+
+ 
+See note 
+1 
+
+See note 
+1 
+
+ 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Storage 
+  
+
+Mount point 
+/oracle 
+
+Size (GB) 
+16 
+
+  
+
+  
+
+/oracle/client 
+
+2 
+
+Total from above 
+
+18 
+
+NFS 
+requirement 
+
+/sapmnt/IE1/profile 
+
+/sapmnt/IE1/global 
+
+/sapinstall 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+mounted from 
+IE1ASCS 
+
+  
+
+  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+36 
+
+ 
+
+ 
+
+Disks shared among all RAC nodes: 
+
+ASM DGs  DG name 
+
+Size (GB) 
+
+Type 
+
+VMAX 
+TDev ID 
+
+Comment 
+
+OS dev 
+ID 
+
+SAP_DATA 
+
+SAP_DATA_STAGE 
+
+ 
+ 
+
+SAP_REDO 
+
+SAP_REDOM 
+
+SAP_FRA 
+
+OCR 
+
+Voting 
+
+500 
+
+600 
+
+100 
+
+100 
+
+100 
+
+50 
+
+8 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+RDM 
+
+00BE 
+
+00C3 
+
+00C9 
+
+00CA 
+
+00CB 
+
+00CD 
+
+00CC 
+
+See note 2 
+
+/dev/sdf 
+
+See note 2 
+
+/dev/sdg 
+
+See note 2 
+
+/dev/sdh 
+
+See note 2 
+
+/dev/sdi 
+
+See note 2 
+
+/dev/sdj 
+
+See note 2 
+
+/dev/sde 
+
+See note 2 
+
+/dev/sdd 
+
+Part of 
+VPLEX 
+distributed 
+device 
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Site 2 SAP application VM configuration 
+
+Host name 
+
+Location 
+
+Function or purpose 
+
+Guest 
+OS 
+
+# of vCPU 
+
+Memory 
+(GB) 
+
+VLAN 
+# 
+
+Data center 2, 
+blade 1 
+
+SAP App Server 3 
+
+RHEL 5 
+
+4 
+
+16 
+
+104 
+
+IE1APP3 
+
+  
+
+  
+
+  
+
+Storage 
+
+Mount point 
+
+Size (GB) 
+
+ 
+  
+
+  
+
+  
+
+  
+
+/usr/sap/ 
+
+/sapmnt/IE1 
+
+/home 
+
+/oracle/client 
+
+10 
+
+10 
+
+8 
+
+2 
+
+Total from above 
+
+30 
+
+NFS requirement 
+
+/sapmnt/IE1/profile  mounted from  IE1ASCS 
+
+  
+
+  
+
+/sapmnt/IE1/global  mounted from IE1ASCS 
+
+/sapinstall 
+
+mounted from IE1ASCS 
+
+  
+
+Type 
+
+vmdk 
+
+vmdk 
+
+vmdk 
+
+vmdk 
+
+  
+
+ 
+
+VMAX TDEV ID 
+
+ 
+
+See note 3 
+
+See note 3 
+
+See note 3 
+
+See note 3 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+Host name 
+
+IE1APP4 
+ 
+
+Location 
+Data center 2, 
+blade 1 
+
+ 
+
+Function or purpose 
+
+ 
+Guest 
+OS 
+
+# of vCPU 
+
+Memory 
+(GB) 
+
+VLAN 
+# 
+
+SAP App Server 4 
+
+RHEL 5 
+
+4 
+
+16 
+
+104 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+37 
+
+ 
+
+ 
+
+Storage 
+  
+
+  
+
+  
+
+  
+
+  
+
+NFS requirement 
+
+  
+
+  
+
+Mount point 
+/usr/sap/ 
+
+/sapmnt/IE1 
+
+/home 
+
+/oracle/client 
+
+Size (GB) 
+10 
+
+10 
+
+8 
+
+2 
+
+30 
+
+Total from above 
+/sapmnt/IE1/profile  mounted from IE1ASCS 
+/sapmnt/IE1/global  mounted from IE1ASCS 
+mounted from IE1ASCS 
+
+/sapinstall 
+
+Type 
+vmdk 
+
+vmdk 
+
+vmdk 
+
+vmdk 
+
+  
+
+ 
+
+ 
+
+VMAX TDEV ID 
+See note 3 
+
+See note 3 
+
+See note 3 
+
+See note 3 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Note 1: 1 x 400 GB TDEV from VMAX for all above VMDK-type of disks. They were local disks (non-VPLEX disks). 
+Note 2: Individual disks on VMAX for each RDM. They were used for VPLEX Metro Distributed Volumes. 
+Note 3: All VMDKs were located on 1 x 200G VPLEX distributed data store. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+38 
+
+ 
+
+ 
+
+Test procedure 
+
+We used the following procedure to verify that network failures in this test environment do not interrupt 
+SAP application availability: 
+
+1.  Monitored application availability with SAP transaction AL08 and ST04. 
+2.  Generated load from SAP with transaction SGEN. 
+3.  Simulated WAN failure between primary site 1 and secondary site 2, by one of the following: 
+
+a.  Ethernet WAN cabling: disconnected the cabling  from primary VPLEX site 1 to Cisco N7k 
+
+switch 
+
+b.  WAN fiber: disconnected Cisco MDS fiber cable from primary site 1 VPLEX 
+
+4.  Simulated network site failure between Data Center 1 and Data Center 2. 
+5.  Restored WAN connectivity between Data Center 1 and Data Center 2. 
+6.  Simulated Oracle RAC interconnect failure between nodes on Data Center 1 and Data Center 2. 
+
+Test results 
+
+This test produced the following results: 
+
+  After WAN failure, nodes 1 and 2 for Oracle RAC crashed on Data Center 1. 
+  The SAP application remained online and functional but performance was severely impacted 
+
+and slowdown was noticeable. 
+
+  On Data Center 2, the failover secondary site, both application hosts for SAP remained online. 
+  Performance was impacted for SAP after the WAN failure occurred. 
+  When the WAN failure occurred with VPLEX at Data Center 1, administrator intervention was 
+
+required to restore connectivity between Data Center 1 and site 2. 
+
+  Because consistency groups on the Data Center 1 VPLEX were set to default to the secondary 
+
+VPLEX site cluster, when WAN failure occurred on Data Center 1, the first two Oracle RAC 
+nodes crashed. 
+
+  VPLEX Witness was available after WAN failure by verifying with VPN status command. 
+  After VPLEX Witness failure, the SAP application and Oracle RAC database was available and 
+
+not affected. 
+
+  VPLEX was available and functional after Witness failure. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+39 
+
+ 
+
+ 
+
+ 
+
+ 
+
+In order to demonstrate the availability of VPLEX between the primary and secondary data centers, 
+the VPLEX command line interface (CLI) was used to verify the status of both VPLEX sites, as shown 
+in the following commands. 
+
+VPlexcli:/> ll clusters 
+/clusters: 
+Name       Cluster ID  Island ID  Expelled  Connected  Operational Status 
+cluster-1  1           1          false     true       ok 
+cluster-2  2           1          false     true       ok 
+ 
+VPlexcli:/> cluster status 
+Cluster cluster-1 
+        operational-status:        ok 
+        transitioning-indications: 
+        transitioning-progress: 
+        health-state:              ok 
+        health-indications: 
+Cluster cluster-2 
+        operational-status:        ok 
+        transitioning-indications: 
+        transitioning-progress: 
+        health-state:              ok 
+        health-indications: 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+40 
+
+ 
+
+ 
+
+Figure 8. Status of the VPLEX sites 
+
+VPlexcli:/> health-check 
+Product Version: Version mismatch (or NDU) 
+
+ 
+
+Clusters: 
+--------- 
+Cluster    Cluster  Oper   Health  Connected  Expelled 
+Name       ID       State  State 
+---------  -------  -----  ------  ---------  -------- 
+cluster-1  1        ok     ok      True       False 
+cluster-2  2        ok     ok      True       False 
+ 
+Meta Data: 
+---------- 
+Cluster    Volume                           Volume          Oper   Health  Active 
+Name       Name                             Type            State  State  
+---------  -------------------------------  --------------  -----  ------  ----- - 
+cluster-1  c1_meta_backup_2012Jun14_000001  meta-volume     ok     ok      False 
+cluster-1  logging_c1_log_vol               logging-volume  ok     ok      -  
+cluster-1  c1_meta                          meta-volume     ok     ok      True 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+41 
+
+ 
+
+ 
+
+cluster-1  c1_meta_backup_2012Jun15_000001  meta-volume     ok     ok      False 
+cluster-2  c2_meta_backup_2012Jun15_000001  meta-volume     ok     ok      False 
+cluster-2  logging_c2_log_vol               logging-volume  ok     ok      -  
+cluster-2  c2_meta_backup_2012Jun14_000000  meta-volume     ok     ok      False 
+cluster-2  c2_meta                          meta-volume     ok     ok      True 
+Front End: 
+---------- 
+Cluster    Total    Unhealthy  Total       Total  Total     Total 
+Name       Storage  Storage    Registered  Ports  Exported  ITLs 
+           Views    Views      Initiators         Volumes 
+---------  -------  ---------  ----------  -----  --------  ----- 
+cluster-1  3        0          6           8      24        48 
+cluster-2  3        0          6           8      24        48 
+ 
+Storage: 
+-------- 
+Cluster    Total    Unhealthy  Total    Unhealthy  Total  Unhealthy  No     Not 
+visible 
+Name       Storage  Storage    Virtual  Virtual    Dist   Dist       Dual   from                                                                         
+           Volumes  Volumes    Volumes  Volumes    Devs   Devs       Paths  All  
+Dirs 
+---------  -------  ---------  -------  ---------  -----  ---------  -----  ---- 
+cluster-1  16       0          8        0          1      0          0      0  
+cluster-2  16       0          8        0          1      0          0      0  
+ 
+Consistency Groups: 
+------------------- 
+Cluster    Total        Unhealthy    Total         Unhealthy 
+Name       Synchronous  Synchronous  Asynchronous  Asynchronous 
+           Groups       Groups       Groups        Groups 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+42 
+
+ 
+
+ 
+
+ 
+
+ 
+
+---------  -----------  -----------  ------------  ------------ 
+cluster-1  1            0            0             0 
+cluster-2  1            0            0             0 
+ 
+WAN Connectivity: 
+----------------- 
+Cluster  Local        Remote       MTU  Connectivity 
+Name     Cluster Ips  Cluster Ips 
+-------  -----------  -----------  ---  ------------ 
+WAN Connectivity information is not available 
+Cluster Witness: 
+---------------- 
+Admin    Private        Public           cluster-1  cluster-2  server 
+State    Ip             Ip               OP State   OP State   OP State 
+-------  -------------  ---------------  ---------  ---------  -------- 
+unknown  128.221.254.3  192.168.100.178  -          -          - 
+
+We recommend configuring consistency groups on the primary site according to desired behavior. For 
+example, if Data Center 2 is to be the default winner, then consistency groups in VPLEX should be set 
+to use VPLEX on Data Center 2. 
+
+If ASCS contains the central instance, then it should be redundant on both sites to avoid performance 
+and availability impact. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+43 
+
+ 
+
+ 
+
+Test 4: Storage failure and SAP availability 
+
+The objective of this test was to demonstrate that storage failure on primary data site 1 does not 
+impact availability of the SAP application. 
+
+Test environment 
+
+The test environment was set up as described in the previous sections, with the following additional 
+configurations: 
+
+  We produced storage failure on Data Center 1. 
+  We ran transaction SGEN on SAP application to generate load. 
+  We used active/active VPLEX configuration to provide HA capability between Data Center 1 and 
+
+Data Center 2. 
+
+Test procedure 
+
+We used the following procedure to show that storage failure on the primary site does not impact 
+availability of the SAP application: 
+
+1.  Monitored application availability with SAP transactions AL08 and ST04. 
+2.  Disconnected fiber cables from VPLEX to storage array VMAX on Data Center 1. 
+
+Test results 
+
+This test produced the following results: 
+
+  All database nodes and instances remained online and available during and after storage failure. 
+  The SAP application remained online and functional after storage failure with no impact to 
+
+performance. 
+ Both VPLEX configurations remained online for Data Center 1 and Data Center 2 after storage 
+failure. 
+
+ 
+
+  The benefit of using VPLEX with SAP and Oracle was that even in the event of a storage failure, 
+
+no data loss occurred and application availability and functionality performed without incident.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+44 
+
+ 
+
+ 
+
+Conclusion 
+
+Vblock Systems with SAP application active/active clustering with mobility and EMC VPLEX combines 
+an SAP ERP system and applications with an Oracle RAC database and EMC VPLEX Metro to 
+ensure active/active SAP application mobility. This solution demonstrates that: 
+
+  By implementing a highly available design at both the application and database layer for SAP and 
+Oracle, with multiple virtual machines and redundant network and storage configuration, multiple 
+application and database node failures can be tolerated without suffering loss in application or 
+database availability. 
+
+  VPLEX failures on Data Center 1 do not impact availability of the applications and database on 
+
+Data Center 2. 
+
+  Network failures do not impact performance or availability of the SAP application. 
+  In the event of storage failures (disk, controller, arrays), no data loss occurs and application 
+
+availability and functionality perform without incident. 
+
+  The flexible architecture deployed with two data center sites allows for online active/active mobility 
+of application and database hosts with zero loss in downtime and a minimal level of performance 
+for the SAP and Oracle environment.  
+
+In addition, by using the available functionality of VMware vMotion, a mixed workload environment 
+with SAP and Oracle is able to balance loads and distribute applications across the data center with 
+minimal service interruption and no outage required when additional resources are needed from the 
+application layer. This functionality, in turn, provides a high level of service to fulfill mission critical 
+service-level agreements that demand 24x7x365 availability. 
+
+Next steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+45 
+
+ 
+
+ 
+
+References 
+
+Refer to the following sources for supporting and additional information: 
+
+SAP 
+
+Oracle 
+
+Note: 
+
+To access SAP documentation on the SAP Service Marketplace, SAP requires that you register and 
+have a user ID and password.  
+
+  SAP installation guides: 
+
+http://service.sap.com 
+
+  SAP Support Notes: 
+
+http://service.sap.com/support 
+
+  Configuration of SAP NetWeaver for Oracle Grid Infrastructure 11.2.0.2 and Oracle Real 
+
+Application Clusters 11g Release 2: A Best Practices Guide 
+http://www.oracle.com/us/solutions/sap 
+
+  Oracle documentation: 
+
+docs.oracle.com 
+
+  Oracle Support Notes: 
+
+https://support.oracle.com 
+
+VMware 
+
+  Oracle Databases on VMware - Best Practices Guide 
+
+http://www.vmware.com/files/pdf/partners/oracle/Oracle_Databases_on_VMware_-
+_Best_Practices_Guide.pdf 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+46 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+

@@ -1,0 +1,250 @@
+ 
+
+VBLOCKTM SOLUTION FOR HOSTED 
+COLLABORATION  
+ 
+VCE designs and delivers Vblock™ Systems, which seamlessly integrate leading compute, network and storage technologies. 
+Through intelligent discovery, awareness and automation, Vblock Systems provide the highest levels of virtualization and application 
+performance. Vblock Systems are unique in their ability to be managed as a single entity with a common interface that provides 
+customer choice. 
+
+Service Providers (SPs) need to differentiate their cloud services in a highly competitive market. Meeting the growing demand for 
+unified communication and collaboration services is one way to do this, but SPs need a comprehensive, flexible, and agile way to 
+provide these services to their customers.  
+Vblock Systems for Hosted Collaboration Solution (HCS) makes Cisco® Unified Communications (UC) and Collaboration applications 
+and capabilities available in a hosted environment. Vblock Systems provide standardized units of best-of-breed IT infrastructure that 
+can be managed as a single entity and easily scaled as a cohesive, multi-tenant system. This allows SPs to create unified, 
+standardized, subscription-based “as-a-service” packages of UC applications using Cisco HCS. 
+
+A comprehensive cloud-based HCS service allows enterprises to focus on their core competencies, while SPs address the growing 
+market demand to deliver rich media services—on any device, anywhere.  
+
+ 
+
+The Vblock Systems for Cisco Unified Communications contains the following key hardware and software components: 
+
+TABLE I: VBLOCK™ SOLUTION FOR HOSTED COLLABORATION COMPONENTS 
+Resource 
+
+Vblock Systems for Hosted Collaboration Details 
+
+VBLOCK SYSTEMS 
+
+Vblock System 300 
+- Compute Chassis:  Four Cisco UCS 5108 Blade Server Chassis (up to 100,000 endpoints) 
+  
+Eight Cisco UCS 5108 Blade Server Chassis (up to 200,000 endpoints) 
+- Compute Blades: Min. two supported "packs" of two B-Series blades 
+- Network: Two Nexus 5548 IP switches 
+- Storage: EMC VNX 5500 
+- Storage Network: Two MDS 9148 SAN switches 
+
+CORE UC 
+APPLICATIONS 
+
+Cisco Unified Communications Manager v8.6.1 
+Cisco Unity Connection v8.6.1 
+Cisco Unified Presence v8.6.1 
+
+AGGREGATION (NOT 
+ON VBLOCK SYSTEM) 
+
+ASR1000 Cisco Unified Border Element SP RLS3.3S 
+Cisco Packet Data Network Gateway (PGW) 9.8(1) S13, P13 
+
+FULFILLMENT 
+
+ASSURANCE 
+
+Cisco Unified Communications Domain Manager v7.4 
+
+Cisco Unified Operations Manager/ Cisco Unified Service Monitor v8.6.1 
+Cisco Hosted Collaboration Mediation v1.2 
+
+© 2012, 2013 VCE Company, LLC. All rights reserved. 
+ 
+
+ 
+ 
+
+ 
+
+Sizing Guidelines 
+Every deployment of the Vblock Systems for Hosted Collaboration Solution must be sized appropriately for the number of 
+subscribers and endpoints that the SP intends to support. Sizing is dependent on a range of parameters including: 
+customer profiles and mix, service mix, endpoints, data centers, blade types, CPU cores, RAM, and growth projections. 
+Using mid-range assumptions for these parameters, the Cisco HCS Advisor Tool provides the following sizing guidelines: 
+ 
+
+TABLE 2: VBLOCK SYSTEMS FOR HOSTED COLLABORATION SIZING GUIDELINES 
+
+ 
+
+25,000 
+
+50,000 
+
+100,000 
+
+200,000 
+
+6 
+
+17 
+
+9.7 
+
+5,180 
+
+5 
+
+10 
+
+2 
+
+13 
+
+22 
+
+13.9 
+
+8,020 
+
+10 
+
+15 
+
+2 
+
+26 
+
+32 
+
+23.8 
+
+14,000 
+
+15 
+
+25 
+
+4 
+
+51 
+
+58  
+
+45.8 
+
+27,550 
+
+20 
+
+40 
+
+4 
+
+Endpoints 
+
+CUSTOMERS 
+
+BLADES REQUIRED 
+
+DISK (TB) 
+
+IOPS  
+
+EFD DRIVES 
+
+NL-SAS DRIVES 
+
+FAST CACHE 
+
+ 
+
+Assumptions: 
+Customer profile and mix: 
+
+  35% subscribers with 250 users each 
+
+  35% subscribers with 2,500 users each 
+
+  30% subscribers with 10,000 users each 
+
+ Service Mix: 
+  100% users with basic telephony service 
+
+  70% users with voicemail service 
+
+  40% users with presence service 
+
+  10 CER instances 
+
+ One endpoint per user 
+
+ Single data center deployment 
+
+	  
+
+ Blade used for sizing exercise: B200 M2/3.46 GHz/192 GB 
+
+© 2012, 2013 VCE Company, LLC. All rights reserved. 
+ 
+
+ 
+ 
+
+ 
+
+Vblock Systems offer balanced CPU, I/O bandwidth, and storage capacity relative to the compute and storage arrays in the 
+system. All components incorporate redundancy into the design.  
+
+Learn more about how to quickly realize the benefits of converged infrastructures with Vblock System 300, visit 
+www.vce.com or contact a Vblock™ Qualified Partner.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged 
+infrastructure and cloud-based computing models that dramatically reduce the cost of IT while improving time to 
+market for our customers. VCE, through the Vblock Systems, delivers the industry's only fully integrated and fully 
+virtualized cloud infrastructure system. VCE solutions are available through an extensive partner network, and 
+cover horizontal applications, vertical industry offerings, and application development environments, allowing 
+customers to focus on business innovation instead of integrating, validating, and managing IT infrastructure. 
+For more information, go to www.vce.com. 
+ 
+
+ 
+
+!
+ 
+Copyright © 2012, 2013 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC. and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

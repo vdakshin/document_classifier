@@ -1,0 +1,282 @@
+ 
+
+ 
+ 
+
+CISCO UNIFIED COMMUNICATIONS  
+FOR MIDSIZE DATA CENTERS  
+ON VBLOCK™ SYSTEM 200 
+
+Version 1.0 
+March 2013
+
+© 2013 VCE Company, LLC. All Rights Reserved.  
+
+ 
+
+Copyright © 2013 VCE Company, LLC. All Rights Reserved. 
+
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+2 
+
+ 
+
+Contents 
+
+Introduction .............................................................................................................................. 4 
+Technology overview ............................................................................................................... 5 
+Vblock™ Systems .................................................................................................................... 5 
+Cisco Unified Communications ............................................................................................... 5 
+Collaboration ....................................................................................................................... 5 
+Applications ......................................................................................................................... 6 
+Use case ................................................................................................................................... 7 
+Situation ................................................................................................................................. 7 
+Solution .................................................................................................................................. 7 
+Benefits .................................................................................................................................. 8 
+Conclusion ............................................................................................................................... 9 
+Next Steps .............................................................................................................................. 9 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+3 
+
+ 
+
+Introduction 
+
+Business case 
+
+With the rise of globalization and distributed and mobile workforces, the need for realtime information 
+exchange is increasingly embedded in the way enterprises do business. With Cisco Unified 
+Communications (UC) and collaboration applications, customers can quickly provide the business 
+value of Cisco industry-leading communication and collaboration applications. 
+
+In the past, capital and operating expenditures, as well as existing infrastructure and staff, have made 
+it difficult for midsize data centers to offer Cisco UC applications with the performance and availability 
+businesses are accustomed to. The challenge now is to provide the value of these applications in an 
+IT infrastructure that is right-sized for midsize data centers. 
+
+Solution 
+
+Vblock™ Systems offer a predictable infrastructure growth model and easy scalability to meet today’s 
+needs and manage tomorrow’s growth, allowing customers to focus on IT strategy and planning and 
+not worry about capital and operating expenses while doing so. Vblock Systems deliver repeatable, 
+standardized architectures, and VCE design guidelines optimize the platform according to validated 
+UC behavior to ensure enterprise-grade performance and availability. Management tools like VCE 
+Vision™ Intelligent Operations greatly simplify training, operation, and maintenance with a consistent 
+management experience across different workloads and the Vblock Systems family. 
+
+Audience 
+
+Business decision makers in technical, financial, operational, line-of-business, and strategic positions 
+considering virtualized IT infrastructures in midsize and distributed location environments. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send e-mail to 
+docfeedback@vce.com. Include the name of this paper, the name of the topic to which your comment 
+applies, and your feedback.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+4 
+
+ 
+
+Technology overview 
+
+This section describes the technology components discussed in this paper. 
+
+Vblock™ Systems 
+
+The Vblock™ System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+The Vblock System 200 is right-sized to meet the capacity, workload, and space requirements of mid-
+sized data centers and distributed enterprise remote offices. By leveraging the Vblock System 200, 
+companies experience the repeatability, architecture standardization, implementation flexibility, and 
+business results synonymous with Vblock Systems. 
+
+With pre-defined, variable configurations, the Vblock System 200 balances real workload 
+requirements with fastest time to value, reducing risk and complexity. The Vblock System 200 is 
+designed to: 
+
+  Bring the power and benefits of the Vblock System family into a value-focused solution 
+  Deliver core IT services (file/print and domain) for mid-sized data centers and distributed 
+
+enterprise remote locations 
+
+  Provide development/test and co-location data center support 
+  Efficiently handle mixed workload requirements for mid-sized data centers 
+  Offer business applications with data segregation requirements (such as eDiscovery and 
+
+eArchive) with predictable performance and operational characteristics 
+
+Cisco Unified Communications 
+
+Collaboration  
+
+Cisco UC delivers a high-quality, highly secure experience across any workspace, which can help 
+your organization: 
+
+  Shorten sales and customer service cycles 
+  Reduce time-to-market 
+  Adapt more quickly to market changes 
+  Encourage innovation 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+Applications 
+
+Cisco UC uses the network as a platform for collaboration, allowing you to deploy applications onsite, 
+on-demand, and in blended deployment models. The product portfolio includes: 
+
+  Collaboration applications 
+
+Voice, video, and web conferencing; messaging; mobile applications; and enterprise social 
+software keep you connected and productive. 
+
+  Customer collaboration 
+
+Working closer to customers, while increasing satisfaction, and loyalty. Proactively connect 
+people with the information, expertise, and support they need. 
+
+  Telepresence 
+
+Cisco Telepresence powers a new way of working, where everyone, everywhere can be more 
+productive through face-to-face collaboration. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+6 
+
+ 
+
+Use case 
+
+Vblock System 200 is right-sized to deliver the scale and capabilities for a midsize UC deployment 
+with up to 30,000 endpoints, with the enterprise-grade performance of a larger Vblock System 300 
+family or Vblock System 700 family product. 
+
+Situation 
+
+A company with a midsize data center wants to provide UC applications to its workers or migrate 
+existing UC application workloads from a physical to a virtual infrastructure, using its existing IT staff 
+and operating budget.  
+
+Solution 
+
+Vblock System 200 offers an optimized converged infrastructure that can scale from 4 to 12 UCS 
+C220 M3 Rack Servers, allowing customers to expand the infrastructure as necessary or host other 
+workloads on the same infrastructure. Vblock System 200 offers external shared storage that can 
+supports both file and block access, allowing UC applications to fully leverage virtualization as well as 
+advanced storage optimization techniques. This solution provides customers with enterprise 
+capabilities, midsize cost, and operational ease. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+7 
+
+ 
+
+Benefits 
+
+Providing your organization UC applications on a Vblock System 200 allows you to address your 
+enterprise business needs with a solution sized for you: 
+
+  Enterprise infrastructure optimized specifically for UC applications 
+  Flexible and turnkey IT infrastructure for easy scaling and mixed application workloads 
+  Reduced capital costs  compared with traditional physical servers 
+  Consistent operational experience using tools like VCE Vision™ Intelligent Operations for 
+
+reduced staffing and operating costs 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+Conclusion 
+
+Vblock System 200 allows midsize customers to provide enterprise-caliber applications like Cisco 
+Unified Communications without huge capital outlays or increased operating expenses. Vblock 
+System 200 is built as part of a system architecture that is consistent from model to model and 
+includes management tools such VCE Vision™ Intelligent Operations for simple, affordable 
+deployments. With Vblock System 200, customers enjoy the same enterprise quality, performance, 
+and availability as larger data centers, with a fraction of the cost and effort required, making it a perfect 
+complement for Cisco Unified Communications and collaboration applications. 
+
+Next Steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+9 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to http://www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+Copyright © 2013 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or 
+its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+

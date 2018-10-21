@@ -1,0 +1,248 @@
+Information Brief 
+
+ 
+
+ 
+
+Optimizing an IBM AIX VIO Server with LPARS in a 
+Fibre Channel SAN with VirtualWisdom® 
+
+ 
+
+ 
+
+Introduction 
+Virtualization is a hot topic in the computing industry, with many widely different technologies and 
+solutions being recommended, developed and used. IBM POWERx-based machines have inherited 
+the know-how from IBM mainframes to provide opportunities for a significant reduction in operating 
+costs for complex environments.  The POWERx implementation uses advanced processor features, 
+firmware (also known as Hypervisor) and hardware features to create efficient and flexible 
+virtualization capabilities. These capabilities are offered from the top to the bottom of the server 
+range.  The key to this virtualization is the Virtual I/O (VIO) Server. 
+
+Virtual Instruments’ VirtualWisdom supports and enhances the use of VIO and logical partitions 
+(LPARs), by offering the industry’s only real-time Fibre Channel SAN performance monitoring and 
+optimization solution. 
+
+VIO / LPAR Architecture 
+pSeries servers from IBM allow a machine to be divided into LPARs, with each LPAR running a 
+different OS image -- effectively a server within a server. This can be achieved by logically splitting  
+a large machine into smaller units with CPU, memory, and PCI adapter slot allocations. 
+
+The pSeries and OpenPower servers can also run an LPAR with less than one whole CPU -- 
+multiple LPARs per CPU.  With each LPAR needing a minimum of one SCSI adapter for disk I/O and 
+one Ethernet adapter for networking, 20 LPARs would require the server to have at least 40 PCI 
+adapters. This is where the VIO Server helps. 
+
+ 
+
+ 
+
+HIGHLIGHTS 
+
+ 
+
+VirtualWisdom 
+increases the benefits 
+of virtualized IBM AIX 
+systems :  
+
+•  Reduces the risk 
+
+of virtualizing more 
+mission critical 
+applications 
+ 
+
+• 
+
+•  Reduces the risk 
+of deploying more 
+LPARs per 
+physical server 
+ 
+Enables more 
+aggressive use of 
+tiered storage by 
+improved tiered 
+storage planning 
+and ability to 
+prove performance 
+SLAs 
+ 
+
+•  Operational (OpEx) 
+
+savings through 
+improved 
+operations and 
+faster 
+troubleshooting 
+ 
+
+•  Capital 
+
+expenditure 
+(CapEx) savings 
+by eliminating 
+switch over-
+provisioning and 
+over-tiering  
+ 
+
+•  Better adherence 
+to, and monitoring 
+of SLAs and 
+external 
+regulations  
+ 
+ 
+ 
+ 
+ 
+ 
+
+VirtualInstruments.com 
+
+•  Higher revenues 
+
+through 
+accelerated 
+application and 
+SAN deployments  
+ 
+
+•  Stronger vendor 
+management and 
+improved vendor 
+relationships 
+ 
+
+•  Accelerated use 
+of storage tiering 
+ 
+
+•  Reduction in 
+
+unplanned 
+downtime 
+
+ 
+
+ 
+
+IBM VIO Resource Sharing 
+The VIO Server owns real PCI adapters (Ethernet, SCSI, or SAN), but allows other LPARs to share 
+them remotely using the built-in Hypervisor services. These other LPARs are called Virtual I/O client 
+partitions (VIO client). And because they don't need real physical disks or real physical Ethernet 
+adapters to run, they can be created quickly and cheaply.  Each VIO client operates as if it had a 
+dedicated SCSI device but in fact, each client device is a real disk partition (logical disk partition) on 
+the VIO Server. The VIO Server and VIO client communicate using the pSeries Hypervisor, allowing 
+disk I/O requests to be transferred between the LPARs using a message-passing protocol. 
+
+Virtual fibre environment and VirtualWisdom 
+For IBM AIX systems (AIX 5.3 TL9 or later, or AIX 6.1 TL2 or later) which support N_Port ID 
+Virtualization (NPIV), SAN objects such as switches, HBAs, storage devices, or virtual machines can 
+be assigned World Wide Name (WWN) identifiers. WWNs uniquely identify such objects in the Fibre 
+Channel fabric and by using NPIV, a SAN administrator can monitor and route storage access on a 
+per virtual machine (LPAR) basis.  A detailed solution for mapping VIO port WWN's to proper 
+manufacturer and device type can be obtained from your Virtual Instruments Solutions Consultant. 
+
+WWPNs do not move with the LPAR.  Each virtual HBA path has an active and passive WWPN, one 
+residing in each physical frame.  For instance, LPAR1 on HBA1 will have WWPN X and WWPN Y.  
+When the LPAR is active on Physical Frame A, WWPN X will be active and WWPN Y is disabled.  If 
+the LPAR is migrated onto Physical Frame B, then WWPN Y is activated and WWPN is disabled.  
+For this reason, VirtualWisdom does not need to handle WWPNs moving across switch ports. 
+
+NPIV is typically used in high throughput, high I/O environments where VirtualWisdom is often 
+deployed to ensure optimized performance. 
+
+Virtual SCSI environment and VirtualWisdom 
+
+Without NPIV (also referred to as Virtual Fibre, above) enabled, VirtualWisdom does not differentiate 
+by LPAR, but still can differentiate by LUN.  This is also referred to as a Virtual SCSI environment.  
+
+VirtualWisdom’s Value Add 
+VirtualWisdom is an innovative solution that helps IT organizations realize the full economic benefits 
+of networked storage and server virtualization, including environments running IBM’s AIX with VIO 
+and LPARs.  
+
+When used with NPIV or dedicated LUNs, VirtualWisdom and SANInsight SAN Performance 
+Probe, can track individual I/Os from the LPAR through to the LUN.  With this full path 
+awareness, VirtualWisdom enables:  
+
+•  Operational (OpEx) savings through improved operations and faster troubleshooting 
+•  Capital expenditure (CapEx) savings by eliminating over-provisioning and over-tiering  
+•  Better adherence to, and monitoring of SLAs and external regulations  
+•  Higher revenues through accelerated application and SAN deployments  
+•  Stronger vendor management and improved vendor relationships  
+• 
+•  Accelerated use of  storage tiering 
+•  Reduction in unplanned downtime 
+
+Increased use of server virtualization and LPARs per server 
+
+ 
+ 
+ 
+ 
+ 
+
+2                             OPTIMIZING IBM AIX VIO SERVERS WITH LPARS IN A FIBRE CHANNEL SAN 
+ 
+
+ 
+
+ 
+
+SAN Topology with pSeries and VirtualWisdom 
+
+ 
+ 
+VirtualWisdom provides comprehensive instrumentation and measurement capabilities of the SAN and virtualized 
+infrastructure that reduce application response time, accelerate storage I/O, increase availability, and improve resource and 
+SAN utilization. VirtualWisdom is the only solution that can non-intrusively improve the performance of virtualized 
+applications in real-time by analyzing actual SAN I/O traffic data.  
+
+A more thorough discussion of VirtualWisdom benefits that apply to all FC SAN and virtualized environments can be found 
+at www.virtualinstruments.com.   
+
+Summary 
+This information brief is meant to be an overview document and details on specific capabilities of different generation IBM 
+pSeries systems and AIX releases should be obtained directly from IBM. 
+
+Virtual Instruments’ VirtualWisdom supports the use of VIO Servers and with NPIV, offers full path monitoring from the 
+LPAR to the LUN.  VirtualWisdom increases the value of the virtualized AIX-based environment through more aggressive 
+use of tiered storage, faster troubleshooting, eliminating switch over-provisioning, better monitoring of SLAs, and lowering 
+the risk of deploying more LPARs per server and virtualizing mission critical applications. 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 09/11 
+
+3                             OPTIMIZING IBM AIX VIO SERVERS WITH LPARS IN A FIBRE CHANNEL SAN 
+ 
+
+

@@ -1,0 +1,3661 @@
+ 
+Oracle E-Business Suite on Vblock Systems Backup and 
+Recovery with EMC Avamar Solution Architecture 
+
+ 
+
+ 
+
+ 
+
+Table of Contents 
+
+www.vce.com 
+
+Oracle E-Business Suite on Vblock™ Systems 
+Backup and Recovery with EMC Avamar 
+Solution Architecture 
+
+  
+
+Version 1.0 
+May 2013 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Copyright © 2013 VCE Company Inc. All Rights Reserved 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Contents 
+
+Introduction .............................................................................................................................. 6 
+About this document ............................................................................................................... 6 
+Solution overview .................................................................................................................... 6 
+Objectives ............................................................................................................................... 6 
+Scope ..................................................................................................................................... 7 
+Audience................................................................................................................................. 7 
+Feedback ................................................................................................................................ 7 
+Technology overview ............................................................................................................... 8 
+Solution components .............................................................................................................. 8 
+Architecture overview .............................................................................................................. 9 
+Logical layout .......................................................................................................................... 9 
+Physical layout .......................................................................................................................10 
+Hardware and software components ......................................................................................11 
+Design considerations ............................................................................................................13 
+Compute configuration ...........................................................................................................13 
+Network configuration ............................................................................................................14 
+Storage design ......................................................................................................................15 
+Virtualization configuration .....................................................................................................16 
+Application configuration ........................................................................................................17 
+Oracle EBS .........................................................................................................................18 
+EMC Avamar ......................................................................................................................18 
+VCE Data Protection Overview ..............................................................................................19 
+Solution validation ..................................................................................................................20 
+Backup and recovery test category summaries ......................................................................20 
+Category 1: Hot online backup and recovery ......................................................................20 
+Category 2: Cold offline backup and recovery ....................................................................21 
+Category 3: Point-in-time restore/recovery (PITR) ..............................................................21 
+Category 4: Incremental backup/recovery (optional) ...........................................................22 
+Validation objectives ..............................................................................................................22 
+Test environment design ........................................................................................................22 
+Tests and test procedures .....................................................................................................23 
+Test acceptance criteria .........................................................................................................23 
+Test 1 Hot online backup and recovery .................................................................................24 
+Test 1 Environment ............................................................................................................24 
+Test 1 Procedures ..............................................................................................................27 
+Test 1 Results ....................................................................................................................29 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 2 Cold database backup for Oracle EBS with Avamar .................................................30 
+Test 2 Environment ............................................................................................................30 
+Test 2 Procedures ..............................................................................................................30 
+Test 2 Results ....................................................................................................................33 
+Test 3 Point-in-time restore and database recovery for Oracle EBS with Avamar .............34 
+Test 3 Environment ................................................................................................................34 
+Test 3 Procedures .................................................................................................................34 
+Procedure 1-Test 3: Database recovery from online hot Avamar backup ...........................35 
+Test results .........................................................................................................................36 
+Procedure 2-Test 3: Application tier node recovery from cold Avamar backup ...................37 
+Test results .........................................................................................................................39 
+Procedure 3-Test 3: Application tier node recovery from hot Avamar backup .....................39 
+Test results .........................................................................................................................41 
+Procedure 4-Test 3: Full database recovery from cold Avamar database backup ...............41 
+Test results .........................................................................................................................41 
+Procedure 5-Test 3: Point-in-time recovery from Avamar hot online backup .......................41 
+Test results .........................................................................................................................44 
+Test 4 Oracle backup and recovery with VMware Data Protection 5.1 ................................45 
+Test 4 Environment ............................................................................................................45 
+Test 4 Procedures ..............................................................................................................45 
+Test 4 Results ....................................................................................................................50 
+Test 5 Backup and recovery with VDP for Oracle EBS App Tier .........................................51 
+Test 5 Environment ............................................................................................................51 
+Test 5 Procedures ..............................................................................................................52 
+Test 5 Results ....................................................................................................................58 
+Summary of validation results ...............................................................................................59 
+Test 1 Results for hot online backup and recovery .............................................................59 
+Test 2 Results for cold database backup for Oracle EBS with Avamar ...............................59 
+ ...........................................................................................................................................59 
+Test 4 Results for Oracle EBS backup and recovery with VMware Data Protection 5.1 ......60 
+Test 5 Results for performing backup and recovery with VDP for Oracle EBS App Tier ......61 
+Combined summary ...............................................................................................................61 
+Conclusion ..............................................................................................................................62 
+Next steps ..............................................................................................................................63 
+APPENDIX – Description of the solution components .........................................................64 
+Vblock™ Systems ...................................................................................................................64 
+Vblock System 720 .............................................................................................................64 
+
+Test 3 Results for point-in-time restore and database recovery for Oracle EBS with Avamar
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Vblock System 320 .............................................................................................................64 
+Compute components ........................................................................................................65 
+Network components ..........................................................................................................65 
+Storage components ..........................................................................................................65 
+Virtualization components ...................................................................................................65 
+Oracle Database 11g Release 2 Enterprise Edition ...............................................................65 
+Oracle Real Application Clusters ...........................................................................................66 
+Oracle E-Business Suite Release 12 .....................................................................................66 
+EMC Avamar .........................................................................................................................66 
+EMC Avamar Data Store .......................................................................................................66 
+References ..............................................................................................................................67 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Introduction 
+
+About this document 
+
+Integrated solutions for backup and recovery are critical for businesses. Exponential data growth, 
+regulatory requirements, and the demand for continuous availability make it difficult to successfully 
+complete backups within shrinking backup windows. 
+
+VCE addresses this need for Oracle customers with a new integrated backup and recovery solution 
+architecture: Oracle E-Business Suite (EBS) on Vblock™ Systems Backup and Recovery with EMC 
+Avamar. Also included in the solution is the VMware vSphere Data Protection Suite. 
+
+Solution overview 
+
+The solution architecture describes the key features and benefits of backup and recovery in the 
+virtualized Oracle EBS on Vblock Systems with EMC Avamar. 
+
+VCE designs and delivers Vblock Systems, the world’s most advanced converged infrastructure—it 
+optimizes infrastructure, lowers costs, secures the environment, speeds deployment, and promotes 
+innovation. And with best-in-class components, one architecture spanning the whole portfolio, 
+advanced operations management for converged infrastructure, a single point of contact from initiation 
+through support, and the industry's most robust range of configurations and models, Vblock Systems 
+address the unique needs and requirements of practically any size organization, a variety of price 
+points, and a multitude of specific verticals and business drivers. 
+
+If you would like to use the Vblock Systems solution additionally as a cold site, see the previous VCE 
+Oracle EBS-related papers: Enhanced Operational Agility and Scalability for Oracle E-Business Suite 
+R12 and RAC on VMware vSphere 5 and Zero Downtime Bi-Directional Physical to Virtual Migration 
+for Oracle® EBS R12 with RAC on Vblock™ Infrastructure Platforms. These papers also demonstrate 
+the ease with which Vblock Systems can be integrated into existing investments. 
+
+Objectives 
+
+This Solution Architecture paper provides guidance on how to backup and recover a virtualized Oracle 
+EBS deployment on Vblock Systems with Avamar and the VMware vSphere Data Protection Suite. 
+
+Objectives for this solution:  
+
+  Provide a technology overview of the backup and recovery solution and supporting architecture 
+
+that includes an explanation of the setup, configuration, and operational best practices for 
+deploying the backup and recovery solution in the Oracle EBS environment on Vblock Systems 
+
+  Define how data is protected end-to-end. 
+  Describe backup methodology, including hot and cold backups for the Oracle E-business 
+
+mission-critical environment, which does not impact business users’ concurrent work.   
+
+An additional objective is that conceptual and hands-on best practice aspects of this solution are 
+documented: 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  Deployment for Oracle EBS in a typical Avamar environment (for example, this 2-4TB of the 
+
+Oracle environment is a portion of the overall mixed application workload environment) 
+  Description of the prototype lab environment in which VMware vSphere data protection 
+
+capability can be used as a utility 
+
+  Description of Vblock data protection solutions including EMC Avamar only, and Avamar and 
+
+Data Domain, including the sizing and scaling 
+
+The validation performed while using this methodology includes the following objectives: 
+
+  Measure backup throughput in terms of TB/hour and GB/minute, measure latency, and calculate 
+
+daily backup volume 
+
+  Verify near zero long-running or failed backups 
+  Demonstrate backups have been performed successfully without loss or corruption 
+  Demonstrate how Avamar contributes to decreasing RTO/RPO in the event of a failure 
+
+Scope 
+
+The above objectives describe the scope for this project. 
+
+Audience 
+
+The primary audience of this solution architecture paper is technical practitioners, such as data center 
+managers, database architects, and database administrators (DBAs). In addition, IT management 
+teams would also be interested in reviewing this document as part of a product evaluation. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email 
+to docfeedback@vce.com. Include the title of this paper and the name of the topic to which your 
+comment applies. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+7 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Technology overview 
+
+This section presents a summary of the technologies used in the VCE solution. 
+
+Solution components 
+
+The solution uses the following hardware and software components and technologies. 
+
+See the Appendix for a description of each of these products and technologies. 
+
+  Vblock Systems  
+  Oracle Database 11g Release 2 Enterprise Edition 
+  Oracle Real Application Clusters 
+  Oracle E-Business Suite Release 12 
+  EMC Avamar 
+  EMC Avamar Data Store 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Architecture overview 
+
+Logical layout 
+
+Figure 1 shows the overall logical architecture of the environment.  
+
+Figure 1 Logical architecture: Oracle EBS Backup and Recovery with Avamar 
+
+The logical architecture diagram shows: 
+
+ 
+
+  There is a single-node Avamar solution backing up data.  
+  There are Avamar clients and proxies running on Vblock Systems. During nightly backups the 
+
+Avamar agents copy the changed variable-length blocks from the Avamar grid and create a 
+virtual full backup from only the changed variable-length blocks.  
+
+  The Avamar software is used to schedule the backup jobs and to monitor and report on both 
+
+backup and Avamar system status. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+9 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 2, below, also describes backup and recovery with Avamar. 
+
+Figure 2: Oracle E-Business Backup Solution Overview with Avamar 
+
+ 
+
+Physical layout 
+
+Figure 3 shows the physical architecture deployed for Avamar with Oracle R12 EBS. 
+
+Figure 3. Physical layout: Oracle EBS Backup and Recovery with Avamar 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+10 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The physical architecture diagram shows: 
+
+1.  The Avamar client connects to the database tier for Oracle R12 EBS to perform the backup and 
+
+restore operations. 
+
+2.  The Application Tier is installed on the database, and the application data is stored in the 
+
+database. 
+
+3.  The Avamar grid interacts to backup from and restore data to the database 
+4.  Vblock Systems: For the compute, storage and network layers, the Oracle R12 EBS application 
+
+is deployed across multiple virtual machines to process Oracle Financial operations key to the 
+business. 
+
+5.  Nexus 5548 (which is integral to the Vblock Systems) is directly connected to the Nexus 7000 
+
+for all network services. 
+
+6.  Downstream from the Nexus 5548 everything is connected as per standard Vblock Systems. All 
+
+the hosts and VMs are inside Vblock Systems and get network service from the Nexus 7000. 
+
+Hardware and software components 
+
+Table 1 shows the hardware resources used in this solution. 
+
+Table 1. Description of the hardware resources used in this solution 
+
+Hardware 
+Vblock 300 with VNX 5300 
+
+Compute 
+
+Network  
+
+Storage  
+
+Virtualization 
+
+Other  components 
+
+ 
+
+Description 
+1 
+
+Cisco Unified Computing System (UCS):  
+ 
+
+3 x Cisco UCS B200 M3 blade server packs 
+(4-core, 128 GB memory) 
+- 
+- 
+
+2 used for application server 
+1 used for database ser ver 
+
+2 x Cisco UCS C220 M2 servers 
+
+Management (Mini-AMP): 
+ 
+  Cisco Catalyst 3560 
+ 
+ 
+ 
+
+2 x Cisco Nexus 5548 switch 
+2 x Cisco MDS 9148 aggregation SAN switch 
+1 x EMC VNX 5300 
+
+ 
+ 
+ 
+
+1 x VMware vSphere 5.1 
+1 x VMware vCenter Server 5.1 
+1 x EMC Avamar Data Store 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+11 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Table 2.  Description of the software used to validate this solution 
+
+Software 
+Oracle Enterprise Linux (OEL) 
+
+Quantity  Version 
+3 
+
+Oracle Linux 6.2 
+
+Oracle R12  EBS 
+
+Oracle 11g Database Enterprise 
+
+1 
+
+1 
+
+12.1.2 
+
+Purpose 
+Server operating system 
+
+ERP Database Software 
+
+11gR2(11.2.0.1) 
+
+Database Server Software 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Design considerations 
+
+Oracle backup and recovery requires both instance and database recovery to resolve data and 
+system failures. As such, copies of the database files, archive log files, and operating system binary 
+files must be backed up to Avamar on a regular basis and be available for a restore and recovery 
+operation. For details regarding Oracle backup and recovery procedures, see Oracle® Database 
+Backup and Recovery User's Guide 11g Release 1 (11.1) 
+at:  http://docs.oracle.com/cd/B28359_01/backup.111/b28270/toc.htm 
+
+EMC Avamar provides a feature-rich suite of tools to perform backup and recovery for the Oracle 
+database and the Oracle EBS by using a variety of software based plug-ins. For example, to backup 
+and restore the Oracle EBS application tier, since it is file-based binaries, the Linux operating system 
+plug-in is used to backup and restore the application tier servers within the Oracle R12 EBS 
+environment.  
+
+To backup and restore the database tier servers for Oracle R12 EBS, Avamar provides a plug-in that 
+interfaces directly with the Oracle Recovery Manager (RMAN) database layer. In addition to core 
+backup and recovery features, Avamar also provides advanced backup and recovery options by using 
+a policy-based system. Filters can be setup and applied based on time, date, retention period, and 
+nature of the backup and restore operation for Oracle. These features within Avamar remediate the 
+limitations present within the native operating system and Oracle database utilities. Furthermore, pre- 
+and post-custom scripts can also be deployed to simplify the backup and recovery operations for a 
+given customer Oracle environment. 
+
+Compute configuration 
+
+Three Cisco UCS blades were used and mapped to three virtual machines, as shown below. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+ 
+
+The Summary tab lists the general technical information and resources used for the configuration.  
+
+ 
+
+Network configuration 
+
+ 
+
+ 
+
+As shown in the Summary screenshot in the previous section, each of the Oracle VMs used a 
+standard port group switch for communication purposes. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+14 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Storage design 
+
+This solution uses the VNX based storage arrays provided in the Vblock Systems.  
+
+The EMC VNX series is a dedicated network server optimized for file and block access that delivers 
+high-end features in a scalable and easy-to-use package.  
+
+The VNX series delivers a single-box block and file solution that offers a centralized point of  
+management for distributed environments. This makes it possible to dynamically grow, share, and 
+cost-effectively manage, multiprotocol file systems and to provide multiprotocol block access. 
+Administrators can take advantage of simultaneous support for NFS and CIFS protocols by enabling 
+Windows and Linux/UNIX clients to share files by using the sophisticated file-locking mechanisms  
+of VNX for File and VNX for Block for high-bandwidth or for latency-sensitive applications. 
+
+Following, are the storage data tables. 
+
+Table 3 presents the VM storage information. 
+
+VM 
+
+IP 
+
+Subnet 
+
+GW 
+
+VLAN 
+
+vCPU  Mem-
+
+OracleR12EBS
+_AppTier 1 
+
+OracleR12EBS
+_AppTier 2 
+
+OracleR12EBS
+_DBTier 1 
+
+172.23.23.10 
+
+255.255.255.0 
+
+172.23.23.1  2323 
+
+172.23.23.11 
+
+255.255.255.0 
+
+172.23.23.1  2323 
+
+172.23.23.20 
+
+255.255.255.0 
+
+172.23.23.1  2323 
+
+Table 4 presents the RAID Group information. 
+
+ory 
+(GB) 
+16 
+
+16 
+
+32 
+
+8 
+
+8 
+
+8 
+
+OS(G
+B) 
+
+200 
+
+DB LUN 
+and Log 
+Size (TB) 
+- 
+
+200 
+
+- 
+
+20 
+
+2TB 
+
+RAID 
+Group 
+Number 
+34 
+
+35 
+
+Number of Disks 
+
+Disk 
+Type 
+
+Disk Size 
+
+RPM 
+
+ 
+
+ 
+
+1 
+
+1 
+
+SAS 
+
+600GB 
+
+SAS 
+
+600GB 
+
+10 
+K 
+
+10 
+K 
+
+Hot 
+Spare 
+
+Hot 
+Spare 
+
+Hot Spare 
+
+Hot Spare 
+
+Table 5 presents the Storage Pool information. 
+
+Pool Name 
+
+OracleAvamar_AppTier 
+
+OracleAvamar_DBTier 
+
+vb319 
+
+Number 
+of disks 
+8 
+
+14 
+
+5 
+
+Disk 
+type 
+SAS 
+
+SAS 
+
+SAS 
+
+Disk 
+size 
+600 GB 
+
+600 GB 
+
+600 GB 
+
+RPM 
+
+Raid type 
+
+Purpose 
+
+10 K 
+
+10 K 
+
+10 K 
+
+RAID I/O 
+
+Oracle App Tier 
+
+RAID 5 
+
+RAID 5 
+
+Oracle DB Tier 
+
+VM Bootswap and 
+ESXi Boot 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+15 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Virtualization configuration 
+
+VMware vSphere 5.1 was deployed as the hypervisor virtualization component for Oracle and Avamar 
+on the Vblock 300. A total of three virtual machines (VM) were created within VMware vCenter and 
+mapped to three ESXi hosts. The following screenshot shows a sample configuration for each virtual 
+machine for the database and application server configuration.  
+
+Since the Oracle EBS application tier houses lightweight application server processes, total 
+requirements for application processing are less than that used for the database tier server. Multiple 
+application server node VMs were used to load balance and boost overall throughput as 
+recommended by Oracle, EMC, and VMware best practices. For the database tier server, the 
+following single VM was configured: 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+16 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Application configuration 
+
+After the infrastructure deployment for Oracle and Avamar was completed, the Oracle R12                 
+EBS was installed and configured with the Oracle Linux operating system according to best practices 
+and guidelines from Oracle, EMC and VMware. Two application tier servers were deployed to 
+optimize performance and availability for concurrent batch processing and OLTP based workloads.  
+
+In addition, best practices for the configuration of the concurrent managers and batch processing were 
+optimized for the environment. A single Oracle database tier was deployed to complete the 
+configuration. The following shows the overall architecture for the deployed Oracle EBS environment. 
+First, we have the application tier nodes running under the Oracle Linux 6 platform: 
+
+The second application tier node has the same configuration as shown above. 
+
+The database tier has the following configuration: 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Within the Oracle 11g SQL*Plus utility the overall database configuration is shown below: 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+17 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Archive log mode was enabled as this is a requirement for hot backups with Oracle and Avamar. 
+
+ 
+
+Oracle EBS 
+
+To demonstrate a realistic workload, the Oracle Financial batch processes shown in the following 
+screenshot were executed on the live environment during and after backup and recovery operations. 
+
+EMC Avamar 
+
+EMC Avamar and the Avamar client software were installed and configured according to EMC 
+Avamar 6.1 documentation. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+18 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VCE Data Protection Overview 
+
+With Vblock™ Systems Data Protection products, VCE provides end-to-end solutions that are 
+designed to meet their unique infrastructure needs. Customers can now add new levels of data 
+protection to Vblock Systems, or they can convert their existing non-EMC, or non-VCE, data 
+protection solutions to a VCE solution. 
+
+The VCE Data Protection solutions include: 
+
+EMC Avamar - Deduplication backup system and software that provides highly efficient, variable 
+length deduplication, with tight integration to EMC purpose-built, backup appliances. Avamar enables 
+fast, complete daily backups of virtualized environments including the entire IT infrastructure, 
+enterprise applications, and data. Deduplication on the client side reduces ESXi contention and 
+network traffic thus shortening backup times. 
+
+EMC Avamar plus Data Domain - Dual options: Avamar targets the Avamar Data Store in your 
+solution. Or, for larger, high-change-rate workloads, the target can be a Data Domain system that 
+provides high speed, variable-length, inline deduplication. The result is a backup data storage footprint 
+that on average is 10x-30x smaller than a traditional backup footprint. 
+
+EMC VPLEX - VPLEX enables administrators to share, protect, or load-balance data across multiple 
+Vblock systems in the same data center or in different data centers within a campus or metro area. 
+They can non-disruptively move live virtual machines between locations to avoid downtime. VPLEX 
+also handles unplanned events automatically for application recovery time. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+19 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Solution validation 
+
+The validation information is provided for backup and recovery categories, followed by a table of 
+objectives for the project, and a table that correlates the objectives to the described actual tests 
+performed. 
+
+Backup and recovery test category summaries  
+
+Oracle backup and recovery is a complex topic. To explain the objectives, process, and test plans, 
+below are detailed summaries on the major types of backup and recovery to be performed for the 
+solution. The backup and recovery types comprise 4 categories. The 4 categories explained below 
+are reflected in the actual tests executed. 
+
+For the solution, backup and restore service (BRS), operational agility was tested from a hot online 
+backup from Avamar, a cold offline backup, and a point-in-time recovery for Oracle R12 EBS. Also 
+tested was an optional incremental backup and recovery. 
+
+Category 1: Hot online backup and recovery 
+
+Table 6 presents the features of hot online backup and recovery. 
+
+Category 1: Hot online backup and recovery 
+Description 
+
+Oracle hot backup and recovery provides the highest level of RTO in comparison 
+to cold backups since the database and application is able to remain online and 
+available during the backup process. There is a slight maintenance window of 
+downtime however during a restore and recovery process due to the fact that the 
+database logs must be applied to resolve the data failure. 
+
+Benefit 
+
+Tradeoff 
+
+High level RTO and RPO 
+
+Some performance impact and additional maintenance involved with storage 
+requirements for archive redo log files and read/write operations impact from 
+Avamar with Oracle. 
+
+Backup window 
+
+4 hours estimated online no downtime 
+
+Retention period 
+
+10 days (varies per business requirements) 
+
+Backup schedule  
+
+Daily during non-peak business hours of operation 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+20 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Category 2: Cold offline backup and recovery 
+
+Table 7 presents the features of cold offline backup and recovery. 
+
+Category 2: Cold offline backup and recovery 
+Description 
+
+Oracle cold backups are beneficial to ensure against data loss thus ensuring a 
+high level of RPO. However since the application and database must be taken 
+offline during the backup and restore operation, there is some downtime involved 
+for the application to complete a cold offline backup and restore. 
+
+Benefit: High RPO 
+
+All committed data in place before the database and application is shutdown that 
+has been backed up is able to be restored completely given that the backup 
+image is not corrupted. Thus, a cold backup has the highest level of RPO for 
+Oracle backups. 
+
+Tradeoff: Higher RTO 
+
+Some downtime is involved since the application and database services must be 
+taken offline to perform the cold backup for Oracle EBS. 
+
+Backup window 
+
+4 hours estimated (actual to be determined via testing process). 
+
+Retention period 
+
+10 days (varies by business requirements). 
+
+Backup schedule  
+
+Weekly. 
+
+Category 3: Point-in-time restore/recovery (PITR) 
+
+Table 8 presents the features of point-in-time restore/recovery. 
+
+Category 3: Point-in-time restore/recovery (PITR) 
+Description 
+
+Recover to point in time before data failure occurred. 
+
+Benefit 
+
+Tradeoff 
+
+Best  RTO for BRS with Oracle and Avamar. 
+
+Provides restore only to point-in-time, versus a complete recovery from a site-
+wide disaster. PITR is best suited to supplement a weekly full backup in the 
+event that, for example,  a user accidentally drops a table from a schema. 
+
+Backup window 
+
+Estimated 10 minutes to 30 minutes based on recovery amount of redo to be 
+applied for PITR restore. 
+
+Retention period 
+
+10 days (varies by business requirements). 
+
+Backup schedule  
+
+On demand when event occurs that requires PITR to be performed, versus a full 
+restore and recovery. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+21 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Category 4: Incremental backup/recovery (optional) 
+
+ 
+
+Table 9 presents the features of incremental backup/recovery (optional). 
+
+Category 4: Incremental backup/recovery (optional) 
+Description 
+
+Incremental backup and recovery supplements a traditional cold or hot full 
+backup by capturing only delta changes in blocks during application and 
+database processing. For large bulk processing warehouses that load different 
+amounts of massive volume transactions which change on a frequent basis, an 
+incremental backup may prove useful to save on time (RTO) to restore an 
+environment. 
+
+Benefit 
+
+Tradeoff 
+
+Provides partial backup and recovery for point-in-time scenarios and uses less 
+storage for capture only changes made since last full backup operation. 
+
+Less than a full restore is not possible. Must use a full recovery as well. 
+
+Backup window 
+
+Varies from 10 minutes to few hours (to be tested and determined). 
+
+Retention period 
+
+10 days (varies per business requirements). 
+
+Backup schedule  
+
+Weekly. 
+
+Validation objectives 
+
+This validation is focused on how to back up the virtual Oracle E-Business environment. The following 
+objectives are related to showing how to restore data when there is a corruption within E-Business 
+(which can happen within the Oracle E-Business integrated environment or supporting components), 
+or when there is a failure with VM due to power outage, or there are failed processes, or other failures. 
+
+The objectives are:  
+
+1.  Deploy Oracle EBS R12 on Vblock Systems 300 with EMC VNX 5300 and perform functional 
+
+testing with VMware vSphere 5.1 Data Protection. 
+
+2.  Measure baseline backup performance and ensure best performance on Vblock Systems 300 
+
+for Oracle. 
+
+3.  Simulate application tier node failure and perform data recovery with no data loss for Oracle 
+
+EBS. 
+
+4.  Simulate database tier failure and show that data recovery with Avamar produces no data loss. 
+5. 
+
+Implement point in time recovery (PITR) from Avamar for the Oracle R12 EBS. 
+
+Test environment design 
+
+Since both application and database tiers are involved with backup and recovery of the Oracle R12 
+EBS, additional tasks are required in the design and implementation of the backup and recovery 
+service (BRS) architecture and configuration versus a traditional Oracle OLTP or data warehouse 
+environment. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Tests and test procedures 
+
+The test scenarios cover all of the key goals for the objectives, and reflect the stated categories for 
+Oracle backup and recovery. 
+
+There are 5 different test sections: 
+
+  Test 1: Hot online backup and recovery  
+  Test 2: Cold offline database backup for Oracle EBS with Avamar 
+  Test 3: Test 3 Point-in-time restore and database recovery for Oracle EBS with Avamar 
+  Test 4: Test 4 Oracle Backup and Recovery with VMware Data Protection 5.1  
+  Test 5: Perform Backup and Recovery with VDP for Oracle EBS App Tier 
+
+Test acceptance criteria 
+
+Successful test results will meet the following test acceptance criteria. 
+
+1.  Backup performance:  
+
+-  Measure data throughput (TB/Hour) for back-up tasks and calculate daily backup volume. 
+-  Optimize speed as needed.  
+
+2.  Recovery performance metrics and test results: 
+
+-  Recovery Time Objective (RTO), the duration of time and a service level within which a 
+
+business process must be restored after a disaster (or disruption) must be met. 
+
+-  Recovery Point Objective (RPO), the maximum tolerable period in which data might be lost 
+from an IT service due to a major incident typical for database applications, must be met.   
+
+-  Avamar helps contribute to RTO and RPO objectives. 
+
+In addition, an end-to-end backup and recovery process with emphasis on handling on a virtualized 
+Oracle EBS environment, and that highlights the benefits of deploying Oracle on Vblock Systems, 
+must be documented. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+23 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 1 Hot online backup and recovery 
+
+This test is to measure hot online backup and recovery processes for Oracle with Avamar. 
+
+Test 1 objectives are to show that: 
+
+1.  Application and database recovery minimizes data loss. 
+2.  Applications and database all function correctly after recovery is performed. 
+3.  Recovery time (RTO) is shortened due to online recovery functionality. 
+
+Test 1 Environment 
+
+Most customers automate the process for backup and recovery during low activity maintenance 
+windows so that users are not impacted during business operation hours. For the solution, a typical 
+customer standard backup window and schedule of 30-45 days was implemented. Avamar uses the 
+concept of a dataset to pre-configure a standard set of backup operations including backup type, 
+schedule, and retention period.  
+
+Procedure: 
+
+1.  Configure Avamar for Oracle RMAN backup. 
+2. 
+
+Install Avamar client software for Oracle RMAN and Oracle Linux client per the EMC Avamar 
+6.1 documentation. 
+
+3.  Configure the schedule and backup policy for Oracle EBS data sets. 
+
+The following screenshot shows the data set created for the backup solution with Avamar and  
+Oracle EBS. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+24 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+4.  Select the Options tab. The Select Plug-In Type window opens. 
+5.  Review fields to ensure that all is correct. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+25 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+6.  Click Tools and Manage All Datasets, or click Tools and Manage All Schedules. 
+7.  The corresponding window opens (either Manage All Datasets or Manage All Schedules): 
+
+ 
+
+ 
+
+8.  From the Avamar main window, above, click Tools and then click Manage Retention. The 
+
+Manage All Retention Policies window appears. Here, the settings can be reviewed or edited. 
+
+9.  Click OK to exit.  
+
+ 
+
+The backup set has successfully been created for the required data set with Avamar and Oracle.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+26 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 1 Procedures 
+
+The task is to perform a full Oracle RMAN online hot database backup. Oracle hot database online 
+backups allow you to make a database backup while the database and application remain online thus 
+minimizing impact to the availability of the Oracle EBS environment 
+
+1.  Perform an on demand backup for Oracle with Avamar. 
+
+Avamar uses the Oracle RMAN plug-in software to perform the database backups for Oracle 
+EBS. The retention period was set to 30 days for the database backup policy. The initial hot 
+backup taken was a hot online database backup that included a control file and archive log full 
+backup.  Incremental (level 0/1) backups were taken after the initial full online database backup 
+to save on disk space required to capture deltas in the application backup environment. 
+
+ 
+
+ 
+
+2. 
+
+In addition, a level 0 and level 1 full incremental hot database backup was taken by Avamar for 
+Oracle, by specifying the advanced options in the Avamar backup configuration. Either can be 
+set up as shown for Level 1 backup below: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+27 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3.  When the backups have completed, the status can be verified in the Activity Monitor tab. 
+
+ 
+
+ 
+
+28 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 1 Results 
+
+Multiple RMAN channels were implemented to improve database backup performance for the 
+solution. For this solution, the default retention period for the database backups was set to 30 days. 
+
+Oracle Avamar online database backup performance data results for the Oracle EBS and Avamar hot 
+online backup and recovery are shown in Table 10. 
+
+Table 10 shows Oracle EBS and Avamar hot online backup and recovery performance data results. 
+
+Hostname 
+ebsdb01 
+
+ebsdb01 
+
+Application 
+Database Tier 
+
+Database Tier 
+
+ebsdb01 
+
+Database Tier 
+
+ebsapp01 
+
+Application tier 
+
+ebsapp01 
+
+Application tier 
+
+Backup Type 
+Hot online full 
+
+Level 0 
+Incremental online 
+
+Level 1 
+Incremental online 
+
+Full online file 
+system 
+
+Full online file 
+system 
+
+Total Runtime 
+50m:06s 
+
+15m:09s 
+
+Backup Size 
+159.4Gb 
+
+159.3Gb 
+
+1m:06s 
+
+8m:33s 
+
+11m:57s 
+
+20.5Mb 
+
+90.5Gb 
+
+89.4Gb 
+
+Both the database tier and the application tier backups were performed. The total runtime and backup 
+size are also provided for each test run. 
+
+As expected, the results show: 
+
+  There was no downtime during the backup 
+  There was a high level RTO 
+  Short total runtime was obtained. The total time to run the backups was estimated at 240 min., 
+
+while the actual total runtime achieved was only 86 min: 51 seconds 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+29 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 2 Cold database backup for Oracle EBS with Avamar 
+
+This test is to run and measure a cold offline database backup for Oracle EBS with Avamar. 
+
+Test 2 objectives: 
+
+1.  Show that full application and database recovery fulfills requirements for minimal to zero data 
+
+loss (RPO). 
+
+2.  Show that performance for backup and recovery is optimal for a full database backup. 
+
+Test 2 Environment 
+
+The test environment was as described in the above sections, except that for this test the Oracle cold 
+database offline backups are performed when the Oracle EBS environment has been quiesced and 
+shut down for maintenance purposes. 
+
+Test 2 Procedures 
+
+First, the Oracle application and database tiers must be cleanly shutdown and taken offline, and only 
+then can the backup for Oracle with EBS be set up. Both procedures are described below. 
+
+1.  The following tasks were performed to prepare Oracle EBS for Avamar cold offline backup: 
+
+[oracle@ebsdb01 ~]$ echo $ORACLE_HOME 
+/d01/oracle/VIS/db/tech_st/11.1.0 
+[oracle@ebsdb01 ~]$ echo $ORACLE_SID 
+VIS 
+[oracle@ebsdb01 ~]$ sqlplus '/as sysdba' 
+
+SQL*Plus: Release 11.1.0.7.0 - Production on Fri Mar 29 13:26:16 2013 
+
+Copyright (c) 1982, 2008, Oracle.  All rights reserved. 
+
+2.  Connected to: 
+
+Oracle Database 11g Enterprise Edition Release 11.1.0.7.0 - 64bit Production 
+
+With the Partitioning, OLAP, Data Mining and Real Application Testing options: 
+
+SQL> shutdown immediate; 
+Database closed. 
+Database dismounted. 
+ORACLE instance shut down. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+30 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+SQL> exit 
+Disconnected from Oracle Database 11g Enterprise Edition Release 
+11.1.0.7.0 - 64bit Production 
+With the Partitioning, OLAP, Data Mining and Real Application 
+Testing options 
+[oracle@ebsdb01 ~]$ 
+
+Next, a file level backup was performed from Avamar with Oracle RMAN plug-in. 
+
+1. 
+
+In the Select Backup tab, the file level backup option, along with the Oracle Linux Avamar 
+plug-in, were selected as shown below. 
+
+2.  An on demand cold backup was performed for the solution. 
+
+ 
+
+3.  After specifying the Advanced Options in the Avamar backup configuration, the configuration 
+
+for the file level and cold database backup was set. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+31 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+4.  Next, also selected from the Advanced Options, the cold file level backup options for the 
+
+ORACLE_HOME and root file system were set: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+32 
+
+ 
+
+ 
+
+5.  Click OK. 
+6.  The offline cold backup was performed. 
+7.  Verification showed that the cold Oracle Avamar backup completed successfully. 
+
+Test 2 Results 
+
+The successful cold offline Oracle and Avamar backup process resulted in a non-corrupted backup 
+image, as expected.  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+33 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 3 Point-in-time restore and database recovery for Oracle 
+EBS with Avamar 
+
+The point-in-time restore and recovery testing involves using the systems and results from Test 1 and 
+Test 2. 
+
+Test 3 objectives: 
+
+The objectives are the five procedures to be performed and discussed in Test 3 for the point-in-time 
+restore and recovery. 
+
+Table 11 Five procedures comprising Test 3 
+
+Procedure number – Test 3 
+1  
+
+Procedure/test objective name 
+Full database recovery from online hot  Avamar backup 
+
+2  
+
+3  
+
+4 
+
+5 
+
+Application tier node recovery from cold Avamar backup 
+
+Application tier node recovery from hot Avamar backup 
+
+Full database recovery from cold Avamar backup 
+
+Point-in-time recovery from Avamar hot online backup 
+Note: To conduct the point-in-time restore and database 
+recovery (PITR) for Oracle EBS, Avamar interacts 
+with the Oracle RMAN utility to perform full and 
+incremental database restore and recovery 
+operations using the previously taken backups. 
+
+Test 3 Environment 
+
+In the test environment, the interaction of the Oracle RMAN utility was utilized. 
+
+Test 3 Procedures 
+
+To perform a restore and recovery for the database, select the image and date to restore as shown in 
+the Avamar recovery window. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+34 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Following are 5 sub-sections that present the 5 different procedures comprising Test 3. 
+
+Procedure 1-Test 3: Database recovery from online hot Avamar backup 
+
+To perform a full online database recovery from Avamar for Oracle EBS: 
+
+ The backup image was retrieved from the Avamar environment. 
+In the Avamar Administrator Backup & Restore window, click on the Select for Restore tab. 
+
+1. 
+2. 
+3.  Select the recent full online database backup to restore 
+
+4.  Next, choose the restore and recovery options for the online restore/recovery operation: 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+35 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5.  Click under More Options to set the database instance and backup account details. 
+6.  Run the operation. 
+
+Test results 
+
+1.  The operation was successfully completed in less time than a traditional backup and recovery 
+
+operation by using Avamar instead of native BRS tools. 
+
+2.  Zero data loss was completed from the hot recovery operation with Avamar for Oracle. 
+3.  Downtime was kept to minimal level by high performance results of Avamar with Oracle native 
+
+recovery tools. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+36 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Procedure 2-Test 3: Application tier node recovery from cold Avamar backup 
+
+First the application tier node was quiesced to stop all processing and avoid impacting the 
+environment. Then the cold recovery process from the application tier node was run from the Avamar 
+Administrator. Results showed zero data loss with a total time of less than 10 minutes. 
+
+ 
+
+ 
+
+ 
+
+Following are the steps for the cold recovery of the application tier for Oracle EBS: 
+
+1.  The application tier nodes were shut down with Oracle EBS scripts: 
+[apps@ebsapp01 scripts]$ adstpall.sh apps/apps 
+You are running adstpall.sh version 120.10 
+The logfile for this session is located at 
+/d01/oracle/VIS/inst/apps/VIS_ebsapp01/logs/appl/admin/log/adstpall
+.log 
+Executing service control script: 
+/d01/oracle/VIS/inst/apps/VIS_ebsapp01/admin/scripts/jtffmctl.sh 
+stop 
+script returned: 
+**************************************************** 
+You are running jtffmctl.sh version 120.3 
+Shutting down Fulfillment Server for VIS on port 9300 ... 
+jtffmctl.sh: exiting with status 0 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+37 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+2.  The recent cold backup from Avamar for the Oracle EBS application tier was selected. 
+
+3.  The image to restore was selected. 
+
+4. 
+
+ The successful restore was verified. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+38 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5.  Next, the application tier node services were restarted: 
+
+[apps@ebsapp01 scripts]$ adstrtal.sh apps/apps 
+You are running adstrtal.sh version 120.15 
+The logfile for this session is located at 
+/d01/oracle/VIS/inst/apps/VIS_ebsapp01/logs/appl/admin/log/adstrtal
+.log 
+Executing service control script: 
+/d01/oracle/VIS/inst/apps/VIS_ebsapp01/admin/scripts/adopmnctl.sh 
+start 
+script returned: 
+**************************************************** 
+You are running adopmnctl.sh version 120.6 
+Starting Oracle Process Manager (OPMN) ... 
+opmnctl: opmn started. 
+adopmnctl.sh: exiting with status 0 
+adopmnctl.sh: check the logfile 
+/d01/oracle/VIS/inst/apps/VIS_ebsapp01/logs/appl/admin/log/adopmnct
+l.txt for more information ... 
+
+6.  Application functionality was verified with Oracle R12 EBS 
+
+Test results 
+
+The cold offline recovery test completed successfully and met requirements for RPO of zero data loss. 
+
+As mentioned in the following Procedure 3-Test 3 section Test Results, the hot online application tier 
+recovery resulted in a shorter recovery time process (RTO) window than did the cold offline 
+application recovery. Both test results met requirements for RPO of zero data loss. 
+
+Procedure 3-Test 3: Application tier node recovery from hot Avamar backup 
+
+1.  The application tier server was kept online and available during the hot restore process. 
+
+[apps@ebsapp01 scripts]$ adapcctl.sh status 
+You are running adapcctl.sh version 120.7.12010000.2 
+Checking status of OPMN managed Oracle HTTP Server (OHS) 
+instance ... 
+Processes in Instance: VIS_ebsapp01.ebsapp01.mordor.vce 
+---------------------------------+--------------------+---------+-- 
+ias-component                    | process-type       |     pid | 
+status 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+39 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+---------------------------------+--------------------+---------+-- 
+OC4JGroup:default_group          | OC4J:oafm          |   23099 | 
+Alive 
+OC4JGroup:default_group          | OC4J:forms         |   23097 | 
+Alive 
+OC4JGroup:default_group          | OC4J:oacore        |   23098 | 
+Alive 
+HTTP_Server                      | HTTP_Server        |   23096 | 
+Alive 
+
+2.  From Avamar the backup image was selected to perform the in-place online recovery and 
+
+restore for the application tier node. 
+
+3.  Restore options were selected. 
+
+4.  Verified recovery was completed and successful. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+40 
+
+ 
+
+ 
+
+Test results 
+
+As expected, the application tier node recovery was performed from Avamar and completed 
+successfully in less than 10 minutes with zero data loss. 
+
+The actual results obtained show that it completed in less than 8 minutes with zero data loss.  
+
+Since the backup was completed as a hot online application tier backup, no downtime was incurred as 
+a result during the recovery process and all database processing continued without incident. This 
+resulted in a shorter RTO window than did the cold offline recovery. Both test results met 
+requirements for RPO of zero data loss. 
+
+Procedure 4-Test 3: Full database recovery from cold Avamar database backup 
+
+1.  Preview the cold backup image from Avamar, as shown below, before performing the restore 
+
+and recovery from the backup.  
+
+2.  Make sure that the Oracle database is shutdown and that no background instance processes 
+
+are running for the database. 
+
+ 
+
+Test results 
+
+The cold database recovery required a short maintenance window in which the database and 
+application tier nodes were taken offline to perform the recovery process. After the recovery was 
+completed, the database and application tier nodes and services were brought back online 
+successfully. 
+
+Procedure 5-Test 3: Point-in-time recovery from Avamar hot online backup 
+
+Hot online backups use copies of the Oracle database archive logs stored on disk or tape to recover 
+from disk, storage, or user failures that may occur with the Oracle R12 EBS. The benefit of performing 
+online recovery is minimal downtime compared to the full outage required to restore from a cold offline 
+backup.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+41 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+1.  Shutdown and start nomount mode. 
+
+[oracle@ebsdb01 ~]$ sqlplus '/as sysdba' 
+SQL*Plus: Release 11.1.0.7.0 - Production on Mon Apr 1 14:10:55 
+2013 
+Copyright (c) 1982, 2008, Oracle.  All rights reserved. 
+Connected to an idle instance. 
+SQL> startup nomount; 
+ORACLE instance started. 
+Total System Global Area 1068937216 bytes 
+Fixed Size                  2166536 bytes 
+Variable Size             427819256 bytes 
+Database Buffers          624951296 bytes 
+Redo Buffers               14000128 byte 
+
+This procedure is performed similarly to the earlier full online database restore and recovery (as 
+specified in the previous section).  
+
+The key difference in this restore and recovery is to specify the advanced options for the point-in-time 
+recovery (PITR) from the online backup. 
+
+1. 
+
+In the Restore Options window, click the More Options button. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+42 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+2.  The Restore Command Line Options window opens. Click Point-in-Time (PIT). Also, click 
+
+Show Advanced Options and set them. 
+
+ 
+
+3.  For the solution, the Recovery mode was set to use the time stamp for the Oracle 
+
+environment. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+43 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+4.  The Advanced Options provide recovery from block corruption issues as well as debugging 
+
+messaging capability. 
+
+ 
+
+5.  Next, it was verified that the restore was completed successfully from Avamar and Oracle EBS. 
+
+SQL> select instance_name, status from v$instance; 
+INSTANCE_NAME    STATUS 
+---------------- ------------ 
+VIS              OPEN 
+
+ 
+
+Test results 
+
+The restore from Avamar and Oracle EBS was successfully completed. The following results were 
+obtained from the point in time restore: 
+
+1.  Zero data loss for application and database with Avamar for the Oracle R12 EBS. 
+2.  Recovery time objectives of less than 1 hour were successfully met, thus accomplishing RTO 
+
+and RPO goals for a typical customer Oracle EBS environment. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+44 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 4 Oracle backup and recovery with VMware Data 
+Protection 5.1  
+
+VMware provides a backup and recovery (BRS) product in the vSphere 5.1 web based Data 
+Protection Suite (VDP) for backup and recovery of virtual machines. It complements enterprise BRS 
+products for the BRS solution for Oracle on the Vblock System. 
+
+In this use case, VDP will be deployed to back up and restore the Oracle VMs in case of data failure. 
+The advantage of using VDP versus a full BRS product such as Avamar is to take advantage of 
+shorter RTO windows when only a single VM must be restored versus a full enterprise recovery 
+operation which could take hours with Avamar. In addition, by using VDP with Oracle virtualization on 
+the Vblock platform, archival tasks can be simplified by data retention of individual application and 
+database VMs versus a full database backup. Full details regarding the installation and configuration 
+for VDP are provided in the VMware document titled vSphere Data Protection Administration Guide - 
+vSphere Data Protection 5.1 EN-000846-00 available online from VMware for reference. 
+
+Test 4 Environment 
+
+The same test environment was used. 
+
+Test 4 Procedures 
+
+Use case backup and recovery for Oracle with VMware Data Protection (VDP) Suite and vSphere 5.1 
+via the web client for VMware. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+45 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The VDP configuration is displayed. 
+
+Reports and Configuration Detail are listed below. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+46 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+1.  The backup was performed from VDP using the following link: 
+
+https://si-vc128.mordor.vce:9443/vsphere-client 
+Login as appuser/Vce12345 
+The VMware Data Protection application is available as shown below. 
+ 
+
+2.  A new backup job for Oracle virtual machines was created. 
+3.  The Oracle VMs were selected. Click Next. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+47 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+4. 
+
+In the Schedule page, the solution daily VMware Data Protection (VDP) backups were 
+scheduled in order to simulate a real customer environment. 
+
+5. 
+
+In the Retention Policy page, the backup retention period was set to 60 days. 
+
+ 
+
+6.  Next the standard name is provided to the new backup job for VDP. 
+
+ 
+
+7.  On the Ready to Complete page, the backup job summary is listed. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+48 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+8.  The backup is reviewed and completed, as shown below. 
+
+ 
+
+9.  Next, the backup is enabled and started to kick off the backup job for Oracle. 
+
+ 
+
+ 
+
+ 
+
+10. Select the Oracle VDP Weekly Backup job and Backup Now. The dropdown box opens. Click 
+
+Backup all sources. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+49 
+
+ 
+
+ 
+
+11. A confirmation Info appears. Click OK. 
+
+12. Next, on the Reports tab verify run time and completion for the Oracle VDP Backup. 
+
+ 
+
+ 
+
+Test 4 Results 
+
+Oracle and VDP backup: 
+
+The use case simulated a virtual machine (VM) failure for the Oracle EBS R12 application tier node 
+with a full VM recovery using VDP. 
+
+All of the VM backups for the scheduled VDP backup set for Oracle ran to completion successfully 
+between 20:00:00 and 22:00:00 for a total run time of 120 minutes. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+50 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 5 Backup and recovery with VDP for Oracle EBS App 
+Tier 
+
+This test is to run backup and recovery with VDP for the EBS application tier. 
+
+Test objectives:  
+
+1.  Demonstrate for the RPO objective that failure of virtual machines (VMs) for the Oracle 
+
+application tier can be resolved quickly with zero data loss. 
+
+2.  Show that of the application tier for Oracle R12 EBS has low to no impact to current operations. 
+3.  Demonstrate that recovery meets time objectives (RTO) to restore the application in less than 1 
+
+hour. 
+
+Test 5 Environment 
+
+For use in the Oracle and VDP restore, VDP provides a wizard interface to perform backup and 
+restore operations as shown below. 
+
+Individual tabs within VDP can be used to perform backup and restore operations. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+51 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 5 Procedures 
+
+The following test was performed with VDP and Oracle: 
+
+Application VM failure recovery testing for application tier: 
+
+The application tier VM is restored as follows from the VDP Restore tab. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Note:  Due to a size limitation within VMware, virtual machines larger than 2TB in size cannot be backed up with 
+
+VDP. Details on this limitation are provided in the VMware knowledge base document. Creating a 
+snapshot for a virtual machine fails with the error: file is larger than maximum files size supported 
+(1012384: http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&ext
+ernalId=1012384                                                                                                                                                                 
+The use case for using VDP 5.1 with backup and recovery for Oracle environments is best suited to 
+customers with small to mid size database configurations less than 2TB in size for the database tier. 
+Avamar and Data Domain are better tools for BRS with VLDB environments. For large customer 
+implementations of the Oracle R12EBS environment, we recommend using VDP 5.1 for backup and 
+recovery of the application tier VMs since these are small footprint environments. Complement the usage 
+of VCP 5.2 with Avamar to backup the complete infrastructure is a recommended best practice from VCE, 
+Cisco, VMware, and EMC. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+52 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+For the solution a new backup was taken for the Oracle VMs as shown below: 
+
+1. 
+
+In the Create a new backup job screen, choose the VM back up. 
+
+2.  The backup schedule is set to daily for the solution testing. 
+3.  The retention period is set to 30 days. 
+4.  Next, use the backup image from VDP to restore the Oracle environment. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+53 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5.  Restore and Recovery of Oracle Application VM after failure screen appears. 
+
+6.  Select the recent backup(s) to restore the Oracle VMs. 
+
+7.  Next, click on Set Restore Options to perform the restore. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+54 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+8. 
+
+In the solution, the restores for the Oracle VMs were performed to the original location after the 
+disk and storage failure was resolved. 
+
+To avoid impact on the overall Oracle R12 EBS environment, the database tier was cleanly shutdown 
+to ensure the entire ERP environment is restored in a consistent state. 
+
+9.  From VDP Restore Options, select: 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+55 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+10. Select the most recent VDP backup image: 
+
+11. Click Next. 
+
+ 
+
+ 
+
+  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+56 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+12. Click Finish. 
+13. Begin the restore. 
+
+14. Monitor the restore operations. 
+
+ 
+
+ 
+
+15. Verify that the VM has been restored, then power on to check status of the application VM: 
+
+16. The application tier VM is restored with zero data loss in less than 5 minutes: 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+57 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 5 Results 
+
+The application tier VM is restored with zero data loss in less than 5 minutes. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+58 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Summary of validation results  
+
+This section contains the results from each test for comparative purposes, along with a final summary. 
+
+Test 1 Results for hot online backup and recovery 
+
+Online database backup and application backup performance data results for the Oracle EBS and 
+Avamar hot online backup and recovery are shown in Table 12. 
+
+Table 12 Restore and recovery times  
+
+Hostname 
+ebsdb01 
+
+ebsdb01 
+
+Application 
+Database Tier 
+
+Database Tier 
+
+ebsdb01 
+
+Database Tier 
+
+ebsapp01 
+
+Application tier 
+
+ebsapp01 
+
+Application tier 
+
+As expected, the results show: 
+
+Backup Type 
+Hot online full 
+
+Level 0 
+Incremental online 
+
+Level 1 
+Incremental online 
+
+Full online file 
+system 
+
+Full online file 
+system 
+
+Total Runtime 
+50m:06s 
+
+15m:09s 
+
+Backup Size 
+159.4Gb 
+
+159.3Gb 
+
+1m:06s 
+
+8m:33s 
+
+11m:57s 
+
+20.5Mb 
+
+90.5Gb 
+
+89.4Gb 
+
+  No downtime during the backup 
+  High level RTO 
+  Short total runtime was obtained, the total runtime achieved was only 86 min: 51 seconds 
+
+Test 2 Results for cold database backup for Oracle EBS with Avamar 
+
+The successful cold offline Oracle EBS and Avamar backup process resulted in a non-corrupted 
+backup image, as expected.  
+
+Test 3 Results for point-in-time restore and database recovery for Oracle EBS with Avamar 
+
+The point-in-time restore and recovery testing involves using the systems and results from Test 1 and 
+Test 2. Results for the five procedures performed in Test 3 for the point-in-time restore and recovery 
+are listed in Table 13. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+59 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Table 13 Results for Test 3 procedures 
+
+Procedure 
+number – 
+Test 3 
+1  
+
+2  
+
+3  
+
+4 
+
+5 
+
+Procedure/test objective name 
+
+Results 
+
+Full database recovery from online 
+hot  Avamar backup 
+
+Application tier node recovery from 
+cold Avamar backup 
+
+Application tier node recovery from 
+hot Avamar backup 
+
+Full database recovery from cold 
+Avamar backup 
+
+Point-in-time recovery from Avamar 
+hot online backup (uses the 
+previously taken backups). 
+
+Results showed the operation was successfully 
+completed in less time than a traditional backup and 
+recovery operation by using Avamar instead of native 
+BRS tools. 
+There was zero data loss. 
+Downtime was kept to minimal level by high 
+performance results of Avamar with Oracle native 
+recovery tools. 
+
+The cold offline recovery test completed successfully 
+and met requirements for RPO (Recovery Point 
+Objective) of zero data loss 
+
+The hot online application tier recovery resulted in a 
+shorter recovery time process (RTO) window than did 
+the cold offline application recovery (above). Both test 
+results met requirements for RPO (Recovery Point 
+Objective) of zero data loss. 
+
+The cold, full database recovery requires a short 
+maintenance window in which the database and 
+application tier nodes were taken offline to perform the 
+recovery process. 
+Results: after the recovery was completed, the 
+database and application tier nodes and services were 
+successfully brought back online. 
+
+The following results were obtained from the 
+successful point-in-time restore: 
+ 
+
+Zero data loss for application and database with 
+Avamar for Oracle R12 EBS. 
+
+  Recovery time objectives of less than 60 minutes 
+
+were successfully met. This accomplished RTO and 
+RPO goals for a typical customer Oracle EBS 
+environment. 
+
+Test 4 Results for Oracle EBS backup and recovery with VMware Data Protection 5.1  
+
+VDP was deployed to backup and restore the Oracle VMs in case of data failure. The advantage of 
+using VDP versus a full BRS product such as Avamar is to take advantage of shorter RTO windows 
+when only a single VM must be restored versus a full enterprise recovery operation which could take 
+hours with Avamar. And, by using VDP with Oracle virtualization on the Vblock platform, archival tasks 
+can be simplified by data retention of individual application and database VMs versus a full database 
+backup. 
+
+The test simulated a virtual machine (VM) failure for the Oracle EBS R12 application tier node with a 
+full VM recovery using VDP 
+
+All of the VM backups for the scheduled VDP backup set for Oracle ran to completion successfully 
+between 20:00:00 and 22:00:00 for a total run time of 120 minutes. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+60 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 5 Results for performing backup and recovery with VDP for Oracle EBS App Tier 
+
+The Oracle EBS application tier VM was restored with zero data loss in less than 5 minutes. 
+
+Combined summary 
+
+Hot and cold backups were successful.  
+
+The backup validations measured backup throughput in terms of TB/hour and GB/min, measured 
+latency, and calculated daily backup volume. Test results: 
+
+  Showed no long running or failed backups. All backups were performed successfully without 
+
+loss or corruption. 
+
+  Demonstrated how Avamar contributes to decreasing RTO/RPO in the event of a failure, 
+
+showing that hot online backup and recovery operations for Oracle with Avamar provide the best 
+RTO and RPO overall in terms of performance and availability. 
+
+Restore and recovery tests were successful, and each showed zero data loss. 
+
+Table 14 provides the times for the various restore and recovery tests in the solution, in order of 
+performance. 
+
+Table 14 Restore times for each restore type tested 
+
+Environment 
+Database Tier 
+
+Restore Type 
+Hot full restore 
+
+Restore Time 
+10m:11sec 
+
+Database Tier 
+
+Cold restore 
+
+14m:28 sec 
+
+Database Tier 
+
+PITR recovery 
+
+9m:4 sec 
+
+Application Tier 
+
+Hot restore 
+
+Application Tier 
+
+Cold restore 
+
+Application Tier 
+
+VDP restore 
+
+7m:20 sec 
+
+8m:21 sec 
+
+5m:22 sec 
+
+Results 
+Zero data loss 
+
+Zero data loss 
+
+Zero data loss 
+
+Zero data loss 
+
+Zero data loss 
+
+Zero data loss 
+
+The shortest recovery time occurred with the application tier node restore process from VMware Data 
+Protection and the longest time required for the restore and recovery window took place with the cold 
+full recovery process for the Oracle database tier with Avamar and Oracle EBS.   
+
+While the cold offline database and cold application tier node restore tasks took the most time, these 
+guarantee the greatest level of protection against data loss which for mission critical environments is 
+key to the best RPO with the trade off for a slightly higher RTO required in contrast to hot online 
+recoveries with Oracle EBS and Avamar. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+61 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Conclusion 
+
+Customers will benefit from this new VCE integrated solution for fast backup and recovery of their 
+business-critical applications and data - at lower cost and less risk.  
+
+All of the objectives for the Oracle EBS on Vblock Systems Backup and Recovery with EMC Avamar 
+solution architecture have been met.  
+
+Guidance has been provided on how to backup and recover a virtualized Oracle EBS deployment on 
+Vblock Systems with Avamar and the VMware vSphere Data Protection Suite, including a technology 
+overview, architecture, explanations of setup, configuration and best practices for deploying the 
+backup and recovery solution in the Oracle EBS environment on Vblock Systems. The paper also 
+described the backup methodology and defined end-to-end data protection through Vblock data 
+protection solutions with EMC Avamar only and with Avamar and Data Domain, including sizing and 
+scaling information. 
+
+The conceptual and hands-on best practice aspects of this solution have included a description of the  
+deployment for Oracle EBS in a typical Avamar environment with a prototype lab environment in 
+which the VMware vSphere data protection capability can be used as a utility.  
+
+The solution validation performed while using this methodology met the test objectives:  
+
+ 
+
+It measured backup throughput in terms of TB/hour and GB/minute, measured latency, and 
+calculated daily backup volume 
+
+  Test results showed no long running or failed backups. All backups were performed successfully 
+
+without loss or corruption. 
+
+  Results demonstrated how Avamar contributes to decreasing RTO/RPO in the event of a failure, 
+showing that hot online backup and recovery operations for Oracle with Avamar provide the best 
+RTO and RPO overall in terms of performance and availability. 
+
+  The test objectives have been met, as follows: 
+
+-  Zero data loss occurred after the restore and recovery tasks were performed for the stated 
+
+use cases with the solution for Oracle EBS and Avamar. 
+
+-  The shortest recovery time occurred with the application tier node restore process from 
+
+VMware Data Protection. 
+
+-  The best protection against data loss for a high level of protection (RPO) is validated by the 
+
+results from the cold backup and recovery process with Avamar for Oracle. 
+
+-  The longest time required for the restore and recovery window took place with the cold full 
+recovery process for the Oracle database tier with Avamar and Oracle EBS.  While the cold 
+offline database and cold application tier node restore tasks took the most time, these 
+guarantee the greatest level of protection against data loss which, for mission critical 
+environments, is key to the best RPO with the trade-off for a slightly higher RTO required in 
+contrast to hot online recoveries with Oracle and Avamar. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+62 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Next steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+63 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+APPENDIX – Description of the solution components 
+
+The solution uses the following hardware and software components and technologies. 
+
+  Vblock Systems 
+  Oracle Database 11g Release 2 Enterprise Edition 
+  Oracle Real Application Clusters 
+  Oracle EBS Release 12 
+  EMC Avamar 
+  EMC Avamar Data Store 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+64 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+For more information, go to www.vce.com. 
+
+Compute components 
+
+The compute components in Vblock Systems are built on the Cisco Unified Computing System (UCS) 
+line of products. Components include one or more blade server chassis, compute blades, I/O 
+modules, and fabric interconnects that connect the unified fabric to the rest of the environment. 
+
+Network components 
+
+The network components in Vblock Systems comprise various models of Cisco Nexus and MDS 
+storage switches. Included are the Cisco Nexus 7000 Series, Cisco Nexus 5000 Series, Cisco Nexus 
+1000V, Cisco Catalyst 3000 Series, and Cisco MDS 9000 Series switches. 
+
+Storage components 
+
+The Vblock 300 used in this solution contains VNX 5300 storage arrays. The VNX5300 is a high-end, 
+enterprise storage array that supports multiple drive technologies, including Flash, serial-attached 
+SCSI, SAS, and nearline SAS (NL-SAS) drives, and a full range of RAID types. Intel Xeon processors 
+power the VNX series for intelligent storage that automatically and efficiently scales in performance, 
+while ensuring data integrity, security, and high availability for mission-critical SQL Server 
+environments.  
+
+Virtualization components 
+
+Virtualization components include VMware vSphere, VMware vCenter Server, and VMware ESXi. 
+This solution uses VMware vSphere 5.1. 
+
+The VMware vCenter Server provides a scalable and extensible platform that forms the foundation for 
+virtualization management. It centrally manages VMware vSphere environments, allowing IT 
+administrators control over the virtual environment.  
+
+For more information on the VMware vCenter Server, go to http://www.vmware.com/products/vcenter-
+server/overview.html. 
+
+Oracle Database 11g Release 2 Enterprise Edition 
+
+Oracle Database 11g Release 2 provides industry-leading performance, scalability, security, and 
+reliability on a choice of clustered or single servers with a wide range of options to meet user needs. It 
+provides the foundation for IT to successfully deliver more information with higher quality of service, 
+reduce the risk of change within IT, and make efficient use of IT budgets. 
+
+In the Oracle 11g R2 Enterprise Edition, both Oracle Automatic Storage Management (ASM) and 
+Oracle Clusterware have been integrated into a single set of binaries and named Oracle Grid 
+Infrastructure. This now provides all cluster and storage services required to run an Oracle Real 
+Application Cluster (RAC) database. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+65 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Oracle Real Application Clusters 
+
+Oracle RAC supports the transparent deployment of a single database across a cluster of servers, 
+providing fault tolerance from hardware failures or planned outages. Available as an option with 
+Oracle Database 11g, Oracle RAC is a cluster database with a shared cache architecture that 
+overcomes the limitations of traditional shared-nothing and shared-disk approaches to provide a 
+highly scalable and available database solution. 
+
+Oracle E-Business Suite Release 12 
+
+The Oracle EBS architecture is a framework for multi-tiered distributed computing. And, in the Oracle 
+EBS model, services are distributed among multiple levels or tiers. A service is a process or a group 
+of processes that exercises some business logic and provides a particular functionality. A tier is a 
+grouping of services that can potentially span physical machines. In other words, a tier is a logical 
+grouping of services that is not limited by physical nodes or machines. Each tier can consist of one or 
+more nodes, and each node can accommodate more than one tier. For instance, the database server 
+can reside on the same node as one or more servers in the application tier. 
+
+Note: 
+
+For more details, refer to Oracle Applications Concepts [B10642-01]. 
+
+EMC Avamar 
+
+EMC Avamar is a deduplication backup-and-recovery software and system solution. It performs 
+deduplication on the client, which eliminates data from backup streams before it crosses the network. 
+Client deduplication realizes savings on bandwidth, storage, and backup windows. VMware’s 
+vStorage API (in vSphere as deployed in Vblock Systems) also provides the ESXi hypervisor 
+architecture. 
+
+EMC Avamar Data Store 
+
+The server is dedicated as an Avamar data store. Avamar backup-and-recovery software provides 
+integrated source/global data deduplication. An Avamar agent on the client system deduplicates the 
+data and then backs it up to an Avamar server, such as an Avamar data store. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+66 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+References 
+
+EMC 
+
+  EMC Avamar 6.1 for Oracle User Guide, EMC 2013 
+
+VCE  
+
+  Enhanced Operational Agility and Scalability for Oracle E-Business Suite R12 and RAC on 
+
+VMware vSphere 5 
+
+  Oracle E-Business Suite and RAC Performance and Elasticity on Vblock™ Platforms with 
+
+  Zero Downtime Bi-Directional Physical to Virtual Migration for Oracle® EBS R12 with RAC on 
+
+vSphere 4.1 
+
+Vblock™ Infrastructure Platforms 
+
+ 
+
+VMware 
+
+  vSphere Data Protection Administration Guide: vSphere Data Protection 5.1 
+
+Oracle 
+
+  Oracle® Database Backup and Recovery User's Guide 11g Release 1 (11.1)  
+  Oracle® Database Backup and Recovery User's Guide 11g Release 2 (11.2) 
+
+Part E10642-05, Oracle Corporation 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+67 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to http://www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright © 2013 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

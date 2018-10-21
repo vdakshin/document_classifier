@@ -1,0 +1,1971 @@
+www.vce.com 
+
+Vblock™ Solution for 
+Citrix XenDesktop and XenApp 
+
+Version 1.3 
+ 
+April 2014 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Copyright 2014 VCE Company, LLC. All Rights Reserved.
+
+VCE believes the information in this publication is accurate as of its publication date. The information is
+subject to change without notice.
+
+2
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Contents
+
+Introduction.................................................................................................................................................5
+Solution overview................................................................................................................................... 5
+Key results..............................................................................................................................................5
+Purpose..................................................................................................................................................5
+Audience................................................................................................................................................ 6
+Feedback................................................................................................................................................6
+
+Technology overview................................................................................................................................. 7
+Vblock™ Systems.................................................................................................................................. 7
+Vblock Systems 720........................................................................................................................ 8
+Vblock Systems 320........................................................................................................................ 8
+EMC....................................................................................................................................................... 9
+VMware vSphere 5.................................................................................................................................9
+VMware ESXi 5.1.............................................................................................................................9
+VMware vCenter Server...................................................................................................................9
+Citrix....................................................................................................................................................... 9
+XenDesktop 5.6............................................................................................................................... 9
+XenApp 6.5.................................................................................................................................... 12
+Microsoft...............................................................................................................................................13
+Active Directory..............................................................................................................................13
+Domain Name System...................................................................................................................13
+Dynamic Host Configuration Protocol............................................................................................13
+SQL Server.................................................................................................................................... 13
+
+Architecture...............................................................................................................................................15
+Logical configuration............................................................................................................................ 15
+Hardware and software........................................................................................................................ 17
+
+Design considerations............................................................................................................................. 19
+Storage.................................................................................................................................................19
+Network................................................................................................................................................ 20
+Virtualization.........................................................................................................................................22
+
+Validation...................................................................................................................................................24
+Environment......................................................................................................................................... 24
+Objectives and design..........................................................................................................................25
+Login VSI....................................................................................................................................... 26
+EMC Unisphere..............................................................................................................................27
+vSphere vCenter Server................................................................................................................ 27
+XenDesktop................................................................................................................................... 27
+Test procedure...............................................................................................................................27
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+3
+
+Results and analysis............................................................................................................................ 28
+Summary........................................................................................................................................28
+Individual test results..................................................................................................................... 29
+Maximum capacity testing..............................................................................................................32
+Scaling example.............................................................................................................................33
+
+Conclusion................................................................................................................................................ 35
+Next steps............................................................................................................................................ 35
+
+4
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Introduction
+
+The proliferation of mobile workers using thin and zero clients is putting companies under increasing
+pressure to deliver enterprise applications on hosted virtual desktops over LAN or WAN, with the user
+experience and reliability of a conventional physical desktop. IT departments are tasked with providing
+these services with quick evaluation and implementation timelines, lower initial and ongoing costs, and
+adherence to growing security guidelines and concerns—all with existing skillsets and personnel.
+
+Solution overview
+
+VCE is a leading innovator of intelligent converged infrastructure systems. Customers rely on VCE for the
+fastest deployment of infrastructure and applications, the highest application performance and availability,
+and the lowest total cost of ownership. The Vblock™ Solution for Citrix XenDesktop and XenApp uses
+Vblock Systems to provide a converged virtualized infrastructure comprising best-in-breed components
+from Cisco, EMC, and VMware to offer organizations superior performance, high availability, and
+simplified management and to deliver a high-definition user experience with Citrix XenDesktop and
+XenApp. Vblock Systems are pre-configured for faster, simpler deployments and include management
+tools that allow IT departments to simplify and reduce costs for day-to-day operations and maintenance,
+as well as seamless support after the sale. Vblock Systems are not just delivered as a converged
+package, IT departments manage them and VCE supports them as an integrated IT investment.
+Combined with Vblock Systems, Citrix HDX technology provides a high-definition, desktop-quality user
+experience over a wide range of devices and network topologies.
+
+Key results
+
+Vblock Systems 320 with EMC VNX 5500 can easily support the following per-blade deployments with
+acceptable CPU, memory, and storage utilization; and acceptable application response times:
+
+•
+•
+•
+
+110 XenDesktop PVS streaming hosted virtual desktops
+
+140 XenDesktop MCS pooled persistent or non-persistent hosted virtual desktops
+
+300 XenApp hosted shared desktops300 XenApp hosted shared desktops
+
+Purpose
+
+This document describes the architecture, design considerations, validation, and performance data for
+Citrix XenDesktop and XenApp providing hosted virtual and hosted shared desktops and enterprise-grade
+performance on a Vblock Systems 320 with VNX 5500. We have used the results of this validation to
+provide a scaling strategy for customer deployments.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+5
+
+Audience
+
+This document is intended for enterprise and service provider decision makers and system administrators
+deploying large-scale end-user computing environments with Citrix XenDesktop and XenApp.
+
+Feedback
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment
+applies, and your feedback.
+
+6
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Technology overview
+
+Vblock™ Systems
+
+VCE represents the next evolution of IT, one focused on the next generation data center and the future of
+cloud computing. VCE seeks to eliminate the challenges that consume today's data center resources.
+
+VCE designs and delivers Vblock Systems, which seamlessly integrate leading compute, network and
+storage technologies. Through intelligent discovery, awareness and automation, Vblock Systems provide
+the highest levels of virtualization and application performance. Vblock Systems are unique in their ability
+to be managed as a single entity with a common interface that provides customers' end-to-end visibility.
+
+The Vblock System 300 is an agile and efficient data center class system, providing flexible and scalable
+performance. It features a high-density, compact fabric switch, tightly integrated fabric-based blade
+servers, and best-in-class unified storage.
+
+The Vblock System 700 is an enterprise-class mission-critical system for the world's most demanding
+workloads and service levels. It includes the industry's best director-class fabric switch, the most
+advanced fabric-based blade server, and the most trusted storage platform.
+
+Each Vblock System has a base configuration, which is a minimum set of compute and storage
+components as well as fixed network resources. Within the base configuration, certain hardware aspects
+can be customized. Together, the components offer balanced CPU, I/O bandwidth, and storage capacity
+relative to the compute and storage arrays in the system.
+
+For more information, go to www.vce.com http://www.vce.com.
+
+Compute components
+
+The compute components in Vblock Systems are built on the Cisco Unified Computing System (UCS) line
+of products. The individual components include one or more blade server chassis, included compute
+blades, I/O modules, and the fabric interconnects that connect the unified fabric to the rest of the
+environment.
+
+Network components
+
+The network components in Vblock Systems consist of various models of Cisco Nexus and MDS storage
+switches. This includes the Cisco Nexus 7000 Series, Cisco Nexus 5000 Series, Cisco Nexus 1000V,
+Cisco Catalyst 3000 Series, and the Cisco MDS 9000 Series switches.
+
+Storage components
+
+Vblock Systems are built with either EMC VNX or Symmetrix VMAX-based storage arrays. The Vblock
+300 ships with VNX-based arrays and the Vblock 700 ships with VMAX arrays.
+
+Virtualization components
+
+Virtualization components include VMware ESXi, VMware vCenter Server, and VMware vSphere.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+7
+
+Management components
+
+All Vblock System 300 and 700 models include an Advanced Management Pod (AMP). The AMP
+provides a single management point for Vblock Systems that provides the following benefits:
+
+• Monitors and manages Vblock System health, performance, and safety
+• Provides fault isolation for management
+• Eliminates Vblock System resource overhead
+• Provides a clear demarcation point for remote operations
+
+The AMP has two deployment options: mini-AMP and high availability (HA) AMP.
+
+•
+
+•
+
+The mini-AMP is an economical single-server system with reduced costs for switches and
+licenses and optional packages for networking, backups, and data duplication.
+
+The HA AMP is a two-server system that uses a local disk to boot VMware vSphere ESXi and
+shared storage for the Vblock Systems management servers. It is designed to be a highly
+available, out-of-band management environment.
+
+In addition to the components described above, the AMP leverages Cisco UCS rack-mount servers, Cisco
+Catalyst 3000 Series switches, and EMC storage.
+
+Vblock Systems 720
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock™
+System 700 family, for the most demanding IT environments - supporting enterprise workloads and SLAs
+that run thousands of virtual machines and virtual desktops. It is architecturally designed to be modular,
+providing flexibility and choice of configurations based on demanding workloads. These workloads
+include business-critical enterprise resource planning (ERP), customer relationship management (CRM),
+and database, messaging, and collaboration services. The Vblock 720 leverages the industry's best
+director-class fabric switch, the most advanced fabric based blade server, and the most trusted storage
+platform. The Vblock 720 delivers greater configuration choices, 2X performance and scale from prior
+generations, flexible storage options, denser compute, five 9s of availability, and converged network and
+support for a new virtualization platform that accelerates time to service and reduces operations costs.
+
+Vblock Systems 320
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock™ System 300
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally
+suited to achieve the scale required in both private and public cloud environments. The Vblock 320 has
+been engineered for greater scalability and performance to support large enterprise deployments of
+mission-critical applications, cloud services, VDI, mixed workloads and application development and
+testing. The Vblock 320 delivers greater configuration choices, 2X performance and scale from prior
+generations, flexible storage options, denser compute, five 9s of availability, and converged network and
+support for a new virtualization platform that accelerates time to service and reduces operations costs.
+Every Vblock 320 is available with the market-leading EMC VNX storage arrays.
+
+8
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+EMC
+
+The Vblock Solution for Citrix XenDesktop uses the VNX-based storage arrays provided in Vblock
+Systems.
+
+The EMC VNX series is a dedicated network server optimized for file and block access that delivers high-
+end features in a scalable and easy-to-use package.
+
+The VNX series delivers a single-box block and file solution that offers a centralized point of management
+for distributed environments. This makes it possible to dynamically grow, share, and cost-effectively
+manage multiprotocol file systems and provide multiprotocol block access. Administrators can take
+advantage of simultaneous support for NFS and CIFS protocols by enabling Windows and Linux/UNIX
+clients to share files by using the sophisticated file-locking mechanisms of VNX for File and VNX for Block
+for high-bandwidth or for latency-sensitive applications.
+
+VMware vSphere 5
+
+When using VMware vSphere 5 as the hypervisor for XenDesktop, the vSphere 5 components are built
+on an infrastructure incorporating ESXi 5 hosts connected to local and shared storage. Shared storage
+can be on a network file system (NFS), Internet Small Computer System Interface (iSCSI), or Fibre
+Channel SAN, as dictated by the enterprise.
+
+VMware ESXi 5.1
+
+VMware ESXi delivers the base hypervisor functions for the vSphere environment that hosts the virtual
+desktops.
+
+VMware vCenter Server
+
+VMware vCenter Server provides the infrastructure to manage multiple ESXi hypervisors as a single
+infrastructure cluster. The vCenter Server allows administrators to configure resource clusters and
+manage storage and high-availability functions across the environment. In a XenDesktop configuration.
+VMware vCenter can be configured as a virtual machine (VM) running on the ESXi infrastructure, or on a
+physical server, based on high-availability requirements.
+
+Citrix
+
+XenDesktop 5.6
+
+The Vblock Solution for Citrix contains the following XenDesktop components:
+
+• XenDesktop site
+• Provisioning Services
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+9
+
+• Machine Creation Services
+• Web Interface
+•
+• Desktop Delivery Controller
+• Software and tools
+
+Licensing Server
+
+XenDesktop site
+
+A XenDesktop site forms the boundary of the Citrix VDI management. It includes the brokers,
+Provisioning Servers, Web Interface, SQL Servers, and all the hypervisor pools where the VMs are
+located.
+
+Provisioning Services 6.1
+
+PVS can be used for provisioning non-persistent hosted virtual desktops. PVS takes a different approach
+from traditional imaging solutions by changing the relationship between hardware and the software that
+runs on it by streaming a single shared virtual disk image rather than copying individual images to
+individual machines. Unique user settings are preserved in a personal vDisk.
+
+At the top level of the PVS infrastructure is the PVS farm. The farm provides a farm administrator with a
+method of representing, defining, and managing logical groups of PVS components into sites. All sites
+within a farm share the farm's Microsoft SQL database. A PVS farm also includes local or network shared
+storage and collections of target devices.
+
+Web Interface
+
+The Web Interface provides user access into the XenDesktop environment. It accepts user credentials
+and passes them to the XenDesktop site for authentication and enumeration using an ICA connection
+between the user and the connection broker. Once authenticated, Web Interface manages the initiation of
+the end user sessions to their virtual desktop. A high-availability configuration is recommended for the
+Web Interface to avoid service disruption.
+
+Licensing Server
+
+The Licensing Server is responsible for managing the licenses for all XenDesktop 5.6 components.
+Licensing Servers have a 30-day grace period, which allows the system to function normally if the server
+becomes unavailable. Because of this grace period, redundancy in the Licensing Server component is not
+required.
+
+Desktop Delivery Controller
+
+The Desktop Delivery Controller provides the link between the Web Interface and the XenDesktop site. It
+serves as the brokerage service between the end device and the desktops. The Desktop Delivery
+
+10
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Controller enumerates resources for the users and directs user launch requests to the appropriate hosted
+virtual desktop. It is recommended that at least two controllers be deployed per XenDesktop site to
+provide high availability. As the site grows, additional controllers may be required for scalability.
+
+Machine Creation Services
+
+MCS can be used to provision both persistent and non-persistent hosted virtual desktops. MCS connects
+vCenter to the ESXi hosts using the vSphere API. The API then directs the ESXi host to build the hosted
+virtual desktops from the master image VM and to create, start, stop, and delete VMs.
+
+MCS uses the same mechanism to thin-provision a hosted virtual desktop from a master image in the
+hypervisor pool and uses identity management functionality to overcome the security identity (SID)
+requirements typical with cloning.
+
+MCS snapshots or replicas created with MCS must reside on the same logical unit number (LUN) where
+they will be provisioned to the end devices.
+
+Software and tools
+
+Virtual Desktop Agent
+
+Virtual Desktop Agent (VDA) is a software agent that resides on the hosted virtual desktop and provides
+the communication interface between the XenDesktop infrastructure and the Windows desktop operating
+system. A user cannot connect to a VM unless the VDA is installed in the image.
+
+PVS Agent
+
+The Provisioning Services (PVS) Agent is the software that is installed in the virtual disk that allows PVS
+to control the machine and to use its NIC as a substitute hard drive controller.
+
+Citrix Receiver
+
+Receiver is easy-to-install client software that lets the user access enterprise data, applications, and
+desktops from any computing device, including iPhones, Android-based smartphones, iPads, Windows
+Mobile devices, Blackberry devices, and Windows, Mac OS X, or Linux desktops.
+
+HDX Technology
+
+HDX technology is a set of capabilities that delivers a high-definition desktop virtualization user
+experience for any application, device, or network. By incorporating network and performance
+optimizations, hardware products, and advanced software algorithms, HDX technology unleashes the full
+power of virtualized applications and desktops. This technology enables enterprises to offer virtualized
+applications and desktops with a LAN-like experience over a WAN connection.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+11
+
+XenApp 6.5
+
+The Vblock Solution for Citrix contains the following XenApp components:
+
+• XenApp server farm
+•
+Zone data collectors
+• Web Interface
+• Data Store
+•
+
+Licensing Server (see XenDesktop)
+
+XenApp Server Farm
+
+A XenApp server farm is the top-level administrative unit of the XenApp management service. All servers
+within a farm are managed as a unit, enabling the configuration of features and settings for the entire
+farm, rather than configuring each server individually. Applications or resources are published for
+availability to users at the farm level, establishing configuration settings that pertain to all instances of the
+application running in the farm. Servers in a farm share a single data store of the farm's configuration
+information.
+
+Zone data collectors
+
+A zone is a collection of XenApp servers that share the same data collector.
+
+The zone data collector is responsible for managing all of the dynamic information in the farm. Dynamic
+information consists of items that change often, such as connected sessions, disconnected sessions, and
+server loads. Data collectors are responsible for knowing the global state of the farm by maintaining the
+list of connected sessions. The other main responsibility of the data collector is to determine the least-
+loaded server that is hosting a load-balanced published application or desktop.
+
+Web Interface
+
+The Web Interface provides access to XenApp applications through a standard Web browser using
+dynamic HTML pages.
+
+All published applications are accessed through the Web Interface, as well as through Citrix Receiver
+(formerly called Online Plugin or ICS client). Users connect to a specified URL with a browser or through
+the Receiver, and are presented with all of their available applications.
+
+Data Store
+
+The data store is the database where servers store static farm information, such as configuration
+information about published applications, users, printers, and servers. Each server farm has a single data
+store.
+
+12
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Microsoft
+
+The Vblock Solution for Citrix contains the following Microsoft components:
+
+• Active Directory
+• Domain Name System
+• Dynamic Host Configuration Protocol
+• Microsoft SQL Server
+
+Active Directory
+
+Active Directory is required in a XenDesktop deployment for authentication and authorization. VDI
+desktops in a XenDesktop environment need to be able to register with a controller or multiple controllers
+so that they can be managed by the broker and allow connections by clients.
+
+Remote Desktop Service and license is installed as part of Citrix XenApp validation.
+
+Domain Name System
+
+To register target devices with the Display Data Channel (DDC), Domain Name System (DNS) is
+required. During the registration process, the DDC performs a DNS query and attempts to communicate
+with the target device using the fully qualified domain name (FQDN) of the registering machine. The
+target devices typically obtain their IP addresses through Dynamic Host Configuration Protocol (DHCP)
+and then dynamically update their Host (A) records in DNS.
+
+Dynamic Host Configuration Protocol
+
+Another key infrastructure component is DHCP. Desktops created using the MCS deployment (linked
+clones) method use DHCP for connectivity. Desktops running XenDesktop from PVS use DHCP as part
+of the Preboot Execution Process (PXE).
+
+SQL Server
+
+SQL Server, a relational database management system, provides the foundation for the overall
+XenDesktop solution. All information pertaining to configuration, hosted virtual desktops, and current
+usage is kept within the database. The SQL Server is critical to the continuous operation of the
+XenDesktop site. If the database goes offline, no new users can connect to a hosted virtual desktop, but
+currently connected desktops continue to function. The SQL database should be made highly available
+through the implementation of SQL load balancing or clustering.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+13
+
+SQL Server provides a repository of persistent information for vCenter Servers, as well as for the farm
+settings in XenDesktop Controller, including the following:
+
+Farm configuration information
+
+•
+• Published application configurations
+• Server configurations
+• XenApp administrator accounts
+• Printer configurations
+
+14
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Architecture
+
+Logical configuration
+
+A standard Vblock System 320 configuration with VNX 5500 is combined with Citrix XenDesktop and
+XenApp servers and Web Interfaces to provide shared, streamed, and pooled desktops to users with
+appropriate security and authentication. Redundancies are built in for virtualization and desktop
+management, and workloads are balanced across the Web Interfaces to ensure high availability and
+optimum performance.
+
+The Vblock Solution for Citrix is configured in the following fashion, as illustrated in the following figure:
+• End point devices connect through the firewall to the load balancers, reaching the Web Interface
+
+in the DMZ.
+
+•
+
+The private network connection goes to the network aggregation core load balancer in the
+network aggregation layer to provide load balancing for the Web Interfaces.
+
+The Web Interface performs initial authentication and enumeration operations.
+
+The Citrix License Server allocates the license.
+
+•
+•
+• Redundant XenDesktop controllers control desktop management.
+•
+•
+•
+•
+
+vCenter Server hosts the hosted virtual desktops.
+
+The management infrastructure is installed and configured on a two-host cluster.
+
+The SQL data store contains the system configurations and object tracking.
+
+vSphere Servers, along with the VDI infrastructure and connection brokers, are installed on the
+Vblock System.
+
+• Machine Creation Services (MCS) or Provisioning Services (PVS) provides desktop image
+
+creation and delivery.
+
+•
+
+•
+
+The Network core provides the interactions necessary to establish a VDI session using a
+XenDesktop controller.
+
+There is one cluster of pooled hosted virtual desktops (PoD) and one cluster of streamed hosted
+virtual desktops.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+15
+
+•
+
+The virtualization layer provides management through vCenter.
+
+Figure 1: Vblock Solution for Citrix logical configuration
+
+The following table describes the VMs in the Citrix management stack used in this solution:
+
+Table 1:  
+
+VMs used in the Citrix management stack for this solution
+
+Virtual
+Desktops
+
+XenDeskto
+p Controller
+(MCS)
+
+Provisionin
+g server
+(PVS)
+
+XenApp
+Controller
+
+Web
+Interface
+
+License
+Server
+
+SQL Server
+database
+
+NA
+
+5.6 FP1
+
+6.1
+
+6.5
+
+5.4.0.59
+
+11.10.0
+build 12012
+
+2008 R2
+Standard
+
+Windows 7
+Enterprise
+Edition 64-
+bit
+
+Windows Server 2008 R2 Enterprise
+
+Application
+version
+
+Operating
+system
+
+vCPU
+
+RAM (GB)
+
+1
+
+2
+
+4
+
+4
+
+4
+
+40
+
+4
+
+8
+
+16
+
+2
+
+4
+
+1
+
+4
+
+2
+
+4
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Table 1:  
+
+VMs used in the Citrix management stack for this solution
+
+Virtual
+Desktops
+
+XenDeskto
+p Controller
+(MCS)
+
+Provisionin
+g server
+(PVS)
+
+XenApp
+Controller
+
+Web
+Interface
+
+License
+Server
+
+SQL Server
+database
+
+vDisk
+storage
+(GB)
+
+40
+
+40
+
+40
+
+40
+
+40
+
+40
+
+•
+
+•
+
+40 GB
+(C:) for
+OS
+60 GB
+(D:) for
+SQL
+databas
+e and
+transact
+ion logs
+
+Hardware and software
+
+The following tables list the hardware and software used to validate this solution.
+
+Table 2:  
+
+Hardware
+
+Layer
+
+Compute
+
+Network
+
+Hardware
+
+Quantity
+
+Cisco UCS 5108 Blade Server
+chassis1
+
+Cisco UCS B200 M3 (management
+and virtual desktops)
+
+Cisco UCS B200 M2 (Login VSI)
+
+Cisco UCS 6248UP Series Fabric
+Interconnects or Cisco UCS 61x0XP
+Series Fabric Interconnect
+
+RAM (GB/blade)
+
+CPU, 8 cores per socket
+
+Cisco Nexus 1000V Series virtual
+Switch
+
+Cisco Nexus 5548UP Series IP
+Switch
+
+Cisco MDS 9148 Series Fibre
+Channel storage Switch
+
+1
+
+6
+
+1
+
+2
+
+256
+
+16
+
+1
+
+2
+
+2
+
+1 The Vblock Systems 320 with VNX 5500 can hold up to 64 Cisco UCS B200 M3 blades.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+17
+
+Table 2:  
+
+Hardware
+
+Layer
+
+Storage
+
+Table 3:  
+
+Software
+
+Software
+
+Citrix XenDesktop
+
+Citrix XenApp
+
+Provisioning Server
+
+VMware vSphere
+
+MMicrosoft SQL Server
+
+Windows server OS
+
+Windows desktop OS
+
+Hardware
+
+VNX 5500
+
+Quantity
+
+1
+
+Version
+
+5.6 FP1
+
+6.5
+
+6.1
+
+5.1
+
+2008 R2 Standard
+
+2008 R2 Enterprise
+
+Windows 7 Enterprise Edition 64-bit
+
+18
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Design considerations
+
+Storage
+
+EMC VNX 5500
+
+This solution uses the following VNX storage features:
+
+• Block-based storage over Fibre Channel (FC) to store the VMDK files for XenApp. The Unified
+
+Storage Management plug-in provides seamless integration with VMware vSphere to simplify the
+provisioning of data stores or VMs.
+
+•
+
+File-based storage over the NFS protocol to store hosted MCS hosted virtual desktop, and CIFS
+protocol to store hosted MCS hosted virtual desktop, and CIFS protocol to store user data and
+the Citrix Profile management repository. This has the following benefits:
+
+— Redirection of user data and Citrix Profile Manager data to a central location for easy backup
+
+and administration
+
+— Single instancing and compression of unstructured user data to provide the highest storage
+
+utilization and efficiency
+
+VMware vSphere
+
+The storage configuration provisioned over FC allows the vSphere cluster to store the VMDK images for
+management, PVS, and XenApp servers; the storage provisioned over NFS to support the MCS hosted
+desktops; and CIFS to redirect user data and provide storage for the Citrix Profile Manager data.
+
+This solution uses the following storage deployment:
+
+•
+
+•
+
+•
+
+•
+
+5 SAS disks in RAID 5 RAID GROUP 0 to boot the ESXi hosts, with 20 GB boot LUNs for each of
+the hosts
+
+10 x 600 GB SAS 15K disks in RAID 5 Storage Pool 1 to store virtual desktops, with FAST Cache
+enabled for the entire pool
+
+— 2 x 1 TB FC LUNs for the management VMs
+
+— 1 x 1 TB FC LUN for 10 XenApp Servers providing hosted shared desktops
+
+— 1 x 2 TB FC LUNs for PVS streaming hosted virtual desktops
+
+8 x 200 GB Flash drives for EMC VNX FAST Cache, with no user-configurable LUNs on these
+drives
+
+20 x 300 GB SAS 15K drives in RAID 5 Storage Pool 2 with NFS to store MCS hosted virtual
+desktops
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+19
+
+•
+
+•
+
+•
+
+5 x 500 GB NFS mount points carved out of the storage pool to support MCS hosted virtual
+desktops
+
+1 x 500 GB NFS mount point carved out of the storage pool to support a write cache on the local
+hard drive for PVS streaming hosted virtual desktops
+
+— 8 NL-SAS disks in the RAID 6 Storage Pool 3 to store user data and roaming profiles, with
+
+FAST Cache enabled for the entire pool
+
+— 4 x 2 TB LUNs carved out of the storage pool to create two CIFS file systems
+
+— FAST Cache enabled on both storage pools to store the FC and CIFS file systems used by
+
+the hosted virtual desktops
+
+2 shared file systems for profiles and user data management hosted virtual desktops:
+
+— One file system for the Citrix Profile Manager repository
+
+— One file system to redirect user storage residing in home directories. (Redirecting user data
+
+out of the base image to the VNX for files enables centralized administration, backup, and
+recovery, and makes the desktops more stateless. Each file system is exported to the
+environment through a CIFS share.)
+
+Network
+
+The following network configurations are important for this solution.
+
+• A Nexus 7000 Switch in the aggregation layer provides all layer 3 VLAN network capabilities to
+
+Vblock systems, as well as other core components like the ACE load balancer.
+
+•
+•
+
+The load balancer is connected to the Nexus 7000 with a specified VLAN.
+
+The Nexus 5548 Switches built into the Vblock Systems 320 are connected directly to the Nexus
+7000 for all network services.
+
+20
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+• Downstream from the Nexus 5548s, everything is connected per a standard Vblock System 320.
+All the hosts and VMs are inside the Vblock System 320, receiving layer 3 network service from
+the Nexus 7000.
+
+Figure 2: Vblock 320 network aggregation
+
+In the Citrix XenDesktop solution, all network interfaces on the vSphere Servers use 10 GbE connections.
+All hosted virtual desktops are assigned an IP address by using a DHCP server. The following table
+shows the Nexus 1000V distributed Switch configuration in the vCenter Server.
+
+Table 4:  
+
+Nexus 1000V configuration
+
+Port group name
+
+VSPHERE-DATA-UPLINK
+
+Vblock_infra_mgmt
+
+Use
+
+Uplink port group for vSphere hosts
+
+Citrix XenDesktop management infrastructure
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+21
+
+Table 4:  
+
+Nexus 1000V configuration
+
+Port group name
+
+Vblock_esx_mgmt
+
+Vblock_esx_vmotion
+
+Vblock_cifs
+
+Hosted_desktop_2392
+
+Use
+
+vSphere host management networks
+
+vSphere host vMotion networks
+
+Citrix XenDesktop User Share repository for Profile
+management
+
+MCS hosted virtual desktops and hosted shared
+desktops
+
+Streamed_desktop_2393
+
+PVS hosted virtual desktops
+
+Virtualization
+
+Vblock Systems virtualization uses vSphere components ESXi and vCenter Server.
+
+For a Citrix XenDesktop solution, clustering uses vSphere for the virtual container design. The
+XenDesktop environment clustering design implementation, components, and characteristics are
+described in the following tables for the Cisco UCS B200 M3 used in this solution:
+
+• Citrix management infrastructure cluster
+• XenDesktop MCS persistent and non-persistent pooled hosted virtual desktops
+• XenDesktop PVS streaming hosted virtual desktops
+• XenApp hosted shared desktops
+
+vSphere Distributed Resource Scheduler (DRS) is enabled on the management cluster and continuously
+monitors utilization across vSphere hosts in the management and security clusters and intelligently
+allocates available resources among VMs. It also balances computing capacity within the cluster.
+
+VMware HA is enabled for the management cluster to provide easy-to-use and effective high availability
+for all the management VMs in the event of physical server failure. In the case of server failure, HA will
+restart the affected VM on the spare server.
+
+DRS and HA were disabled on the production clusters for validation since each validation was done on a
+single blade.
+
+Table 5:  
+
+Citrix management infrastructure cluster
+
+Component
+
+ESXi hosts
+
+Data store (FC)
+
+Network
+
+DRS
+
+Characteristic
+
+3
+
+1 x 2 TB
+
+2 x 10 GbE uplink connectivity for each host
+
+Enabled
+
+22
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Table 5:  
+
+Citrix management infrastructure cluster
+
+Component
+
+HA
+
+Characteristic
+
+Enabled
+
+Table 6:  
+
+XenDesktop MCS persistent and non-persistent pooled hosted virtual desktops
+
+Component
+
+ESXi hosts
+
+Data store (NFS)
+
+Network
+
+DRS
+
+HA
+
+Characteristic
+
+1
+
+5 x 500 GB
+
+2 x 10 GbE uplink connectivity for each host
+
+Disabled for validation
+
+Disabled for validation
+
+Table 7:  
+
+XenDesktop PVS streaming hosted virtual desktops
+
+Component
+
+ESXi hosts
+
+Data store (FC LUN)
+
+Write cache on local drive (NFS LUN)
+
+Characteristic
+
+1
+
+1 x 2 TB
+
+1 x 500 GB
+
+Network
+
+DRS
+
+HA
+
+Table 8:  
+
+XenApp hosted shared desktops
+
+Component
+
+ESXi hosts
+
+Data store (FC)
+
+Network
+
+DRS
+
+HA
+
+2 x 10 GbE uplink connectivity for each host
+
+Disabled for validation
+
+Disabled for validation
+
+Characteristic
+
+1
+
+1 TB
+
+2 x 10 GbE uplink connectivity for each host
+
+Disabled for validation
+
+Disabled for validation
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+23
+
+Validation
+
+This section describes how VCE validated the Vblock Solution for Citrix:
+
+• Environment
+• Objectives and design
+• Results and analysis
+
+Environment
+
+The Citrix test environment was as described in the Architecture section.
+
+We used Login VSI to generate desktop workloads and gathers in-session VDI performance data in order
+to validate the solution under simulated Knowledge Worker medium workload conditions.
+
+Table 9:  
+
+Login VSI launcher characteristics
+
+Component
+
+Cisco UCS B200 M2
+
+CPU cores
+
+RAM
+
+Login VSI version
+
+Launcher VMs
+
+Sessions per aluncher VM
+
+Launcher VM vCPU
+
+Launcher VM RAM
+
+Table 10:  
+
+XenDesktop MCS characteristics
+
+Component
+
+Cisco UCS B200 M2
+
+CPU cores
+
+RAM
+
+NFS LUNs for XenDesktop
+
+Value
+
+1
+
+12
+
+96 GB
+
+3.7
+
+6
+
+25
+
+2
+
+4 GB
+
+Value
+
+1
+
+16
+
+256 GB
+
+5 x 500 GB
+
+24
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Table 10:  
+
+XenDesktop MCS characteristics
+
+Component
+
+Hosted virtual desktops per LUN
+
+Table 11:  
+
+XenDesktop PVS characteristics
+
+Component
+
+Cisco UCS B200 M2
+
+CPU cores
+
+RAM
+
+FC LUN
+
+NFS LUNs for write cache local
+
+CIFS share for vDisk repository
+
+Table 12:  
+
+XenApp characteristics
+
+Component
+
+Cisco UCS B200 M2
+
+CPU cores
+
+RAM
+
+FC LUNs
+
+XenApp Servers
+
+Objectives and design
+
+Value
+
+35
+
+Value
+
+1
+
+16
+
+256 GB
+
+1 x 2 TB
+
+1 x 500 GB
+
+1 x 500 GB
+
+Value
+
+1
+
+16
+
+256 GB
+
+1 x 1 TB
+
+8
+
+The objective of this validation is to quantify scalability by measuring the number of XenDesktop hosted
+virtual desktops and XenApp hosted shared desktops that can be deployed on a single Cisco UCS B200
+M3 blade with acceptable utilization and user experience. We performed this validation using MCS for
+persistent and non-persistent desktops, and PVS for non-persistent desktops. Target ranges for this
+validation are:
+
+• CPU: maximum 85-90%
+• Memory: maximum <100%
+• Storage processor: maximum <50%
+• Application response times: <4 seconds
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+25
+
+Login VSI
+
+We used Login VSI to:
+
+• Simulate medium application workloads
+• Measure in-session resource utilization and response times to ensure target utilization and user
+
+experience
+
+Workload
+
+We used a Knowledge Worker medium workload because it consumes more memory and CPU resources
+due to the increased number of applications simultaneously running, which addresses most hosted virtual
+desktop user classes.
+
+• Eight applications simultaneously open
+• Minimum 20% user activity, with simulated users opening and closing files every 30 seconds
+
+We allocated 2 GB RAM to each hosted virtual desktop and used the Login VSI parameters in addition to
+the medium workload:
+
+•
+130 ms per character type rate
+• Reduced idle time to 40 seconds
+
+We used 20 instances of the Login VSI launcher to generate the application workloads described in the
+table below, using locally installed applications and increasing workspaces to determine the optimum
+number the solution can support with acceptable user experience.
+
+Table 13:  
+
+Application workloads
+
+Application
+
+Microsoft Outlook
+
+Internet Explorer
+
+Microsoft Word
+
+Microsoft Excel
+
+Microsoft PowerPoint
+
+Bullzip PDF Printer and Acrobat Reader
+
+7-Zip
+
+Notepad
+
+Workload
+
+Browse 10 messages
+
+Leave one instance continuously open and continuously
+browse a second instance
+
+Measure response time for one instance; review and edit
+document in a second instance
+
+Open a very large randomized spreadsheet
+
+Review and edit one presentation
+
+Print Microsoft Word document to PDF and review in
+Acrobat Reader
+
+Use the CLI to zip all session output
+
+Open and print a file
+
+26
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Metrics
+
+We measured response times for the following transactions:
+
+Transaction
+
+Refresh (RFS)
+
+Load
+
+Open
+
+Notepad
+
+Print
+
+Find
+
+Zip
+
+EMC Unisphere
+
+Description
+
+Copy a random document, a PowerPoint file, and an
+Outlook file from the server to the local drive
+
+Launch Microsoft Word
+
+Open a Microsoft Word document
+
+Launch Notepad
+
+Print a Notepad file
+
+Find a term within a Notepad file
+
+Zips a random PowerPoint file
+
+We collected storage processor data from EMC Unisphere, which is used to manage the VNX array.
+
+vSphere vCenter Server
+
+We collected XenApp Server CPU and memory utilization data from vCenter Server.
+
+XenDesktop
+
+We tested the deployment using Login VSI to launch and run the applications listed in the previous table
+using VSI launcher clients hosted on a separate LUN so as not to interfere with performance testing and
+validation. During testing we measured CPU utilization, memory utilization, storage processor utilization,
+and application response times.
+
+Test procedure
+
+We used the following test procedure to ensure consistent results:
+
+• Before each test, all desktop VMs and clients were cleanly started.
+• All desktop VMs and client launchers were idled until start up services on the operating system
+
+settled down and memory and CPU on the launchers showed no utilization.
+
+•
+•
+
+Test Phase: At least two Login VSI loops were executed in each active session.
+
+Logoff: All users logged off after VSI completion.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+27
+
+Test run reports and data were generated.
+
+•
+• All desktop VMs and clients were shut down.
+
+Results and analysis
+
+Summary
+
+In all validations, CPU, memory, storage processor, and application response times were within
+acceptable ranges, validating 140 MCS hosted virtual desktops, 110 PVS hosted virtual desktops, and
+300 XenApp hosted shared desktops per Cisco UCS B200 M3 blade.
+
+Type
+
+Desktop
+count
+
+ESXi CPU
+(%)
+
+ESXi
+memory
+(GB)
+
+XenApp
+Server CPU
+(%)
+
+XenApp
+Server
+memory
+(GB)
+
+Storage (%) Application
+
+response
+time (ms)
+
+PVS
+
+MCS
+persistent
+
+MCS non-
+persistent
+
+XenApp
+
+110
+
+140
+
+140
+
+300
+
+35
+
+88
+
+88
+
+85
+
+84
+
+72
+
+91
+
+32
+
+<10
+
+<10
+
+<20
+
+<5
+
+<900
+
+<900
+
+<700
+
+<4,000
+
+81
+
+68
+
+28
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Individual test results
+
+CPU and memory utilization
+CPU and memory were within acceptable ranges of ~90% for this solution.
+
+Figure 3: CPU and memory validation results for XenDesktop and XenApp
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+29
+
+Storage processor utilization
+Storage processor performance ranged from less than 5% to less than 20%, well below our goal of less
+than 50%.
+
+Figure 4: MCS persistent virtual desktop 140-user storage processor utilization
+
+Figure 5: MCS non-persistent virtual desktop 140-user storage processor utilization
+
+30
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Figure 6: PVS non-persistent virtual desktop 110-user storage processor utilization
+
+Figure 7: XenApp 300-user storage processor utilization
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+31
+
+Application response times
+Application response times were well below our target of 4,000 ms for all XenDesktop deployments and
+below our target of 4,000 ms for the XenApp deployment.
+
+Figure 8: XenDesktop application response times
+
+Figure 9: XenApp application response time
+
+Maximum capacity testing
+
+After completing validation for 140 MCS hosted virtual desktops, 110 PVS hosted virtual desktops, and
+300 XenApp hosted shared desktops, we increased to 150 and 120 XenDesktop hosted virtual desktops,
+and 320 XenApp hosted shared desktops and recorded the following results. Many of the figures are
+
+32
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+within the 95–100% range, indicating this is near the maximum a single Cisco UCS B200 M3 can support
+on a Vblock 320.
+
+Table 14:  
+
+Maximum capacity results
+
+Type
+
+Desktop
+count
+
+ESXi CPU
+(%)
+
+ESXi
+memory
+(GB)
+
+XenApp
+Server CPU
+(%)
+
+XenApp
+Server
+memory
+(GB)
+
+Storage (%) Application
+
+response
+time (ms)
+
+PVS
+
+MCS
+persistent
+
+MCS non-
+persistent
+
+XenApp
+
+120
+
+150
+
+150
+
+320
+
+44
+
+97
+
+96
+
+95
+
+Scaling example
+
+89
+
+75
+
+98
+
+32
+
+<20
+
+<10
+
+<20
+
+<20
+
+<900
+
+<900
+
+<700
+
+<4,000
+
+82
+
+70
+
+You can scale resources for larger XenDesktop and XenApp deployments on Vblock Systems. For
+example, based on our validation results you can host 1,000 XenDesktop hosted virtual desktops or
+XenApp hosted shared desktops on a Vblock Systems 320 with VNX 5500 using the following
+components.
+
+Component
+
+Cisco UCS B200 M3
+blades for virtual desktops
+
+Cisco UCS B200 M3
+blades for management
+
+Controllers (VM)
+
+SQL Server databases
+(VM)
+
+MCS
+
+8
+
+2 (n+1)
+
+2 (n+1)
+
+1
+
+Storage
+
+18 TB NFS data store
+
+•
+
+•
+
+2 TB shared file
+systems used for
+profiles
+10 TB shared file
+systems used for user
+data management
+
+XenApp Servers (VM)
+
+NA
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+XenApp
+
+4
+
+2 (n+1)
+
+2 (n+1)
+
+1
+
+2 TB FC LUN
+
+2 TB shared file
+systems used for
+profiles
+10 TB shared file
+systems used for user
+data management
+
+•
+
+•
+
+20
+
+PVS
+
+10
+
+2 (n+1)
+
+2 (n+1)
+
+2.5 TB write cache
+500 GB vDisk
+repository
+18 TB FC LUN
+
+2 TB shared file
+systems used for
+profiles
+10 TB shared file
+systems used for user
+data management
+
+1
+
+•
+•
+•
+•
+
+•
+
+NA
+
+33
+
+Component
+
+Web interfaces (VM)
+
+MCS
+
+2 (n+1)
+
+PVS
+
+2 (n+1)
+
+XenApp
+
+2 (n+1)
+
+34
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Conclusion
+
+The Vblock Solution for Citrix XenDesktop and XenApp provides service providers and organizations a
+high-level architectural description with detailed design considerations for providing Citrix hosted and
+virtual shared desktops on a Vblock Systems 320. Using a building block approach, we validated this
+solution on a single Cisco UCS B200 M3 and have provided sample scaling recommendations for a
+1,000-desktop deployment example. This solution provides intelligent and optimal resource utilization,
+enterprise-class user experience for medium workloads, and HA for rapid failover in the event of physical
+server failure.
+
+Next steps
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+35
+
+www.vce.com
+
+About VCE
+
+VCE,  formed  by  Cisco  and  EMC  with  investments  from  VMware  and  Intel,  accelerates  the  adoption  of  converged
+infrastructure and cloud-based computing models that dramatically reduce the cost of IT while improving time to market for
+our  customers.  VCE,  through  Vblock  Systems,  delivers  the  industry's  only  fully  integrated  and  fully  virtualized  cloud
+infrastructure system. VCE solutions are available through an extensive partner network, and cover horizontal applications,
+vertical industry offerings, and application development environments, allowing customers to focus on business innovation
+instead of integrating, validating, and managing IT infrastructure.
+
+For more information, go to http://www.vce.com.
+
+© 2014 VCE Company, LLC. All rights reserved. VCE, Vblock, VCE Vision, and the VCE logo are registered trademarks or
+trademarks of VCE Company, LLC. and/or its affiliates in the United States or other countries. All other trademarks used
+herein are the property of their respective owners.
+
+

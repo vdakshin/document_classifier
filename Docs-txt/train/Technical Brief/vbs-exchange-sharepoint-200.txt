@@ -1,0 +1,2090 @@
+ 
+
+ 
+
+www.vce.com 
+
+VBLOCK™ SOLUTION FOR MICROSOFT 
+EXCHANGE AND SHAREPOINT SERVERS 
+FOR MID-SIZE AND REMOTE DATA 
+CENTERS 
+
+Version 1.0 
+April 2013
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+Copyright © 2013 VCE Company, LLC. All Rights Reserved. 
+
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ................................................................................................................................. 5	  
+Solution overview ...................................................................................................................... 5	  
+Objectives .................................................................................................................................. 6	  
+Audience .................................................................................................................................... 6	  
+Feedback ................................................................................................................................... 6	  
+Technology overview ................................................................................................................. 7	  
+Vblock™ Systems ....................................................................................................................... 7	  
+Vblock™ System 200 .............................................................................................................. 7	  
+VCE Vision™ Intelligent Operations ........................................................................................ 7	  
+Applications ............................................................................................................................... 8	  
+Microsoft Active Directory ...................................................................................................... 8	  
+Microsoft Exchange Server 2010 ........................................................................................... 8	  
+Microsoft SharePoint Server 2010 ......................................................................................... 9	  
+Microsoft SQL Server 2008 .................................................................................................... 9	  
+Architecture overview .............................................................................................................. 10	  
+Microsoft Exchange ................................................................................................................. 10	  
+Microsoft SharePoint ............................................................................................................... 10	  
+Hardware and software ........................................................................................................... 12	  
+Design considerations ............................................................................................................. 13	  
+Storage .................................................................................................................................... 13	  
+Disk and pool layout ............................................................................................................. 13	  
+Application resources ........................................................................................................... 13	  
+Server deployments ................................................................................................................. 15	  
+High availability ........................................................................................................................ 16	  
+Microsoft Exchange server roles, subsystems, and sizing ...................................................... 16	  
+Microsoft SharePoint ............................................................................................................... 18	  
+Search .................................................................................................................................. 18	  
+Databases ............................................................................................................................ 19	  
+Intel Hyper-Threading technology ........................................................................................... 20	  
+Deployments ............................................................................................................................ 20	  
+Scalability ................................................................................................................................ 20	  
+Solution validation .................................................................................................................... 21	  
+Applications ............................................................................................................................. 21	  
+EMC Unisphere .................................................................................................................... 21	  
+HP LoadRunner 11.0 ........................................................................................................... 21	  
+Microsoft Exchange Server JetStress 2010 ......................................................................... 21	  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+3 
+
+ 
+
+ 
+
+Microsoft Exchange Load Generator 2010 .......................................................................... 21	  
+Test environment design ......................................................................................................... 22	  
+Microsoft Exchange .............................................................................................................. 22	  
+Microsoft SharePoint ............................................................................................................ 23	  
+Mixed workload .................................................................................................................... 24	  
+Test results .............................................................................................................................. 25	  
+Analysis ................................................................................................................................... 26	  
+Conclusion ................................................................................................................................ 27	  
+Next Steps ............................................................................................................................... 27	  
+References ................................................................................................................................ 28	  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+Since 2008, Microsoft has consistently registered the highest Enterprise Content Management market 
+annual growth rates.1 Microsoft Exchange Server 2010 and Microsoft SharePoint Server 2010 provide 
+e-mail and collaboration solutions vital in today’s business climate; and regardless of size or 
+distribution of locations, IT organizations are being tasked with ensuring the interoperability, 
+performance, and high availability of these critical deployments. VCE can help you simplify and 
+optimize provisioning, deployment, and management of these Microsoft Business Solutions by using 
+virtualization and best-of-breed components from Cisco, EMC, and VMware. 
+
+Reset your baseline service delivery cost structure by using the innovation of VCE pre-packaged 
+configurations and management tools to quickly and easily implement a set of Microsoft Business 
+Solutions. Optimized for virtualization and engineered for ease of growth and expansion, VCE lowers 
+IT costs per datacenter tile by ensuring that you’ll have an intelligently managed, dynamic pool of 
+resources that’s ideal for supporting virtualized and cloud computing environments.  Vblock™ 
+Systems represent the next generation in appliance-like IT deployments. Vblock Systems offer a 
+complete line of models and configurations to meet a variety of environments, and the Vblock™ 
+System 200 is the perfect size for deploying this critical mixed application workload in medium-sized 
+situations. 
+
+Solution overview 
+
+The Vblock Solution for Microsoft Exchange and SharePoint Servers for Midsize and Remote Data 
+Centers demonstrates a virtualized mixed application workload comprising critical business 
+applications, Exchange and SharePoint, for mid-size and distributed data centers. Vblock System 200 
+provides a nimble solution for organizations providing enterprise-grade applications and performance, 
+while maintaining vigilance over IT acquisition and operating costs. Vblock™ Systems provide 
+organization IT solutions with low capital outlay and reduced operating costs from simpler 
+implementations, deployments, and maintenance. Vblock solutions provide dramatically quicker time 
+to market and allow organization to eliminate overlap spending in their organizations while maintaining 
+staff size and composition with pre-packaged modular architectures. 
+
+Organizations need IT solutions that provide scalability, performance, and high availability comparable 
+to larger solutions. Vblock™ Systems are built on a consistent platform with compatible components 
+across the product line—from the Vblock System 100 to the Vblock System 700 family: 
+
+§  Enterprise-class performance in a mid-size package with significant headroom for growth 
+§  Rapid deployments to quickly scale your infrastructure to meet changing needs 
+§  Simplified configuration and management with existing staff size and skill sets 
+
+                                                        
+
+1 Gartner Report, Market Analysis: Enterprise Content Management System Worldwide, June 19, 2012 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+ 
+
+Objectives 
+
+This paper provides a solution architecture and design considerations for deploying a mixed Microsoft 
+workload of Exchange and SharePoint on a Vblock System 200. It demonstrates a rapid deployment 
+and sustainable operation of the virtualized infrastructure for these applications.  
+
+In this paper, we will: 
+
+§  Describe the components, architecture, and configuration for deploying Microsoft Exchange and 
+
+SharePoint for 5,000 users on Vblock System 200 
+
+§  Share design considerations for optimizing the compute, storage, and virtualized application 
+
+components of this solution 
+
+§  Validate this solution according to Microsoft Exchange’s Heavy User and SharePoint’s 
+
+Acceptable User Response Times in single and mixed application environments, with analysis 
+and comparison 
+
+Audience 
+
+This solution architecture is intended for application and service architects, IT managers, and 
+engineers considering an integrated, virtualized infrastructure for deploying Microsoft Exchange and 
+SharePoint in mid-sized and remote data centers. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send an email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment 
+applies, and your feedback. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Technology overview 
+
+This section describes the technologies used in the Vblock Solution for Exchange and SharePoint. 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world’s most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry’s most robust range of configurations. 
+
+Vblock™ System 200 
+
+The Vblock System 200 is right-sized to meet the capacity, workload, and space requirements of mid-
+sized data centers and distributed enterprise remote offices. By leveraging the Vblock System 200, 
+companies experience the repeatability, architecture standardization, implementation flexibility, and 
+business results synonymous with Vblock Systems. 
+
+With pre-defined, variable configurations, the Vblock System 200 balances real workload 
+requirements with fastest time to value, reducing risk and complexity. The Vblock System 200 is 
+designed to: 
+
+§  Bring the power and benefits of the Vblock System family into a value-focused solution 
+§  Deliver core IT services (file/print and domain) for mid-sized data centers and distributed 
+
+enterprise remote locations 
+
+§  Provide development/test and co-location data center support 
+§  Efficiently handle mixed application workload requirements for mid-sized data centers 
+§  Offer business applications with data segregation requirements (such as eDiscovery and 
+
+eArchive) with predictable performance and operational characteristics 
+
+VCE Vision™ Intelligent Operations 
+
+VCE Vision Intelligent Operations enables and simplifies converged operations. The software acts as 
+a mediation layer between Vblock Systems and existing data center management tools, dynamically 
+informing those tools about Vblock Systems. It delivers intelligent discovery to provide a single-object 
+perspective on Vblock Systems. Comprehensive awareness of the industry-leading components that 
+comprise Vblock Systems promotes infrastructure standardization through automated validation and 
+system assurance. And integration capabilities make it possible to provide this level of intelligence to 
+any toolset. The software has native integration with key management products from VMware and 
+supports API-enabled integration into other standard industry tools. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+7 
+
+ 
+
+ 
+
+The software is delivered pre-installed on all new Vblock Systems, and includes: 
+
+§  The VCE Vision™ System Library that runs on all Vblock Systems to implement core 
+
+functionality, including the discovery, compliance, and object models 
+
+§  A plug-in for vCenter and an adapter for vCenter Operations Manager that enable native 
+
+integration with these two key components of the VMware management toolset 
+
+§  A software development kit, which includes the API documentation, sample code, Java bindings, 
+
+and a simulator, as well as an online developer community to help foster innovation 
+
+For more information, go to http://www.vce.com. 
+
+Applications  
+
+Microsoft Active Directory 
+
+Active Directory with Global Catalog (AD/GC) is a directory service created by Microsoft for Windows 
+Network Domain. It is included in most Windows Server operating systems and provides a central 
+location for network administration and security. In today’s information economy, users need to 
+access and appropriately share data to keep business moving. Active Directory provides easy data 
+access for users across devices and locations and enterprise-caliber security for sensitive business 
+information—even when it is outside of your data center. The Global Catalog enables searching for 
+Active Directory objects in any domain without subordinate referrals so that users can find objects 
+quickly. 
+
+Microsoft Exchange Server 2010 
+
+Exchange is built to deliver the enterprise-grade security and reliability that businesses require. 
+Exchange provides email, calendar and contacts on your PC, phone, and web browsers. Exchange 
+gives you the flexibility to tailor your deployment to your unique needs and provides a simplified way to 
+help keep email continuously available for your users. 
+
+Exchange offers your organization: 
+
+§  Support for a variety of browsers—including Internet Explorer, Firefox, Safari, and Chrome—
+
+allows you to work and collaborate no matter where you are. 
+
+§  Mobile sync for hundreds of devices—including Windows Phone, iPhone, and Android—means 
+
+you can access and update your information while on the go. 
+Increased user productivity with organizational safety gives you the control you need. 
+
+§ 
+§  Managed availability helps your business achieve increased levels of reliability. 
+
+A new, unified approach to high availability and disaster recovery helps achieve new levels of 
+reliability as it reduces the complexity and cost of delivering business continuity up to 80%. With new 
+features, such as Database Availability Groups and online mailbox moves, you can more easily and 
+confidently implement mailbox resiliency with database-level replication and failover, all with familiar 
+Exchange management tools.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Microsoft SharePoint Server 2010 
+
+SharePoint is an industry-leading solution when it comes to promoting collaboration, managing 
+documents, setting up Web sites to share information with others, and publishing reports to help 
+everyone make better decisions—running on the Vblock Solution for Exchange and SharePoint.  
+
+A SharePoint deployment in your organization: 
+
+§  Provides a single infrastructure for all of your business websites, enabling you to share 
+documents with colleagues, manage projects with partners, and publish information to 
+customers. 
+
+§  Brings great collaboration tools—and a single platform to manage them—making it easier for 
+
+people to share ideas and work together in the ways they want.  
+
+§  Makes content management easy, by setting up compliance measures “behind the scenes”—
+
+with features like document types, retentions policies, and automatic content sorting.  
+
+§  Offers tools and components for creating do-it-yourself business solutions.  
+§  Provides access to information in databases, reports, and business applications.  
+§  Helps people find the information and contacts they need to do their jobs. 
+
+Microsoft SQL Server 2008 
+
+Many organizations use SQL Server as an underlying database for SharePoint. SQL Server is an 
+industry-leading database solution with the performance and scalability to meet today’s IT challenges 
+with a low total cost of ownership. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+9 
+
+ 
+
+ 
+
+Architecture overview 
+
+This section summarizes the architecture and configurations we used in the Vblock Solution for 
+Exchange and SharePoint. 
+
+Microsoft Exchange 
+
+Exchange consisted of Client Access server (CAS), Hub Transport server (HUB), Mailbox server 
+(MBX), and Active Directory. The Vblock System 200 was optimal for the storage, compute, 
+hypervisor, and network requirements of this solution. This enabled us to attain a more consolidated 
+deployment of Exchange and SharePoint components across all five physical ESXi hosts on a Vblock 
+System 200, by deploying six virtual machines (VM) on ESXi hosts 1 and 2 and six VMs on ESXi host 
+3 and 4, for a total of 12 VMs on four physical servers. Each ESXi host runs on a Cisco C220 M3 
+server and is connected through 2 Nexus 5548 SAN Fabric Switches to the VNX 5300 storage array. 
+
+Microsoft SharePoint 
+
+We deployed SharePoint in a three-tier architecture: 
+
+§  Web front ends (WFE) 
+§  Application servers (APP) 
+§  Crawl (CRAWL), Query (QUERY), and SQL servers 
+
+Table 1. Architecture for Exchange and SharePoint on Vblock System 200 
+
+Component 
+
+Server 
+
+Qty. 
+
+ESXi #1 
+
+ESXi host CPU 
+and memory 
+
+Exchange 
+
+SharePoint 
+
+Shared 
+
+UCS-C220-M3 
+ 
+
+Client Access / 
+Hub Transport 
+servers 
+
+Mailbox servers 
+
+Web Front 
+End/Query servers 
+
+Application/Crawl 
+servers 
+
+SQL servers 
+
+Active 
+Directory/Global 
+Catalog servers 
+
+4 
+
+2 
+
+2 
+
+2 
+
+2 
+
+2 
+
+2 
+
+2.89 GHz 
+256 GB 
+
+ESXi #2 
+
+2.89 GHz 
+256 GB 
+
+ESXi #3 
+
+2.89 GHz 
+256 GB 
+
+ESXi #4 
+
+2.89 GHz 
+256 GB 
+
+CAS/HUB1 
+
+CAS/HUB2 
+
+MBX1 
+
+MBX2 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+WFE/QUERY1  WFE/QUERY2 
+
+APP/CRAWL1  APP/CRAWL2 
+
+AD/GC1 
+
+AD/GC2 
+
+ 
+
+SQL1 
+
+SQL2 
+
+ 
+
+We optimized server resources by creating an environment consisting of 12 VMs on the 4 ESXi hosts. 
+Four ESXi hosts contained the entire infrastructure required to operate an Exchange and SharePoint 
+deployment, including domain controllers, Application servers, WFEs, Application, Client Access, Hub 
+Transport, and Mailbox servers. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+10 
+
+ 
+
+ 
+
+Figure 1. Exchange and SharePoint on Vblock System 200 
+
+Table 2 lists the Exchange, SharePoint, and LoadGen servers used in the Vblock Solution for 
+Exchange and SharePoint. We used a 1:1 ratio of physical-to-virtual servers when sizing Exchange.  
+
+ 
+
+Table 2. Application servers 
+
+Component 
+Exchange 
+
+SharePoint 
+
+Shared 
+
+ 
+
+Server 
+
+CAS/HUB 
+
+MBX 
+
+WFE 
+
+APP 
+
+SQL 
+
+AD/GC 
+ 
+
+Qty. 
+
+Virtual CPU 
+
+RAM (GB) 
+
+2 
+
+2 
+
+2 
+
+2 
+
+2 
+
+2 
+
+4 
+
+4 
+
+4 
+
+4 
+
+8 
+
+2 
+
+32 
+
+32 
+
+8 
+
+8 
+
+64 
+
+8 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Hardware and software 
+
+Table 3 lists the hardware used in the Vblock Solution for Exchange and SharePoint. 
+
+Table 3. Hardware used in the Vblock Solution for Exchange and SharePoint 
+
+Layer 
+Compute 
+
+Equipment 
+Cisco Unified Computing 
+System C220 M3 
+
+Qty. 
+4 
+
+Notes 
+ 
+
+Storage 
+
+EMC VNX 5300 
+
+Network 
+
+Cisco Nexus 5548 
+
+Cisco Catalyst 3750 
+
+1 
+
+2 
+
+1 
+
+§  SharePoint and SQL databases on RAID 
+
+5 (4 + 1) VM disks 
+
+§  Mailbox databases on RAID 10 (2 + 2) 
+
+Raw Device Mapping disks 
+Thin Provisioning 
+
+§ 
+
+ 
+
+Configured for management 
+
+The following table lists the software used in the Vblock Solution for Exchange and SharePoint. 
+
+Table 4. Software used in the Vblock Solution for Exchange and SharePoint 
+
+Software 
+Microsoft Exchange Server 2010 
+
+Microsoft SharePoint Server 2010 
+
+Microsoft SQL Server 2008 
+
+Microsoft Windows Server 2008 
+
+VMware vCenter Server 
+
+VMware vSphere 
+
+Version 
+SP2 Enterprise Edition 
+
+SP2 Enterprise Edition 
+
+R2 Enterprise Edition 
+
+R2 Enterprise 
+
+5.0 
+
+5.0 Enterprise Plus 
+
+Qty. 
+4 
+
+4 
+
+2 
+
+12 
+
+1 
+
+5 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+12 
+
+ 
+
+ 
+
+Design considerations 
+
+This section describes the design considerations we used in the Vblock Solution for Exchange and 
+SharePoint. 
+
+Storage 
+
+The disk layout was based on Microsoft and EMC best practice recommendations. 
+
+Disk and pool layout 
+
+The VNX storage platform used in this solution provides consolidated access to stored data from 
+multiple hosts, users, and applications by using existing IP network and connectivity, and industry-
+standard protocols, including CIFS, NFS, and iSCSI. Using RAID, the array can automatically rebuild 
+a faulted drive to a spare drive. After the RAID group member is rebuilt, the group is resilient to a 
+single disk failure. This solution, based on the VNX platform, allows organizations to store and protect 
+files, folders, and application data at a low cost of ownership while meeting enterprise requirements 
+for scalability, protection, and availability. 
+
+Application resources 
+
+Microsoft Exchange 
+
+We used two Mailbox servers with the following thin devices in each: 
+
+•  Four 1.6 TB database LUNs 
+
+•  Four 100 GB log LUNs 
+
+We used two HUB/CAS servers with one 300 GB thin device in each. 
+
+We configured RAID 10 group for databases and logs, hosting 16 Raw Device Mapping (RDM) disks 
+for Exchange resources. 
+
+Microsoft SharePoint  
+
+We used 200 GB for each content database. We divided 1.2 TB of user data comprising 4,800,000 
+documents into 6 x 200 GB content databases on 300 GB volumes, which we spread across 16 x 600 
+GB disks using RAID 5 for redundancy. All VMs used the VNX5300 for operating systems and content 
+databases. We used RAID 1/0 LUNs for the search and TempDB databases. 
+
+We deployed the VNX 5300 as a performance pool using 44 x 600 GB SAS 10 K RPM disks hosting 
+6 VM disks (VMDK) for SharePoint resources. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+13 
+
+ 
+
+ 
+
+ 
+
+We limited VMDK sizes to the following guidelines to improve SharePoint management and 
+performance: 
+
+§  Microsoft strongly recommends limiting content databases to 200 GB.  
+§  A site collection should not exceed 100 GB unless it is the only site collection in the database.  
+§  Content database sizes up to 1 TB are supported only for large, single-site repositories and 
+
+archives in which data remains reasonably static.  
+
+Table 5. VMDKs for SharePoint resources 
+
+VMDK 
+SharePoint internal database  
+
+Property store database  
+
+Crawl store database  
+
+Property and crawl store log files  
+
+Temp database  
+
+Temp database log  
+
+SharePoint database log  
+
+Content database  
+
+Table 6. Raid group characteristics 
+
+Size 
+100 GB  
+
+100 GB  
+
+100 GB  
+
+30 GB  
+
+100 GB  
+
+20 GB  
+
+20 GB 
+
+200 GB 
+
+Group number  Qty. disks  Type 
+
+Size (GB)  RPM  
+
+RAID type 
+
+Purpose 
+
+0 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+1 
+
+5 
+
+1 
+
+1 
+
+1 
+
+1 
+
+1 
+
+ 
+
+NL SAS  2,000 
+
+7,200 
+
+Hot spare 
+
+Hot spare 
+
+SAS 
+
+600 
+
+10,000  RAID 5 (4+1)  ESXi Boot LUN, 
+
+Management OS, and 
+LoadGen VMs 
+
+NL SAS  2,000 
+
+7,200 
+
+Hot spare 
+
+Hot spare 
+
+SAS 
+
+SAS 
+
+SAS 
+
+SAS 
+
+600  
+
+600  
+
+600 
+
+600 
+
+10,000  Hot spare 
+
+Hot spare 
+
+10,000  Hot spare 
+
+Hot spare 
+
+10,000  Hot spare 
+
+Hot spare 
+
+10,000  Hot spare 
+
+Hot spare 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+14 
+
+ 
+
+ 
+
+Table 7. Storage pool characteristics 
+
+Name 
+
+Qty. 
+
+Type 
+
+Size 
+(GB) 
+
+RPM  
+
+RAID 
+Type 
+
+Purpose 
+
+VB201 E2010 DB Pool A 
+
+VB201 E2010 DB Pool B 
+
+VB201 E2010 Logs Pool A 
+
+VB201 E2010 Logs Pool B 
+
+VB201 E2010 OS Pool 
+
+12 
+
+12 
+
+2 
+
+2 
+
+5 
+
+VB201 SP2010 Content DB 
+
+16 
+
+VB201 SP2010 OS Pool 
+
+VB201 SP2010 Search-
+Crawl-Temp DB and Logs 
+
+5 
+
+8 
+
+NL 
+SAS 
+
+NL 
+SAS 
+
+NL 
+SAS 
+
+NL 
+SAS 
+
+SAS 
+
+SAS 
+
+SAS 
+
+SAS 
+
+2,000 
+
+7,200 
+
+RAID 1/0 
+
+Exchange Mailbox 1 
+
+2,000 
+
+7,200 
+
+RAID 1/0 
+
+Exchange Mailbox 2 
+
+2,000 
+
+7,200 
+
+RAID 1/0 
+
+Exchange Logs 1 
+
+2,000 
+
+7,200 
+
+RAID 1/0 
+
+Exchange Logs 2 
+
+600  
+
+600  
+
+600  
+
+600  
+
+10,000 
+
+RAID 5 
+
+Exchange OS 
+
+10,000 
+
+RAID 5 
+
+SharePoint Content 
+DB 
+
+10,000 
+
+RAID 5 
+
+SharePoint OS 
+
+10,000 
+
+RAID 1/0 
+
+SharePoint Search, 
+Crawl and Temp DB 
+and Logs 
+
+Server deployments  
+
+We designed the SharePoint server farm and Exchange server as a typical Vblock System 200 
+deployment, with the following application-specific characteristics: 
+
+Table 8. SharePoint server farm characteristics 
+
+Profile Characteristic  
+SharePoint farm user data  
+
+Enterprise portal collaboration site collections  
+
+Document library sites  
+
+Value  
+1.2 TB 
+
+6 
+
+10  
+
+Number of documents in the SharePoint farm  
+
+4,800,000  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+15 
+
+ 
+
+ 
+
+Table 9. Exchange server characteristics 
+
+Item  
+
+Exchange mailboxes 
+
+ESXi hosts  
+
+Virtual machines per ESXi host  
+
+Active mailboxes per server  
+
+Databases per host  
+
+Mailboxes per database  
+
+Mailbox size (GB) 
+
+Heavy User profile messages sent and received per day per mailbox 
+
+Database read/write ratio  
+
+Database maintenance configuration  
+
+Database LUN (TB) 
+
+Log LUN (GB) 
+
+High availability 
+
+Value  
+
+5,000  
+
+2 
+
+3  
+
+2,500  
+
+4 
+
+625 
+
+2  
+
+150  
+
+3:2  
+
+24 x 7 BDM 
+
+1.6 
+
+100 
+
+Protecting Exchange and SharePoint from disruptive interruptions presents challenges on three 
+levels: 
+
+§  Complex implementation architectures 
+§  Unplanned data center failures and operator errors 
+§  Planned outages for reconfigurations, upgrades, hot fixes, and service packs  
+
+This solution ensures Exchange and SharePoint performance and high availability by deploying 
+redundant clustered resources for each of the solution’s three tiers (including WFE servers, 
+Application servers, and SQL database servers) in the following configurations. Although not used in 
+this solution validation, you can also create database availability groups to improve availability. 
+
+Microsoft Exchange server roles, subsystems, and sizing  
+
+The Exchange server roles we used in this solution are Mailbox, Hub Transport, and Client Access. 
+We virtualized all Exchange server roles using ESXi 5.0. Table 10 shows the different Exchange 
+server roles, their respective subsystems, how we sized them. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+16 
+
+ 
+
+ 
+
+Table 10. Exchange server roles, subsystems, and sizing 
+
+Roles 
+
+MBX 
+
+Subsystems 
+
+Processor  
+ 
+
+Storage 
+
+Memory 
+
+Summary 
+
+Sizing (per the Microsoft Mailbox Server Role Requirements Calculator) 
+§ 
+§ 
+§ 
+
+The megacycles required per mailbox are 3.  
+The megacycles required for a four-core Mailbox server are 8,250. 
+The specInt2006 ratio for the C220 M3 blades is estimated at 697, based on 
+the Intel Xeon ES-2690 processor architecture. 
+
+§  We factored 10% processor overhead into the overall requirements to 
+
+compensate for the hypervisor overhead, per VMware guidance.  
+
+§  With this configuration, the server would run at 24 percent utilization.  
+§ 
+
+The role calculator recommends 44 x 2 GB 7.2K SATA drives to meet the 
+I/O requirements of 5,000 users with 150 messages sent/received per 
+mailbox per day, with a 2 GB mailbox quota. Single-item retention and 
+calendar version storage are included in this calculation. The IOPS per 
+mailbox is 0.18. No IOPS or disk capacity buffer are included. 
+
+§  RAID 1/0 was the best fit for capacity and I/O with this configuration.  
+
+The amount of database cache required per mailbox is 9 MB. The amount of 
+memory required per server is 32 GB. 
+
+§ 
+§ 
+§ 
+§ 
+§ 
+
+4 vCPUs 
+32 GB RAM 
+4 x 1.6 TB database LUNs 
+4 x 100 GB LOG LUNs 
+1 virtual network interface card 
+
+Notes 
+
+The backup and restore of Exchange, outside of a JetStress test, is not 
+covered in this solution architecture. EMC has a proven and documented 
+backup and restore solution using the Replication Manager.  
+
+HUB/CAS  Processor 
+
+§  We used a 1:1 ratio for Mailbox cores to combine Hub Transport and Client 
+
+Access cores.  
+
+§  We used 8 Mailbox cores with 8 Hub Transport and Client Access server 
+
+cores. 
+
+Storage 
+
+The Client Access role does not consume much storage space, and does not 
+require a precise amount of IOPS or capacity. The Hub Transport role does 
+have this requirement, based on the message volume per day to determine 
+the IOPS and capacity required.  
+
+Memory 
+
+We used 8 GB of memory for every processor in the system. 
+
+Summary 
+
+Notes 
+
+AD/GC 
+
+Summary 
+
+§ 
+§ 
+§ 
+
+4 vCPUs 
+32 GB RAM 
+2 virtual network interface cards 
+
+Hardware or software load balancing was not used at the CAS tier in the 
+solution testing. Although a real Exchange solution would include this, it is 
+outside the scope of this solution testing.  
+
+2 domain controllers for 5,000 mailboxes per Microsoft Role Calculator, each 
+utilizing  
+§ 
+§ 
+§ 
+§ 
+
+4 vCPUs 
+100 GB LUNs 
+8 GB RAM 
+2 vCPUs 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+17 
+
+ 
+
+ 
+
+Microsoft SharePoint 
+
+Search 
+
+SharePoint search architecture is made up of the crawler, index server, query server, and user 
+interface and query object model. We used central administration to create a new SharePoint search 
+service application. We set up content crawl rules, indexes, and content databases. We used 
+WSS_UsageApplication Service Application to manage web analytics, such as usage, search query 
+usage, and rating usage.  
+
+In our solution, we deployed the query server on the WFE layer and the crawl server on the 
+application layer to optimize search performance. When a user sends a search request to the 
+SharePoint search site, the search request is sent by the load balancer to the WFE layer, where the 
+query server is located. The query server thus processes the search query on the same layer, which 
+reduces latency. The crawl server retrieves information from the content databases and indexes it. 
+The crawl server then sends the index to the WFE server, where the query is processed. 
+
+Figure 2. Optimized SharePoint search performance 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+18 
+
+ 
+
+ 
+
+Databases 
+
+Disk throughput requirements for content databases can vary significantly between implementations. 
+Microsoft recommends matching your expected workload to one of their tested solutions. For more 
+information, refer to Performance and Capacity Test Results and Recommendations (SharePoint 
+Server 2010 and Exchange Server 2010) at technet.microsoft.com.  
+
+Table 11. Content database configurations 
+
+Database 
+
+Content 
+
+ 
+
+Configuration 
+
+ 
+
+We designed the solution according to industry 
+standards, as a publishing portal with 1.2 TB of user 
+content comprising six SharePoint site collections or 
+document centers. This configuration was based on 
+the Microsoft recommendation to use smaller LUN 
+sizes to reduce latency: 
+§  We populated each SharePoint site with 200 GB 
+
+data on 300 GB LUNs, which addressed the 
+anticipated content database, file growth caused 
+by SQL rebuilds and SharePoint sprawl. 
+
+§  We used 50 GB log files on 100 GB LUNs, which 
+
+addressed the anticipated rapid growth in 
+database log files caused by modifications and 
+binary large object uploads. 
+
+§  We placed the content databases on RAID 5 
+
+LUNs to handle anticipated lower I/O operations. 
+§  We reduced the content index files by partitioning 
+
+the query server index across 2 RAID 5 LUNs, 
+which allowed for better redundancy. 
+
+TempDB 
+
+Search 
+
+Crawl 
+
+We placed the TempDB databases on RAID 10 
+LUNs, per Microsoft SQL Server 2008 best practices 
+in order to achieve higher IOPS. 
+
+§  We placed the search databases (property store 
+
+and crawl store) on RAID 1/0 LUNs to handle 
+anticipated higher I/O operations. 
+
+§  We allocated each of the search databases a 200 
+GB LUN, constituting 10% of the total content, in 
+order to allow for growth. 
+
+We placed the crawl server index on RAID 5 LUNs, 
+because they only hold incremental data and are 
+therefore much smaller than in SharePoint 2007 
+implementations—typically only a few gigabytes for 
+a 1 TB content database. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+19 
+
+ 
+
+ 
+
+Intel Hyper-Threading technology 
+
+Hyper-Threading Technology (HT) is Intel’s proprietary simultaneous multithreading implementation, 
+which improves the performance of computers performing multiple tasks in parallel. According to 
+Microsoft’s recommendations for Exchange, HT can challenge capacity planning and monitoring for 
+what is a small gain in CPU overhead. We recommend disabling HT on the Exchange ESXi host and 
+only enabling it as a temporary measure to increase CPU capacity until you obtain additional capacity. 
+For more information, refer to HyperThreading Considerations for Exchange 2010 at 
+technet.microsoft.com/.  
+
+We used HT for the SharePoint portion of this solution. 
+
+Deployments 
+
+This solution allows you to accelerate deployment by making clones for web, application, SQL, Client 
+Access, Hub Transport and Mailbox servers for Exchange and SharePoint across multiple locations, 
+which eliminates the need to manually redeploy your environment. 
+
+Scalability 
+
+Managing Exchange and SharePoint growth is an inevitable challenge. For Exchange and SharePoint 
+deployments for more than 5,000 users, you can easily add compute and storage resources to the 
+Vblock System 200 used in this solution validation. Vblock™ Systems support upgrading Cisco UCS 
+blades within a rack to help manage CPU and memory performance during growth cycles. VNX 
+storage platform supports high-performing Serial Attached SCSI (SAS) drives and cost-effective 
+nearline (NL) SAS drives that combine the convenience of an SAS interface with the economy of 
+serial ATA (SATA) drives. Many customers combine SAS and NL SAS drives for optimum cost and 
+performance, providing a dynamic storage strategy that suits many business and technology 
+requirements. We overprovisioned the memory for this solution to demonstrate that the Vblock 
+System 200 provides ample room for future growth. Your business requirements, including growth 
+plans, will determine your implementation requirements. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+20 
+
+ 
+
+ 
+
+Solution validation 
+
+This section describes how we validated the Vblock Solution for Exchange and SharePoint. 
+
+Applications 
+
+We used the industry standards, EMC Unisphere, Microsoft Exchange Server JetStress 2010, 
+Microsoft Exchange Load Generator 2010, and HP LoadRunner 11.0, to validate the physical and 
+logical configurations of the Vblock Solution for Exchange and SharePoint. 
+
+We validated this solution per Microsoft’s guidelines for Exchange and SharePoint Heavy Users, 
+Microsoft SharePoint guidelines for Acceptable User Response Times, and relevant industry 
+standards. 
+
+EMC Unisphere  
+
+Unisphere provides a simple integrated tool for the VNX for provisioning and managing VNX storage 
+arrays. 
+
+HP LoadRunner 11.0 
+
+LoadRunner is an automated performance and test automation product from Hewlett-Packard for 
+examining system behavior and performance under load by emulating thousands of concurrent users 
+to apply production workloads to your environment.  
+
+Microsoft Exchange Server JetStress 2010 
+
+JetStress works with the Exchange database engine to simulate the Exchange database and log disk 
+I/O load. 
+
+JetStress uses the Exchange Storage Engine to validate that your storage array meets the IOPS 
+requirement for Exchange. To ensure you have the correct Exchange Storage Engine, verify that it is 
+compatible with the version of JetStress you have, and only use it to validate the actual server you 
+intend to use for your Exchange deployment. 
+
+Note: Run JetStress to validate your IOPS requirements before installing Exchange. 
+
+Microsoft Exchange Load Generator 2010 
+
+LoadGen is a simulation tool used to measure the impact of MAPI, OWA, IMAP, POP, and SMTP 
+clients on Microsoft Exchange Server 2010 servers. LoadGen tests the client-facing components of 
+the Exchange solution and tests the compute, storage, and network components of the Exchange 
+infrastructure. LoadGen creates users, groups, Organizational Units, Exchange databases, and 
+mailboxes, and executes workload testing against the Exchange Hub Transport server, Client Access 
+server, and Mailbox server roles. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+21 
+
+ 
+
+ 
+
+Perform all LoadGen validation testing using an Exchange infrastructure in a non-production 
+environment. 
+
+Test environment design 
+
+We configured and validated Exchange and SharePoint separately before validating them in a mixed 
+application environment. We validated both components and the integrated solution by using industry-
+standard Microsoft Exchange Server JetStress 2010, Microsoft Exchange Load Generator 2010, and 
+HP LoadRunner 11.0. 
+
+Microsoft Exchange 
+
+JetStress 
+
+We used JetStress to simulate normal workloads and measure the I/O load from these workloads to 
+ensure we had properly sized our Exchange storage to meet performance and capacity requirements 
+per Microsoft requirements for Heavy Users. 
+
+We performed primary storage performance testing using a maximum Exchange I/O load to measure 
+storage response times under load. 
+
+LoadGen 
+
+We used LoadGen to individually validate each component of the solution under simulated Microsoft 
+Heavy User workload, using the current compatible Outlook 2007 cached mode. LoadGen created 
+Exchange users, groups, organizational units, databases, and mailboxes, and runs workload testing 
+against the Exchange Hub Transport, Client Access, and Mailbox servers, as well as the network and 
+storage components. 
+
+We validated the Exchange deployment per Microsoft recommendations for 5,000-users: 
+
+Table 12. Exchange test configuration 
+
+Item 
+Exchange simulated mailboxes  
+
+Mailbox size (GB) 
+
+Mailboxes per server 
+
+Mailboxes per database 
+
+Databases per host 
+
+ESXi hosts 
+
+VMs per ESXi host 
+
+Database LUN size (TB) 
+
+Log LUN size (GB) 
+
+Configuration 
+5,000 
+
+2  
+
+2,500 
+
+625 
+
+4 
+
+2 
+
+3 
+
+1.6 
+
+100 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+22 
+
+ 
+
+ 
+
+Item 
+Message sent/mailbox/test (MAPI profile) 
+
+Messages received/mailbox/test (MAPI profile) 
+
+Concurrency (%) 
+
+Duration (hours) 
+
+Configuration 
+50 
+
+100 
+
+100 
+
+24 
+
+To simulate heavy operations at peak load, we ran the test with a 100% concurrency test with an 
+Outlook 2007 cached mode Heavy User profile. The objective was to validate the Exchange 
+environment under heavy operating conditions at peak load. ESXi host and VM performance were 
+measured against Microsoft’s recommended performance targets. All Exchange VMs operated under 
+normal conditions.  
+
+We used the following system monitors on the mailbox role to measure solution response times. We 
+discarded the results from the first and last hours and averaged the remaining results. 
+
+IOPS/mailbox 
+
+§  Message delivery rate 
+§ 
+§  Megacycles/mailbox 
+§  Processor(total)/percent processor time at peak load 
+§  Logical read and write disk latency 
+
+Microsoft SharePoint 
+
+We used LoadRunner with three load generators to validate the SharePoint portion of this solution, 
+using standard Microsoft user profiles comprising a mix of three user operations: browse, search, and 
+modify. We used Network Load Balancer to balance the incoming user load across the WFEs. 
+
+During validation, we recorded application response times and used onboard systems management 
+tools to monitor the entire infrastructure. 
+
+Data population 
+
+We used one load agent host on each WFE to optimize efficiency and loaded data in parallel until 
+reaching our target of 1 TB = 4.3 million documents. We collected this data across six unique content 
+databases. Each document had a unique name and metadata. 
+
+User profiles 
+
+We used standard Microsoft user profiles comprising a mix of three user operations: browse, search, 
+and modify. 
+
+§  Browse—The LR script simulates a user browsing a site until reaching an end document listing 
+
+that contains no subpages. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+23 
+
+ 
+
+ 
+
+§  Search—The LR script simulates a user running a stored procedure in the SQL database to find 
+
+a unique social security number, and then it performs a Web request to search for it. 
+
+§  Modify—The LR script simulates a user retrieving a document by extracting the document ID 
+from the database before each test run. It then modifies the metadata for that document before 
+saving it back in modified form. 
+
+We used an 80/10/10 ratio of browse/search/modify operations to simulate a typical organization with 
+browsing and light collaboration. 
+
+Maximum User Capacity 
+
+All simulated test users adhered to a Microsoft Heavy User Profile, which specifies 60 requests per 
+hour (RPH). We applied a think time of 0% to all tests, which eliminated typical user decision-making 
+time when browsing, searching, or modifying content in the SharePoint server. We configured each 
+user request to complete from start to finish without a pause, generating a continuous system 
+workload. 
+
+We calculated the maximum user capacity by using the following formula: 
+
+3600 seconds per hour / RPH / Concurrency % x Requests per Second (RPS) 
+
+§  RPH = 60 (Microsoft Heavy User Profile)  
+§  Concurrency = 1% (generally accepted standard)  
+§  Request per second is based on the test results for each of the three profiles. 
+
+Mixed workload 
+
+We tested Exchange and SharePoint concurrently, based on the design we used to test the 
+applications separately, to ensure there was no significant performance degradation or resource 
+constraint while running these workloads on the same Vblock System 200.  
+
+§  The Active Directory server is the only shared resource in this solution. All other VMs are 
+
+optimized exclusively to meet the needs of their respective applications.  
+
+§  We tested Exchange for 24 hours using LoadGen. 
+§  We tested SharePoint for 8 hours and collected performance results for 2 hours while the 
+
+applications were operating simultaneously, using:  
+-  EMC Unisphere to monitor the VNX storage 
+-  vCenter to monitor the ESXi clusters 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+24 
+
+ 
+
+ 
+
+Test results 
+
+We obtained the following results from validating this solution: 
+
+ 
+
+Item 
+
+Message delivery rate 
+
+IOPs/mailbox 
+
+Megacycles/mailbox 
+
+MSExchangeIS mailbox(total)/messages 
+sent/sec/mailbox 
+
+MSExchangeIS mailbox(total)/messages 
+received/sec/mailbox 
+
+MSExchangeIS Client (*)/RPC average 
+latency (milliseconds) 
+
+Average memory utilization (%) 
+
+Processor(total)/% processor time at peak 
+load 
+
+Logical disk read latency (milliseconds) 
+
+Logical disk write latency (milliseconds) 
+
+Tests passed per second  
+
+Transaction response time per operation 
+(seconds)  
+
+Average CPU utilization (%) 
+
+Average memory utilization (%) 
+
+ 
+
+e
+g
+n
+a
+h
+c
+x
+E
+
+i
+
+ 
+t
+n
+o
+P
+e
+r
+a
+h
+S
+
+Target 
+
+> 0.34 
+
+< 0.18 
+
+< 3 
+
+> 0.002083 
+
+> 0.008333 
+
+< 10  
+
+< 60 
+
+< 75 
+
+< 20  
+
+< 20  
+
+> 40 
+
+Browse: < 3  
+
+Search: < 3 
+
+Modify: < 5 
+
+WFE: < 60 
+
+APP: < 60 
+
+DB: < 60 
+
+WFE: < 60 
+
+APP: < 60 
+
+DB: < 60 
+
+Average and maximum IOPS 
+
+Content DB: > 200  212 
+
+WFE: > 120 
+
+Property Store: > 
+40 
+
+124 
+
+49 
+
+Crawl Store: > 46 
+
+52 
+
+Temp DB: > 98 
+
+112 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+25 
+
+Single 
+workload 
+0.34 
+
+Mixed 
+workload 
+0.34 
+
+0.172 
+
+0.09 
+
+0.06 
+
+0.25 
+
+2.25 
+
+12 
+
+19.96 
+
+2.44 
+
+18.12 
+
+43 
+
+0.373 
+
+0.537 
+
+0.145 
+
+25 
+
+10 
+
+15 
+
+14 
+
+8 
+
+12 
+
+0.17 
+
+0.10 
+
+0.06 
+
+0.25 
+
+8.56 
+
+15 
+
+20.87 
+
+3.14 
+
+18.99 
+
+43 
+
+0.365 
+
+0.52 
+
+0.145 
+
+23 
+
+10 
+
+15 
+
+12 
+
+8 
+
+12 
+
+209 
+
+126 
+
+46 
+
+52 
+
+108 
+
+ 
+
+ 
+
+Analysis 
+
+Our validation of the Vblock Solution for Exchange and SharePoint demonstrated that the solution:  
+
+§  Exceeded all performance targets for 5,000 concurrent Exchange and SharePoint users, with 
+
+100% successful results 
+
+§  Validated standalone and mixed application workloads with little performance change 
+§  Demonstrated that compute, storage, and network components provide ample room for 
+
+deployments for additional users 
+
+In testing, all VMs met or exceeded established performance targets. WFEs are the most resource-
+intensive virtual compute resource in this solution, and we used two WFEs with Network Load 
+Balancer to optimize performance. Test findings indicate WFEs and SQL have the appropriate 
+processor and memory resources allocated to them. 
+
+Application, Mailbox, Client Access, and Hub Transport servers are underutilized. For this scale 
+solution, you can reduce the number of vCPUs allocated to them, which will leave more cores unused 
+and allow a higher consolidation ratio. With preconfigured templates, you can quickly scale up by 
+adding additional VMs. 
+
+Average IOPS for the content database, WFE, Property Store, Crawl Store and Temp database were 
+all within the expected ranges. 
+
+Exchange and SharePoint use isolated LUNs by solution design. As a result, little change was seen 
+between standalone and mixed application workload validation. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+26 
+
+ 
+
+ 
+
+Conclusion 
+
+This solution architecture describes, validates, and provides guidelines for providing Exchange and 
+SharePoint resources to 5,000 users each, with excellent performance and room to spare. By isolating 
+application resources for each application, it was possible to run both in a mixed application 
+environment with virtually no degradation in performance or scalability. 
+
+High-performing Microsoft Business Solutions deployments like Exchange and SharePoint are no 
+longer Enterprise luxuries that mid-sized organizations can do without, and Vblock System 200 
+provides a mid-level entry point for your IT transformation that easily supports these applications with 
+room to spare. Optimized for virtualization and engineered for ease of growth and expansion, VCE 
+simplifies IT operations by eliminating the need for your team to perform logical build, configuration, 
+cabling, and integration tasks usually associated with single tenant architectures. 
+
+Vblock Systems present a converged architecture and management paradigm heretofore unseen in 
+virtualized IT infrastructures. Our unique approach to intelligent automation provides dynamic 
+awareness of all system resources, correlates events, and eliminates the need for traditional, 
+manually intensive system resource integration. By combining these capabilities with this validated 
+solution and VCE engineered, pre-configured, and pre-validated Vblock Systems, you can provide 
+Exchange and SharePoint in an affordable IT infrastructure with simple and affordable management 
+strategies that transcend traditional operational silos. 
+
+The Vblock Solution for Exchange and SharePoint provides faster return on investment and the 
+performance and availability you need—at lower cost and lower business risk. 
+
+Next Steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+27 
+
+ 
+
+ 
+
+References 
+
+For more information, refer to the following Microsoft resources at technet.microsoft.com. 
+
+§  Best Practices for SharePoint Server 2010 
+§  Hardware and Software Requirements for SQL 2008 R2 
+§  Performance and Scalability Counters and Thresholds 
+§  SharePoint 2010 Database Mirroring 
+§  SharePoint Server 2010 Adoption Best Practices White Paper 
+§  SharePoint Server 2010 Planning and Architecture 
+§  SQL Database Mirroring 
+§  SQL Server 2008 R2 Books Online 
+§  Troubleshooting SharePoint Server 2010
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+28 
+
+ 
+
+ABOUT VCE	  
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+!
+Copyright © 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+

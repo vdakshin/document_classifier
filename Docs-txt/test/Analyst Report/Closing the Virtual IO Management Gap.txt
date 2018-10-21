@@ -1,0 +1,437 @@
+	  
+
+TECHNOLOGY	  BRIEF	  
+
+CLOSING	  THE	  VIRTUAL	  IO	  MANAGEMENT	  GAP	  
+Assuring	  Service	  Throughout	  the	  Data	  Center	  with	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  
+
+Infrastructure	  Performance	  Management	  
+
+AUGUST	  2012	  
+
+1	  of	  7	  
+www.tanejagroup.com	  	  
+
+There	  is	  a	  significant	  and	  potentially	  costly	  management	  gap	  in	  virtualized	  server	  
+environments	  that	  rely	  solely	  on	  hypervisor-­‐centric	  solutions.	  As	  organizations	  
+virtualize	  more	  of	  their	  mission-­‐critical	  applications,	  they	  are	  discovering	  that	  the	  
+virtual	  versions	  of	  these	  apps	  continue	  to	  depend	  on	  the	  rock-­‐solid	  storage	  
+availability	  and	  top-­‐notch	  IO	  performance	  they	  had	  when	  physically	  hosted.	  
+Assuring	  great	  service	  to	  virtualized	  clients	  still	  requires	  deep	  performance	  
+management	  capabilities	  along	  the	  whole	  IO	  infrastructure	  path	  down	  to	  and	  including	  shared	  
+storage	  resources.	  
+Cohesive	  hypervisor	  management	  solutions	  like	  VMware’s	  vCenter	  Operations	  Management	  Suite	  
+provide	  a	  significant	  advantage	  to	  virtual	  administration	  by	  centralizing	  and	  simplifying	  many	  
+traditionally	  disparate	  management	  tasks.	  However,	  there	  is	  a	  significant	  management	  blind	  spot	  in	  
+the	  view	  of	  end-­‐to-­‐end	  IO	  infrastructure	  when	  looking	  at	  it	  from	  the	  native	  virtual	  server	  perspective.	  
+Enterprises	  relying	  more	  and	  more	  on	  virtualized	  IT	  delivery	  need	  to	  address	  this	  natural	  
+management	  gap	  with	  Infrastructure	  Performance	  Management	  (IPM).	  A	  lack	  of	  robust	  IPM	  will	  
+degrade	  or	  even	  prevent	  the	  deployment	  of	  critical	  applications	  into	  a	  virtual	  environment	  –	  at	  best	  
+losing	  out	  on	  the	  benefits	  of	  virtualization	  and	  the	  opportunities	  for	  cloud,	  at	  worst	  causing	  severe	  
+degradation	  and	  service	  outages	  for	  all	  applications	  sharing	  the	  same	  virtual	  infrastructure	  pools.	  
+In	  this	  paper	  we	  review	  the	  virtual	  performance	  management	  landscape	  and	  the	  management	  
+strengths	  of	  the	  most	  well-­‐known	  hypervisor	  management	  solution	  –	  VMware’s	  vCenter	  Operations	  
+Suite	  -­‐	  to	  understand	  why	  both	  the	  market	  perception	  and	  resulting	  admin	  reliance	  on	  it	  is	  so	  high.	  
+We	  look	  at	  how	  that	  reliance	  overlooks	  a	  critical	  gap	  for	  IO	  and	  storage,	  and	  what	  the	  implications	  of	  
+that	  blind	  spot	  are	  for	  ensuring	  total	  performance.	  Finally,	  we	  examine	  how	  the	  unique	  IO-­‐centric	  
+capabilities	  of	  Virtual	  Instruments’	  VirtualWisdom	  close	  that	  gap	  by	  correlating	  complete	  IO	  path	  
+monitoring	  with	  both	  physical	  and	  virtual	  infrastructure,	  and	  how	  by	  using	  VirtualWisdom	  with	  
+vCenter	  Ops	  one	  can	  achieve	  a	  complete	  end-­‐to-­‐end	  picture	  that	  enables	  mission-­‐critical	  applications	  
+to	  be	  successfully	  virtualized.	  
+VMware	  management	  at	  the	  enterprise	  level	  today	  centers	  around	  VMware’s	  own	  vCenter	  suite	  of	  
+solutions.	  VMware	  vCenter	  provides	  a	  myriad	  of	  advanced	  management	  functionality	  all	  within	  its	  
+much-­‐desired	  “single	  pane	  of	  glass”	  for	  the	  virtual	  administrator.	  While	  vCenter	  does	  not	  preclude	  the	  
+use	  of	  other	  traditional	  system	  management	  solutions,	  and	  in	  fact	  provides	  API’s	  to	  enable	  key	  
+hypervisor	  statistics	  used	  by	  almost	  every	  third	  party	  solution	  today,	  the	  trend	  for	  virtual	  
+administrators	  is	  to	  rely	  more	  and	  more	  on	  directly	  integrated	  vCenter	  facilities.	  	  	  
+VMware	  vCenter	  is	  built	  into	  and	  integrates	  intimately	  with	  the	  vSphere	  platform,	  the	  hypervisor	  that	  
+virtualizes	  server,	  network,	  and	  storage	  resources	  in	  order	  to	  host	  “virtual	  machines”.	  This	  not	  only	  
+gives	  VMware	  a	  huge	  advantage	  in	  creating	  virtualization	  management	  solutions,	  but	  also	  enables	  
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+VIRTUALIZED	  INFRASTRUCTURE	  MANAGEMENT	  
+
+Virtual	  Performance	  Management	  with	  vCenter	  Operations	  
+
+	  
+them	  to	  provide	  significant	  customer	  value	  for	  the	  virtual	  admin	  in	  the	  form	  of	  a	  simplified,	  
+centralized,	  and	  “homogenized”	  management	  experience.	  	  
+Traditionally	  a	  large	  enterprise	  would	  be	  staffed	  with	  system	  management	  experts	  in	  many	  domains.	  
+Each	  set	  of	  experts	  could	  be	  found	  working	  in	  isolated	  silos	  of	  management	  technology	  with	  unique	  
+IT	  processes.	  In	  deploying	  virtualization	  an	  organization	  is	  hoping	  to	  deliver	  better	  service	  at	  lower	  
+cost.	  This	  usually	  means	  that	  they	  hope	  to	  run	  the	  virtualized	  environment	  on	  the	  leaner	  side	  of	  the	  
+budget,	  leveraging	  optimally	  minimized	  infrastructure	  and	  staffing.	  With	  this	  approach,	  the	  virtual	  
+admin	  comes	  naturally	  to	  own	  a	  wider	  swath	  of	  system	  management	  responsibilities,	  and	  the	  most	  
+effective	  accomplishment	  of	  that	  is	  through	  the	  convergence	  and	  automation	  of	  formerly	  siloed	  tasks.	  	  
+Virtualization	  adoption	  and	  the	  intelligent	  management	  of	  virtualized	  infrastructure	  therefore	  break	  
+down	  the	  silo	  walls	  of	  old	  school	  IT	  management.	  VMware	  provides	  IT	  management	  solutions	  across	  
+broad	  categories	  it	  defines	  as	  Infrastructure	  and	  Operations	  Management,	  IT	  Business	  Management,	  
+End	  User	  Computing,	  and	  Application	  Management.	  This	  aggressively	  wide	  swath	  of	  IT	  management	  
+is	  all	  brought	  within	  the	  reach	  of	  the	  virtual	  administrator	  “generalist,”	  and	  naturally	  these	  solutions	  
+are	  focused	  on	  centralizing	  management	  and	  operations	  at	  the	  hypervisor	  or	  “server-­‐centric”	  level.	  
+For	  example,	  within	  Infrastructure	  and	  Operations	  Management	  the	  vCenter	  Operations	  suite	  brings	  
+together	  the	  performance,	  capacity,	  and	  configuration	  management	  of	  virtual	  server	  hosts	  and	  guest	  
+machines	  into	  a	  single	  management	  solution.	  
+VMware	  vCenter	  Operations	  Management	  provides	  advanced	  features	  and	  capabilities	  for	  virtual	  
+infrastructure	  performance,	  configuration	  and	  capacity	  management,	  with	  tight	  integrations	  available	  
+for	  supporting	  activities	  like	  application	  dependency	  mapping,	  configuration	  change	  correlation	  and	  
+cost-­‐based	  optimization.	  The	  main	  design	  of	  vCenter	  Operations	  supports	  two	  core	  management	  
+processes:	  
+1.  Ensuring	   and	   restoring	   service	   levels	  by	  monitoring,	  identifying	  and	  remediating	  
+performance	  problems	  
+2.  Optimizing	   for	   efficiency	   (capacity/cost)	  by	  planning	  and	  orchestrating	  improvements	  in	  
+allocations	  or	  constraints	  
+The	  primary	  source	  of	  data	  for	  vCenter	  comes	  from	  VMware’s	  hypervisor	  vSphere.	  This	  server	  
+virtualization	  layer	  produces	  key	  metrics	  about	  “actual”	  guest	  utilizations	  and	  real	  server	  resource	  
+consumption.	  At	  the	  same	  time,	  virtualization	  by	  its	  very	  nature	  creates	  abstraction	  that	  introduces	  
+cross-­‐domain	  management	  challenges.	  A	  virtual	  server-­‐centric	  perspective	  by	  definition	  does	  not	  
+provide	  a	  complete	  end-­‐to-­‐end	  picture	  across	  the	  entire	  IT	  infrastructure	  of	  the	  factors	  that	  
+contribute	  to	  an	  application’s	  total	  availability	  and	  performance.	  For	  example,	  vCenter	  Ops	  by	  itself	  
+can’t	  see	  into	  or	  manage	  IO	  down	  its	  complete	  path	  through	  the	  SAN	  fabric	  and	  into	  and	  out	  of	  an	  
+external	  storage	  array.	  
+When	  virtual	  machines	  need	  to	  interact	  with	  high-­‐performance	  network	  and	  storage	  resources	  that	  
+aren’t	  directly	  converged	  into	  the	  virtual	  server,	  inevitably	  cross-­‐domain	  management	  becomes	  a	  
+challenge	  –	  especially	  when	  trying	  to	  solve	  insidious	  performance	  degradation.	  Solving	  cross-­‐domain	  
+performance	  challenges	  requires	  monitoring	  and	  correlating	  information	  across	  virtual	  server	  
+clients,	  hosts	  and	  the	  specific	  external	  resources	  involved.	  To	  address	  this,	  vCenter	  provides	  two	  main	  
+approaches.	  	  
+First,	  vCenter	  functions	  as	  an	  expandable	  platform.	  There	  is	  an	  active	  ecosystem	  of	  third	  party	  system	  
+management	  solutions	  that	  can	  plug	  in.	  The	  vast	  majority	  of	  vCenter	  Operations	  plug-­‐ins	  provide	  
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+Technology	  Brief	  
+
+2	  of	  7	  
+www.tanejagroup.com	  	  
+
+vCenter	  Operations	  Across	  IT	  Domains	  
+
+Technology	  Brief	  
+
+	  
+vendor-­‐specific	  hardware	  management	  information	  that	  enables	  high-­‐level	  remote	  operations	  by	  the	  
+generalist	  virtual	  admin.	  However,	  these	  operational	  plug-­‐ins	  are	  not	  usually	  provided	  with	  deep-­‐
+dive	  expert	  capabilities	  to	  optimize	  external	  high-­‐performance	  infrastructure,	  nor	  with	  more	  general	  
+“system-­‐spanning”	  capabilities	  to	  correlate	  all	  the	  information	  needed	  to	  diagnose	  cross-­‐domain	  
+issues	  or	  optimize	  across	  heterogeneous	  infrastructure	  pools.	  
+For	  example,	  a	  storage	  vendor’s	  array	  management	  plug-­‐in	  for	  vCenter	  Ops	  might	  provide	  health	  
+statistics	  by	  array	  object	  and	  offer	  vendor-­‐specific	  array	  operational	  management	  (e.g.	  volume	  
+creation,	  power-­‐on/off).	  For	  each	  type	  of	  storage	  there	  will	  be	  a	  different	  plug-­‐in	  creating	  a	  type	  of	  
+tool	  sprawl	  for	  the	  admin	  regardless	  of	  the	  “single	  pane	  of	  glass”	  platform.	  While	  the	  best	  of	  these	  
+tools	  might	  attempt	  to	  connect	  all	  the	  IO	  dots,	  so	  to	  speak,	  the	  necessarily	  incomplete	  and	  vendor-­‐
+specific	  perspectives	  can	  actually	  hide	  deep	  IO	  path	  problems	  that	  stem	  from	  both	  contention	  
+(demand-­‐side)	  and	  degradation	  (supply-­‐side).	  Worse,	  the	  information	  from	  each	  plug-­‐in	  is	  likely	  
+vendor-­‐specific	  in	  both	  form	  and	  function,	  and	  uncorrelatable	  with	  each	  other	  (e.g.	  how	  IOP	  latency	  is	  
+defined	  or	  measured).	  
+Second,	  VMware’s	  VASA	  API	  is	  an	  attempt	  to	  capture	  and	  incorporate	  arbitrary	  storage	  array	  data	  
+directly	  by	  encouraging	  third	  party	  storage	  vendors	  to	  publish	  “up”	  into	  this	  API.	  But	  the	  implicit	  
+mandate	  that	  other	  domains	  push	  all	  relevant	  management	  data	  up	  into	  the	  hypervisor,	  while	  
+certainly	  aligned	  with	  the	  ultimate	  efficiency	  goals	  of	  server	  virtualization	  efforts,	  is	  an	  uphill	  and	  
+inevitably	  incomplete	  strategy.	  And	  even	  if	  accomplished,	  the	  necessary	  abstraction	  and	  domain	  
+simplification	  at	  the	  hypervisor	  level	  may	  actually	  make	  it	  harder	  to	  figure	  out	  what	  is	  actually	  
+happening	  in	  the	  supporting	  infrastructure.	  
+Today	  there	  is	  extreme	  pressure	  on	  many	  IT	  shops	  to	  continue	  virtualizing	  deeper	  into	  their	  
+application	  portfolios	  in	  order	  to	  continue	  reaping	  cost	  reduction,	  efficiency,	  and	  improved	  service	  
+delivery	  benefits.	  However,	  there	  is	  a	  difficult	  “line	  in	  the	  sand”	  to	  cross	  when	  the	  time	  comes	  to	  
+virtualize	  storage-­‐intensive	  mission	  critical	  applications.	  Corporate	  email,	  core	  business	  databases,	  
+and	  operational	  data	  analysis	  (BI	  and/or	  new	  Big	  Data	  based)	  all	  require	  intensive	  IO	  service	  
+regardless	  of	  whether	  they	  are	  hosted	  on	  physical	  or	  virtual	  servers.	  IT	  has	  to	  commit	  to	  managing	  
+availability	  and	  performance	  as	  tightly	  as	  if	  those	  apps	  were	  still	  physically	  hosted	  directly	  on	  
+dedicated	  hardware,	  including	  high-­‐performance	  enterprise	  storage.	  	  
+But	  
+dedicated	  
+a	  
+in	  
+unlike	  
+infrastructure	  where	  troubleshooting	  
+or	  optimization	  can	  be	  conducted	  by	  
+serially	  analyzing	  directly	  connected	  
+of	  
+very	   nature	  
+the	  
+resources,	  
+implies	  
+virtualization	  
+that	  
+its	  
+supporting	  infrastructure	  is	  shared	  
+and	   dynamically.	   This	  
+indirectly	  
+increased	   management	   complexity	  
+becomes	   more	   difficult	   when	   the	  
+shared	  infrastructure	  is	  not	  directly	  
+the	  
+by	  
+controlled	  
+virtualization	  
+hypervisor,	  as	  is	  the	  case	  with	  external	  
+storage	  array	  networks	  (as	  opposed	  to	  
+CPU	  and	  memory	  resources).	  From	  the	  
+server	  perspective,	  IO	  is	  abstractly	  
+handed	  off	  to	  external	  “storage”	  at	  the	  
+network	  adapter	  (e.g.	  a	  hardware	  bus	  
+adapter	  or	  HBA).	  Because	  of	  that	  
+
+THE	  PERILOUS	  IO	  MANAGEMENT	  GAP	  
+
+Figure	  1.	  IO	  Path	  Visibility	  from	  the	  Hypervisor	  Perspective	  
+
+	  
+
+	  
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+3	  of	  7	  
+www.tanejagroup.com	  	  
+
+Bridging	  the	  IO	  Management	  Gap	  
+
+	  
+storage	  service	  abstraction	  layer,	  the	  native	  server	  viewpoint	  is	  effectively	  storage	  blind	  and	  can’t	  
+provide	  insight	  into	  problems	  with	  IO	  path	  contention,	  fabric	  and	  array	  misconfiguration,	  or	  
+networking	  and	  physical	  cabling	  issues.	  
+Managing	  virtual	  infrastructure	  performance	  becomes	  even	  more	  challenging	  when	  storage	  is	  shared	  
+outside	  of	  a	  single	  virtualization	  “domain”	  –	  perhaps	  with	  other	  virtualization	  clusters	  or	  physical	  
+servers	  that	  can	  contend	  for	  bandwidth	  and	  IOPS.	  Organizations	  tend	  to	  make	  optimal	  use	  of	  
+expensive	  SAN	  investments	  by	  leveraging	  them	  widely,	  introducing	  contending	  IO	  traffic	  outside	  the	  
+purview	  of	  hypervisor-­‐centric	  management.	  
+Today,	  high-­‐performance	  IO	  in	  organizations	  that	  have	  (or	  had!)	  IT	  storage	  specialists	  is	  commonly	  
+delivered	  through	  Fibre	  Channel	  attached	  storage	  arrays.	  For	  mission-­‐critical	  applications,	  the	  lack	  of	  
+vm-­‐to-­‐array	  IO	  awareness	  and	  visibility	  in	  virtual	  infrastructures	  running	  over	  Fibre	  Channel	  can	  be	  
+risky,	  especially	  if	  the	  virtual	  admin	  has	  taken	  on	  responsibility	  for	  both	  servers	  and	  storage.	  With	  
+only	  hypervisor-­‐centric	  views,	  admins	  can’t	  spot	  or	  diagnose	  IO	  problems	  until	  after	  it	  is	  too	  late	  –	  
+when	  service	  levels	  have	  already	  degraded	  and	  impacted	  business	  performance.	  
+Whoever	  is	  responsible	  for	  storage	  needs	  the	  proper	  tools	  and	  information	  to	  optimize	  capacity	  and	  
+performance,	  implement	  data	  protection,	  and	  leverage	  other	  advanced	  storage	  capabilities.	  In	  
+particular,	  storage-­‐related	  IPM	  tasks	  including	  the	  following	  need	  to	  be	  supported:	  
+•  Manage	  storage	  tiering	  to	  balance	  capacity	  usage	  with	  performance	  (e.g.	  optimize	  investment)	  
+•  Analyze	  and	  optimize	  performance	  under	  changes	  (e.g.	  assure	  service	  levels)	  
+•  Validate	  and	  tune	  data	  protection	  and	  DR	  capabilities	  like	  remote	  replication	  
+•  Set	  and	  tune	  storage	  network	  parameters	  (e.g.	  HBA	  queue	  depths)	  
+•  Alert	  and	  remediate	  faults,	  misconfigurations,	  and	  contention/degradation	  	  
+While	  IO	  path	  blindness	  in	  virtual	  server	  environments	  makes	  it	  difficult	  if	  not	  impossible	  to	  conduct	  
+satisfactory	  storage	  performance	  management,	  as	  discussed	  earlier	  there	  are	  efforts	  to	  fill	  in	  some	  of	  
+the	  storage	  picture	  at	  the	  hypervisor	  level	  (e.g.	  like	  VMware’s	  VASA).	  This	  high	  level	  information	  may	  
+help	  sort	  out	  the	  finger	  pointing	  where	  performance	  issues	  are	  occurring,	  but	  if	  the	  issues	  are	  in	  
+storage,	  it	  is	  unlikely	  to	  help	  solve	  them.	  
+As	  virtual	  environments	  grow	  and	  the	  number	  of	  vm’s	  sharing	  a	  storage	  resource	  climbs,	  aggregate	  
+storage	  metrics	  at	  the	  hypervisor	  become	  increasingly	  less	  useful.	  Aggregate	  IO	  statistics	  across	  a	  
+growing	  cluster	  of	  vm’s	  looks	  increasingly	  random,	  obliterating	  attempts	  to	  simply	  identify	  much	  less	  
+de-­‐conflict	  or	  optimize	  storage	  to	  align	  with	  actual	  vm	  IO	  patterns.	  At	  the	  same	  time,	  isolating	  IO	  path	  
+issues	  becomes	  harder	  as	  there	  are	  fewer	  obvious	  high-­‐level	  clues	  as	  to	  which	  vm	  is	  really	  doing	  what	  
+in	  the	  storage	  infrastructure.	  
+Effective	  storage	  performance	  management	  in	  virtualized	  server	  environments	  requires	  highly	  
+granular	  IO	  data,	  drillable	  down	  to	  tracking	  each	  IO	  operation	  across	  the	  SAN.	  The	  most	  timely	  and	  
+ultimately	  successful	  troubleshooting	  relies	  on	  directly	  analyzing	  actual	  IO	  “conversations”	  between	  a	  
+particular	  vm	  and	  the	  storage	  array.	  And	  optimization	  tasks	  can	  require	  capturing	  and	  analyzing	  a	  
+significant	  amount	  of	  historical	  conversation	  data.	  This	  kind	  of	  IO	  detail	  and	  history	  is	  simply	  not	  
+available	  in	  native	  hypervisor	  management	  solutions.	  	  
+To	  really	  understand	  what	  the	  default	  hypervisor	  management	  is	  missing	  in	  the	  storage	  IPM	  gap,	  
+we’ll	  look	  next	  at	  one	  of	  the	  most	  unique	  IO-­‐centric	  management	  solutions	  for	  virtualization	  and	  
+examine	  what	  it	  does	  differently.	  
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+Technology	  Brief	  
+
+4	  of	  7	  
+www.tanejagroup.com	  	  
+
+Application	  
+
+versus	  
+
+Infrastructure	  
+
+Performance	  
+
+Technology	  Brief	  
+
+INSIDER	  INTELLIGENCE	  WITH	  VIRTUALWISDOM	  
+
+	  
+Virtual	  Instruments	  produces	  a	  unique,	  complete	  IO	  path	  performance	  management	  solution	  for	  high-­‐
+performance	  Fibre	  Channel	  storage.	  The	  VirtualWisdom	  platform	  covers	  the	  whole	  IO	  path	  by	  
+collecting	  data	  from	  SAN	  switches	  and	  vSphere	  API’s	  and	  then	  combining	  it	  with	  detailed	  low-­‐level	  IO	  
+transaction	  data	  captured	  with	  its	  physical	  SAN	  performance	  probe.	  By	  correlating	  every	  SCSI	  IO	  
+transaction	   with	   virtual	   hypervisor	   stats,	   VirtualWisdom	   produces	   “insider”	  
+infrastructure	  
+intelligence	  that	  enables	  effective	  storage	  IPM.	  
+VirtualWisdom	  captures	  all	  SCSI	  SAN	  traffic	  by	  leveraging	  the	  Virtual	  Instruments	  optical	  TAP	  patch	  
+panel,	  which	  passively	  produces	  a	  copy	  of	  all	  Fibre	  Channel	  frame	  headers.	  This	  complete	  capture	  
+enables	  detailed	  real-­‐time	  monitoring	  and	  full	  forensic	  analysis	  without	  relying	  on	  averages,	  
+sampling,	  approximate	  models,	  or	  “imputed”	  views.	  By	  capturing	  traffic	  at	  the	  frame	  level,	  all	  
+transmission	  errors	  and	  any	  performance	  degradation	  can	  be	  found	  in	  real-­‐time	  –	  and	  directly	  
+identified	  to	  specific	  server-­‐to-­‐volume	  IO	  conversations.	  Many	  performance	  management	  solutions	  
+work	  with	  averages	  over	  polling	  intervals	  (e.g.	  vCenter	  Ops),	  but	  the	  benefits	  of	  performance	  
+management	  improve	  drastically	  when	  outliers	  can	  be	  identified	  for	  remediation	  and	  specific	  IO	  
+conversations	  isolated	  for	  analysis.	  
+VirtualWisdom’s	  complete,	  continuous	  real-­‐time	  monitoring	  of	  storage	  is	  independent	  of	  vendor	  
+hardware,	  software,	  or	  API	  versions.	  Because	  it’s	  passively	  collected	  from	  an	  optical	  tap,	  it’s	  non-­‐
+disruptive	  to	  the	  IO	  itself	  and	  can’t	  
+impact	  or	  degrade	  performance	  (un-­‐
+like	  agent-­‐based	  performance	  man-­‐
+Management	  in	  a	  Virtualized	  Environment	  
+agement	  solutions).	  	  	  
+Infrastructure	  Performance	  Management	  (IPM)	  assures	  
+In	  addition	  to	  the	  expected	  volume	  
+service	  across	  all	  the	  physical	  resource	  pools	  and	  the	  
+bandwidth	  
+and	  
+throughput	  
+virtualization	  management	  that	  dynamically	  shares	  them	  
+measures,	  VirtualWisdom	  supports	  
+out	  
+to	  
+client	   users	   and	   applications.	   Application	  
+expert	   performance	   analysis	   by	  
+Performance	  Management	  (APM)	  focuses	  on	  how	  well	  
+producing	  
+relevant	  
+the	   most	  
+applications	  are	  architected,	  coded,	  deployed	  and	  delivered.	  
+performance	   metric	   –	   response	  
+Note	  how	  the	  server	  virtualization	  layer	  nicely	  separates	  
+time,	  which	  is	  a	  measure	  of	  latency	  
+client	  applications	  from	  the	  infrastructure.	  Accordingly,	  it’s	  
+(both	  time	  to	  first	  data	  and	  total	  
+natural	  for	  the	  virtual	  admin	  to	  become	  responsible	  for	  IPM	  
+IOP).	   Performance	   “proxies”	  
+like	  
+-­‐	  managing	  the	  performance	  of	  all	  the	  infrastructure	  that	  
+capacity,	  utilization,	  throughput,	  or	  
+sums	  up	  to	  the	  service	  delivered	  to	  virtual	  infrastructure	  
+bandwidth	  metrics	  such	  as	  IOPS	  and	  
+clients.	  
+MB/s	  do	  not	  directly	  measure	  IO	  
+latency	  and	  are	  difficult	  to	  use	  in	  
+identifying	  performance	  problems	  
+or	  optimizing	  parameters	  (although	  
+many	  
+performance	  
+purported	  
+management	  solutions	  rely	  on	  them	  
+as	   such).	   VirtualWisdom	   enables	  
+focusing	   on	   actual	   performance	  
+problems	  and	  optimizing	  explicit	  IO	  
+performance	   by	  
+its	  
+leveraging	  
+response	  time	  metric	  for	  the	  storage	  
+(referred	  
+infrastructure	  
+to	  
+as	  
+infrastructure	  response	  time).	  
+Overall,	  these	  capabilities	  provide	  
+the	  virtual	  admin	  with	  the	  most	  im-­‐
+portant	  infrastructure	  performance	  
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+Figure	  2.	  Performance	  Management	  In	  a	  Virtualized	  Environment	  
+
+	  
+
+5	  of	  7	  
+www.tanejagroup.com	  	  
+
+	  
+insight	  –	  correlating	  what	  is	  happening	  in	  storage	  with	  what’s	  going	  on	  in	  the	  virtual	  server.	  The	  vir-­‐
+tual	  admin	  no	  longer	  has	  an	  IO	  path	  blind	  spot	  as	  storage	  performance	  is	  directly	  correlated	  end-­‐to-­‐
+end	  from	  vm	  to	  LUN.	  Storage	  IPM	  is	  fully	  supported	  with	  accurate	  and	  relevant	  performance	  metrics,	  	  
+enabling	  fast	  root	  cause	  analysis	  for	  any	  errors	  or	  degradation	  in	  the	  IO	  path	  downstream	  from	  any	  
+vm.	  	  
+To	  avoid	  the	  perilous	  IO	  management	  gap,	  effective	  infrastructure	  performance	  management	  
+requires	  full	  cross-­‐domain	  coverage	  over	  both	  servers	  and	  storage.	  An	  ideal	  solution	  for	  virtual	  
+admins	  looking	  to	  deploy	  IO-­‐sensitive	  mission-­‐critical	  applications	  would	  be	  to	  combine	  vCenter	  Ops	  
+with	  VirtualWisdom.	  VirtualWisdom	  can	  augment	  the	  server-­‐centric	  view	  and	  day-­‐to-­‐day	  operations	  
+of	  vCenter	  with	  complete	  IO	  path	  visibility	  to	  enable	  the	  full	  spectrum	  of	  management	  required	  to	  
+deliver	  consistent,	  world-­‐class	  performance.	  	  
+In	  addition	  to	  the	  more	  tactical	  IPM	  activities	  previously	  discussed,	  a	  combined	  solution	  supports	  
+driving	  valuable	  system	  level	  optimizations.	  Performance	  assuring	  architectural	  evolution	  and	  
+purchasing	  trade-­‐off	  decisions	  can	  be	  intelligently	  planned	  while	  vm	  densities	  and	  resource	  
+utilizations	  can	  be	  driven	  higher.	  Optimal	  storage	  tiering	  decisions	  can	  be	  made	  at	  the	  vm,	  server,	  and	  
+storage	  levels	  to	  balance	  growing	  storage	  demands	  with	  performance	  requirements.	  And	  insidious	  
+performance	  contention	  resulting	  from	  the	  enterprise	  sharing	  of	  resources	  across	  physical	  and	  
+virtual	  machines	  can	  be	  identified	  or	  avoided	  altogether.	  
+With	  the	  right	  performance	  management	  solution	  in	  place	  that	  supports	  both	  virtualized	  server	  and	  
+SAN,	  organizations	  can	  safely	  virtualize	  their	  mission-­‐critical	  applications	  and	  increase	  their	  effective	  
+overall	  infrastructure	  utilization.	  Virtual	  Instruments	  VirtualWisdom	  in	  conjunction	  with	  VMware	  
+vCenter	  presents	  a	  solution	  that	  spans	  servers	  and	  Fibre	  Channel	  attached	  storage,	  providing	  an	  
+unrivaled	  level	  of	  robust	  and	  detailed	  analysis	  of	  the	  complete	  infrastructure,	  helping	  the	  virtual	  
+admin	  guarantee	  superior	  service	  levels.	  
+Expert	  performance	  management	  is	  key	  to	  successfully	  hosting	  mission-­‐critical	  applications	  in	  any	  
+environment,	  but	  the	  challenges	  multiply	  under	  virtualization.	  Virtualization	  provides	  beneficial	  
+logical	  separation	  between	  layers	  of	  infrastructure,	  but	  those	  same	  abstractions	  make	  it	  difficult	  to	  
+manage	  system	  performance.	  While	  application	  performance	  solutions	  need	  only	  examine	  the	  
+delivered	  experience	  from	  the	  user	  or	  app	  perspective,	  effective	  infrastructure	  performance	  
+management	  solutions	  must	  span	  multiple	  layers	  of	  virtualization	  to	  map	  performance	  dependencies.	  
+In	  order	  to	  guarantee	  performance	  and	  availability	  service	  levels	  to	  clients,	  the	  virtual	  admin	  must	  
+obtain	  visibility	  down	  the	  IO	  paths	  as	  used	  by	  each	  virtual	  machine.	  
+Having	  to	  implement	  infrastructure	  performance	  management	  should	  not	  be	  seen	  as	  a	  burden.	  High-­‐
+performance	  storage	  resources	  are	  relatively	  expensive	  investments,	  especially	  at	  scale.	  Performance	  
+management	  can	  provide	  a	  large	  ROI	  derived	  not	  just	  from	  avoiding	  downtime	  or	  assuring	  service	  
+levels,	  but	  from	  cost-­‐saving	  resource	  optimization	  activities.	  Best	  practice	  performance	  management	  
+has	  proven	  to	  significantly	  lower	  the	  TCO	  of	  deployed	  storage	  by	  driving	  out	  misuse,	  misalignment,	  
+and	  misconfiguration.	  These	  expected	  TCO	  savings	  should	  make	  it	  easy	  to	  cost-­‐justify	  putting	  all	  top-­‐
+tier	  storage	  behind	  VirtualWisdom	  TAPS	  from	  day	  1.	  	  
+Regardless	  of	  expected	  ROI,	  smart	  CIO’s	  should	  take	  a	  proactive	  approach	  rather	  than	  waiting	  for	  
+motivation	  from	  a	  service-­‐killing	  performance	  issue	  or	  outage.	  Many	  enterprises	  are	  now	  building	  
+private	  cloud	  tiers	  of	  service	  for	  mission-­‐critical	  apps	  that	  come	  with	  strict	  availability	  and	  
+performance	  SLAs.	  These	  tiers	  are	  deliberately	  architected	  for	  performance	  management	  with	  
+thoroughly	  instrumented	  infrastructure	  designed	  to	  guarantee	  world-­‐class	  service.	  
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+TANEJA	  GROUP	  OPINION	  
+
+Technology	  Brief	  
+
+Complete	  Virtualization	  Performance	  Management	  
+
+6	  of	  7	  
+www.tanejagroup.com	  	  
+
+	  
+Bottom-­‐line,	  virtual	  admins	  need	  to	  augment	  their	  hypervisor	  management	  solutions	  to	  achieve	  
+complete,	  cross-­‐domain	  infrastructure	  performance	  coverage.	  While	  this	  is	  especially	  true	  to	  support	  
+mission-­‐critical	  applications	  that	  require	  high	  IO	  service	  levels,	  it’s	  also	  increasingly	  true	  for	  growing	  
+VDI	  deployments	  and	  the	  increasing	  vm	  densities	  found	  in	  more	  cloud-­‐like	  delivery	  models.	  
+	  
+
+Technology	  Brief	  
+
+.NOTICE:	  The	  information	  and	  product	  recommendations	  made	  by	  the	  TANEJA	  GROUP	  are	  based	  upon	  public	  infor-­‐
+mation	  and	  sources	  and	  may	  also	  include	  personal	  opinions	  both	  of	  the	  TANEJA	  GROUP	  and	  others,	  all	  of	  which	  we	  
+believe	   to	   be	   accurate	   and	   reliable.	   However,	   as	   market	   conditions	   change	   and	   not	   within	   our	   control,	   the	   infor-­‐
+mation	  and	  recommendations	  are	  made	  without	  warranty	  of	  any	  kind.	  All	  product	  names	  used	  and	  mentioned	  here-­‐
+in	  are	  the	  trademarks	  of	  their	  respective	  owners.	  The	  TANEJA	  GROUP,	  Inc.	  assumes	  no	  responsibility	  or	  liability	  for	  
+any	  damages	  whatsoever	  (including	  incidental,	  consequential	  or	  otherwise),	  caused	  by	  your	  use	  of,	  or	  reliance	  upon,	  
+the	  information	  and	  recommendations	  presented	  herein,	  nor	  for	  any	  inadvertent	  errors	  that	  may	  appear	  in	  this	  doc-­‐
+ument.	  
+
+	  
+
+Copyright	  The	  TANEJA	  Group,	  Inc.	  2012.	  All	  Rights	  Reserved.	  
+87	  Elm	  Street,	  Suite	  900	  	  Hopkinton,	  MA	  	  01748	  	  T:	  508.435.2556	  	  F:	  508.435.2557	  
+
+7	  of	  7	  
+www.tanejagroup.com	  	  
+
+

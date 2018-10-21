@@ -1,0 +1,357 @@
+ 
+
+VirtualWisdom® MOBILE MONITORING OPTION 
+
+ As a member of the Virtual Instruments’ VirtualWisdom solutions family, the Mobile Monitoring 
+Option (MMO) is designed to provide all of the features and benefits of VirtualWisdom-based 
+instrumentation, monitoring, and measurement in a purpose-built, mobile cabinet, designed to 
+house SANInsightTM Fibre Channel monitoring equipment.  Use of the MMO enables IT staff to 
+easily and quickly deploy an infrastructure optimizing VirtualWisdom solution anywhere in the 
+datacenter.  
+
+  Substantially speeds troubleshooting 
+
+of applications not associated with 
+static VirtualWisdom deployments 
+  Complements the TAP Patch Panel 
+
+System by allowing ad hoc 
+VirtualWisdom SAN Performance Probe 
+deployments  
+
+  Operational with doors closed and 
+
+locked for maximum security 
+
+  Cost-effectively extends benefits of 
+hardware-based monitoring to more 
+applications and data centers  
+
+ 
+ 
+
+Enterprise IT staffs are often faced with a difficult decision 
+on where to most effectively deploy a Virtual Instruments’ 
+VirtualWisdom SAN monitoring solution.  A best practice 
+recommendation is to deploy Fibre Channel TAPS and SAN 
+Availability Probe  across the datacenter, deploy SAN 
+Performance Probe  Fibre Channel monitoring at the most 
+mission critical SAN infrastructure, and deploy the MMO on 
+an as-needed basis.   “Mission critical” is usually not 
+defined in a binary fashion, but is normally a continuum 
+and highly dynamic.  The MMO enables IT staff to deploy 
+hardware probe monitoring to any application in the 
+datacenter on a cost-effective, ad hoc basis.  
+ 
+MMO Use Cases 
+Speeds troubleshooting 
+
+For IT staff that need to quickly respond to application 
+slowdowns or outages with the best possible troubleshooting 
+solution, the MMO offers all the functionality of a SANInsight 
+SAN Performance Probe based monitoring solution. 
+
+ 
+Reduces risks of new projects 
+ 
+Use the MMO with new Fibre Channel SAN deployments to 
+ensure the Fibre Channel physical infrastructure is error-free, 
+and validate new technologies. 
+
+ 
+
+Find over-provisioned links 
+
+Allows IT staff to apply the MMO to portions of the SAN to find 
+opportunities to cut costs by consolidating expensive FC 
+switch ports. 
+
+                             
+
+                            Figure 1 MMO 
+
+                       
+
+ 
+ 
+
+ 
+
+ 
+
+Establish Baseline Metrics 
+
+Establish baseline metrics for future troubleshooting and 
+performance optimization. 
+
+ 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+ 
+Extend VirtualWisdom Value 
+The MMO enables IT staff to apply the value of a static VirtualWisdom deployment to all datacenter applications.   Companies 
+around the globe use VirtualWisdom to help speed problem resolution, improve tiering, reduce downtime, improve performance, 
+find unused or underused LUNs, reduce the risk of implementing a private cloud computing model, and many other optimization 
+cases
+
+ 
+
+ 
+Features 
+
+ 
+
+ 
+
+ 
+
+ 
+
+optional roll in/roll out ramp   
+
+(1) 2U rack mount server and 1U console 
+
+Fibre Channel monitoring instrumentation 
+
+up to either A: (3) SAN Performance Probe or 
+
+  Reusable, rebuildable shipping container with 
+
+  Mounts combinations of SANInsight components 
+
+  Purpose‐built mobile cabinet houses SANInsight 
+Protocol Analyzer units and (2) E‐72 Rovers OR B: 
+(Jumpstart Kit Server Option), (2) E‐72 Rovers, 
+(2) 20A, 120‐240V PDUs with customer‐specified 
+on rear, includes front‐to‐rear pass-throughs 
+
+and (2) SAN Performance Probe or Protocol 
+Analyzer units 
+
+cord sets (20 or 30 amp, 120, 208, or 240V, 
+straight blade or locking plugs) 
+
+  24 port Gigabit Ethernet Switch; component 
+
+(4) 1U horizontal cable managers on front rails, (2) 
+
+patch and uplink cables 
+
+ 
+
+ 
+
+                         Figure 2 MMO Cabinet Front and Side Elevations 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  Depending on component configuration, up to (2) 
+
+2U drawers for patch cable and tool storage 
+
+handles, and bumpers for portability 
+
+rated to 600 lbs (cabinet weight 150 lbs) 
+
+  21U usable rack, 34” usable depth 
+
+  16 gage all‐steel, fully welded construction; load 
+  4” anti‐static swivel locking casters, grab 
+side‐to‐side reversible 
+  Side‐mounted, reversible spool for fiber patch 
+
+  Steel mesh locking front and rear doors; open 
+
+parallel to sides, lift off removable, and 
+
+cable storage and management 
+
+  Sides extensively louvered for airflow 
+  Side and bottom entries for fiber and Ethernet 
+
+patch cables and power cords 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 3 View Showing Side Patch 
+Cable Manager and Entries 
+
+  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+                        
+
+Dashboard and Views 
+
+Servers 
+and  
+VMs 
+
+FC 
+Switch 
+Fabric 
+
+Storage 
+Arrays 
+
+ProbeVM 
+Software 
+
+ProbeV 
+Software 
+
+TAP Patch 
+Panel System  
+
+                                                             Figure 4 SAN Diagram with MMO 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+           
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom®, Virtual Instruments, SANInsight are trademarks or registered 
+trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or service marks of, and are used to identify, products or services of 
+their respective owners.  8/11 
+
+ 
+
+

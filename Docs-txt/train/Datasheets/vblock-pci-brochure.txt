@@ -1,0 +1,246 @@
+PCI COMPLIANCE
+
+WITH VBLOCK™ INFRASTRUCTURE PLATFORMS
+
+With more and more economic transactions 
+happening online, criminal activity in cyber-
+space is on the rise. Addressing this trend,  
+the recently released Payment Card Industry 
+Data Security Standard (PCI DSS) version 2.0  
+reinforces the need for organizations to identify 
+all system components, people, and processes 
+to be included in a PCI DSS assessment. As a 
+result, many companies are refining processes 
+and looking at how to achieve compliance with 
+new standards this year. 
+
+$
+
+THE HIGH 
+PRICE OF  
+DATA 
+BREACHES
+
+The Ponemon Institute 2009 annual study found:
+
+$6.75 million   
+
+Average organizational cost of a data breach 
+
+Average cost per compromised record 
+
+ 
+
+ 
+$204 
+100% increase 
+
+ 
+
+Double the incidence of malicious attacks in 2008, 
+from 12% to 24%
+
+40% higher 
+
+ 
+
+The cost per record for breaches by malicious or 
+criminal acts than breaches caused by negligent 
+insiders or system glitches
+
+3.7% 
+
+Abnormal customer churn rate, measured by loss of 
+customers directly affected by a data breach
+
+42% 
+
+ 
+
+ 
+
+Amount of cases studied involving outsourced data 
+to third parties
+
+TESTED,  
+VALIDATED, 
+AND AUDITED 
+FOR PCI  
+COMPLIANCE
+
+VCE joined with Cisco, 
+RSA, and HyTrust to test, 
+validate, and audit a PCI-
+compliant architecture us-
+ing the Vblock 1 platform. A 
+Verizon Business Qualified 
+Security Assessor (QSA) 
+reviewed the products and 
+network designs and issued 
+an assessment report. VCE 
+is an integral part of the 
+Cisco PCI solution, which 
+includes Cisco network 
+architectures and validated 
+network designs. For more 
+information, see the Cisco 
+PCI Solution for Retail 2.0 
+Design and Implementation 
+Guide.
+
+PCI DSS version 2.0 also clarifies the “one server” rule discussed in earlier 
+versions, making clear that there is no conflict between PCI compliance and 
+infrastructure virtualization. This is good news for IT organizations—in industries 
+ranging from higher education to healthcare—as they now can more fully realize 
+the CAPex and OPex benefits of virtualization and cloud computing in their 
+environments. 
+
+Simplifying Compliance
+
+Achieving and maintaining PCI compliance over time requires diligence. It is 
+easy for systems to lapse when business needs change and grow. IT needs a  
+solution that helps secure cardholder data and ensures customer privacy at 
+every point in the data flow, from e-commerce sites and third-party payment 
+processors to the corporate data center. Security must be ensured at every  
+level of the infrastructure across server, network, and storage domains. 
+
+There are no out-of-the-box PCI solutions. Each company must design and 
+implement its own processes and infrastructure, evaluating and fine-tuning to 
+maintain compliance over time. 
+
+However, some solutions are simpler than others. When vendors cooperate to 
+deliver complementary functionality, customers benefit. Cisco, a parent company 
+of VCE, working with VCE, EMC, and others, has demonstrated PCI compliance 
+as part of a virtualized, multi-vendor PCI environment. Technology from VCE 
+eases the IT burden of integrating and managing the data center infrastructure 
+while offering the security and availability organizations need.
+
+A Secure and Extensible Virtual Infrastructure
+
+The VblockTM Infrastructure Platforms are fully integrated units of infrastructure 
+designed and factory-integrated for virtualized environments. At every level of 
+the stack, virtualization, security, and ease of management are designed in the 
+Vblock systems. 
+
+Vblock Infrastructure Platforms are available in multiple configurations, making 
+it easy to choose the package best suited to an organization’s needs—deployment 
+in wired and wireless physical environments, enterprise data centers, contact 
+centers, and the Internet edge to support e-commerce operations, employees, 
+customers, and teleworkers. They also support wireless 3G technology  
+deployments and nontraditional retail formats, including pop-up stores  
+and convenience stores.
+
+WANT TO LEARN MORE ABOUT VBLOCK 
+
+INFRASTRUCTURE PLATFORMS? 
+
+An Integrated Platform for Rapid Deployment 
+and Simplified Support
+
+Vblock Infrastructure Platforms combine industry-
+leading compute, network, storage, virtualization, and 
+management technologies into prepackaged units of 
+infrastructure. VCE ships factory-integrated platforms 
+as a single, pretested product, freeing IT organizations 
+from the lengthy, labor-intensive integration tasks 
+associated with multi-vendor infrastructure offerings. 
+This approach accelerates deployment and simplifies 
+operations. 
+
+VCE provides support for the converged infrastructure 
+as a single product. Support engineers are experts in 
+the entire infrastructure, utilize advanced collaboration 
+capabilities, and have direct access into engineering 
+resources at Cisco, EMC, and VMware. 
+
+The architecture is flexible and extensible, easily  
+expandable from a few hundred VMs to tens of  
+thousands of VMs. As Vblock platforms are added,  
+the capacity of the Vblock platforms scales either as 
+an aggregated pool, whereby any blade can access 
+any storage disks on the SAN, or as isolated silos. This 
+approach offers an organization the ability to configure 
+Vblock platforms to achieve their compliance, availability, 
+and fault-isolation objectives using a single, flexible 
+infrastructure.
+
+The tight integration between server and network 
+environments helps ensure consistent, policy-based 
+network capabilities to all servers in the data center. It 
+allows policies to move with a VM during live migration, 
+which ensures persistent network, security, and storage 
+compliance for improved business continuity and 
+performance management. The Vblock platform can 
+deliver uncompromising high availability, security,  
+scalability, and ease of management. 
+
+Hosting multiple, related applications within the same 
+Vblock platform reduces the traffic that needs to flow 
+into and out from the Vblock platform, potentially  
+preventing network bottlenecks. It also provides certain 
+advantages in securing the entire network infrastructure 
+that supports the related applications. 
+
+A New Approach to Change Management
+In the PCI arena, change management adds to the compliance  
+challenge. VCE implements a unique approach to release and  
+configuration management to further simplify IT operations. By 
+taking responsibility for integrating roadmaps for all infrastructure 
+products, we relieve IT of the burden of patch integration testing. 
+VCE makes available on formal release schedules validated and 
+fully regressed software releases and firmware upgrades that cover 
+the entire platform. 
+
+Enhance Business Security and Risk Management
+Beyond helping businesses meet PCI compliance requirements, 
+Vblock Infrastructure Platforms create a strong overall security 
+foundation. The same infrastructure used to help achieve PCI  
+compliance also helps enforce security best practices, protect  
+assets, and mitigate the risk of noncompliance fines, penalties,  
+and lost revenue.
+
+Vblock Infrastructure Platforms include an open security frame- 
+work that simplifies integration with existing security tools and 
+frameworks. In addition, Vblock solutions provide protection at  
+the network, hypervisor, and VM level. 
+
+Organizations can easily extend existing policies in the physical 
+domain to the virtual domain while adding new capabilities to  
+enhance security from “as good as physical” to “better than physical.” 
+Third-party technologies, such as those available from RSA and  
+HyTrust, provide integration with enterprise security frameworks 
+and enable consistent security between physical and virtual  
+infrastructure.
+
+Ready for a New Way to Do IT?
+VCE simplifies deployment and management of virtual infrastructure 
+environments, making it easy to extend the benefits of virtualization 
+to more of a business’ critical applications. An extensive partner 
+ecosystem offers services and customized solutions to enable the 
+IT transformation. 
+
+ABOUT VCE
+
+VCE, the Virtual Computing Environment 
+Company formed by Cisco and EMC 
+with investments from VMware and Intel, 
+accelerates the adoption of converged 
+infrastructure and cloud-based computing 
+models that dramatically reduce the 
+cost of IT while improving time to market 
+for our customers. VCE, through the 
+Vblock platform, delivers the industry’s 
+first completely integrated IT offering 
+with end-to-end vendor accountability. 
+VCE’s prepackaged solutions are available 
+through an extensive partner network, 
+and cover horizontal applications, vertical 
+industry offerings, and application develop-
+ment environments, allowing customers  
+to focus on business innovation instead  
+of integrating, validating, and managing  
+IT infrastructure. 
+For more information,  
+go to www.vce.com.
+
+

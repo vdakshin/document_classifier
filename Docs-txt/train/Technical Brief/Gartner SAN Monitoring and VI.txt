@@ -1,0 +1,254 @@
+Tech Brief 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Gartner SAN Monitoring and VI  
+
+ 
+
+August 2011 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Recommendations For SAN Fabric Dashboards   
+In June 2011, leading analyst firm Gartner published a paper entitled “Recommendations for SAN Fabric 
+Dashboards”.  In it, Gartner describes the primary or high-level indicators that would be used in the central 
+operational control center to provide a status display of the SAN fabric environment.  Additionally, Gartner 
+listed the secondary indicators that need to be monitored and available for operators to determine the severity 
+of any event or exception, first-level problem determination and short-term forecasting.  Gartner notes that the 
+recommendations in the report can be used as a starting point for organizations that do not monitor their SAN 
+fabrics. These recommendations can be used to check and compare with those used by SAN fabric 
+dashboards, monitoring or reporting processes. 
+
+Following is the list of Gartner’s primary and secondary indicators, followed by a brief description of Virtual 
+Instruments’ adherence. 
+
+ 
+SAN Dashboard 
+Indicator - primary 
+Failed or unreliable 
+port or link  
+
+Top user of 
+network bandwidth 
+and resources  
+Response or delay 
+thresholds 
+exceeded  
+
+Multipath or dual 
+SAN failure  
+
+Explanation 
+A network connection from a server, network 
+device or storage array has failed. This 
+includes cyclical redundancy check errors, 
+code violations, loss of sync and loss of signal 
+errors.  
+Indicator of the server and application that is 
+consuming the most storage bandwidth in the 
+storage fabric.  
+Input/output (I/O) response delays or 
+excessive queuing. I/O performance has 
+exceeded a threshold — an "acceptable 
+value" or specific limits for servers and 
+performance critical applications.  
+A failure has occurred that has caused a SAN 
+network, HBA, interswitch link (ISL) or storage 
+array single point of failure (SPOF).  
+
+SAN switch health   A SAN fabric network switch has reached its 
+
+high CPU or memory threshold, is suffering 
+from some form of contention, or a component 
+(such as a fan, an optical connection or a 
+power supply unit) has failed and requires 
+replacement.  
+
+VI Adherence 
+Available.  Also provides leading 
+indicators to help predict 
+problems. 
+
+Available for physical or virtual 
+servers via “top talker” widgets.  
+Application is inferred. 
+Available through several 
+widgets, including unique HBA 
+queue depth reports. 
+
+Available, plus unique reporting 
+that alerts to potential outages 
+or unbalanced links. 
+Partially available - externally 
+viewable metrics indicate 
+internal problems.  Recommend 
+switch vendor dashboard for 
+internal switch components. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+2                                                    VIRTUAL INSTRUMENTS TECH BRIEF 
+ 
+
+ 
+
+SAN Dashboard 
+Indicator - secondary 
+Excessive connection 
+or link failures 
+
+Queue depth issues 
+
+Explanation 
+Monitoring and alerting of all the 
+connections and links in the SAN fabric 
+that have failed. 
+Monitoring and alerting of any 
+connections within the SAN fabric that 
+have high queue lengths or have 
+exceeded the defined or default 
+thresholds 
+
+Alternative path failure   Alternative path or link failure between 
+
+a server and storage device 
+
+ISL excessive high 
+utilization or failure 
+Fan in/out ratios 
+exceeded  
+
+SAN switch 
+component problem 
+
+Protocol errors and 
+dropped frames 
+
+Optical failures  
+
+Bandwidth utilization 
+to frame rate 
+
+Orphaned zones 
+
+ISL oversubscription or failure among 
+SAN switches 
+Switch, ISL or HBA ports that have 
+exceeded the number of fan-out 
+connections 
+Internal SAN switch resources, such as 
+CPU, RAM utilization, or a high 
+threshold 
+ 
+Component or links that are exceeding 
+the set limit or threshold of protocol 
+errors, including Small Computer 
+System Interface (SCSI) reservation 
+problems, or are losing or dropping an 
+excessive number of FC frames 
+Small-form-factor pluggable converters 
+or GBICs that have optical failures 
+exceeding accepted thresholds. 
+Has the ratio of management frames 
+versus data frames exceeded a 
+threshold? 
+FC zones that exist, but are inactive, 
+and are not used within the SAN fabric. 
+
+VI Adherence 
+Available.  Also provides leading 
+indicators to help predict problems. 
+
+Available, including unique HBA 
+queue depth reports. 
+
+Available, plus unique reporting that 
+alerts to potential outages or 
+unbalanced links which could lead to 
+performance problems. 
+Available; and predictive analysis 
+available with “what if” simulations. 
+Available through VirtualWisdom 
+User Defined Context feature. 
+
+Not available from VirtualWisdom, 
+but is available from switch vendor 
+dashboards. 
+
+Available, including CRCs, link 
+resets, loss of sync, loss of signal, 
+class 3 discards, and others. 
+
+Available through ‘loss of signal’ and 
+other leading indicators. 
+
+Available through User Defined 
+Context report widgets. 
+
+Partially available through inference.  
+VirtualWisdom can notify when a 
+zone has changed state by tracking 
+the number of RSCN frames. 
+
+ 
+Conclusion  
+When monitoring large Fibre Channel SAN installations, it’s easy to become overwhelmed by the complexity and 
+the scale of components that need to be monitored. Therefore, it is important to be able to consolidate the 
+reporting data into a high-level, simple-to-understand dashboard. With VirtualWisdom, IT operations staff has the 
+ability to drill down to the root cause of any problem; and more importantly, to see leading indicators that serve as 
+predictors of SAN-induced slowdowns or availability problems.  When combined with the native FC switch 
+management dashboard, VirtualWisdom provides a complete host to storage monitoring solution
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 08/11 
+ 
+
+ 
+
+ 
+
+

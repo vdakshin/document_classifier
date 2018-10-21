@@ -1,0 +1,231 @@
+Pharmaceutical Case Study
+
+Diagnosing Intermittent SAN Problems
+Pharmaceutical Uses VirtualWisdom For Fast, Accurate Diagnosis
+of Problem Delaying Critical SAP Upgrade
+
+Company Background
+
+This major healthcare and pharmaceutical company operates in 140 countries, with
+global headquarters in Europe. The broad healthcare portfolio includes pharmaceuticals,
+consumer health products, vaccines and diagnostics. The company has experienced
+growth through acquisition as well as organic growth, and must meet pharmaceutical
+regulatory requirements in many different countries.
+
+IT Environment
+
+The company's production systems, customer service and billing all run on SAP software
+on IBM AIX servers in centralized European data centers.  The Storage Area Network
+serving the SAP environment runs Brocade and IBM hardware. The company planned to
+expand its deployment of SAP, adding new modules while upgrading to SAP R/3 6.0. To
+support this upgrade, it needed to upgrade the SAN, adding new Brocade blades and
+DCX switches.
+
+Business Challenge
+
+To optimize efficiencies in the creation and delivery of medications, diagnostics and other
+healthcare products, the company has chosen to centralize and standardize its business
+systems using SAP software.  When storage network problems delayed a major new SAP
+implementation by six months, the company experienced both real costs and opportunity
+costs. The new software deployment was stalled, delaying deployment of features, and
+the company incurred increasing maintenance costs as they delayed retiring old, costly
+equipment.
+
+IT Challenge
+
+The upgraded hardware in the SAN introduced intermittent problems, characterized by
+overall instability that was difficult to pinpoint and diagnose. The IT team was under
+pressure to make the SAP upgrade happen, but the storage team could not sign-off on
+an unstable SAN. The company's IT team had to mediate between the storage
+infrastructure supplier and the storage vendor. Finding intermittent problems is
+notoriously difficult. Without visibility into the real root cause, no progress could be made
+short of simply throwing more hardware at the problem.
+
+The Virtual Instruments Solution
+
+The pharmaceutical company turned to VirtualWisdom to help them find the root cause
+of the SAN instability that was holding up the SAP upgrade. Unlike tools that rely on
+averages or polling, VirtualWisdom supports a continuous, real-time capture of activity
+across the SAN, with the ability to record and playback metrics.  The "playback" feature
+let administrators identify when the problem occurred and roll back to find the root
+cause.
+
+Fast root cause analysis.  The company use VirtualWisdom to pinpoint the source of the
+intermittent problems – in this case, faulty hardware among the new SAN infrastructure.
+Faced with the detailed data, the vendor replaced the hardware components in question,
+which solved the problem. After many months of delay, using VirtualWisdom the SAP
+project was back on track in three weeks.
+
+Challenges:
+
+ Major SAN hardware
+
+
+
+
+
+
+
+
+
+
+
+upgrade
+Deployment of new
+SAP modules and
+upgrade to existing
+SAP installation
+SAN instability leads
+to six month delay in
+SAP
+upgrade/deployment
+Difficulty isolating and
+identifying intermittent
+instability in SAN
+between multiple
+vendors
+Increased
+maintenance costs
+and opportunity costs
+due to deployment
+delay
+Lack of vendor
+agreement on the
+source of the problem
+
+Solution:
+
+
+Virtual Instruments
+VirtualWisdom
+platform and services,
+including the SAN
+Performance and SAN
+Availability Probes
+
+
+
+Customer Benefits:
+
+Fast root cause
+analysis of intermittent
+problem using record
+and playback feature
+Vendor-neutral metrics
+and data supporting
+hardware replacement
+Rapid problem
+remediation: project
+back on track in three
+weeks
+
+
+
+"The ability to playback
+
+events using
+
+VirtualWisdom helped
+us quickly find the root
+
+cause of an elusive
+
+problem that had been
+escaping us for many
+
+months."
+
+IT Manager
+Major Pharmaceutical
+
+"VirtualWisdom let us
+get quickly past the
+
+blame issue and move
+on to the solution, so
+
+we could get the project
+
+back on track."
+
+IT Manager
+Major Pharmaceutical
+
+"SAP is absolutely
+
+critical to our business
+– having to delay the
+
+upgrade was becoming
+a serious problem. The
+
+Virtual Instruments
+team gave us the
+
+insight we needed to
+
+move forward”
+
+IT Manager
+Major Pharmaceutical
+
+VirtualWisdom and SANInsight Topology
+
+Better alignment of storage and whatever: With new insight into end-to-end
+performance across the entire storage network, the company could proceed with the
+SAP migration with minimal risk. Not only was the initial problem resolved, but
+VirtualWisdom provided real-time, end-to-end insight into performance going forward,
+reducing the risk of the SAP upgrade.
+
+Customer Benefits
+
+Specific VirtualWisdom benefits to the IT team include:
+
+
+
+Rapid identification of the root cause of SAN instability that was slowing down
+important SAP implementation and upgrade
+
+ Quick problem resolution reduced the ongoing maintenance costs incurred by
+
+supporting older equipment during the delay.
+
+
+
+
+
+
+
+
+
+Vendor-neutral metrics and analysis, providing the necessary metrics to get
+replacement hardware from vendor
+
+Reduced risks of SAP upgrade by closely monitoring performance in real time
+
+Successful migration of SAP instance to new storage environment
+
+Performance optimization of new storage environment
+
+ Constant monitoring of real-time SAN performance during migrations, upgrades, and
+
+reconfigurations, to ensure that changes do not hurt application performance
+
+Corporate Headquarters
+25 Metro Drive Suite 400
+San Jose, CA 95110
+Phone:  408-579-4000
+Fax:  408-579-4001
+
+Sales
+sales@virtualinstruments.com
+Phone:  408-579-4081
+
+Support
+support@virtualinstruments.com
+
+©2012 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks
+of, and are used to identify, products or services of their respective owners. 06/12
+
+

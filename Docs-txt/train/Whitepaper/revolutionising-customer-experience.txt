@@ -1,0 +1,748 @@
+Revolutionising the Customer Experience with 
+Converged Infrastructure
+
+Top row (from left to right): Steve Argiriou, Senior Manager Group Architecture, IAG; Paul O’Connor, APJ Director Alliances, VCE; 
+Kieron Fitzpatrick, Head of Capability Development, Citi; Marc Evans, Head of Advice, Integration and Private Wealth Systems, 
+BT Financial Group; Rob Livingstone, former Ricoh Australia CIO and author of Navigating the Cloud; Anthony Elvey, Managing 
+Director, Service Providers APJ, VCE; Matthew Oostveen, CTO, Asia Pacific & Japan, VCE; Brendan Dunne, Head of Business 
+Improvement, Allianz. Bottom row (from left to right): Matthew Tilley, Lead Architect, VCE; Anna O’Brien, Head of Application 
+Development, Allianz; Paul Grundy, Head of Project Delivery, Service Delivery Infrastructure, Westpac; Angelo Demasi, Head of 
+Strategy & Planning, AFS Digital, Westpac; Frank Cammaroto, Head of Technology, AMP; Christine Kennedy, Head of Infrastructure 
+& Application Delivery,  Head of Solution Services, IAG; Ian Davison, Technology Infrastructure Head AU/NZ, Citi, Carol Hildebrandt, 
+Director, Marketing, APJ, VCE.
+
+The accelerating speed of converged infrastructure 
+and the adoption of cloud-based computing models  
+is leading to a dramatic reduction in the cost of IT 
+and improved time-to-market. FST Media and VCE 
+hosted an executive luncheon with industry leaders 
+across 
+technology 
+and  strategy  to  discuss  converged  infrastructure 
+innovations  and  how 
+financial  services  can 
+accelerate  next-generation  deployment  of  data 
+centres and cloud infrastructure for speed, reliability 
+and efficiency.
+
+infrastructure,  architecture, 
+
+ANTHONY  ELVEY,  VCE:  VCE 
+fastest  
+growing  technology  company  in  history.  In  our 
+third year we exceeded $1.2 billion. We are again 
+about  to  conclude  two  quarters  of  more  than  
+70 per cent growth.
+
+the 
+
+is 
+
+ROB LIVINGSTONE: I am a specialist generalist. By 
+setting the scene and being able to ask questions, I 
+challenge  prevailing  paradigms  and  assumptions 
+about  the  world  of  technology  and  business.  The 
+bottom line is that infrastructure is critical, but it is 
+largely invisible to most stakeholders, at all levels in 
+the organisation, your customers and your suppliers 
+as  well.  They  do  not  care  what  infrastructure  you 
+have, as long as they can operate their iPad or run 
+their interface.
+
+I  would  like  to  propose  that  there  should  be  a 
+‘cloud-first’  policy  –  cloud-first,  but  private  hybrid 
+model and then a public cloud.
+
+Organisations’  operational  integrity  and  reason 
+for  their  existence  depends  on  their  enterprise 
+technologies. We are not talking about a small retail 
+outlet; we are talking about organisations where if 
+
+technology failed or ceased to operate, the business 
+would cease to exist. Retaining visibility and control 
+is the most important aspect, because if it is critical 
+for your business, it is critical to see how it is working 
+and what is happening.
+
+Another point is consolidation. I have often called 
+this  the  ‘sun  spot  cycle’.  Centralise,  decentralise, 
+centralise,  decentralise.  Where  are  we  in  the 
+cycle? The change in the landscape is with existing 
+technology.  As  we  are  expected  to  deliver  within 
+the  enterprise  a  unified  experience,  this  is  where 
+the  whole  discipline  of  user  experience  comes 
+into being. It delivers a unified experience to our 
+stakeholders,  clients,  customers,  suppliers  and 
+staff members. 
+
+They  do  not  want  to  be  logging  in  and  out  of 
+different  systems.  However,  when  it  comes  to 
+infrastructure, there is an exponential relationship 
+between the number of platforms, and the number 
+of  bits  of  infrastructure  you  have  to  bolt  together. 
+If you have 10 different systems spread across four 
+different  countries  and  you  are  trying  to  integrate 
+that to give a highly integrated rich experience, it is 
+a real challenge. The exponential relationship is risk 
+and cost, versus the number of technologies.
+
+The  other  relationship  is  adaptability  to  meet 
+application integration. When you are talking about 
+integrating applications that is where the value is, 
+but also the risks and costs, and where you are trying 
+to manage an ecosystem of applications, whether it is 
+in-house, public, or private cloud. Trying to manage 
+the application interfaces in a volatile environment 
+is not a trivial exercise.
+
+Who  is  really  in  control  of  the  infrastructure? 
+Certainly large banks and financial institutions have 
+many  legacy  systems;  how  to  manage  the  nexus 
+between the internal legacy and public and private 
+cloud  environments  is  the  underlying  challenge. 
+Ensure  that  your  applications,  your  infrastructure 
+and  the  whole  stack  are  delivered,  maintained, 
+supported  and  designed  with  known  cost,  known 
+risk, and known value.
+
+ANTHONY  ELVEY,  VCE:  Customers  I  meet  have 
+discovered  that  they  need  to  have  a  different  way 
+of  appraising  an  application  regarding  where  they 
+place  it  in  the  cloud.  Some  of  the  objectivity  is 
+lacking  in  the  decisions  that  are  made,  sometimes 
+not by the IT department, but by business owners.
+
+I think it is an important discussion to have. The 
+reason why it relates to infrastructure is that not all 
+applications are equal and not all dependencies in 
+terms application mobility are fully understood by 
+the business.
+
+PAUL  GRUNDY,  WESTPAC:  We  have  seen  over 
+the  last  three  to  four  years  a  real  shift  in  business 
+expectations. With banking, three or four years ago 
+there was a big focus on reliability; and the desire to 
+make sure that our services were available to all our 
+customers all the time. That was a very strong theme 
+that came through the business.
+
+That  has  not  gone  away.  Infact,  with  the 
+compliance obligations there is a different lens to 
+that  whole  sustainability  and  stability  question. 
+What  we  have  seen,  and  the  expectations  are 
+growing  almost  exponentially  month-by-month, 
+is agility. Cost, reliability, and value is there for all 
+of us but at the moment the most pressing concern 
+is agility. The analogy that I have in infrastructure 
+is  we  are  the  goalkeeper;  we  want  to  be  invisible 
+in  the  game.  Our  absolute  focus  now  is  helping 
+businesses  deliver  the  agility  that  they  need,  in 
+response  to  the  increasing  expectations  of  our 
+end customer. We have to do that in a way so that 
+reliability, which is taken as a given now, does not 
+become a big focus again.
+
+MARC EVANS, BT FINANCIAL SERVICES: The risk 
+we have is that they are creating their own shadow 
+IT business. They can go to people-per-hour or they 
+can go somewhere else and say “I can build an app 
+for $10,000.” If we do not address our ability to be 
+agile and get products to market quickly, then they 
+are  just  going  to  do  it  for  us.  In  this  instance  an 
+application will appear, and we will have to support 
+it,  because  it  has  become  business  critical.  At  the 
+moment  we  really  struggle  to  offer  those  dynamic 
+solutions as a large organisation.
+
+ANGELO  DEMASI,  WESTPAC:  We  need  to  assess 
+the  value  of  the  service  and  understand  where  it 
+might sit, cloud or not cloud? What is increasingly 
+difficult  is  the  applications  and  services  that  we, 
+in  the  business,  come  across.  We  think  they  are 
+innovative in driving the right customer experience 
+and  they  are  increasingly  cloud-based  services 
+already. To some degree, we have almost passed the 
+tipping point on that question, and we are already 
+into  cloud  –  how  are  we  going  to  deal  with  this? 
+From a business point of view it appears the benefits 
+outweigh the perceived risks.
+
+PAUL  O’CONNOR,  VCE:  Why  do  we  collectively 
+struggle to deliver internally the same sort of agility 
+that can be delivered externally? To address all the 
+compliance issues and address the integration into 
+the back-end systems.
+
+PAUL GRUNDY, WESTPAC: The story from Westpac 
+is that up until 12 months ago, every single request 
+that  we  had  from  the  business  that  involved 
+infrastructure,  we  treated  as  a  bespoke  request. 
+Everything was custom.
+
+We have progressed significantly over the last 12 
+months. You will have heard the term ‘The Service 
+Catalogue’. We are now standardising our services 
+and our solutions. As maturity grows, we can then 
+drive the agility, and that is what cloud providers do; 
+they offer a standardised offering with a very agile 
+and very fast provisioning cycle. They are setting the 
+benchmark for us now. For the internal organisation, 
+we have to meet that benchmark. It is the Industrial 
+Revolution for infrastructure delivery.
+
+“From a business point 
+of view it appears the 
+benefits outweigh the 
+perceived risks.” 
+– Angelo Demasi, 
+Westpac
+
+“If we do not address 
+our ability to be agile 
+and get products to 
+market quickly, then 
+they are just going to do  
+it for us.”
+– Marc Evans,  
+BT Financial Services
+
+2
+
+REVOLUTIONISING THE CUSTOMER EXPERIENCE WITH CONVERGED INFRASTRUCTUREANTHONY ELVEY, VCE: I think  change management 
+issues  around  this  are  very  complicated;  as  you 
+make  that  transition  from  seeing  everything  as  a 
+custom  request,  still  maintaining  technology  silos 
+the existing perceptions are very difficult to shift.
+
+MARC  EVANS,  BT  FINANCIAL  GROUP:  Large 
+organisations  have  such  a  weight  of  history, 
+systems,  interfaces  and  things  that  have  not  been 
+touched for more then 20-years. How do you deal 
+with  that  history?  That  is  going  to  slow  everyone 
+down  so  much  that  your  new  entrants  into  the 
+market  are  going  to  come  in,  with  no  weight  of 
+history, and say “This is easy, we can spin this up in 
+a week,” whereas the weight of history and risk that 
+the large organisations have makes it very difficult 
+to move quickly.
+
+KIERON  FITZPATRICK,  CITI:  Customer  demand  is 
+such  that  we  are  going  to  be  providing  real-time 
+access to our customers’ data, and let me emphasise 
+that term, ‘customers’ data’, is their data. If we are 
+not  able  to  provide  real-time  access  in  a  manner 
+that is always available, we are simply going to lose 
+prominence in the customers’ mindset. We are going 
+to start to lose the relationship that we worked so 
+hard to create. I think the customer need is critical 
+and very relevant. Mobile is a key part of that and 
+as  mobile  emerges,  or  is  already  the  predominant 
+channel of choice for our customers; we do not have 
+a choice other than to act.
+
+PAUL GRUNDY, WESTPAC:  The  CEO  of  St  George 
+Bank, George Frazis, stood up at the Trans-Tasman 
+lunch  last  Friday  and  said  publicly  “mobile  is  first 
+and then the other channels come second.” We in IT 
+have to sit up and take notice; we have to deliver on 
+those customer commitments.
+
+MATT  OOSTVEEN,  VCE:  The  definition  around 
+mobile needs to be expanded as well. It is not just the 
+phone in our pocket or the tablet that we pack away 
+on the transport home. Google Glass is coming out 
+this year. Wearable technologies are coming into the 
+environment.  People  are  going  to  want  to  interact 
+with our entities utilising these types of devices. 
+
+ANGELO  DEMASI,  WESTPAC:  Regarding  end-to-
+end  service,  as  you  think  about  digitisation  and 
+the  trend  that  is  occurring,  it  goes  beyond  the 
+customer’s mobile, and the interaction the customer 
+has  directly.  It  will  impact  and  touch  on  all  areas, 
+all from staff-assisted service in our branches, how 
+we  enable  our  bankers  to  be  more  mobile  all  the 
+way through to our contact centre and third party 
+businesses that we interact with as well. Digitisation 
+is very broad, and I agree completely that we need to 
+think about it from the services point of view.
+
+ANNA  O’BRIEN,  ALLIANZ:  We  have  a  self-serve 
+nature for our retail businesses, consumers want, 
+access  to  their  information  real-time,  self-serve, 
+
+pricing  on  demand,  quotes  and  buy  online, 
+coupled with the whole mobile drive. I think one 
+of the challenges Allianz faces, is our core back-end  
+policy  management  system  is  a  20+  year-old 
+legacy  system  and  historically 
+integration  or 
+rather  services  have  been  on  a  request  response 
+mechanism.  Today  we  require  a  real-time,  highly 
+responsive services layer to support our front-end 
+systems. How do we make sure our infrastructure 
+aligns with the business demands?
+
+BRENDAN DUNNE, ALLIANZ: “I want it yesterday.” 
+I  wholeheartedly  agree  with  that  sentiment.  I  am 
+sure my insurance colleagues would love to have the 
+frequency of contact that banking has. One of our 
+challenges is the very different touchpoints that we 
+deal  with  in  insurance.  The  emotional  attachment 
+you have to your property when you have a claim is 
+very different to what you have when you need to 
+update your address. The customer’s view and how 
+you consider that as a business is not just about the 
+one-size-fits-all, or a nice cloud tool that is useful in 
+one small part of your value chain or your business 
+process.  You  need  to  understand  holistically,  what 
+you have today and what you can do in the future; 
+and deliver that consistently and seamlessly.
+
+It  can  be  very  dangerous  to  start  doing  bespoke 
+things that are great in one channel, if you do not 
+offer the same thing in another channel.
+
+It is really the integration and strategy of how it 
+comes  together  that  is  the  real  challenge;  and  IT 
+plays a critical part.
+
+ROB LIVINGSTONE: The challenges that technology 
+and IT are facing are in no different; how do they 
+meet demands from their internal/external clients 
+to  respond  rapidly,  with  new  and  innovative 
+systems,  technology  and  processes?  One  of  the 
+fundamental issues is being able to have everyone 
+in  the  organisation  who  are  key  decision-makers 
+understand broadly what the issues are. Is there real 
+value  in  expanding  an  enterprise  solution,  or  is  it 
+definitely only a one off? That broad complexity is 
+something not limited to IT.
+
+Everyone  within  an  IT  ecosystem,  those  with 
+deep  expertise,  technical,  functional,  operational 
+expertise, how do you get the business to integrate 
+with  them?  How  do  you  get  the  business  to  listen 
+to them, and for them to listen to the business and 
+actually  understand  their  requirements?  It  is  an 
+organisational challenge; it is not something that I 
+believe IT can unilaterally solve.
+
+IAN  DAVISON,  CITI:  I  have  been  in  my  role  for 
+about nine months as the head of the infrastructure 
+team. Prior to that, I was the head of the Consumer 
+Technology team, with more of an application focus . 
+So I bring a different perspective to an infrastructure 
+role;  I  look  at  it  from  a  customer  perspective  and 
+an  application  perspective.  Not  having  a  technical 
+background  I  am  perhaps  fortunate,  with  some  of 
+our  core  infrastructure  is  regionalised,  some  key 
+
+“If we are not able 
+to provide real-time 
+access in a manner that 
+is always available and 
+always switched on, 
+we are simply going to 
+lose prominence in the 
+customers’ mindset.” 
+– Kieron Fitzpatrick, Citi
+
+“It can be very 
+dangerous to start doing 
+bespoke things that  
+are great in one channel, 
+if you do not offer  
+the same thing in  
+another channel.” 
+– Brendan Dunne, Allianz
+
+3
+
+REVOLUTIONISING THE CUSTOMER EXPERIENCE WITH CONVERGED INFRASTRUCTUREdecisions  are  made  offshore.  My  interaction  with 
+the  business  is  mainly  at  a  local  level.  One  of  the 
+challenges I have seen is getting more engaged with 
+the decisions that are made at a business level. It has 
+to be real-time; you have to meet what the customer 
+wants  because  that  is  the  domain  that  they  are 
+working in.
+
+I have people that have been doing a similar role 
+for many years; the development path for them   has 
+to be able to take advantage of all of the change that 
+is coming along. It is an interesting part of what Iwe 
+ae doing, to restructure a team to look to the future. 
+It  is  difficult  to  tell  someone  what  they  are  going 
+to be doing in three years’ time, because it is a fast-
+changing environment. I am focusing a lot on people 
+at the moment.
+
+remember  multiple 
+
+FRANK  CAMMAROTO,  AMP:  At  AMP,  we  are 
+focused  on  our  customers.  What  customers  want 
+is  consistent  data;  they  want  timely  data  when 
+they  interact  with  you.  What  they  don’t  want 
+is  to  repeatedly  give  you  the  same  information, 
+log-ons.  Building  a 
+or 
+comprehensive  omni-channel  experience 
+that 
+enables this is one of our key priorities, and is what 
+we are looking at addressing. As a company, we are 
+now  starting  to  operate  more  horizontally  –  you 
+cannot succeed at establishing an omni-channel if 
+you continue to operate in silos as a business. I am 
+seeing a lot more horizontal collaboration, which 
+is fantastic.
+
+ANTHONY ELVEY, VCE: I am really glad this term 
+‘horizontal’ is coming up, because it is my favourite 
+term.  I  had  an  interesting  conversation  the  other 
+day,  not  in  the  finance  sector,  but  in  a  complex 
+government  department.  The  comment  from  the 
+CIO  was  “I  have  suddenly  found  myself  as  the 
+only  horizontal  plane  in  our  organisation.”  He  is 
+looking at multi-channel delivery for government 
+services; with almost identical issues to what has 
+come up on the table here. He said “The difficulty 
+I have is that we have never really considered, and 
+the government does not feel obliged to consider, 
+how the citizen looks at us. We always look at how 
+we consider the citizen. But as soon as IT becomes 
+horizontal  (when  you  go  multi-channel),  the 
+question becomes: Does the citizen want to interact 
+with us?”
+
+I think that is what is going to happen to all of us 
+in  IT.  Once  the  cloud-based  applications  and  the 
+infrastructure  consistency,  become  pervasive  in 
+the business, IT will find itself at the place where it 
+actually provides links across the business.
+
+That is a very different set of responsibilities for a 
+CIO. It used to be very reactive, on a demand model 
+with a project basis, individual infrastructure deals 
+and applications. Suddenly, we may be in a position 
+to go to a department and say: “I can now see the 
+link between what you are doing with the customer 
+and what this team is doing with the customer, I can 
+provide a horizontal platform approach.” I do think 
+
+this is a very interesting time for IT – to see itself as 
+that horizontal integrator across the business from a 
+process point of view.
+
+PAUL  GRUNDY,  WESTPAC:  A  good  example  of 
+that  is  emergency  cash:  “I  lost  my  cards,  I  need 
+some cash, and how am I going to get it?” Now you 
+can  get  it  with  a  PIN.  That  was  a  very  horizontal 
+approach in technology – there was a key business 
+problem,  there  was  infrastructure  involved,  there 
+was application and there was customer experience. 
+It was IT’s ability to support the business in solving a 
+business problem. That is where we need to be, and 
+hopefully we get to a point where infrastructure is 
+invisible in that process.
+
+BRENDAN DUNNE, ALLIANZ: Deep infrastructure 
+people do not have a great understanding of how 
+a customer interacts with you at a touchpoint that 
+might be slightly different along your value chain. 
+In  insurance,  the  expectation  of  customers  and 
+how  they  interact  with  you  is  different.  How  you 
+codify that in your business model is new and could 
+be expensive.
+
+KIERON  FITZPATRICK,  CITI:  Often  organisations 
+are  very  product-focused,  I  think  it  is  fair  to  say  
+Citi  has  been  fairly  product-focused.  When  you 
+are  customer-centric,  it  cuts  across  that  because 
+you  look  at  it  from  a  customer  perspective.  You 
+have  to  take  a  different  lens  and  say:  “What 
+would  the  experience  be  like  for  customers?”; 
+“What  infrastructure  and  applications  do  our  
+staff  require?”  and:  “How  would  they  respond 
+to support the customer?” In our case, one of our 
+key  focuses  is  globalisation  and  urbanisation.  We 
+need  to  support  customers  in  Shanghai,  Beijing, 
+Hong Kong, and Sydney; they must have the same 
+experience. So the applications and infrastructure 
+need  to  give  them  a  great  experience,  not  just 
+an  experience.  Part  of  the  problem 
+is  that 
+organisations are still product-focused. We are now 
+all on the same platform. 
+
+IAN  DAVISON,  CITI:  At  Citi,  we  have  to  engage 
+much more at a regional level to have input in those 
+changes.  That  is  one  of  our  challenges,  trying  to 
+do  that  from  where  we  sit  geographically.  If  you 
+succeed  you  have  the  advantage  of  what  is  rolled 
+out globally to guide you, that is a good outcome for 
+our customers.
+
+KIERON  FITZPATRICK,  CITI:  It  is  a  journey;  the 
+journey itself can be painful at times. But once you 
+get to the other side, you reap the benefits. What 
+you  lose  through  compromise,  you  gain  through 
+collaboration.  That  is  what  we  need  to  do.  We 
+need to collaborate better in our context with our 
+regional colleagues. How do we collaborate better?
+
+ANNA O’BRIEN, ALLIANZ: I think by approaching 
+it at just a product level, we are actually sealing the 
+
+“It is an interesting part 
+of what I am doing, 
+to try and restructure 
+a team to look to the 
+future. You cannot tell 
+someone what they are 
+going to be doing in 
+three years’ time.” 
+– Ian Davison, Citi
+
+“At AMP, we are focused 
+on our customers. 
+What customers want 
+is consistent data; they 
+want timely data when 
+they interact with you.” 
+– Frank Cammaroto, 
+AMP
+
+4
+
+REVOLUTIONISING THE CUSTOMER EXPERIENCE WITH CONVERGED INFRASTRUCTUREorganisation’s growth. Customers want to see their 
+entire  footprint  of  business  with  the  organisation 
+in one log-on. If we are smart, we should leverage 
+IT  to  cross-sell  to  the  customer.  When  they  do 
+a  renewal  we  should  ask  a  few  extra  questions 
+and  try  and  sell  them  something  additional.  By 
+providing this whole agility at a product level, or 
+a  silo  level,  does  not  just  give  the  wrong  or  poor 
+customer experience, it does not do the right thing 
+by the organisation.
+
+KIERON  FITZPATRICK,  CITI:  Looking  at  social 
+media,  how  do  our  customers  feel  about  us?  
+Have  they  made  five  calls  to  us  in  the  last  
+three  days  about  their  renewal?  If  so  they  are 
+probably  not  very  happy.  Let’s  do  something  for 
+them; not just ignore it. We need the infrastructure 
+to  be  able  to  cope  with  the  volume  of  data  that 
+social  media  brings,  bring  it  together  and  make 
+sense of it.
+
+ROB LIVINGSTONE: We need the ability to speak in 
+absolutely clear clinical business terms; to be able 
+to say: “Our assumption about this will solve that 
+problem,” and having that tested is the key. Part of 
+the legacy issue is that many in the IT leadership 
+group  come  from  a  technology  background,  and 
+for  those  that  do  not  come  from  a  technology 
+background, the recent CIOs that have come from 
+lines of business have a different perspective. They 
+have the commercial perspective of: “Where is the 
+intrinsic value?” The other issue is (and I think the 
+research is showing this)  the degree and veracity of  
+post-audits  after  major 
+implementations  on 
+projects’  initiatives  is  actually  very  poorly  done. 
+It  may  be  different  in  your  industries,  and  your 
+businesses,  but  there  is  very  little  time  spent  in 
+learning what went wrong by spending $10 million 
+on something.
+
+PAUL GRUNDY, WESTPAC: I think there is another 
+lens  to  the  legacy  application  environments,  and 
+modernisation is one. The one that we are big on 
+in  Melbourne  is  what  we  are  calling  ‘Application 
+Simplification’. Before we modernise, let’s simplify 
+the environment. For us at infrastructure, that is the 
+best Christmas present the application teams could 
+give us; consolidating functions on a number of key 
+applications  differentiates  those  that  really  drive 
+value  in  terms  of  the  customer  experience.  That 
+then  frees  up  resources,  funding,  and  so  forth,  to 
+invest where we need to invest.
+
+KIERON FITZPATRICK, CITI: In Citi, I do not own the 
+application. I own the relationship to the application.
+The  application  is  ultimately  run  out  of  Singapore 
+from our ‘data warehouse’, I own the interface to it. 
+People come to me with a problem, and I will find a 
+solution for them. What we will do is work through 
+the priorities for them and talk about: “If we do this, 
+we can also do this for another team.” It has changed 
+the relationship and the dynamic in the organisation 
+
+from  products  and  technology  to  almost  like  a 
+business  partner  relationship  that  allows  us  to  be 
+really quick in how we approach problems, and how 
+we try to solve those problems.
+
+ANGELO DEMASI, WESTPAC: The pleasing thing is 
+that regardless of where the accountability sits, or 
+who came up with the idea there is one thing that 
+is certain, it is the customer who benefits at the end 
+of the day. I am really glad that you brought up the 
+Westpac emergency cash idea, because there will be 
+a Westpac customer today, walking around Australia 
+somewhere, who lost their wallet, or left their wallet 
+at home, and are able to get money out of the ATM. 
+That  is  a  really  pleasing  customer  outcome.  I  do 
+not think you can get there unless you are able to 
+integrate your business and your IT strategy. Kudos 
+to our technology team for being able to assemble 
+a  horizontal  view,  and  how  cross-functionally  we 
+might be able to deliver a new service to market that 
+will benefit customers in a really speedy timeframe. 
+At the end of the day, the cumulative effort of all the 
+challenges we are facing, and all the opportunities 
+we are seeing, is the customer benefits.
+
+KIERON FITZPATRICK, CITI: You only have to look 
+at  the  proliferation  of  the  banking  products  that 
+most  of  our  institutions  put  on  our  websites.  The 
+simplification starts from IT, and from business. As 
+a customer, or as a consumer looking at my range 
+of options I think “I am not a banking expert, how 
+am  I  meant  to  make  a  decision  from  13  different 
+transaction accounts?”
+
+ROB LIVINGSTONE: I think all too often IT people, 
+especially technology-backed IT people, say: “I have 
+a solution for you and this is what it will do.” This 
+is  an  extremely  powerful  way  for  technologists  to 
+make  senior  executives  and  important  decision-
+makers stop in their tracks.
+
+ANNA O’BRIEN, ALLIANZ: Sometimes they need to 
+do that, because people in the business do not know 
+what  is  possible  until  someone  from  technology 
+puts it in front of them and tells them: “Here is the 
+concept. I actually do not know the business value 
+proposition, so I need help.” It is actually bringing 
+the two together.
+
+PAUL  GRUNDY,  WESTPAC:  How  do  you  get  an 
+infrastructure person to understand the customer? 
+We have been running ‘Back the Banker’ for about 
+five years, and it has made a big difference. There 
+is one day in the year, almost everybody in Westpac 
+takes a day out of their regular job and spends the 
+day in a branch and business banking centres. The 
+point is to get them out and put them on the frontline 
+to see the customer, and talk to them – it is amazing 
+what comes back.
+
+IAN  DAVISON,  CITI:  We  have  done  something 
+similar  previously,  to  go  to  our  call  centre  and  to 
+
+“Customers want to  
+see their entire footprint 
+of business with  
+the organisation in  
+one log-on. If we are 
+smart, we should leverage 
+that IT to cross-sell to  
+the customer.” 
+– Anna O’Brien, Allianz
+
+“As a customer, or as a 
+consumer looking at my 
+range of options  
+I think: “I am not a  
+banking expert, how 
+am I meant to make a 
+decision from 13 different 
+transaction accounts?” 
+– Kieron Fitzpatrick, Citi
+
+5
+
+REVOLUTIONISING THE CUSTOMER EXPERIENCE WITH CONVERGED INFRASTRUCTURE“The point is to get 
+them out and put them 
+on the frontline to see 
+the customer, and talk 
+to them – it is amazing 
+what comes back.” 
+– Paul Grundy, Westpac
+
+listen to a customer call in. To assess how systems 
+work, and potentially where a problem starts. They 
+can  experience  the  customer’s  concerns.  I  find  it 
+very useful, to put them in the customer’s position 
+and have them relate to their issues.
+
+PAUL  GRUNDY,  WESTPAC:  There  will  be  one  or 
+two that go out who are technology-minded, and 
+they  may  have  a  moment  of  truth,  there  may  be  
+an  “Ah-ha”  moment  that  gives  you  something  
+that is a point of difference, or an innovation that 
+you can apply.
+
+MATT  OOSTVEEN,  VCE:  We  talked  about  omni-
+channel, we talked about multi-channel, but more 
+importantly,  we  tried  to  establish  empathy  and 
+understanding of what our customers are trying to 
+do when they interact with our organisations, and 
+how  we  can  better  serve  them.  This  is  a  marked 
+difference  from  the  IT  conversations  we  were 
+having only a couple of years ago when it was all 
+about us.
+
+The  second  thing  was  issues  of  velocity,  and 
+agility. How can we respond more quickly? How can 
+we  remain  relevant?  We  now  have  the  capability 
+
+to  engage  with  external  providers,  the  external 
+providers  know  it;  and  they  are  now  marketing 
+directly.  From  an  internal  IT  perspective  we  need 
+to  remain  relevant.  Lastly,  the  issue  is  one  of 
+simplification and the reduction of complexity; how 
+do  we  get  it  out  of  our  infrastructure  layer;  how 
+do we get it out of our application layer; and how 
+can we be easier to do business with, within IT and 
+also  as  an  organisation  that  is  serving  these  very 
+demanding customers?
+
+PAUL O’CONNOR, VCE: John Landry, who invented 
+Lotus  1,  2,  and  3,  coined  the  motto,  ‘Radical 
+Simplicity’.  How  do  you  take  a  really  complex 
+problem and make it beautifully simple?
+
+ROB LIVINGSTONE: The fundamental issues we are 
+looking at are no longer technology issues. Although 
+paradoxically,  technology  is  absolutely  critical. 
+IT  is  one  of  the  few  divisions  in  an  organisation, 
+where they have a broad enterprise understanding 
+of  the  taxonomy  of  the  entire  organisation,  there 
+is an operational critical dependency on them. Yet 
+is the one area that is least discussed at the senior 
+levels in organisations.  *
+
+About FST Media
+FST Media produces the most successful technology conferences, 
+roundtables and publications for the banking, insurance and 
+wealth management sectors across the Asia Pacific region. With 
+extensive management experience in conference production, 
+journalism and business development, FST Media prides its 
+reputation on unparalleled access to senior financial services 
+executives, and the delivery of high-quality information on trends 
+and disruptions in the financial services sector.
+
+About VCE
+VCE, or the Virtual Computing Environment Company, was formed 
+in November 2009 by Cisco and EMC with investments from 
+VMware and Intel. By accelerating the adoption of converged 
+infrastructure and cloud-based computing models, VCE can 
+dramatically reduce the cost of IT while improving time to market 
+for its customers. Drawing on the best technology from its four IT 
+industry-leading owners, VCE’s converged infrastructure 
+innovations help customers simplify and accelerate the deployment 
+of the next generation data centre and cloud infrastructures.
+
+REVOLUTIONISING THE CUSTOMER EXPERIENCE WITH CONVERGED INFRASTRUCTURE

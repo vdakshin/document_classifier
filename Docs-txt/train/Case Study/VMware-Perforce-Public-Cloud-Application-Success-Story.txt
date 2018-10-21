@@ -1,0 +1,420 @@
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ 
+
+ 
+
+Deploy and Version Your Application in the Cloud  
+
+ 
+
+ 
+
+ 
+
+ 
+
+P R O F I L E  
+
+Perforce Optimizes Delivery of SaaS 
+Offerings with VMware Technology 
+
+ 
+
+Industry 
+
+Software and technology services 
+
+Corporate Headquarters 
+
+Alameda, California 
+
+Solution 
+
+Version management software 
+
+Web Site 
+http://www.perforce.com/       
+
+T H E   N UM B E R S  
+
+  Perforce fast, scalable version 
+
+management software has been chosen 
+by more than 5,500 companies having 
+more than 450,000 users. 
+
+  Perforce has consistently won high 
+rankings from industry analysts for: 
+  Overall performance 
+  Quality of support 
+  Technology innovation 
+  Customer satisfaction  
+
+I N   B R I E F  
+
+Objective  
+
+To allow customers to use Perforce’s fast, 
+reliable, and highly scalable version 
+management products in a cloud setting. 
+
+Solution  
+
+The Perforce trial copy solution for their 
+version management software is powered by 
+the VMware® virtualization and cloud 
+computing platform in a manner that 
+provides for expansion and growth.  
+
+Business Impact  
+
+  Delivers a virtualized, centrally managed, 
+and flexible version management software 
+solution conveniently to a wide variety of 
+users and industries. 
+
+  Reduces the cost of an on-premises 
+
+solution in a manner that increases energy 
+efficiency and uses less hardware. 
+
+“For Perforce, it’s important that our customers enjoy a fast, reliable, and 
+
+scalable experience when working with our products. In fact, the OpSource™ 
+
+100 percent availability guarantee was a key reason for their selection as our 
+
+hosting provider. That guarantee is powered by VMware vSphere® and its 
+
+vMotion® technology as the foundation of the OpSource solution. 
+
+Choosing a VMware-based cloud provider that supports a REST API gave us 
+
+the automation we needed to provide Perforce customers with trial 
+
+environments at their convenience, rather than at ours.” 
+
+— Tony Smith, European Technical Director, Perforce Software, Incorporated 
+
+ 
+
+ 
+
+When you decide to move your application to a cloud implementation, you 
+must address these challenges: 
+
+  How can you rapidly deploy and configure your application in the 
+
+cloud? 
+
+  How will you know which version of the software is deployed and 
+
+running?  
+
+  How do you change the software or update it to the latest release of 
+
+your application code with confidence?  
+
+This success story describes how Perforce provided their version 
+management software to customers using a Software-as-a-Service (Saas) 
+solution that was delivered via a service provider’s implementation of the 
+VMware virtualization and cloud computing platform.  
+
+Introduction  
+
+Perforce Software, a key VMware partner well known for its highly scalable 
+version management products, wanted to allow customers to use a trial 
+copy of their products in a cloud setting. Perforce successfully used a 
+public cloud provider OpSource™, a Dimension Data company, and 
+Perforce version management tools to create the service on a public cloud. 
+
+This success story describes the architecture and tools that Perforce 
+engineers constructed, and the best practices they used, to enable this 
+solution. This information can prove useful to any engineering team that is 
+working on their application in a cloud context. 
+
+ 
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /1  
+
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ 
+
+ 
+  Deploy and Version Your Application in the Cloud  
+
+ 
+
+"Each group typically has its own unique 
+
+requirements and development 
+
+methodologies. Because it is flexible, and 
+
+it is easily customizable using scripts, 
+
+Perforce versioning software readily 
+
+accommodates each group's development 
+
+style. The system's open architecture has 
+
+turned out to be a value for us." 
+
+— National Instruments 
+
+ 
+
+ 
+
+Perforce with VMware  
+
+Perforce enterprise version management software is used by a wide 
+variety of companies  from startups to many of the largest software and 
+digital asset development companies worldwide. The company serves 
+customers that are as widely diverse as hardware manufacturers, 
+enterprise application developers, stock exchanges, animation studios, and 
+computer games developers. The Perforce P4D Versioning Engine has 
+been rigorously tested and validated on VMware vSphere for some time, 
+and it is fully supported in a VMware environment. For more information, 
+go to: http://www.vmware.com/resources/techresources/10291 
+
+Cloud Requirements  
+
+Perforce engineers needed to create an architecture that would provide a 
+robust cloud solution. For example, Perforce did not want to get into the 
+business of rebooting a customer’s implementation because a provider 
+needed to administer a host server.  
+
+A key decision for this implementation was that it reside on virtual 
+machines that could be moved in a server maintenance scenario, without 
+interrupting the application service. Virtual machines also allowed for the 
+rapid provisioning of the service with the application for a new customer. It 
+was essential that this process had to be a speedy one. 
+
+In addition, the cloud provider had to supply a rich Application 
+Programming Interface (API) that would allow Perforce engineers to build 
+their own provisioning portal for instances of its software. Perforce did not 
+want the customer to see the linkages to the cloud provider’s systems 
+when requesting access to the application.  
+
+Initial Steps 
+
+At the outset of the project in early 2010, the initial step was to provide a 
+“for-free” implementation. Perforce chose one of the main public cloud 
+providers, and created the appropriate images on the public cloud to 
+provide this service. Perforce asked a customer wanting to use its software 
+on a trial basis to declare the region where the image was to be deployed. 
+From there, the customer was allowed to directly access the service 
+provider’s site. 
+
+After 14 days of use, the image was deleted from the system. The original 
+Perforce provisioning user interface was built using the cloud provider’s 
+API. The next challenge for the Perforce engineering team was to enable a 
+“for-revenue” solution that was available globally. 
+
+Choice of Cloud Service Provider 
+
+After the first trial period, Perforce investigated more than 20 different 
+providers before deciding to utilize the public cloud provider, OpSource, for 
+their cloud infrastructure. During this process, Perforce engineers found 
+that cloud providers can be broadly organized into two groups: 
+
+  Providers that serve an IT department that outsources part of its 
+
+work to an outside party. 
+
+  Providers that serve a developer community, but not necessarily one 
+
+that is concerned with outsourcing IT functionality. 
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /2  
+
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ 
+
+ 
+  Deploy and Version Your Application in the Cloud  
+
+ 
+
+The Perforce team wanted a provider that supported a rich API. It was 
+essential to have a web interface for provisioning new instances on the 
+provider’s infrastructure. For this reason, Perforce needed a cloud provider 
+that could serve a developer community, as described above. They also 
+needed production-level robustness and service level agreements (SLAs). 
+After a thorough search, the team chose OpSource principally for their 
+enterprise capabilities and support, as well as their API, as noted below. 
+
+The Provisioning Workflow 
+
+One key aspect of the new system design was that the image or virtual 
+machine is provisioned in-place at the cloud provider’s site. This ensured 
+that gigabytes of data making up the virtual machine contents were not 
+copied across the network, causing delay. 
+
+An outline of the provisioning workflow is described below: 
+
+1.  A base virtual machine that has the Ubuntu® operating system 
+
+loaded is extracted from the cloud provider’s library. 
+
+2.  A Secure Shell (SSH) connection is made to the virtual machine and 
+
+a port is forwarded over the encrypted connection. 
+
+3.  The Perforce Client software is downloaded to the guest operating 
+
+system within the virtual machine. 
+
+4.  All required files to support the application, including the P4 Server 
+itself, are synchronized from a remote Perforce P4 Server running 
+elsewhere in the data center. 
+
+5.  The connection to the virtual machine is closed. 
+
+6.  The virtual machine is “shrink-wrapped” or converted into an Open 
+
+Virtualization Format (OVF) image. 
+
+7.  The OVF image can then be imported into a suitable vCenter setup 
+
+and booted up on behalf of the customer. 
+
+8.  The user is presented with a web page containing the necessary IP 
+
+address, username, and password for connecting to the Perforce 
+instance. 
+
+Several of the steps above were enabled using the OpSource REST 
+(REpresentational State Transfer) API, which is based on the VMware 
+vCloud API. Overall, this process allowed the branch of the repository that 
+contains the desired image of the Perforce software to be synchronized to 
+the virtual machine that is made available to the user. In this case, about 
+100 MB of data was customized on the new virtual machine image. 
+
+When an update occurs later in time, the synchronization process can be 
+repeated, or a new virtual machine can be provisioned quickly to serve the 
+users’ needs. 
+
+Using a Custom Enablement Tool 
+
+In order to make the move to the public cloud easier, Perforce built a tool 
+that automatically constructs virtual machines. The tool was originally 
+developed for a major cloud provider and it now supports VMware and 
+OpSource. OpSource application images are contained in VMware virtual 
+machine images, but constructed remotely on OpSource infrastructure.   
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /3  
+
+P A R T N E R   S U C C E S S   S T O R Y  
+
+ 
+
+ 
+
+Deploy and Version Your Application in the Cloud  
+
+This tool can simultaneously generate 32-bit and 64-bit images for multiple 
+geographical regions. The images contained the Perforce Server, the 
+Perforce Proxy Server, and Perforce Commons.  
+
+For the VMware images, the Perforce provisioning process used VMware’s 
+API to drive VMware vCenter to start the base virtual machine. Then 
+remote logon to the virtual machine using SSH is used to customize and 
+populate the guest operating system with the application software, followed 
+by an export of that virtual machine from vCenter to an OVF file set. 
+
+Lessons Learned 
+
+Through the year-long experience of deploying Perforce software in trial 
+mode on virtual machines at OpSource facilities, the following lessons 
+were learned: 
+
+1.  Ensure that your cloud provider allows the virtual machines to be 
+
+backed up and protected independent of the application being used. 
+This helps to protect the application vendor’s brand if unforeseen 
+events occur in one of the cloud provider’s data centers. 
+
+2.  Every change to the users’ files on the application virtual machine is 
+submitted to a Perforce repository, which provides a second level of 
+protection. The user can revert to any version of their work, as 
+needed. Similarly, the application vendor, in this case Perforce itself, 
+can version control their trial software on the virtual machine. 
+
+Conclusion 
+
+Perforce succeeded in using the public cloud to enable both free trials and 
+for-revenue usage of their P4 versioning software. This was accomplished  
+by using OpSource cloud provider services. OpSource enabled Perforce to 
+fulfill their SLA requirements.   
+
+OpSource provided a rich cloud API for virtual machine and application 
+provisioning that utilized VMware vSphere technology. The OpSource API 
+enabled Perforce to build a transparent provisioning process for end-users. 
+End-users did not have to interact with the cloud provider directly.  
+
+The Perforce solution allowed the end-user to use version management on 
+their work and have it backed up in a secure manner. Overall, the solution 
+met Perforce’s critical needs for an application deployment in the cloud. 
+The solution is now being utilized for production work by a number of 
+Perforce customers in the application development space. 
+
+IM P L EM E NTAT I O N   O V E RV I EW   
+
+VMware Products and Technologies: 
+
+  VMware vSphere® 4.1 Enterprise Plus Edition™ 
+
+  VMware vSphere® 5 
+
+  VMware® vCenter Server™ 4.1 
+
+  VMware® vCenter Server™ 5 
+
+  VMware® vCenter™ Site Recovery Manager™ 
+
+  VMware® ESXi® 5 
+
+Perforce Applications: 
+
+Perforce Version Management 
+software 
+
+Perforce Services: 
+
+  Consulting services 
+
+  Managed services 
+
+  Support services 
+
+ 
+
+      
+
+ 
+
+CUSTOMER SUCCESS STORY /4  
+
+© 2013 VMware Corporation. All rights reserved. This success story is for informational purposes only. VMWARE MAKES NO WARRANTIES, EXPRESS OR IMPLIED, IN THIS SUMMARY. VMware, the 
+VMware logo, vSphere, and the vSphere logo are either registered trademarks or trademarks of VMware Corporation in the United States and/or other countries. All other trademarks are property of their respective 
+owners. Document published March 2012.  
+
+

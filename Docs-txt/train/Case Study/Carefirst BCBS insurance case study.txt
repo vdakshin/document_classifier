@@ -1,0 +1,226 @@
+U.S. HEALTHCARE INSURER  
+CASE STUDY 
+
+ 
+
+       
+
+  
+
+Challenges:  
+•  Pressure on IT staff to 
+
+manage hyper growth in 
+online data storage 
+
+•  Day to day problem 
+
+identification and resolution 
+was consuming IT staff time. 
+
+Solution:  
+•  Virtual Instruments 
+VirtualWisdom SAN 
+Availability Probe, SAN 
+Performance Probe, and 
+SANInsight TAPs. 
+VirtualWisdom SAN Health 
+Audit service 
+
+Customer Benefits:  
+•  With VirtualWisdom, causes 
+of potential application slow-
+downs can be identified and 
+corrective action taken before 
+users are even aware of a 
+problem 
+
+•  Productivity of existing staff 
+is maximized, to ensure that 
+issues are quickly identified 
+and remediated without 
+wasted time 
+
+“We love the Tivo for the SAN 
+capabilities of VirtualWisdom.”  
+Insurer 
+Storage Architect 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+Leading US regional healthcare insurer deploys 
+VirtualWisdom to monitor its SAN to help 
+manage hyper-growth 
+Overview  
+
+This not-for-profit, non-stock health services company offers products and services to 
+individuals and groups in the U.S., serving over three million members. 
+
+IT Environment  
+
+With over 3 PB of online disk capacity today, this insurer’s data storage growth is 
+expected to top 13 PB by 2014.  Primary storage vendors are EMC Symmetrix for Tier 0 
+and 1, IBM DS8000 for Tier 1, and EMC CLARiiON, IBM DS4000 and NetApp NAS for Tier 
+2.  Servers are a mix of Microsoft, VMware, Linux, and UNIX, with less than 20% of the 
+data accessed by a mainframe.  The Fibre Channel fabric is Brocade-based with SANs 
+running at 2, 4, and 8Gbps across more than 3500 ports. Major applications supported 
+include Exchange, Oracle Financials, PeopleSoft, BI, Facets (and integrated health care 
+administration application), and SODS ( a data collection system). 
+
+Challenges 
+
+With the expected increase in data storage, managing growth is clearly the number one 
+challenge for the IT team.  Even basic questions like “what do we have?” and “how is it 
+working?” become time-consuming to answer.  And as the amount of data has increased, 
+it became very evident that faster problem resolution wasn’t enough; that more had to be 
+done to anticipate and prevent small problems from becoming serious and threatening 
+application availability. 
+
+Role of VirtualWisdom – a proactive approach 
+
+In late 2011, Virtual Instruments prepared a VirtualWisdom SAN Health Audit.  By looking 
+deep into the SAN infrastructure physical layers, the VI team quickly identified 
+performance and behavior anomalies plus potential trouble spots. A comprehensive report 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+U.S. HEALTHCARE INSURER  
+CASE STUDY 
+
+ 
+
+       
+
+  
+
+of analysis and findings was provided and on balance, the SAN was deemed to be fairly 
+healthy.  But a few items stood out that required immediate attention: 
+
+•  VirtualWisdom found several physical layer issues such as bad cables, and 
+
+degrading SFPs that if left un-remediated, could have led to application 
+slowdowns or outages 
+
+•  Some hosts only had one SAN connection, and this lack of redundancy could 
+
+have caused an application outage if the only path had failed 
+
+•  Some hosts had two SAN connections but only showed traffic on one connection 
+(unbalanced paths), even though the multi-pathing configuration appeared to be 
+set up correctly  
+
+The IT team reported that VirtualWisdom offered a level of visibility into the SAN fabric 
+they had never seen before, giving them a real-time and historical window into all 
+transactions from the host to the LUN.  
+
+To ensure that the staff had a way to measure current and future SAN health, it embraced 
+the Virtual Instruments SAN Maturity Model (SMM). The SMM framework gives enterprises 
+a template of Maturity Levels, Key Process Areas (KPAs), Goals (KPIs), and best practices 
+that help quantify the direct benefits of SAN optimization. By fully adopting the 
+recommendations in the SAN Maturity Model, as well as implementing the technology 
+solution to monitor and manage the SAN, this insurer is well down the path of lower cost 
+and lower risk, even in the face of hyper-growth. 
+
+Going forward, this customer will expand the use of VirtualWisdom from just on Tier 1 
+storage to broad deployment on their Tier 2 storage systems.  They also plan to add the 
+VirtualWisdom Virtual Server Probe to be able to better identify and resolve VMware I/O 
+performance problems. 
+
+Summary 
+
+When asked what he would recommend to new VirtualWisdom customers, the Storage 
+Architect remarked that he was very pleased with the increased visibility of the I/O offered 
+by the VirtualWisdom solution, augmented by the expertise of the Virtual Instruments 
+Professional Services staff. 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+“The VI SAN Maturity Model 
+enables us match our storage 
+infrastructure to our business 
+
+needs.”  
+
+Insurer 
+Storage Architect  
+
+ 
+
+ 
+25 Metro Drive, Suite 400  
+San Jose, CA 95110  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2012 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 02/12 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

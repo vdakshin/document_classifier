@@ -1,0 +1,177 @@
+STORAGE SWITZERLAND
+
+WHAT YOUR SRM TOOL ISNʼT TELLING YOU
+
+Eric Slack, Senior Analyst
+
+SRM tools are designed to solve the problem of trying to 
+manage a diverse environment with an equally diverse set 
+of device-speciﬁc tools. To do this they provide a ‘single 
+pane of glass’ from which to monitor these disparate sub-
+systems. The challenge isn’t getting enough information, 
+there’s a tremendous amount of data available from what 
+can be a very large number of sources. The challenge is 
+getting the right information at the right time. SRM tools 
+have much to say, but there is a lot they’re not telling you.  
+
+This reliance on reported information ignores the fact that a 
+failed or failing device can’t usually report its condition in 
+time to prevent the problem or resolve it quickly. Also, a 
+switch that’s experiencing a problem will usually suspend 
+non-essential operations, like providing status data to 
+external SRM tools, until the situation improves. This can 
+mean that the devices that most need attention are the 
+ones least likely to provide the required information. 
+
+API control
+
+Transaction-based data
+
+Most SRM tools poll storage devices at regular intervals to 
+gather information. While useful for capacity reporting and 
+trending, these static data points give a series of 
+‘snapshots’ of each element, instead of providing dynamic 
+information about transactions - or what’s happening 
+between the elements. For performance monitoring and 
+analysis this interval polling and averaging can result in 
+improper assumptions being made about the cause of 
+application latency,and the wrong steps being taken to 
+resolve it - buying more spindles or switching capacity. 
+
+Physical layer metrics 
+
+SRM tools rely on information supplied by the devices or 
+elements they’re supposed to be monitoring. They’re not 
+taking data directly from the physical layer of the network. 
+
+SRM tools can also provide incomplete information about 
+infrastructure elements because they rely on APIs from the 
+manufacturers. In order to maintain perceived competitive 
+differentiators, storage vendors often hide (keep 
+proprietary) their most useful APIs, so SRM vendors can be 
+left with inadequate SMI-S compliant APIs, and perhaps a 
+subset of the proprietary APIs. The result can be APIs that 
+don’t produce the needed detail or lag hardware 
+developments as vendors get around to updating them. 
+This can even be true when the storage vendor also owns 
+the SRM tool, since it’s often been acquired and still 
+represents an ‘outside’ entity, from the point of view of an 
+engineering team that’s trying to get to market quickly with 
+the latest hardware. APIs can also be inconsistent 
+regarding the information that’s provided from one system 
+to the next, since there are no real standards. 
+  
+
+[1]
+
+Real-time data for effective troubleshooting
+
+Traditional tools provide separate data points from different 
+elements in the infrastructure at measured intervals, usually 
+5 to 15 minutes apart, but typically longer. But these data 
+don’t give granular enough information to uncover issues 
+that are occurring between the intervals. Also, if they’re just 
+providing averages, they can be masking trouble spots as 
+well. 
+
+Solutions like VirtualWisdom from Virtual Instruments 
+measure the effect of SAN infrastructures on application 
+latency. They use physical layer TAPs to gather real-time 
+data about transactions between physical and virtual 
+servers and storage LUNs to identify where bottlenecks are 
+occurring. This data is recorded and can be replayed, 
+showing all transactions during the time in question. Other 
+tools can show you a ‘DVR’ type window, but it’s still at the 
+5 minute (or longer) granularity they capture. Real-time data 
+provides a method to accurately understand the causes of 
+latency and performance issues and stop the assumptions. 
+This can also stop the wasteful over-provisioning of disk 
+storage or switch bandwidth to address application latency 
+problems, a practice which has resulted in storage network 
+link utilization percentages for enterprise SAN 
+environments typically in the single digits. 
+
+Optimization
+
+Real-time data about virtualization host-to-LUN latency can 
+help admins place new VMs on the appropriate hosts and 
+load balance existing server workloads. 
+
+These performance optimization solutions that use physical 
+layer data from the network don’t rely on APIs. This means 
+they’re also not reliant on the skill level of the software 
+engineer that wrote them, on the resources they had to 
+devote to the task or the completeness of the data that 
+was used. Also, they’re not continually late in supporting 
+the current hardware and ﬁrmware versions of the storage 
+devices. And they often support a wider range of the 
+hardware vendors’ own SRM tools, supporting even the 
+oldest legacy storage systems. 
+
+Some SRMs tools use active host agents in an attempt to 
+provide a full path view of the transaction, a practice that’s 
+not ideal for two reasons. First, if you track the round trip 
+latency of an I/O from the host to the LUN, you can see 
+that there’s a problem, but you don’t have any information 
+to identify where the problem is. Is the slowdown due to 
+something happening on the host or the SAN? Second, 
+these agents, the manufacturers claim, exact only a 1- 2% 
+overhead on the host. But this is an average number, 
+arrived at by examining the impact over a fairly long period 
+of time, usually 5 minutes or more. In fact, the very act of 
+executing the polling can itself create a slowdown, and it 
+takes an outside view of the transaction to detect if that 
+slowdown is exacerbated (or even caused) by the agent.
+
+This transactional data can also be used to optimize 
+storage tiering, not just raw capacity utilization. With the 
+advent of SSDs, the average cost of enterprise upper-tier 
+storage has increased dramatically. While adding SSD to 
+increase storage IOPS can be a viable strategy, much 
+better knowledge of real-time application latency is needed 
+in order to make it a prudent investment. Otherwise, 
+putting in this faster storage might be akin to driving a race 
+car in stop and go trafﬁc. Similar to storage tiering, VMware 
+environments need optimized storage performance as well. 
+
+Data taken from physical layer TAPs can help to identify 
+infrastructure problems faster. SRM tools that rely on taking 
+data from storage, network and server elements can get 
+left out, as mentioned above, when problems occur and 
+devices stop sending data. Also, real-time performance 
+tuning is difﬁcult when the devices being tuned are also 
+providing the data. Like asking a carrier pilot how things 
+are going while they’re trying to land the plane - they can’t 
+do both at the same time.
+
+[2]
+
+Most SRM tools do a good job of consolidating the 
+information coming from multiple sources in a storage 
+infrastructure. Although they take a lot of data from these 
+devices, most of it is gathered through polling, essentially 
+static snapshots of what’s going on with that speciﬁc 
+device. This means that the usefulness of the SRM tool is 
+reliant on the health of the device to provide data on itself, 
+on the currency of APIs supplied by that device’s 
+manufacturer and on the timeliness of those polling 
+intervals. 
+
+Infrastructure monitoring systems like VirtualWisdom, 
+which use network physical-layer TAPs can provide real-
+time transactional data to identify the sources of 
+application latencies and improve troubleshooting. Instead 
+of trying to determine what their SRM tools aren’t telling 
+them, IT administrators can rely on these data to increase 
+storage utilization, resolve performance issues and 
+optimize the infrastructure.
+
+Storage Switzerland is an analyst ﬁrm focused on the virtualization and storage marketplaces. For more information 
+
+please visit our web site: http://www.storage-switzerland.com.
+
+About Storage Switzerland
+
+[3]
+
+

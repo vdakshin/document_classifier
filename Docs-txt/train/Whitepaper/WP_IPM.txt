@@ -1,0 +1,505 @@
+INFRASTRUCTURE
+
+PERFORMANCE MANAGEMENT
+
+Optimizing Performance, Health and Utilization 
+
+and Enabling IT to Become a Trusted, Ever-Agile Business Partner
+
+WHITEPAPER
+
+Enterprise IT Agility Challenges: Cost, Complexity, Convergence 
+Technology  and  application  trends  such  as  Big  Data,  storage  and 
+server  growth,  mobile  applications,  bring-your-own-device  (BYOD) 
+and social media are the biggest disrupters of Enterprise IT today. The 
+resultant  pressure  on  IT  organizations  is  to  deliver  24x7  “dial-tone” 
+service  levels  that  align  with  business  demands  for  availability  and 
+performance  while  remaining  ever-agile  to  meet  continually  evolving 
+application and business requirements. Compounding the complexity 
+and  risk  of this “new  normal”  state  on  mission-critical  infrastructures 
+are complex interdependencies and technology advances—leading to 
+blindingly  fast  servers,  converging  infrastructure  components,  mass 
+adoption of virtualization, and rapid migration to the private cloud . The 
+key driver behind all of these trends is demand for anytime/anywhere 
+application access and flawless performance—from any device. All this 
+exponentially  increases  storage  requirements,  mobile  data,  IP  traffic 
+and  servers,  and  fuels  advances  in  new technologies. The  result  is  a 
+never-ending pace of rapid transformation, and explosive increase in 
+complexity and risk.
+
+Data managed within enterprise datacenter
+Storage growing from 0.8zb in 2009 to 35zb in 2020
+Mobile Data traffic growth from mobile devices
+IP traffic growth
+Servers worldwide growth
+
+50x
+
+44x
+
+26x
+
+15x
+
+10x
+
+2011
+
+2014
+
+2017
+
+2020
+
+The New “Normal”
+Current IT infrastructures are at a point where the entire system, from 
+server  to  storage  fabric  and  storage  arrays  have  all  been  virtualized 
+and abstracted to the extent that clear visibility into performance and 
+issue  resolution  are  on-going  challenges. As  multi-vendor,  multi-layer 
+data  center  architectures  perpetually  change,  views  from  the  user, 
+administrator and application are increasingly de-coupled from the actual 
+physical architectures. As a result, a clear and unbiased understanding 
+of  the  physical  infrastructures,  the  applications  dependent  on  them, 
+and how they are performing, is difficult to achieve. Moreover, this “new 
+normal”  state  makes  it  nearly  impossible to  manage  with  confidence 
+and  authority.  These  circumstances  are  creating  inherent  gaps  in 
+visibility  that  must  be  addressed  in  order  to  guarantee  performance 
+and availability.
+
+Summary
+
+•  Enterprise IT Agility 
+
+Challenges Mission critical 
+IT application delivery 
+infrastructures are being 
+virtualized at a break-neck 
+pace, and are increasingly 
+abstracted and complex. Agile 
+development means changes 
+are continual, and these same 
+infrastructures are required 
+to deliver a flawless end-user 
+experience characterized by 
+hyper-responsive performance 
+and availability.
+
+•  Impediments to Aligning IT 
+
+Organizations with Business 
+Goals Not having the right 
+people, processes and 
+technology solutions, and 
+leveraging old technologies 
+that weren’t purpose-built to 
+handle today’s complex and 
+ever-changing infrastructure, 
+prevents IT from delivering 
+business-aligned service 
+levels.
+
+•  Infrastructure Performance 
+
+Management (IPM) – a 
+Platform to Ensure IT Business 
+Value IPM is a new platform 
+category for managing the 
+physical, virtual and cloud 
+infrastructure.
+
+•  Capabilities Required in 
+
+an IPM Platform 
+Key requirements include 
+continuous, real-time, 
+system-wide data collection 
+from heterogeneous IT 
+infrastructures, combined 
+with unbiased correlation and 
+analysis. 
+
+•  Benefits of an IPM platform 
+Delivers ROI to the business 
+for both CAPEX and OPEX 
+savings and optimization; 
+guarantees performance, 
+mitigates risk and aligns IT 
+infrastructures with business 
+and application requirements. 
+
+•  Virtual Instruments’ 
+
+VirtualWisdom platform 
+A comprehensive IPM platform 
+providing 360o visibility into 
+the performance, health 
+and availability of the IT 
+infrastructure. 
+
+2
+
+Managing the New “Normal” 
+
+It’s now business-critical for enterprises to have a purpose-built infrastructure performance management platform. 
+One that is specifically designed for granular, real-time monitoring of performance throughout the infrastructure 
+supporting mission critical applications and business processes. One that also assures system-wide performance 
+and availability. This platform should enable infrastructure teams (no matter if they are server, storage, virtualization 
+or performance focused) to de-risk mission critical workloads across physical, virtual and cloud based computing 
+environments.  At  the  same  time  it  should  also  provide  deep  insights  into  the  real-time  performance  of  the  IT 
+infrastructure, so that the risk of virtualizing new applications and deploying new technologies can be minimized. 
+Leveraging such a platform would allow IT Organizations to align with business demands and application requirements, 
+and become a trusted partner in driving business growth. 
+ 
+
+Impediments to Aligning IT Organizations with Business Goals: 
+Minding and Managing the Gap
+ 
+There are three main factors—people, processes and technology—and any one of them can prevent IT organizations 
+from reaching a state of maturity, where they are seen by the broader organization as a business advantage that 
+can deliver exacting, cost-optimized service levels back to the organization.
+
+• 
+
+• 
+
+• 
+
+ People  and  Organizational  Structure:  The  IT  organization  itself  can  impact  business  alignment,  particularly 
+if  resources  and  management  are  functionally  siloed.  For  example,  organizations  are  often  divided  into 
+Application,  Server,  Network,  and  Storage  administrators.  If  there  is  a  performance  problem,  the  various 
+administrators  tend  to  make  sure  that  it  is  not  occurring  in  their  domain. This  structure  pits  teams  against 
+each  other  and  results  in  finger  pointing. This  predicament  is  further  antagonized  by  device-specific  system 
+administration  tools  that  provide  a  biased,  myopic  focus  on  only  one  facet  of  an  IT  infrastructure. When  it 
+comes to interrelated and interdependent systems, without a holistic and unbiased view of the environment, it’s 
+nearly impossible to manage performance—let alone quickly find root causes of problems or set accurate SLAs.  
+
+ Process  and  IT  Maturity:  IT  organizations  are  forever  focused  on  providing  cost  appropriate  service  levels  but 
+many  lack  the  processes  or  metrics  to  fully  realize  their  commitments.  The  reasons  range  from  a  lack  of 
+executive  sponsorship,  to  over-allocated  or  mis-allocated  resources,  to  little  or  no  institutionalized  business 
+collaboration processes. In all cases, teams must focus on finding and resolving specific problems. However 
+in many cases, they lack the proper instrumentation and processes for fast and conclusive resolution. Many IT 
+teams try to focus on aligning their operations with business goals. Often, however, this ends up being more of 
+a hope than a reality. Without continuing executive commitment to people and processes (backed by accurate 
+data) it’s tough to achieve alignment. Having uniform processes in place, especially when there are multiple 
+stakeholders  with  different  reporting  structures,  incentives  and  goals—often  proves  impossible  to  maintain.  
+
+ Technology and Tools for Yesterday’s Environments: Systems Management tools have traditionally focused on specific 
+components of an infrastructure, such as provisioning and monitoring server resources, managing storage capacity, 
+or utilization of the storage and network fabric. In most cases these legacy device-specific tools have been marketed 
+as performance monitoring, even though it is only monitoring utilization. Neither singularly or combined do these 
+tools provide the necessary performance information that Application, Server, Storage and Cloud administrators 
+need to understand how their mission-critical systems infrastructures are actually performing. They lack real-time 
+performance metrics, like infrastructure response times for executing actions, and efficiency in moving data/
+information. They also have limited scalability, are often agent-based and vendor-specific. These cobbled together 
+tool sets may try to show that the overall IT environment is working fine, with the right capacities and resources 
+provisioned. However, if application response is poor, related IT service levels are still deemed unsatisfactory.  
+
+3
+
+A Moment of Clarity: Performance versus Utilization. Infrastructure monitoring tools use utilization metrics to infer the 
+potential impact on performance. Since they are not measuring true performance, it leads teams to over provisioning 
+resources in order to ensure that utilization doesn’t impact performance. However, inferring performance when over-
+provisioning is no longer acceptable, is not an option. The days of over-provisioning to ensure performance are gone, 
+since it’s no longer viable with hyper data growth and accompanying cost pressures—especially when the fundamental 
+promise of virtualization and the cloud is to drive down costs and achieve greater utilization against existing assets. 
+
+Requirements  for  IT  to  be  Ever-Agile:  Another  important  factor  placing  everything  at  risk  is  the  ever-changing  IT 
+infrastructure landscape. Systems Management tools were originally designed for monitoring physical elements, but 
+with the advent of Virtualization and Cloud architectures—those tools are neither appropriate nor useful for managing 
+the related complexities. The continued virtualization and abstraction of the infrastructure and underlying physical 
+elements, makes performance management, problem avoidance, root cause problem analysis and remediation of 
+the physical elements all the more difficult.
+
+IPM: Defined
+
+Infrastructure Performance Management is the ability to continuously capture, correlate and analyze in real-time, 
+the  system-wide  performance,  utilization  and  health  of  heterogeneous  physical,  virtual  and  cloud  computing 
+environments. Ultimately, IPM enables IT to establish and maintain the service levels the business requires while 
+driving the systems level optimization and agility that is the promise of virtualization and the cloud. 
+ 
+
+IPM: Managing Through Compounding Complexity and Risk to Assure 
+IT Business Value and Alignment
+ 
+Infrastructure Operations and Management teams are forever under pressure to deliver IT service levels that are aligned 
+with enterprise business goals and application performance requirements. In fact business processes and application 
+teams often set IT’s priorities in terms of availability and performance. Moreover, new IT infrastructure compute 
+models include hybrid environments where portfolios of applications are migrated between and reside within physical, 
+virtual and cloud environments simultaneously. The result is compounded complexities in monitoring, managing and 
+reporting—necessitating an IPM platform for assuring performance optimization, risk mitigation and sustainable SLA’s.  
+ 
+Trying  to  manage  through  this  complexity, 
+forces the device-specific management tools of 
+yesterday to change. In the past, management 
+tools  focused  on  capacity,  utilization  and 
+management of individual physical components. 
+With  the  move  to  Virtualization  and  new 
+deployment  models,  Application  Performance 
+Management (APM) and Network Performance 
+Management (NPM) have been trying to extend 
+and  fill-in  for  what’s  missing.  The  challenge 
+is  that  neither  delivers  a  holistic  view  of  the 
+underlying IT infrastructure. So, between all of 
+these tool sets that address device, application 
+and network performance, there is still a huge 
+gap in understanding system-wide performance.
+
+This can be solved with a real-time Infrastructure 
+Performance Management platform.
+
+4
+
+Real-Time IPM Platform Requirements 
+
+An  IPM  platform  must  be  able  to  continuously  capture,  correlate  and  analyze  system-wide  heterogeneous 
+infrastructure performance, utilization and health metrics in real-time. It must provide an unbiased view of system-wide 
+infrastructure performance, from virtual machine, to server, to switch fabric, to storage array to logical unit of storage.  
+
+ Continuous,  Granular  Monitoring  and  Measurement: The  most  important  metric  for  IT  Infrastructure  performance 
+is infrastructure response times. This is defined as the time it takes for any application, running on a physical 
+server or Virtual machine to place an I/O request and get a response back. In large, highly virtualized and/or 
+cloud infrastructures, too much happens within a five or 20 minute polling-interval that shouldn’t be glossed-
+over. For any monitoring to be effective, organizations need to capture the minimum, maximum and average 
+at  no  greater  than  one  second  intervals  for  accurate  insight  into  the  overall  infrastructure  performance. 
+
+ Unbiased and Heterogeneous: Infrastructures by design are heterogeneous, with multiple vendors delivering their 
+part of a complete physical, virtual and cloud solution. An IPM platform must collect data from various devices 
+without vendor or product-specific bias or dependencies. It must deliver an unbiased, vendor independent view of 
+the whole system—with precise metrics that enable understanding of what is happening throughout the system. 
+
+ System-Wide Data Collection, Visibility and Analytics: The IPM platform must capture, organize and correlate metrics 
+about all the infrastructure elements. This means from the virtual machine, server, fabric, storage arrays and logical unit 
+number. Further, the data must be presented in a way that clearly describes interdependencies in context of system-
+wide performance. The data must also be persisted, to make it easy to go back in time and pinpoint exactly where 
+and when a performance impacting event happened and how it affected the system overall. The IPM platform must 
+track all granular I/O activity across highly virtualized infrastructures—from server transmission, through the switch 
+to storage and back—and leverage an analytics framework for contextual understanding, correlation and discovery. 
+
+ Scalability: A typical virtualized enterprise IT infrastructure is comprised of thousands to hundreds-of-thousands 
+of servers and switch and storage I/O ports, and petabytes of storage. An IPM platform must be able to handle 
+the large number of installed physical devices and the associated metrics without a hiccup and without risk of 
+hitting a limit. Most legacy device or system managers struggle with scale by design. 
+
+• 
+
+• 
+
+• 
+
+• 
+
+ 
+
+Benefits of an IPM platform
+
+An IPM platform delivers numerous CAPEX and OPEX benefits to both IT and the business:
+• 
+
+ Operational  Efficiency  and  Effectiveness:  Cross-domain  system  visibility  enables  comprehensive  measurement 
+of the  infrastructure  performance  from the Virtual  Machine  all the  way to the  storage  LUN.  So  performance 
+bottlenecks  can  be 
+impacting  the  business—resulting 
+in  significantly  higher  performance—and  enabling  higher  utilization  of  existing  infrastructure  assets. 
+Additionally,  IPM  helps  IT  improve  infrastructure  response  times,  proactively  avoid  outages,  quickly 
+identify  root  cause  and  remediate  performance  issues,  and  drive  continuous  improvement  in  reliability. 
+
+identified  and  corrected  proactively,  before 
+
+• 
+
+ Risk Mitigation: IPM enables highly accurate baselining to proactively identify the impact of any and all changes to 
+the infrastructure. This improves forecast accuracy, and results are seen in real-time. For example, IT can migrate 
+applications from physical to virtual and cloud environments with much lower risk. Application performance has 
+an interdependent relationship with the infrastructure it runs on. Different applications require different resource 
+quality,  and  compete  for  resources  with  other  applications,  so  it  is  important  to  manage  the  infrastructure 
+accordingly. By leveraging IPM data, it’s possible to project application performance and ensure that business 
+processes are executing as they should. This is equally applicable whether the change process spans months of 
+engineering design, test and rollout, or as it becomes more real-time in highly automated cloud environments. 
+
+5
+
+• 
+
+ Business Alignment: The  business  side  of  an  enterprise  is  mainly  concerned  with  providing the  service  levels 
+required  by  their  users  and  having  an  agile  response  as  those  requirements  change  and  evolve—all  while 
+optimizing the related operational (OPEX) and infrastructure capital expenses (CAPEX). For IT organizations, IPM 
+gives the ability to stay in lock-step with business agility. IPM helps IT quickly identify root causes, and proactively 
+(and significantly) reduce mean time to resolution. By increasing system utilization, reducing over-provisioning 
+and making the correct decisions on infrastructure spend versus performance required, CAPEX is significantly 
+reduced. Having an IPM platform helps cut through virtualization complexity, accelerates transformation and 
+minimize risks.
+
+The IPM Platform: Enabling IT Organizations for Ever-Agile Business Alignment 
+
+Though it’s still important to understand utilization and how it affects performance, it’s now essential to understand 
+it  within  the  context  of  true  infrastructure  response  times.  It’s  critical  to  understand  how  the  infrastructure  is 
+delivering  the  resources  required  by  the  applications  relying  on  it,  and  if  the  resources  are  delivering  the  right 
+service  levels.  Virtual  Instruments’  VirtualWisdom  IPM  Platform  was  purpose-built  from  the  ground  up  to 
+address  all  of  the  challenges  and  gaps  resulting  from  the  circumstances  and  evolutionary  scenarios  described 
+above.  It  delivers  a  continuous  real-time  understanding  of  application  data  behavior  at  the  protocol  level 
+throughout  physical,  virtual  and  cloud  infrastructures.  Whereas  other  management  tools  focus  on  utilization 
+and  health  at  the  device  layer,  the VirtualWisdom  IPM  Platform  looks  at  the  entire  compute  environment  from 
+a  systems  level—focusing  on  correlation  and  interdependencies  of  performance,  utilization  and  health  overall. 
+ 
+The benefits for IT organizations are multi-fold, as they are now enabled to:
+•  Right size and align infrastructure capacity and resource quality
+•  Drive greater utilization against existing assets and resources
+•  Accurately measure I/O traffic, correlate system-wide data and monitor trends
+• 
+•  Proactively, accurately and quickly identify and remediate problems. 
+•  Deliver the right level of performance at the appropriate cost
+•  Establish SLAs aligned with business requirements
+•  Effectively partner with and contribute to the success of the business
+
+Improve infrastructure response times
+
+Virtual Instruments’ VirtualWisdom®: The Award Winning IPM Platform
+
+VI’s  VirtualWisdom  is  the  industry  leading  IPM 
+platform for customers’ physical, virtual and private 
+cloud computing environments. VirtualWisdom has 
+been architected from the ground-up to measure 
+and  ensure  the  performance,  utilization  and 
+health  of  mission-critical  systems  infrastructures. 
+It  is  comprised  of  VirtualWisdom  application 
+software  and  three  distinct  probes  that  capture 
+metrics  from  multiple  data  sources  throughout 
+the  open  system.  The  platform  server  persists 
+and  correlates  the  granular  metrics  collected  to 
+deliver authoritative visibility, trending, alerting and 
+reporting. VirtualWisdom delivers the industry’s only 
+real-time, unbiased and system-wide Infrastructure 
+Performance Management solution.
+
+Virtual Server ProbeVM
+
+Servers & VMs
+
+VirtualWisdom Server
+
+SAN Availabilty ProbeSW
+
+FC Switch Fabric
+
+SANInsight® TAP Patch Panels
+
+SAN Performance ProbeFC8-HD48
+
+SAN Performance ProbeFC8-HD
+
+AND/OR
+
+SAN Performance ProbeFC8
+
+Storage Arrays
+
+6
+
+VirtualWisdom Server and Dashboard 
+The VirtualWisdom  Server  is  a  robust,  database-driven  application that  controls  and  collects  metrics  from  both 
+hardware and software probes. The platform persists all metrics collected over time and organizes these metrics 
+in  both  physical  and  logical  groupings. This  enables  advanced  correlation  and  analysis  across  all  layers  of  the 
+open  systems  stack.  This  capability  also  delivers  on  the  requirements  for  real-time  alerting,  historic  trending 
+and  reporting  and  advanced  ‘what-if’  modeling.  The  VirtualWisdom  server  also  provides  a  fully  customizable 
+Dashboard UI, which displays a time-correlated, cross-domain view of the performance, utilization and health of 
+the system as a whole, based on the deep, granular metrics available from the probes. The dashboard is entirely 
+configurable, so the display and reports can be presented in a user defined context that fits with the enterprise’s 
+operational  process.  It  also  provides  for  integration  with  third-party  products  and  management  frameworks.  
+
+VirtualWisdom Virtual Server Probe
+The Virtual  Server  Probe  is  a  software-based  probe  that  is  integrated  with VMware  vCenter  and  collects  more 
+than  100  metrics  on  the  associated VMware  estate.  Some  of  the  metrics  captured  by  this  probe  include  CPU 
+utilization and status, memory utilization, disk I/O requests and capacity, as well as network requests and utilization 
+by Virtual Machine, ESX Host and Cluster. The metrics are then persisted and correlated with the metrics from the 
+other VirtualWisdom probes, enabling end-to-end correlation from virtual machine to the logical unit of storage. 
+
+VirtualWisdom SAN Availability Probe
+The SAN Availability Probes is a software-based probe that collects key data from Fibre Channel and FCoE directors, 
+switches and embedded devices via SNMP. The software probes collect comprehensive metrics for every active 
+port in the SAN and organizes them according to the attached device type. Some representative metrics include 
+utilization, frames, bytes, reads and writes, as well as key faults such as loss of synchronization, link resets, link 
+failures, packet discards and CRC errors. Organizing these metrics according to the attached device type enables 
+customers to manage storage, servers, ISL’s and other devices through global rules as opposed to a port-by-port 
+basis. The metrics are captured and reported to the VirtualWisdom Server on a user configurable time-based interval.  
+
+SAN Performance Probes
+The hardware-based SAN Performance Probes are the most advanced, high performance line-rate data capture 
+and analysis devices available in the industry. These devices sit at the protocol layer to capture and analyze every 
+FC frame header and SCSI Command on the SAN in real-time, at 2, 4 and 8 Gbits per second. These probes capture 
+the true, unaltered, I/O profile of the actual application traffic, detecting application performance slowdowns and 
+transmission  errors  by  measuring  every  SCSI  I/O  transaction  from  start  to  finish. The  SAN  Performance  Probe 
+Family consists of an 8 link entry-level device, a high-density 16 link model and the latest ultra high-density 48 link 
+enterprise edition, all in a 2U footprint. This product family delivers the full range of cost and density options that 
+customers require.
+ 
+SANInsight® TAP Patch Panel System
+Traffic Access Points (TAPs) provide a passive, fail-safe access point to Fibre Channel network traffic on the TAP’d 
+link. This makes the ‘light’ available for real-time performance monitoring, deep problem diagnosis and protocol layer 
+failure analysis. TAPs are non-powered, non-mechanical devices that reflect a small portion of the signal through the 
+TAP to another port, which provides a copy of the light to upstream, out of band probes. The passive TAP does not 
+introduce any latency or overhead, has no impact on application or SAN performance and is integrated with several 
+industry-leading Fibre Channel Patch Panel Systems for simple deployment.
+
+7
+
+COST
+RISK
+
+CYCLE TIME
+
+PERFORMANCE
+AVAILABILITY
+UTILIZATION
+
+Delivering on the Promise of Agility 
+and Business Alignment 
+
+The move to virtualized and cloud environments can help reduce CAPEX 
+growth in servers, but this new paradigm can’t contribute to controlling 
+storage CAPEX or OPEX growth in maintenance costs and staff. In addition, 
+there’s often a revenue impact of downtime or unacceptable performance, 
+which can also impact brand equity and customer satisfaction. If one is 
+not vigilant, the net effect of cloud-driven consolidation, migration, and 
+new technology roll-outs is increased risk and cycle time, often negating 
+the  very  reason  to  move  to  a  cloud  infrastructure  in  the  first  place. 
+
+VirtualWisdom®  accelerates  enterprise  transformation  by  helping 
+you  guarantee  the  benefits  of  reduced  capital  expenditures,  lower 
+operational  costs,  and  improved  business  agility,  which  is  the 
+promise  of  server virtualization  and  migration to  a  private  cloud.  By 
+providing  an  end-to-end  view  of  transactions,  VirtualWisdom  cuts 
+through  the  haze  of virtualization.  At  the  same  time,  it  reduces  risk 
+by guaranteeing superior infrastructure performance, which is critical 
+to  application  performance.  The  key  to  maximizing  performance  is 
+deploying  instrumentation  technology  that  directly  measures  what 
+is  going  on  at  a  deep  granular  level  in  the  transaction  workflow, 
+from  the  virtual  machine  all  the  way  to  the  storage  array  LUNs. 
+
+IT  organizations  that  manage  high  levels  of  complexity  in  their  IT 
+infrastructures require a sophisticated set of capabilities to diagnose 
+and  prevent  application  slowdowns  caused  by  the  infrastructure, 
+especially during consolidation or migration. Complexity is driven by 
+the  heterogeneity  of  storage  subsystems,  operating  systems,  fabric 
+switches, virtualization  platforms,  and the  continued  growth  of  data 
+and  bandwidth  utilization.  Data  center  consolidation,  accelerated 
+use of server and storage virtualization and the migration to a cloud 
+computing  environment  further  complicate  the  IT  Organization’s 
+ability  to  manage  and  optimize  performance  and  availability. 
+
+For  IT  Organizations,  VirtualWisdom  provides  very  granular  and 
+continuous,  real-time  measurement  capabilities  from  the VM  to  the 
+LUN. It enables you to reduce application response time, proactively 
+avoid  outages,  and  dramatically 
+improve  resource  utilization. 
+VirtualWisdom  helps  identify  application  performance  bottlenecks 
+in  the  infrastructure  resulting  in  significantly  higher  performance 
+and  utilization,  and  delivers  significant  CAPEX  and  OPEX  savings. 
+ 
+For More Information
+For more information on Infrastructure Performance Management or 
+how VirtualWisdom can benefit your organization, please contact us at 
+info@virtualinstruments.com
+
+ 
+
+©2013  Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13European Headquarters46 New Broad StreetLondon EC2M 1JHPhone: +44 (0) 203-651-5685Corporate Headquarters25 Metro Drive, San Jose, CA 95110 · USAPhone: 408-579-4000Fax: 408-579-4001Asia Pacific Headquarters8 Cross Street Level 28PWC Building, Singapore 048424Phone: +65 6850-7841Salessales@virtualinstruments.comPhone: 888-522-2557Supportsupport@virtualinstruments.com

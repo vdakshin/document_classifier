@@ -1,0 +1,2911 @@
+ 
+Vblock Solution for SAP: Use Case and Performance Results 
+
+Table of Contents 
+
+www.vce.com 
+
+ 
+
+ 
+
+ 
+
+VBLOCK™ SOLUTION FOR SAP: USE CASE 
+AND PERFORMANCE RESULTS 
+
+Version 2.0 
+February 2013 
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ................................................................................................................................. 5	  
+Business case ............................................................................................................................ 5	  
+About this document .................................................................................................................. 5	  
+Scope ......................................................................................................................................... 6	  
+Audience .................................................................................................................................... 6	  
+Key results ................................................................................................................................. 6	  
+Feedback ................................................................................................................................... 6	  
+Technology overview .................................................................................................................. 7	  
+Vblock™ Systems ....................................................................................................................... 7	  
+Vblock System 720 ................................................................................................................. 7	  
+Vblock System 320 ................................................................................................................. 7	  
+Vblock Systems benefits ........................................................................................................ 8	  
+Architecture overview ................................................................................................................. 9	  
+Vblock System configuration ...................................................................................................... 9	  
+SAP server configuration ........................................................................................................... 9	  
+SAP production environment instance on Vblock Systems ..................................................... 10	  
+Summary comparison of environments ................................................................................... 12	  
+Testing methodology and results ............................................................................................ 13	  
+HP LoadRunner performance testing landscape ..................................................................... 13	  
+Testing overview ...................................................................................................................... 14	  
+Methodology ............................................................................................................................ 14	  
+SAP environment performance testing ................................................................................. 15	  
+Data center operations testing .............................................................................................. 15	  
+Infrastructure metrics ............................................................................................................... 16	  
+Server ................................................................................................................................... 16	  
+Storage I/O ........................................................................................................................... 16	  
+VMware vCenter ................................................................................................................... 16	  
+SolarWinds ........................................................................................................................... 16	  
+Performance comparison and usage ...................................................................................... 17	  
+RTC run ................................................................................................................................... 18	  
+FICO run .................................................................................................................................. 19	  
+Application performance comparison ................................................................................... 19	  
+OTC run ................................................................................................................................... 20	  
+Application performance comparison ................................................................................... 20	  
+Performance comparison ......................................................................................................... 21	  
+Resource usage ................................................................................................................... 21	  
+
+ 
+
+3 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+	  
+
+ 
+
+Optimization and balancing of compute, network, and storage throughout the Vblock 
+
+Performance analysis and key contributors ............................................................................. 22	  
+Processor architecture and configuration ............................................................................. 22	  
+UCS integrated and converged fabric configuration ............................................................. 23	  
+Virtual application server dynamic performance tuning ........................................................ 23	  
+System .................................................................................................................................. 23	  
+SAP on Vblock System use cases ........................................................................................... 24	  
+Deployment and scaling of servers (vCPU, vMemory) ............................................................ 24	  
+SAP recovery using EMC RecoverPoint CRR ......................................................................... 29	  
+Performing recovery using RecoverPoint bookmarks .......................................................... 30	  
+Stateless computing ................................................................................................................. 32	  
+Dynamic on-demand provisioning ............................................................................................ 33	  
+Conclusion ................................................................................................................................. 34	  
+Appendix A: Performance and comparison results .............................................................. 35	  
+RTC run ................................................................................................................................... 35	  
+Application performance ....................................................................................................... 35	  
+RTC run 4x4 ......................................................................................................................... 35	  
+Resource usage ................................................................................................................... 36	  
+Network usage ...................................................................................................................... 36	  
+I/O usage .............................................................................................................................. 37	  
+FCoE usage .......................................................................................................................... 38	  
+CPU/vCPU ............................................................................................................................ 40	  
+Storage ................................................................................................................................. 41	  
+FICO run .................................................................................................................................. 46	  
+Application performance comparison ................................................................................... 46	  
+Resource usage for I/O ........................................................................................................ 47	  
+Resource usage for FCoE .................................................................................................... 48	  
+CPU ...................................................................................................................................... 50	  
+Storage ................................................................................................................................. 51	  
+OTC run ................................................................................................................................... 55	  
+Application performance comparison ................................................................................... 55	  
+I/O resource usage ............................................................................................................... 56	  
+FCoE resource usage ........................................................................................................... 58	  
+vSphere ................................................................................................................................ 59	  
+CPU usage ........................................................................................................................... 59	  
+Storage ................................................................................................................................. 61	  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+Large multifaceted data center organizations are under increasing pressure to reduce operating and 
+capital costs through virtualization technologies while also being asked to improve application 
+availability and performance. Vblock™ Systems provide administrators and architects the capability to 
+not only virtualize business-critical and resource-intensive applications such as SAP, but also 
+recognize return on investment through improved performance and efficiency. 
+
+This document addresses how SAP can be virtualized on Vblock Systems to achieve significant 
+improvements in application performance compared with a typical retail customer environment using 
+Cisco network infrastructure, EMC storage and information infrastructure, and VMware virtualization 
+technologies. This document also provides test data and results illustrating the differences between 
+SAP performance in non-virtualized and virtualized environments. 
+
+Within this document, test data and results demonstrate the significant performance improvements 
+realized with Vblock Systems. Performance analysis of these results is also given, to provide context 
+to what the results actually mean in production and test environments. 
+
+Business case 
+
+Enterprise organizations need to validate the feasibility of virtualizing mission-critical applications like 
+SAP in their data center environments as part of an overall private cloud strategy. To address their 
+concerns about virtualizing SAP and placing it into the private cloud, administrators must have 
+assurances that application performance and operation will in fact provide significant improvements. 
+
+By adopting a private cloud strategy and virtualizing SAP on Vblock Systems, customers can achieve 
+key business objectives to reduce costs through virtualization while also significantly improving 
+application performance through ease of use. 
+
+About this document 
+
+This document presents information on the performance of SAP on Vblock Systems in a virtualized 
+environment, compared to a retail customer’s production and test environment in a non-virtualized 
+environment. 
+
+The test configuration was designed to support SAP running six application servers with close to 
+20,000 SAPS on the Database Server and close to 9,000 SAPS on each application server in the 
+non-virtualized environment. Then, we ran a performance comparison between this configuration and 
+the Vblock System. 
+
+This document describes how SAP is virtualized using Vblock Systems, and it includes several test 
+scenarios with performance metrics and comparisons that demonstrate the benefits of SAP on Vblock 
+Systems. In addition, this document describes a set of use cases that are available when SAP is 
+deployed within a private cloud infrastructure. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The purpose of this document is to describe how the: 
+
+§  SAP solution was migrated to an offsite Vblock System. 
+§  New environment was configured, tested, and validated to exceed the performance of a legacy 
+
+environment. 
+
+§  Advanced functionality of the Vblock System was used in value-add use cases, and validated 
+
+within a performance-testing environment. 
+
+Scope 
+
+This document provides a focused evaluation of the SAP landscape on Vblock Systems and is 
+applicable to a wide variety of SAP landscapes that could be virtualized to take advantage of the 
+enhanced functionality of the Vblock System. 
+
+Audience 
+
+This document was written for customers interested in learning about SAP on the Vblock Systems, 
+which includes SAP and infrastructure administrators and architects, as well as other individuals 
+tasked with evaluating, acquiring, managing, operating, or deploying SAP in a virtualized data center 
+environment.  
+
+Key results 
+
+The following list details the key improvements observed during SAP on Vblock Systems testing: 
+
+§  Performance improvement of 50% or more when running SAP on Vblock Systems compared 
+
+with a retail customer’s production and test environments. 
+
+§  Reduced complexity when configuring and deploying SAP, unlike physical server and database 
+environments, which can be hampered by capacity, storage, and compute resource limitations. 
+Increased scalability to dynamically add resources to a running virtual SAP dialog instance. 
+
+§ 
+§  Ability to perform SAP recovery using RecoverPoint continuous remote replication. 
+§  Support for Stateless Computing, allowing Vblock Systems service profiles to be migrated 
+
+across the environment without negatively impacting running systems. 
+
+§  Simplified provisioning of new SAP servers through orchestration and automation 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment 
+applies, and your feedback. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Technology overview 
+
+This section summarizes the technologies used in the solution. 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+For more information, go to www.vce.com. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+7 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Vblock Systems benefits 
+
+Vblock Systems provide SAP customers with several benefits from its integrated hardware stack 
+including: 
+
+§  Fewer unplanned downtimes and reduced planned downtimes for maintenance activities 
+§  Reduced complexity due to preconfigured and centralized IT resources leading to standardized 
+
+IT services 
+
+§  Predictable performance and operational characteristics 
+§  Tested and validated solutions with unified support and end-to-end vendor accountability 
+§  Graceful scaling of a Vblock Systems environment by adding: 
+
+-  capacity to an existing Vblock System  
+-  more Vblock Systems 
+
+§  Virtualized efficiency with predictable scaling for a given footprint 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Architecture overview 
+
+Vblock System configuration 
+
+The table below describes the Vblock System 700 configuration used for this testing. 
+
+Component 
+Cisco Unified Computing 
+System 
+
+Configuration 
+1 x Cisco B250 Blade 
+Microsoft Windows Server 2003 x64 
+Microsoft SQL Server 2005 Enterprise Edition SP3 CU4 
+4 x Cisco B200 Blades – VMware vSphere Servers 
+SAP central instance and SAP dialog instances on virtual machines 
+
+Storage 
+
+EMC Symmetrix VMAX 
+
+Storage area network 
+
+Cisco MDS 9222i Switches 
+
+SAP server configuration 
+
+This section covers specific configuration information for the SAP server. The key point to note here is 
+that only the database server was physical; the rest of the servers were configured as virtual servers 
+within the Vblock System. The table below describes the SAP server configuration. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+Component 
+Database server (B250 Blade) 
+running on physical hardware 
+
+Configuration 
+12 CPU cores (2 x six-core Westmere X5670 2.93 GHz)  
+192 GB RAM 
+
+Storage 
+
+22 x 320 GB data volumes 
+8 x 30 GB temp DB volumes 
+1 x 200 GB logs volume 
+1 x 2 TB backup/restore volume 
+1 x 50 GB SAP executables volume 
+1 x 350 GB OS, SQL and pagefile volume 
+1 x 25 GB clustered SQL main mount point volume 
+Quest LightSpeed used for backup/restore 
+
+Application servers – running on 
+VMware vSphere (B200 Blades) 
+
+8 CPU cores (2 x quad-core Nehalem X5570 2.93 GHz) per blade 
+96 GB RAM per blade 
+
+SAP application server 
+
+VMware vSphere 4 
+
+Storage 
+
+4x4 vServer 40 GB RAM 
+3x6 vServer 40 GB RAM 
+
+25 GB boot volume 
+
+100 GB host volume 
+
+This section describes the high-level configuration of the SAP environment on the Vblock System. The 
+Production/QA/Test/Dev SAP environments were virtualized and resided on the Cisco UCS. EMC 
+Symmetrix VMAX provided tiered storage based on performance expectations through a SAN 
+network to the SAP landscape. 
+
+SAP production environment instance on Vblock Systems 
+
+The configuration team was able to realize a key benefit of the Vblock System: the ability to support 
+multitier architectures running either physical, virtual, or mixed modes.  
+
+To demonstrate this capability, a Microsoft SQL Server was installed and configured for a retail 
+customer’s SAP production environment system on a physical host. Using four ESXi hosts, eight 
+virtual machines were then created using five UCS servers to build the SAP landscape. The primary 
+components of the SAP landscape were: 
+
+§  1 x SAP central instance 
+§  7 x SAP application servers 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+10 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 1 shows the SAP landscape running on a Vblock System 700 configuration at the virtual, 
+physical, and storage layers.  
+
+ 
+
+Figure 1. SAP landscape running on a Vblock System 700 configuration 
+
+NNoottee:: Microsoft SQL Server 2005 is installed on a physical host while SAP central instance and dialog instances 
+
+are installed on virtualized hosts. The back-end storage used for this setup is EMC Symmetric VMAX. 
+
+ 
+
+Layer 
+Virtual 
+
+Physical 
+
+Storage 
+
+Description 
+4 Cisco UCS B200 half-blade servers 
+8-core CPU and 96 GB RAM 
+
+Microsoft SQL Server Database  
+1 Cisco UCS B250-M2 full-blade server equipped with a 12-core CPU and 
+192 GB RAM. 
+Redundant pair of Cisco UCS 6120 Fabric Interconnects with 10 Gigabit 
+Ethernet and Fibre Channel over Ethernet (FCoE) functionality. 
+
+Cisco MDS 9222i Multiservice Modular Switch connects the UCS blades 
+through a fibre channel storage area network. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Summary comparison of environments 
+
+The following table shows physical configurations of the retail customer’s production and test 
+environments, compared with the Vblock System.  
+
+Summary 
+
+Customer production 
+
+Customer test 
+
+Vblock System 
+
+Database server 
+
+22 cores x 1.6 GHz 
+(IA64/Itanium), 176 GB 
+
+24 cores x 2.8 GHz 
+(Opteron), 192 GB 
+
+Database 
+
+Microsoft SQL Server 
+2005 
+
+Microsoft SQL Server 2005 
+
+12 cores x 2.93 GHz 
+(Nehalem/Westmere) 192 
+GB 
+
+Microsoft SQL Server 
+2005 
+
+Operating system 
+
+Microsoft Windows 
+Server 2003  
+
+Microsoft Windows Server 
+2003 
+
+Microsoft Windows 
+Server 2003  
+
+Central instance 
+
+On App Server Tier 
+
+On App Server Tier 
+
+On App Server Tier 
+
+App Server environment 
+
+8 cores x 2.6 GHz 
+(Opteron), 32 GB each 
+
+8 cores x 2.4 GHz(Xeon)  
+32 GB each 
+
+4x4 vServer 40 GB RAM 
+3x6 vServer 40 GB RAM 
+
+App Server number 
+
+6 
+
+6 HP Proliant BL680c G5 
+
+8 
+
+Estimated SAPS on DB 
+Server 
+
+Estimated rating 
+~19,388 
+
+SAP 2-tier SD Benchmark: 
+25,550  
+Estimated rating: 22,675  
+
+SAP 2-tier SD  
+Benchmark : 25,500 
+(approx.) 
+
+Estimated SAPS on App 
+Server (each) 
+
+9950 
+
+HP LoadRunner 
+
+Virtual users per 
+generator 
+
+Load Generators 
+
+N/A 
+
+N/A 
+
+N/A 
+
+8775 
+
+V 9.5 
+
+6250 
+
+V 9.5 
+
+250 
+(5 second frequency, 120 
+runs) 
+
+250 
+(5 sec frequency, 120 
+runs) 
+
+10 
+
+10 
+
+The following definitions apply to each environment in this table: 
+
+§  Customer production – the environment where the customer was actually running SAP. This can 
+
+be referred to as the “as-is” environment. 
+
+§  Customer Test – the environment the customer was planning to implement after performance 
+
+testing was completed based on a new vendor platform. A copy of the existing production 
+environment was used. This can be referred to as the “to be” environment. 
+
+§  Vblock System – the Vblock System used to measure performance against the Test 
+
+environment at the customer site. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+Testing methodology and results 
+
+HP LoadRunner performance testing landscape 
+
+The LoadRunner environment was set up on the Vblock System providing direct access to the SAP 
+application.  
+
+Figure 2 shows the SAP PE2 landscape on the Vblock System. According to the virtualized 
+application servers (also known as dialog instances), the number of servers, amount of memory, and 
+number of processor cores assigned could vary from test run to test run. HP Performance Center and 
+HP LoadRunner 9.5 tools were used to generate a load on the PE2 Vblock System. LoadRunner was 
+used to stress the PE2 Vblock System by executing OTC, RTC, and FICO business processes. This 
+tool was also used to perform data analysis.  
+
+Business processes (implemented as scripts) were created with the Virtual User Generator 
+(LoadRunner scripting tool), which was later imported into the controller (Performance Center) to 
+execute the test scenario outlined during the planning phase of the project.  
+
+Figure 2. LoadRunner landscape for SAP on Vblock System 
+
+NNoottee:: The above diagram shows the LoadRunner landscape using two virtualized blade servers running 11 
+
+virtual machines. Of these virtual machines, one was configured as Load Controller and 10 were used as 
+Load Generators. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+Testing overview 
+
+The Vblock™ Solution for SAP described in this document consisted of a virtualized SAP instance on 
+a Vblock System. A number of tests were performed on the SAP database (SAP DB), central 
+instance, and an application server configuration comparable to what would be seen in typical 
+production and test environments to demonstrate the significant performance improvements that can 
+be expected when running SAP on Vblock Systems. Performance results between a virtualized SAP 
+on Vblock Systems and a non-virtualized SAP landscape are detailed in this document. Performance 
+testing was compared with performance test results from a typical test environment. 
+
+The following tests were performed: 
+
+§  SAP application server layer  
+§  SAP application server sizing 
+§  Online response times tests and batch throughput 
+§  Stress tests using HP LoadRunner 
+§  SAP batch and dialog load tests to test Vblock System capacity limits 
+§  Server, storage, and network components 
+§  Deployment and scaling of servers 
+§  Dynamic resource allocation 
+§  Migration of various components 
+
+The purpose of this testing was to demonstrate the following characteristics of SAP on Vblock 
+Systems: 
+
+§  Meets or exceeds existing physical environment performance using Vblock Systems 
+§  Analysis of the key attributes of the performance pertaining to the Vblock System design 
+§  Demonstrate the efficiency of resource provisioning on Vblock Systems 
+
+Methodology 
+
+Only Vblock System and SAP standard procedures and methods were used to attain the benchmark 
+results. The test results provided in this document were gathered using various systems and 
+application administration tools. Testing experts compared the performance of the Vblock System with 
+what would be seen in a traditional customer environment and divided the testing into two major 
+areas: 
+
+§  Application (SAP environment)  
+§  Data center operations (Vblock System) environments, listed below 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+14 
+
+ 
+
+ 
+
+ 
+
+ 
+
+SAP environment performance testing 
+
+The SAP environment performance testing included two test cases: 
+
+§  HP LoadRunner for interactive performance testing 
+
+HP LoadRunner was used to simulate Online Dialog user load on the SAP environment and 
+Average Transaction Response. Both were then measured for the duration of test 
+
+§  Batch processing 
+
+The batch workload was reproduced, where possible. Additional batch and dialog instance load 
+testing was conducted to significantly increase the workload on the system to identify capacity 
+limits. In addition to the analysis of the LoadRunner results, usage statistics were gathered at the 
+infrastructure levels during batch processing. 
+
+Data center operations testing 
+
+The data center operation testing was limited to three major categories: 
+
+§  Addition of resources to a running virtual SAP dialog instance 
+
+The testing team demonstrated the ability to add resources, such as vCPU and vMemory, to a 
+running virtual SAP dialog instance. The team also successfully added vCPUs (up to eight) and 
+memory (up to 80 GB RAM) to a SAP dialog instance running on a virtual machine. The addition 
+of vCPUs and memory required a restart of the virtual machine. When the SAP dialog instance 
+was restarted, the additional vCPU and memory were immediately apparent (in SAP transaction 
+OS06).  
+
+§  Migration of service profiles 
+
+The testing team demonstrated and validated the nature of stateless computing on a Vblock 
+System by migrating the Vblock System service profiles from one physical blade server to 
+another. The relevant use cases were: 
+-  Hardware migration 
+-  Hardware maintenance 
+-  Hardware upgrade 
+-  Recovery in the event of hardware failure  
+
+§  Operational testing 
+
+The operation-level testing was completed to demonstrate the versatility of the Vblock System 
+and summarize the flexibility and agility of Vblock Systems. These use cases included the 
+following operational tests: 
+-  Deployment and scaling of the SAP application 
+-  On-demand provisioning of resources 
+-  Systems monitoring and management including patches and routine maintenance 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+15 
+
+ 
+
+ 
+
+Infrastructure metrics 
+
+Performance monitoring tools were an important part of the testing process; in both physical and 
+virtualized environments these tools played a critical role. Resources such as database, CPU, 
+memory, storage, I/O, and other components needed to be measured to ensure performance 
+requirements were met. For testing, the following performance monitoring tools were used to measure 
+performance: 
+
+Server 
+
+The following performance monitoring tools were used during the RTC, OTC and FICO runs to 
+measure database performance and CPU usage: 
+
+§  Physical server – PerfMon:  
+
+PerfMon is an SNMP-based performance tool that was used to measure database and CPU 
+performance and usage while a series of SAP RTC, OTC, and FICO tests were executed on the 
+Vblock System.  
+
+§  Virtual server – VMware vCenter Performance Charts and ESXTOP  
+
+The performance counters maintained by vCenter and accessed via the vCenter client were 
+used to monitor the performance of the virtualized customer environment. Alternatively, 
+VMware’s ESXTOP was executed on the ESXi server to provide realtime views of ESXi server 
+and virtual machine performance. 
+
+Storage I/O 
+
+Storage and I/O performance were measured using the EMC Symmetrix VMAX STP tool. STP can be 
+used as a workload analyzer to collect performance statistics on a Symmetrix VMAX storage array. In 
+the case of this testing, STP was used to measure storage performance while RTC, OTC and FICO 
+runs were executed on the Vblock System. 
+
+VMware vCenter 
+
+VMware vCenter was used to take advantage of the capability to view CPU, memory, disk, and 
+network resources in a single performance chart, rather than having to navigate multiple charts. 
+Specifically, these charts provided: 
+
+§  Aggregated views and high-level summaries of resource distribution across the entire 
+
+environment 
+
+§  Thumbnail views of virtual machines, hosts, resource pools, clusters, and data stores 
+§  Drill-down capability to perform root cause analysis of problems 
+§  Detailed storage views showing usage by file type  
+
+SolarWinds 
+
+SolarWinds was used to measure network and fabric-level performance of the Vblock System. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+16 
+
+ 
+
+ 
+
+Performance comparison and usage 
+
+This section of the report contains a comparison of the performance and usage of infrastructure 
+resources while the environment was subjected to three critical business processes: 
+
+§  RTC 
+§  OTC 
+§  FICO 
+
+NNoottee:: The RTC, OTC, and FICO performance results were based on workload-generating scripts provided by 
+
+the customer to measure the business process performance of the Vblock System compared with the 
+customer test environment. 
+
+This section covers two major areas: 
+
+§  A summary of the business process performance 
+§  Details of the underlying resource usage from an infrastructure perspective 
+
+The following three tests were run on the Vblock System: 
+
+§  RTC run 
+§  OTC run with a 3x6 virtual machine configuration 
+§  FICO run with a 3x6 virtual machine configuration 
+
+For each of the above runs, application, vSphere servers and storage-level performance comparisons 
+were performed, along with resource usage.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+17 
+
+ 
+
+ 
+
+ 
+
+ 
+
+RTC run 
+
+The table below shows performance statistics. 
+
+ 
+SAP RTC transactions 
+SAPGUI_IDOC_17_VAR1_RTC_EXECUTE 
+
+Customer 
+system 
+148.557 
+
+ 
+Vblock System 
+77.047 
+
+ 
+Difference 
+48% 
+
+SAPGUI_IDOC_17_VAR2_RTC_EXECUTE 
+
+139.516 
+
+SAPGUI_IDOC_338_VAR1_RTC_EXECUTE 
+
+762.415 
+
+SAPGUI_IDOC_338_VAR2_EXECUTE 
+
+697.899 
+
+SAPGUI_MB51_RTC_EXECUTE 
+
+SAPGUI_ZPTR_MAIN_RTC_EXECUTE 
+
+2.463 
+
+0.534 
+
+SAPGUI_ZPTR_VAR1_RTC_EXECUTE 
+
+103.19 
+
+ 
+
+1854.574 
+
+66.139 
+
+284.458 
+
+266.804 
+
+1.491 
+
+0.297 
+
+71.192 
+
+767.428 
+
+53% 
+
+63% 
+
+62% 
+
+39% 
+
+44% 
+
+31% 
+
+59% 
+
+Figure 3. Performance statistics 
+
+NNoottee:: The figure above shows the comparison of performance response time between the Vblock System and 
+the customer’s test platform. Results show that the Vblock System was able to process seven business-
+critical RTC transactions with an improved average response time of 59%. 
+
+	  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+18 
+
+ 
+
+ 
+
+FICO run 
+
+Application performance comparison 
+
+The table and Figure 4 illustrate the performance improvements seen when running SAP FICO 
+transactions in the Vblock System environment, as compared with the customer environment.  
+
+ 
+SAP FICO transactions 
+SAPGUI_FAGLB03_FICO_EXECUTE 
+
+SAPGUI_FAGLL03_FICO_EXECUTE 
+
+SAPGUI_FBL1N_FICO_EXECUTE 
+
+SAPGUI_FBL5N_FICO_EXECUTE 
+
+SAPGUI_KE24_FICO_EXECUTE 
+
+Customer 
+system 
+23.348 
+
+292.46 
+
+14.132 
+
+103.185 
+
+20.555 
+
+SAPGUI_KE30_VAR1_FICO_EXECUTE 
+
+34.28 
+
+SAPGUI_KE30_VAR2_FICO_EXECUTE 
+
+423.162 
+
+SAPGUI_ZGRIRAGING_FICO_EXECUTE 
+
+1058.521 
+
+SAPGUI_ZPOACCRUAL_FICO_EXECUTE 
+
+1163.213 
+
+ 
+
+3132.856 
+
+ 
+Vblock System 
+0.178 
+
+ 
+Difference 
+99% 
+
+172.764 
+
+7.694 
+
+45.744 
+
+9.611 
+
+15.703 
+
+133.011 
+
+189.728 
+
+307.942 
+
+882.375 
+
+41% 
+
+46% 
+
+56% 
+
+53% 
+
+54% 
+
+69% 
+
+82% 
+
+74% 
+
+72% 
+
+Figure 4. SAP FICO transactions running on three virtual application servers 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+	  
+
+19 
+
+ 
+
+ 
+
+NNoottee:: The figure above shows the comparison of performance response time between the Vblock System and 
+
+the customer’s test platform. Results show that the Vblock System was able to process nine business-
+critical FICO transactions with an improved average response time of 72%. 
+
+OTC run 
+
+Application performance comparison 
+
+The table below and Figure 5 illustrate the performance improvements seen when running SAP OTC 
+transactions in the Vblock System, as compared with the customer environment.  
+
+ 
+SAP OTC transactions 
+SAPGUI_VA41_OTC_DATA_EXECUTE 
+
+SAPGUI_VKM1_VAR2_OTC_EXECUTE 
+
+SAPGUI_VKM1_VAR3_OTC_EXECUTE 
+
+Customer 
+system 
+0.1 
+
+59.298 
+
+51.823 
+
+SAPGUI_ZBACKORDER_VAR1_OTC_EXECUTE 
+
+0.288 
+
+SAPGUI_ZBACKORDER_VAR2_OTC_EXECUTE 
+
+0.414 
+
+SAPGUI_ZDLVSTATUS_OTC_EXECUTE 
+
+SAPGUI_ZNOBACKORDER_OTC_EXECUTE 
+
+SAPGUI_ZVA14L_OTC_EXECUTE 
+
+SAPGUI_ZVASSUMM_VAR1_OTC_EXECUTE 
+
+SAPGUI_ZVASSUMM_VAR2_OTC_EXECUTE 
+
+SAPGUI_ZVENDORMARK_OTC_EXECUTE 
+
+SAPGUI_ZWORKLOAD_MAIN_EXECUTE 
+
+16.412 
+
+147.907 
+
+8.472 
+
+26.027 
+
+1.538 
+
+2.68 
+
+30.984 
+
+SAPGUI_ZWORKLOAD_VAR1_OTC_EXECUTE 
+
+34.455 
+
+SAPGUI_ZWORKLOAD_VAR2_OTC_EXECUTE 
+
+44.526 
+
+Vblock 
+System 
+0.139 
+
+21.447 
+
+19.315 
+
+0.1 
+
+0.1 
+
+18.083 
+
+111.665 
+
+1.083 
+
+11.733 
+
+0.497 
+
+0.906 
+
+16.493 
+
+15.443 
+
+14.168 
+
+ 
+
+424.924 
+
+231.172 
+
+ 
+Difference 
+-39% 
+
+64% 
+
+63% 
+
+65% 
+
+76% 
+
+-10% 
+
+25% 
+
+87% 
+
+55% 
+
+68% 
+
+66% 
+
+47% 
+
+55% 
+
+68% 
+
+46% 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+20 
+
+ 
+
+ 
+
+Figure 5. SAP OTC transactions running on three virtual appliccation servers 
+
+NNoottee:: The figure above shows the comparison of performance response time between the Vblock System and 
+
+the customer’s test platform. Results show that the Vblock System was able to process 14 business-
+critical OTC transactions with an improved average response time of 46%. 
+
+	  
+
+Performance comparison 
+
+The performance comparison was completed for application, vSphere server, and storage 
+components from the application performance availability and usage perspectives: 
+
+Resource usage 
+
+Resource usage focus was on the Vblock System at the component level. The resource usage was 
+captured to understand the overall performance of the Vblock System from an infrastructure 
+perspective, while running SAP as one of the solutions. The test team was interested in the use of the 
+following key components of the Vblock System while running SAP: 
+
+§  Network 
+§  Storage 
+§  Servers 
+§  CPU 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+21 
+
+ 
+
+ 
+
+From the virtual machines perspective, the four application servers (4 x vCPU virtual machines) used 
+were: 
+
+§  SAPCL55 
+§  SAPCL53 
+§  SAPCL54 
+§  SAPCL59 
+
+Performance analysis and key contributors  
+
+The significant performance metrics and measurements described in the previous section can be 
+realized due to a number of improvements in storage and application layout, network optimization, 
+and inherent advantages of the Vblock System, with its optimized multi-application compute system. 
+The following key factors contributed to the superior performance improvements observed in the test 
+results provided in this configuration report. 
+
+Processor architecture and configuration 
+
+The Xeon 5570 processor was shown in testing to exceed the performance of the Opteron processor 
+in server benchmark testing (1.6 times faster); while the Xeon 5680 (used in these tests) was 
+observed to far exceed the 5570’s performance by an additional 43%, leading the combination of the 
+Xeon 5680 and UCS B250 server to vastly outperform Opteron-based HP servers. 
+
+Figure 6. Cisco UCS B250 M2 performance 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+UCS integrated and converged fabric configuration 
+
+One of the key factors in understanding how these performance results exceeded expected results is 
+in the UCS blade configuration. Because the SAP layout enables the database server (physical), all 
+application servers (virtual), and LoadRunner clients (virtual) to reside on a single chassis connected 
+to a set of 6120 Fabric Interconnects, the majority of SAP traffic remains internal, thus taking 
+advantage of the large amount of bandwidth available. 
+
+Virtual application server dynamic performance tuning 
+
+Application server virtual machines in the Vblock System were sized and numbered to approximately 
+match the SAPS capacity of the TE2 application tier, which was 3 x 8,775 (approximately 26,325) 
+SAPS. 
+
+In vSphere, four- way application servers are a “sweet spot” and the SAPS rating of a four-way virtual 
+machine is estimated to be 6,250. Based on 6,250 SAPS per four-way virtual machine, four 
+application servers were required to approximately match the TE2 application tier rating. After initial 
+testing with a 4 x 4 application server virtual machines configuration, an uneven distribution in the 
+CPU usage was observed, whereby 1-2 of the virtual machines were at 100% CPU usage, while the 
+remaining virtual machines were relatively underused. This was attributed to imperfect load balancing 
+of the virtual users as they were ramped up by LoadRunner.  
+
+To more evenly distribute CPU usage across the application tier and prevent a virtual machine from 
+spiking to 100%, the number of virtual machines was reduced and then made larger in size. The next 
+sizing configuration to reflect this and also roughly match the TE2 application tier SAPS rating was 3 x 
+6-way virtual machines. The SAPS rating of a 6-way virtual machines configuration is approximately 
+between 8,000 and 9,000 SAPS (estimated from 4- and 8-way benchmark certifications 2009028 and 
+2009029, which shows approximately linear scalability). 
+
+Optimization and balancing of compute, network, and storage throughout the Vblock System 
+
+Performance testing showed that less than 25% of cache, disk, and front-end and back-end ports 
+were used. The Symmetrix VMAX storage array can handle much larger workloads, thus validating a 
+key design point of optimization and balancing of compute, network and storage throughout the 
+Vblock System. In this example, a Vblock System 700 minimum configuration was designed with four 
+UCS chassis with corresponding network and storage capacity. The customer test bed consumes one 
+UCS chassis, and thus less than 25% of storage resources. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+23 
+
+ 
+
+ 
+
+SAP on Vblock System use cases 
+
+This paper provides the following use case descriptions: 
+
+§  Deployment and scaling of servers [vCPU, vMemory] 
+§  SAP recovery using EMC RecoverPoint continuous remote replication (CRR) 
+§  Stateless computing : Migration of Vblock System service profiles  
+§  Dynamic on-demand provisioning 
+
+Deployment and scaling of servers (vCPU, vMemory) 
+
+The testing team demonstrated the ability to add resources, such as vCPU and vMemory, to a running 
+virtual SAP dialog instance.  
+
+The team successfully added vCPUs (up to eight) and memory (up to 80 GB RAM) to an SAP dialog 
+instance running on a virtual machine. The addition of vCPUs and memory required restarting the 
+virtual machine. Once the SAP dialog instance was restarted, the additional vCPU and memory were 
+immediately apparent (in SAP transaction OS06). 
+
+Application server virtual machines in the Vblock System were sized and numbered to approximately 
+match the SAPS capacity of the customer. The TE2 application tier was 3 x 8,775 (approximately 
+26,325) SAPS. When using vSphere, four-way application servers were considered to be the sweet 
+spot: The SAPS rating of a four-way virtual machine is estimated at 6,250 (source: SD benchmark 
+certification 2009028). Based on 6,250 SAPS per four-way virtual machine, the team required four of 
+these to approximately match the TE2 application tier rating. After initial testing with 4 x 4 application 
+server virtual machines, the team observed an uneven distribution in the CPU usage where one or 
+two of the machines were at 100% vCPU while the remaining were relatively underused. The team 
+attributed this to imperfect load balancing of the virtual users by LoadRunner.  
+
+To distribute vCPU usage more evenly across the application tier, and also to prevent any virtual 
+machine from spiking to 100%, the team reduced the number of virtual machines but made them 
+larger. The next appropriate sizing configuration (which also approximates the TE2 application tier 
+SAPS rating) was 3 x 6-way virtual machines. The SAPS rating of a 6-way virtual machine was 
+approximately between 8,000 and 9,000 SAPS (estimated from 4- and 8-way benchmark certifications 
+2009028 and 2009029, which show approximately linear scalability). 
+
+The following data was obtained from ESXTOP, with the data captured as a batch file and viewed in 
+ESXplot (freeware from www.virtualizetips.com/2010/03/how-to-use-esxplot-to-read-your-esxtop-
+reports/). The metric shown below is the percentage (%) used of the virtual machine. As each virtual 
+machine is 4 x vCPU, the percentage used needs to be divided by 4 (see the following link for 
+explanation http://communities.vmware.com/docs/DOC-9279, section “%USED”). 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+24 
+
+ 
+
+ 
+
+Figure 7. SAPCL55 application server virtual machine performance (CPU %used) 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+25 
+
+ 
+
+ 
+
+Figure 8. SAPCL53 application server virtual machine performance (CPU% used) 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+26 
+
+ 
+
+ 
+
+Figure 9. SAPCL54 application server virtual machine performance (CPU% used) 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+27 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 10. SAPCL59 application server virtual machine performance (CPU% used) 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+28 
+
+ 
+
+ 
+
+SAP recovery using EMC RecoverPoint CRR 
+
+If you need to install a software update, apply a patch, or perform testing on your SAP production 
+data, you should capture a “point in time” when you know that the data is accurate using EMC 
+RecoverPoint, which allows continuous data protection, either locally or remotely through the use of 
+bookmarks. 
+
+EMC RecoverPoint continuous data protection technology allows you to perform the following actions 
+in an SAP environment: 
+
+§  Provide local protection (CDP) 
+§  Provide remote replication (CRR) 
+§  Provide protection for any point in time 
+§  Present any point in time to another host in the SAP environment 
+
+For this testing, RecoverPoint CRR was set up in a heterogeneous storage environment. Replication 
+was performed from a Vblock System 700 to a Vblock 1, and the configuration used array-based 
+splitter technology on the CLARiiON storage of the Vblock System and SANTap-based splitter 
+technology on the VMAX storage of the Vblock System 700. Heterogeneous replication was then 
+performed on the boot LUN and remaining SAP LUNs. 
+
+The boot LUN was replicated from the primary UCS to the disaster recovery (DR) UCS. The system 
+was fully booted at the disaster recovery site without affecting the primary (production) site, as shown 
+in Figure 11. 
+
+Figure 11. Customer SAP Boot running on RPA 1 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+29 
+
+ 
+
+ 
+
+Performing recovery using RecoverPoint bookmarks 
+
+You can view and manage your SAP environment through the RecoverPoint GUI, and protect the 
+environment based on individual LUNs or groups of LUNs. Using RecoverPoint bookmarks, you can 
+create reference points in the indefinitely granular landscape of point-in-time protection, which you can 
+use to perform a production rollback, if necessary.  
+
+Creating a RecoverPoint bookmark 
+1. 
+
+In the RecoverPoint GUI, click the Bookmark link. The Create a bookmark image for SAP 
+Solutions Manager page appears. 
+
+2.  Enter a name for the bookmark in the Bookmark Name field and click OK. 
+
+To enable image access: 
+
+1. 
+
+In the Recovery GUI, click the arrow icon and select Enable Image Access on the recovery host. 
+An Enable Image Access wizard appears, which allows you to transfer this bookmark image to 
+the recovery server. 
+
+2.  Select one of the following options to enable image access: 
+
+a.  Select the latest image, which selects the latest image saved 
+b.  Select an image from the list, which allows you to select from a list of saved images 
+c.  Specify a desired point in time, which allows you to select a specific point in time 
+
+3.  Select Groups from the RecoverPoint GUI menu and select Group Sets. This then allows you to 
+
+create a new consistency group. 
+
+Creating a new consistency group 
+1.  Click Create. A Group Set dialog appears. 
+2.  Select the consistency groups you want to group together for the new consistency group. 
+3.  Enter a name for the SAP consistency group and click OK. 
+4.  Select the frequency you want to use for bookmarks. Setting the frequency controls how often 
+
+bookmarks will be created across your consistency groups and allows you to have granularity to 
+roll back just one at a time, or present only one bookmark to the recovery server while still 
+maintaining a common point in time across all three consistency groups in your SAP environment. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+30 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Creating a suspend state 
+
+To bring up consistency groups simultaneously, you need to put the production environment into a 
+Suspend state to ensure there are no IP address conflicts. To put an SAP virtual machine in Suspend 
+state: 
+
+1. 
+
+In the RecoverPoint GUI, right-click SAP Solution Manager and select Suspend. The Confirm 
+Suspend dialog prompt appears. 
+
+2.  Click Yes to suspend the virtual machine. 
+3.  Once you initiate the Suspend state, you can enable access to the SAP bookmark that you 
+
+created earlier. If there is data corruption or data integrity loss, this bookmark allows you to roll 
+your production data back to the point-in-time of the bookmark. 
+
+4.  Enable image access to the bookmark by selecting the Image Access icon and clicking Enable 
+
+Image Access. The Enable Image Access window appears. 
+
+5.  Click Select image from the list and browse to the SAP Patch Installation bookmark. 
+6.  Click Next. The Image Access Mode window appears. 
+7.  Click Image Access Mode. There are two options for this selection: logged access and virtual 
+
+access. 
+a.  Logged access takes the point-in-time and copies the data to the target LUNs. 
+b.  Virtual access allows for immediate access to the data through memory mapping 
+
+technologies. You can also select the Roll image in background checkbox to also copy the 
+data to the target LUNs. 
+
+Starting the virtual machine 
+
+You can also start the virtual machine to verify everything is operating properly by performing the 
+following steps: 
+
+1.  Verify that the SAP services are running in SAP Solutions Manager. 
+2.  On the desktop for the virtual machine, click the SAP Logon icon to log in to SAP. 
+3. 
+In the SAP Logon window, select Solution Manager to ensure that SAP is running properly. 
+4.  Return to the RecoverPoint GUI. Notice that there is a Recovery Options icon on the right that 
+
+allows you to select either of the following options:  
+a.  Failover to Recovery 
+b.  Recover Production 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+31 
+
+ 
+
+ 
+
+Stateless computing  
+
+In the Vblock System, SAP instances can be seamlessly migrated between UCS blades using 
+VMware’s vMotion technology. Moving SAP instances between blades allows administrators to 
+schedule maintenance (for example, installing a SAP kernel update, OS updates or patches, or a 
+database update/patch) on a blade while maintaining minimal production downtime. Redundancy can 
+also be enabled through the migration of SAP instances; ensuring that SAP production data is not lost 
+in case of blade failure. 
+
+Before moving a SAP instance from one blade to another, ensure that the following conditions are 
+met: 
+
+§  SAP is running on a virtual machine on an ESXi Server. 
+§  Both ESXi Servers: 
+
+-  Have compatible CPUs. 
+-  Are connected to a virtual switch assigned for vMotion. 
+-  Are connected to a production switch enabled for user access. 
+
+§  SAP virtual disk and VMFS configuration files reside on shared storage connected to both ESXi 
+
+hosts. 
+
+Moving a SAP instance from one UCS blade to another 
+1.  Open the Virtual Infrastructure Client application and locate the SAP instance you want to move 
+
+(for example, sap_vm). 
+
+2.  Right-click the SAP instance and click Migrate. A list of destination hosts is displayed where you 
+
+can move the SAP instance. 
+
+3.  Select the host you want to use to move the SAP instance and click Next. A Resource Pools 
+
+page is shown. 
+
+4.  Select the resource pool you want to use and click Next. A Migration Policy page appears. 
+5.  Choose the priority of the migration. There are two options: 
+
+a.  High Priority - ensures virtual machine availability during migration by reserving resources 
+
+on both source and destination hosts. 
+
+b.  Low Priority - resources are NOT reserved; thus, the virtual machine may become 
+
+unavailable during migration. 
+
+6.  Click Next. A Summary page is displayed. Verify that the information is correct and click Finish. 
+
+The progress of the migration is shown in the Virtual Infrastructure Client window (bottom 
+pane). 
+
+7.  After the migration completes, verify that the SAP instance is running on the destination host. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+32 
+
+ 
+
+ 
+
+Dynamic on-demand provisioning 
+
+Provisioning new SAP servers on the Vblock System can be simplified through the use of automation. 
+Using customized scripts and UIM, SAP servers can be more easily managed and provisioned 
+without requiring significant configuration and setup steps. This approach can be particularly useful for 
+service providers where a rapid, error-free, and standardized approach is required. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+33 
+
+ 
+
+ 
+
+Conclusion 
+
+This paper demonstrates the operational and performance improvements that can be realized when 
+deploying SAP on a Vblock System in a large-scale production environment. The testing 
+demonstrates that an SAP instance can be rapidly configured and deployed, unlike physical servers 
+and databases, which are hampered by limitations of capacity, storage, and compute resources. The 
+test team was able to configure and deploy Vblock System storage, compute, and virtualization 
+capabilities with advanced system administration technologies. Various infrastructure changes were 
+required throughout this exercise, allowing administrators and architects to dynamically adjust 
+capacity, storage, and processing capabilities. Some of these benefits are documented in the use 
+cases. 
+
+The SAP on Vblock Systems defined in this document was designed to mirror a retail customer’s 
+existing production and test environments to illustrate the significant performance improvements 
+observed when SAP was deployed on the Vblock System. A series of customer-provided dialog and 
+batch workload-generating scripts (RTC, OTC, and FICO) runs were performed. Performance 
+statistics were collected and results analyzed that provided a compelling comparison against results 
+seen in a customer’s non-optimized environment. 
+
+The performance metrics and measurements contained in this report were achieved due to a number 
+of storage optimizations and application layout, network, and inherent advantages of the Vblock 
+System, with its optimized multi-application compute system. Within the test Vblock System, one UCS 
+chassis (8 blades) was comparable to the customer’s entire SAP production farm, and averaged a 
+performance improvement of 50%. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+34 
+
+ 
+
+ 
+
+Appendix A: Performance and comparison results 
+
+RTC run  
+
+The team chose to cover RTC to explain the rationale behind the better performance and efficient 
+resource usage of SAP on a Vblock System. 
+
+Application performance 
+
+From an application performance perspective, RTC was run with in 4x4 virtual server layers and 
+contained four application servers, each configured with 4 vCPU. 
+
+RTC run 4x4 
+
+The following table shows the performance difference between SAP within the customer environment 
+and SAP on Vblock Systems while running identical RTC scripts through HP LoadRunner. SAP on the 
+Vblock System performed 59% better. The performance statistics are presented in the following table 
+and Figure 12. 
+
+ 
+SAP RTC transactions 
+SAPGUI_IDOC_17_VAR1_RTC_EXECUTE 
+
+ 
+Customer system 
+148.557 
+
+SAPGUI_IDOC_17_VAR2_RTC_EXECUTE 
+
+139.516 
+
+SAPGUI_IDOC_338_VAR1_RTC_EXECUTE 
+
+762.415 
+
+SAPGUI_IDOC_338_VAR2_EXECUTE 
+
+697.899 
+
+SAPGUI_MB51_RTC_EXECUTE 
+
+SAPGUI_ZPTR_MAIN_RTC_EXECUTE 
+
+2.463 
+
+0.534 
+
+SAPGUI_ZPTR_VAR1_RTC_EXECUTE 
+
+103.19 
+
+ 
+
+1854.574 
+
+Vblock 
+System 
+77.047 
+
+66.139 
+
+284.458 
+
+266.804 
+
+1.491 
+
+0.297 
+
+71.192 
+
+767.428 
+
+ 
+Difference 
+48% 
+
+53% 
+
+63% 
+
+62% 
+
+39% 
+
+44% 
+
+31% 
+
+59% 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+35 
+
+ 
+
+ 
+
+Figure 12. RTC performance statistics 
+
+NNoottee:: The figure above shows the comparison of response times between the Vblock System and the 
+
+customer’s test platform. Results show that the Vblock System was able to process seven business critical 
+RTC batch jobs with an improved average response time of 59%. 
+
+	  
+
+Resource usage 
+
+As shown above, the RTC run was 59% better; however, resource level usage has been remarkably 
+better. While there was no benchmark or comparison data available from the customer, it can be 
+stated that a duplicate customer SAP implementation could be run. This fact is clear based on Vblock 
+System resource usage. 
+
+Network usage 
+
+In a distributed environment, the major bottleneck among application, database, and client is often 
+determined to be the network. In the Vblock System, all SAP environment components reside in the 
+same box, creating a “super-highway” of sorts that allows each component to communicate more 
+efficiently.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+36 
+
+ 
+
+ 
+
+I/O usage 
+
+Figures 13 and 14 show the I/O usage for the two fibre channel connections (fc2/1 and fc2/2) from the 
+6120 Fabric Interconnect connected to the MDS, which connects to the Symmetrix VMAX storage 
+array. Each fibre channel interface is capable of handling up to 4 Gbps of throughput. For this run, 
+each interface is only using approximately 25 Mbps and 30 Mbps at peak intervals during the initial 
+ramp-up of the LR run. There is plenty of link capacity to spare as the usage is under 10% used at 
+their highest point.  
+
+FCoE usage from chassis to fabric interconnect was also observed during the RTC run and is 
+illustrated in the charts displayed below. 
+
+Figure 13. I/O usage for fabric interconnect interfaces to MDS for fc2/1 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+37 
+
+ 
+
+ 
+
+Figure 14. I/O usage for fabric interconnect interfaces to MDS for fc2/2 
+
+ 
+
+FCoE usage 
+
+Figures 15 and 16 show the aggregate FCoE usage for the two most highly used FCoE 10 Gbps 
+interfaces (eth1/1 and eth1/6) from the 6120 Fabric Interconnect connected southbound to the I/O 
+modules for each server in the UCS chassis. For this RTC run, each interface is only using 
+approximately 25 Mbps and 40 Mbps at peak intervals during the initial ramp up of the LR run, thus, 
+as can be seen, there is plenty of link capacity to spare as the usage is under 10% used at their 
+highest point. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+38 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 15. FCoE usage from chassis to fabric interconnect for eth1/1 
+
+ 
+
+ 
+
+Figure 16. FCoE usage from chassis to fabric interconnect for eth1/6 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+39 
+
+ 
+
+ 
+
+CPU/vCPU 
+
+The vCPU performance is shown in Figure 17 using standard server performance monitoring tools (in 
+this case, PerfMon). The relationship between the vCPU and raw CPU can be understood by viewing 
+the raw performance and relating this performance to the virtual machine CPU allocations. The test 
+team did not observe a pegged vCPU; hence, the raw CPU statistics were not collected. The only 
+situation in which CPU was pegged happened because unified load distribution was not enabled 
+within the application layer.  
+
+Figure 17 shows vCPU performance and Figure 18 shows the physical CPU performance. In the case 
+of a virtual machine with four CPUs, the y axis must be divided by 4 to understand the performance of 
+each vCPU. 
+
+NNoottee:: During the RTC run, the database server CPU usage is measured as a percentage, based on the vertical 
+axis numbers, thus indicating that the B250 M2 database server can handle a much more stringent load. 
+
+Figure 17. vCPU performance 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+40 
+
+ 
+
+ 
+
+ 
+
+Figure 18. SAP50 database server performance (CPU) 
+
+Storage 
+
+There are four key metrics on a storage array that are of interest. 
+
+§  Front-end fibre channel ports/CPU 
+§  Cache (memory slots) 
+§  Back-end directors CPU 
+§  Disks (fibre channel)  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+41 
+
+ 
+
+ 
+
+Figure 19. Front-end fibre channel ports/CPU 
+
+NNoottee:: The SAP front-end fibre channel ports were less than 15% used (max) for the RTC run. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+42 
+
+ 
+
+ 
+
+Figure 20. Cache (memory slots) 
+
+NNoottee:: Write pending count is data that is in a cache slot waiting to be written to disk. In this example, for the RTC 
+
+run, the write pending count (approx. 30,000) is much less than the write pending limits (650,000). 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+43 
+
+ 
+
+ 
+
+Figure 21. Back end directors CPU 
+
+NNoottee:: Back end directors were less than 20% used. These are the CPUs of the storage array that move the data 
+
+from memory slots to disks. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+44 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 22. Disks (fibre channel) 
+
+NNoottee:: This bar graph shows that although the disks percentage (%) max was used, the cache was under-used. 
+There was no impact on the host, and host write response time was at memory speeds; not disk speeds. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+45 
+
+ 
+
+ 
+
+FICO run 
+
+Application performance comparison 
+
+The following table and Figure 23 illustrate the performance improvements seen when running SAP 
+FICO transactions in the Vblock System, as compared with the customer environment.  
+
+SAP FICO transactions 
+SAPGUI_FAGLB03_FICO_EXECUTE 
+
+Customer system  Vblock System 
+23.348 
+
+0.178 
+
+Difference 
+99% 
+
+SAPGUI_FAGLL03_FICO_EXECUTE 
+
+SAPGUI_FBL1N_FICO_EXECUTE 
+
+SAPGUI_FBL5N_FICO_EXECUTE 
+
+SAPGUI_KE24_FICO_EXECUTE 
+
+292.46 
+
+14.132 
+
+103.185 
+
+20.555 
+
+SAPGUI_KE30_VAR1_FICO_EXECUTE 
+
+SAPGUI_KE30_VAR2_FICO_EXECUTE 
+
+SAPGUI_ZGRIRAGING_FICO_EXECUTE 
+
+SAPGUI_ZPOACCRUAL_FICO_EXECUTE 
+
+ 
+
+34.28 
+
+423.162 
+
+1058.521 
+
+1163.213 
+
+3132.856 
+
+172.764 
+
+7.694 
+
+45.744 
+
+9.611 
+
+41% 
+
+46% 
+
+56% 
+
+53% 
+
+15.703 
+
+133.011 
+
+189.728 
+
+307.942 
+
+882.375 
+
+54% 
+
+69% 
+
+82% 
+
+74% 
+
+72% 
+
+Figure 23. SAP FICO transactions running on three virtual application servers 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+	  
+
+46 
+
+ 
+
+ 
+
+NNoottee:: The figure above shows the comparison of response time between the Vblock System and the customer’s 
+
+test platform. Results show that the Vblock System was able to process nine business-critical FICO 
+transactions with an improved average response time of 72%. 
+
+Resource usage for I/O 
+
+Figures 24 and 25 show the I/O usage for the two Fiber Channel connections (fc2/1 and fc2/2) from 
+the 6120 Fabric Interconnect connected to the MDS, which connects to the Symmetrix VMAX storage 
+array. Each fibre channel interface is capable of handling up to 4 Gbps of throughput. As you can see, 
+for this FICO run, each interface is only using approximately 90 Mbps and 380 Mbps at peak intervals 
+during the initial ramp-up of the LR run, leaving plenty of link capacity to spare as the usage is under 
+10% used at their highest point.  
+
+Figure 24. I/O usage for Fabric Interconnect interfaces to MDS for fc2/1 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+47 
+
+ 
+
+ 
+
+Figure 25. I/O usage for Fabric Interconnect interfaces to MDS for fc2/2 
+
+ 
+
+Resource usage for FCoE 
+
+Figures 26 and 27 show the aggregate FCoE usage for the two most highly used FCoE 10 Gbps 
+interfaces (eth1/1 and eth1/6) from the 6120 Fabric Interconnect connected southbound to the I/O 
+modules for each server in the UCS chassis. For this FICO run, each interface is only using 
+approximately 25 Mbps and 40 Mbps at peak intervals during the initial ramp-up of the LR run, thus, 
+as can be seen, there is plenty of link capacity to spare, as the usage is under 10% used at their 
+highest point. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+48 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 26. FCoE usage from chassis to Fabric Interconnect for eth1/1 
+
+ 
+
+ 
+
+Figure 27. FCoE usage from chassis to Fabric Interconnect for eth1/8 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+49 
+
+ 
+
+ 
+
+CPU 
+
+In Figure 28, the maximum CPU usage on App Server SAPCL53 on a Vblock System during the 
+FICO run was measured at 27.02 % during a 2-hour period.  
+
+Figure 28. CPU performance 
+
+Database performance was also measured using PerfMon to show the minimal impact on database 
+performance and usage while FICO tests were being run. Notice in Figure 29 how the maximum 
+resource usage of the database was only 28.33 % at its peak. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+50 
+
+ 
+
+ 
+
+ 
+
+Figure 29. Database performance 
+
+Storage 
+
+There are four key metrics on a storage array that are of interest: 
+
+§  Front-end (FE) fibre channel ports/CPU  
+§  Cache (memory slots) 
+§  Back-end directors CPU 
+§  Disks (fibre channel) 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+51 
+
+ 
+
+ 
+
+Figure 30. Front end fibre channel ports/CPU 
+
+NNoottee:: The FICO run was the heaviest workload of the three runs. The directors were 65% used. 
+
+Figure 31. Cache (memory slots) 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+52 
+
+ 
+
+ 
+
+NNoottee:: Write pending count is data that is in a cache slot waiting to be written to disk. In this example, for the 
+
+FICO run, the write pending count (approximately 11,000) is much less than the write pending limit 
+(650,000). 
+
+Figure 32. Back-end directors CPU 
+
+NNoottee:: Back-end directors percentage was less than 15% usage. These are the CPUs of the storage array that 
+
+move the data from memory slots to disks. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+53 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 33. Disks (fibre channel) 
+
+NNoottee:: This bar graph shows that although the disk’s percentage (%) max was used, the cache was under-used. 
+There was no impact on the host, and host write response time was at memory speeds; not disk speeds. 
+In fact, the disk use percentage was less than 70%. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+54 
+
+ 
+
+ 
+
+OTC run  
+
+Application performance comparison 
+
+The following table and Figure 34 illustrate the performance improvements seen when running SAP 
+OTC transactions in the Vblock System, as compared with the customer environment. 
+
+SAP OTC transactions 
+
+SAPGUI_VA41_OTC_DATA_EXECUTE 
+
+SAPGUI_VKM1_VAR2_OTC_EXECUTE 
+
+SAPGUI_VKM1_VAR3_OTC_EXECUTE 
+
+Customer 
+system 
+0.1 
+
+59.298 
+
+51.823 
+
+SAPGUI_ZBACKORDER_VAR1_OTC_EXECUTE 
+
+0.288 
+
+SAPGUI_ZBACKORDER_VAR2_OTC_EXECUTE 
+
+0.414 
+
+SAPGUI_ZDLVSTATUS_OTC_EXECUTE 
+
+SAPGUI_ZNOBACKORDER_OTC_EXECUTE 
+
+SAPGUI_ZVA14L_OTC_EXECUTE 
+
+SAPGUI_ZVASSUMM_VAR1_OTC_EXECUTE 
+
+SAPGUI_ZVASSUMM_VAR2_OTC_EXECUTE 
+
+SAPGUI_ZVENDORMARK_OTC_EXECUTE 
+
+SAPGUI_ZWORKLOAD_MAIN_EXECUTE 
+
+16.412 
+
+147.907 
+
+8.472 
+
+26.027 
+
+1.538 
+
+2.68 
+
+30.984 
+
+SAPGUI_ZWORKLOAD_VAR1_OTC_EXECUTE 
+
+34.455 
+
+SAPGUI_ZWORKLOAD_VAR2_OTC_EXECUTE 
+
+44.526 
+
+Vblock 
+System 
+0.139 
+
+21.447 
+
+19.315 
+
+0.1 
+
+0.1 
+
+18.083 
+
+111.665 
+
+1.083 
+
+11.733 
+
+0.497 
+
+0.906 
+
+16.493 
+
+15.443 
+
+14.168 
+
+ 
+
+424.924 
+
+231.172 
+
+Difference 
+
+-39% 
+
+64% 
+
+63% 
+
+65% 
+
+76% 
+
+-10% 
+
+25% 
+
+87% 
+
+55% 
+
+68% 
+
+66% 
+
+47% 
+
+55% 
+
+68% 
+
+46% 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+55 
+
+ 
+
+ 
+
+Figure 34. SAP OTC transactions running on three virtual application servers 
+
+NNoottee:: The figure above shows the comparison of response time between the Vblock System and the customer’s 
+
+test platform. Results show that the Vblock System was able to process 14 business-critical OTC 
+transactions with an improved average response time of 46%. 
+
+	  
+
+I/O resource usage 
+
+Figures 35 and 36 show the I/O usage for the two fibre channel connections (fc2/1 and fc2/2) from the 
+6120 Fabric Interconnect connected to the MDS, which connects to the Symmetrix VMAX storage 
+array. Each fibre channel interface is capable of handling up to 4Gbps of throughput. As can be seen 
+in the graphs, for this OTC run, each interface is only using approximately 8Mbps and 10Mbps at a 
+consistent level during the LR run, leading to plenty of link capacity to spare, as the usage is under 
+10%.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+56 
+
+ 
+
+ 
+
+Figure 35. I/O usage for fabric interconnect interfaces to MDS on fc2/1 
+
+Figure 36. I/O usage for fabric interconnect interfaces to MDS on fc2/2 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+57 
+
+ 
+
+ 
+
+FCoE resource usage 
+
+Figures 37 and 38 show the aggregate FCoE usage for the two most highly used FCoE 10Gbps 
+interfaces (eth1/1 and eth1/8) from the 6120 Fabric Interconnect connected southbound to the I/O 
+modules for each server in the UCS chassis. As can be seen in these graphs, for this FICO run, each 
+interface is only using approximately 5-6Mbps at sustained levels during the LR run, leaving plenty of 
+link capacity to spare, as the usage is under 10%.  
+
+Figure 37. FCoE usage from chassis to fabric interconnect on eth1/1 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+58 
+
+ 
+
+ 
+
+Figure 38. FCoE usage from chassis to fabric interconnect on eth1/8 
+
+ 
+
+vSphere 
+
+Refer to the RTC run section to view vSphere performance and usage. 
+
+CPU usage 
+
+Figure 39 shows the CPU usage metrics for the SAPCL54 App Server when an OTC run is executed 
+from 2:39 pm to 3:39 pm. Notice that the maximum CPU usage during this one-hour period was 
+8.78%, with an average CPU usage of 1.2%. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+59 
+
+ 
+
+ 
+
+Figure 39. CPU usage metrics 
+
+Database performance was also measured using PerfMon to show the minimal impact on database 
+performance and usage while FICO tests were being run. Figure 40 shows how the maximum 
+resource usage of the database was only 28.33% at its peak. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+60 
+
+ 
+
+ 
+
+ 
+
+Figure 40. Database performance measurement using PerfMon 
+
+Storage 
+
+There are four key metrics on a storage array that are of interest,  
+
+§  Front-end fibre channel ports/CPU 
+§  Cache (memory slots) 
+§  Back-end directors CPU 
+§  Disks (fibre channel)  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+61 
+
+ 
+
+ 
+
+Figure 41. Front-end fibre channel ports/CPU 
+
+NNoottee:: The front-end fibre channel ports were less than 36% used. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+62 
+
+ 
+
+ 
+
+Figure 42. Cache (memory slots) 
+
+NNoottee:: Write pending count is data that is in a cache slot waiting to be written to disk. In this example, for the 
+
+FICO run, the write pending count (approximately 11,000) is much less than the write pending limit 
+(650,000). 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+63 
+
+ 
+
+ 
+
+Figure 43. Back-end directors CPU 
+
+NNoottee:: Back-end directors were less than 25% used. These are the CPUs of the storage array that move the data 
+
+from memory slots to disks. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+64 
+
+ 
+
+ 
+
+Figure 44. Disks (fibre channel) 
+
+NNoottee:: Disk use percentage was 50% max but did not affect the write response times since the write pending limit 
+
+was not reached. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+65 
+
+ 
+
+ABOUT VCE	  
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+

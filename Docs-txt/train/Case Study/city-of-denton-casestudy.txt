@@ -1,0 +1,191 @@
+GOVERNMENT
+
+	 CLIENT
+
+The City of Denton, the 
+eleventh largest city of the 
+Dallas-Fort Worth Metroplex
+
+	 CHALLENGE
+
+Meet increased demand for 
+government services in a 
+fast-growing community
+
+	 SOLUTION
+
+VCE Vblock System
+
+	 RESULTS
+
+Deployed disaster recovery 
+infrastructure in six weeks; 
+delivered 300-plus percent 
+performance improvement 
+for critical applications
+
+vce.com
+
+CITY OF DENTON BOOSTS APPLICATION 
+
+PERFORMANCE WITH VBLOCK SYSTEM 
+
+FAST-GROWING	TEXAS	CITY	ACCELERATES	DISASTER	RECOVERY 	
+DEPLOYMENT;	SCALES	INFRASTRUCTURE	TO	SUPPORT	RAPID	EXPANSION 	
+
+The City of Denton employs 1,500 staff and provides services to more than 121,000 
+residents across nearly 95 square miles. As one of the fastest-growing communities 
+in Texas, Denton determined that its IT infrastructure was no longer delivering 
+adequate system performance. 
+
+Disaster recovery also was a concern since the region was at high risk for tornados 
+and flooding. If a major outage occurred, it would take days or weeks to recover 
+Denton’s data center from its tape backup system. This would disrupt vital 
+government services and cost $200,000 in lost revenue daily from city-owned 
+utilities and other fees.
+
+Choosing the Vblock™ System, Denton rolled out a disaster recovery infrastructure 
+in weeks versus months while significantly increasing the performance of its Esri 
+ArcGIS solution and other critical applications.
+
+The	Challenge
+To address Denton’s evolving requirements, the IT staff considered numerous 
+solutions, including other storage systems and blade servers, but ultimately 
+implemented EMC storage, Cisco UCS servers, Cisco networking, and VMware 
+virtualization technologies at its primary data center.
+
+“The Vblock	System can 
+handle three times the 
+performance required by 
+our ArcGIS application. That 
+headroom is important as 
+Denton’s population and 
+consumption of services 
+grows and puts more demand 
+on our IT infrastructure”  
+— Kevin Gunn, Director  
+of Technology Services,  
+City of Denton
+
+Denton wanted the same best-of-breed 
+infrastructure at a new disaster recovery 
+site but with an accelerated deployment. 
+There was a short-term opportunity to 
+expand a new severe weather-proof 
+electric utilities dispatch center under 
+construction with room for a redundant 
+data center. With only 400 square feet  
+of data center space available and a  
+tight construction schedule, IT chose  
+a fully integrated, pretested Vblock 
+System based on EMC, Cisco, and  
+VMware technologies.
+
+The	Solution
+Across its primary and remote sites, 
+Denton has standardized on VCE  
+Vblock Systems and EMC, Cisco,  
+and VMware technologies, replacing its 
+prior infrastructure of NetApp, IBM,  
+and Dell Compellent systems. Presidio,  
+a VCE partner, provided the configuration  
+and implementation services for the 
+Vblock System.
+
+The City also runs EMC VPLEX Metro 
+systems at both sites to enable active-
+active processing for data mobility and 
+continuous availability of applications. 
+Both data centers run Denton’s critical 
+applications, including “smart” electric 
+meter reading, computer-aided 
+emergency dispatch, Oracle JD Edwards 
+ERP, Harris Northstar billing environment, 
+Microsoft Exchange, and Microsoft SQL 
+Server databases. In addition, Denton 
+depends on Avamar deduplication storage 
+systems for data backup and recovery.
+
+One of Denton’s most critical applications 
+is ArcGIS from Esri, the world leader in 
+geographic information systems (GIS). 
+Esri, a VCE reseller and partner,  
+has certified the Vblock System for pre-
+installation of the Esri ArcGIS solution. 
+
+Denton uses the Vblock System-ArcGIS 
+solution to support public safety 
+dispatch, land planning and development, 
+and maintenance of Denton’s streets, 
+utilities, and sewer resources. The ArcGIS 
+database retains hundreds of thousands 
+of GIS features along with a series of 
+
+12 aerial and land photograph mosaics 
+dating back to 1942.
+
+The	Results
+The City credits the Vblock System with 
+delivering several significant advantages 
+and savings, including:
+
+•  Implementation at the disaster recovery 
+
+site was completed in only six weeks—
+compared to the six months needed to 
+assemble, integrate, and implement the 
+EMC, Cisco, and VMware infrastructure 
+at the primary site.
+
+•  Improved performance across all 
+
+applications, such as 100,000 IOPS for 
+ArcGIS and other tier-one applications 
+during testing—a three-time increase 
+over typical IOPS levels of 30,000. 
+
+•  Streamlined infrastructure scalability 
+
+even as the ArcGIS database grew  
+from 1.5 to 3.1 million data points in the 
+last few years.
+
+•  Better availability of ArcGIS and other 
+
+business-critical applications with 
+disaster recovery tests reporting a 
+recovery time objective of one minute 
+and a recovery point objective of zero 
+data loss ,
+
+•  Significant time savings for Denton’s 
+
+small IT staff, which reported that 
+weekly administration time has 
+decreased from 20 hours spread across 
+several staff members to two hours.
+
+With improved efficiency and reliability 
+enabled by the Vblock System, IT now 
+has more time for projects that directly 
+benefit Denton citizens. For example, 
+Denton has begun to make its ArcGIS 
+maps and other data available on its 
+website as part of a national Open  
+Data initiative.
+
+Denton is confident that the Vblock 
+System will provide the performance, 
+scalability, and reliability needed for 
+this growing repository of data while 
+supporting increased demand for 
+government services.
+
+Copyright © 2014 VCE Company, LLC. All rights reserved. VCE, VCE Vision, Vblock, and the VCE logo are registered trademarks or trademarks of VCE Company LLC. 
+or its affiliates in the United States and/or other countries. All other trademarks used herein are the property of their respective owners.
+
+vce.com
+
+THE	WORLD’S	MOST	ADVANCED	CONVERGED	INFRASTRUCTURE
+
+

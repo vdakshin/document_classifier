@@ -1,0 +1,344 @@
+Branch Office Desktop
+VMware Solution Lab Validation
+
+H O W - T O   G U I D E
+
+Solution Overview 
+
+Regional and branch offices need access to corporate assets but often lack local administrative resources to maintain and manage these 
+assets in a timely manner. The Branch Office Desktop delivers consistent and scalable desktops as a managed service for remote and branch 
+office workers across the WAN to maximize uptime, streamline desktop management, and drive down operational costs. With VMware View 
+you can:
+
+•	
+
+•	
+
+•	
+
+•	
+
+Provide consistent high performance desktop experience across the LAN and the WAN using VMware View with PCoIP
+
+Simplify desktop IT management and accelerate provisioning of remote desktops
+
+Ensure high availability with better SLAs
+
+Reduce desktop operating costs and travel across sites and locations
+
+The lab identified the hybrid approach combining best of both worlds in VMware View and VMware Mirage technologies. The VMware Branch 
+Office Desktop is seamlessly assembled to offer user flexbility, enforce branch office policy, single image management, and deliver optimum 
+experience. By integrating vCenter Operations  Management Suite (vCOPS) and View Adapter collection at the branch, the solution offers the 
+business the visibility and more flexibility for managing their branches. 
+
+The core design includes
+
+•	
+
+•	
+
+•	
+
+•	
+
+•	
+
+Application Performance Management and end user monitoring tools to ensure delivery the best user expereince 
+
+vCOPS for View (V4V) for virtual infrastructure single pane of management 
+
+VMware View and VMware Mirage to support both physical and virtual image management, persistent and stateless desktops
+
+Security best practices for anti-virus protection with vCNS* Suite and vSphere Endpoint for virtual environment and recovery from 
+virus infections, in addition recovery for physical desktop to last known good image with VMware Mirage
+
+Full VMDK level backup practices on virtual profiles / persona server, SQL database, and all infrastructure VMs to ensure a fast 
+recovery when needed
+
+By bringing the VMware View compute design, resource, and workload locally to the branch offices delivers the true “Branch-in-the-Box” 
+concept execution.  The design leverages VMware Rapid Desktop Appliances.  By using VMware Mirage to manage all physical computers and 
+failover to persistent virtual desktops it’s now easy to accelerate desktop management and software delivery. 
+
+2
+
+BRANCH OFFICE DESKTOPSolution OverviewArchitecture & DesignValidation ResultDesign ComponentsArchitecture & Design 
+
+In some user scenarios, VMware Mirage can be deployed at the branch on its own for simple and single image management deployment. 
+In our solution lab validation, we explore the hybrid approach taking the best of both worlds, VMware View  centralized management 
+and VMware Mirage image management. In the branch location, one or more clients can be designated dynamically as a Reflector to 
+serve peers and only one image brought across for all users. This helps delivering the images more efficient and help reduce the network 
+utilizaiton. 
+
+In the main datacenter, a simple deployment of VMware Mirage Server cluster with file portal is deployed. Enables peer-to-peer 
+downloading for Mirage updates to remote offices. You will install the 2 MB Mirage Client in all physical and virtaul desktops. The use case 
+is to allow easy failover from physical to virtaul with exact same desktop experience. 
+
+On storage implementation, either SAN, NAS or local storage is supported. In our lab validation, we assume 15 GB per user and enables 
+compression on the selected Mirage storage volume (for savings up to 25%). 
+
+On the network side, Mirage consumes average of 15 Kbits/sec per user, which equals roughly 50 MB per user per day.. Of course, the 
+workload varies by use cases. Bandwidth will be dynamically adjusted depending on user activities to ensure best user experience.
+
+VMware View provides central management and real-time secure access. You can create either persistent desktop or stateless desktop for 
+various workloads in any branch functions. All View event database, security events, user business application transaction QoS data, and 
+backup events can be fully integrated into the vCOPS with View Adapter (V4V). 
+
+The Branch Office Desktop carries some VMware ISV partner’s solution in this design including load balancing, backup, replication, WAN 
+acceleration, security and data loss protection (DLP) products. The exhaustive vendor listed to remain neutral as a functional validation 
+purpose only. 
+
+* VMware vCloud Networking and Security (vCNS) is formally vShield Suite 
+
+3
+
+BRANCH OFFICE DESKTOPSolution OverviewArchitecture & DesignValidation ResultDesign ComponentsDatacenter - Basic
+
+•	 Mirage Core at main datacenter
+
+vCenter
+
+Backup Core
+
+ESX Host - Main Datacenter
+
+VMware
+
+Mirage Core
+
+Backup
+
+View Appliance + 
+VMware Distributed 
+Branch O†ce
+
+Branch
+
+vShield Edge VPN
+
+WAN
+
+ESX Host - Branch View Appliance
+
+VMware Re(cid:1)ector(s)
+
+VMware Mirage
+Single Image
+
+Update &
+
+App Layering
+
+VSS
+
+AD
+
+VCS
+
+vShield
+Manager
+
+vCenter
+
+vCOPS and 
+
+V4V*
+
+SQL
+DB
+
+Global
+Catalog
+
+Domain
+Controller
+
+Mail
+Server
+
+App
+
+Servers
+
+Backup 
+Appliance
+
+Endpoint
+
+Security i.e AV
+
+Print
+Server
+
+Persistent VM 
+en
+eent VM
+Persistei
+Persiste
+Persi
+Persi
+eent VM
+nt VM
+nt VM
+t VM
+ste
+ste
+ste
+e
+with Mirage Client 
+w
+with 
+age Clien
+age Client
+t
+M
+M
+Mi
+ra
+a
+
+Stateless Desktop Pool
+
+Phy
+PhyPhh
+sica
+ca
+al
+alll
+l 
+ll
+l
+ys
+ys
+siciii
+Physical 
+Desk
+Des
+ktop
+p
+p
+p
+kto
+sk
+Desktop
+with VMware 
+Mirage Client
+
+•	
+
+•	
+
+•	
+
+•	
+
+•	
+
+•	
+
+Images are being stored and 
+manipulated in datacenter
+
+Redundancy backup for images
+
+vCNS Edge VPN created for secure 
+access for Application Servers to main 
+datacenter 
+
+SSL can be enabled for all 
+communication between the client and 
+the server.
+
+vCNS App highlighted in red for 
+security policy rules and compliance 
+settings
+
+CIFS share is created for Thinapp, 
+Persona, and corporate files
+
+•	 Domain Controller with Glocal Catalog 
+
+Service configuration 
+
+•	
+
+VMDK level backup on all infrastructure 
+VM and Mirage Reflector VMs
+
+•	 Mirage Client installed 
+
+•	
+
+Secure endpoint access 
+
+4
+
+BRANCH OFFICE DESKTOPSolution OverviewArchitecture & DesignValidation ResultDesign ComponentsValidation Result 
+
+The main objectives for this validation are:
+
+•	
+
+•	
+
+•	
+
+Enhanced local experience by bringing VDI workload directly to local branch 
+
+Ease of management: Any level of IT professional can have role-based access to manage the branch office environment either via 
+View Administration console or vCOPS management console. 
+
+Security: It’s fully deployed with complete vCloud Networking and Security (vCNS) from Edge, App, to Data Protection along 
+with 3rd party ISV’s anti-virus products. In addition, the lab also deploys Microsoft RADIUS for View authentication with 2FA 
+authentication like USB eToken access into the physical and virtual desktops.
+
+This test activity supports the goals of the design objectives by extending coverage of VMware View and Mirage, combining and exploring 
+interactions between ISV products, as well as Network Systems in a customer representative environment. The extended coverage of designs, 
+combined with the sustaining capability result will be detailed in the Branch Office Desktop Validated Design Guide at VMware Desktop 
+Solution Portal which will help ensure improved quality and a successful real-world deployment. 
+
+5
+
+MOBILE SECURE DESKTOPSolution OverviewArchitecture & DesignValidation ResultDesign ComponentsDesign Components 
+
+The following design components represents options and not an abosolute apprach. You should consult with your current software and 
+hardware partners to put together your branch office desktop solution. 
+
+Software Product
+vSphere
+vSphere with vCenter 
+VMware View with Persona Management 
+VMware View Composer
+VMware Mirage 
+vCloud Networking and Security Suite 
+Application Transaction Monitoring / User Perspectives
+vCOps 
+vCOps for View
+Backup and Restore
+Antivirus
+
+ 
+
+Function / Description / Version 
+5.0.1 
+5.0
+5.1
+3.0
+
+5.1
+Aternity 
+5.0.2
+1.0
+CommVault Simpana 9 
+Trend Micro Deep Security 8.0
+
+You can leverage any Rapid Desktop Appliance for your hardware consideration in the branch appliance. For exhaustive list on all 
+components and how to configure them, please refer to the Validated Design Guide. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at
+http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc., in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective 
+companies. Item No: VMW-HG-SECUWKSPDELIVERY-PLAYBK-20120427-WEB
+
+6
+
+BRANCH OFFICE DESKTOPSolution OverviewArchitecture & DesignValidation ResultDesign Components

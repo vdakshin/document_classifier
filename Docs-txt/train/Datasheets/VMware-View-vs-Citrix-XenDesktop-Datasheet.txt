@@ -1,0 +1,321 @@
+VMware Horizon Advantages over Citrix 
+
+Based on five key factors for 
+measuring the effectiveness of 
+VDI solutions, GigaOm Research 
+awarded VMware the top rating 
+in their “Sector RoadMap: virtual 
+desktops in 2014.”  
+ 
+VMware won out over Citrix, 
+Microsoft, Dell, and Amazon. 
+ 
+
+VMware
+
+4.6
+
+Citrix
+4.4
+
+Microsoft
+4.0
+
+Dell
+2.8
+
+Amazon
+2.4
+
+Virtual Desktop Platforms
+
+Mobile and cloud deployment issues are dominating the minds of organizations today. 
+End-user mobility and flexibility versus IT control and visibility are the opposing 
+requirements challenging even the most nimble of environments. Organizations are 
+searching for several key capabilities to address this dichotomy:
+
+•	Infrastructure that is optimized for end users to drive down costs, simplify acquisition, 
+
+upgrade easily, and support policy management
+
+•	Flexibility in delivering workspaces to users—on–premises, cloud, and offline—all within a 
+
+unified workspace
+
+•	Management capabilities encompassing the entire ecosystem and providing security, 
+
+compliance, and management of day-to-day end-user environments
+
+VMware addresses these needs better than others, such as Citrix, with a Mobile-Cloud 
+architecture tailored to the specific needs of end-user mobility and IT management. 
+
+APP
+
+Real-Time
+Application 
+
+Delivery
+
+Policy
+
+Management
+
+User 
+
+Environment
+Management
+
+End-to-End
+Monitoring
+
+Workspace Environment  
+Management  
+ for lower OpEx
+
+On Premises
+
+Cloud
+
+Hybrid
+
+O(cid:31)ine
+
+Flexible Delivery   
+for the best  
+end-user experience
+
+Compute
+
+Network
+
+Storage
+
+Trusted Platform  
+optimized for EUC and 
+hyper-converged
+
+Figure 1: VMware Mobile-Cloud Architecture
+
+s
+
+l
+a
+u
+t
+r
+i
+V
+
+p
+o
+t
+k
+s
+e
+D
+
+m
+r
+o
+f
+t
+a
+l
+P
+
+      One Trusted Platform for the Entire Organization 
+Most IT administrators, if given the choice, would prefer to use one platform throughout 
+their environment and not spend time installing and managing separate management 
+infrastructures. With VMware, they can do that. The VMware Software-Defined Data 
+Center (SDDC) is the only platform optimized for VMware End-User Computing (EUC) 
+products. A single platform provides the following unique advantages:
+
+•	Reduced CapEx and streamlined management 
+
+•	Trusted brand with the leading stats for reliability, performance, robustness, and security
+
+•	Reduced support costs and increased uptime
+
+The industry’s leading virtualization platform marries three critical technologies under one 
+umbrella: compute, storage, and networking. This powerful trio provides tailored 
+integration with EUC, resulting in real benefits for customers including reduced storage 
+
+1
+
+“VMware won us over with their 
+depth of knowledge about 
+end-user computing. They were 
+able to articulate a clear vision 
+for enterprise space desktop 
+virtualization.” 
+–  Kevin Moll,  
+
+Desktop Operations Manager, 
+Foley
+
+vRealize Operations 
+for Horizon
+
+Root Cause
+Analysis
+
+Proactive
+Maintenance
+
+Reactive Problem
+Solving
+
+vSphere 
+Infrastructure 
+System Metrics
+
+Compliance
+Reporting
+
+Citrix
+
+Citrix Director/
+HDX Insight
+
+Citrix Desktop
+Environment
+
+costs by up to 50 percent, simplified network provisioning and micro-segmentation, and 
+extensive 3D graphics support that includes vGPU with NVIDIA, vSGA, and vDGA.
+
+VMware leads in innovation with hyper-converged architectures EVO: RAIL™ and  
+EVO: RACK™ providing the lowest cost on-premises and cloud-based implementation 
+options while reducing complexity and cost on a unified platform for VDI and Application 
+Publishing.
+
+Citrix was not built from the ground up to support the VMware SDDC (VMware vSphere®, 
+VMware Virtual SAN™, and VMware NSX™) and they typically lag in support for key 
+innovations in the platform. VMware EUC was built with integration points that provide 
+cost savings in storage, compute, and networking infrastructure.  
+
+      Flexible Delivery for the Best End-User Experience
+End users simply don’t want to be tied to a computer during their entire workday. They need 
+multiple places and types of workspaces for maximum productivity and satisfaction. To 
+address this demand, VMware Horizon® delivers the broadest set of workspaces in the industry, 
+including: applications, hosted applications, persistent desktops, non-persistent desktops, just-
+in-time desktops, and hosted desktops. Horizon also provides the only true hybrid delivery 
+system with VMware Horizon Air™. Horizon and Horizon Air together allow organizations to 
+deploy their VDI infrastructure on-premises, in the cloud, or a hybrid of the two. 
+
+For offline users who are not always connected to the network, Horizon FLEX™ provides 
+the endpoint security and central management needed to effectively support offline users 
+who can’t get to the network every time they need to work. 
+
+Citrix doesn’t offer this same breadth of support. They are limited in not having a true 
+DaaS offering, don’t have a full hybrid deployment option for on-premises/cloud, and 
+don’t offer just-in-time desktops that leverage the vmFork and VMware App Volumes™ 
+capabilities. VMware offers all of these capabilities, with just-in-time desktops  
+coming soon. 
+
+     Workspace Environment Management
+Only VMware provides a management platform that spans across end-user needs from 
+application management, image and desktop management, through policy management, 
+security, and compliance to monitoring and automation. Whether the need is to manage 
+workspaces, control access, deliver applications, or meet security and compliance 
+requirements, the extensive management capabilities offered by VMware provide more 
+control and visibility than other, more restricted products.
+
+Only VMware provides end-to-end application and workspace management that 
+encompasses the following capabilities: 
+
+•	App isolation – Containerized applications that are isolated from the operating system
+
+•	App delivery – Delivering applications to virtual desktops in real-time
+
+•	App access – Single sign-on access to all apps and services through a unified workspace
+
+•	App monitoring – In-guest metrics for app performance monitoring
+
+•	User Environment Management – Provides consistent, personalized, and dynamic 
+
+desktop experience across all devices
+
+•	Image management with built-in disaster recovery
+
+VMware App Volumes provides real-time application management that eases the burden 
+of getting the right apps to the right people, throughout the applications’ lifecycle. From 
+creation to delivery through updates and into retirement, App Volumes provides the only 
+
+2
+
+VMware Horizon Advantages over Citrix “By virtualizing our server and 
+desktop estate with VMware, 
+we’ve cut costs, dramatically 
+simplified our IT infrastructure, 
+and transformed how we support 
+over 1,000 desktops in our 
+service center in Dublin.”
+–  Paul Bermingham,  
+Staff Vice President, 
+Information Technology 
+Services, Hertz International
+
+                                “VMware  
+                                pretty much  
+                                ran over the  
+                                competition.”
+
+real-time application management and delivery solution. Citrix’s PvD only supports pooled 
+static VDI; it cannot be assigned per user, it doesn’t support physical desktops, and it 
+doesn’t support XenApp. VMware App Volumes provides all this functionality and more. 
+
+VMware User Environment Management (UEM) allows desktop and application virtualization 
+users to maintain consistent personalized settings—such as desktop wallpaper and browser 
+bookmarks—from session to session and from one device to another. UEM provides VMware 
+customers with a consistent and dynamic desktop experience that is independent of operating 
+system, device, and location, enabling true “business mobility.”
+
+Citrix’s UEM capability manages Windows User Profiles, which only allows IT to back up and 
+restore a user profile from one system to another. VMware UEM allows IT to support more use 
+cases including delivering consistent user experience across multiple platforms, during OS 
+migration, between on-premises and cloud-based environments, and providing user 
+environment settings using dynamic, contextual policy such as location.
+
+VMware monitoring and automation capabilities provide end-to-end visibility from the data 
+center to the end user. This surpasses competitive products such as Citrix’s Director/Edgesight. 
+Citrix’s monitoring capabilities are limited to Citrix components and cannot provide the 
+context of the greater system in the way VMware vRealize™ Operations for Horizon can 
+provide. VMware vRealize provides visibility end to end from the data center to the end user.
+
+VMware Horizon is the most complete solution for delivering, managing, and protecting 
+Windows desktops, applications, and online services across devices, locations, media, and 
+connections. The all-in-one packaging also makes it an excellent choice for the value-
+conscious buyer.
+
+      Additional Advantages
+Beyond these reasons to choose Horizon over Citrix XenDesktop, consider these additional 
+advantages. 
+
+•	Superior Network Integration – VMware and F5 have developed a joint solution and 
+partnership to provide best-of-breed VDI and network integration. F5 is the leader in 
+the Application Delivery Controller market—far ahead of Citrix’s NetScaler—and the 
+integration of Horizon and F5’s BIG-IP Access Policy Manager (APM) brings a new level 
+of security capabilities to a virtual desktop deployment. 
+
+•	VMware Mobile Device Management Leadership – AirWatch® by VMware provides the 
+
+market-leading Mobile Device Management (MDM) solution. AirWatch MDM has the 
+largest installed base, highest product quality, most scalable architecture, immediate 
+support of new device OSs, and a fully integrated, unified single-pane-of-glass 
+management system. Citrix’s MDM is a complex deployment with loose integration and 
+confusing licensing. 
+
+•	Highest Customer Satisfaction and Best Value – Customers as well as independent 
+
+surveys and third-party reports consistently rate VMware as the best value for 
+virtualization, with the highest level of customer satisfaction. In a report published by 
+the Temkin Group on Net Promoter Scores (NPS), VMware placed first out of 54 vendors. 
+The report considers the NPS an indicator of both customer loyalty and overall customer 
+satisfaction. By contrast, Citrix scored in the lower half of the group, indicating that Citrix 
+customers are less likely to recommend Citrix products and services to others.
+
+      Horizon Is the Best Choice 
+Millions of users can’t be wrong. Set your company apart from the competition by 
+choosing VMware Horizon and receive the most value for your end-user computing dollar.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.comCopyright © 2015 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed athttp://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: VWM-CDS-HORIZVSCITRIX-USLET-20150223-WEBVMware Horizon Advantages over Citrix 

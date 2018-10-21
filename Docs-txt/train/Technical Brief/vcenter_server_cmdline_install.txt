@@ -1,0 +1,2357 @@
+Technical Note
+
+Command-Line Installation and 
+Upgrade of VMware vCenter ServerTM 5.5
+
+vCenter Server 5.5
+
+This technical note describes how to install, upgrade, and uninstall vCenter Server and related components by 
+using the Windows command‐line interface. The command‐line installation requires you to log on to the local 
+machine.
+The command‐line installation process includes downloading the vCenter Server installer, gathering the 
+required data, and using the command parameters and samples in this technical note to install the products 
+according to your specifications.
+
+IMPORTANT   VMware does not support command‐line installation and upgrade methods for vCenter Server. 
+However, if the installation or upgrade succeeds, VMware supports the installed or upgraded product.
+
+vCenter Server 5.5 with vCenter Single Sign-On
+
+When you install or upgrade vCenter Server 5.5, you must install vCenter Single Sign‐On and vCenter 
+Inventory Service, in that order, before you install or upgrade vCenter Server. For detailed information about 
+how vCenter Single Sign‐On affects vCenter Server installation and upgrades, see vSphere Installation and Setup 
+and vSphere Upgrade at the following site: http://www.vmware.com/support/pubs. 
+
+Preparing for the Installation
+
+Before you install vCenter Server and related components, review the following sections to understand the 
+installation process and options, and to ensure that you prepare your system.
+
+vCenter Server Installation Requirements
+
+For information about all vCenter Server installation and upgrade requirements, see vSphere Installation and 
+Setup and vSphere Upgrade at http://www.vmware.com/support/pubs. These publications include information 
+about the following requirements for vCenter Server and related components.
+
+
+
+
+
+
+
+System requirements.
+Required ports.
+Required information for installation. Record the values that you enter in case you must reinstall vCenter 
+Server and want to use the same values.
+
+NOTE   If you plan to use the Microsoft SQL Server 2008 R2 Express SP1 database that is bundled with vCenter 
+Server, Microsoft Windows Installer version 4.5 (MSI 4.5) is required on your system. MSI 4.5 is available from 
+from the redist folder in the vCenter Server installer ISO file.
+
+VMware, Inc.
+
+  
+
+1
+
+Required Administrator Rights for Installation
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Installation of all vCenter Server components requires Administrator‐level privileges on the target machine. 
+When you run the command to install a vCenter Server component, if User Account Control (UAC) is enabled, 
+and you are logged in with Administrator‐level privileges, but you are not the Administrator, UAC might 
+display a dialog box asking you to confirm that you want to run the installation program. 
+When you install vCenter Server, the Administrator user must be able to ensure that vCenter Server receives 
+Logon as a Service rights.
+
+To ensure that the administrator user that vCenter Server uses for startup has Logon as a Service 
+rights
+
+Select Control Panel > Administrative Tools.
+Select Local Security Policy.
+Select Local Policies > User Rights Assignment
+
+1
+2
+3
+4 Double‐click Logon as a service in the right‐side pane and add the VPX_ACCOUNT user to the list.
+
+Installing in a Virtual Machine
+
+You can install vCenter Server in a Microsoft Windows virtual machine that runs on a VMware ESXi host. 
+Deploying the vCenter Server system in the virtual machine has several advantages.
+
+
+
+
+
+
+
+
+
+Rather than dedicating a separate server to the vCenter Server system, you can place it in a virtual 
+machine running on the same ESXi host where your other virtual machines run.
+You can provide high availability for the vCenter Server system by using VMware High Availability (HA).
+You can migrate the virtual machine containing the vCenter Server system from one host to another, 
+enabling maintenance and other activities.
+You can create snapshots of the vCenter Server virtual machine and  use them for backups, archiving, and 
+so on.
+
+Installing in a Virtual Machine on a Standalone ESXi Host
+Before you begin, install the vSphere Client on a machine that has network access to the ESXi host.
+
+To prepare for installing on a standalone server
+
+1 Using the vSphere Client, access an ESXi host directly to create the virtual machine for hosting 
+
+vCenter Server.
+In the virtual machine, install vCenter Server.
+
+2
+
+Installing over a Network
+
+If you are installing over a network, run the installer from a local machine. 
+
+To prepare for installing over a network
+
+1
+2
+
+Place the installer on a network drive and call the installer from a local machine.
+Enter the Universal Naming Convention (UNC) address in the format \\servername\path.
+
+Installing with an Existing Database
+
+If you are installing vCenter Server with an existing vCenter Server database, prepare for database access. The 
+existing database can be on the same host machine as vCenter Server or on a different host machine. You must 
+create the DSN on the host machine where vCenter Server is installed, and the DSN must point to the host 
+machine where the database resides.
+
+VMware, Inc.
+
+  
+
+2
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+To prepare for installing with an existing database
+
+1
+2
+3
+
+Ensure that the database host machine belongs to the domain.
+Log in to the vCenter Server host machine as a domain user who belongs to the local administrator group.
+Create the DSN with integrated OS authentication mode. 
+The DSN user must be the same as the local administrator for vCenter Server service account.
+
+See the vSphere Installation and Setup documentation for more information about preparing your vCenter 
+Server database.
+
+Installing and Joining a Group Using Linked Mode
+
+If you are installing a vCenter Server that you want to join to a Linked Mode group, ensure that there is another 
+version 5.5 vCenter Server, so that you have a group of at least two servers. There must be at least two vCenter 
+Server installations to create a group. Linked Mode installation is supported only if the vCenter Servers to be 
+joined are of the same version, and are registered to the same Single Sign‐On server.
+
+To prepare for installing and joining a group using linked mode
+
+1
+2
+
+Install the first vCenter Server instance and specify VCS_GROUP_TYPE=Single. 
+For each subsequent vCenter Server installation that you will add to the initial group, specify 
+VCS_GROUP_TYPE=Group and provide the FQDN of the host of the first installation. 
+
+Installing vCenter Server and Components Remotely
+
+To install vCenter Server remotely, install the vCenter components separately, in this order: vCenter Single 
+Sign‐On, vCenter Inventory Service, vCenter Server, and Profile‐Driven Storage Service (SPS). See the 
+examples in “Remote Installation Examples” on page 16.
+
+Remote and Scheduled Installations of vCenter Server and Components
+
+If you are performing a remote or scheduled installation of vCenter Server, you must install Profile‐Driven 
+Storage Service (SPS) separately from vCenter Server. Install the components in this order: vCenter Single 
+Sign‐On, vCenter Inventory Service, vCenter Server, and Profile‐Driven Storage Service (SPS). See the 
+command line examples in “Remote Installation Examples” on page 16.
+
+vCenter Server Installation Commands 
+
+vCenter Server command‐line installation uses Microsoft Windows Installer (MSI) command structure with 
+parameters specific to vCenter Server and related components. You can use the command‐line installation 
+options to install vCenter Server components from the MS‐DOS command prompt in Windows or by writing 
+a Windows batch file (.bat).
+
+Microsoft Windows Installer Commands
+
+The vCenter Server installation commands are based on the Microsoft Windows Installer (MSI). 
+
+
+
+
+
+
+
+Some actions during installation require interactive response to prompts. Only passive installation using 
+the msiexec command option /qr is supported. The fully silent option (/qn) is not supported.
+You must include double quotation marks for values that contain spaces. Otherwise, the installation fails. 
+Using null, as in parameter=, for \"\" is not allowed. For values other than null, double quotation marks 
+are not required, for example FORMAT_DB = 1 and FORMAT_DB = "1" are identical. All parameters that 
+appear in the /v"..." section must use a backslash (\) to escape quotation marks, for example, 
+SSO_ADMIN_PASSWORD=\"my password\". If a quote is not escaped, the /v"..." option is terminated. The 
+closing double quote in /v"..." should have at least one space before it. Otherwise, the last parameter 
+inside this string will not receive the proper value.
+For information about MSI command line options, see the Microsoft Developer Network.
+
+VMware, Inc.
+
+  
+
+3
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+An installation from a local disk, using MSIEXEC command options, has the following format:
+
+start /wait path_to_installer.exe /w /L Language Code /v"/qr parameters "
+start /wait is not required.
+path_to_installer.exe is the location of the extracted files.
+installer.exe is the installer executable for the vCenter Server component, for example 
+VMware-vcserver.exe, VMware-SSO-Server.exe, VMware-inventory-service.exe, and so forth.
+For example, if C:\temp\vCenter550\SetupFiles is the location of the extracted files, use the following 
+command format: 
+vCenter Server installer: C:\temp\vCenter550\SetupFiles\vCenter-Server\VMware-vcserver.exe
+parameters are the optional parameters listed in “vCenter Server Installer Command Parameters” on page 4.
+Language Code is the language to be used during the installation. The language code used in the examples is 
+English, 1033.
+
+vCenter Server Installer Command Parameters
+
+Table 1, Table 2, Table 3, Table 4, Table 5, and Table 6 list the parameters that you might need to provide during 
+installation of vCenter Single Sign‐On, vCenter Inventory Service, vCenter Server, vSphere Client, vSphere 
+Web Client, and Profile‐Driven Storage Service. The information you provide depends upon your specific 
+installation. For example, you must provide database parameters if you have an existing database, and you 
+must provide server parameters if you are adding your vCenter Server to a group. 
+Follow these syntax and installation guidelines:
+
+
+
+You must include double quotation marks for values that contain spaces. Otherwise, the installation fails. 
+Using null, as in parameter=, for \"\" is not allowed. For values other than null, double quotation marks 
+are not required, for example FORMAT_DB = 1 and FORMAT_DB = "1" are identical.
+
+ Command options are case‐sensitive. For example, use Bundled, not bundled or BUNDLED. 
+
+
+
+The command installation process is not completely silent. Prompts can occur. Respond to the prompts.
+ When you enter responses to prompts, or values to parameters, the content of the response or parameter 
+
+is not validated. It is accepted. Ensure that the values entered as responses to prompts or values for 
+parameters are correct. Otherwise, vCenter Server will not start up after installation.
+
+Linked Mode installation is supported only if the vCenter Servers to be joined are of the same version, and are 
+registered to the same Single Sign‐On server. Otherwise, you cannot perform a vCenter Server Linked Mode 
+installation.
+
+vCenter Single Sign-On Installation Command Parameters
+
+Table 1.  vCenter Single Sign-On Installation Command Parameters 
+Parameter
+
+Default
+
+Conditions
+
+ADMINPASSWORD=password
+
+None
+
+DEPLOYMODE=FIRSTDOMAIN
+
+FIRSTDOMAIN
+
+SSO_SITE=site
+
+None
+
+The password for the vCenter Single Sign‐On 
+Administrator.
+vSphere 5.5 supports command line installation 
+only for vCenter Single Sign‐On primary sites 
+(FIRSTDOMAIN). Command line installation is not 
+supported for secondary sites in a vCenter Single 
+Sign‐On high availability or multisite deployment.
+The user’s name for the vCenter Single Sign‐On 
+site.
+
+VMware, Inc.
+
+  
+
+4
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Table 1.  vCenter Single Sign-On Installation Command Parameters  (Continued)
+Parameter
+Conditions
+
+Default
+
+SSO_HTTPS_PORT=port
+
+7444
+
+INSTALLDIR=install_location 
+
+C:\Program 
+Files\VMware\Infrastructure\
+
+Use only if you want a different port value than the 
+default 7444.
+Use only if you want a different installation 
+directory than the default C:\Program 
+Files\VMware\Infrastructure\.
+
+vCenter Inventory Service Installation Command Parameters
+
+Table 2.  vCenter Inventory Service Installation Command Parameters 
+Parameter
+
+Default
+
+Conditions
+
+INSTALLDIR=install_location 
+
+None
+
+HTTPS_PORT=port
+
+XDB_PORT=port
+
+FEDERATION_PORT=port
+
+10443
+10109
+
+10111
+
+QUERY_SERVICE_NUKE_DATABASE=1
+
+0
+
+SSO_ADMIN_USER=\"user_name\"
+
+administrator@vsphere.local
+
+SSO_ADMIN_PASSWORD=\"password\"
+
+LS_URL=URL
+
+None
+
+None
+
+TOMCAT_MAX_MEMORY_OPTION=[S|M|L]
+
+S
+
+Use only if you want a different installation 
+directory than the default C:\Program 
+Files\VMware\Infrastructure\.
+Inventory Service HTTP port.
+vCenter Inventory Service service management 
+port.
+vCenter Inventory Service Linked Mode 
+communication port.
+Set to 1 to clear the existing database for 
+Inventory Service
+User name for the vCenter Single Sign‐On 
+administrator user account.
+Password for the vCenter Single Sign‐On 
+administrator user account
+Lookup Service URL.
+The Lookup Service URL takes the form 
+https://SSO_host_FQDN_or_IP:7444/lookupservi
+ce/sdk, where 7444 is the default vCenter Single 
+Sign‐On HTTPS port number. If you enter a 
+different port number when you install vCenter 
+Single Sign‐On, use that port number.
+Choices refer to vCenter Server inventory size. 
+ S - Small inventory (1‐100 hosts or 1‐1000 
+
+virtual machines)
+
+ M - Medium inventory (100‐400 hosts or 
+
+1000‐4000 virtual machines)
+
+ L - Large inventory (more than 400 hosts or 
+
+4000 virtual machines)
+
+This parameter determines the maximum JVM 
+heap settings for VMware VirtualCenter 
+Management Webservices (Tomcat), Inventory 
+Service, and Profile‐Driven Storage Service. You 
+can adjust this setting after installation if the 
+number of hosts in your environment changes. 
+See the recommendations in the vSphere 
+Installation and Setup documentation.
+
+VMware, Inc.
+
+  
+
+5
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+vCenter Server Installation Command Parameters
+
+Table 3.  vCenter Server Installation Command Parameters 
+Parameter
+
+Default
+
+Conditions
+
+LICENSEKEY=\"licensekey\"
+
+None
+
+DB_SERVER_TYPE=[Bundled|Custom]
+
+Bundled
+
+DB_DSN=\"name\"
+
+"VMware VirtualCenter"
+
+DB_DSN_WINDOWS_AUTH=1
+
+DB_USERNAME=\"name\"
+
+None
+
+None
+
+DB_PASSWORD=\"password\"
+
+None
+
+FORMAT_DB=1
+
+0
+
+JVM_MEMORY_OPTION=[S|M|L]
+
+S
+
+If you omit the license key, vCenter Server will be in 
+evaluation mode, which allows you to use the full 
+feature set. After installation, you can convert 
+vCenter Server to licensed mode by entering the 
+license key using the vSphere Client.
+Configures vCenter Server to use an existing 
+database instance. 
+When using Bundled, you must also include 
+FORMAT_DB=1.
+When using Custom, you must also include 
+DB_DSN=\"dns_name\", 
+DB_PASSWORD=\"password\", and 
+DB_USERNAME=\"username\".
+ The bundled database is suitable for 
+
+deployments of up to 5 hosts and 50 virtual 
+machines.
+
+ If you are using an existing SQL Server 
+
+database that uses Windows NT 
+authentication, DB_PASSWORD and 
+DB_USERNAME do not have to be passed. The 
+logged in user will be used to log in to the 
+database.
+
+Customizes the DSN. 
+Required only if DB_SERVER_TYPE=Custom.
+Set to 1 if Windows NT authentication is used. 
+Otherwise, this parameter is not passed
+Sets the DSN account name. 
+Required only if DB_SERVER_TYPE=Custom and 
+SQL authentication is used. The logged in user 
+will be used to log in to the database.
+Sets the DSN account password. 
+Required only if DB_SERVER_TYPE=Custom and 
+SQL authentication is used.
+Creates a fresh database schema. All existing data 
+is lost if the database already exists. 
+Required only if DB_SERVER_TYPE=Bundled, but 
+can be used with DB_SERVER_TYPE=Custom as a 
+means to overwrite existing database.
+CAUTION   Using FORMAT_DB=1 results in loss 
+of data. Do not use it if you want to preserve 
+the existing data and the database schema.
+Choices refer to vCenter Server inventory size. 
+ S - Small inventory (1‐100 hosts or 1‐1000 
+
+virtual machines)
+
+ M - Medium inventory (100‐400 hosts or 
+
+1000‐4000 virtual machines)
+
+ L - Large inventory (more than 400 hosts or 
+
+4000 virtual machines)
+
+This parameter determines the maximum JVM 
+heap settings for VMware VirtualCenter 
+Management Webservices (Tomcat). You can 
+adjust this setting after installation if the number 
+of hosts in your environment changes. See the 
+recommendations in the vSphere Installation and 
+Setup documentation.
+
+VMware, Inc.
+
+  
+
+6
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Table 3.  vCenter Server Installation Command Parameters  (Continued)
+Parameter
+
+Default
+
+Conditions
+
+SSO_ADMIN_USER=\"user_name\"
+
+administrator@vsphere.local
+
+SSO_ADMIN_PASSWORD=\"password\" None
+
+LS_URL=URL
+
+None
+
+IS_URL=URL
+
+None
+
+VC_ADMIN_USER=user_name
+
+VC_ADMIN_IS_GROUP_VPXD_TXT=
+[true|false]
+
+None
+
+False
+
+VPX_USES_SYSTEM_ACCOUNT=[""|1]
+
+1
+
+VPX_ACCOUNT_UPN
+
+VPX_ACCOUNT=\"UNCname\
+account_name\"
+
+None
+
+None
+
+VPX_PASSWORD=\"password\"
+
+None 
+
+User name for the vCenter Single Sign‐On 
+administrator user account.
+Password for the vCenter Single Sign‐On 
+administrator user account
+Lookup Service URL.
+The Lookup Service URL takes the form 
+https://SSO_host_FQDN_or_IP:7444/lookupservic
+e/sdk, where 7444 is the default vCenter Single 
+Sign‐On HTTPS port number. If you enter a 
+different port number when you install vCenter 
+Single Sign‐On, use that port number.
+Inventory Service URL.
+The IS_URL takes the form 
+https://IS_host_FQDN:10443, where 10443 is 
+the default vCenter Inventory Service HTTPS port 
+number. If you enter a different port number when 
+you install vCenter Inventory Service, use that port 
+number.
+The user who will log in to vCenter Server.
+Set to true if VC_ADMIN_USER is a group. 
+Otherwise set to false. For example, if the specified 
+VC_ADMIN_USER specified is the 
+Administrators group, set this property to true. If 
+the user specified is the Administrator user, set this 
+property to false.
+This parameter corresponds to the Use System 
+Account checkbox in the vCenter Server Service 
+dialog box.
+System – Use system account.
+0 – Non‐null value, such as 0, behaves the same as 
+1.
+When value is 1, do not include the parameters 
+VPX_ACCOUNT_UPN=\"account_name@UNCname\
+", VPX_PASSWORD=\"password\", 
+VPX_ACCOUNT=\"UNCname\account_name\".
+
+"" – Use account provided. 
+When value is "", you must include 
+VPX_ACCOUNT_UPN=\"account_name@UNCname\
+", VPX_PASSWORD=\"password\", and 
+VPX_ACCOUNT=\"UNCname\account_name\".
+The User Principal Name in the Windows Active 
+Directory, in an e‐mail address format, for 
+example. account_name@UNCname
+User account to run VMware vCenter Server 
+service.
+UNCname can either be the domain name or local 
+host name. account_name default is the current 
+logged in user. 
+The administrator user must have Logon as a 
+Service right.
+Required only if VPX_USES_SYSTEM_ACCOUNT=""; 
+ignored if 1. Example:\”mydomain\john\”
+User account password.
+Required only if VPX_USES_SYSTEM_ACCOUNT=""; 
+ignored if 1. 
+
+VMware, Inc.
+
+  
+
+7
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Table 3.  vCenter Server Installation Command Parameters  (Continued)
+Parameter
+
+Default
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+VC_JDBC_URL=URL
+
+None
+
+None
+
+VCS_GROUP_TYPE=[Single|Group]
+
+Single
+
+VCS_ADAM_PRIMARY_SERVER=
+IP_address
+
+None 
+
+VCS_ADAM_PRIMARY_PORT=port
+
+389
+
+VCS_ADAM_LDAP_PORT=port
+
+389
+
+VCS_ADAM_SSL_PORT=port
+
+636
+
+VCS_HTTPS_PORT=port
+
+VCS_HTTP_PORT=port
+
+TC_HTTP_PORT=port
+
+TC_HTTPS_PORT=port
+
+VCS_WSCNS_PORT=port
+
+VCS_HEARTBEAT_PORT=port
+
+VPX_BUMPUP_EPHEMERAL_PORT=
+[""|1]
+
+443
+
+80
+
+8080
+
+8443
+
+60099
+
+902
+
+"" 
+
+vSphere Client Installation Parameters
+
+Use only if you want a different installation 
+directory than the default C:\Program 
+Files\VMware\Infrastructure\.
+JDBC URL for the database. Required if you use an 
+existing database.
+Types of Directory Services instance. 
+When using Group, you must include 
+VCS_ADAM_PRIMARY_PORT=port and 
+VCS_ADAM_PRIMARY_SERVER=IP_address.
+
+IP address or fully qualified DNS name of the 
+remote vCenter Server to which you want to join 
+this vCenter Server instance. Example: 
+vcms-internal.eng.vmware.com.
+Required only if VCS_GROUP_TYPE=Group.
+LDAP port that the remote Directory Services 
+instance is listening on. 
+Required only if VCS_GROUP_TYPE=Group.
+LDAP port of Directory Services where VMware 
+VCMSDS listens. VCS_ADAM_LDAP_PORT must 
+either use the default port number or reside in the 
+range 1025 <= PORT <= 65535
+SSL port of Directory Services where VMware 
+VCMSDS listens. VCS_ADAM_SSL_PORT must 
+either use the default port number or reside in the 
+range 1025 <= PORT <= 65535
+vCenter Server HTTPS port.
+vCenter Server HTTP port.
+VMware vCenter Web services HTTP port.
+VMware vCenter Web services HTTPS port.
+Web Services Change Service Notification port
+vCenter Server Heartbeat port.
+Set this option to 1 if your vCenter Server manages 
+hosts on which you will power on more than 2000 
+virtual machines simultaneously. This option 
+prevents the pool of available ephemeral ports 
+from being exhausted. This option requires a 
+reboot.
+
+Table 4.  vSphere Client Installation Command Parameters for the VMware-viclient.exe Command
+Parameter
+
+Conditions
+
+Default
+
+INSTALLDIR=\"installdir\"
+
+None
+
+Specifies an alternate installation directory and 
+creates a Virtual Infrastructure Client 
+directory.
+The installation path cannot have any of the 
+following characters: comma (,), semicolon (;), 
+asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), 
+left or right angle bracket (<>), or vertical bar (|).
+If you install vSphere Client on a drive other than C:, 
+verify that there is enough space in the 
+C:\WINDOWS\Installer folder to install the 
+Microsoft Windows Installer .msi file. 
+
+VMware, Inc.
+
+  
+
+8
+
+vSphere Web Client Installation Parameters
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Table 5.  vSphere Web Client Installation Command Parameters for the VMware-WebClient.exe Command
+Parameter
+
+Conditions
+
+Default
+
+INSTALLDIR=\"installdir\"
+
+None
+
+HTTP_PORT=port_number
+
+HTTPS_PORT=port_number
+
+9090
+9443
+
+SSO_ADMIN_USER=\"user_name\"
+
+administrator@vsphere.local
+
+SSO_ADMIN_PASSWORD=\"password\
+"
+
+LS_URL=URL
+
+None
+
+None
+
+Specifies an alternate installation directory and 
+creates a vSphereWebClient directory.
+The installation path cannot have any of the 
+following characters: comma (,), semicolon (;), 
+asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), 
+left or right angle bracket (<>), or vertical bar (|).
+If you install vSphere Web Client on a drive other 
+than C:, verify that there is enough space in the 
+C:\WINDOWS\Installer folder to install the 
+Microsoft Windows Installer .msi file. 
+vSphere Web Client HTTP port.
+vSphere Web Client HTTPS port
+User name for the vCenter Single Sign‐On 
+administrator user account.
+Password for the vCenter Single Sign‐On 
+administrator user account
+Lookup Service URL.
+The Lookup Service URL takes the form 
+https://SSO_host_FQDN_or_IP:7444/lookupse
+rvice/sdk, where 7444 is the default vCenter Single 
+Sign‐On HTTPS port number. If you enter a different 
+port number when you install vCenter Single 
+Sign‐On, use that port number.
+
+Profile-Driven Storage Service Installation Parameters
+The Profile‐Driven Storage Service installer is located at media\vCenter-Server\Profile-Driven 
+Storage\VMware vSphere Profile-Driven Storage.msi.
+
+Table 6.  Profile-Driven Storage Service Installation Command Parameters
+Parameter
+
+Default
+
+Conditions
+
+INSTALLDIR=\"installdir\" 
+
+None
+
+SPS_HTTP_PORT=port_number
+
+SPS_HTTPS_PORT=port_number
+
+21200
+
+21100
+
+Specifies an alternate installation directory and 
+creates a Profile-Driven Storage directory.
+The installation path cannot have any of the 
+following characters: comma (,), semicolon (;), 
+asterisk (*), left or right bracket ([ ]), equals sign 
+(=), backslash or forward slash (\ /), question 
+mark (?), left or right angle bracket (<>), or 
+vertical bar (|).
+Profile‐Driven Storage Service HTTP port.
+Profile‐Driven Storage Service HTTPS port.
+
+VMware, Inc.
+
+  
+
+9
+
+Table 6.  Profile-Driven Storage Service Installation Command Parameters
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+TOMCAT_MAX_MEMORY_OPTION=[S|M|L]  S
+
+VC_KEYSTORE_TYPE=PKCS12 
+
+PKCS12
+
+VC_KEYSTORE_PASSWORD=
+
+testpassword
+
+testpassword 
+
+VC_SSL_DIR="path_to_cSSLdir" 
+
+VC_SPS_EXTENSION_DIR="path_to_vc
+
+SPSextdir" 
+
+C:\ProgramData\VMware\
+VMware VirtualCenter\SSL
+
+C:\Program Files\
+VMware\Infrastructure\
+VirtualCenter 
+Server\extensions\
+com.vmware.vim.sps
+
+IS_URL=URL
+
+None
+
+ARPSYSTEMCOMPONENT=1
+
+SKIPVCCHECK=1
+
+None
+
+None
+
+Choices refer to vCenter Server inventory size. 
+ S - Small inventory (1‐100 hosts or 1‐1000 
+
+virtual machines)
+
+ M - Medium inventory (100‐400 hosts or 
+
+1000‐4000 virtual machines)
+
+ L - Large inventory (more than 400 hosts or 
+
+4000 virtual machines)
+
+ This parameter determines the maximum 
+
+JVM heap settings for Profile‐Driven Storage 
+Service. You can adjust this setting after 
+installation if the number of hosts in your 
+environment changes. See the 
+recommendations in the vSphere Installation 
+and Setup documentation.
+
+The vCenter Server keystore type is a hard coded 
+value: PKCS12. 
+The vCenter Server keystore password is a hard 
+coded value: testpassword. 
+Location of the vCenter Server SSL directory.
+
+Location of the vCenter Server Profile‐Driven 
+Storage extension directory.
+
+Inventory Service URL.
+The IS_URL takes the form 
+https://IS_host_FQDN:10443, where 10443 
+is the default vCenter Inventory Service HTTPS 
+port number. If you enter a different port 
+number when you install vCenter Inventory 
+Service, use that port number.
+Set value to 1 to hide the installer from the Add 
+or Remove Programs list in the Control Panel.
+Required to install Profile‐Driven Storage 
+Service separately. Confirms presence of 
+vCenter Server on the system.
+
+VMware, Inc.
+
+  
+
+10
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Performing a Command-Line Installation of vCenter Server and 
+Components
+
+This section describes how to install vCenter Single Sign‐On, vCenter Inventory Service, vCenter Server and 
+the vSphere Client from the command line. You must install vCenter Server and related components in this 
+order: vCenter Single Sign‐On, vCenter Inventory Service, vCenter Server, and Profile‐Driven Storage Service.
+
+Basic Procedure for Installing vCenter Server and Components from the Command 
+Line
+
+The following steps outline the basic procedure for installing vCenter Server and components from the 
+command line. The following sections give specific command parameters and examples for the installation of 
+each component.
+1 Download the installer and any additional modules for vCenter Server.
+
+a Download the ISO installer file for vCenter Server from the VMware product page at 
+
+http://www.vmware.com/products.
+The installer ISO file name is VMware-VIMSetup-all-5.5.0-yyyyyy.iso, where yyyyyy is the 
+build number. 
+Extract the files from the ISO file.
+
+b
+
+2 Open a Windows command prompt on the virtual machine or server that you are going to install 
+
+vCenter Server or vSphere Client on.
+Change directory to the location of the installation executables.
+From the command line of the server or virtual machine where you are installing the vCenter Server 
+component, run the appropriate command string
+
+3
+4
+
+
+
+
+
+The command string format from a network location is:
+
+installer.exe_file parameters
+The command string format from a local disk is:
+
+installer.exe file /LLanguage Code /v"/qr parameters"
+
+Troubleshooting: Installation Logs for vCenter Server and Components
+
+Installation logs for vCenter Server and Components are stored in the following locations:
+
+
+
+
+
+
+
+
+
+
+
+vCenter Single Sign‐On: %TEMP%\vim-sso-msi.log
+vCenter Inventory Service: %temp%\vim-qs-msi.log
+vCenter Server: %TEMP%\vmvcsvr.log
+The vSphere Web Client: %TEMP%\vim-qs-msi.log
+The vSphere Client: %TEMP%\vim-vic-msi.log
+
+vCenter Single Sign-On Local Installation Examples
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3, “vCenter Server 
+Installer Command Parameters” on page 4, and “Basic Procedure for Installing vCenter Server and 
+Components from the Command Line” on page 11. Single Sign‐On installation command parameters are 
+listed in Table 1.
+The examples assume that you are running the installation from a local disk, not a network location. See 
+“Installing over a Network” on page 2.
+
+VMware, Inc.
+
+  
+
+11
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+NOTE   vSphere 5.5 supports command line installation only for vCenter Single Sign‐On primary sites. 
+Command line installation is not supported for secondary sites in a vCenter Single Sign‐On high availability 
+or multisite deployment.
+
+Example 1.  Local Installation with Basic Single Sign-On.
+
+start /wait msiexec.exe /i "path_to_installer\VMware-SSO-Server.msi" /qr
+SSO_HTTPS_PORT=7444 
+DEPLOYMODE=FIRSTDOMAIN 
+ADMINPASSWORD=Admin@12345
+SSO_SITE=mysite
+INSTALLDIR=\"E:\vCenter\" 
+/l*v %TEMP%\vim-sso-msi.log
+
+vCenter Inventory Service Local Installation Example
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3, “vCenter Server 
+Installer Command Parameters” on page 4, and “Basic Procedure for Installing vCenter Server and 
+Components from the Command Line” on page 11. vCenter Inventory Service installation command 
+parameters are listed in Table 2.
+
+Example 2.  Inventory Service Local Installation
+
+start /wait my_media\”inventory Service”\VMware-inventory-service.exe /S /v"
+INSTALLDIR=\"C:\Program Files\VMware\Infrastructure\"
+QUERY_SERVICE_NUKE_DATABASE=0 or 1  
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\" 
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\" 
+HTTPS_PORT=10443 
+FEDERATION_PORT=10111 
+XDB_PORT=10109 
+TOMCAT_MAX_MEMORY_OPTION=S
+/L*V "%temp%\vim-qs-msi.log" /qr"
+
+vCenter Server Local Installation Examples
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3, “vCenter Server 
+Installer Command Parameters” on page 4, and “Basic Procedure for Installing vCenter Server and 
+Components from the Command Line” on page 11. vCenter Server installation command parameters are 
+listed in Table 3.
+The examples assume that you are running the installation from a local disk, not a network location. See 
+“Installing over a Network” on page 2. For examples of vCenter Server remote installation commands, see 
+“Remote Installation Examples” on page 16.
+
+vCenter Server Typical Local Installation
+Use the default settings to install vCenter Server to the default location with the bundled database.
+
+Example 3.  Typical Local Installation – Use the Default Settings
+
+start /wait media\vCenter-Server\VMware-vcserver.exe  /w /1033 /v"/qr
+DB_SERVER_TYPE=Bundled 
+FORMAT_DB=1 
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=administrator@vsphere.local
+/L*v \"%TEMP%\vmvcsvr.log\""
+
+VMware, Inc.
+
+  
+
+12
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+If the database is already installed, FORMAT_DB=1 command parameter specifies replacing the existing 
+database. When DB_SERVER_TYPE=Bundled is used, FORMAT_DB=1 must also be specified as described in the 
+Table 3 condition for DB_SERVER_TYPE.
+
+vCenter Server Custom Local Installation
+Example 4 sets parameters for a single vCenter Server custom installation.
+
+Example 4.  Custom Local Installation – Single vCenter Server Installation Parameters
+
+start /wait media\vpx\VMware-vcserver.exe  /w /1033 /v"/qr 
+LICENSEKEY=\"xxxxx-xxxxx-xxxxx-xxxxx-xxxxx\" 
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=Administrators
+DB_SERVER_TYPE=Custom 
+DB_DSN=\"VCCmdLineInstall-2\" 
+DB_USERNAME=\"Administrator\" 
+DB_PASSWORD=\"CENSORED\" 
+VPX_USES_SYSTEM_ACCOUNT=\”\”
+VPX_ACCOUNT=\"TEST\administrator\"
+VPX_PASSWORD=\"CENSORED\"
+VPX_PASSWORD_VERIFY=\"CENSORED\"
+INSTALLDIR=\"C:\VCServer\"
+VCS_GROUP_TYPE=Single
+VCS_HTTPS_PORT=443 
+VCS_HTTP_PORT=80 
+VCS_HEARTBEAT_PORT=902 
+TC_HTTP_PORT=8080 
+TC_HTTPS_PORT=8443 
+VCS_ADAM_LDAP_PORT=389 
+VCS_ADAM_SSL_PORT=902"
+
+vCenter Server Local Installation over a Network
+Over a network, use the default settings to install vCenter Server to the default location with the bundled database
+
+Example 5.  Typical Local Installation from a Network
+
+start /wait \\10.112.121.19\c\VMware-VIMSetup-5.5.0_150520\vCenter-Server\VMware-vcserver.exe  /w 
+
+/1033 /v"/qr
+
+FORMAT_DB=1"
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=Administrators"
+
+When DB_SERVER_TYPE is not specified, its default value is Bundled, so FORMAT_DB=1 must be specified as 
+shown in the Table 3 condition for DB_SERVER_TYPE.
+
+vCenter Server Local Installation with an Existing Database
+Example 6 sets the default user as the custom database server user. The domain user sets the default user for 
+vCenter Server, integrated OS authentication, and remote SQL Servers. The same command string works for 
+local SQL Servers. 
+
+VMware, Inc.
+
+  
+
+13
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Example 6.  Typical Local Installation with an Existing Database
+
+start /wait media\vCenter-Server\VMware-vcserver.exe  /w /1033 /v"/qr
+LICENSEKEY=\"xxxxx-xxxxx-xxxxx-xxxxx-xxxxx\"
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=Administrators
+DB_SERVER_TYPE=Custom
+DB_DSN=\"sql2005_NT_mli\"
+DB_USERNAME=\"mli\" 
+DB_PASSWORD=\"CENSORED\"
+VPX_USES_SYSTEM_ACCOUNT=\"\" 
+VPX_ACCOUNT=\"PDPVC\mli\"
+VPX_PASSWORD=\"CENSORED\"
+VPX_PASSWORD_VERIFY=\"CENSORED\""
+
+If you are using SQL authentication for ODBC DSN, vCenter Server can run either as a local system account 
+or as a domain user account.
+
+vCenter Server Custom Local Installation with Linked Mode
+Example 7 sets multiple vCenter Server installation parameters and joins a group of vCenter Servers. This 
+Linked Mode examples describes how to have the installation join the group of an existing primary 
+vCenter Server. You can specify either a local system account or user‐specified account.
+Linked Mode installation is supported only if the vCenter Servers to be joined are of the same version, and are 
+registered to the same Single Sign‐On server.
+
+Example 7.  Custom Installation with Linked Mode
+
+start /wait media\vCenter-Server\VMware-vcserver.exe  /w /1033 /v"/qr
+LICENSEKEY=xxxxx-xxxxx-xxxxx-xxxxx-xxxxx
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=Administrators
+DB_SERVER_TYPE=Custom
+DB_DSN=\"VCCmdLineInstall-2\"
+DB_USERNAME=\"Administrator\"
+DB_PASSWORD=\"CENSORED\"
+VPX_USES_SYSTEM_ACCOUNT=\"\"
+VPX_ACCOUNT=\"TEST\administrator\"
+VPX_PASSWORD=\"CENSORED\"
+VPX_PASSWORD_VERIFY=\"CENSORED\"
+INSTALLDIR=\"C:\VCServer\"
+VCS_GROUP_TYPE=Group
+VCS_ADAM_PRIMARY_SERVER=\"FQDN\"
+VCS_ADAM_PRIMARY_PORT=389
+VCS_HTTPS_PORT=443
+VCS_HTTP_PORT=80
+VCS_HEARTBEAT_PORT=902
+TC_HTTP_PORT=8080 
+TC_HTTPS_PORT=8443
+VCS_ADAM_LDAP_PORT=389
+VCS_ADAM_SSL_PORT=636 "
+
+vCenter Server Local Installation with Linked Mode and Existing Database
+Example 8 installs vCenter Server with an existing database and keeps the existing database data while joining 
+the installed vCenter Server to a Linked Mode group of vCenter Servers.
+
+VMware, Inc.
+
+  
+
+14
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Linked Mode installation is supported only if the vCenter Servers to be joined are of the same version, and are 
+registered to the same Single Sign‐On server.
+
+NOTE   For Oracle 10g and Oracle 11g, to continue the installation, you must respond to the confirmation 
+prompt that appears.
+
+Example 8.  Install with Linked Mode and Existing Database
+
+start /wait media\vCenter-Server\VMware-vcserver.exe  /w /1033 /v"/qr
+LICENSEKEY=\"xxxxx-xxxxx-xxxxx-xxxxx-xxxxx\"
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=Administrators
+DB_SERVER_TYPE=Custom
+DB_DSN=\"VCCmdLineInstall-2\"
+DB_USERNAME=\"Administrator\" 
+DB_PASSWORD=\"CENSORED\"
+FORMAT_DB=0
+VPX_USES_SYSTEM_ACCOUNT=\"\"
+VPX_ACCOUNT=\"TEST\administrator\"
+VPX_PASSWORD=\"CENSORED\"
+VPX_PASSWORD_VERIFY=\"CENSORED\"
+INSTALLDIR=\"C:\VCServer\"
+VCS_GROUP_TYPE=Group
+VCS_ADAM_PRIMARY_SERVER=\"FQDN\"
+VCS_ADAM_PRIMARY_PORT=389
+VCS_HEARTBEAT_PORT=902
+VCS_HTTPS_PORT=443
+VCS_HTTP_PORT=80
+TC_HTTP_PORT=8080 
+TC_HTTPS_PORT=8443
+VCS_ADAM_LDAP_PORT=389
+VCS_ADAM_SSL_PORT=636 "
+
+vSphere Client Local Installation Examples
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3, “vCenter Server 
+Installer Command Parameters” on page 4, and “Basic Procedure for Installing vCenter Server and 
+Components from the Command Line” on page 11. vSphere Client installation command parameters are 
+listed in Table 4.
+The examples assume that you are running the installation from a local disk, not a network location. 
+
+Example 9.  Typical vSphere Client Installation
+
+start /wait media\vSphere-Client\VMware-viclient.exe  /w /1033 /v"/qr "
+
+Example 10.  vSphere Client Installation with a Log File and a a Custom Installation Directory
+
+start /wait media\vSphere-Client\VMware-viclient.exe  /w /1033 /v"/qr
+INSTALLDIR=\"C:\VIClient\"
+/L*v \"%TEMP%\vim-vic-msi.log\""
+
+Example 11.  vSphere Client Reinstallation
+
+start /wait media\vSphere-Client\VMware-viclient.exe  /w /1033 /v"/qr
+/L*v \"%TEMP%\vim-vic-msi.log\""
+
+VMware, Inc.
+
+  
+
+15
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+vSphere Client 5.5.x Installation over Virtual Infrastructure Client
+Installing the vSphere Client over an existing installation overwrites the original installation. You are not 
+prompted to confirm the installation. You can safely install the vSphere Client over the following versions of 
+the Virtual Infrastructure Client (VI Client) or the vSphere Client:
+ VI Client 2.0
+ VI Client 2.0.1
+ VI Client 2.0.1 P1, P2
+ VI Client 2.0.2
+ VI Client 2.0.2 U1, U2, U3, U4, U5
+ VI Client 2.5
+ VI Client 2.5 U1, U2, U3, U4
+
+
+vSphere Client 4.0.x
+vSphere Client 4.1.x
+vSphere Client 5.0.x
+vSphere Client 5.1.x
+
+
+
+
+
+
+
+Example 12.  vSphere Client 5.5 Installation over Virtual Infrastructure Client
+
+start /wait media\vSphere-Client\VMware-viclient.exe  /w /1033 /v"/qr /L*v 
+
+\"%TEMP%\vim-vic-msi.log\""
+
+vSphere Web Client Local Installation Example
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3, “vCenter Server 
+Installer Command Parameters” on page 4, and “Basic Procedure for Installing vCenter Server and 
+Components from the Command Line” on page 11. vSphere Web Client installation command parameters are 
+listed in Table 5.
+
+Example 13.  vSphere Web Client Local Installation
+
+start /wait InstallerPath\VMware-WebClient.exe /1033 /v"/qr 
+HTTP_PORT=9090 HTTPS_PORT=9443 
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\" 
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\" 
+INSTALLDIR=\"InstallationPath\" 
+/L*v \"%TEMP%\vim-ngc-msi.log\""
+
+Remote Installation Examples
+
+To install vCenter Server remotely, install the vCenter components separately, in this order: vCenter Single 
+Sign‐On, vCenter Inventory Service, vCenter Server, and Profile‐Driven Storage Service (SPS). 
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3, “vCenter Server 
+Installer Command Parameters” on page 4, and “Basic Procedure for Installing vCenter Server and 
+Components from the Command Line” on page 11.
+vCenter Server requires the Microsoft .NET 3.5 SP1 Framework. The .NET 3.5 SP1 installation might require 
+Internet connectivity to download more files. If the target host does not have .NET 3.5 SP1 installed, you can 
+install it remotely by using the command in Example 14.
+
+Example 14.  Microsoft .NET 3.5 SP1 Installation for Windows Server 2008 and later
+
+start /w ocsetup.exe "NetFx3" /quiet /norestart /log:\%TEMP%\netfx3.log\"
+
+VMware, Inc.
+
+  
+
+16
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+If you plan to use the Microsoft SQL Server 2008 R2 Express SP1 database that is bundled with vCenter Server, 
+Microsoft Windows Installer version 4.5 (MSI 4.5) and the Microsoft .NET 3.5 SP1 Framework are required on 
+your system. You can install Microsoft .NET 3.5 SP1 as shown in Example 14. You can download MSI 4.5 from 
+the Microsoft Web site. If the target host does not have MSI 4.5 installed, you can install it remotely by using 
+the command in Example 15. The Windows6.0-KB958655-v2-x64.msu file is located in the directory 
+redist\msi45\Windows version number.
+
+Example 15.  Windows MSI 4.5 Remote Installation
+
+start /wait Windows6.0-KB958655-v2-x64.msu /quiet /norestart
+
+To install the Microsoft SQL Server 2008 R2 Express database remotely, use the command in Example 16. You 
+must log in as the system account. The SQLEXPR_x64_ENU.exe file is located in the directory 
+redist\SQLEXPR.
+
+Example 16.  Microsoft SQL Server 2008 R2 Express Remote Installation
+
+start /wait SQLEXPR_x64_ENU.exe /Q 
+/ACTION=Install 
+/IACCEPTSQLSERVERLICENSETERMS 
+/SQLSVCACCOUNT="NT AUTHORITY\SYSTEM" 
+/FEATURES=SQL,Tools /SQLSYSADMINACCOUNTS="BUILTIN\ADMINISTRATORS" 
+/NPENABLED="1" 
+/TCPENABLED="1" 
+/SECURITYMODE="SQL" 
+/INSTANCENAME=VIM_SQLEXP 
+/SAPWD="MASTER_PASSWORD"
+
+The msvcrt90 DLL is required for OpenSSL. To install the msvcrt90.dll remotely, use the command in 
+Example 17. The vcredist_x64.exe file is located in the directory redist\vcredist\Windows version 
+number.
+
+Example 17.  Microsoft msvcrt90.dll Remote Installation
+
+start /wait media\vcredist\2008\vcredist_x64.exe /q
+
+Example 18.  vCenter Single Sign-On Remote Installation
+
+start /wait VMware-SSO-Server.exe /1033 /v"/q 
+CONFIG_TYPE=Setup 
+SETUP_TYPE=Basic 
+MASTER_PASSWORD=Admin@12345
+COMPUTER_FQDN=hostname-domain.com 
+INSTALLDIR=\"C:\Program Files\VMware\Infrastructure\" 
+/L*v \"c:\temp\vim-sso-msi.log\""
+
+VMware, Inc.
+
+  
+
+17
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Example 19.  Inventory Service Remote Installation
+
+start /wait media\”inventory Service”\VMware-inventory-service.exe /S /v"
+INSTALLDIR=\"C:\Program Files\VMware\Infrastructure\"
+QUERY_SERVICE_NUKE_DATABASE=0 or 1  
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\" 
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\" 
+HTTPS_PORT=10443 
+FEDERATION_PORT=10111 
+XDB_PORT=10109 
+TOMCAT_MAX_MEMORY_OPTION=S
+COMPUTER_FQDN=IP_ADDRESS 
+/L*V "%temp%\vim-qs-msi.log" /qr"
+
+Example 20.  vCenter Server Remote Installation
+
+start /wait VMware-vcserver.exe  /v"/qr
+SSO_ADMIN_USER=administrator@vsphere.local 
+SSO_ADMIN_PASSWORD=\"Admin@12345\" 
+VC_ADMIN_USER=Administrators 
+VC_ADMIN_IS_GROUP_VPXD_TXT=true 
+COMPUTER_FQDN=IP_ADDR 
+LS_URL=\"https://hostname-domain.com:7444/lookupservicedk\" 
+IS_URL=\"https://FQDN:10443/\" 
+DB_SERVER_TYPE=Bundled FORMAT_DB=1 
+VCS_GROUP_TYPE=Single 
+VPX_ACCOUNT_TYPE=System 
+/L*v \"\temp\vim-vcs-msi.log\""
+
+If you are performing a remote installation of vCenter Server, you must install Profile‐Driven Storage Service 
+(SPS) separately from vCenter Server. Before installing Profile‐Driven Storage Service, verify that the VMware 
+VirtualCenter Server service is started in the Windows Adminstrative Tools Control Panel. The Profile‐Driven 
+Storage Service installation will fail if the VMware VirtualCenter Server service is not started.
+
+Example 21.  Profile-Driven Storage Service (SPS) Remote Installation
+
+msiexec.exe /L*V "path_to_the_log_file" /I "media\vCenter-Server\Profile-Driven Storage\VMware 
+
+vSphere Profile-Driven Storage.msi" 
+
+INSTALLDIR="C:\Program Files\VMware\Infrastructure\" 
+COMPUTER_FQDN=FQDN 
+TOMCAT_MAX_MEMORY_OPTION="S" 
+VC_KEYSTORE_TYPE=PKCS12 
+VC_KEYSTORE_PASSWORD=testpassword 
+VC_SSL_DIR="vcAppDataDir\SSL\" 
+VC_SPS_EXTENSION_DIR="vCenterServerInstallDirectory\extensions\com.vmware.vim.sps\" 
+IS_URL="https://InventoryServiceFQDN:10443" 
+ARPSYSTEMCOMPONENT=1 
+SKIPVCCHECK=1 /qr
+
+Example 22.  vSphere Client Remote Installation
+
+VMware-viclient.exe /s /v"/qn INSTALLDIR=\"C:\Program Files\VMware\Infrastructure\" "
+
+Example 23.  vSphere Web Client Remote Installation
+
+start /wait media\VMware-WebClient.exe /1033 /v"/qr 
+HTTP_PORT=9090 
+HTTPS_PORT=9443 
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\" 
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\" 
+INSTALLDIR=\"InstallationPath\" 
+/L*v \"%TEMP%\vim-ngc-msi.log\""
+
+VMware, Inc.
+
+  
+
+18
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Troubleshooting: vSphere Web Client Installation Logs
+The vSphere Web Client installation log is stored at: %TEMP%\vim-ngc-msi.log.
+
+Upgrading vCenter Server from the Command Line
+
+When you upgrade to vCenter Server 5.5 from the command line, you must install vCenter Single Sign‐On and 
+vCenter Inventory Service, in that order, before you install or upgrade vCenter Server.
+When you upgrade vCenter Server, you can upgrade the vCenter Server database first, and then upgrade 
+vCenter Server, or upgrade both the vCenter Server database and vCenter Server in a single command.
+To upgrade the vCenter Server database before upgrading vCenter Server, use the following command. 
+
+path_to_vCenter-Server\vCenter-Server\dbupgrade\bin\VCDtabaseUpgrade.exe DSN=DSN_name 
+
+UID=DB_username PWD=DB_password LOGFILE=optional or specify another name with path
+
+To run this command silently, add the parameter QUIET=true. The DB_username depends on the database 
+type:
+
+
+
+
+
+For SQL Server databases. If the DSN uses Windows authentication, the DB_username is the user name for 
+the logon user. If the DSN uses the SQL Server authentication, the DB_username is the specific database 
+user. 
+For Oracle or IBM DB2 databases, the DB_user name is the database user.
+
+The DB_password is the password for the specified DB_username.
+To upgrade the vCenter Server database when you upgrade vCenter Server, in a single command, the 
+VMware-vcserver.exe command must include the following parameters. 
+Keep in mind that during minor upgrade we do not do database schema upgrade and setting the 
+LAUNCHWIZARD=1 performs a database schema upgrade. Since the minor upgrade is also through 
+command line, do not pass LAUNCHWIZARD=1 for it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+DB_EXISTING_VERSION=existing_database_version 
+
+DB_DSN=database_DSN 
+
+DB_USERNAME=database_user_name 
+
+DB_PASSWORD=database_password 
+
+LAUNCHWIZARD=1 (used only for major vCenter Server upgrades, not for minor ones)
+
+VCS_DB_BACKUP=1 
+
+Example 24.  Upgrade of vCenter Server and vCenter Server Database
+
+path_to_vCenter-Server\vCenter-Server\VMware-vcserver.exe  /1033
+/v"DB_EXISTING_VERSION=existing_database_version 
+DB_DSN=database_DSN 
+DB_USERNAME=database_user_name 
+DB_PASSWORD=database_password 
+SSO_ADMIN_USER=\"administrator@vsphere.local\" 
+SSO_ADMIN_PASSWORD=\"Admin@12345\"
+LS_URL=\"https://hostname-domain.com:7444/lookupservice/sdk\"
+IS_URL=\"https://FQDN:10443/\" 
+VC_ADMIN_USER=Administrators 
+VC_ADMIN_IS_GROUP_VPXD_TXT=true 
+LAUNCHWIZARD=\"1\" 
+VCS_DB_BACKUP=\"1\"" /qr
+
+If the vCenter Server database is already upgraded to the correct version for the vCenter Server version that 
+you are installing, this command does not upgrade the database again. For the DB_EXISTING_VERSION 
+parameter, use the following schema version numbers:
+ VirtualCenter 2.5 Update 6: 5
+
+VMware, Inc.
+
+  
+
+19
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+
+
+
+
+
+
+
+
+
+
+vCenter Server 4.0.x: 400
+vCenter Server 4.1.x: 410
+vCenter Server 5.0: 500
+vCenter Server 5.1: 510
+vCenter Server 5.5: 550
+
+You can customize this command by using the parameters in Table 3.
+
+Uninstalling vCenter Server and Components from the Command Line
+You must uninstall vSphere 5.5 components in this order: Profile‐Driven Storage Service (SPS), vCenter Server, 
+vCenter Inventory Service, and vCenter Single Sign‐On.
+
+To uninstall Profile-Driven Storage Service
+
+1 Open a Windows command prompt on the virtual machine or server that Profile‐Driven Storage Service 
+
+is installed on.
+Run the following command:
+
+2
+
+msiexec.exe /x {7BC9E9D9-3DF6-4040-B4A1-B6A3A8AE75BA} 
+
+SKIPVCCHECK=1
+SUPPRESS_CONFIRM_UNINSTALL="1" /qr
+
+To uninstall vCenter Server
+
+1 Open a Windows command prompt on the virtual machine or server that vCenter Server is installed on.
+2
+
+Run the following command:
+
+msiexec.exe /x {E1F05550-4238-4378-87F0-105147A251D9} 
+
+SUPPRESS_CONFIRM_UNINSTALL="1" /qr
+
+To uninstall both vCenter Server and Profile-Driven Storage Service
+
+1
+
+2
+
+Open a Windows command prompt on the virtual machine or server that vCenter Server is installed 
+on.
+
+Run the following command:
+
+msiexec.exe /i {E1F05550-4238-4378-87F0-105147A251D9} REMOVE=ALL 
+
+SUPPRESS_CONFIRM_UNINSTALL="1" /qr
+
+To uninstall vCenter Inventory Service
+
+1
+
+2
+
+Open a Windows command prompt on the virtual machine or server that vCenter Inventory Service 
+is installed on.
+
+Run the following command:
+
+msiexec.exe /X {28D9C95C-F311-4368-A2FF-FFDF4D5BC8E4} 
+
+SUPPRESS_CONFIRM_UNINSTALL="1" /qr
+
+To uninstall vCenter Single Sign-On
+
+1
+
+2
+
+Open a Windows command prompt on the virtual machine or server that vCenter Single Sign-On is 
+installed on.
+
+Run the following command:
+
+msiexec /x {7C3F207B-9D5B-46E4-B57E-C5456FEC1691} MASTER_PASSWORD=master_password /qr 
+
+To uninstall the vSphere Client
+
+1 Open a Windows command prompt on the virtual machine or server that the vSphere Client is installed 
+
+on.
+Run the following command:
+
+2
+
+VMware, Inc.
+
+msiexec.exe /x {4CFB0494-2E96-4631-8364-538E2AA91324}
+
+  
+
+20
+
+To uninstall the vSphere Web Client
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+1 Open a Windows command prompt on the virtual machine or server that the vSphere Web Client is 
+
+installed on.
+Run the following command:
+
+2
+
+MSIEXEC.EXE /norestart /qr /x n {0A94097F-6DE2-484D-A2B2-ADAF51CC3FDF}
+
+SSO_ADMIN_USER="administrator@vsphere.local "
+SSO_ADMIN_PASSWORD="password" 
+/L*v \"%TEMP%\vim-ngc-msi.log\"
+
+Installing, Upgrading, and Uninstalling vCenter Server Support Tools
+After you install vCenter Single Sign‐On, vCenter Inventory Service, and vCenter Server, you can install the 
+following vCenter Server support tools:
+
+
+
+
+
+
+
+
+
+vSphere Auto Deploy
+vSphere Authentication Proxy
+vSphere ESXi Dump Collector
+vSphere Syslog Collector
+
+The installer files are included in the ISO installer file for vCenter Server, which you can download from the 
+VMware product page at http://www.vmware.com/products. The installer ISO file name is 
+VMware-VIMSetup-all-5.5.0-yyyyyy.iso, where yyyyyy is the build number. After you extract the files 
+from the ISO file, the installer executables for the support tools are in the vctools subdirectory.
+For remote installations, you can store installation‐related data on the remote computer, mapping the remote 
+remote path \\10.20.100.23\DATA as F:\DATA. Then you can point to this location from the installation 
+command.
+For more information about these tools, see the vSphere 5.5 documentation at 
+http://www.vmware.com/support/pubs.
+
+Installing, Upgrading, and Uninstalling vSphere Auto Deploy
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3 and “Basic 
+Procedure for Installing vCenter Server and Components from the Command Line” on page 11.
+
+Auto Deploy Installation Parameters
+Table 7.  Auto Deploy Installation Command Parameters for the VMware-autodeploy.exe Command
+Parameter
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+VM_DATA_SIZE=number of GB
+
+VM_LOCALSERVER=IP or FQDN
+
+VM_PATH_DATA=\"data_directory\"
+
+VM_PORT=port number
+
+VM_PORTADD=port number
+
+VC_SERVER_ADDRESS=IP_address
+
+Specifies the root destination directory for the installation.
+The installation path cannot have any of the following characters: comma 
+(,), semicolon (;), asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), left or right angle 
+bracket (<>), or vertical bar (|).
+If you install Auto Deploy on a drive other than C:, verify that there is 
+enough space in the C:\WINDOWS\Installer folder to install the 
+Microsoft Windows Installer .msi file. 
+Hard disk space in gigabytes (GB) for VM_PATH_DATA.
+Auto Deploy local computer IP address or fully qualified domain name 
+(FQDN).
+Specifies the root destination data directory for the installation.
+Auto Deploy service TCP port number
+Auto Deploy management TCP port number
+vCenter Server address
+
+VMware, Inc.
+
+  
+
+21
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Table 7.  Auto Deploy Installation Command Parameters for the VMware-autodeploy.exe Command
+VC_SERVER_PASSWORD=\"password\"
+
+VC_SERVER_PORT=port number
+
+VC_SERVER_THUMBPRINT=thumbprint
+
+VC_SERVER_USER=\"user_name\"
+
+vCenter Server user password
+vCenter Server port number
+vCenter Server certificate thumbprint
+vCenter Server user name
+
+Auto Deploy Installation Examples
+Example 25 installs Auto Deploy with the log file written to the %TEMP% directory.
+
+Example 25.  vSphere Auto Deploy Installation 
+
+VMware-autodeploy.exe /s /v"VM_PATH_DATA=\"C:\DATA\"
+VM_DATA_SIZE=4
+VM_PORT=6501
+VM_PORTADD=6502
+VC_SERVER_ADDRESS=10.20.104.158
+VC_SERVER_PORT=80
+VC_SERVER_USER=\"myUser\"
+VC_SERVER_PASSWORD=\"myPassword\"
+VC_SERVER_THUMBPRINT=\"6A:60:D0:25:8B:3E:67:0F:9B:EA:14:C5:F3:B7:01:2C:3B:11:EF:2A\"
+/qn /L*v \"%TEMP%\vim-autodeploy-msi.log\""
+Example 26 performs a silent minor upgrade of Auto Deploy with the log file written to the %TEMP% 
+directory.
+
+Example 26.  vSphere Auto Deploy Minor Upgrade
+
+VMware-autodeploy.exe /s /v"/qn /L*v \"%TEMP%\vim-autodeploy-msi.log\""
+Example 27 performs a silent major upgrade of Auto Deploy with the log file written to the %TEMP% 
+directory.
+
+Example 27.  vSphere Auto Deploy Major Upgrade
+
+VMware-autodeploy.exe /s /v"/qn /L*v \"%TEMP%\vim-autodeploy-msi.log\""
+Example 28 removes Auto Deploy silently with the log file written to the %TEMP% directory.
+
+Example 28.  vSphere Auto Deploy Uninstallation
+
+VMware-autodeploy.exe /s /x /v"/qn /L*v \"%TEMP%\vim-autodeploy-msi.log\""
+
+Troubleshooting: vSphere Auto Deploy Installation Logs
+vSphere Auto Deploy installation logs are stored at:
+%TEMP%\vim-autodeploy-msi.log (MSI log)
+%TEMP%\vminst.log (custom log)
+
+
+
+
+
+Installing, Upgrading, and Uninstalling vSphere Authentication Proxy
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3 and “Basic 
+Procedure for Installing vCenter Server and Components from the Command Line” on page 11.
+
+VMware, Inc.
+
+  
+
+22
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+vSphere Authentication Proxy Installation Parameters
+Table 8.  vSphere Authentication Proxy Installation Command Parameters for the VMware-cam.exe Command
+Parameter
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+VM_LOCALSERVER=IP or FQDN
+
+VM_IIS_PORT_TCP=port number
+
+VM_IIS_PORTSSL=port number
+
+VC_SERVER_ADDRESS=IP_address
+
+VC_SERVER_PASSWORD=password
+
+VC_SERVER_PORT=port number
+
+VC_SERVER_THUMBPRINT=thumbprint
+
+VC_SERVER_USER=user name
+
+Specifies the root destination directory for the installation.
+The installation path cannot have any of the following characters: comma 
+(,), semicolon (;), asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), left or right angle 
+bracket (<>), or vertical bar (|).
+If you install Authentication Proxy on a drive other than C:, verify that 
+there is enough space in the C:\WINDOWS\Installer folder to install the 
+Microsoft Windows Installer .msi file. 
+Authentication Proxy local computer IP address or fully qualified 
+domain name (FQDN).
+Authentication Proxy service TCP port number
+Authentication Proxy service SSL TCP port number
+vCenter Server address
+vCenter Server user password
+vCenter Server port number
+vCenter Server certificate thumbprint
+vCenter Server user name
+
+vSphere Authentication Proxy Installation Examples
+Example 29 installs Authentication Proxy with the log file written to the %TEMP% directory.
+
+Example 29.  vSphere Authentication Proxy Installation 
+
+VMware-cam.exe /s /v"VC_SERVER_ADDRESS=10.20.104.158
+VC_SERVER_USER=\"myUser\"
+VC_SERVER_PASSWORD=\"myPassword\"
+VM_IIS_PORT_TCP=52000
+VM_IIS_PORTSSL=53000
+VM_LOCALSERVER= 10.20.104.64
+VC_SERVER_THUMBPRINT=\"6A:60:D0:25:8B:3E:67:0F:9B:EA:14:C5:F3:B7:01:2C:3B:11:EF:2A\"
+/qn /L*v \"%TEMP%\vim-cam-msi.log\""
+Example 30 performs a silent minor upgrade of Auto Deploy with the log file written to the %TEMP% 
+directory.
+
+Example 30.  vSphere Authentication Proxy Minor Upgrade
+
+VMware-cam.exe /s /v"/qn /L*v \"%TEMP%\vim-cam-msi.log\""
+Example 31 performs a silent major upgrade of Authentication Proxy with the log file written to the %TEMP% 
+directory.
+
+Example 31.  vSphere Authentication Proxy Major Upgrade
+
+VMware-cam.exe /s /v"VC_SERVER_PASSWORD=\"myPassword\" /qn /L*v \"%TEMP%\vim-cam-msi.log\""
+Example 32 removes vSphere Authentication Proxy silently with the log file written to the %TEMP% directory.
+
+Example 32.  vSphere Authentication Proxy Uninstallation
+
+VMware-cam.exe /s /x /v"/qn /L*v \"%TEMP%\vim-cam-msi.log\""
+
+VMware, Inc.
+
+  
+
+23
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Troubleshooting: vSphere Authentication Proxy Installation Logs
+vSphere Authentication Proxy installation logs are stored at:
+
+
+
+
+
+%TEMP%\vim-cam-msi.log (MSI log)
+%TEMP%\vminst.log (custom log)
+
+Installing, Upgrading, and Uninstalling vSphere ESXi Dump Collector
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3 and “Basic 
+Procedure for Installing vCenter Server and Components from the Command Line” on page 11.
+
+vSphere ESXi Dump Collector Installation Parameters
+Table 9.  vSphere ESXi Dump Collector Installation Command Parameters for the VMware-netdump.exe 
+Command
+Parameter
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+VM_VC=1
+
+VM_DATA_SIZE=number of GB
+
+VM_LOCALSERVER=IP or FQDN
+
+VM_PATH_DATA=\"data_directory\"
+
+VM_PORT=port number
+
+VM_PORTADD=port number
+
+VC_SERVER_ADDRESS=IP_address
+
+VC_SERVER_PORT=port number
+
+VC_SERVER_USER==\"user_name\"
+
+VC_SERVER_PASSWORD=\"password\"
+
+VC_SERVER_THUMBPRINT=thumbprint
+
+Specifies the root destination directory for the installation.
+The installation path cannot have any of the following characters: comma 
+(,), semicolon (;), asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), left or right angle 
+bracket (<>), or vertical bar (|).
+If you install ESXi Dump Collector on a drive other than C:, verify that 
+there is enough space in the C:\WINDOWS\Installer folder to install the 
+Microsoft Windows Installer .msi file. 
+Include this parameter, set to 1, for an integrated installation with 
+vCenter Server.
+Hard disk space in gigabytes (GB) for VM_PATH_DATA.
+ESXi Dump Collector local computer IP address or fully qualified 
+domain name (FQDN).
+Specifies the root destination data directory for the installation.
+ESXi Dump Collector service TCP port number
+Dump Collector management TCP port number.
+vCenter Server address.
+vCenter Server port number.
+vCenter Server user name
+vCenter Server user password
+vCenter Server certificate thumbprint
+
+vSphere ESXi Dump Collector Installation Examples
+Example 33 installs vSphere ESXi Dump Collector in a standalone deployment with the log file written to the 
+%TEMP% directory.
+
+Example 33.  vSphere ESXi Dump Collector Standalone Installation
+
+VMware-netdump.exe /s /v"VM_PATH_DATA=\"C:\DATA\"
+VM_DATA_SIZE=4 VM_PORT=6501
+VM_LOCALSERVER=10.20.104.64
+/qn /L*v \"%TEMP%\vim-netdump-msi.log\""
+Example 34 installs vSphere ESXi Dump Collector in a deployment with vCenter Server, with the log file 
+written to the %TEMP% directory. For vCenter Server installation command parameters, see Table 3.
+
+VMware, Inc.
+
+  
+
+24
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Example 34.  vSphere ESXi Dump Collector Installation with vCenter Server
+
+VMware-netdump.exe /s /v"VM_VC=1
+VM_PATH_DATA=\"C:\DATA\"
+VM_DATA_SIZE=4
+VM_PORT=6501
+VM_PORTADD=8001
+VC_SERVER_ADDRESS=10.20.104.157
+VC_SERVER_PORT=80
+VC_SERVER_USER=\"myUser\"
+VC_SERVER_PASSWORD=\"myPassword\"
+/qn /L*v \"%TEMP%\vim-netdump-msi.log\""
+Example 35 performs a silent minor upgrade of vSphere ESXi Dump Collector with the log file written to the 
+%TEMP% directory.
+
+Example 35.  vSphere ESXi Dump Collector Minor Upgrade (Standalone or with vCenter Server)
+
+VMware-netdump.exe /s /v"/qn /L*v \"%TEMP%\vim-netdump-msi.log\""
+Example 36 performs a silent major upgrade of Authentication Proxy with the log file written to the %TEMP% 
+directory.
+
+Example 36.  vSphere ESXi Dump Collector Major Upgrade (Standalone or with vCenter Server)
+
+VMware-netdump.exe /s /v"VC_SERVER_PASSWORD=\"myPassword\" /qn /L*v 
+
+\"%TEMP%\vim-netdump-msi.log\""
+
+Example 37 removes vSphere ESXi Dump Collector silently with the log file written to the %TEMP% directory.
+
+Example 37.  vSphere ESXi Dump Collector Uninstallation
+
+VMware-netdump.exe /s /x /v"/qn /L*v \"%TEMP%\vim-netdump-msi.log\""
+
+Troubleshooting: vSphere ESXi Dump Collector Installation Logs
+vSphere ESXi Dump Collector installation logs are stored at:
+
+
+
+
+
+%TEMP%\vim-netdump-msi.log (MSI log)
+%TEMP%\vminst.log (custom log)
+
+Installing, Upgrading, and Uninstalling vSphere Syslog Collector
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3 and “Basic 
+Procedure for Installing vCenter Server and Components from the Command Line” on page 11.
+
+vSphere Syslog Collector Installation Parameters
+Table 10.  vSphere Syslog Collector Installation Command Parameters for the VMware-syslog.exe 
+Command
+Parameter
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+VM_DATA_ROTATION=number
+
+VM_DATA_SIZE=number of GB
+
+VM_LOCALSERVER=IP or FQDN
+
+VM_PATH_DATA=\"data_directory\"
+
+Specifies the root destination directory for the installation
+The installation path cannot have any of the following characters: comma 
+(,), semicolon (;), asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), left or right angle 
+bracket (<>), or vertical bar (|).
+If you install vSphere Syslog Collector on a drive other than C:, verify 
+that there is enough space in the C:\WINDOWS\Installer folder to 
+install the Microsoft Windows Installer .msi file. 
+Number of data rotations
+Hard disk space in gigabytes (GB) for VM_PATH_DATA.
+vSphere Syslog Collector local computer IP address or fully qualified 
+domain name (FQDN)
+Specifies the root destination data directory for the installation
+
+VMware, Inc.
+
+  
+
+25
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Table 10.  vSphere Syslog Collector Installation Command Parameters for the VMware-syslog.exe 
+Command
+VM_PORT=port number
+
+VM_PORT_TCP=[0|1]
+
+VM_PORT_UDP=[0|1]
+
+VM_PORTSSL=port number
+
+VM_PORTSSL_TCP=[0|1]
+
+Syslog Collector service port number
+Syslog Collector TCP service port. Set to 0 to disable or 1 to enable.
+Syslog Collector UDP service port. Set to 0 to disable or 1 to enable.
+Syslog Collector SSL port number
+Syslog Collector SSL port. Set to 0 to disable or 1 to enable.
+
+vSphere Syslog Collector Installation Examples
+Example 38 installs a standalone vSphere Syslog Collector with the log file written to the %TEMP% directory.
+
+Example 38.  vSphere Syslog Collector Standalone Installation 
+
+VMware-syslog.exe /s /v"VM_PATH_DATA=\"C:\DATA\"
+VM_DATA_SIZE=4
+VM_DATA_ROTATION=15
+VM_PORT=6501
+VM_PORT_TCP=0 
+VM_PORT_UDP=1
+VM_PORTSSL_TCP=0
+/qn /L*v \"%TEMP%\vim-syslog-msi.log\""
+Example 39 installs vSphere Syslog Collector with vCenter Server, with the log file written to the %TEMP% 
+directory. For vCenter Server installation command parameters, see Table 3.
+
+Example 39.  vSphere Syslog Collector Installation with vCenter Server
+
+VMware-syslog.exe /s /v"VM_VC=1
+VC_SERVER_ADDRESS=10.20.104.157
+VC_SERVER_PORT=80
+VC_SERVER_USER=\"myUser\"
+VC_SERVER_PASSWORD=\"myPassword\"
+VM_PATH_DATA=\"C:\DATA\"
+VM_DATA_SIZE=4
+VM_DATA_ROTATION=15
+VM_PORT=6501
+VM_PORT_TCP=0
+VM_PORT_UDP=1
+VM_PORTSSL_TCP=0
+/qn /L*v \"%TEMP%\vim-syslog-msi.log\""
+Example 40 performs a silent minor upgrade of vSphere Syslog Collector with the log file written to the 
+%TEMP% directory.
+
+Example 40.  vSphere Syslog Collector Minor Upgrade (Standalone or with vCenter Server)
+
+VMware-syslog.exe /s /v"/qn /L*v \"%TEMP%\vim-syslog-msi.log\""
+Example 41 performs a silent major upgrade of vSphere Syslog Collector with the log file written to the 
+%TEMP% directory.
+
+Example 41.  vSphere Syslog Collector Major Upgrade (Standalone or with vCenter Server)
+
+VMware-syslog.exe /s /v"VC_SERVER_PASSWORD=\"myPassword\" 
+
+/qn /L*v \"%TEMP%\vim-syslog-msi.log\""
+
+Example 42 removes vSphere Syslog Collector silently with the log file written to the %TEMP% directory.
+
+Example 42.  vSphere Syslog Collector Proxy Uninstallation
+
+VMware-syslog.exe /s /x /v"/qn /L*v \"%TEMP%\vim-syslog-msi.log\""
+
+VMware, Inc.
+
+  
+
+26
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Troubleshooting: vSphere Syslog Collector Installation Logs
+vSphere Syslog Collector installation logs are stored at:
+
+
+
+
+
+%TEMP%\vim-syslog-msi.log (MSI log)
+%TEMP%\vminst.log (custom log)
+
+Separately Installing, Upgrading, and Uninstalling VMware vCenter Server - Java 
+Components
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3 and “Basic 
+Procedure for Installing vCenter Server and Components from the Command Line” on page 11.
+
+VMware vCenter Server - Java Components Installation Parameters
+Table 11.  VMware vCenter Server - Java Components Parameters for the VMware-jre.exe Command
+Parameter
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+Specifies the root destination directory for the installation
+The installation path cannot have any of the following characters: comma 
+(,), semicolon (;), asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), left or right angle 
+bracket (<>), or vertical bar (|).
+
+VMware vCenter Server - Java Components Installation Examples
+Example 43 installs VMware vCenter Server ‐ Java Components with the log file written to the %TEMP% 
+directory.
+
+Example 43.  VMware vCenter Server ‐ Java Components Installation
+
+VMware-jre.exe /s /v"INSTALLDIR=\"D:\my path\" /qn /l*v \"%TEMP%\vim-jre-msi.log\""
+Example 44 performs a minor upgrade of VMware vCenter Server ‐ Java Components with the log file written 
+to the %TEMP% directory.
+
+Example 44.  VMware vCenter Server ‐ Java Components Minor Upgrade
+
+VMware-jre.exe /s /v"/qn /l*v \"%TEMP%\vim-jre-msi.log\""
+Example 45 performs a major upgrade of VMware vCenter Server ‐ Java Components with the log file written 
+to the %TEMP% directory.
+
+Example 45.  VMware vCenter Server ‐ Java Components Major Upgrade
+
+VMware-jre.exe /s /v"/qn /l*v \"%TEMP%\vim-jre-msi.log\""
+Example 46 removes VMware vCenter Server ‐ Java Components with the log file written to the %TEMP% 
+directory.
+
+Example 46.  VMware vCenter Server ‐ Java Components Uninstallation
+
+VMware-jre.exe /s /x /v"/qn /l*v \"%TEMP%\vim-jre-msi.log\""
+
+Troubleshooting: VMware vCenter Server - Java Components Installation Logs
+VMware vCenter Server ‐ Java Components installation logs are stored at:
+
+
+
+
+
+%TEMP%\vim-jre-msi.log (MSI log)
+%TEMP%\vminst.log (custom log)
+
+VMware, Inc.
+
+  
+
+27
+
+Command-Line Installation and Upgrade of VMware vCenter ServerTM 5.5
+
+Separately Installing, Upgrading, and Uninstalling VMware vCenter Server - tc 
+Server
+
+Before you begin, review the sections “Microsoft Windows Installer Commands” on page 3 and “Basic 
+Procedure for Installing vCenter Server and Components from the Command Line” on page 11.
+
+VMware vCenter Server - tc Server Installation Parameters
+Table 12.  VMware vCenter Server - tc Server Parameters for the VMware-tcserver.exe command.
+Parameter
+
+Conditions
+
+INSTALLDIR=\"installdir\"
+
+Specifies the root destination directory for the installation
+The installation path cannot have any of the following characters: comma 
+(,), semicolon (;), asterisk (*), left or right bracket ([ ]), equals sign (=), 
+backslash or forward slash (\ /), question mark (?), left or right angle 
+bracket (<>), or vertical bar (|).
+
+VMware vCenter Server - tc Server Installation Examples
+Example 47 installs VMware vCenter Server ‐ tc Server with the log file written to the %TEMP% directory.
+
+Example 47.  VMware vCenter Server ‐ tc Server Installation
+
+VMware-tcserver.exe /s /v"INSTALLDIR=\"D:\My Path\" /qn /l*v \"%TEMP%\vim-tcserver-msi.log\""
+Example 48 performs a minor upgrade of VMware vCenter Server ‐ tc Server with the log file written to the 
+%TEMP% directory..
+
+Example 48.  VMware vCenter Server ‐ tc Server Minor Upgrade
+
+VMware-tcserver.exe /s /v"/qn /l*v \"%TEMP%\vim-tcserver-msi.log\""
+Example 49 performs a major upgrade of VMware vCenter Server ‐ tc Server with the log file written to the 
+%TEMP% directory.
+
+Example 49.  VMware vCenter Server ‐ tc Server Major Upgrade
+
+VMware-tcserver.exe /s /v"/qn /l*v \"%TEMP%\vim-tcserver-msi.log\""
+Example 50 removes VMware vCenter Server ‐ tc Server with the log file written to the %TEMP% directory.
+
+Example 50.  VMware vCenter Server ‐ tc Server Uninstallation
+
+VMware-tcserver.exe /s /x /v"/qn /l*v \"%TEMP%\vim-tcserver-msi.log\""
+
+Troubleshooting: VMware vCenter Server - tc Server Installation Logs
+VMware vCenter Server ‐ tc Server installation logs are stored at:
+
+
+
+
+
+%TEMP%\vim-tcserver-msi.log (MSI log)
+%TEMP%\vminst.log (custom log)
+
+If you have comments about this documentation, submit your feedback to:  docfeedback@vmware.com 
+
+VMware, Inc. 3401 Hillview Ave., Palo Alto, CA 94304 www.vmware.com
+Copyright © 2013 - 2015 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are 
+covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or 
+other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+Item: EN-001326-00
+
+  
+
+28
+
+

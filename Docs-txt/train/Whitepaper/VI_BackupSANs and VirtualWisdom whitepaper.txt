@@ -1,0 +1,525 @@
+ 
+ 
+ 
+ 
+ 
+ 
+BACKUP SANS AND VIRTUALWISDOM 
+
+Tom Jensen 
+Virtual Instruments 
+February 2011 
+
+INTRODUCTION 
+Backup SANs are those Fibre Channel networks that are built to carry only FC traffic associated with data backup 
+and recovery activities. Many organizations build these networks as a physically independent SAN; completely 
+separate from their “regular” disk SAN. Other organizations may choose to combine their disk and backup traffic 
+within a single SAN. Separating disk and backup SANs is often considered a best practice because: 1) The I/O profile 
+of backup is large‐block, streaming transactions and can consume large amounts of bandwidth capacity in the SAN 
+which can adversely impact transactional disk traffic, 2) The process of provisioning devices as backup targets is 
+much different than that of disk devices, including the change windows during which these activities take place, 
+and therefore it makes sense from an operational standpoint to have these environments separated and 3) The 
+organizational unit that interacts with and manages the devices for backup is usually different than that which 
+manages the disk provisioning process. 
+
+This document provides a high‐level overview of enterprise‐level backup technologies and discusses some of the 
+unique behaviors that one would see within a backup SAN when compared to what is normally observed in a disk 
+SAN. In addition, some of the unique features of the more prevalent enterprise backup technologies will be 
+discussed, again in the context of what one might see when looking at SAN backup traffic through VirtualWisdom.  
+
+IMPORTANT BACKUP ENVIRONMENT ARCHITECTURAL CONSIDERATIONS 
+There are several important pieces of information that should be understood about the backup environment and 
+infrastructure prior to using VirtualWisdom to monitor a backup SAN. 
+
+1.  What backup application is being used (e.g. TSM, NetBackup, NetWorker, etc.)? 
+2. 
+
+Is the storage used for backup connected to the same SAN as the transactional disk fabric or is there a 
+separate “backup SAN”? 
+
+3.  What type of storage is being used for storing the backup data (e.g. physical tape, virtual tape, lots of SAN 
+
+disk, NFS/CIFS file shares)? 
+If using physical tape, are the tape drives shared amongst backup/media servers? 
+
+4. 
+5.  What is the fabric layout of the backup SAN? 
+6.  Are LAN‐free backups being performed and if so are separate HBAs used on the hosts for backup traffic 
+
+and transactional disk traffic? 
+
+7.  What other features (e.g. deduplication, advanced disk, etc.) of the backup application are being used? 
+
+SUMMARY OF THINGS THAT MAY LOOK DIFFERENT IN A BACKUP SAN 
+When compared to a disk SAN, the traffic, setup and behavior of a backup SAN will look a little different.  These 
+differences are summarized in the list below and are covered in more detail later in this document. 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+1.  Compared to what is normally seed in a disk SAN, bandwidth usage will be high, especially during certain 
+
+periods of the day (e.g. during the backup window). Note also that backup servers may be busy 
+performing I/O operations during other parts of the day to support disaster recovery and general 
+maintenance of the backup infrastructure. For example, NetBackup “duplication” may be used during the 
+day to create replica copies of backup images. 
+
+2.  Ports connected to physical tape drives will usually only see a single LUN since only one tape drives is 
+
+connected per port 
+
+3.  Physical tape drives are generally shared amongst multiple servers so you will see multiple initiators 
+
+accessing a given LUN (not simultaneously of course) 
+
+4.  Some backup servers will have disk LUNs attached to them that are used as storage medium for backup 
+
+images. There could be many TBs of this kind of storage used. These LUNs and the arrays that house them 
+will have to support high bandwidth, large block read and writes. 
+
+5.  Some of the backup servers will also have disk attached for storing the backup catalog. This catalog is the 
+
+repository of metadata for all of the backup objects as well as the configuration of backup clients, 
+schedules, etc.  This storage behaves much like that used for a relational database and therefore low 
+latency is important for overall performance of the backup/recovery application. 
+
+6.  Some of the backup clients will read and write directly to the storage medium (tape, virtual tape, disk, 
+etc.) rather than sending the data through a backup server. These backup clients are often called “LAN‐
+free clients” or “SAN clients” and generally will have a separate HBA (or multiple HBAs) for backup and 
+recovery traffic.  
+
+7.  Some storage devices, like VTL subsystems, may actually look like “servers” to VirtualWisdom because the 
+
+storage has a server front‐end that performs emulation functions. However, some of the HBAs in these 
+servers are set to “target mode” and serve as the storage targets for the backup servers. 
+
+8.  When devices are shared amongst backup servers and/or LAN‐free clients, there may be a significant 
+
+amount of SCSI “chatter” between the servers/clients and shared devices.  This may also be reflected in a 
+large number of “SCSI reservation conflicts” as arbitration of the shared devices takes place. 
+
+ENTERPRISE BACKUP ARCHITECTURE 
+The major “enterprise class” backup applications that one generally encounters, particularly in large shops are: 
+IBM/Tivoli TSM (Tivoli Storage Manager), Symantec NetBackup (formally Veritas NetBackup) and EMC NetWorker 
+(formally Legato NetWorker).  These backup applications have been around for many years and were originally 
+developed for physical magnetic tape‐based storage. As the cost of disk has come down and the need for greater 
+flexibility in backup operations has grown, all of these backup applications have been retrofitted to utilize disk as a 
+storage meduim for backups. 
+
+Each of these backup applications has different architectural options and capabilities but they also have many 
+things in common. 
+
+1.  Backup Server. Typically the backup server is the server that controls all of the operations of the backup 
+
+environment including; client configuration, device configuration, scheduling, reporting and general 
+control of the entire operation. In a TSM environment this server is called the “TSM Server”. In a 
+NetBackup environment this server is called the “Master Server”.  And, in a NetWorker environment it is 
+called the “NetWorker Server”. 
+
+2.  Media Server.  Some of the backup applications utilize the concept of a media server which is a server 
+
+that serves as a destination or source for backup and recovery options. NetBackup calls this server a 
+
+Page 2 of 8 
+
+ 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+“media server” and NetWorker calls it a “storage node”. TSM does not really have a similar concept 
+except when LAN‐free backups are configured (see below). 
+
+3.  LAN Backup Client. The LAN backup client is the host on which the backup/recovery operation will be 
+
+executed. There is a client software “agent” installed on the host that is specific to the operating system 
+running on the server.  The backup client performs its backup/recovery operations via TCP/IP over the 
+LAN to/from the backup/media server. The backup client performs backup/recovery operations for file 
+systems/drives that are locally accessible to that particular server (in some cases NFS/CIFS file shares can 
+also be backed up this way). 
+
+4.  LAN‐free Backup Client.  For some backup clients it’s not practical to perform backup/recovery operations 
+
+using TCP/IP over the LAN because there is simply too much data (e.g. a multi‐terabyte database) to 
+transfer over the LAN. These types of clients are called different things by each of the backup applications 
+but the objective is the same; to perform the movement of backup data over the SAN rather than the 
+LAN.  Typically, these large backup clients utilize a separate HBA (or multiple HBAs) to connect to the 
+backup SAN over which the data is moved. The advantages of the LAN‐free client are: 1) No impact to the 
+LAN (note that there is still a TCP/IP connection to the server but that is only used for control information 
+and metadata) 2) Reduced CPU/memory overhead on both the backup client and backup server since the 
+IP stack is not involved in the data movement and 3) Generally improved backup/recovery performance 
+on the client (assuming there is not a bottleneck somewhere else!).  The downside to the LAN‐free client 
+is that it introduces complexity and cost into the environment. 
+
+5.  Application Agent Backup Client.  Each of the enterprise backup applications also supports a suite of 
+
+“application agents” (sometimes also referred to as “API agents”). These software components, installed 
+on the backup client, are “application aware” and provide an interface between the application (e.g. 
+Exchange, Oracle, SAP, SQL Server, etc.) to the enterprise backup application (e.g. NetBackup). This allows 
+the backup to be performed such that the application knows that a backup (or recovery) is being 
+performed. This also allows all of the application’s advanced backup features (e.g. “hot” backups, 
+incremental backups, split‐mirror backups, multi‐stream jobs, etc.) to be used during the backup 
+operation. In addition, no intermediate storage is required to temporarily hold the application backup 
+(e.g. a SQL Server dump file). 
+
+6.  NDMP Backup Client.  NDMP is a standard protocol for data backup on many network file servers. Very 
+often a backup client agent cannot be installed on these file servers because they are manufactured as 
+special‐purpose appliances with specialized kernels and limited access to the operating system. To 
+facilitate backup and recovery, the appliances as well as most of the enterprise backup applications 
+support NDMP. This allows the file servers to perform backup and recovery operations directly to storage 
+devices that are being managed and controlled by the backup application. Typically these backups are 
+performed to a sequential device (i.e. physical or virtual tape drive). The backup server is only responsible 
+for initiating the NDMP backup and receiving status updates from the file server. The other technique 
+sometimes used to backup file servers (when a backup client cannot be installed on the appliance) is to 
+mount the file shares on a “proxy server” and then use a LAN backup client agent to backup the mounted 
+file shares. This is not an efficient method due to the fact that the data has to be read over the network 
+(via the file share) and then sent over the network to the backup server. 
+
+7.  Backup Objects.  With exception of TSM, the backup objects sent to a backup server (or written directly 
+
+to storage by a LAN‐free client) are cataloged as backup “images”. For example, the backup of the “D” 
+drive on a Windows server will be cataloged as a single object for that drive. This backup object is also 
+classified by the type of backup schedule that created the image. For file system backups these schedules 
+are “FULL” or “INCREMENTAL” (of which there are multiple levels).  In the case of TSM, a file system 
+backup job inspects each file and only sends those files that need to be backed up. For file systems, 
+
+Page 3 of 8 
+
+ 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+NetBackup and NetWorker will do periodic (e.g. weekly) full backups whereas TSM only performs a full 
+backup the first time that a file system is backed up. After that, only files that change are backed up 
+(unless a full backup is forced). TSM calls this a “progressive incremental” or “incremental forever” 
+paradigm and is one of the reasons that TSM can be more efficient but is somewhat more complicated to 
+configure. 
+
+8.  The Catalog. Each backup application maintains all configuration information and information about the 
+
+backup objects in a catalog (or “database” in TSM terminology). This catalog is managed by the server that 
+controls the overall environment and can grow to be very large (hundreds of GBs).  With TSM version 6.1 
+and up, this database is actually an IBM DB2 database that is embedded with the TSM server solution. The 
+disk LUNs assigned to the catalog should not be confused with the disk LUNs assigned to store backup 
+images/objects. The LUNs for the catalog should basically be viewed similarly to LUNs for any database 
+application. They are subject to an I/O profile similar to databases with lots of random, small‐block access, 
+heavily write oriented during some times of the day (generally during the backup window) and read 
+oriented during other times of the day (e.g. during backup expiration processing). 
+
+9.  Disaster Recovery. Each backup application has a mechanism for being able to recover backup data 
+
+should the backup server(s) and all associated backup objects get destroyed. There are two main things 
+that must happen in order for the backup data to be recoverable: 
+
+a.  The backup images must be moved off site and available in the event of a disaster. This can be 
+
+accomplished several ways: 
+
+i.  Classic “eject and ship” of the removable media (typically magnetic tape) that contains 
+the only copy of backup objects. As a result, the backup media required for operational 
+recovery (i.e. not a disaster recovery scenario) is off site, increasing the amount of time 
+that it takes to recover data (since the media must first be recalled from the off site 
+location). Most shops are trying to get away from this model because of the impact on 
+operational recovery times but there is a cost associated with it. 
+
+ii.  Create a second copy of the backup objects to separate removable media and then ship 
+
+that media off site. This model is fairly prevalent today. Creating a second copy of the 
+backup data is called different things within each backup software package. TSM calls 
+these “copy pools” and the process is called “storage pool backup”. NetBackup calls 
+these “duplicate images” and the process is called “duplication” which is controlled by 
+the “Vault” module.  And NetWorker calls this “cloning”. This allows the “primary” 
+backup images to stay on site for operational recovery while still providing an offsite 
+copy to be used in the event of disaster. Typically, a backup/media server performs this 
+operation although some storage platforms are now being integrated with the backup 
+applications to offload this operation. 
+
+iii.  “Electronic vaulting” is the process of creating a copy of the primary backup objects over 
+a WAN connection to a remote data center, thus eliminating the need to eject and ship 
+removable media. Since the media does not have to be physical removed and shipped, 
+non‐removable media (e.g. disk) can be used for the primary copy, secondary copy or 
+both. This mechanism is not generally used due to the cost of WAN links; lots of 
+bandwidth is needed. However, “deduplication” technology is now minimizing the WAN 
+bandwidth requirements making this much more feasible from an economic 
+perspective. 
+
+b.  The backup catalog/database must be backed up and made available at the disaster recovery 
+
+location. In general, without the catalog, the backup objects on the DR media cannot be accessed 
+so this is a critical component of a DR strategy. 
+
+Page 4 of 8 
+
+ 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+STORAGE MEDIA 
+
+Overview 
+Most backup applications were originally written to support only physical magnetic tape as a storage medium. 
+However, all of these applications can now utilize disk in some form as either transient or permanent storage of 
+backup objects.  TSM is the one application that was designed with an internal storage hierarchy that allowed 
+backup objects to be “migrated” from one storage “pool” to another, including disk. In a classic TSM shop, most 
+data is written to a random‐access disk “cache” during the backup job and then later, after the backup window has 
+closed, migrated to the permanent storage medium (typically magnetic tape). 
+
+The advent of new, lower cost disk technologies (e.g. SATA, deduplication) has made using disk for storing backup 
+data much more practical. Disk can take many forms in a backup environment; each of these will be discussed in 
+the sections that follow. 
+
+Physical Tape Drives 
+
+ 
+
+Typical configuration.  
+
+o  Tape drives are usually contained within an automated tape library (ATL).   
+o  Today there is generally one tape drive per SAN port (arbitrated loop devices are seldom used 
+
+o 
+
+any more).   
+In addition to the physical tape drive, one or more “library control/robotic” LUNs/devices will 
+also be visible. This is the device to which SCSI robotic commands are directed (even if this is a 
+virtual tape library). 
+
+o  The largest physical tape libraries (e.g. STK SL8500) may contain hundreds of tape drives 
+
+  How VirtualWisdom Sees the Storage. VirtualWisdom will typically see one tape drive per SAN port along 
+
+with some ports that present both a tape device and the robotic control device. 
+
+  Potential Unique Behavior 
+
+o 
+
+Some tape drives support “dual‐porting” in which they have two FC interfaces and are plugged 
+into two SAN ports. Only one of these ports is the “active” port while the other is in standby 
+mode (although both ports will login to the fabric).  However, VirtualWisdom will see each drive 
+connected in this manner on two ports in the SAN. Special driver software is need on the host to 
+support this configuration (e.g. the IBMtape driver on AIX and Solaris systems for IBM Ultrium 
+LTOx and 3592 drives).  
+
+o  Also note that these special tape drivers allow a tape port to be mapped to multiple HBAs. Again, 
+
+only one path is the active path to the tape drive and an alternate path is not chosen until the 
+primary path fails. 
+
+o  Generally, tape drives are shared amongst multiple backup/media servers. This is done because 
+sharing physical drives generally means overall, fewer drives are needed which reduces the cost 
+of the infrastructure.  Each backup application calls this something different. TSM calls it “library 
+sharing” or “dynamic drive sharing” and NetBackup calls it the “Shared Storage Option” (SSO). 
+Note that the latest releases of NetBackup may call it something different but most backup 
+administrators know it as SSO.  Because of this, each tape drive is often accessed by multiple 
+servers (again, not simultaneously). This drive assignment, locking and release mechanism is 
+handled by the backup application. Therefore, in a physical tape environment, VirtualWisdom 
+will see the same tape target/LUN being accessed at different times by different servers. 
+
+Page 5 of 8 
+
+ 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+SAN‐attached, Native Disk 
+
+ 
+
+Typical configuration.  
+
+o  Tier 2 and Tier 3 storage arrays (limited number of front‐end target ports, SAS and SATA disks) 
+
+are attached to the SAN and zoned and masked to the backup/media servers.  
+
+o  Usually a smaller number of large LUNs are used (when compared to disk that is used for other 
+
+applications).  
+
+o  This disk capacity is generally configured as mounted file systems on the backup/media server 
+
+although in some cases raw logical volumes (non‐file system I/O) may be used.   
+
+o  Multipathing is usually used for this attached storage. 
+o  This disk file systems may be used by the backup application as a repository for “sequential 
+
+volumes”. For example, in TSM this is called a “FILE device class”. The disk is used to store large 
+files often behaves like sequential media (e.g. tape).  This is done because much of the media 
+management features built into the backup application have been written for sequential/tape 
+media and emulating this type of media on disk allows all of those same features to be 
+leveraged. 
+
+  How VirtualWisdom Sees the Storage. This storage will appear to VirtualWisdom like typical SAN disk 
+
+storage. 
+
+  Potential Unique Behavior 
+
+o  Generally, LUNs will be assigned uniquely to backup/media servers (i.e. a LUN will be owned by 
+
+one backup/media server). However, some of the backup applications have features (e.g. 
+NetBackup “Advanced Disk”) that allow LUNs to be shared amongst multiple backup/media 
+servers (although not simultaneously). So, for example, you could see a LUN being used for a 
+backup job on media server “A” at 1:00am and then see media server “B” using that same LUN 
+for a different backup job at 3:30am. 
+
+Virtual Tape Libraries 
+
+ 
+
+Typical configuration.  
+
+o  A VTL subsystem typically consists of a Linux‐based emulation server (or sometimes multiple 
+servers in a clustered configuration) along with front‐end FC ports (connected to the SAN and 
+presented as target ports to the backup servers), back‐end FC ports (which may or may not be 
+connected to the SAN) which are used to connect to the disk storage that is used store the 
+backup objects. Very often these backend ports are connected directly (point‐to‐point) to the 
+storage array. 
+
+ 
+
+Page 6 of 8 
+
+ 
+
+ 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+o 
+
+Some VTLs are complete “appliance‐based” solutions; comprised of the emulation server and the 
+storage all in one complete package (e.g. EMC EDL). Other VTLs (e.g. IBM Diligent) consist of just 
+the emulation server (or “head”) and the user is responsible for attaching storage to the server. 
+
+o  One or more tape libraries is emulated and presented to the backup servers via the SAN  
+o  The backup server’s SCSI discovery process will detect the tape library; just like it would with a 
+
+physical tape library 
+
+o  Virtual tape drives are configured and assigned to specific virtual libraries within the VTL unit. 
+The virtual drives are assigned to specific front‐end ports of the emulation engine so that they 
+can be discovered on the SAN. 
+
+o  The virtual tape drives are assigned to specific host WWPNs on the SAN (the equivalent of disk 
+
+“LUN masking”) 
+
+o  The backup server’s SCSI discovery process will detect the virtual tape drives that have been 
+
+assigned to it just like it would a physical tape drive 
+
+o  Virtual tape cartridges are assigned to each virtual tape library (this determines the overall 
+
+capacity of the virtual tape library along with the number of “slots” in the library) 
+
+  How VirtualWisdom Sees the Storage.  
+
+o  There will be many virtual tape drive LUNs presented over each front‐end port (unlike physical 
+
+tape where there is one tape drive LUN per port) 
+
+o  VirtualWisdom may actually see the VTL server as a “server” on the SAN and not necessarily as a 
+storage device. However, the virtual tape drives should be seen as tape devices and if “good alias 
+naming conventions” are used it will be possible to distinguish which physical VTL subsystem the 
+drive belongs to and which virtual tape library within the subsystem it is assigned to. It’s 
+important to understand if the VTL is being seen as a host (with initiators) or storage (with 
+targets).  If it is not seen as storage, write traffic to the VTL will be seen as “read” traffic (since it’s 
+being directed toward what is seen as a host) and read traffic from the VTL will be seen as 
+“write” traffic (since it’s being directed away from the VTL). 
+
+  Potential Unique Behavior 
+
+o 
+
+In general, the backup application will not be configured to share virtual tape drives amongst 
+multiple backup/media servers because the user is allowed to create hundreds of virtual tape 
+drives within a virtual tape library so each backup/media server can be assigned its own set of 
+drives; no need to share them. However, there are some shops that actually do share virtual tape 
+drives amongst multiple backup/media servers. 
+
+Deduplication  
+Deduplication is a technology that minimizes the amount of physical storage required to store a given amount of 
+source data by writing only a single copy of unique byte strings across all files/objects written to the storage. 
+Therefore, if multiple files contain the same byte string, that string is only stored once on the physical storage and 
+then each file uses a reference pointer to that copy, rather than storing the same byte string multiple times.  
+Deduplication can be thought of as super‐duper compression.   Vendors claim from 5:1 to 200:1 effective dedupe 
+ratios.  Like any compression, “your mileage may vary”. A lot depends on the kind of data and the frequency with 
+which that data is written. Things like image files don’t dedupe very well and compression and encryption 
+effectively kill dedupe efficiency. In the context of backup, when multiple full backups of the same file system are 
+backed up and not a lot of the data has changed, the dedupe ratio tends to be very high. In TSM environments, 
+due to TSM’s use of the “progressive incremental” paradigm, dedupe ratios tend to be much lower. 
+
+There are basically two methods by which deduplication is implemented: 
+
+Page 7 of 8 
+
+ 
+
+BACKUP SANS AND VIRTUALWISDOM 
+
+1.  Source‐based deduplication. In this method, the server that wants to write the data (in the case of backup 
+
+and recovery this would be the backup client) determines which byte strings are unique and only sends 
+the unique strings. EMC’s Avamar product is one example of source‐based deduplication. 
+
+2.  Target‐based deduplication. In this method, the storage target performs all of the deduplication functions. 
+
+To the server, the storage target looks like “regular” storage (either a NFS/CIFS file share or VTL 
+emulation) and the storage is written to using normal techniques.  The storage subsystem: handles all of 
+the byte string inspection, stores the unique byte strings on disk and creates pointers for all other byte 
+strings. Examples of target‐based deduplication systems are: EMC Data Domain and IBM/Diligent VTLs. 
+Target‐based deduplication may be performed either “in‐line” (deduplication is performed as the data is 
+ingested by the subsystem) or in “post processing mode” (deduplication is performed after the data has 
+been ingested in its native form). 
+
+SAN‐attached deduplication storage will generally take the form of a VTL. So, from a VirtualWisdom perspective, 
+the storage will look just like a non‐dedupe VTL. VirtualWisdom will see emulated tape libraries and virtual tape 
+drives. Many target‐based deduplication subsystems are deployed as network shares (NFS or CIFS) and therefore 
+VirtualWisdom will only have visibility if the backend storage of the subsystem uses SAN‐attached Fibre Channel 
+storage. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Virtual Instruments Corporate 
+25 Metro Drive 
+San Jose, CA 95110 
+Phone: 408‐579‐4000 
+
+SALES INFORMATION
+sales@virtualinstruments.com 
+Phone: 408‐579‐4080 
+
+CUSTOMER SUPPORT 
+support@virtualinstruments.com 
+www.virtualinstruments.com 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom®, Virtual Instruments, 
+SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or 
+may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 2/11 
+
+ 
+
+Page 8 of 8 
+
+ 
+
+

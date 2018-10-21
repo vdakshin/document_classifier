@@ -1,0 +1,337 @@
+ 
+
+ 
+
+RETAILER 
+CASE STUDY 
+
+Challenges  
+• 
+
+Ensure all retail operations 
+are able to complete 
+application and database 
+transactions in a timely 
+fashion in order to continue 
+growth and meet end-of-year 
+sales expectations.  
+Application performance 
+issues  were problematic and 
+costly in terms of staff time to 
+rectify  
+IT application owners 
+concerned about the value of 
+the recently deployed storage 
+virtualization solution.  
+
+• 
+
+• 
+
+Solution  
+• 
+
+Virtual Instruments 
+Professional Services SAN 
+Availability & Optimization 
+Services  
+
+o 
+
+o 
+o 
+o 
+
+Virtual Instruments 
+VirtualWisdom®  
+SANInsight™ TAP  
+SANInsight™ ROVER  
+SANInsight™ ProbeFCX  
+
+Benefits  
+• 
+
+SAN proven not the source of  
+chronic application slowness  
+Storage virtualization solution  
+was shown to be cutting 
+latencies in half  
+Indentified that 10% of 
+application servers were at 
+risk of an outage  
+
+Customer’s utilization of 
+existing  architecture could be 
+improved through tuning and 
+optimization 
+
+ 
+
+ 
+ Virtual Instruments Professional Services Improves 
+Storage Infrastructure at Leading American Retailer 
+ 
+Leading American Retailer offers high quality, on-trend clothing, accessories and 
+personal care products at affordable prices in 1,000+ stores in the U.S. and Canada. 
+The online store ships to more than 60 countries worldwide and is in constant growth 
+mode with new products, new services, and new countries upon to transact business.  
+
+This leading Retailer was experiencing periodic application performance issues that were affect-
+ing both the retail stores as well as the online operations. It was not clear if the performance 
+was originating from the application servers, SAN fabric, storage or a combination thereof but it 
+was a chronic problem that was burning up IT staff time and cross IT group goodwill.  
+
+The inability to pinpoint the exact causes of application slow down led to ‘finger-pointing’ at the 
+SAN infrastructure and particularly the storage virtualization solution brought in to simplify 
+management and improve performance.  
+
+Virtual Instruments combined efforts with the storage vendor to analyze and identify areas of 
+inefficiency within the SAN at their main data center. The analysis, using Virtual Instrument’s 
+VirtualWisdom SAN Availability & Optimization solution, monitored the storage virtualization as 
+well as SNMP data from the 2 Fibre Channel switches associated with those links for 
+performance and error conditions. VirtualWisdom’s real-time and historical data path 
+monitoring, trending, and reporting capabilities offer unique visibility into Fibre Channel SAN 
+traffic and data flows to proactively ensure a continually balanced, optimized, and trouble-free 
+SAN infrastructure, while proactively alerting SAN administrators to issues before application or 
+user impact 
+
+• 
+
+• 
+
+• 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+Issues examined 
+
+ 
+
+Latency and Responsiveness  
+
+• 
+•  Application Performance issues (as caused by the SAN)  
+• 
+• 
+• 
+
+Capacity Planning  
+Configuration  
+Events and Errors  
+
+Latency and Responsiveness 
+Virtual Instruments’ VirtualWisdom proved that the SAN was working correctly and that storage 
+virtualization was clearly improving the performance of the environment. On average, the read 
+response times through the virtualized storage were less than half what they would be if the re-
+quests were going directly to the storage arrays. Based on this analysis no corrective action was 
+needed with regard to the storage virtualization. It was also proven that the SAN performance 
+benefitted and that opportunity for further benefits existed.  
+
+An additional benefit of Virtual Instruments’ analysis was that VirtualWisdom showed the pos-
+sibility to further leverage the existing virtualization by using lower cost storage alternatives 
+going forward.  
+
+Application Performance Issues 
+Several times during the course of the service, specific applications were reported to have 
+experienced problems.  The analysis of the monitoring data proved that none of the 
+performance problems could be attributed to the SAN.  Once the SAN was ruled out as a cause 
+of performance issues, the focus of the investigation could be narrowed significantly. Issues with 
+other applications, servers, associated databases and the operating system were also noted 
+during the investigation.  The Virtual Instruments Professional Services team recommended 
+specific areas of focus to be examined including:  
+
+• 
+
+Continuous monitoring and trending of application bandwidth demands ensuring that 
+optimal Fabric utilization is maintained.  
+
+•  Balancing the I/O load across all storage ports to help maximize the storage utilization.  
+• 
+
+Long-term trending will help determine how applications can be more evenly 
+distributed across the initiators and ensure a more fully utilized infrastructure.  
+
+•  Based on the bandwidth and performance information collected during the service; 
+Virtual Instruments determined that the existing SAN infrastructure could support 
+conservatively 20% more servers.  
+
+Capacity Planning 
+Using VirtualWisdom, the analysis showed that nearly 20% of SAN traffic was coming from 2 
+servers, that 66% of SAN traffic was coming from 10 HBA’s, and that less than 20% of the HBA’s 
+were responsible for 80% of the traffic.  
+
+This insight enabled the storage administrators to plan, design and manage their environment 
+much more effectively. By tuning the SAN for the actual demand, significant savings and efficien-
+cies could be achieved. 
+
+ 
+
+ 
+
+ 
+
+RETAILER 
+CASE STUDY 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+ 
+
+Configuration 
+VirtualWisdom quickly discovered that several servers did not have redundant HBA’s or the load 
+balancing software was not working adequately. Virtual Instruments recommended that the 
+non-redundant HBA’s needed to be brought online and that on-going monitoring be continued 
+to ensure that the SAN continues to have all of its fail-safe measures in place.  
+
+Events and Errors 
+The Virtual Instruments professional services team was able to determine that servers were 
+being rebooted and transactions were cancelled even while the SAN is performing well. These 
+activities occurred with much greater frequency that other SANs of this size, resulting in a likely 
+inefficient use of application and server team’s time and resources.  
+
+Virtual Instruments’ recommendation was that application and server logs should be examined 
+to determine the root cause of these problems. Continued monitoring of the SAN environment 
+can help the application, server and SAN teams to work together to resolve and prevent these 
+types of issues.  
+
+Summary  
+Virtual Instruments Professional Services SAN Availability & Optimization Services based on 
+VirtualWisdom was able to help Leading American Retailer to narrow down the source of perfor-
+mance issues to the servers and eliminate the ‘finger-pointing’ at the SAN, its administrators and 
+storage vendor.  
+
+Other benefits from the service were validation that the storage virtualization was reducing 
+latency and improving application performance; quick identification of application servers at risk 
+for outage due to issues with FC HBAs; determine that existing SAN infrastructure had room for 
+improvement and could support more servers. 
+
+ 
+
+ 
+. 
+
+ 
+
+ 
+
+ 
+
+RETAILER 
+CASE STUDY 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+100 Enterprise Way, Suite C-3  
+Scotts Valley, CA 95066  
+ 
+Phone: 831-439-4000  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+Phone: 831-439-4080  
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2009 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 5/10 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

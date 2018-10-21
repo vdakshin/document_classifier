@@ -1,0 +1,470 @@
+HEALTHCARE
+
+  CLIENT
+
+Gordon Memorial Hospital
+
+  CHALLENGE
+
+Replace a badly aging 
+infrastructure with one that can 
+support an electronic health 
+record (EHR) solution and 
+address the hospital’s other 
+IT needs—to provide better 
+care to patients, enhance staff 
+efficiency, and lower IT costs
+
+  SOLUTION
+
+Vblock System 300 
+running the MEDITECH 6.0 
+EHR solution and several 
+dozen other vital hospital 
+applications
+
+  RESULTS
+
+Dramatically reduced costs 
+to install, operate, refresh, 
+and power—plus a smaller 
+IT staffing requirement—will 
+produce substantial savings 
+over 10 years
+
+vce.com
+
+VBLOCK SYSTEMS PROVIDES GORDON 
+
+MEMORIAL HOSPITAL A HEALTHY WAY 
+
+TO DEPLOY EHR, IMPROVE PATIENT 
+
+CARE, AND REDUCE COSTS 
+
+SAVINGS ON SERVICES, SUPPORT, HARDWARE REFRESHES, STAFFING, AND 
+MORE ADD UP TO HUNDREDS OF THOUSANDS OF DOLLARS IN BENEFITS 
+
+Gordon Memorial Hospital is a small, 25-bed facility located in Gordon, 
+Nebraska—population 1,612. The hospital provides inpatient care to residents 
+of two Nebraska counties and a portion of South Dakota, as well as outpatient 
+services at an attached walk-in clinic and an off-site clinic in nearby Rushville.
+
+When Tyler Fisher joined Gordon Memorial as Chief Information Officer (CIO) 
+in 2011, the hospital’s entire IT infrastructure ran off a single server. Even 
+with the addition of two other servers, this was not only inadequate for the 
+hospital’s existing needs, but it also wouldn’t support sweeping initiatives such 
+as electronic health record (EHR), which enables a patient’s medical history to 
+follow him or her electronically. 
+
+To capitalize on Federal incentives available to Gordon Memorial as a Critical 
+Access Hospital (CAH), help improve patient care, and reduce IT costs, Fisher 
+conducted a detailed review of technology solutions and selected MEDITECH 
+6.0 EHR software running on a VCE Vblock™ System.
+
+The Challenge 
+IT infrastructure was a key focus almost 
+from the day Fisher arrived at Gordon 
+Memorial. His predecessor had begun 
+an upgrade of the hospital’s IT network 
+in conjunction with the installation of 
+a new telephone system. However, it 
+seemed unlikely that the hospital’s 
+pre-2005 servers and operating system 
+software could improve network 
+performance or responsiveness without 
+additional enhancements.
+
+With EHR and other planned initiatives 
+on the horizon, a major upgrade of the 
+hospital’s IT infrastructure was required. 
+Fortunately, because of Gordon 
+Memorial’s classification as 
+ a CAH under 1997 Federal legislation, 
+the hospital would be reimbursed  
+for a large part of what would 
+otherwise have been cost-prohibitive 
+technology improvements.
+
+Evaluating EHRs 
+After comparing a number of software 
+providers’ solutions, Fisher chose 
+MEDITECH for the hospital’s EHR. At the 
+time, MEDITECH software was certified 
+to run on several traditional hardware 
+platforms, but was not yet approved 
+for use on the advanced converged IT 
+infrastructure designed for seamless 
+virtualization by VCE.
+
+“I wanted to ensure that if we invested 
+considerable funds to upgrade the 
+hospital’s IT capabilities, we would  
+not only be able to implement a  
+state-of-the-art EHR solution, but also 
+efficiently run all other applications  
+as well,” stated Fisher.
+
+Conveniently, Fisher and the hospital’s 
+CEO had recently been introduced 
+to the VCE Vblock System when it 
+was demonstrated at an executive 
+technology briefing at EMC, one 
+of VCE’s founders. While Gordon 
+Memorial’s CEO worked diligently to 
+arrange the financing required for the 
+purchase, Fisher worked closely with 
+MEDITECH to add Vblock Systems as an 
+approved platform for its latest software 
+release, MEDITECH 6.0.
+
+The Solution
+In late 2012, Gordon Memorial 
+purchased a Vblock System 300 EX. 
+The pre-designed, pre-integrated 
+Vblock System arrived within 
+approximately four weeks as  
+scheduled and was quickly stood up  
+in only a day and a half. Approximately 
+one week later, the infrastructure was 
+fully configured and ready to run the 
+MEDITECH EHR solution. The hospital 
+also purchased EMC Data Domain  
+and EMC Networker software with  
+DD Boost to optimize and accelerate 
+ its backup and deduplication  
+process—so it could maintain a 
+near-real-time copy of its data at its 
+Rushville clinic 15 miles away. 
+
+REDUCED SERVICES, SUPPORT, AND STAFFING REQUIREMENTS 
+WITH THE VBLOCK SYSTEM
+
+VCE Vblock System
+
+Vendor B
+
+Vendor C
+
+Installation and 
+implementation
+
+Support costs 
+after year 3
+
+IT staffing 
+requirements
+
+VB
+
+VB
+
+1,000% of VB
+
+696% of VB
+
+299% of VB
+
+159% of VB
+
+4 FTE
+
+5 FTE
+
+5 FTE
+
+vce.com
+
+Since that time, Fisher and one of his 
+three IT team members have been 
+working diligently to input the data and 
+launch the EHR solution—rolling out 
+individual capabilities such as support 
+for the nursing staff as the modules 
+become available. But don’t think that 
+the Vblock System has been sitting idle, 
+waiting for EHR to make its debut.
+
+Shortly after the new IT infrastructure 
+was installed, Gordon Memorial 
+began to move almost all of its 
+other applications to the virtualized 
+environment running on the Vblock 
+System. This included:
+
+•  Domain name server
+
+•  Microsoft Exchange server
+
+•  Microsoft SharePoint server
+
+•  DrFirst e-prescribing
+
+•  Pharmacy med-dispensing server
+
+•  3M coding solution used to translate 
+
+ICD-9 codes for billing
+
+•  Craneware revenue integrity 
+
+solutions for optimum pricing and 
+reimbursement
+
+•  Meaningful Use reporting software
+
+•  Time-and-attendance system
+
+•  Informational wiki’s tailored to the 
+
+needs of the clinical team
+
+•  Video desktop infrastructure (VDI)
+
+In short, Gordon Memorial is currently 
+running almost the entire hospital 
+on 100 virtual machines (VMs) on a 
+single Vblock System. This includes 
+its EHR and an exciting hospital-wide 
+VDI solution supporting approximately 
+300 clients for the clinic team and 
+administrative staff.
+
+The initial cost of the Vblock System 
+hardware for the EHR solution 
+was 3% higher than Vendor B and 
+approximately 48% higher than  
+Vendor C. But by virtually any other 
+measure, the Vblock System was 
+dramatically superior—delivering a 
+better TCO than the other finalists. 
+These benefits included:
+
+•  Services—Installation and 
+
+implementation was as little as 10 
+percent of the cost of installation of 
+the other vendors’ systems
+
+•  Support—Annual costs for single-call 
+support from VCE were 35 percent to 
+66 percent less
+
+•  Hardware refreshes—Estimated to 
+
+be $152,000 less for Vblock Systems 
+over 10 years
+
+•  Point-of-care devices—Upgrade 
+of thin clients used in the Vblock 
+System-based VDI solution are 
+projected to be $24,000 less than 
+with traditional workstations
+
+•  Energy savings—Up to $38,000 saved 
+
+over 10 years due to thin clients
+
+•  Staffing—The simplified operations 
+
+and management of Vblock Systems 
+will allow the IT team to remain at 4 
+FTEs, rather than expanding to 5 FTEs 
+as the other solutions will require 
+
+•  Bottom line—With an estimated 
+
+$695,000 in savings beyond the initial 
+cost of the Vblock System hardware, 
+the hospital’s 10-year TCO is expected 
+to be substantially less with VCE
+
+“When I finished my presentation to the 
+hospital board, the chairman said that 
+it would be foolish not to purchase the 
+Vblock System’,” stated Fisher. “That’s 
+how clear we felt the decision was.”
+
+Expanding Storage Capacity on the Fly
+
+Although the hospital had purchased 
+four separate blades for VDI and 
+its other clinical and administrative 
+applications (apart from EHR), before 
+the EHR was online, all the hospital’s 
+applications cohabitated for a time on 
+the same host, using the same storage. 
+When the EHR solution was added 
+to the platform, Gordon Memorial 
+suddenly realized it needed to install 
+those additional blades and expand 
+its storage to maintain the desired 
+performance level.
+
+The hospital’s IT team was able to 
+upgrade from the existing EMC VNX 
+5300 storage array to a VNX 5500 
+and install Gordon Memorial’s unused 
+blades in one day—moving all of the 
+hospital’s VMs while the applications 
+remained live.
+
+“The Vblock System made the 
+migration so seamless that our staff 
+had no idea they were moving from 
+one host cluster and set of storage to 
+another,” Fisher remarked. “Everything 
+happened so quickly that perhaps for 
+one mouse click, the system might not 
+have responded. But that was it.”
+
+The Results
+Fisher and his team chose the Vblock 
+System because of its superior 
+functionality—the system’s advanced 
+converged infrastructure would be  
+able to deliver the extraordinary 
+efficiency and agility of virtualization 
+to enable Gordon Memorial to meet 
+patient requirements in today’s 
+uncertain healthcare environment.  
+In addition, it offered a state-of-the-art 
+backup solution essential for protecting 
+EHR data.
+
+But to cost-justify the investment and 
+help earn the hospital board’s favor, 
+Fisher prepared a detailed 10-year total 
+cost of ownership (TCO) analysis that 
+compared the Vblock System to its two 
+closest competitors.
+
+“When I finished my 
+presentation to the hospital 
+board, the chairman said that 
+it would be foolish not to 
+purchase the Vblock System. 
+That’s how clear we felt the 
+decision was.”  
+— Tyler Fisher 
+Chief Information Officer 
+Gordon Memorial Hospital
+
+Simplified Management and No Downtime
+
+Realistic Revenue Potential
+
+Gordon Memorial also benefits from 
+the ease of management of the Vblock 
+System, elimination of downtime,  
+and highly responsive support.  
+VMware vSphere provides essential 
+insight into the hospital’s IT capacity  
+and performance—making it easy to 
+manage and provision compute, network, 
+and storage resources and maintain high 
+availability and full security.
+
+Fisher said that beyond vSphere, he and 
+his staff only need to “touch the Vblock 
+System components once a month or so.” 
+This results in significant savings in time 
+and effort.
+
+Since the Vblock System began running 
+most of the hospital’s applications in 
+2013, there have been no major issues or 
+unexpected downtime and support from 
+VCE has been responsive and proactive. 
+Gordon Memorial has just one number to 
+call, as opposed to calling the six different 
+vendors included in some proposals.
+
+“Our interaction with VCE regarding 
+support has been great,” Fisher noted. 
+“Their customer advocate stays in 
+constant touch with us and anticipates 
+our needs before they arise.”
+
+Gordon Memorial is also beginning to 
+explore the possibility of leveraging 
+excessive virtualized capacity to act as  
+a service provider for other local medical 
+institutions. Even running the hospital’s 
+ambitious VDI and EHR solutions, Gordon 
+Memorial has a lot of excess CPU, RAM, 
+and storage capacity.
+
+Although the hospital is small and 
+isolated, it’s a member of the Rural 
+Nebraska Healthcare Network. Nine 
+hospitals are connected through a 
+recently installed, high-speed fiber  
+optic network.
+
+“We’re investigating whether other 
+hospitals within the network that don’t 
+have a virtualized infrastructure might 
+be interested in accessing our virtualized 
+solutions as a service,” said Fisher.  
+“We’ve got the platform to handle it and 
+we can easily expand the infrastructure  
+if needed. So, I think, thanks to our  
+Vblock System, we may be able to 
+capitalize on some revenue-generating 
+possibilities soon.
+
+ADDITIONAL COST SAVINGS AND PROFIT POTENTIAL
+
+VCE Vblock 
+
+System
+
+Vendor B
+
+Vendor C
+
+Vblock Savings
+
+$80,000
+
+$232,000
+
+N/A
+
+$152,000
+
+$56,000
+
+$80,000
+
+$80,000
+
+$24,000
+
+– $38,000
+
+No savings No savings
+
+$38,000
+
+Projected 10-year 
+hardware refresh costs
+
+Upgrade costs for 
+point-of-care devices
+
+Reduced energy costs 
+due to thin clients with 
+Vblock Systems VDI
+
+Copyright © 2014 VCE Company, LLC. All rights reserved. VCE, VCE Vision, Vblock, and the VCE logo are registered trademarks or trademarks of VCE Company LLC. 
+or its affiliates in the United States and/or other countries. All other trademarks used herein are the property of their respective owners.
+
+vce.com
+
+THE WORLD’S MOST ADVANCED CONVERGED INFRASTRUCTURE
+
+05212014
+
+

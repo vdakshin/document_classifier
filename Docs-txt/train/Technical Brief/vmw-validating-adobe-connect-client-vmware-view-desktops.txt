@@ -1,0 +1,1265 @@
+ 
+
+ 
+
+Validating Adobe Connect Client  
+on VMware® View Desktops 
+
+ 
+
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+September 2011 
+
+T E C H N I C A L   W H I T E   P A P E R  
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   2    
+
+ 
+
+Adobe Connect Client on VMware View 
+
+Table of Contents 
+
+Introduction .................................................................................................................................... 4 
+Testing Overview ............................................................................................................................ 4 
+About Adobe Connect .................................................................................................................. 4 
+About VMware View ..................................................................................................................... 7 
+The Validation Testing Process .................................................................................................... 9 
+Hardware and System Host Configuration ................................................................................ 10 
+Test Configuration ....................................................................................................................... 12 
+Test Steps .................................................................................................................................. 13 
+Test Results .................................................................................................................................. 14 
+Testing Summary ....................................................................................................................... 15 
+Recommendations ....................................................................................................................... 16 
+Conclusion .................................................................................................................................... 17 
+Resources ..................................................................................................................................... 18 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     3  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Introduction 
+Many businesses deploy VMware View to simplify desktop and application management, and ultimately 
+increase  control  and  security  for  their  IT  staff.    VMware  View  is  the  only  end-to-end  solution  that 
+simplifies IT management, increases security and control of end users, while decreasing cost by centrally 
+delivering  desktop  services  from  the  cloud.    Additionally,  VMware  View  increases  flexibility  by  allowing 
+users to connect to their View Desktop from a variety of devices including desktops, thin or zero clients, 
+and mobile devices.  
+
+When  using  a  View  Desktop,  a  virtual  machine  hosted  on  ESX,  the  user’s  programs  are  installed  and 
+executed within the virtual machine, and their data is secured in the data center. Users access their View 
+Desktop through a VMware View Connection Server from a lightweight client device on the desktop that 
+may have no operating system at all (a zero-client) or a reduced version of a standard operating system 
+(thin clients). Users may also use a VMware View Client on their older desktop PCs to access their View 
+Desktop and run applications that they used previously on physical desktops.  
+
+Companies  are  also  increasingly  using  web-based  meetings  to  increase  productivity,  enhance  their 
+communications  and  to  save  costs  on  business  travel.  Adobe  Connect  is  a  leading  web  collaboration 
+offering in this area. Adobe  Connect provides the capability for meeting participants to collaborate and 
+share information, and communicate using rich real-time voice and video capabilities.   
+
+This  paper  provides  technical  considerations  and  best  practices  for  running  an  Adobe  Connect  client  in 
+View Desktops in order to participate in Adobe Connect web based meetings.  
+
+  
+
+Testing Overview 
+VMware and Adobe jointly conducted testing to validate that customers can participate in Adobe Connect 
+web meetings from View Desktops.   
+
+The testing had the following goals: 
+
+  Verify  that  the  Adobe  Connect  client  can  launch  web-based  meetings  successfully  from  a  VMware 
+
+View desktop.    
+
+  Verify that participants can view shared screens and documents and that the quality is acceptable. 
+
+  Verify  multiple  View  Desktop  sessions  running  on  the  same  ESX  host  can  simultaneously  present 
+
+webcam streams as part of an Adobe Connect web meeting with acceptable voice and video quality 
+
+Further descriptions of the features of Adobe Connect 8 and VMware View 4.6, are given in the following 
+sections.   
+
+  
+
+About Adobe Connect  
+
+Adobe®  Connect™  is  an  enterprise  web  conferencing  solution  for  online  meetings,  eLearning,  and 
+webinars used by leading corporations and government agencies. It is based on Adobe Flash® technology 
+(and it requires that the Flash Player be installed on the Adobe Connect Client side).   
+
+The key features of Adobe Connect 8 are: 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     4  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+ 
+
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Simplified interface: A primary focus of Adobe® Connect® 8 is usability.  It has a simplified interface 
+with enhanced layouts and organized controls, accessibility functions, and one-click sharing,   
+
+Collaborate  efficiently:  To  collaborate  effectively,  dispersed  teams  need  to  be  able  to  share  ideas 
+and communicate freely, as well as capture decisions and results. Adobe Connect 8 offers flexible and 
+robust collaboration capabilities that enable teams to drive better results. 
+
+  Rich  audio  and  video  experiences:  Adobe  Connect  8  provides  rich  multimedia  experiences  for 
+
+participants with integrated audio and video conferencing. 
+
+ 
+
+Improved  access  and  extensibility:    Busy  professionals  working  on  multiple  projects  with  global 
+teams need to be able to track down key people, instantly collaborate, and respond quickly to meet 
+deadlines.    This  can  be  achieved  through  plug-ins  for  Microsoft  Outlook,  Adobe  Creative  Suite®  5 
+software, and Microsoft Communication Server clients. 
+
+  Highly  secure  and  enterprise  support:  Adobe  Connect  8  is  web  conferencing  software  for  the 
+enterprise.  With  strengthened  security  capabilities  and  improved  support  for  virtualization  and 
+meeting resiliency, Adobe Connect is ideally suited for enterprise deployments. 
+
+ 
+
+ 
+
+Ensure easy meeting access for all participants: Today, there is a growing need to collaborate with 
+customers,  partners,  and  colleagues  in  multiple  locations,  across  different  hardware  platforms  and 
+operating systems, on networks with varying bandwidth capacities, in real time and asynchronously. 
+
+Enable  rich,  highly  collaborative  interactions:  At  the  heart  of  Adobe  Connect  is  its  ability  to 
+significantly improve collaboration for the enterprise. With Adobe Connect, meeting hosts leverage a 
+robust set of capabilities to drive highly effective, collaborative interactions. 
+
+  Manage meetings and content effectively: For efficient collaboration, powerful content and meeting 
+management  tools  and  capabilities  are  a  must.  With  Adobe  Connect,  hosts  have  full  control  over 
+meeting  room  layout  and  appearance,  meeting  room  persistence,  participant  roles  and  privileges, 
+content creation, storage, and access. 
+
+Technical Layout 
+
+Figure  1  shows  how  the  Adobe  Connect  Client  (labeled  as  “CLIENT  APPLICATION”  in  the  figure  below) 
+typically  connects  to  the  Adobe  Connect  Server  (labeled  as  “CONNECT  ENTERPRISE”  below).  For  the 
+purposes  of  the  testing  described  in  this  document,  the  Adobe  Connect  Client  was  placed  in  a  virtual 
+machine  that  was  controlled  by  VMware  View.  The  Adobe  Connect  Server  side  of  the  product  was 
+centrally hosted by Adobe during our tests. We did not address virtualizing the Adobe Connect server as 
+that  test  had  been  done  on  an  earlier  validation  exercise  (Refer  to  the  Deployment  Guide  for  Adobe 
+Connect Pro here).  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 1. Adobe Connect - Data Flow Diagram 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     5  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+Adobe Connect Client on VMware View 
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+The  Adobe  Connect  Server  uses  a  set  of  protocols  for  communication  with  the  Adobe  Connect  Client. 
+These  include  HTTP,  HTTPS,  RTMP,  and  RTMPS.    Adobe’s  Real-Time  Messaging  Protocol  (RTMP)  is 
+optimized to deliver real-time, high-impact streams. RTMPS is the secure implementation of RTMP. 
+
+The  connection paths  vary  depending on  whether or not  the  communication  is  encrypted between the 
+Adobe Connect Client and the Adobe Connect Server. Unencrypted connections are made over HTTP and 
+RTMP and follow the paths described in the following description. The numbers below correspond to the 
+numbered arrows in the data flow diagram above. Here is a description of the message flows that make 
+up an Adobe Connect meeting. 
+
+Number Description: 
+1  
+2  
+
+The client web browser requests either the initiation of a meeting or content URL over HTTP:80. 
+The  web  server  responds  and  transfers  the  content  or  provides  the  client  with  information  to 
+connect to the meeting. 
+The client Flash Player requests a connection to the meeting on the Adobe Connect Server over 
+RTMP:1935. 
+The  Flash  Media  Server  responds  and  opens  a  persistent  connection  for  Acrobat  Connect 
+streaming traffic. 
+The  Client-side  Flash  Player  requests  a  connection  to  the  meeting  but  can  only  connect  over 
+RTMPT: 443. 
+The  Flash  Media  Server  responds  and  opens  a  tunneled  connection  for  Acrobat  Connect 
+streaming traffic. 
+
+3  
+
+4  
+
+3a  
+
+4a  
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     6  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Encrypted  connections  are  made  over  HTTPS  and  RTMPS,  and  follow  the  paths  described  below.  The 
+letters in the table correspond to the letters in the data flow diagram. 
+
+Letter Description 
+A  
+
+The  client  web  browser  requests  a  meeting  or  content  URL  over  a  secure  connection  on 
+HTTPS:443. 
+The  web  server  responds  and  transfers  the  content  over  a  secure  connection  or  provides  the 
+client with information to connect to the meeting securely. 
+The client-side Flash Player requests a secure connection to Flash Media Server over RTMPS:443. 
+Flash  Media  Server  responds  and  opens  a  secure,  persistent  connection  for  Acrobat  Connect 
+streaming traffic. 
+
+B  
+
+C  
+D  
+
+ 
+A client initiates the first connection to the application server. These connections, such as those for login 
+requests, file publishing or content and event management, are made through HTTP or HTTPS. After the 
+client  engages  in  real-time  communication,  a  connection  to  the  Flash  Media  Server  is  started,  and  the 
+Adobe Connect Server uses either RTMP or RTMPS to deliver streamed content to the Flash Media Player 
+on the Adobe Connect Client side. 
+
+ 
+
+By  default,  RTMP  travels  over  port  1935  and  it  is  used  for  live  interactions  in  an  Acrobat  Connect 
+Professional meeting (video, voice, and screen sharing). HTTP traffic travels over port 80, and is used for 
+client login and in order to transfer content (slides, documents, and so on). An RTMP connection uses port 
+443  if  a  connection  through  port  1935  is  not  successful,  or  if  the  server  is  configured  to  use  SSL 
+encryption.  However,  tunneling 
+incurs  additional  overhead,  and  negatively  affects  streaming 
+performance.    This  is  described  in  more  detail  in  the  section  entitled  “The  Validation  Testing  Process” 
+below. 
+
+About VMware View  
+
+VMware View is the industry’s leading desktop virtualization platform, and the only purpose-built solution 
+for  delivering  desktops  as  a  secure  managed  service.  Built  on  the  proven  power  of  VMware  vSphere™, 
+VMware View provides the platform, management tools and rich user experience that organizations need 
+to reduce costs, streamline administration and increase end-user satisfaction.  
+
+Figure 2 depicts the typical architecture of a VMware View implementation showing its different features. 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     7  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Figure 2. VMware View System Architecture 
+
+ 
+
+Some of the features and benefits of VMware View are: 
+
+  Reduce  Operational  Costs:  Centralizing  your  desktop  infrastructure  with  VMware  View  makes  it 
+faster,  easier  and  less  costly  for  IT  staff  to  provision,  deploy,  maintain  and  monitor  desktop  images 
+across their entire life cycle.  
+
+  Simplify  Desktop  and  Application  Management:  Using  VMware  View,  we  can  manage  tens  of 
+thousands of virtual desktops, applications and user data from a centralized administrative interface 
+while  simplifying  key  IT  processes  such  as  provisioning,  configuration  management,  connection 
+brokering, policy enforcement, and application assignment. 
+
+  Deliver Rich User Experiences on Demand: VMware View is the only solution that lets you deliver rich 
+user experiences for end-users across your organization on any device at any location—online or off 
+the grid. High-performance PC-over-IP (PCoIP) technology lets users work with their virtual desktops 
+via  a  LAN  or  WAN  connection,  while  VMware  View  Client  with  Local  Mode  enables  them  to  work 
+offline  and  leverage  local  processing  resources.  The  result  is  a  seamless  user  experience  that 
+combines the best of VDI and client virtualization. 
+
+  Automated Desktop Provisioning: Provides a  single management  tool to provision new desktops or 
+groups  of  desktops,  and  an  easy  interface  for  setting  desktop  policies.  Using  a  template,  you  can 
+customize virtual pools of desktops and easily set policies, such as how many virtual machines can be 
+in a pool, or logoff parameters. 
+
+  Advanced  Virtual  Desktop  Image  Management:  Based  on  the  mature  Linked  Clone  technology, 
+VMware View Composer enables the rapid creation of desktop images from a golden image. Updates 
+implemented  on  the  parent  image  can  be  easily  pushed  out  to  any  number  of  virtual  desktops  in 
+minutes,  greatly  simplifying  deployment,  upgrades  and  patches  while  reducing  desktop  operational 
+costs.  With  the  core  components  of  the  desktop  being  managed  separately  the  process  does  not 
+affect user settings, data or applications, so the end-user remains productive on a  working desktop, 
+even while changes are being applied to the master image. 
+
+  Availability  and  Scalability:  VMware  View  delivers  high  availability,  with  no  single  point  of  failure. 
+VMware  High  Availability  (HA)  ensures  automatic  failover  and  provides  pervasive,  cost-effective 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     8  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+protection  within  your  virtualized  desktop  environment  to  ensure  service  level  agreements  are  met 
+and downtime is minimized. Advanced clustering capabilities on the physical and virtual layers provide 
+enterprise-class scalability  with no single point  of  failure.  VMware View  can also be integrated  with 
+existing systems management platforms already deployed within the enterprise. 
+
+The Validation Testing Process 
+The Adobe Connect server components have already been tested and validated on VMware virtualization 
+platforms. More details on the Adobe Connect Server validation testing can be found at the following link 
+http://www.vmware.com/resources/techresources/10105 
+
+For  the  purposes  of  testing  the  Adobe  Connect  Client  in  a  View  Desktop,  the  team  utilized  a  centrally 
+hosted Adobe Connect server provided by Adobe.  This Adobe Connect server was hosted in a datacenter 
+in Dallas and accessed from VMware’s site in Palo Alto over the internet. 
+
+The  testing  of  the  Adobe  Connect  client,  which  was  run  from  within  the  View  Desktop,  was  conducted 
+manually through a series of real world tests during a live Adobe Connect web meeting. The full VMware 
+View  environment  was  built  at  the  VMware  Independent  Software  Vendor  (ISV)  lab  in  Palo  Alto, 
+California.  The  thin  clients  and  zero  clients  used  in  the  testing  are  hardware  devices  that  allow 
+connections to a VMware View Connection Server. Several different types of client devices were used to 
+connect with each View Desktop session, in separate tests.    
+
+In each test, the Adobe Connect web meeting was started from a browser running inside a  View Desktop. 
+Internet Explorer (IE) versions 7.0,  8.0 and 9.0  were installed in separate View Desktops and the Adobe 
+Connect meeting session was launched from each browser. 
+ 
+The  connection  between  the  Adobe  Connect  Client  and  the  Adobe  Connect  Server  was  made  using 
+“RTMP:1935”. We did not use the tunneling connection in order to reduce the network latency.   
+
+Although  the  Adobe  Connect  Server  was  hosted  outside  of  the  VMware  internal  lab  network,  the 
+available network bandwidth from the VMware ISV lab to the Adobe Connect server was not measured. 
+Optimizing  the  network  between  these  two  locations  was  considered  to  be  beyond  the  scope  of  this 
+validation exercise. 
+
+The testing was performed by launching twenty  View  Desktop sessions. One of the  View Desktop users 
+launched the meeting as Host and the remaining View Desktop users joined the meeting as participants. 
+
+To  test  the  document  sharing  functionality  within  the  Adobe  Connect  web  meeting,  a  Microsoft 
+PowerPoint  presentation  was  displayed  by  one  of  the  meeting  participants.  In  order  to  test  the  Adobe 
+Connect  screen  share  functionality,  the  entire  desktop  was  shared  and  a  Notepad  application  was 
+launched and contents were typed in manually.  
+
+Three audio analog headsets were connected to the zero clients and subsequently to the Adobe Connect 
+meeting.  These  headsets  were  disconnected  and  re-connected  back  to  other  available  VMware  View 
+desktops (via the zero clients) in the meeting to observe the audio quality. The Teradici audio driver was 
+used for the headsets for audio playback and recording.   
+
+Note: VMware does not provide support for the Teradici audio drivers. Customers using zero clients along 
+with the Teradici audio driver should contact Teradici for availability and support. 
+
+Webcams  were  connected  incrementally  going  from  1  up  to  3  and  then  each  user  on  the  separate 
+VMware  View  desktops  shared  their  own  webcam  video  within  the  meeting.  The  webcams  were 
+physically connected to the USB ports on the thin and zero clients. 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     9  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+The VMware “esxtop” utility was used to measure the resource utilization of the VMware View desktops 
+during  the  meeting  and  the  “Wireshark”  utility  was  used  to  measure  the  network  bandwidth  usage 
+between  VMware  View  desktops  and  the  thin/zero  clients  when  the  webcams  were  connected  to  the 
+meeting. 
+
+Hardware and System Host Configuration 
+Table  3.1  and  3.2  describe  the  configuration  of  ESX  Servers,  storage  and  client  hardware  used  in  the 
+solution architecture. 
+
+Table 3.1 ESX Host Hardware Configuration 
+
+Hardware 
+
+Server 
+
+Storage 
+
+Configuration 
+
+Two HP Proliant BL 460c G6 servers. Each server is equipped with: 
+
+  2.8 GHz dual quad-core Intel Xeon E5560                                                                                                                                    
+
+  48 GB RAM 
+
+One HP Proliant BL 460c G6 servers. Each server is equipped with: 
+
+  3.0GHz dual quad core Intel Xeon E5450 
+
+  16 GB RAM 
+
+NetApp FAS 3020: 
+
+  Aggregate of 21 disks 
+
+  RAID DP 
+
+  4 Gbps fibre connectivity 
+
+  10K RPM disks 
+
+  FC protocol 
+
+Table 3.2 Client Hardware Configuration 
+
+Hardware 
+
+Web Camera 
+
+Configuration 
+
+  Microsoft HD Life Cam Studio 1080p 
+
+  Microsoft HD Life Cam 720p 
+
+  Logitech Webcam C 905 
+
+  Logitech Webcam Pro 9000 
+
+  Logitech HD Webcam Pro C910 
+
+Thin Client 
+
+   Wyse C90LEW WES (Win 7 embedded OS) 
+
+Teradici Zero Client 
+
+  Wyse P20 Firmware Version 3.3/3.4 
+
+Microphone and Headset 
+
+  Logitech Clear Chat Premium Headset (Analog) - connected to the zero 
+
+clients only 
+
+Installed Software 
+
+Table 4 lists the software used in the solution architecture. 
+
+Table 4. Software Installation 
+
+Software Provider 
+
+Software Configuration 
+
+VMware  
+
+vSphere 4.1, vCenter Server 4.1,  VMware View 4.6 
+Site Recovery Manager 4.1.1 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 0  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Microsoft 
+
+Adobe 
+
+Adobe 
+
+Adobe Connect Client on VMware View 
+ 
+
+Microsoft AD/DNS 
+Adobe Connect Client Add-in, Adobe Flash Player*  
+
+Adobe Connect Server 8 (Used centrally hosted server) 
+
+Teradici (Can be downloaded free 
+from Teradici web site) 
+
+Teradici Audio Driver (Note that this driver is not supported by VMware and is 
+only recommended for use with zero clients) 
+
+ 
+*For Adobe Connect client installation requirement, follow the link below: 
+http://www.adobe.com/products/adobeconnect/tech-specs.html  
+
+Virtual Machine Configuration 
+
+Table 5 describes the configuration of virtual machines running on ESX host servers in the solution 
+architecture. 
+
+Table 5. Virtual Machines 
+
+Virtual Machine (VIEW Desktops) 
+
+Hardware Configuration  
+
+Windows XP SP3 – 32 bit  
+(IE 7, 10.3.181.34, Adobe Connect Add-In) 
+
+  2 vCPU 
+
+  2 GB memory 
+
+  1 Ethernet card (vmxnet 3 driver) 
+
+  12 GB storage (vmdk only) 
+
+Windows 7 Professional 64-bit  
+(IE 8 or IE 9, Flash Player 10.3.183.5, Adobe 
+Connect Add-In)  
+
+  2 vCPU 
+
+  2 GB memory 
+
+  1 Ethernet card (vmxnet 3 driver) 
+
+  20 GB storage (vmdk only) 
+
+Virtual Machine (SERVERS) 
+
+Hardware Configuration  
+
+VMware View Manager Server: 
+Windows Enterprise Server 2003 – 64 bit 
+
+  2 vCPU 
+
+  4 GB memory 
+
+  1 Ethernet card (E1000 driver) 
+
+  15 GB storage (vmdk only) 
+
+VMware vCenter Server: 
+Windows Enterprise Server 2003 – 64 bit 
+
+  2 vCPU 
+
+  2 GB memory 
+
+  1 Ethernet card (E1000 driver) 
+
+  15 GB storage (vmdk only) 
+
+AD/DNS Server: 
+Windows Enterprise Server 2003 – 64 bit 
+
+  1 vCPU 
+
+  1 GB memory 
+
+  1 Ethernet card (E1000 driver) 
+
+  15 GB storage (vmdk only) 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 1  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+ 
+
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Test Configuration  
+The technical architecture for testing Adobe Connect Client with VMware View is described in the 
+following sections. 
+
+Figure 3. Adobe Connect Client–VMware View Technical Architecture 
+
+ 
+
+The technical architecture included:  
+
+  VMware  View  desktops  (Virtual  Machines)  running  on  two  ESX  servers  located  in  the  ISV  lab 
+
+environment. 
+
+  The  VMware  View  Manager,  VMware  vCenter  Server  and  Windows  AD/DNS  running  as  virtual 
+
+machines with the ISV lab environment 
+
+  The  thin  clients  and  zero  client  machines  were  located  in  a  separate  building  from  the  data  center 
+where  the  VMware  View  components  were  hosted.  Connectivity  from  one  building  to  the  other  on 
+the VMware campus was over the VMware corporate network, which was shared with other users. 
+
+  The Adobe Connect Server 8.0 was hosted centrally in the Adobe Dallas datacenter and was accessed 
+
+via a web browser from each of the View Desktops. 
+
+  Webcams  and  audio  headsets  were  connected  to  the  thin/zero  clients  before  any  Adobe  Connect 
+
+meeting was launched. 
+
+  The “Wireshark” network bandwidth measurement tool was installed in the VMware View desktops in 
+
+order to measure the network traffic between the View desktops and the thin/zero clients.  
+
+ 
+
+The network bandwidth availability between the thin/zero clients and the ESX servers was 100 Mbps 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 2  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+Adobe Connect ServerVMware CorporateFirewallWAN 
+ 
+
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+(This was shared among many VMware users working outside of this test environment). 
+
+The following discussion applies to both physical and virtual forms of Adobe Connect Server setup. 
+The network infrastructure was configured so that the round-trip latency was minimized as much as 
+possible  and  the  connection  was  “non-tunneled”.  Specific  rules  were  set  at  the  VMware  corporate 
+firewall in order to bypass internal proxy servers so that these optimizations could be achieved. The 
+diagram  below  shows  the  method  used  within  the  Adobe  Connect  Client  screens  for  detecting 
+whether  the  connection  to  the  Adobe  Connect  Server  was  tunneled  or  not  and  what  the  latency 
+numbers were between the Adobe Connect Client and the Adobe Connect Server, during a meeting. 
+We expended considerable effort in network configuration to keep the “latency” figure shown in the 
+rightmost image below to less than 120ms for this testing, as recommended by the Adobe staff. 
+
+Figure 4. Tunneled, Non-Tunneled and Round Trip Latency from Adobe Connect Client Meeting 
+
+Tunneled 
+
+Test Steps 
+
+ 
+
+ 
+
+Non-Tunneled 
+
+Round Trip Latency 
+
+To test the configured system, the following meeting workflow was executed. 
+
+1.  Login into Adobe Connect using the browser on the VMware View desktop 
+2.  Create a new meeting 
+3.  Launch the meeting 
+4.  Download the Adobe Connect Addin/Preinstall Connect Addin 
+5.  Start “Screen Share” OR start ”Document Share” within the Adobe Connect meeting 
+6.  Start a webcam 
+7.  Start VoIP 
+8.  Start whiteboard 
+9.  Start chat 
+10.  Start Poll Pod 
+11.  Change Layouts 
+12.  End the Meeting 
+
+ 
+
+ In addition to the above test, the following two tests were also carried out: 
+
+  Multiple meetings were initiated from a single desktop by a single user 
+
+  An Adobe Connect meeting host received a notification when a new guest wanted to join in the 
+
+meeting and only if the host allows it was the new guest allowed to participate in the meeting 
+
+ 
+ 
+
+ 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 3  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Test Results 
+A summary of the tests and resulting observations is given below. 
+
+The following table shows resource utilization of the virtual machines representing the View Desktops as 
+measured using the “esxtop” utility.   . 
+
+Virtual Machine 
+
+Avg. CPU 
+Utilization 
+
+Avg. Memory 
+
+Utilization 
+
+Avg. Network Utilization 
+
+MBits 
+
+MBits 
+
+Received/sec 
+
+Transmitted/sec 
+
+Host or Participants (Sharing 
+Screen and Web Cam) 
+
+25 - 30% 
+
+25 - 30% 
+
+Participants 
+
+10 - 15% 
+
+10 - 15% 
+
+4.6 
+
+0.5 
+
+3.0 
+
+0.2 
+
+ 
+
+The following  table  shows  resource utilization of the  View Manager and vCenter Server components  as 
+measured using “esxtop” utility during the Adobe Connect meeting: 
+
+Virtual Machine 
+
+Avg. CPU Utilization 
+
+Avg. Memory Utilization 
+
+View Manager 
+
+vCenter Server 
+
+< 5% 
+
+< 5% 
+
+5% 
+
+5% 
+
+  
+
+The following table shows the network bandwidth utilization from thin/zero clients to the View desktops 
+measured using the Wireshark tool during the Adobe  Connect meeting. The measurement  was done by 
+running  a  single  View  desktop  session  and  setting  the  webcam  video  quality  to  “low”  from  the  Adobe 
+Connect Client meeting menu option (Meetings  Preferences  Video). 
+
+Type of 
+Device 
+
+Type Of Operation 
+
+Avg. Network Bandwidth 
+Consumption (Mbit/sec) 
+
+Thin Client 
+
+Desktop is accessed from thin client using PCoIP 
+
+0.2 
+
+protocol (no Adobe meeting is launched from the 
+
+browser) 
+
+Thin Client 
+
+Adobe meeting is launched and only screen share 
+
+0.5 
+
+operation is performed. No webcam and audio is 
+
+connected.  
+
+Thin Client 
+
+Screen Share with Webcam and Audio 
+
+Zero Client 
+
+Desktop is accessed from zero client using PCoIP 
+
+protocol (no Adobe meeting is launched from the 
+
+browser) 
+
+16.0 
+
+0.2 
+
+Zero Client 
+
+Adobe meeting is launched and only screen share 
+
+0.6 
+
+operation is performed. No webcam and audio is 
+
+connected. 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 4  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Type of 
+Device 
+
+Type Of Operation 
+
+Avg. Network Bandwidth 
+Consumption (Mbit/sec) 
+
+Zero Client 
+
+Screen Share with Webcam and Audio 
+
+9.0 
+
+Testing Summary 
+
+ The Adobe Connect Client works well in the VMware View environment and all the tested functionality 
+passed the tests successfully. 
+
+The  testing  results  given  here  show  that  the  Adobe  Connect  client  can  share  documents  and  screens, 
+connect  multiple  webcams,  and  multiple  audio  headsets  in  the  meeting  and  this  works  well  within  the 
+VMware View environment. 
+
+Specific testing with webcam and audio headphones was done. We found that the user experience in the 
+meeting was good while webcam video was shared between the different participants. The audio quality 
+was  also  good  and  no  delay  or  choppiness  was  observed.  The  quality  of  the  speaker’s  voice  was 
+completely clear to the other participants when the speaker was driving the presentation. 
+
+The  team  tested  up  to  3  webcams  concurrently  within  an  Adobe  Connect  web  meeting  successfully 
+without any video refreshes delay. The team decided to limit the test to 3 concurrent webcam sessions 
+because  of  the  network  bandwidth  restrictions  between  the  zero/thin  clients  and  the  ESX  servers.    If 
+additional bandwidth were available, we could have tested additional concurrent webcam sessions.  
+
+The “document share” and “screen share” functions in the meeting worked well and there was no visible 
+latency  observed.  When  the  presentation  was  scrolled  or  slides  were  changed,  the  updates  were  seen 
+instantaneously  in  the  other  participating  desktops.  The  typing  sequence  in  Notepad  was  also  being 
+updated instantaneously in the other meeting participants’ windows. 
+
+The  round  trip  latency  of  network  traffic  observed  between  the  Adobe  Connect  Server  and  thin/zero 
+client was in the range of 100 – 120 msec. during the testing. 
+
+End User Experience Matrix for Webcam Video: 
+
+The webcam video refresh in the table below was measured using the visual experience of the end user. 
+No specific measurement tool was used to measure webcam video quality. 
+
+Type of Operation 
+
+Results 
+
+One webcam connected (1 zero Client) 
+
+Webcam video quality good.  
+
+Three webcam connected (2 zero client + 1 thin client) 
+
+Webcam video quality good. 
+
+Three webcam connected (3 zero client) 
+
+Webcam video quality good. 
+
+ 
+
+End User Experience Matrix for Audio: 
+
+Type of Operation 
+
+Results 
+
+Three headsets were connected to the meeting and the 
+
+The participants can listen to the audio without any 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 5  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Type of Operation 
+
+Results 
+
+contents of the shared presentation were read. 
+
+interruption and the voice quality was clear. 
+
+Leap movement between video and audio is in sync 
+
+while the contents are read. There are occasional 
+
+delay seen but it was no more than a second. This is 
+
+visual observation and no tool is used for that. 
+
+Recommendations  
+The testing results indicate that the  best  performance when implementing the  Adobe  Connect meeting 
+solutions can be achieved by using the best practices described below. 
+
+  Provide  adequate  network  bandwidth  between  the  thin/zero  client  and  the  ESX  servers  where  the 
+
+View Desktops are residing in order for a set of webcams to work seamlessly.   
+
+  For better streaming performance of the Adobe Connect meeting traffic, the connection to the Adobe 
+Connection  Server  may  have  to  be  set  to  be  “non-tunneled”  using  RTMP:1935  (an  Adobe  specific 
+protocol: port  number).  This  recommendation is  made  for  the  Adobe Connect Client  irrespective of 
+whether the desktop is virtual or physical. 
+
+  For better performance of the meeting, make sure that the round trip latency of network traffic to the 
+Adobe Connect Server  is as low as possible (Adobe recommends less than 150ms  for the round trip 
+latency). This recommendation holds for any Adobe Connect environment, whether virtualized or not. 
+
+  For low bandwidth network, set the video quality to use low resolution for  the webcam. This can be 
+
+set from the Adobe meeting “Preferences” menu option. 
+
+  Use the default “Flash Player” settings of VMware View Manager Administrator interface. Do not use 
+
+the flash throttling option as it impacts the overall meeting quality. 
+
+  Deploy the VMware View Desktops using an automated pool (linked clone or full clone). 
+
+  Prepare  the  golden  image  of  the  VMware  View  desktops  following  the  VMware  View  desktop 
+
+optimization guides. 
+
+  Keep  the  server  components  and  VMware  View  desktops  on  separate  ESX  hosts.  That  is,  keep  the 
+VMware vCenter server, VMware View manager and AD/DNS server virtual machines on one ESX host 
+and deploy the VMware View desktop (VMs) on separate ESX hosts. 
+
+  Do not use the proprietary USB video drivers  that come with the webcam CD. It is recommended to 
+use  the  generic  USB  driver  “usbvideo.sys”  when  connecting  the  webcam  in  an  Adobe  Connect 
+meeting on VMware View.   
+
+  When connecting a webcam in a thin or thick client, make sure that both the thin/thick client and the 
+
+VMware View desktop use the same USB generic video driver “usbvideo.sys”. 
+
+  The “usbvideo.sys” file is located at C:\Windows\system32\ folder. Starting with Device Manager you 
+can validate whether the camera is in fact using the generic Microsoft usbvideo.sys driver by selecting 
+driver details.  In case the camera uses  a  proprietary driver,  you can force  the  system  to select the 
+“usbvideo.sys”  in the following way (This example is for a windows 7 desktop): 
+
+o  Go to “Device Manager” and select “Imaging Device”. 
+
+o  Expand  “Imaging  Device”  and  select  the  webcam,  right  click  on  it  and  select  “Update 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 6  
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+o 
+
+o 
+
+o 
+
+Adobe Connect Client on VMware View 
+ 
+
+Driver Software”. 
+
+Select “Browse my computer for driver software” 
+
+Select “Let me pick from a list of device drivers….” 
+
+Select the Generic USB Video Device driver from the listing and then hit “Next”. 
+
+o  The device is now “updated” to the generic driver.  
+
+ 
+
+It  is  recommended  that  you  use  zero  clients  with  firmware  version  3.3  or  higher.  The  Teradici  zero 
+client does not support isochronous USB devices such as webcams in earlier version of the firmware. If 
+you connect the webcam using an earlier firmware version, you may see a blank black screen in the 
+video pod of the meeting. 
+
+  A small number of webcams come with audio functionality as well. Users can choose this audio device 
+during  a meeting or  they  can use  the  Teradici audio driver for voice. VMware does not  support  the 
+Teradici audio driver. 
+
+ 
+
+In order to get best use of a webcam in the VMware View environment with the PCoIP protocol, the 
+webcam  is  required  to  be  connected  to  a  USB  port  that  supports  USB  version  1.1  or  higher.  When 
+connected to a USB 1.0 port, the webcam refresh may not be acceptable in a meeting session. 
+
+  Verify in the VMware View desktop control panel that “Sound and Audio Device” properties are set 
+correctly. e.g. when the Teradici audio driver is installed, “Sound Playback” and “Voice Playback” are 
+set to “Teradici Audio Driver”. 
+
+  Verify that the speaker output is set to the right device. e.g. if you intend to use the audio headset, 
+then under “Sound and Audio Device” properties in “Advanced” button in “Audio” and “Voice” tab, 
+the speaker option  should be set  to “Stereo Headphones”. By  default  this option is  set  to “Desktop 
+Stereo Speakers”. 
+
+  Thin clients do not support analog headsets. If a thin client is used, make sure to use a USB headset 
+
+instead of an analog one. The zero clients support both analog and USB headsets. 
+
+  When  configuring  the  operating  system  on  a  thin  client  device,  make  sure  that  the  correct 
+
+components are in place to support the usbvideo.sys driver. 
+
+  
+
+Conclusion 
+This  paper  discusses  the  validation  testing  that  was  done  on  Adobe  Connect  clients  in  a  VMware  View 
+setup at the VMware labs in Palo Alto, California. General Adobe Connect web meeting functionality such 
+as  screen  sharing,  document  sharing,  webcam  and  audio  features  worked  well  in  the  VMware  View 
+environment.  We  successfully  validated  that  the  Adobe  Connect  client  can  launch  web-based  meetings 
+with up to twenty participants and up to three webcams.  All functions of Adobe Connect and VMware 
+View products performed as expected. 
+
+  
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 7  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Adobe Connect Client on VMware View 
+ 
+
+Resources 
+For more information about VMware and related products, use the links and references below. 
+
+VMware References 
+
+  VMware Documentation: 
+
+http://www.vmware.com/support/pubs/  
+
+  VMware Licensing: 
+
+http://www.vmware.com/support/licensing/  
+
+  VMware Proven Best Practices (VIOPS): 
+
+http://communities.vmware.com/community/viops  
+
+  VMware Solutions/Product/Partner Podcasts: 
+
+http://www.vmware.com/technical-resources/podcasts/  
+
+  VMware Global Support KB: 
+
+http://kb.vmware.com  
+
+  VMware TV: 
+
+http://www.youtube.com/user/vmwaretv  
+
+Adobe Connect References 
+
+  Adobe Connect: 
+
+http://www.adobe.com/products/adobeconnect.html  
+
+  
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 8  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+

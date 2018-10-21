@@ -1,0 +1,196 @@
+ 
+
+CASE STUDY 
+
+ 
+
+COLLEGE BOARD LIFTS EFFICIENCY 
+AND READIES FOR PRIVATE CLOUD 
+SERVICES WITH VBLOCK™ 
+INFRASTRUCTURE PLATFORMS 
+
+Executive Summary 
+
+About the Mississippi Community College Board  
+The Mississippi Community College Board (MCCB) is the coordinating organization for Mississippi’s 15 
+community and junior colleges. The board coordinates and distributes funds throughout the community colleges, 
+which serve more than 88,000 students. MCCB’s Technology Division coordinates, plans, and manages a variety 
+of information technologies used by each of the colleges to support educational, operational, and administrative 
+functions. 
+
+Challenge 
+  Data center running out of space 
+
+  Power, cooling, and support costs increasing 
+
+Solution  
+  VblockTM Infrastructure Platforms 
+
+Results 
+  Decreased data center footprint by 40 percent 
+
+  Reduced management time by 60 to 70 percent 
+
+  Achieved 97 percent server virtualization 
+
+  Improved IT agility and reduction of provisioning time of new services  
+
+Challenge 
+The Mississippi Community College Board (MCCB) wanted to leverage server virtualization, but its aging physical 
+infrastructure was slowing adoption. Rather than update infrastructure elements sequentially, MCCB was able to 
+fast-forward its enterprise-wide upgrade and virtualization strategy with Vblock Infrastructure Platforms. 
+
+Ray Smith, MCCB’s Technology Division’s assistant executive director for technology, explains, “We wrestled with 
+all the bad things that come with equipment nearing end of life. We were running out of data center space, and our 
+power and cooling costs and support expenditures were growing. Initially, we wanted to move to HP blades, but 
+our IT partner, Venture Technologies, told us about the Vblock platform. We saw that the Vblock solution would 
+resolve our issues, simplify our operations, and let us deliver new services.”  
+
+In addition, MCCB needed an infrastructure that would enable it to participate in the Statewide Longitudinal Data 
+System (SLDS), a national program that enables tracking of student information from early education to the 
+workforce.  
+
+Solution 
+At MCCB’s data center in Jackson, Miss., where business-critical applications are hosted, a Vblock platform 
+replaced three HP servers and EqualLogic storage. The Vblock platform includes Cisco Unified Computing 
+System (UCS) blade servers, Cisco Nexus switches, EMC unified storage, EMC Ionix Unified Infrastructure 
+Manager (UIM) software, and VMware vSphere virtualization. 
+
+© 2011 VCE Company, LLC. All rights reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Converged, fully tested, and supported by VCE, the Virtual Computing Environment Company, MCCB’s Vblock 
+platform hosts all of MCCB’s applications including online registration, Mississippi Virtual Community College, 
+Microsoft Exchange, SharePoint and SQL Server, as well as DNS servers for the colleges.  
+
+MCCB engaged professional services from VCE and Venture Technologies for the implementation. Venture 
+Technologies used its experience with the Vblock platform to provide services that included migrating MCCB’s 
+existing VMware servers to the new architecture. 
+
+“VCE and Venture are a great team,” notes Smith. “Both companies have top-class engineers and are committed 
+to working with us as trusted partners.” 
+
+Results 
+
+Smaller Footprint from Day One 
+The plan called for VCE and Venture Technologies to spend five days at MCCB’s data center implementing the 
+Vblock platform. The on-site work took only three days, which pleased Smith.  
+
+“We were able to empty two racks of file servers on day one. The simpler physical setup also works to our 
+advantage because we streamlined all the different power supplies, cooling fans, and cabling behind our racks,” 
+states Smith.  
+
+Using the Vblock platform has since let MCCB consolidate its server equipment racks down from three to one, so 
+the hardware occupies 40 percent less space in the data center.   
+
+Efficient Support Model Saves Time and Money 
+“With VCE and the Vblock platform, we’re not dealing with multiple vendors. It’s a different model that translates 
+into saving time and money. We call one number for answers to a variety of things without finger-pointing,” Smith 
+observes.   
+
+When it comes to managing computing, storage, and network resources, the Vblock platform lets MCCB manage 
+everything from a single console. Smith estimates the division’s three-member IT team regained 60 to 70 percent 
+of the time spent managing their older systems.  
+
+“The beauty of the Vblock platform is that we’re managing everything from one point and much more easily than I 
+ever imagined. Before, we were often blind to issues that were brewing in our environment,” Smith remarks.  
+
+“Since we’ve had the Vblock platform, I haven’t had to spend any time in the data center looking for red lights on 
+my disk drives or checking whether everything is plugged in. I even put in a new network management appliance 
+the other day, and it linked to my wide area network and didn’t have to fish through cables,” he adds. 
+
+Predictable Performance for Mission-Critical Applications 
+Having virtualized 97 percent of MCCB’s centrally hosted applications, the Technology Division maintains high 
+service levels for tens of thousands of users in the state’s community and junior colleges. 
+
+“The Vblock platform lets us easily give critical workloads the horsepower to get the response times we need,” 
+says Smith. “If a counselor or student is registering for an online class, or checking for open seats in a class, 
+performance is critical because courses are filled on a first-come, first-serve basis. Our database lookups now get 
+subsecond responses. I’m seeing smiles instead of hearing complaints.” 
+
+Along with the performance, MCCB’s distance-learning applications require 24x7 availability. “Our virtual 
+community college makes it just as important for our system to be up on Saturday night at 2 a.m. as during regular 
+business hours,” Smith comments. “The Vblock platform keeps us running without downtime, if we have a 
+hardware failure. It has virtual server replication, and the servers and switches are redundant, so we can go on 
+with our mission.” 
+
+Predictable performance also enabled MCCB to virtualize key databases with confidence, including enrollment, 
+adult basic education, audit and athletic databases, which are accessed by its customers on a 24x7 basis. 
+
+© 2011 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+Primed for Private Cloud 
+Next, MCCB expects to use the Vblock platform to enable private cloud services for the community and junior 
+colleges.  
+
+Smith notes, “The Vblock platform gave us the headroom to offer up services we didn’t have before. We’re looking 
+at things with the colleges, like disaster recovery and virtual server provisioning.” 
+
+Having the Vblock platform also removes anxieties about the future. “We can grow to whatever capacity we need, 
+without the expense of changing everything out and starting over. With the way the Vblock platform is engineered, 
+our window is bigger than the normal three-year technology life cycle. It’s great not to be locked into something 
+inflexible where the technology is outdated before you get the benefits,” states Smith.  
+
+For More Information 
+www.vce.com 
+
+ABOUT VENTURE TECHNOLOGIES 
+Venture Technologies is an IT solutions company founded in 1986 that provides Premise Solutions, Collaboration 
+Solutions, and VTCloud Services. Venture serves private and public sector clients across the Southeast with 
+locations in Alabama, Florida, Louisiana, Mississippi, and Tennessee. The company also owns and operates a 
+SAS 70 Type II Certified Data Center in Jackson, Miss., from which it provides Cloud Services across the U.S. 
+and internationally. For more information, visit www.ventech.com. 
+
+ 
+
+ABOUT VCE 
+VCE, the Virtual Computing Environment Company formed by Cisco and EMC with investments from 
+VMware and Intel, accelerates the adoption of converged infrastructure and cloud-based computing models 
+that dramatically reduce the cost of IT while improving time to market for our customers. VCE, through the 
+Vblock platform, delivers the industry's first completely integrated IT offering with end-to-end vendor 
+accountability. VCE's prepackaged solutions are available through an extensive partner network, and cover 
+horizontal applications, vertical industry offerings, and application development environments, allowing 
+customers to focus on business innovation instead of integrating, validating and managing IT infrastructure. 
+For more information, go to www.vce.com. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+Copyright © 2011 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, 
+LLC. and/or its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+© 2011 VCE Company, LLC. All rights reserved.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+

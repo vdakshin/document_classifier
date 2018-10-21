@@ -1,0 +1,802 @@
+ 
+
+CLOUD SERVICE ASSURANCE WITH 
+VBLOCK™ INFRASTRUCTURE 
+PLATFORMS 
+
+July 2011  
+
+WHITE PAPER 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+1 
+
+ 
+
+Table of Contents 
+
+Executive Summary ...................................................................................................................... 3	  
+Challenges Facing Service Providers ......................................................................................... 3	  
+Solution ....................................................................................................................................... 3	  
+Valuable Benefits ........................................................................................................................ 4	  
+Scope .......................................................................................................................................... 4	  
+Audience ..................................................................................................................................... 4	  
+Terminology ................................................................................................................................ 4	  
+Service Assurance and Service Level Agreements ................................................................... 6	  
+Establishing Market Segmentation ............................................................................................. 7	  
+Providing Service Deployment Satisfaction ................................................................................ 7	  
+Controlling Rising Costs .............................................................................................................. 7	  
+Managing Unpredictable Demand .............................................................................................. 7	  
+Solution: Vblock Infrastructure Platforms .................................................................................. 8	  
+Trusted Multi-Tenancy ................................................................................................................ 8	  
+Workload Mobility ...................................................................................................................... 10	  
+Services .................................................................................................................................... 11	  
+Technical Components ............................................................................................................. 12	  
+Benefits of Service Assurance ................................................................................................... 14	  
+Providing Effective SLAs ........................................................................................................... 14	  
+Easier Service Deployment ....................................................................................................... 14	  
+Lower, More Reliable Cost Model ............................................................................................. 14	  
+Managing Demand .................................................................................................................... 15	  
+Conclusion ................................................................................................................................... 16	  
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+2 
+
+ 
+
+Executive Summary 
+
+In order to prevail in today’s competitive Information Technology (IT) marketplace, it is essential for service 
+providers to offer quality service assurance that matches the business needs of potential customers. In the 
+marriage between service providers and their respective customers, the Service Level Agreement (SLA) 
+functions as the ever-important vows, ensuring the delivery of reliable data centers and efficient, cost-
+reducing IT operations. In fact, service assurance through an SLA can often be an elusive commodity for 
+companies migrating to an innovative cloud-computing environment. 
+
+In today’s high-technology industry, service assurance has become more than just a luxury for corporations 
+migrating to the cloud. It has become a primary differentiator when seeking support of critical applications 
+and dependable data center operations. With increasing concerns over untimely service interruptions and 
+the immobility of important workloads, companies have become reluctant to perform application operations 
+in a virtualized environment, particularly without the backing of a solid, comprehensive SLA.  
+
+Vblock™ Infrastructure Platforms furnish service providers with the confidence to deliver stringent, high-
+quality SLAs to their customers. With end-to-end support, Vblock platforms offer a unique blend of agility 
+and scalability in a converged infrastructure, allowing service providers to remain a cut above providers like 
+Google and Amazon. With this innovative solution, virtual machines provide fluent workload distributions 
+between multiple data centers while assuring accelerated application performance levels and reliable 
+security services. With the ever-increasing demands of stable IT operations and an aggressive cost-
+reduction campaign, Vblock platforms provide the framework for top-quality service provision, the 
+cornerstone of any progressive customer relationship. 
+
+Challenges Facing Service Providers 
+
+With growing demands on application delivery, a heightened emphasis has been placed upon service 
+assurance to attract business and maintain solid customer relationships. In order to remain ahead of the 
+competition, service providers rely upon rigorous SLAs to convince potential consumers to move critical 
+applications into virtualized environments. Converged infrastructure is an essential component for providing 
+the necessary value for meeting SLAs. 
+
+Today, service providers face many imposing challenges, including: 
+
+•  Establishing market segmentation 
+•  Service deployment satisfaction 
+•  Rising costs 
+•  Unpredictable demand 
+
+Solution 
+
+Vblock platforms provide the foundation for service providers to match the strict needs and demands of IT 
+corporations, as outlined in their SLAs. With the VCE’s Trusted Multi-Tenancy (TMT) model, service 
+providers can meet a customer’s growing demands, offering services that are both consistent and 
+predictable. Vblock platforms offer workload mobility that allows service providers to scale and deploy cloud-
+hosted workloads without costly service interruptions.  
+
+Vblock platforms also work with high-quality components to guarantee optimum service assurance to 
+customers. These services include: 
+
+•  Security 
+•  Application acceleration and wide area network (WAN) optimization 
+•  Application performance monitoring 
+•  Service management and reporting 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+3 
+
+ 
+
+Valuable Benefits 
+
+Vblock platforms converged infrastructure provides flexible service options that can be scaled up on an on-
+demand basis while reducing the operating costs and staffing expenses of typical data centers. With Vblock 
+platforms, service providers can depend upon a host of benefits, including: 
+
+•  Providing effective SLAs 
+•  Easier service deployment 
+• 
+•  Managing demand 
+
+Lower, more reliable cost model 
+
+Scope 
+
+This paper outlines how Vblock platforms converged infrastructure enables service providers to offer SLAs 
+to enterprise customers for whom performance, security, and availability are paramount. It allows service 
+providers to address the concerns and challenges of enterprise customers reluctant to migrate their data 
+center needs and application operations into a converged infrastructure platform.  
+
+Audience 
+
+CIOs of application service providers offering quality SLAs to companies moving application operations into 
+a virtualized, cloud-computing environment. 
+
+Terminology 
+
+The following table contains terms used throughout this paper. 
+
+Term 
+Cloud computing 
+
+Converged infrastructure 
+
+Workload 
+
+Workload mobility 
+
+Description 
+Data center environment in which shared servers provide resources, 
+software, and data to computers and other devices on demand, as with the 
+electricity grid. Cloud computing is a natural evolution of the widespread 
+adoption of virtualization, service-oriented architecture, and utility 
+computing. 
+
+A converged infrastructure packages multiple IT components packaged into 
+a single, optimized computing solution. Components of a converged 
+infrastructure solution include servers, data storage devices, virtualization, 
+networking equipment and software for IT infrastructure management, 
+automation, and orchestration. 
+
+Virtual machines and their corresponding applications and storages. 
+
+The ability to move workloads within a physical or virtual data center (VDC) 
+into different data centers in order to preserve application availability and 
+resources. 
+
+Trusted Multi-Tenancy (TMT)  An architectural model that optimizes resource sharing while providing 
+
+sufficient levels of Quality of Service (QoS) throughout the shared 
+environment; also provides security and compliance to agreed policies to 
+each individual tenant. 
+
+Application acceleration 
+
+The acceleration of application traffic over the wide area network from the 
+cloud-hosting data center. 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+4 
+
+ 
+
+ 
+
+Term 
+Load balancing 
+
+IT as a Service (ITaaS) 
+
+Description 
+The even distribution of workloads across two or more resources in order to 
+obtain optimal performance and utilization while averting overloads.  
+
+IT as a Service (ITaaS) refers to a method by which an IT organization or 
+service provider delivers well-defined services delineated at a clear 
+business interface, usually to multiple consumers and/or different business 
+units. Delivering services in this manner, as opposed to operating as pure 
+infrastructure administrators, allows an IT organization to increase 
+underlying resource utilization and reduce associated operational costs. It 
+also enables IT to offer pay-per-use business consumption. 
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+5 
+
+ 
+
+Service Assurance and Service Level Agreements 
+
+Growing expectations for application delivery and business continuity has placed increasingly rigorous 
+demands upon service providers to deliver reliable, cost-efficient SLAs to IT corporations. While many of 
+these high-technology industries now turn to service providers for data center support, meeting these SLAs 
+depends solely on the quality of the infrastructure platform. Today’s IT corporations work under a more 
+demanding set of prerequisites, including operating applications in a scalable, flexible multitenant 
+environment, supporting highly extensible workloads, and maintaining consistency and predictability of 
+application performance under adverse conditions. 
+
+IT corporations have become wary of the effects of migrating data center operations into a cloud-computing 
+model, particularly when it pertains to costs of such a transitional endeavor. Corporations need to consider 
+the capital expenditures (CAPEX) of transitioning into a new IT infrastructure, as the uncertainties of both 
+the long and short-term effects can hamper adoption. Also factoring into the equation are operating 
+expenses (OPEX) stemming from powering and cooling of high-density equipment, as well as the staff 
+requirements for maintaining such duties. 
+
+Additional questions may hamper an organization’s decision to move its data center needs and application 
+operations into the cloud. For instance, it is imperative for applications to comply to the same regulatory 
+requirements as in a typical IT environment. Organizations must bank on the same quality of service (QoS) 
+in a cloud-computing environment as in a traditional IT setting. Corporations expect the same level of 
+security measures enforced in the cloud. 
+
+Customer demands for a more intricate, sophisticated SLA require improvements in the infrastructure 
+platform in nearly every facet. While IT customers once emphasized service availability as the cornerstone 
+of an SLA, agreements now focus on quality network performance as the primary Key Performance Indicator 
+(KPI).  
+
+Quality SLAs are comprised of such components as establishing segmentation in the marketplace, providing 
+simple service deployments, controlling rising costs, and managing ever-changing customer demand.  
+
+Manage	  
+unpredictable	  
+demand	  levels	  
+
+Establish	  
+market	  
+segmentation	  
+Today's	  
+SLAs	  
+Provide	  
+satisfactory	  
+service	  
+deployments	  
+
+Control	  rising	  
+costs	  
+
+Figure 1. Components of Quality SLAs 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+ 
+
+6 
+
+ 
+
+Establishing Market Segmentation 
+
+Segmentation within a market has become a common practice for corporations seeking to make an impact 
+with sales production. However, a successful market segmentation endeavor can often result in hefty 
+increases in sales expenditures, as it establishes clear differentiators with market competitors. In order to 
+appeal to a targeted demographic, the marketing campaign must identify the potential consumer’s 
+requirements and impending needs, prerequisites that are generally outlined in an SLA. These customer 
+requirements often include:  
+
+•  Cost reduction 
+•  Productivity increases 
+• 
+Improve service quality 
+•  Greater profitability 
+•  Supporting highly extensible workloads 
+
+Providing Service Deployment Satisfaction 
+
+Deployment complexities can often hamper an organization’s commitment to migrating into a new IT 
+environment. Successful service deployments often require an intricate, convoluted process that involves 
+intense planning, increased manpower, and an extended integration of application resources. When 
+deploying into a new IT environment, organizations need affirmation that security, integrity, and efficiency 
+will not be compromised during the process. The reluctance of many major enterprises to shift into a cloud-
+computing community stems directly from the ambiguity of the deployment process. 
+
+Controlling Rising Costs 
+
+The hefty cost of support and maintenance is another obstacle that service providers contend with when 
+wooing major corporations into cloud computing. Nearly every organization today is targeting cost savings 
+as a leading priority in their business ventures. However, the financial demands placed on staffing, IT 
+maintenance, and operating equipment can be stifling. Growth and expansion has become increasingly 
+difficult for companies seeking to expand data center capacities while fully utilizing network and computing 
+resources. In essence, the ability to lower capital and operational expenditures has become highly elusive in 
+today’s challenging marketplace.  
+
+Managing Unpredictable Demand 
+
+Varying utilization among customers increases the need to ensure data availability for enterprises 
+considering a leap into virtualized infrastructure solutions. With demand levels that consistently fluctuate, IT 
+corporations prefer a flexible, scalable infrastructure for handling unpredictable workloads.  
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+7 
+
+ 
+
+Solution: Vblock Infrastructure Platforms 
+
+Vblock infrastructure platforms deliver the finest in IT solutions, combining computing and networking 
+services in a converged, virtual environment. Customers can reduce costly IT support while reserving time 
+for invaluable marketing endeavors. Fully integrated and highly innovative, Vblock platforms seamlessly 
+combine management, storage, and virtualization software in one all-encompassing package. 
+
+Vblock platforms provide the vital ingredients for affirming quality assurance with customers contemplating a 
+move into the world of cloud computing. These essentials include: 
+
+Trusted Multi-Tenancy (TMT) model 
+
+• 
+•  Workload mobility 
+•  Services 
+
+Trusted Multi-Tenancy 
+
+The VCE Trusted Multi-Tenancy (TMT) model is an integral part of Vblock platforms as it provides 
+component isolation and dynamic resource allocation through its six elements. With the cohesiveness of 
+several major hardware and software components, the VCE TMT model incorporates numerous valuable 
+services, including: 
+
+•  Security of virtual machines in each layer of the TMT stack 
+•  Acceleration of application traffic from the cloud-hosting data center 
+•  Optimization of the wide area network (WAN) 
+•  Monitoring and reporting of application performance over the WAN to various locations 
+
+Figure 2. Six Elements of Trusted Multi-Tenancy 
+
+ 
+
+One component is Service Assurance, a critical means for establishing customer satisfaction among various 
+tenants in the cloud environment. While the scalable resources within a virtualized platform are constantly 
+allocated and reallocated, multi-tenancy allows the service provider to conform to the customer’s ever-
+changing business needs, delivering the same level of maintenance outlined in an SLA. 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+8 
+
+ 
+
+Secure Separation 
+
+Perhaps the most integral part of multi-tenancy in a virtualized environment is secure separation, the 
+successful segregation of the various tenants and their respective assets. Effective secure separation is one 
+in which each tenant can access only the resources existing within their ownership. It is assured that these 
+resources remain uninhabited, whereas the workloads, data pools, and various applications remain 
+separated from other new tenants being provisioned. Methods of secure separation include network, 
+compute, storage, and application infrastructure layers.  
+
+Service Assurance 
+
+The level of service guaranteed to a customer is a vital component of TMT operations, and the inability to 
+deliver reliable performance hampers the process of providing quality SLAs. With the constant evolution of 
+workloads, compliance protocols, and application requirements, it is critical to maintain high service levels to 
+uphold customer relationships. Providers must be able to conform to a customer’s dynamic needs, as a 
+consistent, predictable delivery of service is highly essential. Providing top-quality service and maintaining 
+solid cost models are the keys to effective service assurance. 
+
+Security and Compliance 
+
+A leading concern of providers and tenants in a TMT environment is the guarantee of security and 
+compliance within each layer of the TMT stack. Utilizing such tools as firewalls, malware protection, 
+encryption and key management, intrusion prevention, and identity management and access control, the 
+security and compliance of this solution preserves the confidentiality of the tenant’s resources. The tenant’s 
+daily activities are continuously verified and monitored, as are all the provisioning, management, and 
+configuration activities performed within the environment. With the dynamic nature of regulatory compliance, 
+operating on a cloud requires increased subjection to security and compliance standards. 
+
+Availability and Data Protection 
+
+In the multi-tenant environment, not only must sufficient data storage, memory, bandwidth and memory be 
+accessible to the tenant, they must also remain protected at all times. Data protection addresses a tenant’s 
+concern of remaining secure in a cloud-computing environment, where emphasis is often placed upon high 
+performance levels. With the guarantee of solid data protection, enterprises may identify the more critical 
+items in regards to reducing costs and maintaining a solid procedure for preventing data loss.  
+
+Tenant Management and Control 
+
+Another facet of TMT is the rendering of management and control to tenants within the environment, 
+allowing them to maintain security, compliance, and budding revenue opportunities. Maintaining control over 
+important aspects of their individual services, tenants can maintain administrative contacts, modify a 
+management status for various elements of the infrastructure, determine the direction of virtualized objects, 
+and provision allocated resources. With delegated control and management capabilities, tenants can remain 
+on top of the existing data within the multi-tenancy environment while conforming to workloads that change 
+according to varying resource requirements. 
+
+Service Provider Management and Control 
+
+The final tier of the TMT model allots appropriate levels of management and control to the providers of 
+infrastructure services. Challenges are often presented when managing a multi-tenancy environment, 
+including the proper delegation of control among various tenants, handling reporting issues, and distributing 
+capacity alerts. Therefore, full visibility of the shared environment is imperative for service providers to 
+furnish tenants with security, data protection, availability, and necessary service levels. The Vblock platforms 
+thereby provide integrated management solutions that are both scalable and flexible, allowing a 
+comprehensive application performance interface (API) stack to enhance service value. 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+9 
+
+ 
+
+Workload Mobility 
+
+A key essential to the delivery of service assurance is workload availability and mobility. In order to supply 
+first-class services, providers must be able to effectively and flexibly scale a variety of workloads in a cloud 
+environment in a cost-efficient manner. With workload mobility, service providers can overcome limits placed 
+on high volumes of virtual machines and connections that can be supported among large enterprise 
+customers.  
+
+Often times, server failures and data center issues result in service interruptions. Therefore, the ability to 
+deploy virtual machines from one server to another without nagging interruptions is an invaluable benefit for 
+any IT organization. Likewise, the mobility of virtual workloads between data centers is paramount in 
+averting disasters. Workload mobility not only prevents interruptions during such transfers, it also allows you 
+to locate the ideal path for virtual private network (VPN) connections, accommodating users migrating to 
+data centers with available resources.  
+
+This capability afforded to customers of supporting high numbers of virtual machines ensures capacity for 
+future demand spikes and business growth. Hence, the availability and mobility of a virtualized workload 
+provides tremendous leverage for service providers determined to produce exceptional SLAs. Figure 3 
+illustrates the mobility of workloads between data centers supported by Vblock platforms. 
+
+Additional benefits of workload mobility include: 
+
+•  Migration to an additional data center deflects issues with power, cooling, capacity, and space 
+
+constraints in the primary location. 
+
+•  Applications migrated from a data center requiring maintenance eliminates downtime. 
+• 
+
+Load balancing can be performed across multiple sites when virtual environments are extended 
+between data centers. 
+
+ 
+
+ 
+
+Figure 3.  Workload Mobility Architecture 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+ 
+
+10 
+
+ 
+
+Services 
+
+There are additional services to realize and report on the level of assurance offered to service providers 
+using Vblock platforms to offer IT as a Service. The following premium services enhance performance and 
+increase availability to provide a valuable, differentiated service to customers. 
+
+Security 
+
+In a virtualized environment, there is a heightened demand for security among IT corporations migrating to 
+the cloud. Therefore, it is important for service providers to offer a security system that is consistent with a 
+virtualized, multi-tenant environment. In turn, Vblock platforms include Cisco® Virtual Security Gateway™ 
+(VSG), delivering an extensive security service that stretches beyond port numbers, virtual local area 
+networks (VLANs), and IP addresses, establishing security policies at virtual posts. With these capabilities, 
+virtual machines moving from one data center to another do not compromise security standards imposed 
+upon them. These security services support: 
+
+•  Service templates 
+•  Security zones 
+•  Administrative roles 
+•  Multi-tenancy 
+•  Rules-based security policies  
+
+Application Acceleration and WAN Optimization 
+
+More and more large enterprises are focused upon the velocity at which applications move traffic through 
+the WAN from cloud-based data centers into multiple locations. In other words, without application 
+acceleration and WAN optimization, it is difficult for service providers to manage high volumes of connection 
+requests and ensure quality response-time performances. Therefore, application acceleration has become a 
+critical element of service assurance. 
+
+Vblock platforms offer Cisco Application Control Engine (ACE), an effective solution for content switching, 
+load balancing, application optimization, and server offloading in both a physical and virtualized 
+environment. Load balancing assists the distribution of heavy traffic across multiple servers, paving the way 
+for efficient utilization of server resources as well as application availability. Cisco Virtual WAAS™ (VWAAS) 
+is an effective counterpart that handles application acceleration in a virtual environment, ensuring ideal user 
+operations in the private cloud infrastructure.  
+
+Application Performance Monitoring 
+
+Paramount to IT businesses is the ability to oversee operations and daily activities of applications. A clear 
+visibility coupled with monitoring capabilities will appease many corporations’ desire to monitor application 
+performances over the WAN. Vblock platforms feature the Cisco Network Analysis Module™ (NAM), 
+allowing companies to access important performance data from data centers across multiple locations.  
+
+With this feature, application performances are monitored in real time, allowing companies to observe 
+applications running on the network while determining precisely how resources are being utilized. It also 
+allows for more pressing needs to be addressed through prioritizing applications more specific to critical 
+missions. Other application performance monitoring features included in this package include: 
+
+•  Monitoring application response times 
+•  Assessing the amount of bandwidth used by specific applications and branch offices 
+•  Utilizing path optimization, directing applications to paths that will enhance performance, thus 
+
+adhering to strict SLA terms 
+
+•  Establishing priorities of applications (Oracle, SAP) specific to critical missions  
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+11 
+
+ 
+
+Service Management and Reporting 
+
+A useful tool for service providers is to manage and comprise reports on the resources residing in each level 
+of the virtual infrastructure, ensuring that the platform is fulfilling its duties outlined in the SLA. As part of this 
+feature, providers are relegated a means for monitoring, provisioning, troubleshooting, and charging back 
+the various resources being utilized by tenants. 
+
+Service management gives providers ample control and visibility of the shared infrastructure in the multi-
+tenant environment, assisting them in providing the data protection, security, and service quality agreed 
+upon in the SLA. With the flexibility offered in this design, service providers may effectively fulfill all duties 
+required in the virtualized, multi-tenant environment. 
+
+Technical Components 
+
+The aforementioned services are delivered by multiple technical components working with Vblock platforms. 
+The following diagram illustrates the cloud service assurance architecture: 
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+Figure 4. CSA Architecture 
+
+ 
+
+ 
+
+12 
+
+ 
+
+Cisco VSG 
+
+Cisco® Virtual Security Gateway™ (VSG) serves as a security policy management tool for applications 
+hosted in a virtualized environment, supporting various services in the cloud, including security zones, 
+service templates, multi-tenancy, standard securities policies, and administrative roles. This component is 
+managed by the Cisco® Virtual Network Management Center (vNMC). 
+
+VMware vShield 
+
+VMware vShield is a critical component that provides important protection for virtual data centers and cloud 
+environments. A dependable security solution, VMware vShield fortifies security for data and application 
+operations while improving control and visibility, accelerating compliance measures, and enabling multi-
+tenancy in a virtualized environment. This component engineers flow monitoring to enhance visibility while 
+providing centralized management of segmentation and zone boundaries. 
+
+Cisco vWAAS 
+
+Cisco® Virtual WAAS™ (vWAAS) is a virtual operating appliance that enhances business applications of 
+private cloud infrastructures through rapid acceleration. Offering a flexible multitenant deployment, this 
+component operates on the VMware ESXI hypervisor and Cisco UCS x86 servers, serving as a WAN 
+solution that can be deployed on-demand through a virtualization-savvy configuration.  
+
+Cisco ACE 
+
+Cisco® Application Control Engine (ACE) operates in the virtual data center environment to perform load 
+balancing and application delivery functions. In addition, this component optimizes application performance 
+and offloads servers while providing content switching. With server load balancing, Cisco ACE has the ability 
+to manage traffic across multiple servers, providing utilization of resources and delivering application 
+availability. With this product, costly time spent performing application deployments may be greatly reduced, 
+while expenses and resources linked to data service application infrastructure is kept at a minimum. 
+
+Cisco NAM 
+
+The Cisco® Network Analysis Module (NAM) serves as the primary source for collecting critical performance 
+data for the use of network reporting systems. This component, with Cisco® Virtual WAAS™ (VWAAS), 
+enhances application performance and optimizes solutions. In addition, Cisco NAM contains a useful 
+troubleshooting system for alerting users of performance issues before they occur, allowing organizations to 
+swiftly rectify issues and operate with increased efficiency. 
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+13 
+
+ 
+
+Benefits of Service Assurance 
+
+Service assurance is an invaluable tool when it comes to maximizing the long-term profitability of service 
+providers. In any business, the quality of the product being delivered will ultimately determine its success in 
+the marketplace, thereby attracting new customers while maintaining existing ones. 
+
+Not only does solid service assurance facilitate easier service deployments of service, it also elevates the 
+quality of an SLA, all the while providing a more sensible cost-reduction plan for potential customers. 
+Ultimately, assuring quality service results in a win-win situation for service providers and customers alike. 
+
+Providing Effective SLAs 
+
+A solid SLA serves as the cornerstone of the provider/customer relationship, setting the framework for 
+lucrative, long-term business ventures. At the core of an effective SLA is the provider’s confidence that 
+quality, first-rate service will be delivered to the consumer with minimum risk of fallback. The best way for a 
+service provider to uphold these assurances is by enhancing and fine-tuning the product being showcased. 
+
+An appealing SLA is often the determining factor for IT corporations selecting services that best fit their 
+computing needs. An innovative product such as the Vblock platforms, with cutting-edge technology and 
+multi-faceted benefits, provides tremendous leverage for service providers constructing a solid SLA. 
+
+Easier Service Deployment 
+
+In the case of Vblock platforms, service assurance is fortified by a simplified deployment process, often a 
+key beneficiary for corporations moving toward a virtualized environment. Offered in integrated units, the 
+components of the Vblock platforms are tested and pre-configured to work in a cohesive manner, assembled 
+in a single IT infrastructure that is primed for production. 
+
+Highly scalable and fully integrated, Vblock platforms allow businesses to bypass the design restructuring of 
+their data services. Packing these integral technologies in one all-encompassing system eliminates the 
+headaches of planning comprehensive architectures for new and existing data centers. 
+
+Vblock platforms are pre-tested and assembled to operate with most major applications, including Oracle 
+RAC, SAP, VMware, Microsoft Exchange, and Microsoft SharePoint. 
+
+Lower, More Reliable Cost Model 
+
+In today’s financially-strained business world, corporations are targeting predictable cost efficiency as a high 
+priority within their respective IT operations. Vblock platforms offer an ideal cost model that provides 
+enhanced IT services while considerably reducing operating expenses. 
+
+•  A pre-tested, validated infrastructure results in shorter deployment periods and ultimately an 
+
+accelerated return on investment (ROI). 
+
+•  On-demand services in a cloud-hosted environment reduce costly implementation periods from 
+
+months to mere hours. 
+
+•  Pay-per-use option allows for a predictable, manageable cost model that prevents high costs for 
+
+underutilized infrastructure. 
+
+•  Expanded access of the Vblock platforms provides head office, regional, and branch offices with 
+
+toolset of security and performance capabilities for hosted applications. 
+
+ 
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+14 
+
+ 
+
+Managing Demand 
+
+Vblock platforms contain the flexibility to conform to a wide influx of requests and needs, utilizing its scalable, 
+extensible, and burstable nature to manage strict customer demands.  
+
+•  Scalability – Each platform is engineered to help service providers maintain consistent, balanced 
+
+application performance as customer needs change. 
+
+•  Extensibility – Vblock platforms are used in conjunction with numerous component-specific 
+
+management tools in order to ensure the highest quality service. Each platform allows a centralized 
+control and visibility throughout each level of the virtual infrastructure. 
+
+•  Burstability – Vblock platforms counters high demands with burstability for effectively handling 
+
+high volumes of IT traffic as business expands. 
+
+ 
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+15 
+
+ 
+
+Conclusion 
+
+Service assurance has emerged as a primary differentiator for IT customers preparing to migrate to a 
+virtualized environment. Without first-class SLAs to offer potential customers, service providers are unlikely 
+to remain atop the competitive fray. A firm, business-aligned SLA that ensures compliance measuring and 
+reporting requirements is often the determining factor in a prospective IT customer relationship.  
+
+Vblock platforms effectively counter the concerns of enterprises considering a migration into cloud 
+computing, offering the finest in IT solutions in an innovative cloud environment. Merging first-class 
+networking and computing services in a converged infrastructure, Vblock platforms deliver end-to-end 
+services in one all-inclusive package, including storage, management, and virtualization software. These 
+solutions offer a multitude of invaluable features, including: 
+
+Trusted multi-tenancy 
+
+• 
+•  Workload mobility 
+•  Services 
+
+With service assurance comes a host of benefits to service providers looking to introduce IT customers to a 
+cloud environment. The capabilities presented by quality service assurance include:  
+
+•  Producing effective SLAs 
+•  Easier service deployment 
+• 
+•  Managing demand 
+
+Lower, more reliable cost model 
+
+Next Steps 
+To learn more about this and other solutions, contact a VCE partner or representative or visit www.vce.com. 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+16 
+
+ 
+
+ABOUT VCE	  
+VCE, the Virtual Computing Environment Company formed by Cisco and EMC with investments from VMware and Intel, 
+accelerates the adoption of converged infrastructure and cloud-based computing models that dramatically reduce the 
+cost of IT while improving time to market for our customers. VCE, through the Vblock platform, delivers the industry's first 
+completely integrated IT offering with end-to-end vendor accountability. VCE's prepackaged solutions are available 
+through an extensive partner network, and cover horizontal applications, vertical industry offerings, and application 
+development environments, allowing customers to focus on business innovation instead of integrating, validating and 
+managing IT infrastructure. 
+For more information, go to www.vce.com. 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+Copyright © 2011 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, 
+LLC. and/or its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+© 2011 VCE Company LLC, All rights reserved.  
+
+ 
+
+17 
+
+

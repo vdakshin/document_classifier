@@ -1,0 +1,927 @@
+www.vce.com
+
+SAP Landscape Virtualization
+Management Version 2.0
+on VCE Vblock® System 700 series
+
+Version 1.1
+December 2014
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Copyright 2014 VCE Company, LLC. All Rights Reserved.
+
+VCE believes the information in this publication is accurate as of its publication date. The information is
+subject to change without notice.
+
+2
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Contents
+
+Audience......................................................................................................................................................4
+
+Introduction.................................................................................................................................................5
+
+A best-of-breed integrated operations architecture................................................................................6
+
+Vblock Systems.......................................................................................................................................... 7
+
+SAP Landscape Virtualization Management............................................................................................ 8
+
+EMC Storage Integrator..............................................................................................................................9
+
+Solutions overview................................................................................................................................... 11
+Software components...........................................................................................................................11
+Logical layout....................................................................................................................................... 12
+Test scenario........................................................................................................................................13
+
+SAP system copy and SAP system clone.............................................................................................. 17
+Cloning steps........................................................................................................................................18
+Configuring SAP LVM before cloning...................................................................................................18
+Configuring VMware vSphere.............................................................................................................. 19
+Reviewing UNIX user and group settings.............................................................................................20
+Clone....................................................................................................................................................20
+Creating a clone.............................................................................................................................21
+
+Copy...........................................................................................................................................................22
+
+Conclusions.............................................................................................................................................. 23
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+3
+
+Audience
+
+This paper is intended for customers that are familiar with SAP Landscape Virtualization Management
+(LVM), but not familiar with the opportunities presented by Vblock® Systems for SAP LVM
+implementations.
+
+4
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Introduction
+
+As cloud computing and virtualization rapidly evolve, VCE is working with SAP, EMC, and VMWare to
+develop tools and services that make it faster and easier for customers to operate on-premise SAP
+solutions in virtualized and cloud environments. The goal is to help customers run SAP Business Suite
+applications in converged infrastructure systems with increasing levels of automation. VCE accelerates
+the adoption of converged infrastructure and cloud-based computing models. This approach dramatically
+reduces the cost of IT while improving time to market for customers.
+
+Purpose
+
+SAP Landscape Virtualization Management (LVM) software is a management tool that enables SAP
+administrators to automate SAP system operations including end-to-end SAP system copy and refresh
+operations. The large-scale enterprise landscape to which SAP LVM is suited is addressed by both the
+Vblock® System 300 series and Vblock System 700 series.
+
+Organizations with large and varied SAP deployments often face the challenge of validating and
+implementing multiple projects within a short time. The challenges of validating these projects can have
+significant implications for production system availability. SAP LVM provides a solution to this problem by
+providing a way to clone a production system to a development environment for testing and validation. In
+this very large enterprise landscape, the highest levels of data backup and application availability are also
+required. The Vblock System 700 series is ideally suited to meeting these challenges. EMC Storage
+Integrator (ESI) has been upgraded to support EMC VMAX storage, a component of the Vblock System
+700 series. This facilitates SAP LVM on the Vblock System 700 series and provides an excellent solution
+for large-scale SAP deployments.
+
+This paper examines the implementation of SAP LVM Version 2.0 in a Vblock System 700 environment.
+The purpose of this paper is to:
+
+• Clone an existing SAP environment using SAP LVM Version 2.0 on a Vblock System 740
+• Demonstrate the value of updated versions of ESI in the implementation of SAP LVM through the
+
+expansion of use cases to include EMC VMAX storage.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+5
+
+A best-of-breed integrated operations
+architecture
+
+SAP Consulting and VCE have jointly designed a best-of-breed integrated operations architecture,
+intended specifically for customers that have invested significantly in on-premise SAP landscapes to run
+their mission-critical applications, and validated it in a lab environment.
+
+This document describes the architecture design and provides information to help you perform routine
+operational tasks and respond quickly and efficiently to IT and business needs. The paper details design
+considerations such as the configuration, software versions, and tips, tricks, and traps associated with the
+various test scenarios.
+
+SAP customers running RISC/Unix have been taking a phased journey to the cloud by first migrating
+existing landscapes and associated databases to an x86 platform by way of converged infrastructure from
+VCE. Customers have reported achieving 50% better performance, 30% reduction in total cost of
+ownership, and 50% smaller footprint.
+
+Figure 1: Functionality of SAP Landscape Virtualization Management, Version 2.0
+
+6
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Vblock® Systems
+
+VCE represents the next evolution of IT, one focused on the next generation data center and the future of
+cloud computing. VCE seeks to eliminate the challenges that consume today's data center resources.
+
+Vblock® Systems seamlessly integrate leading compute, network, and storage technologies. Through
+intelligent discovery, awareness and automation, Vblock Systems provide the highest levels of
+virtualization and application performance.Vblock Systems are unique in their ability to be managed as a
+single entity with a common interface that provides end-to-end visibility.
+
+The Vblock System 300 series is an agile and efficient data center class system, providing flexible and
+scalable performance.
+
+The Vblock System 700 series is an enterprise-class mission-critical system for the world's most
+demanding workloads and service levels.
+
+Each Vblock System has a base configuration, which is a minimum set of compute and storage
+components as well as fixed network resources. Within the base configuration, certain hardware aspects
+can be customized. Together, the components offer balanced CPU, I/O bandwidth, and storage capacity
+relative to the compute and storage arrays in the system.
+
+For more information, go to www.vce.com.
+
+Reference environment
+
+SAP software, because of its heavy transaction load and analytical processing load, requires storage
+throughput. The SAP database caches the transactions in memory. However during heavy workloads, a
+much higher level of read and write to the storage is required. EMC VMAX is ideally suited to address
+these workloads. The throughput and performance of VMAX gives extensive support to the SAP
+production landscape. The Vblock System 700 series, which incorporates EMC VMAX storage, is
+designed to provide the high availability and disaster recovery features that enable large-scale enterprise
+implementations of the SAP product portfolio. Utilizing the combination of the Vblock System 700 with
+integrated EMC Solutions Enabler, in combination with SAP LVM allows you to easily manage your SAP
+landscape effectively. The Vblock System 740 environment used for this paper consists of:
+
+• Cisco UCS servers as the compute base (8 UCS B-200 M2 blades at 2.93 GHz, yielding a total of
+
+768 TB memory, 16 sockets, and 192 cores)
+
+• EMC VMAX 40K (Build 5876.268.174) with total storage of 223 TB
+• VMware vSphere 5.1
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+7
+
+SAP Landscape Virtualization Management
+
+SAP Landscape Virtualization Management (LVM) is an SAP software product that automates the
+operations of SAP system landscapes. It increases flexibility and business agility by simplifying and
+optimizing the provisioning and management of SAP systems through the use of virtualization technology
+such as VMware vSphere and VMware vCloud Director.
+
+SAP LVM simplifies the management of your landscape through:
+
+Landscape visualization
+
+• System management (start, stop, relocate and mass operations)
+•
+• End-to-end monitoring of systems and infrastructure (performance and health data)
+• Configurable dashboards
+• Reporting functionality
+
+Besides the system management, automation is achieved by:
+
+• Automated end-to-end framework for SAP system clone, copy, and refresh
+• Automatic capacity management via dialog instance scaling
+•
+• Automatic validation to verify environment before performing operations
+
+Task planner to schedule one-time or repetitive activities
+
+This paper discusses the implementation of SAP LVM Version 2.0. This version has been upgraded to
+include enhancements in these areas:
+
+•
+
+Improvements in virtual hosts management with options to delete virtual hosts and storage
+volumes during the system refresh process.
+
+• Custom cloning process, refresh and other operational hooks
+• Updates to task scheduling and provisioning
+• Better portal support pack updates and management
+• Configuring managed system as a solution manager system
+• Post copy automation process has been improved
+•
+
+Improved system snapshots capability
+
+For more information about the new features contained in SAP LVM Version 2.0, see http://help.sap.com/
+saphelp_lvment20/helpdata/en/a3/86db51e0f4f761e10000000a445394/content.htm
+
+8
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+EMC Storage Integrator
+
+EMC Storage Integrator (ESI) integrates with SAP Landscape Virtualization Management (LVM) to allow
+you to simplify management and operations of SAP systems and landscapes running on traditional or
+cloud infrastructures. ESI for SAP LVM provides SAP application virtualization and the ability to automate
+and manage SAP system clone, copy, and refresh processes.
+
+ESI contains two main components: an ESI adapter and a web service called EMC High-Level Storage
+(HLS) Admininistrator Console (EHAC).
+
+EHAC provides a deployment utility and gateway for the ESI adapter to allow SAP LVM to access storage
+systems such as the EMC VMAX contained in the Vblock® System 700 series. Using EHAC, you can
+manage the storage assigned to individual users by controlling the read/write access to the storage pools.
+
+The ESI for SAP LVM adapter provides storage management capabilities within LVM. The adapter
+enables you to manage cloning and snapshots of an SAP system that is managed by SAP LVM.
+
+The ESI adapter is a Java Enterprise Archive (EAR) file that complies with LVM specifications. It runs
+within the SAP Java stack with the SAP LVM add-on installed. The ESI for SAP LVM integrates with EMC
+file and block storage systems. The adapter uses the same Java Application Server to query the storage
+systems, so storage can be provisioned as part of system cloning.
+
+In the diagram shown, The SAP Management server contains ESI for SAP LVM which implements the
+SAP LVM central storage adapter and (together with EMC’s SMI-S adapter) manages central storage.
+ESI for SAP LVM also implements the SAP LVM virtualization adapter. On the SAP Managed Node,
+EMC’s Solutions Enabler (SE) supplements the SAP LVM storage library for EMC’s SAN storage.
+
+Figure 2: ESI and SAP LVM integration
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+9
+
+The EMC’s SMI-S adapter is an ANSI standard for storage management. It is a specification that defines
+an open storage management interface to enable 3rd party and EMC technologies to manage, monitor
+and control SAN resources. Version 4.6.1 added support for EMC VMAX storage.
+
+10
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Solutions overview
+
+The following is a detailed overview of the physical and logical layout of the infrastructure and software
+architecture used in this reference setup.
+
+Software components
+
+The software components used in the reference configuration consists of components for SAP, operating
+systems, database, EMC Storage Integrator (ESI), and virtualization.
+
+Table 1:  
+
+Software components
+
+Component
+
+Specification
+
+SAP
+
+SAP
+
+SAP
+
+SAP
+
+Operating System
+
+Operating System
+
+Database
+
+SAP Landscape Virtualization Management (LVM) software, version 2.0, SP 03
+(SID: VM1, Instance Nr: 00)
+
+SAP ERP 6.0 based on SAP NetWeaver 7.20, SP 13 (SID: ER1, Instance Nr:
+00)
+
+SAP ERP 6.0 based on SAP NetWeaver 7.20, SP 13 (SID: ER2, Instance Nr:
+00)
+
+Note: This system is created using the cloning operation performed in SAP
+
+Landscape Virtualization Management.
+
+SAP host agent for Red Hat Linux
+
+Red Hat Enterprise Linux (RHEL) Server 6.4
+
+Microsoft Windows Server 2008 R2
+
+Oracle 11.2.0.3
+
+EMC Storage Integrator (ESI)
+
+JBoss Application Server 7.1.1
+
+EMC Storage Integrator (ESI)
+
+EMC High-Level Storage Library Administrator Console (EHAC)
+
+EMC SMI-S Provider
+
+4.6.2.7 - Installed on EMC EHAC Server
+
+EMC Solutions Enabler
+
+7.6.2.9 - Installed on all SAP LVM Managed hosts
+
+EMC Storage Integrator (ESI)
+
+EMC ESI Storage Adapter v 2.1.7 for LVM. Required Storage library version:
+7.6.1.25
+
+Virtualization
+
+Virtualization
+
+VMware vCenter Server 5.1.0
+
+VMware ESXi 5.1.0
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+11
+
+Logical layout
+
+The reference setup used in this paper hosts the components listed in this topic. The software
+components are deployed on a Vblock® System 740.
+
+• SAP Landscape Virtualization Management (LVM) Version 2.0 SP05 runs on a virtualized SUSE
+
+Linux Enterprise Server Version 11 SP01 in combination with Oracle 11.2.0.3 acting as the
+management system
+
+•
+
+•
+
+The managed system is SAP ERP version 6.0 running on a virtualized Red Hat Enterprise Linux
+Server 6.4 in combination with Oracle 11.2.0.3
+
+The virtual resources (for example, virtual machines) managed by SAP LVM are Red Hat Linux
+servers installed on VB7013-ESXI-1, VB7013-ESXI-2 physical blade servers.
+
+12
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+• EMC Storage Integration (ESI) for the SAP LVM storage adapter is deployed on a JBoss
+
+Application Server 7.1.1 running on Microsoft Windows 2008 R2 Server, which is installed on
+VB7013-ESXI-3.
+
+Figure 3: Building blocks for this solution
+
+Test scenario
+
+The systems to be managed with SAP Landscape Virtualization Management (LVM) can be installed in
+different variants.
+
+• Storage-based and adaptively configured SAP systems are installed on shared, central storage
+
+with virtual host names and IP addresses.
+
+• SAP systems based on a virtual machine (VM) are traditionally installed within a VM, and the
+
+corresponding virtualization manager is configured within SAP LVM.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+13
+
+The SAP systems used in this setup are adaptively installed on a Vblock® System 740. The system copy
+process is based on a storage-based file-system cloning approach. The following describes the
+functionality and required configuration aspects.
+
+For this paper, the cloning operation was evaluated as it is indicative of the complexity of the operations
+involved in the integration of the virtualization layer, the storage layer, and the EMC Storage Integrator
+(ESI) Adapter plugin. It provides a clear indication of how the components relate and operate in
+conjunction with SAP to complete the cloning process of the system.
+
+The SAP LVM provides the portal and the task scheduler and connects to the ESI adapter plug in which
+communicates with the virtual machine, virtualization layer, and the storage layer to deliver a system
+clone.
+
+Start, Stop, and Relocation of SAP Systems
+
+The start, stop, and relocate functionality is achieved by using an adaptively configured SAP application
+used in conjunction with the appropriate SAP host agent.
+
+The adaptive configuration refers to decoupling of the operating system (OS) from the SAP application
+layer. This setup is established by using virtual IP addresses and virtual host names in conjunction with
+mounting the application-relevant file systems via a shared, central storage, in this case NFS, from the
+central EMC VMAX.
+
+The SAP ERP 6.0 system (SID: ER1) has been set up as a distributed configuration for the test scenario
+using the following virtual host name configuration.
+Table 2:  
+
+Virtual Host Name Configuration
+
+Host Name
+
+VERPOR1.mordor.vce
+
+VERPOR1.mordor.vce
+
+VERPOR1.mordor.vce
+
+SAP Component
+
+System Database (ABAP) Oracle 11g
+
+Central Services(ABAP) - Instance No. 00
+
+Central Instance(ABAP) - Instance No. 01
+
+In addition to the virtual host names and IP addresses, the SAP application and database-specific file
+systems have been mounted to the SUSE Linux operating system using NFS from the EMC VMAX
+series, unified storage system. The tables diaplayed show the mount point configuration in SAP LVM.
+Table 3:  
+
+Central services and central Instance mount point Configuration in SAP LVM
+
+Storage Type
+
+VMFS Datastore
+
+VMFS Datastore
+
+Datastore name
+
+USRSAPER1
+
+SAPMNTER1
+
+Mount point
+/usr/sap/ER1
+/sapmnt
+
+Table 4:  
+
+Database Instance mount point configuration in SAP LVM
+
+Storage Type
+
+VMFS Datastore
+
+VMFS Datastore
+
+Datastore name
+
+ORACLE1
+
+DATA1
+
+Mount point
+/oracle
+/SAPDATA1
+
+FS Type
+
+EXT3
+
+EXT3
+
+FS Type
+
+EXT3
+
+EXT3
+
+14
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Table 4:  
+
+Database Instance mount point configuration in SAP LVM
+
+Storage Type
+
+VMFS Datastore
+
+VMFS Datastore
+
+VMFS Datastore
+
+VMFS Datastore
+
+Datastore name
+
+DATA2
+
+DATA3
+
+SAPLOG1ER1
+
+SAPLOG2ER1
+
+Mount point
+/SAPDATA2
+/SAPDATA3
+/SAPLOG1
+/SAPLOG2
+
+FS Type
+
+EXT3
+
+EXT3
+
+EXT3
+
+EXT3
+
+Figure 4: Mount point configuration in LVM
+
+The ER1 system can be attached to the virtual resource verport1 running on Red Hat Linux. As a
+prerequisite, the users er1adm and oraer1 have to be available on all three resources. The SAP host
+agent 7.20 SP 189 is installed on all virtual resources.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+15
+
+The relocation process can be used for each SAP component of the ER1 system separately. This means
+the database, the central service, or the central instance can be moved to the virtual resource
+VERPORT1.
+
+Figure 5: Relocation of SAP services using SAP LVM
+
+16
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+SAP system copy and SAP system clone
+
+SAP Landscape Virtualization Management (LVM) provides end-to-end SAP system clone, system copy,
+and system refresh functionality. The system clone functionality is the basis for a system copy and system
+refresh.
+
+Each process – system clone, system copy, and system refresh – can be divided into subtasks.
+
+Figure 6: Subtasks for system cone, system copy, and system refresh
+
+Using SAP LVM, a fully automated, comprehensive SAP system copy was performed using the SAP ERP
+application system as a source system, as shown in the table below.
+Table 5:  
+
+Source and target system configuration
+
+Item
+
+SID
+
+Database
+
+Central Services
+
+ASCS Number
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Source System
+
+ER1
+
+VERPOR1.Mordor.vce
+
+VERPOR1.mordor.vce
+
+00
+
+17
+
+Target System
+
+ER2
+
+VERPORT1.mordor.vce
+
+VERPORT1.mordor.vce
+
+00
+
+Table 5:  
+
+Source and target system configuration
+
+Item
+
+Central Instance
+
+CI Number
+
+Source System
+
+Target System
+
+VERPOR1.mordor.vce
+
+VERPORT1.mordor.vce
+
+01
+
+01
+
+The existing resource VERPORT1.mordor.vce was used as the target resource for the system copy
+procedure.
+
+Cloning steps
+
+There are three configuration steps that must be completed as part of the cloning operation. These steps
+involve configuration of SAP Landscape Virtualization Manager (LVM), VMware vSphere, and Unix
+configuration. Once these steps are completed, the clone can be completed.
+
+Configuring SAP Landscape Virtualization Management
+before cloning
+
+To complete cloning a number of initial configuration steps must be completed. For more detailed
+information about configuration of SAP LVM, see the Managing System and Application Configurations
+sections under the SAP NetWeaver 7.3 or 7.4 Library documentation in SAP Help Portal.
+
+1 Complete an initial configuration of SAP Landscape Virtualization Management (LVM) in the
+
+Settings tab. Each of the parameters in each of the sub-tabs must be aligned to ensure that they
+appropriate to environment.
+
+2
+
+In the Infrastructure section, confirm the version of EMC Storage Integrator (ESI). Each of the
+remaining settings in each of the remaining infrastructure tabs is confirmed to be appropriate to
+the environment.
+
+3 Select Cloning in the System Details pane for the source system that is being cloned. 
+
+Figure 7: Cloning enabled for source system
+
+18
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+4
+
+In the Hosts tab, ensure that the host for the source system and the agent password for the
+source and target system are identical. 
+
+Figure 8: Setting the agent password
+
+5
+
+In Host Properties, select Isolation Ready. 
+
+Figure 9: Isolation Ready is selected
+
+6 Ensure that the HBA details match the details from the server and storage components.
+
+7
+
+In the Systems tab, verify the WWN number for the file system mount points.
+
+8 Once all of the settings are confirmed, click Validate All in the Validations tab to ensure that the
+
+source system validation completes successfully before proceeding.
+
+Configuring the VMware vSphere client
+
+To complete system cloning using SAP Landscape Virtualization Management (LVM), a number of
+configuration settings in VMware vSphere client must be set.
+
+1
+
+For each virtual machine in the source system ensure that the settings for each of the hardware
+components is appropriate. In particular, the SCSI controller settings. Compare the settings for
+the source and target systems so that all of the settings, except the data disks, match the settings
+on the source system.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+19
+
+2 Set the disk.EnableUUID parameter to true.
+
+Reviewing UNIX user and group settings
+
+On the target system, the user permissions and group assignments must match those on the source
+system.
+
+Cloning components
+
+SAP Landscape Virtualization Management (LVM) software include system cloning which creates a copy
+of the SAP system in a fenced LAN configuration. This is done so that the SAP system ID can remain the
+same.
+
+SAP integration with EMC as part of a Vblock System ensures that you can make a copy of an SAP
+system using either full volume clones or pointer-based snaps within the array.
+
+EMC clones are similar to devices that use the same storage space as the source SAP system. EMC
+snaps are pointer-based copies that require the space for changed data. in typical environments, this
+could be as little as 30% of the source SAP system.
+
+Depending on the frequency with which the SAP system data is updated and changed, EMC tools can be
+used to determine how much space is required for snaps.
+
+After a clone is initiated, the SAP LVM software uses EMC's SMI-S provider integration to create new
+devices or use existing devices for the clone or snap. Either a clone or a snap is created and activated.
+SAP LVM creates a fenced LAN environment on the target server. The clones or snaps of the cloned
+SAP system are mounted (prepared) on the target server and the newly cloned SAP system is started.
+
+EMC Storage Integrator
+
+The cloning step is performed via a storage-based cloning using the EMC Storage Integrator (ESI) for
+SAP LVM. One component of EMC ESI is an adapter deployed on SAP LVM. The other component is the
+EMC High-Level Storage Library Administration Console (EHAC) running on a JBoss Application Server.
+EHAC provides a single point of management to manage user accounts, assign storage systems to
+users, and act as a gateway for the SAP LVM adapter to access storage systems.
+
+With EHAC, administrators can manage storage space assigned to individual users by controlling read/
+write access to the storage pools for each individual system.
+
+The components of the EMC ESI for the integration with SAP LVM used in this setup.
+
+The ESI for SAP LVM provides storage management capabilities and allows users to manage cloning
+and snapshots from within the SAP LVM user interface.
+
+The EMC ESI is fully integrated into SAP LVM for defining the cloning process. The volumes to be
+created during the storage configuration step are displayed in the system copy workflow of SAP LVM.
+
+20
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Creating a clone
+
+Ensure that you have completed the pre-configuration steps for SAP Landscape Virtualization
+Management (LVM) and VMware vCenter.
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+In SAP LVM, click Provisioning > Systems and AS Provisioning.
+
+In the System Landscape pane, select the source system that you want to clone and click Clone
+System.
+
+In the Basic Data of Target System pane, select the pool for the clone and also enter a short
+name and description. Click Next.
+
+In the Host Selection of Target System pane, enter the host information for the source system.
+Click Next
+
+In the Virtual Host Names and Networks pane, define the virtual host names for the source
+system. Click Start System Cloning and the click Next.
+
+The Storage Volume pane lists the storage information for the selected virtual hostname. The
+target fields are populated with the same storage system array ID and the same storage pool
+value as the source system. The storage pool value is empty for meta volumes. The EMC SMI-S
+Provider selects the appropriate storage pool for any blank values. From the Operations list,
+select Create New Volume. EMC SMI-S creates a new device in the storage pool.
+
+7 Enter an name in the Volume Name field. Click Next.
+
+8
+
+9
+
+In the Consistency pane, select the Offline database already stopped option and click Next.
+
+In the Isolation pane, for each item in the Define Allowed Outgoing Connections for System
+Isolationpane ensure that the Predefined check box is selected. Click Next.
+
+10 In the Summary pane, review the details for the clone and click Start System Cloning to initiate
+
+the cloning process.
+
+The Monitoring Menu and Activities tab show the current running system cloning process and the
+results of each step of the activity that the SAP LVM system is currently working on. The status shows
+either completed or percentage completion. Also each step can be drilled down into detailed steps of
+what is being worked upon by the system . This step shows the 100% completion of the cloning process.
+A retry was initiated after failure and fixing of the errors and this step shows that the clone process was
+completed 100% in the retry.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+21
+
+Copy
+
+SAP system copy will perform many of the same steps as clone, except instead of creating a fenced LAN
+environment, so that the ID can remain the same. SAP Landscape Virtualization Management (LVM)
+renames the SAP system and invokes SAP's Post Copy Automation (PCA).
+
+The PCA procedure automates and performs all of the numerous post-copy steps that are common to
+most SAP users. Using the integration provided by EMC within the VCE Vblock® System allows you to
+create new devices or use existing devices to create an EMC clone or snap of the copied SAP system.
+
+After a copy is initiated, the SAP LVM interface uses the EMC SMI-S provider integration to create new
+devices or use existing devices for a clone or snap. Either a clone or a snap is activated. SAP LVM then
+renames the SAP system ID and performs the post-copy automation tasks. The clones or snaps of the
+copied SAP system are mounted (prepared) on the target server and the copied SAP system is started.
+
+22
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+Conclusions
+
+Until now, managing SAP landscapes has been mostly a manual and time-consuming endeavor. SAP
+Landscape Virtualization Management software combined with Vblock® Systems from VCE deliver a
+highly efficient and productive environment to provision and operate on-premise applications based on
+the SAP NetWeaver technology platform.
+
+By leveraging SAP Landscape Virtualization Management along with the converged infrastructure of VCE
+Vblock® Systems, customers can realize greater business and IT agility, improve the quality of their
+operations, and reduce their total cost of ownership. Do it faster, do it cheaper, do it better – a winning
+formula for today’s competitive business environment.
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+23
+
+www.vce.com
+
+About VCE
+
+VCE,  formed  by  Cisco  and  EMC  with  investments  from  VMware  and  Intel,  accelerates  the  adoption  of  converged
+infrastructure and cloud-based computing models that dramatically reduce the cost of IT while improving time to market for
+our  customers.  VCE,  through  Vblock  Systems,  delivers  the  industry's  only  fully  integrated  and  fully  virtualized  cloud
+infrastructure system. VCE solutions are available through an extensive partner network, and cover horizontal applications,
+vertical industry offerings, and application development environments, allowing customers to focus on business innovation
+instead of integrating, validating, and managing IT infrastructure.
+
+For more information, go to http://www.vce.com.
+
+© 2014 VCE Company, LLC. All rights reserved. VCE, Vblock, VCE Vision, and the VCE logo are registered trademarks or
+trademarks of VCE Company, LLC. and/or its affiliates in the United States or other countries. All other trademarks used
+herein are the property of their respective owners.
+
+24
+
+© 2014 VCE Company, LLC.
+
+All Rights Reserved.
+
+

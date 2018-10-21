@@ -1,0 +1,3965 @@
+ 
+
+SCALE TESTING AND COST ANALYSIS STUDY: VMWARE HORIZON VIEW 5.2 
+VIRTUAL DESKTOP DENSITY VS. CITRIX XENAPP 6.5 FP1  
+
+ 
+
+For companies choosing between a virtual desktop infrastructure (VDI) and 
+
+server-based computing (SBC) model, cost and density are among the most important 
+
+considerations. In the Principled Technologies labs, we compared one VDI solution, 
+
+Microsoft® Windows®  7 desktops on VMware® Horizon View™ 5.2, and one SBC 
+
+solution, a Citrix® XenApp® 6.5 FP1 Hosted Shared Desktop farm consisting of eight 
+
+Microsoft Windows Server® 2008 Remote Desktop Session Host (RDSH) virtual machines 
+
+(VMs) hosted on VMware vSphere® 5.1. 
+
+Hosted on the same physical hardware resources we found that VMware 
+
+Horizon View 5.2 supported 174 Microsoft Windows 7 virtual desktop sessions at a cost 
+per user of $483.1 Citrix XenApp 6.5 FP1, using the lossless settings that most closely 
+match the VMware Horizon View solution, supported 146 sessions at a cost of $950 per 
+
+user. These findings mean that VMware Horizon View 5.2 delivered 19.2 percent greater 
+
+density and a 49.2 percent lower cost per user, making it an excellent choice for a 
+company that wants to deliver a high-quality experience to users at an excellent price. 
+
+                                                      
+ 
+1 See Appendix C for cost analysis. We include costs for server hardware and software. 
+
+APRIL 2013 
+A PRINCIPLED TECHNOLOGIES TEST REPORT 
+Commissioned by VMware 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+
+The advantages of VDI 
+
+Compared to server-based computing, a virtual desktop infrastructure has a 
+
+number of advantages. Users enjoy greater control over their desktops and can 
+
+customize them as needed. For example, users who need immediate access to 
+
+applications or need granular control over OS settings, such as registry and drivers, can 
+
+do so as often as needed. This is not possible in an SBC model in which all users share a 
+
+server OS. The isolated VDI environment can also be a boon for security and can ease 
+
+the process of backing up and restoring data. Users can also access their virtual 
+
+desktops offline, something they cannot do with server-based computing. As we 
+
+demonstrate in this report, VDI can also be a much more cost-effective approach.  
+
+As Figure 1 shows, in our testing, VMware Horizon View 5.2 delivered greater 
+
+density at a dramatically lower cost compared to Citrix XenApp 6.5 FP1 with settings 
+
+that most closely match the VMware Horizon View solution. It is important to note that 
+
+VMware includes around-the-clock support to Horizon View users, whereas Citrix offers 
+
+additional Premier support for each concurrent user at an additional cost. 
+
+ 
+
+VMware Horizon View 5.2 
+
+Citrix XenApp 6.5 FP1 
+with lossless settings 
+
+VMware Horizon View 5.2 
+
+provides… 
+
+Number of users supported 
+
+Total licensing cost 
+
+Hardware cost 
+
+Total cost 
+
+174 
+
+$72,210 
+
+$11,845 
+
+$84,055 
+
+Cost per user 
+Figure 1: Cost and density comparison for the two solutions.  
+
+$483 
+
+146 
+
+$126,787 
+
+$11,845 
+
+$138,632 
+
+$950  
+
+19.2% greater density 
+43.0% lower total licensing 
+cost 
+N/A 
+39.4% lower total licensing 
+plus hardware cost 
+49.2% lower cost per user 
+
+We provide detailed system configuration information in Appendix A, our test 
+
+methodology in Appendix B, and the details of our cost analysis in Appendix C. 
+
+Horizon View 5.2 virtual desktops vs. Citrix XenApp 6.5 FP1 Hosted Shared Desktop sessions 
+
+We loaded our server under test, an HP DL380p Gen8, with VMware vSphere 
+
+5.1 and connected it to four iSCSI LUNS on a Dell™ EqualLogic™ PS 6110X storage array. 
+
+We hosted all VMware Horizon View 5.2 Microsoft Windows 7 virtual desktops and a 
+
+Citrix XenApp 6.5 FP1 farm of eight Microsoft Server 2008 R2 VMs on the server under 
+
+test. We hosted all infrastructure VMs on separate server resources. See Appendix B for 
+
+detailed information. 
+
+We used Login VSI to generate a reproducible, real-world test case that 
+
+simulated the execution of various applications including Microsoft® Internet Explorer®, 
+
+Adobe® Flash® video, and Microsoft Office® applications to determine how many virtual 
+
+desktop users or sessions each solutions could support. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  2 
+
+ 
+ 
+ 
+ 
+
+We configured Login VSI to run a medium workload against a Horizon View pool 
+
+of virtual desktops and against a load-balanced Citrix XenApp farm of eight virtualized 
+
+Windows Server 2008 hosts, and set up the test to incrementally log users into virtual 
+
+desktops or XenApp sessions every 20 seconds for the duration of each test.  
+
+Login VSI measured the total response time of all the applications from each 
+
+session and calculated the VSI Index by taking the average response times and dropping 
+
+the highest and lowest 2 percent. The average response time of the first 15 sessions 
+
+determined a baseline. As more sessions begin to consume system resources, response 
+
+time degrades and the VSI index increases until it is above the VSImax (VSImax is 
+
+baseline x 125% +3000ms). When this condition is met, the benchmark records a Login 
+
+VSImax, which is the maximum number of sessions that platform could support. Once 
+
+logged in, each session remained active for the duration of the test, and for at least 15 
+
+minutes. Not reaching VSImax is an indication of satisfactory user response at the 
+
+predetermined user count.  
+
+VMware Horizon View 5.2 results  
+
+We created a Windows 7 x64 Enterprise Edition master image, and accepted all 
+
+default settings during the Windows 7 installation. We used standard Login VSI 
+
+installation instructions and best practices in preparing the Windows 7 master image. 
+
+We installed Microsoft Office 2010, Login VSI target software, and the VMware Horizon 
+
+View 5.2 agent on the Windows 7 VM. We deployed a pool of linked clone virtual 
+
+desktops from the master image, housing the replicas and virtual desktops on three 
+
+iSCSI LUNs presented to the server under test. 
+
+Figure 2 shows the response times, in milliseconds, as sessions increased for the 
+
+VMware Horizon View 5.2 desktop pool with 174 active desktops. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  3 
+
+ 
+ 
+ 
+ 
+
+Figure 2: The test 
+server was able to 
+run 174 Horizon 
+View 5.2 Windows 
+7 virtual desktop 
+sessions without 
+generating a VSI 
+max.  
+
+Figure 3: CPU 
+utilization for our 
+server under test 
+throughout the 
+Horizon View 5.2 
+test.2 
+
+We collected performance data with ESXTOP and Figure 3 shows the percentage 
+
+CPU utilization throughout our VMware Horizon View 5.2 test with 174 active desktops. 
+
+Additional sessions exceed the VSImax for the server under test due to CPU utilization.  
+
+ 
+
+                                                      
+ 
+2 This test is a VDI simulation that exercises the hardware components in the server. We ran the workload to fully utilize the 
+processors within the system. However, each potential environment varies in hardware topology, SLA requirements, and hardware 
+vendor best practices, so evaluate your environment and size your workloads with caution. 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  4 
+
+ 
+ 
+ 
+ 
+
+Citrix XenApp 6.5 FP1 Hosted Shared Desktop results 
+
+ 
+
+For the testing that we report on below, we disabled Citrix XenApp 6.5 FP1’s 
+
+default lossy compression and increased the moving image rendering to 30 FPS so that 
+
+the resulting lossless settings would most closely match the superior lossless image 
+
+quality of the VMware Horizon View solution. (Note: We also conducted our tests with 
+
+the default lossy compression at 24 FPS. The results appear in Appendix D.) 
+
+For our Citrix XenApp 6.5 FP1 lossless testing, we deployed eight Microsoft 
+
+Windows Server 2008 R2 virtual servers via Citrix Provisioning Services onto our server 
+
+under test and configured each VM with four vCPUs and 16 GB of memory. We installed 
+
+Microsoft Office 2010 for each user using terminal services safe installation mode and 
+
+activated it with a Volume License key. 
+
+To provide a richer user experience and to simulate the features of a full 
+
+desktop system, we added the desktop experience feature to the base server image. We 
+
+also used Citrix XenApp’s built-in load-balancing method to ensure that virtual desktop 
+
+user sessions were evenly distributed across all Windows Server 2008 targets. 
+
+Figure 4 shows the response times, in milliseconds, as the sessions increased in 
+
+our Citrix XenApp 6.5 FP1 lossless tests with 146 active sessions.  
+
+Figure 4: In our 
+lossless test, 
+Citrix XenApp 
+6.5 FP1 was 
+able to run 146 
+sessions 
+without 
+generating a 
+VSImax.  
+
+We collected performance data with ESXTOP and Figure 5 shows the percentage 
+
+CPU utilization throughout our Citrix XenApp 6.5 FP1 lossless tests. Additional sessions 
+
+exceed the VSImax for the server under test due to CPU utilization.  
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  5 
+
+ 
+ 
+ 
+ 
+
+Figure 5: CPU 
+utilization for our 
+server under test 
+throughout the Citrix 
+XenApp 6.5 FP1 
+lossless test.3 
+
+ 
+
+CONCLUSION  
+
+ 
+
+VDI offers many advantages over server-based computing: greater user control 
+
+over desktops; easier security, backup, and data restoration; and the ability for users to 
+
+access their sessions offline. VDI can also be a much more cost-effective approach.  
+
+Our scale testing with the Login VSI 3.7 medium workload for a VMware Horizon 
+
+View virtual desktop solution and for a Citrix XenApp 6.5 FP1 Hosted Shared Desktop 
+
+farm revealed that both delivered a rich Microsoft Windows 7 desktop experience. 
+
+However, Horizon View 5.2 could support 174 concurrent users while Citrix XenApp 6.5 
+
+FP1 with comparable lossless settings could support only 146 concurrent users.  
+
+Not only did Horizon View 5.2 support 174 concurrent users in our testing, it did 
+
+so at a cost per user of $483. In contrast, the 146 users Citrix XenApp 6.5 FP1 supported 
+
+had a cost per user of $950. VMware Horizon View 5.2 delivered 19.2 percent greater 
+
+density and a 49.2 percent lower cost per user, making it an excellent choice for a 
+
+company that wants to deliver a high quality experience that includes around-the-clock 
+
+ 
+
+telephone support for users 
+ 
+
+                                                      
+ 
+3 This test is a VDI simulation that exercises the hardware components in the server. We ran the workload to fully utilize the 
+processors within the system. However, each potential environment varies in hardware topology, SLA requirements, and hardware 
+vendor best practices, so evaluate your environment and size your workloads with caution. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  6 
+
+ 
+ 
+ 
+ 
+
+APPENDIX A – SYSTEM CONFIGURATION INFORMATION 
+
+Figures 6 and 7 detail the configuration information for the server and storage we used in our testing. 
+
+System 
+
+General 
+Number of processor packages 
+Number of cores per processor 
+Number of hardware threads per core 
+CPU 
+Vendor 
+Name 
+Model number 
+Socket type 
+Core frequency (GHz) 
+Bus frequency  
+L1 cache 
+L2 cache 
+L3 cache 
+Platform 
+Vendor and model number 
+Motherboard model number 
+BIOS name and version 
+BIOS settings 
+Memory module(s) 
+Total RAM in system (GB) 
+Vendor and model number 
+Type 
+Speed (MHz) 
+Speed running in the system (MHz) 
+Timing/Latency (tCL-tRCD-tRP-tRASmin) 
+Size (GB) 
+Number of RAM module(s) 
+Chip organization 
+Rank 
+OS/hypervisor 
+Name 
+Build number 
+File system 
+Kernel 
+Language 
+
+HP ProLiant DL380p Gen8 
+
+ 
+2 
+8 
+2 
+ 
+Intel® 
+Xeon® 
+E5-2690 
+FCLGA2011 
+2.90 
+8 GT/s 
+32 KB + 32 KB 
+8 x 256 KB 
+20 MB (shared) 
+ 
+HP ProLiant DL380p Gen8 
+346920-001 
+HP P77 12/14/2012 
+Maximum performance 
+ 
+256 
+Kingston KVR13LL9Q4/32 
+PC3L-10600R 
+1,333 
+1,333 
+9-9-9-36 
+32 
+8 
+Double-sided 
+Quad 
+ 
+VMware ESXi 5.1.0 
+914609 
+VMFS 
+ACPI x64-based PC 
+English 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  7 
+
+ 
+ 
+ 
+ 
+
+System 
+
+HP ProLiant DL380p Gen8 
+
+ 
+HP Smart Array P420i 
+3.22 
+0 
+ 
+Broadcom® BCM5719 Gigabit Ethernet 
+4 
+Integrated 
+ 
+4 
+2.0 
+
+Dell EqualLogic PS-6110X 
+
+RAID controller 
+Vendor and model number 
+Firmware version 
+Cache size (MB) 
+Ethernet adapter 
+Vendor and model number 
+Number of ports 
+Type 
+USB ports 
+Number 
+Type 
+Figure 6: System configuration information for our test server. 
+ 
+Storage array  
+Number of storage arrays 
+Number of storage controllers per array 
+RAID level 
+Firmware version 
+Number of drives 
+Model number 
+Drive size (GB) 
+Drive buffer size (MB) 
+Drive RPM 
+Drive type 
+Number of spare disks 
+Figure 7: Detailed configuration information for the Dell EqualLogic PS-6110X storage array.  
+ 
+
+1 
+2 
+10 
+6.0.0 
+24 
+ST9900805SS 
+900GB 
+16MB 
+10K 
+6Gb SAS 2.5" 
+2 
+
+ 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  8 
+
+ 
+ 
+ 
+ 
+
+APPENDIX B – TEST METHODOLOGY 
+
+We used a separate physical server to host all infrastructure VMs for both solutions. Figure 8 details our tested 
+infrastructure configuration for VMware Horizon View, while Figure 9 details our tested infrastructure configuration for 
+Citrix XenApp. 
+
+VM name 
+
+Hosted OS 
+
+Role (s) 
+
+Server 
+
+Memory 
+
+AD01 
+
+VMW-View 
+
+vCenter 
+
+Launcher 
+
+Win 2008 R2 x64 
+Enterprise 
+Win 2008 R2 x64 
+Enterprise 
+Win 2008 R2 x64 
+Enterprise 
+Windows 7 x 64 
+Enterprise 
+
+AD Domain controller VSI Share, DHCP, 
+DNS, NTP 
+
+VMware View connection server  
+
+VMware Virtual Center, VMware 
+Composer, SQL server 
+
+8x Login VSI launchers 
+
+Infra 
+
+Infra 
+
+Infra 
+
+Infra 
+
+4 GB 
+
+4 GB 
+
+8 GB 
+
+4 GB 
+
+Figure 8: Layout of the VMware Horizon View infrastructure. 
+ 
+
+ 
+
+VM name 
+
+Hosted OS 
+
+Role (s) 
+
+Server 
+
+Memory 
+
+AD01 
+
+CitrixLIC 
+
+PVS 
+
+vCenter 
+
+Launcher 
+
+Win 2008 R2 x64 
+Enterprise 
+Win 2008 R2 x64 
+Enterprise 
+Win 2008 R2 x64 
+Enterprise 
+Win 2008 R2 x64 
+Enterprise 
+Windows 7 x 64 
+Enterprise 
+
+AD Domain controller VSI Share, DHCP, 
+DNS, NTP 
+
+Licensing Services 
+
+XenDesktop Provisioning Services 
+
+VMware Virtual Center, SQL server 
+
+8x Login VSI launchers 
+
+Infra 
+
+Infra 
+
+Infra 
+
+Infra 
+
+Infra 
+
+4 GB 
+
+4 GB 
+
+4 GB 
+
+8 GB 
+
+4 GB 
+
+Figure 9: Layout of the Citrix XenApp infrastructure environment. 
+
+No. of 
+vCPUs 
+
+2 
+
+4 
+
+4 
+
+2 
+
+No. of 
+vCPUs 
+
+2 
+
+2 
+
+4 
+
+4 
+
+2 
+
+ 
+
+We used generic NAS for the infrastructure VMs and a Dell EqualLogic PS6110X drive array for the server under 
+test storage. We configured the Dell EqualLogic PS6110X drive array in a single member group with the RAID policy set 
+at RAID 10. The PS6110X array contained 24 SAS disks with two reserved as spares. We cabled the PS6110X array 
+directly to the HP DL380p Gen8. Using the default storage pool, we created six LUNs that distributed the virtual 
+machines used for testing. For the internal storage, we configured a RAID 1 mirrored pair of disks for the operating 
+system. 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  9 
+
+ 
+ 
+ 
+ 
+
+INSTALLING AND CONFIGURING INFRASTRUCTURE 
+
+We installed Microsoft Server 2008 R2 on three virtual machines housed on an ESXi host (infra) that was not 
+
+under test. We configured one as an Active Directory® domain controller, DNS server, DHCP server, file server, and NTP 
+
+server, one as a vCenter server, and one as a Horizon View connection server. Additionally, we deployed two more 
+
+Microsoft Server 2008 R2 virtual machines, the first one to server as Citrix licensing server and the second one as a Citrix 
+
+Provisioning Services server. We also configured AD roaming profiles and folder redirection for all Login VSI users.  
+
+Configuring power settings on HP DL380p Gen8 
+
+1.  Power on the server, and press F9 to enter Setup. 
+
+2.  Select Power Management Options, and press Enter.  
+
+3.  Select HP Power Profile, and press Enter. 
+
+4.  Select Maximum Performance. Press F10 to save changes, and exit utility.  
+
+Setting up a VM to host Microsoft Windows Active Directory server (DC1) 
+
+1.  Connect to infra via the VMware vSphere client. 
+
+2.  Log in as root. 
+
+3.  Click the Virtual Machines tab. 
+
+4.  Right-click, and choose New Virtual Machine. 
+
+5.  Choose Custom, and click Next. 
+
+6.  Assign the name DC1 to the virtual machine, and click Next. 
+
+7.  Select infra as the host, and click Next. 
+
+8.  Select the appropriate datastore for storage, and click Next. 
+
+9.  Choose Virtual Machine Version 8, and click Next. 
+
+10. Choose Windows, choose Microsoft Windows Server® 2008 R2 (64-bit), and click Next.  
+
+11. For CPUs, select one virtual processor socket and four cores per virtual socket, and click Next. 
+
+12. Choose 4 GB RAM, and click Next. 
+
+13. Click 1 for the number of NICs, select VMXNET3, connect to the VDI network, and click Next. 
+
+14. Leave the default virtual storage controller, and click Next. 
+
+15. Choose to create a new virtual disk, and click Next. 
+
+16. Make the OS virtual disk size 40 GB, choose thick-provisioned lazy zeroed, specify external 
+
+storage, and click Next. 
+
+17. Keep the default virtual device node (0:0), and click Next. 
+
+18. Click Finish. 
+
+19. Right-click the VM, and choose Edit Settings. 
+
+20. On the Hardware tab, click Add… 
+
+21. Click Hard Disk, and click Next. 
+
+22. Click Create a new virtual disk, and click Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  10 
+
+ 
+ 
+ 
+ 
+
+23. Specify 40 GB for the virtual disk size, choose thick-provisioned lazy zeroed, specify external 
+
+storage, and click Next. 
+
+24. Choose SCSI (0:1) for the device node, and click Next. 
+
+25. On the Hardware tab, click Add… 
+
+26. Click Create a new virtual disk, and click Next. 
+
+27. Specify 40 GB for the virtual disk size, choose thick-provisioned lazy zeroed, specify external 
+
+storage, and click Next. 
+
+28. Choose SCSI (0:2) for the device node, and click Next. 
+
+29. On the Hardware tab, click Add… 
+
+30. Click Create a new virtual disk, and click Next. 
+
+31. Specify 40 GB for the virtual disk size, choose thick-provisioned lazy zeroed, specify external 
+
+storage, and click Next. 
+
+32. Choose SCSI (0:3) for the device node, and click Next. 
+
+33. Click Finish, and click OK. 
+
+34. Click the Resources tab, and click Memory. 
+
+35. Select Reserve all guest memory, and click OK. 
+
+36. Connect the VM virtual CD-ROM to the Microsoft Windows Server 2008 R2 installation disk. 
+
+37. Start the VM. 
+
+Installing the Microsoft Windows Server 2008 R2 operating system on the VM 
+
+1.  Choose the language, time and currency, and keyboard input. Click Next. 
+
+2.  Click Install Now.  
+
+3.  Choose Windows Server 2008 R2 Enterprise (Full Installation), and click Next. 
+
+4.  Accept the license terms, and click Next. 
+
+5.  Click Custom. 
+
+6.  Click the Disk, and click Drive options (advanced). 
+7.  Click NewApplyFormat, and click Next. 
+
+8.  After the installation completes, click OK to set the Administrator password. 
+
+9.  Enter the administrator password twice, and click OK. 
+
+10. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340. 
+
+11. Reboot the server.  
+
+12. Connect the machine to the Internet, and install all available Windows updates. Restart as 
+
+necessary. 
+
+13. Enable remote desktop access. 
+
+14. Change the hostname to DC1 and reboot when the installation prompts you. 
+
+15. Run diskmgmt.msc. 
+
+16. Select a 40 GB volume, name it profiles, format it NTFS, and assign it drive letter E. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  11 
+
+ 
+ 
+ 
+ 
+
+17. Select another 40 GB volume, name it share, format it NTFS, and assign it drive letter F. 
+
+18. Select the last 40 GB volume, name it folders, format it NTFS, and assign it drive letter G. 
+
+19. Set up networking for the data network: 
+
+a.  Click StartControl Panel, right-click Network Connections, and choose Open. 
+
+b.  Right-click the VM traffic NIC, and choose Properties. 
+
+c.  Uncheck TCP/IP (v6). 
+
+d.  Select TCP/IP (v4), and choose Properties. 
+
+e.  Set the IP address as 172.0.0.10/255.255.0.0 
+
+Installing Active Directory and DNS services on DC1 
+
+1.  Click StartRun, type dcpromo and click OK. 
+
+2.  At the Active Directory Domain Services Installation Wizard welcome screen, check the Use 
+
+advanced mode installation option, and click Next. 
+
+3. 
+
+In the Choose a Deployment Configuration dialog box, select Create a new domain in a new 
+
+forest, and click Next. 
+
+4.  At the FQDN page, type vdi.local, and click Next. 
+
+5.  At the NetBIOS name prompt, leave the name VDI, and click Next. 
+
+6.  At the Forest Functionality level, select Windows Server 2008 R2, and click Next. 
+
+7.  At the additional Domain Controller Options, leave DNS server selected, and click Next. 
+
+8.  At the System Folder Location screen, change to E:\, leave the default options, and click Next. 
+
+9.  Assign a Directory Services Restore Mode Administrator account password, and click Next. 
+
+10. At the Summary screen, review your selections, and click Next. 
+
+11. Once Active Directory Domain Services finishes installing, click Finish, and restart the system. 
+
+12. Run dnsmgmt.msc. 
+
+13. Create a reverse lookup zone for the 172.0.0.x subnet. 
+
+Configuring the Windows time service on DC1 
+
+To ensure reliable time, we pointed our Active Directory server to a physical NTP server. 
+
+1.  Open a command prompt. 
+
+2.  Type the following: 
+
+W32tm /config /syncfromflags:manual /manualpeerlist:"<ip address 
+
+of a NTP server>" 
+
+W32tm /config /reliable:yes 
+
+W32tm /config /update 
+
+W32tm /resync 
+
+Net stop w32time 
+
+Net start w32time 
+
+Setting up DHCP services on DC1 
+
+1.  Click StartAdministrative ToolsServer ManagerAdd Roles.  
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  12 
+
+ 
+ 
+ 
+ 
+
+2.  Select DHCP Server, and click Next. 
+
+3.  At the Introduction to DHCP Server screen, click Next. 
+
+4.  At the Specify IPv4 DNS Settings screen, type vdi.local for the parent domain. 
+
+5.  Enter the preferred DNS server IPv4 address, and click Next. 
+
+6.  At the Specify IPv4 WINS Server Settings screen, select WINS is not required for applications on 
+
+the network, and click Next. 
+
+7.  At the Add or Edit DHCP Scopes screen, click Add.  
+
+8.  At the Add Scope screen, enter the Name DHCP Scope name. 
+
+9. 
+
+In the next box, set the following values, and click OK. 
+
+ Start IP address=172.0.1.0 
+
+ End IP address=172.0.10.0 
+
+ Subnet mask=255.255.0.0 
+
+10. Check the Activate This Scope box. 
+
+11. At the Add or Edit DHCP Scopes screen, click Next.  
+
+12. Click the Enable DHCP v6 Stateless Mode radio button, and click Next. 
+
+13. Leave the default IPv6 DNS Settings, and click Next. 
+
+14. At the Authorize DHCP server dialog box, select Use current credentials.  
+
+15. At the Confirm Installation Selections screen, click Next. If the installation is set up correctly, a 
+
+screen displays that DHCP server install succeeded. 
+
+16. Click Close. 
+
+Setting up the Login VSI share and Active Directory users  
+
+For Login VSI to work correctly, you must create a CIFS share, Active Directory OU, and Active directory. For 
+
+more information on Login VSI, see www.loginvsi.com/en/admin-guide/installation.html. Open Windows Explorer, and 
+
+create the following folders: f:\share, e:\profiles and g:\folderredirect 
+
+1.  Assign permissions of read/write to the vdi/everyone group. 
+
+2.  Right-click the f:\share, e:\profiles and g:\folderredirect folders, and 
+
+select Properties. 
+
+3.  Click the Sharing tab, and click Share… 
+
+4.  Add everyone, system and administrators to the Read/Write group, and click Share. 
+
+5.  Right-click the g:\folderredirect folder and select PropertiesSharingAdvanced 
+
+SharingCaching, and select No files or programs from the Share Folder are available offline.  
+
+6.  Click OK, Apply, OK, and Close. 
+
+7.  From the Login VSI 3.7 media, run the Login VSI AD Setup. 
+
+8.  Keep the default settings, and click Start. 
+
+Setting up roaming profiles for users  
+
+1.  Open Active Directory Users and Computers.  
+2.  Browse to vdi.localLogin_VSIUsersTarget. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  13 
+
+ 
+ 
+ 
+ 
+
+3.  Select all Login VSI users, and right-click Properties.  
+
+4.  Click the Profiles tab. 
+
+5.  Check box Profile path, and type e:\profiles\%username%. 
+
+6.  Click OK. 
+
+Configuring folder redirection 
+
+1.  Log into DC1 as administrator. 
+
+2.  Open the Group Policy Editor. 
+3.  Open ForestDomainsvdi.local, right-click Group Policy Objects, and select New. 
+
+4.  Type folder redirection, leave source starter GPO as None, and click OK. 
+
+5.  Right-click the folder redirection GPO, and click Edit. 
+6.  Browse User ConfigurationPoliciesWindows SettingsFolder Redirection, and right-click 
+
+AppData (roaming). 
+
+7. 
+
+In the AppData (roaming) Properties, target-tab select the following: 
+
+ Setting= select Basic= Redirect everyone’s folders to the same location 
+
+ Target folder location= Create a folder for each user under the root path 
+
+ Root Path= \\DC1\folderredirection 
+
+8. 
+
+In the AppData (roaming) PropertiesSetting tab, clear the checkbox for Grant the user 
+
+exclusive right to AppData (Roaming), and click OK. 
+
+9.  Repeat steps 6 through 8 for all subfolders in the folder redirection tree. 
+
+10. Close the Folder Redirection group policy. 
+11. In the Group Policy Editor, right-click the folder redirection policy, and selectGPO 
+
+statusComputer Configuration Settings Disabled. 
+
+12. In the Group Policy Editor, drag the folder redirect GPO to 
+ForestDomainsvdi.localLogin_VSIUsersTarget. 
+
+Setting up a VM to host the vCenter server (vCenter) 
+
+1.  Log into the infra server with the VMware vSphere client. 
+
+2. 
+
+In the vSphere client, under Basic Tasks, select Create a new virtual machine. 
+
+3.  Choose Custom, and click Next. 
+
+4.  Assign the name vCenter to the virtual machine, and click Next. 
+
+5.  Select infra as the host, and click Next. 
+
+6.  Select the appropriate storage, and click Next. 
+
+7.  Choose Virtual Machine Version 8, and click Next. 
+
+8.  Choose Windows, choose Microsoft Windows Server 2008 R2 (64-bit), and click Next. 
+
+9.  For CPUs, select one virtual processor socket and two cores per virtual socket, and click Next. 
+
+10. Choose 4GB RAM, and click Next. 
+
+11. Click 1 for the number of NICs, select VMXNET3, connect to the vdi-net port group, and click 
+
+Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  14 
+
+ 
+ 
+ 
+ 
+
+12. Leave the default virtual storage controller, and click Next. 
+
+13. Keep the default virtual device node (0:0), and click Next. 
+
+14. Connect the VM virtual CD-ROM to the Microsoft Windows 2008 R2 installation disk. 
+
+15. Click Finish. 
+
+16. Right-click the vCenter VM, and click Edit settings. 
+
+17. Click the Resources tab, click Memory, check the Reserve all guest memory checkbox, and click 
+
+OK. 
+
+18. Start the VM. 
+
+Installing the Microsoft Windows Server 2008 R2 operating system on the VM 
+
+1.  Open a virtual machine console on vCenter.  
+
+2.  Choose the language, time and currency, and keyboard input. Click Next. 
+
+3.  Click Install Now.  
+
+4.  Choose Windows Server 2008 R2 Enterprise (Full Installation), and click Next. 
+
+5.  Accept the license terms, and click Next. 
+
+6.  Click Custom. 
+
+7.  Click the Disk, and click Drive options (advanced). 
+8.  Click NewApplyFormat, and click Next. 
+
+9.  After the installation completes, click OK to set the Administrator password. 
+
+10. Enter the administrator password twice, and click OK. 
+
+11. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340. 
+
+12. Reboot. 
+
+13. Connect the machine to the Internet, and install all available Windows updates. Restart as 
+
+necessary. 
+
+14. Enable remote desktop access. 
+
+15. Change the hostname to vCenter and reboot when the installation prompts you. 
+
+16. Set up networking for the data network: 
+
+a.  Click Start, Control Panel, right-click Network Connections, and choose Open. 
+
+b.  Right-click the VM traffic NIC, and choose Properties. 
+
+c.  Uncheck TCP/IP (v6). 
+
+d.  Select TCP/IP (v4), and choose Properties. 
+
+e.  Set the IP address, subnet, gateway, and DNS server. 
+
+17. Join the VDI domain. 
+
+18. Reboot the system. 
+
+Installing Microsoft SQL Server 2008 R2 
+
+1. 
+
+Insert installation media, and click OK to install .NET framework. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  15 
+
+ 
+ 
+ 
+ 
+
+2.  Wait for the SQL Installer to launch. On the left menu, click Installation. 
+
+3.  Click New installation or add features to an existing installation. Click OK. 
+
+4.  Enter the Product Key, and click Next. 
+
+5.  Check the I accept the license terms checkbox, and click Next. 
+
+6.  Click Install to install the Setup Support Files (required). 
+
+7.  Resolve any issues displayed in the setup wizard, and click Next. 
+
+8.  At the Setup Role screen select SQL Server Feature Installation, and click Next. 
+
+9.  Select the Database Engine Services, Full-Text Search, Client tools Backwards Compatibility, 
+
+Management Tools Basic and Complete, and click Next twice. 
+
+10. Accept instance configuration defaults, and click Next. 
+
+11. Accept defaults for disk space requirements, and click Next. 
+
+12. Click Use the same account for all SQL Server services, select NT Authority\System, and click OK. 
+
+Click Next. 
+
+13. Select Mixed Mode and enter a password for the SA account. Click Add Current User, and click 
+
+Next. 
+
+14. Accept defaults for error reporting, and click Next. 
+
+15. Review installation configuration rules check, and click Next. 
+
+16. To begin installation, click Install. 
+
+17. At completion screen, click Close. 
+
+18. Run Windows Update to receive all updates and security patches. 
+
+Setting up a database and ODBC DSN for vCenter 
+
+1.  From the server desktop, open StartAll ProgramsMicrosoft SQL Server 2008 
+
+R2Configuration ToolsSQL Server Configuration Manager. 
+
+2.  Click SQL Server Network ConfigurationProtocols for MSSQLSERVER. 
+
+3.  Right-click TCP/IP, and select Enabled.  
+4.  Click SQL Servicesright-click SQL Server Browser, and select Properties. 
+
+5. 
+
+In the SQL Server Browser Properties, select the Services tab, change the Start mode to 
+
+Automatic, and click OK. Repeat this step for the SQL Server Agent service. 
+
+6.  Start the SQL Server browser service and the SQL Server Agent service. 
+7.  From the SQL server desktop, open StartAll ProgramsMicrosoft SQL Server 2008 
+
+R2Configuration ToolsSQL Server Management Studio  
+
+8.  Click Connect. 
+
+9.  Select the Databases folder, right-click, and select New Database. 
+
+10. Provide the name vCenter for the new database. 
+
+11. Click Options and change the recovery model from full to simple, and click OK. 
+
+12. From the desktop of the vCenter server, select StartRunodbcad32.exe. 
+
+13. Click the system DSN tab. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  16 
+
+ 
+ 
+ 
+ 
+
+14. Click Add. 
+
+15. Click SQL Server Native Client 10.0, and click Finish. 
+
+16. In the Create a New Data Source to SQL Server text box, enter the connection name type: 
+
+vCenter. 
+
+17. For Server, select SQL, and click Next. 
+
+18. Change authentication to With SQL Server authentication using a login ID and password entered 
+
+by the user, enter sa as the Login ID, use the password you defined in SQL server setup for the 
+
+SA account, and click Next. 
+
+19. Select the Change the default database to checkbox, choose vCenter from the pull-down 
+
+menu, and click Next. 
+
+20. Click Finish. 
+
+21. Click Test Data Source… to confirm correct configuration. 
+
+22. Click OK to create the vCenter ODBC connection. 
+
+Installing VMware vCenter 5.1 
+
+1.  Log onto the vCenter as VDI\administrator.  
+
+2.  From the VMware vCenter 5.1 install media, click Autorun. 
+
+3.  Click Run to start the install wizard. 
+
+4.  Click the Install button on the VMware vSphere 5.1 Simple Install wizard. 
+
+5.  Select the Install wizard language as English, and click OK. 
+
+6.  At the Install wizard welcome screen, click Next. 
+
+7.  At the End User Patent Agreement, click Next. 
+
+8.  Agree to the License Agreement, and click Next. 
+
+9.  Enter and confirm the password you wish to use with the Administrator account for vCenter 
+
+Single Sign On, and click Next. 
+
+10. Select Install a local Microsoft SQL Server 2008 R2 Express Instance, and click Next. 
+
+11. Enter and confirm the passwords for the DBA and SQL user accounts, and click Next. 
+
+12. Confirm the Fully Qualified Domain Name or IP address is correct, and click Next. 
+
+13. Check the Use network service account checkbox, and click Next. 
+
+14. Accept the default installation path, and click Next. 
+
+15. Accept the default https port, and click Next. 
+
+16. Click Install. 
+
+17. After Single Sign On completes, and vCenter Server installation begins, enter user information 
+
+and a license key, and click Next. 
+
+18. Select “Use an existing supported database” and select the Data Source Name (DSN) for the 
+
+connection to the SQL Server: vCenter. 
+
+19. Enter sa as the database username, provide the password for the SA account, and click Next. 
+
+20. Select the system account for the vCenter Server service account, and click Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  17 
+
+ 
+ 
+ 
+ 
+
+21. Keep the vCenter default ports, and click Next. 
+
+22. Select 1024 MB for the JVM memory, and click Next. 
+
+23. Click Install to finish the vCenter server installation.  
+
+24. Click Finish to exit the wizard. 
+
+25. Click OK to confirm completion. 
+
+26. Click Exit on the installer. 
+
+27. Restart the server.  
+
+28. Using the vSphere client, log into the vCenter server as VDI\administrator. 
+
+29. Right-click the root of vCenter, and click New Data center.  
+
+30. Name the New datacenter vdi. 
+
+31. Add the infrastructure server to the datacenter. 
+
+32. Add the server under test to the datacenter. 
+
+Setting up a database and ODBC DSN for Composer 
+
+1.  Open a virtual machine console on vCenter.  
+2.  From the server desktop, open StartAll ProgramsMicrosoft SQL Server 2008 
+
+R2Configuration ToolsSQL Server Management Studio.  
+
+3.  Click Connect. 
+
+4.  Select the Databases folder, right-click and select New Database. 
+
+5.  Provide the name composer for the new database. 
+
+6.  Click Options and change the recovery model from full to simple, and click OK. 
+
+7.  From the desktop of the vCenter server, select StartRunodbcad32.exe. 
+
+8.  Click the system DSN tab. 
+
+9.  Click Add. 
+
+10. Click SQL Server Native Client 10.0, and click Finish. 
+
+11. In the Create a New Data Source to SQL Server text box, enter the connection name: 
+
+composer. 
+
+12. For Server, select SQL, and click Next. 
+
+13. Change authentication to With SQL Server authentication using a login ID and password entered 
+
+by the user, enter sa as the Login ID, use the password you defined in SQL server setup for the 
+
+SA account, and click Next. 
+
+14. Select the Change the default database to checkbox, choose composer from the pull-down 
+
+menu, and click Next. 
+
+15. Click Finish. 
+
+16. Click Test Data Source… to confirm correct configuration. 
+
+17. Click OK to create the Composer ODBC connection. 
+
+Setting up VMware Horizon View 5.2 Composer 5.2 
+
+1.  Open the View5 media folder, and run the file named VMware-viewcomposer-5.2.0.exe 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  18 
+
+ 
+ 
+ 
+ 
+
+2.  At the Welcome screen and the Patents screen, click Next. 
+
+3.  Accept the VMware end user license agreement, and click Next. 
+
+4.  Leave the Destination folder as default, and click Next. 
+
+5. 
+
+In the Database information box, type composer as the source name and sa as the user name. 
+
+Enter the password, and click Next. 
+
+6.  Leave the default SOAP port, and click Next. 
+
+7.  Click Install, and click Finish. 
+
+8.  Restart the server.  
+
+Setting up a VM to host the VMware Horizon View 5.2 connection server 
+
+1.  Log into vCenter with the VMware vSphere client. 
+
+2. 
+
+In the vSphere client, browse to the ESXi host named infrastructure. 
+
+3.  Click the Virtual Machines tab. 
+
+4.  Right-click, and choose New Virtual Machine. 
+
+5.  Choose Custom, and click Next. 
+
+6.  Assign the name View Connection to the virtual machine, and click Next. 
+
+7.  Select infrastructure for the host, and click Next. 
+
+8.  Select the appropriate storage, and click Next. 
+
+9.  Choose Virtual Machine Version 8, and click Next. 
+
+10. Choose Windows, choose Microsoft Windows Server 2008 R2 (64-bit), and click Next. 
+
+11. For CPUs, select one virtual processor socket and two cores per virtual socket, and click Next. 
+
+12. Choose 4GB RAM, and click Next. 
+
+13. Click 1 for the number of NICs, select VMXNET 3, connect to the vdi-net port group, and click 
+
+Next. 
+
+13. Leave the default virtual storage controller, and click Next. 
+
+14. Choose to create a new virtual disk, and click Next. 
+
+14. Make the OS virtual disk size 40 GB, choose thick-provisioned lazy zeroed, specify the OS 
+
+datastore on the external storage, and click Next. 
+
+15. Keep the default virtual device node (0:0), and click Next. 
+
+16. Connect the VM virtual CD-ROM to the Microsoft Windows Server 2008 R2 installation disk. 
+
+17. Right-click the View VM, and click Edit settings. 
+
+18. Click the Resources tab, click Memory, check the Reserve all guest memory checkbox, and click 
+
+OK. 
+
+19. Click Finish. 
+
+20. Start the VM. 
+
+Installing the Microsoft Windows Server 2008 R2 operating system on the VM 
+
+1.  Open a virtual machine console on View.  
+
+2.  Choose the language, time and currency, and keyboard input. Click Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  19 
+
+ 
+ 
+ 
+ 
+
+3.  Click Install Now.  
+
+4.  Choose Windows Server 2008 R2 Enterprise (Full Installation), and click Next. 
+
+5.  Accept the license terms, and click Next. 
+
+6.  Click Custom. 
+
+7.  Click the Disk, and click Drive options (advanced). 
+8.  Click NewApplyFormat, and click Next. 
+
+9.  After the installation completes, click OK to set the Administrator password. 
+
+10. Enter the administrator password twice, and click OK. 
+
+11. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340. 
+
+12. Reboot. 
+
+13. Connect the machine to the Internet, and install all available Windows updates. Restart as 
+
+necessary. 
+
+14. Enable remote desktop access. 
+
+15. Change the hostname to View and reboot when the installation prompts you. 
+
+16. Set up networking for the data network: 
+
+a.  Click Start, Control Panel, right-click Network Connections, and choose Open. 
+
+b.  Right-click the VM traffic NIC, and choose Properties. 
+
+c.  Uncheck TCP/IP (v6). 
+
+d.  Select TCP/IP (v4), and choose Properties. 
+
+e.  Set the IP address, subnet, gateway, and DNS server. 
+
+17. Join the VDI domain. 
+
+18. Reboot the system. 
+
+Installing the VMware Horizon View 5.2 Connection Server 5.2 
+
+1.  Log into the server named View. 
+
+2.  Browse to VMware Horizon View 5.2 installation media, and click VMware-
+
+viewconnectionserver-x86_64-5.2.0.exe 
+
+3.  Click Run. 
+
+4.  At the Welcome screen, click Next. 
+
+5.  Agree to the End User License Agreement, and click Next. 
+
+6.  Keep the default installation directory, and click Next. 
+
+7.  Select View Standard Server, and click Next. 
+
+8.  At the Data Recovery screen enter a backup password, and click Next. 
+
+9.  Allow View Server to configure the Windows firewall automatically, and click Next. 
+
+10. Authorize the local administrator to administer View, and click Next. 
+
+11. Choose whether to participate in the customer experience improvement program, and click 
+
+Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  20 
+
+ 
+ 
+ 
+ 
+
+12. Complete the installation wizard to finish installing View Connection Server. 
+
+13. Click Finish. 
+
+14. Reboot server.  
+
+Configuring the VMware Horizon View 5.2 Connection Server 
+
+1.  Open a Web browser to <view connection server ip address>/admin. 
+
+2.  Log in as administrator. 
+
+3.  Under Licensing, click Edit License… 
+
+4.  Enter a valid license serial number, and click OK.  
+5.  Open View ConfigurationServers.  
+
+6. 
+
+In the vCenter Servers tab, click Add… 
+
+7.  Enter vCenter server credentials, and click Next. 
+
+8.  At the View composer screen select View Composer co-installed with vCenter Server, and click 
+
+Next.  
+
+9.  At the View composer domains screen click Add… 
+
+10. Enter full domain name and user credentials.  
+
+11. At the storage screen, select Reclaim VM disk space and Enable View Storage Accelerator. 
+
+12. Change the Default host cache size to 2048 MB, and click Next. 
+
+13. At the ready to complete screen, click Finish.  
+
+Installing the Windows 7 Enterprise (x64) base image VM for VMware Horizon View 5.2 
+
+We created a single Windows 7 Enterprise x64 VM as the gold image for VMware Horizon View 5.2 linked clone 
+
+deployment. 
+
+Installing the Windows 7 Enterprise (x64) VMware Horizon View 5.2 5 gold image  
+
+1.  Log into vCenter. 
+
+2. 
+
+In the vSphere client, connect to the vCenter Server, and browse to the ESXi host named SUT. 
+
+3.  Click the Virtual Machines tab. 
+
+4.  Right-click, and choose New Virtual Machine. 
+
+5.  Choose Custom, and click Next. 
+
+6.  Assign the name gold_image to the virtual machine, and click Next. 
+
+7.  Select view_infra datastore and click Next. 
+
+8.  Choose Virtual Machine Version 8, and click Next. 
+
+9.  Choose Windows, choose Microsoft Windows 7 (64-bit), and click Next. 
+
+10. Choose one virtual processor, and click Next. 
+
+11. Choose 1024 MB RAM, and click Next. 
+
+12. Click 1 for the number of NICs, select VMXNET 3, VDI-NET, and click Next. 
+
+13. Leave the default virtual storage controller, and click Next. 
+
+14. Choose to create a new virtual disk, and click Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  21 
+
+ 
+ 
+ 
+ 
+
+15. Make the OS virtual disk size 24 GB, choose thin-provisioned, click Next. 
+
+16. Keep the default virtual device node (0:0), and click Next. 
+
+17. Click Finish, and click OK. 
+
+18. Edit the gold_image VM. 
+
+19. Remove the virtual floppy, and click OK.  
+20. In the Options tabGeneral, deselect Enable logging, and click OK. 
+
+21. Click the Resources tab, click Memory, click the box next to Reserve all guest memory, and click 
+
+OK. 
+
+Installing Windows 7 Enterprise (x64)  
+
+1.  Connect the VM virtual CD-ROM to the Microsoft Windows 7 x64 installation disk. 
+
+2.  Start the VM. 
+
+3.  When the installation prompts you, press any key to begin setup. 
+
+4.  Enter your language preferences, and click Next. 
+
+5.  Click Install. 
+
+6.  Accept the license terms, and click Next. 
+
+7.  Select Custom, and select the drive that will contain the OS. 
+
+8.  Click Install, and the setup begins. 
+
+9.  Type user for the username and change the computer name, and click Next. 
+
+10. Enter no password, and click Next. 
+
+11. For system protection, select Use recommended settings, and click Next. 
+
+12. Enter your time zone, and click Next. 
+
+13. Select the Work Network setting, and click Next. 
+
+14. Use Windows Update to patch the Windows 7 installation. 
+
+15. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340 
+
+16. Reboot. 
+
+17. Join the vdi.local domain, and reboot. 
+
+Adjusting page file  
+
+ 
+
+1.  Log in as vdi\administrator. 
+
+2. 
+
+In the Metro UI, right-click ComputerPropertiesAdvanced system SettingsAdvanced 
+PerformanceSettings. 
+
+3. 
+
+In Performance settings, select the Advanced tab, and select Change for Virtual Memory.  
+
+4.  Deselect Automatically manage page file. 
+
+5.  Select Custom size, type 2048 for both values, and select Set. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  22 
+
+ 
+ 
+ 
+ 
+
+Disabling Windows Firewall 
+
+Installing Office 2010 Professional  
+
+The domain GPO automatically disables the Windows Firewall. 
+
+1.  Log in as vdi\administrator. 
+
+2.  From the Office 2010 media, run Setup. 
+
+3.  Enter the product key for Office 2010, and click Continue.  
+
+4.  Accept the licensing agreement. 
+
+5.  Select Install Now.  
+
+6.  Reboot the system. 
+
+Installing the Login VSI Target software on gold_image 
+
+1.  Log in as vdi\administrator. 
+
+2.  Browse to \\dc1\share\vsi_install\setup\target setup\setup-x64.setup. 
+
+3. 
+
+In the target setup wizard, type \\dc1\share. 
+
+4.  Wait for the install to complete. 
+
+Installing the VMware Horizon View 5.2 agent on gold_image 
+
+1.  Log in to gold_image. 
+
+2.  Browse to the VMware Horizon View 5.2 agent media.  
+
+3.  At the Welcome screen and License agreement, accept the terms, and click Next. 
+
+4.  Accept install defaults, and click Next. 
+
+5.  Select Do not enable the remote desktop capability on this computer, and click Next. 
+
+6.  Keep the default install directory, and click Install. 
+
+7.  Start the Windows Registry Editor, and navigate to the following registry key: 
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\vmware-
+
+viewcomposer-ga. 
+
+8.  Navigate to the SkipLicenseActivation registry value. The default value is 0. 
+
+9.  Set the value to 1. 
+
+10. Reboot the VM gold_image. 
+
+Removing XPS printers 
+
+1.  Click StartControl PanelView Devices and Printers. 
+
+2. 
+
+In the Services and Printers window, delete the XPS printers and document writers. 
+
+3.  Power off the VM and take a snapshot. 
+
+Disabling Windows auto-recovery and Java update scheduler 
+
+1.  Open CMD prompt. 
+
+2.  Type the following:  
+
+bcdedit /set {default} recoveryenabled No <enter> 
+
+bcdedit /set {default} bootstatuspolicy ignoreallfailures <enter> 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  23 
+
+ 
+ 
+ 
+ 
+
+3.  Type regedit and press Enter. 
+
+4.  Browse to HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Update\Policy\.  
+
+5.  Create a DWORD key named EnableAutoUpdateCheck and set the value to 0. 
+
+6.  Prevent the java update scheduler from running. Browse to 
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ 
+
+and delete the key named SunJavaUpdateSched. 
+
+7.  Power off the VM and take a snapshot. 
+
+Creating the desktop pool and adding entitlements for Login VSI users 
+
+We set up a VMware Horizon View 5.2 pool of 200 desktops on three LUNs housed on the Dell 
+
+EqualLogic PS 6110X array. We created 200 Login VSI users for use within this pool, and added the group as 
+entitled users of the View pool. 
+
+Creating a linked clone desktop pool 
+
+1.  Open the View Administrator. 
+
+2.  Log in as vdi\administrator. 
+
+3.  Click Pools, and in the right window, click Add…. 
+
+4.  Select Automatic pool, and click Next. 
+
+5.  Select Floating, and click Next. 
+
+6.  Select View Composer Linked clones, and click Next. 
+
+7.  Use the vCenter (administrator) as the source, and click Next. 
+
+8.  Type WIN7-pool for the pool ID and display name, and click Next. 
+
+9.  Leave the pool settings as defaults, and click Next. 
+
+10. Edit the disposable disk size as 4096, and click Next. 
+
+11. Type a naming pattern of Win7-{n:fixed=003} and type 200 for both max number of 
+
+desktops, and 1 as the number of spares. 
+
+12. Enter the virtual machine settings as follows: 
+
+  Parent VM: /New Datacenter/vm/gold_image 
+
+  Snapshot: /snap_v1 
+
+  VM folder: /New Datacenter/vm/View Pool/WIN8 
+
+  Host or cluster: /New Datacenter/host/serverundertest 
+
+  Resource pool: /New Datacenter/host/serverundertest,  
+
+ 
+
+Linked clone Datastores: EQL1,EQL2,EQL3 
+
+13. Choose the AD container OU=Computers,OU=Login_VSI, and use quickprep. 
+
+14. Click Finish to create the pool. 
+
+15. Highlight the pool named Pool, and click Entitlements. 
+
+16. Click Add, select login_VSI_TS/vdi.local, and click OK. 
+
+17. Ensure all 200 desktops have a status of ready. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  24 
+
+ 
+ 
+ 
+ 
+
+INSTALLING AND CONFIGURING CITRIX XENAPP 6.5 FP1 
+
+We installed a fresh copy of Microsoft Server 2012 R2 on a virtual machine housed on the ESXi host under test 
+
+and used this VM as a XenApp master image. We also installed Microsoft Office 2010, and configured it as a VSI target. 
+
+We also created two additional VMs on the infrastructure server to serve as a Citrix licensing server and a Citrix 
+
+provisioning server.  
+
+Setting up a VM to host the Citrix Licensing Server 
+
+1.  Log into the infra server with the VMware vSphere client. 
+
+2. 
+
+In the vSphere client, under Basic Tasks, select Create a new virtual machine. 
+
+3.  Choose Custom, and click Next. 
+
+4.  Assign the name CitrixLIC to the virtual machine, and click Next. 
+
+5.  Select infra as the host, and click Next. 
+
+6.  Select the appropriate storage, and click Next. 
+
+7.  Choose Virtual Machine Version 8, and click Next. 
+
+8.  Choose Windows, choose Microsoft Windows Server 2008 R2 (64-bit), and click Next. 
+
+9.  For CPUs, select one virtual processor socket, and two cores per virtual socket, and click Next. 
+
+10. Choose 4GB RAM, and click Next. 
+
+11. Click 1 for the number of NICs, select VMXNET3, connect to the vdi-net port group, and click 
+
+Next. 
+
+12. Leave the default virtual storage controller, and click Next. 
+
+13. Keep the default virtual device node (0:0), and click Next. 
+
+14. Connect the VM virtual CD-ROM to the Microsoft Windows 2008 R2 installation disk. 
+
+15. Click Finish. 
+
+16. Right-click the vCenter VM, and click Edit settings. 
+
+17. Click the Resources tab, click Memory, check the Reserve all guest memory checkbox, and click 
+
+OK. 
+
+18. Start the VM. 
+
+Installing the Microsoft Windows Server 2008 R2 operating system on the VM 
+
+1.  Open a virtual machine console on CitrixLIC.  
+
+2.  Choose the language, time and currency, and keyboard input. Click Next. 
+
+3.  Click Install Now.  
+
+4.  Choose Windows Server 2008 R2 Enterprise (Full Installation), and click Next. 
+
+5.  Accept the license terms, and click Next. 
+
+6.  Click Custom. 
+
+7.  Click the Disk, and click Drive options (advanced). 
+8.  Click NewApplyFormat, and click Next. 
+
+9.  After the installation completes, click OK to set the Administrator password. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  25 
+
+ 
+ 
+ 
+ 
+
+10. Enter the administrator password twice, and click OK. 
+
+11. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340. 
+
+12. Reboot. 
+
+13. Connect the machine to the Internet, and install all available Windows updates. Restart as 
+
+necessary. 
+
+14. Enable remote desktop access. 
+
+15. Change the hostname to CitrixLIC and reboot when the installation prompts you. 
+
+16. Set up networking for the data network: 
+
+a.  Click Start, Control Panel, right-click Network Connections, and choose Open. 
+
+b.  Right-click the VM traffic NIC, and choose Properties. 
+
+c.  Uncheck TCP/IP (v6). 
+
+d.  Select TCP/IP (v4), and choose Properties. 
+
+e.  Set the IP address, subnet, gateway, and DNS server. 
+
+17. Join the VDI domain. 
+
+18. Reboot the system. 
+
+Installing Citrix Licensing Server 
+
+5.  Click StartAdministrative ToolsServer ManagerFeaturesAdd Features. 
+
+6.  Select .NET Framework 3.5.1 Features, and click Add Required Role Services. 
+
+7.  Click Next on the Web Server (ISS) screen.  
+
+8.  Click Next on the Select Role Services screen, and click Install.  
+
+9.  Click Close on the successful installation screen.  
+
+10. Insert XenApp 6.5 FP1 media.  
+11. Click Manually install componentsCommon ComponentsCitrix Licensing.  
+
+12. Click I accept the terms in the license agreement, and click Next. 
+
+13. At the Destination Folder screen, click Install.  
+
+14. Click Finish on the Installation completed screen.  
+
+15. At the Configuration screen, select the default ports, and enter Administrator password. 
+
+16. Click StartAll ProgramsCitrixManagement Consoles License Administrator 
+
+Console.  
+
+17. Click Administration, and enter user credentials.  
+
+18. Click Vendor Daemon Configuration, and click Import License.  
+
+19. Browse to location of the license, and click Import License.  
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  26 
+
+ 
+ 
+ 
+ 
+
+Setting up a VM to host the Citrix Provisioning Server 
+
+1.  Log into the infra server with the VMware vSphere client. 
+
+2. 
+
+In the vSphere client, under Basic Tasks, select Create a new virtual machine. 
+
+3.  Choose Custom, and click Next. 
+
+4.  Assign the name PVS to the virtual machine, and click Next. 
+
+5.  Select infra as the host, and click Next. 
+
+6.  Select the appropriate storage, and click Next. 
+
+7.  Choose Virtual Machine Version 8, and click Next. 
+
+8.  Choose Windows, choose Microsoft Windows Server 2008 R2 (64-bit), and click Next. 
+
+9.  For CPUs, select one virtual processor socket, and two cores per virtual socket, and click Next. 
+
+10. Choose 4GB RAM, and click Next. 
+
+11. Click 1 for the number of NICs, select VMXNET3, connect to the vdi-net port group, and click 
+
+Next. 
+
+12. Leave the default virtual storage controller, and click Next. 
+
+13. Keep the default virtual device node (0:0), and click Next. 
+
+14. Connect the VM virtual CD-ROM to the Microsoft Windows 2008 R2 installation disk. 
+
+15. Click Finish. 
+
+16. Right-click the vCenter VM, and click Edit settings. 
+
+17. Click the Resources tab, click Memory, check the Reserve all guest memory checkbox, and click 
+
+OK. 
+
+18. Start the VM. 
+
+Installing the Microsoft Windows Server 2008 R2 operating system on the VM 
+
+1.  Open a virtual machine console on PVS.  
+
+2.  Choose the language, time and currency, and keyboard input. Click Next. 
+
+3.  Click Install Now.  
+
+4.  Choose Windows Server 2008 R2 Enterprise (Full Installation), and click Next. 
+
+5.  Accept the license terms, and click Next. 
+
+6.  Click Custom. 
+
+7.  Click the Disk, and click Drive options (advanced). 
+8.  Click NewApplyFormat, and click Next. 
+
+9.  After the installation completes, click OK to set the Administrator password. 
+
+10. Enter the administrator password twice, and click OK. 
+
+11. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340. 
+
+12. Reboot. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  27 
+
+ 
+ 
+ 
+ 
+
+13. Connect the machine to the Internet, and install all available Windows updates. Restart as 
+
+necessary. 
+
+14. Enable remote desktop access. 
+
+15. Change the hostname to PVS and reboot when the installation prompts you. 
+
+16. Set up networking for the data network: 
+
+a.  Click Start, Control Panel, right-click Network Connections, and choose Open. 
+
+b.  Right-click the VM traffic NIC, and choose Properties. 
+
+c.  Uncheck TCP/IP (v6). 
+
+d.  Select TCP/IP (v4), and choose Properties. 
+
+e.  Set the IP address, subnet, gateway, and DNS server. 
+
+17. Join the VDI domain. 
+
+18. Reboot the system. 
+
+Installing SQL Express on Provisioning Services server 
+
+A SQL database is required for Provisioning Services; we used the included SQL Express installation files on the 
+
+Citrix Provisioning Service media to create a database on the XD-PS host. 
+
+1. 
+
+Insert the media for Citrix Provisioning services 6.5. 
+
+2.  Browse to the SQL Express 2005 Express directory, and run SQLEXPR.exe. 
+
+3.  Accept the End user agreement, and click Next. 
+
+4.  Click Install to install prerequisites. 
+
+5.  At the Welcome screen, click Next. 
+
+6.  Verify the system passes the system configuration check, and click Next. 
+
+7.  Enter a name and organization, and click Next. 
+
+8.  Select the default features, and click Next. 
+
+9.  Select Windows authentication, and click Next. 
+
+10. Check both boxes to Enable user instances, add user to the SQL Server administrator Role, and 
+
+click Next. 
+
+11. Click Next for error usage reporting, and click Next. 
+
+12. Click Install. 
+
+13. When completed, click Next, and Finish. 
+14. From the vCenter desktop, open StartAll ProgramsMicrosoft SQL Server 
+
+2005Configuration ToolsSQL Server Configuration Manager. 
+
+15. Click SQL Server Network ConfigurationProtocols for SQLEXPRESS. 
+
+16. Right-click TCP/IP, and select Enabled.  
+17. Click SQL Servicesright-click SQL server browser, and select Properties. 
+
+18. In the SQL Server Browser properties, select the services tab, change the start mode to 
+
+Automatic, and click OK. 
+
+19. Start the SQL server browser service. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  28 
+
+ 
+ 
+ 
+ 
+
+Installing Citrix Provisioning Services 
+
+1.  Click StartAdministrative ToolsServer ManagerFeaturesAdd Features. 
+
+2.  Select .NET Framework 3.5.1 Features, and click Add Required Role Services. 
+
+3.  Click Next on the Web Server (ISS) screen.  
+
+4.  Click Next on the Select Role Services screen and then click Install.  
+
+5.  Click Close on the successful installation screen.  
+
+6.  Execute Citrix Provisioning Services x64.exe from the Citrix install media. 
+
+7.  Click Install to install the required items. 
+
+8.  At the Welcome Screen, click Next. 
+
+9.  Click I accept the terms in the license agreement, and click Next. 
+
+10. Enter a user name and organization, select all users, and click Next.  
+
+11. Select a destination folder, and click Next.  
+
+12. On the Setup Type screen select Complete, and click Next, and click Install. 
+
+13. Click Finish on the Installation completed screen.  
+
+14. Click OK on the PVS Console warning.  
+
+15. Click Next on the Provisioning Services Configuration Wizard.  
+
+16. At the DHCP Services screen, select The service that runs on another computer.  
+
+17. At the PXE Services screen, select The service that runs on this computer.  
+
+18. At the Farm Configuration screen, select Create a farm, and click Next.  
+
+19. At the Database Server screen, click Browse… select the local SQLEXPRESS instance, and 
+
+click Next. 
+
+20. At the New Farm screen, enter the following, and click Next: 
+
+  Database name = ProvisioningServices 
+
+  Farm = farm 
+
+  Site = site 
+
+  Collection name = Collection  
+
+  Farm Administrator group = vdi.local/builtin/administrators 
+
+19. At the New Store screen, enter Store name as Store. For Path, browse to the root of e:\, and 
+
+click Next. 
+
+21. Enter the License Server name, and click Next.  
+
+22. At the User account screen select Specified user account, enter the VDI\Administrator Password 
+
+twice, click the checkbox next to Configure the database for the account, and click Next. 
+
+23. Keep the default number of days between password updates, and click Next. 
+
+24. Keep the primary interface and communication ports, and click Next. 
+
+25. Select Use the Provisioning Services TFTP service, and click Next. 
+
+26. Leave the stream service at default, and click Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  29 
+
+ 
+ 
+ 
+ 
+
+27. Click Finish and click Done.  
+
+Installing Citrix Provisioning Services Administrative Console 
+
+1.  Execute Citrix Provisioning Services Console x64.exe.  
+
+2.  At the welcome screen, click Next. 
+
+3.  Accept the licensing agreement, and click Next. 
+
+4.  Enter a user name and organization name, and click Next. 
+
+5.  Accept the default install path, and click Next. 
+
+6.  Accept the default install type, and click Next. 
+
+7.  Click Install and Finish.  
+
+Configuring Citrix Provisioning Services 
+
+1.  Click StartAll ProgramsCitrixProvisioning ServicesProvisioning Services Console. 
+
+2.  Right-click Provisioning Services Console, and select Connect to farm.  
+
+3.  Enter IP of provisioning server, and click Connect.  
+4.  Under FarmStores, right-click Store, and select Create a vDisk.  
+
+5.  Enter a filename, adjust the size select Fixed as the type, and click Create vDisk.  
+6.  Under FarmSitesSiteDevice Collections right-click Collection, and select Create Device. 
+
+7.  Enter a name for the new device. Under Type, select Maintenance. Under Boot from, select 
+
+Hard Disk, and enter the MAC address of the XenApp master image.  
+
+8.  Click the vDisk tab, and under vDisk for this Device select Add… 
+
+9.  Select the vDisk previously created, and click OK twice. 
+
+Configuring Boot Server option on Domain Controller 
+
+1.  Click StartRun and type DHCPmgmt.msc. 
+2.  DHCPdc1.vdi.comIPv4Server Options. 
+
+3.  Right-click Server Options, and select Configure options. 
+
+4.  Activate option 66 Boot Server Host Name. 
+
+ String value= <ip of the provisioning server> 
+
+5.  Activate option 67 Boot file Name. 
+
+ String value=   ARDBP32.BIN 
+
+6.  Click OK. 
+
+Setting up a VM to host Citrix XenApp 
+
+1.  Log into the infra server with the VMware vSphere client. 
+
+2. 
+
+In the vSphere client, under Basic Tasks, select Create a new virtual machine. 
+
+3.  Choose Custom, and click Next. 
+
+4.  Assign the name XenAppGold to the virtual machine, and click Next. 
+
+5.  Select infra as the host, and click Next. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  30 
+
+ 
+ 
+ 
+ 
+
+6.  Select the appropriate storage, and click Next. 
+
+7.  Choose Virtual Machine Version 8, and click Next. 
+
+8.  Choose Windows, choose Microsoft Windows Server 2008 R2 (64-bit), and click Next. 
+
+9.  For CPUs, select one virtual processor socket, and four cores per virtual socket, and click Next. 
+
+10. Choose 16GB RAM, and click Next. 
+
+11. Click 1 for the number of NICs, select VMXNET3, connect to the vdi-net port group, and click 
+
+Next. 
+
+12. Leave the default virtual storage controller, and click Next. 
+
+13. Keep the default virtual device node (0:0), and click Next. 
+
+14. Connect the VM virtual CD-ROM to the Microsoft Windows 2008 R2 installation disk. 
+
+15. Click Finish. 
+
+16. Right-click the vCenter VM, and click Edit settings. 
+
+17. Click the Resources tab, click Memory, check the Reserve all guest memory checkbox, and click 
+
+OK. 
+
+18. Start the VM. 
+
+Installing the Microsoft Windows Server 2008 R2 operating system on the VM 
+
+1.  Open a virtual machine console on XenAppGold.  
+
+2.  Choose the language, time and currency, and keyboard input. Click Next. 
+
+3.  Click Install Now.  
+
+4.  Choose Windows Server 2008 R2 Enterprise (Full Installation), and click Next. 
+
+5.  Accept the license terms, and click Next. 
+
+6.  Click Custom. 
+
+7.  Click the Disk, and click Drive options (advanced). 
+8.  Click NewApplyFormat, and click Next. 
+
+9.  After the installation completes, click OK to set the Administrator password. 
+
+10. Enter the administrator password twice, and click OK. 
+
+11. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340. 
+
+12. Reboot. 
+
+13. Connect the machine to the Internet, and install all available Windows updates. Restart as 
+
+necessary. 
+
+14. Enable remote desktop access. 
+
+15. Change the hostname to XenAppGold and reboot when the installation prompts you. 
+
+16. Set up networking for the data network: 
+
+a.  Click Start, Control Panel, right-click Network Connections, and choose Open. 
+
+b.  Right-click the VM traffic NIC, and choose Properties. 
+
+c.  Uncheck TCP/IP (v6). 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  31 
+
+ 
+ 
+ 
+ 
+
+d.  Select TCP/IP (v4), and choose Properties. 
+
+e.  Set the IP address, subnet, gateway, and DNS server. 
+
+17. Join the VDI domain. 
+
+18. Reboot the system. 
+
+Installing XenApp Server 6.5 
+
+1. 
+
+Insert media for Citrix Provisioning services 6.5. 
+
+2.  Click Install XenApp Server. 
+
+3.  Click OK to install .NET 3.5 SP1 Framework.  
+
+4.  At the XenApp Server Role Manager screen, click Add server roles. 
+
+5.  Select Platinum Edition.  
+
+6.  Select I accept the terms of this license agreement, and click Next.  
+
+7.  Under Common Roles, select XenApp, and click Next.  
+
+8.  At the roles subcomponents screen, click Next.  
+
+9.  At the Review prerequisites screen, click Next. 
+
+10. At the Ready to install screen, click Install.  
+
+11. Click Finish, and restart the server. 
+
+12. After the server restarts, click Resume Install.  
+
+13. At the ready to Install screen, click Install. 
+
+14. Click Finish after the server roles are installed.  
+
+15. Under Server Configuration Task, click Specify Licensing.  
+
+16. Enter the License server name, test the connection, and click Next. 
+
+17. Select XenApp as the licensing mode, and click Apply. 
+
+18. Under Server Configuration Task click Configure. 
+
+19. Click Create a new server farm.  
+
+20. Enter NewFarm under farm name and VDI\administrator under administrator account, and click 
+
+Next. 
+
+21. Click Existing Microsoft SQL Server database, and click Next.  
+
+22. Enter the Database server name and Database name, and click Next.  
+
+23. Enter administrator credentials, test the connection, and click Next.  
+
+24. At the Configure shadowing screen, click Next.  
+
+25. At the Specify advanced server settings screen, click Next.  
+
+26. At the ready to configure screen, click Apply.  
+
+27. At the Server configured successfully screen, click Finish. 
+
+28. Reboot the server.  
+
+Installing Applications on XenApp Server 6.5 
+
+1.  Click StartControl PanelInstall Application on Remote Desktop Server. 
+
+2.  At the Install program from floppy disk or CD-ROM, click Next.  
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  32 
+
+ 
+ 
+ 
+ 
+
+3.  Click Browser and select Office 2010.exe, click Open, click Next, and run Setup. 
+
+4.  Enter the product key for Office 2010, and click Continue.  
+
+5.  Accept the licensing agreement. 
+
+6.  Select Install Now.  
+7.  Click StartControl PanelInstall Application on Remote Desktop Server. 
+
+8.  At the Install program from floppy disk or CD-ROM, click Next.  
+
+9.  Click Browser and select Login VSI Target Setup.exe, click Open, click Next, and run Setup. 
+
+10. In the Target Setup wizard, specify the VSI share \\AD01\share. 
+
+11. Click Start. 
+
+12. At the security warnings, click OK. 
+
+13. When the installation is complete, reboot the system. 
+
+Installing Provisioning Services Target Device on XenApp Server 6.5 
+
+1.  Execute Citrix Provisioning Services Target Device x64.exe.  
+
+2.  At the welcome screen, click Next. 
+
+3.  Accept the licensing agreement, and click Next. 
+
+4.  Enter a user name and organization name, and click Next. 
+
+5.  Accept the default install path, and click Next. 
+
+6.  At the Ready to Install the Program screen, click Install.  
+
+7.  At the Installation Wizard Completed, click Finish.  
+
+8.  Restart the server.  
+
+9. 
+
+Install the Windows6.1 KB2550978-x64 Microsoft Update Standalone Package.  
+
+10. Restart the server.  
+
+Creating a VM template for Provisioning Services 
+
+1.  Shut down XenAppGold Virtual Machine.  
+
+2.  On vCenter, clone the Virtual Machine, and name it GoldTemplate. 
+
+3.  Before cloning, edit the virtual hardware, and click Continue.  
+
+4.  Select Hard disk 1, and click Remove. 
+
+5.  Select Remove from virtual machine and delete files from disk, and click OK.  
+6.  Right-click GoldTemplate, and select TemplateCovert to template. 
+
+Provisioning Services Imaging Wizard  
+
+1.  Launch the Citrix XenApp Server Role Manager. 
+
+2.  Under Server Configuration Tasks, select Edit Configuration.  
+
+3.  Select Prepare this server for imaging and provisioning.  
+
+4.  Select Remove the current server instance from the farm and clear database location settings 
+
+from this server, and click Next. Click Apply.  
+
+5.  Click StartImaging Wizard. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  33 
+
+ 
+ 
+ 
+ 
+
+6.  At the Welcome screen, click Next.  
+
+7.  At the Connect to Farm screen, enter the Provisioning Services Server information, and click 
+
+Next.  
+
+8.  Select use existing vDisk, and choose the previously created vDisk. Click Next. 
+
+9.  At the Microsoft Volume Licensing screen, select None, and click Next.  
+
+10. At the Configure Image Volumes, click Autofit, and click Next. 
+
+11. At the Existing Target Device screen, click Next.  
+
+12. At the Summary of Farm Changes screen, click Optimize for Provisioning Services, and click OK.  
+
+13. Click Finish, and shutdown the serve.  
+
+14. In vCenter, right-click the XenApp master image VM, and click Edit settings. 
+15. Click Options tabBoot options, check the box to force BIOS Setup, and click OK. 
+
+16. In the VM BIOS, tab to the Boot menu, and change the boot order to: 
+
+a.  Network boot from VMware VMXNET3 
+
+b.  Removable Devices 
+
+c.  Hard Drive 
+
+d.  CD-ROM Drive 
+
+17. Tab to Exit, and save exiting changes. 
+
+18. On the boot menu, select the vDisk, and hit enter.  
+
+19. When the VM boots, it will boot from PXE, and Provisioning services will stream the vDisk to the 
+
+device. 
+
+20. Log in as VDI\administrator. 
+
+21. Provisioning services will now copy XenApp master image to the vDisk. 
+
+22. Click Finish. 
+
+23. Shut down XenApp master image. 
+
+Deploying a XenApp pool with the Streamed VM Setup Wizard 
+
+1.  Open the Provisioning services consoleFarmSitesSitevDisk Pool, and right-click the 
+
+vDisk.  
+
+2.  Select Properties, and change the Access mode to Standard Image and Cache type to Cache on 
+
+server. Click OK. 
+
+3.  Go to FarmSites, right-click Site, and select XenDesktop Setup Wizard. 
+
+4.  At the welcome screen, click Next. 
+
+5.  At the Hypervisor connection, select VMWare vSphere/ESX, and enter credentials for the 
+
+vCenter VM. Click Next.  
+
+6.  Select the Cluster or Host, and click Next.  
+
+7.  Select GoldTemplate, and click Next. 
+
+8.  Select the Provisioning services collection and vDisk, and click Next. 
+
+9.  Enter the following, and click Next: 
+
+a.  Number of virtual machines=8 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  34 
+
+ 
+ 
+ 
+ 
+
+b.  vCPUs=4 
+
+c.  Memory=16384 MB 
+
+d.  Active Directory= Create New accounts  
+
+10. For Active directory location, click VDI.comLogin_VSIcomputers. 
+
+11. For Base name type XenApp#, and click Next. 
+
+12. Click Finish, and click Done.  
+
+Configuring the XenApp Server Farm 
+
+1.  On the Provisioning Server VM, put the vDisk in Private Access mode. 
+
+2.  Power on XenApp1 VM.  
+3.  Click StartAdministrative ToolsCitrixXenApp Server Role ManagementXenApp Server 
+
+Role Manager. 
+
+4.  Under Server Configuration Task, click Configure. 
+
+5.  Click Create a new server farm.  
+
+6.  Type XenAppFarm under farm name and VDI\administrator under administrator 
+
+account, and click Next. 
+
+7.  Click Existing Microsoft SQL Server database, and click Next.  
+
+8.  Enter the Database server name and Database name, and click Next.  
+
+9.  Enter administrator credentials, test the connection, and click Next.  
+
+10. At the Configure shadowing screen, click Next.  
+
+11. At the Specify advanced server settings screen, click Next.  
+
+12. At the ready to configure screen, click Apply.  
+
+13. At the Server configured successfully screen, click Finish. 
+
+14. Restart the server.  
+15. Click StartAdministrative ToolsCitrixManagement ConsolesCitrix AppCenter. 
+
+16. Click Disable Authenticode signature checking.  
+
+17. At the Configure and run discovery screen, click Next.  
+
+18. At the Select Products or Components screen, select XenApp, and click Next. 
+
+19. At the Select Servers screen, click Add Local Computer, and click Next.  
+
+20. At the Preview Discovery screen, click Next. Click Finish.  
+
+Joining the XenApp Server Farm 
+
+1.  On the Provisioning Server VM, put the vDisk in Standard Access mode. 
+
+2.  Power on all XenApp servers. 
+3.  Log into all the XenApp servers, and click StartAdministrative ToolsCitrixManagement 
+
+ConsolesCitrix AppCenter. 
+
+4.  At the Welcome screen, click Next.  
+
+5.  At the Select Products or Components screen, select XenApp, and click Next. 
+
+6.  At the Select Servers screen, click Add…, type XenApp1,click OK, and click Next.  
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  35 
+
+ 
+ 
+ 
+ 
+
+7.  At the Preview Discovery screen, click Next. Click Finish.  
+
+Publishing Applications on the XenApp Server Farm 
+
+1.  On Citrix AppCenter, go to XenAppFarm, and right-click Applications.  
+
+2.  Click Publish application.  
+
+3.  At the welcome screen, click Next. 
+
+4.  Enter a Display name, and click Next.  
+
+5.  Under Choose the type of application to publish, select Server desktop, and click Next. 
+
+6.  At the Servers screen, click Add…, select all XenApp Servers, and click Next. 
+
+7.  Under users, click Add…, select the Login_VSI_TS group, and click Next. 
+
+8.  At the Shortcut presentation screen, click Next.  
+
+9.  Click Finish. 
+
+Creating a load balancing policy on XenApp Server Farm 
+
+1.  On Citrix AppCenter, go to XenAppFarm, and right-click Load Balancing Policies. 
+
+2.  Select Create load balancing policy. 
+
+3.  Enter a name for the policy. 
+
+4.  Under Filters, select Client IP Address. 
+
+5.  Select Filter based on client IP address, and select Apply to all client IP addresses. 
+
+6.  Click Ok and make sure the policy is enabled.  
+
+Disabling XenApp lossy settings and changing frames per second 
+
+1.  On Citrix AppCenter, go to XenAppFarm, and click Policies. 
+
+2.  Select the User tab.  
+
+3.  Under Citrix User Policies, click New.  
+
+4.  Enter a Policy name, and click Next.  
+
+5.  On the search bar, type Lossy compression level. 
+
+6.  Select the Lossy compression level policy, and click Add. 
+
+7.  Change the Value to None, and click OK.  
+
+8.  On the search bar, type Max frames per second. 
+
+9.  Select the Max frames per second policy, and click Add.  
+
+10. Change the Value (fps) setting to 30, and click OK. Click Next.  
+
+11. Under Filter select User or Group, and click Add. 
+
+12. Enter the VDI\Login_VSI_TS group, and click OK. Click Next.  
+
+13. Select Enable this policy, and click Create. 
+
+CREATING WINDOWS 7 ENTERPRISE X64 IMAGE VSI LAUNCHERS 
+
+Using the vSphere client, we created a Windows 7 Enterprise x64 VM with the Login VSI launcher software, and 
+
+cloned it to create eight Login VSI launchers on the infrastructure server that was not under test.  
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  36 
+
+ 
+ 
+ 
+ 
+
+Setting up a VM to use as a Windows 7 Enterprise (x64) Login VSI launcher  
+
+1.  Log into the vCenter. 
+
+2. 
+
+In the vSphere client, connect to the vCenter Server, and browse to the infrastructure server. 
+
+3.  Click the Virtual Machines tab. 
+
+4.  Right-click, and choose New Virtual Machine. 
+
+5.  Choose Custom, and click Next. 
+
+6.  Assign the name Launcher to the virtual machine, and click Next. 
+
+7.  Select the appropriate datastore, and click Next. 
+
+8.  Choose Virtual Machine Version 8, and click Next. 
+
+9.  Choose Windows, choose Microsoft Windows 7 (64-bit), and click Next. 
+
+10. Choose 1 virtual socket, 2 cores per virtual socket, and click Next. 
+
+11. Choose 8 GB RAM, and click Next. 
+
+12. Click 1 for the number of NICs, select VMXNET3 and VDI-NET, and click Next. 
+
+13. Leave the default virtual storage controller, and click Next. 
+
+14. Choose to create a new virtual disk, and click Next. 
+
+15. Make the OS virtual disk size 32 GB, choose thin provision, and click Next. 
+
+16. Keep the default virtual device node (0:0), and click Next. 
+
+17. Click Finish. 
+
+18. Click Finish, and click OK. 
+
+19. Click the Resources tab, and click Memory. 
+
+20. Click Reserve all guest memory. 
+
+21. Click the Hardware tab. 
+
+22. Connect the VM virtual CD-ROM to the Microsoft Windows 7 x64 installation disk. 
+
+Installing Windows 7 Enterprise (x64) 
+
+1.  Start the VM. 
+
+2.  When the installation prompts you, press any key to begin setup. 
+
+3.  Enter your language preferences, and click Next. 
+
+4.  Click Install. 
+
+5.  Accept the license terms, and click Next. 
+
+6.  Select Custom, and select the drive that will contain the OS. 
+
+7.  Click Install, and the setup begins. 
+
+8.  Type user for the username, change the computer name, and click Next. 
+
+9.  Enter a password, and click Next. 
+
+10. For system protection, select Use recommended settings, and click Next. 
+
+11. Enter your time zone, and click Next. 
+
+12. Select the Work Network setting, and click Next. 
+
+13. Use Windows Update to patch the Windows 7 installation. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  37 
+
+ 
+ 
+ 
+ 
+
+14. Install VMware Tools. For more information, see 
+
+kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId
+
+=340 
+
+15. Reboot. 
+
+16. Join the vdi.local domain, and reboot. 
+
+Adjusting page file on the launcher  
+
+1.  Log in as vdi\administrator. 
+2.  Right-click ComputerPropertiesChange settingsAdvancedPerformanceSettings. 
+
+3. 
+
+In Performance settings, select the Advanced tab, and select Change for Virtual Memory.  
+
+4.  Deselect Automatically manage page file. 
+
+5.  Select Custom size, type 8191 for both values, and select Set. 
+
+Disabling Windows Firewall 
+
+Installing the VMware Horizon View 5.2 client 
+
+The domain GPO automatically disables the Windows Firewall. 
+
+1.  Browse to the VMware Horizon View 5.2.1 media, and run the VMware-viewclient-x86_64-
+
+5.2.1-937772.exe file. 
+
+2.  Click Run. 
+
+3.  At the Welcome screen, click Next. 
+
+4.  At the Patents screen, click Next. 
+
+5.  Accept the VMware end user license agreement, and click Next. 
+
+6.  Select defaults, and click Next. 
+
+7.  Click Install. 
+
+Installing the Citrix Receiver 13.0.0 
+
+1.  Download the latest Citrix Receiver from www.citrix.com/receiver. 
+
+2.  Double-click CitrixReceiverWeb. 
+
+3.  At the welcome screen, click Install.  
+
+Installing Virtual Audio Cables 
+
+By default, the virtual launchers cannot render audio, so we installed Virtual Audio Cables version 4.10 
+
+software.muzychenko.net/eng/vac.htm. 
+
+1.  Download and extract the media. 
+
+2.  Click Setup.  
+
+3.  Click Yes to begin the install. 
+
+4.  Click I accept to accept the software license agreement. 
+
+5.  Click Install. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  38 
+
+ 
+ 
+ 
+ 
+
+Installing Login VSI target software on the launcher 
+
+1.  Browse to VSIinstall media\setups\Launcher\. 
+
+2.  Run the setup.exe. 
+
+3. 
+
+In the Target Setup wizard, specify the VSI share (\\dc1\share). 
+
+4.  Click Start. 
+
+5.  Reboot the system. 
+
+6.  Shut down the launcher VM. 
+
+Cloning the launcher 
+
+We created a template from the VM named launcher and deployed eight launchers using the sysprep 
+
+functionality built into vCenter. For more information on how to clone virtual machines in VMware vCenter, please read 
+
+www.vmware.com/support/pubs/vsphere-esxi-vCenter-server-pubs.html. 
+
+Login VSI testing pre-configuration  
+
+Before running the tests, we created 200 roaming profiles on the \\dc1\profiles share, and 200 redirected 
+
+folders the \\dc1\folders share.  
+
+Running the Login VSI benchmark 
+
+ We used eight launchers, configured in parallel, to run a medium workload with a launch interval of 20 seconds. 
+
+For more information on how to run a Login VSI test, see www.loginvsi.com/en/admin-guide/performing-tests.  
+
+ 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  39 
+
+ 
+ 
+ 
+ 
+
+APPENDIX C – COST ANALYSIS 
+
+We base this analysis on the following assumptions: 
+
+  Number users = number connections 
+  The server has two processors  
+  Each user is covered by a Microsoft Core CAL suite which includes Windows Server 2012 CAL 
+  Costs include software licenses plus 3 years of support 
+  Costs do not include Windows 7 or desktop software such as Microsoft Office 
+  For software that comes in bundles or packs, we use the average cost per item in the pack and 
+
+multiply that by the number of units  
+
+Software cost analysis 
+
+Figures 10 through 12 show software cost estimates for the configurations and user counts we discuss in this 
+
+report. 
+
+VMware Horizon View 5.2 Enterprise Edition for 174 users 
+
+ 
+VMware Horizon View (10 
+Pack) + Production 
+Support/Subscription for 3 
+years  - $4,150.00 (averages 
+$415 per desktop) 
+Total 
+
+Cost per user for 174  users 
+
+Unit 
+
+Cost per 
+
+unit 
+
+No. of 
+units 
+
+Total 
+
+Source 
+
+Concurrent 
+user 
+
+$415.00 
+
+174 
+
+$72,210.00 
+
+store.vmware.com/store/vm
+ware/en_US/DisplayProduct
+DetailsPage/productID.2654
+34800 
+
+  
+
+  
+
+  
+$415.00 
+
+$72,210.00 
+
+  
+
+  
+
+Figure 10: Cost analysis for VMware Horizon View 5.2. 
+ 
+ 
+ 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  40 
+
+ 
+Microsoft Windows Server 
+Datacenter 2012, Single Open, 
+One License, No Level (licenses 
+up to two processors on a 
+server) 
+Microsoft Windows Server 
+Datacenter 2012, two-year 
+Software Assurance - $2,405 
+(averages $1,202.50 per year or 
+$3,607.50 for three years ) 
+
+2 processors 
+
+$3,607.50 
+
+1 
+
+$3,607.50 
+
+Citrix XenApp 6.5 FP1 
+Enterprise Edition Concurrent 
+User License with one-year 
+Subscription Advantage 
+
+Concurrent 
+User 
+
+$450.00 
+
+146 
+
+$65,700.00 
+
+Citrix XenApp two-year 
+Subscription Advantage, 
+Enterprise Edition Add-On 
+
+Concurrent 
+User 
+
+$100.00 
+
+146 
+
+$14,600.00 
+
+mla.microsoft.com/default.a
+spx 
+
+Easy XenApp Enterprise 
+Edition Concurrent User 
+License with one-year 
+Subscription Advantage. 
+www.thinclientpricing.com/
+citrix_xenapp.asp 
+Two-year Subscription 
+Advantage add-on for one 
+concurrent user. 
+www.lscwarehouse.com/sof
+tware-other.html and 
+www.citrix.com/content/da
+m/citrix/en_us/documents/s
+upport/Subscription_Advant
+age_Price_Schedule.pdf 
+www.microsoftstore.com/st
+ore/msusa/en_US/pdp/prod
+uctID.255866300 
+
+Estimate at 25 percent 
+license cost per year. 
+
+ 
+ 
+ 
+ 
+
+Citrix XenApp 6.5 FP1 Enterprise Edition (Hosted Shared Desktop) - Lossless, 30 fps - 146 users 
+
+Unit 
+
+Cost per 
+
+unit 
+
+No. of 
+units 
+
+Total 
+
+Source 
+
+2 processors 
+
+$4,810.00 
+
+1 
+
+$4,810.00 
+
+mla.microsoft.com/default.a
+spx 
+
+Windows Server 2012 Remote 
+Desktop Services, one-user CAL 
+
+User 
+
+Windows Server 2012 Remote 
+Desktop Services, one-user CAL 
+Software Assurance  
+Total 
+Cost per user for 146 users 
+
+User 
+
+  
+
+$149.00 
+
+146 
+
+$21,754.00 
+
+$111.75 
+
+146 
+
+$16,315.50 
+
+  
+
+  
+
+$126,787.00 
+
+$868.40 
+
+  
+  
+
+Figure 11: Cost analysis for Citrix XenApp 6.5 FP1 with lossless settings. 
+ 
+
+ 
+
+ 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  41 
+
+ 
+ 
+ 
+ 
+
+Citrix XenApp 6.5 FP1 Enterprise Edition (Hosted Shared Desktop) - Lossy, 24 fps - 151 users 
+
+Unit 
+
+Cost per 
+
+unit 
+
+No. of 
+units 
+
+Total 
+
+Source 
+
+ 
+Microsoft Windows Server 
+Datacenter 2012, Single Open, 
+One License, No Level (licenses 
+up to two processors on a 
+server) 
+Microsoft Windows Server 
+Datacenter 2012, two-year 
+Software Assurance - $2,405 
+(averages $1,202.50 per year or 
+$3,607.50 for three years ) 
+
+2 processors 
+
+$4,810.00 
+
+1 
+
+$4,810.00 
+
+mla.microsoft.com/default.a
+spx 
+
+2 processors 
+
+$3,607.50 
+
+1 
+
+$3,607.50 
+
+mla.microsoft.com/default.a
+spx 
+
+MSRP for Easy XenApp 
+Enterprise Edition, 
+Concurrent User License 
+with one-year Subscription 
+Advantage. 
+www.thinclientpricing.com/c
+itrix_xenapp.asp 
+Two-year Subscription 
+Advantage add-on for one 
+concurrent user. 
+www.lscwarehouse.com/sof
+tware-other.html and 
+www.citrix.com/content/da
+m/citrix/en_us/documents/s
+upport/Subscription_Advant
+age_Price_Schedule.pdf 
+www.microsoftstore.com/st
+ore/msusa/en_US/pdp/prod
+uctID.255866300 
+
+Estimate at 25 percent 
+license cost per year. 
+
+Citrix XenApp 6.5 FP1 
+Enterprise Edition Concurrent 
+User License with one-year 
+Subscription Advantage 
+
+Concurrent 
+user 
+
+$450.00 
+
+151 
+
+$67,950.00 
+
+Citrix XenApp two-year 
+Subscription Advantage, 
+Enterprise Edition Add-On 
+
+Concurrent 
+user 
+
+$100.00 
+
+151 
+
+$15,100.00 
+
+Windows Server 2012 Remote 
+Desktop Services, one-user CAL 
+
+User 
+
+Windows Server 2012 Remote 
+Desktop Services one-User CAL 
+Software Assurance  
+Total 
+Cost per user for 151 users 
+
+User 
+
+  
+
+$149.00 
+
+151 
+
+$22,499.00 
+
+$111.75 
+
+151 
+
+$16,874.25 
+
+  
+
+  
+$866.50 
+
+$130,840.75 
+
+  
+  
+
+Figure 12: Cost analysis for Citrix XenApp 6.5 FP1 with lossy settings. 
+ 
+ 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  42 
+
+ 
+ 
+ 
+ 
+
+Hardware Cost Analysis 
+
+Figure 13 shows detailed hardware costs for the system used in both configurations. 
+
+HP ProLiant DL380p Gen8 
+
+Item 
+
+Cost per unit 
+
+HP ProLiant DL380p G8  
+Intel Xeon E5-2680 Processor 
+
+HP 8GB PC3L-10600 RDIMM 
+HP 750W Common Slot Platinum Plus Hot Plug Power 
+Supply Kit 
+HP 2U Small Form Factor Ball Bearing Gen8 Rail Kit 
+with CMA 
+HP C13 - AS3112-3 AU 250V 10Amp 2.5m Power Cord 
+
+Intel X520 Dual Port 10Gbe SFP+ Adapter  
+Total (incl. tax) 
+Figure 13: Cost analysis for HP ProLiant DL380p Gen8 hardware. 
+
+Totals of Software and Hardware 
+
+$2,190.72 
+
+$2,224.50 
+
+$157.13 
+
+$234.50 
+
+$140.00 
+$10.00 
+
+$528.00 
+
+No. of units 
+1 
+
+2 
+
+24 
+
+2 
+
+1 
+2 
+
+1 
+
+Total 
+
+$2,190.72 
+
+$4,449.00  
+
+$3,771.00  
+
+$469.00 
+
+$140.00 
+$20.00 
+
+$528.00 
+$11,845.00 
+
+Figures 14-16 combine the software and hardware costs from the previous figures to present a total cost for 
+
+each tested configuration. 
+
+ 
+VMware Horizon View 5.2 Enterprise Edition for 174 users 
+
+HP ProLiant DL380p Gen8 
+Total 
+Average cost per user 
+Figure 14: Cost analysis for VMware Horizon View 5.2. 
+
+ 
+Citrix XenApp 6.5 FP1 Enterprise Edition (Hosted Shared Desktop) - Lossless, 30 fps - 146 
+users 
+HP ProLiant DL380p Gen8 
+Total 
+
+Average cost per user 
+Figure 15: Cost analysis for Citrix XenApp 6.5 FP1 with lossless settings. 
+
+ 
+Citrix XenApp 6.5 FP1 Enterprise Edition (Hosted Shared Desktop) - Lossy, 24 fps - 151 users 
+
+HP ProLiant DL380p Gen8 
+Total 
+Average cost per user 
+Figure 16: Cost analysis for Citrix XenApp 6.5 FP1 with lossy settings. 
+
+Total 
+
+$72,210.00 
+
+$11,845.00 
+$84,055.00 
+$483.07  
+
+ 
+
+Total 
+
+$126,787.00 
+
+$11,845.00 
+$138,632.00 
+
+$949.53  
+
+ 
+
+Total 
+
+$130,840.75 
+
+$11,845.00 
+$142,685.75 
+$945.94  
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  43 
+
+ 
+ 
+ 
+ 
+
+APPENDIX D – CITRIX XENAPP 6.5 FP1 LOSSY RESULTS 
+
+In addition to our lossless testing, we also tested Citrix XenApp 6.5 FP1 with out-of-box defaults, 24 frames per 
+
+second with lossy compression. Figure 17 shows the response times, in milliseconds, as the sessions increased. Lossy 24 
+
+FPS is an inferior image rendering and as such we chose lossless 30 FPS for our testing.  
+
+Figure 17: In our lossy 
+test, Citrix XenApp 
+6.5 FP1 was able to 
+run 151 sessions 
+without generating a 
+VSImax. 
+
+Figure 18 shows the percentage CPU utilization throughout our lossy Citrix XenApp 6.5 FP1 tests. Additional 
+
+sessions exceed the VSImax for the server under test due to CPU utilization. 
+
+ 
+Figure 18: CPU 
+utilization for our 
+server under test 
+throughout the lossy 
+Citrix XenApp 6.5 
+FP1 test. 
+
+ 
+
+ 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  44 
+
+ 
+ 
+ 
+ 
+
+ABOUT PRINCIPLED TECHNOLOGIES 
+
+ 
+
+ 
+Principled Technologies, Inc.  
+1007 Slater Road, Suite 300 
+Durham, NC, 27703 
+www.principledtechnologies.com 
+
+We provide industry-leading technology assessment and fact-based 
+marketing services. We bring to every assignment extensive experience 
+with and expertise in all aspects of technology testing and analysis, from 
+researching new technologies, to developing new methodologies, to 
+testing with existing and new tools.  
+ 
+When the assessment is complete, we know how to present the results to 
+a broad range of target audiences. We provide our clients with the 
+materials they need, from market-focused data to use in their own 
+collateral to custom sales aids, such as test reports, performance 
+assessments, and white papers. Every document reflects the results of 
+our trusted independent analysis.  
+ 
+We provide customized services that focus on our clients’ individual 
+requirements. Whether the technology involves hardware, software, Web 
+sites, or services, we offer the experience, expertise, and tools to help our 
+clients assess how it will fare against its competition, its performance, its 
+market readiness, and its quality and reliability. 
+ 
+Our founders, Mark L. Van Name and Bill Catchings, have worked 
+together in technology assessment for over 20 years. As journalists, they 
+published over a thousand articles on a wide array of technology subjects. 
+They created and led the Ziff-Davis Benchmark Operation, which 
+developed such industry-standard benchmarks as Ziff Davis Media’s 
+Winstone and WebBench. They founded and led eTesting Labs, and after 
+the acquisition of that company by Lionbridge Technologies were the 
+head and CTO of VeriTest.  
+
+ 
+
+Principled Technologies is a registered trademark of Principled Technologies, Inc. 
+All other product names are the trademarks of their respective owners. 
+
+Disclaimer of Warranties; Limitation of Liability: 
+PRINCIPLED TECHNOLOGIES, INC. HAS MADE REASONABLE EFFORTS TO ENSURE THE ACCURACY AND VALIDITY OF ITS TESTING, HOWEVER, 
+PRINCIPLED TECHNOLOGIES, INC. SPECIFICALLY DISCLAIMS ANY WARRANTY, EXPRESSED OR IMPLIED, RELATING TO THE TEST RESULTS AND 
+ANALYSIS, THEIR ACCURACY, COMPLETENESS OR QUALITY, INCLUDING ANY IMPLIED WARRANTY OF FITNESS FOR ANY PARTICULAR PURPOSE. 
+ALL PERSONS OR ENTITIES RELYING ON THE RESULTS OF ANY TESTING DO SO AT THEIR OWN RISK, AND AGREE THAT PRINCIPLED 
+TECHNOLOGIES, INC., ITS EMPLOYEES AND ITS SUBCONTRACTORS SHALL HAVE NO LIABILITY WHATSOEVER FROM ANY CLAIM OF LOSS OR 
+DAMAGE ON ACCOUNT OF ANY ALLEGED ERROR OR DEFECT IN ANY TESTING PROCEDURE OR RESULT.  
+ 
+IN NO EVENT SHALL PRINCIPLED TECHNOLOGIES, INC. BE LIABLE FOR INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES IN 
+CONNECTION WITH ITS TESTING, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL PRINCIPLED TECHNOLOGIES, 
+INC.’S LIABILITY, INCLUDING FOR DIRECT DAMAGES, EXCEED THE AMOUNTS PAID IN CONNECTION WITH PRINCIPLED TECHNOLOGIES, INC.’S 
+TESTING. CUSTOMER’S SOLE AND EXCLUSIVE REMEDIES ARE AS SET FORTH HEREIN. 
+
+Scale testing and cost analysis study: VMware Horizon View 5.2 virtual 
+desktop density vs. Citrix XenApp 6.5 FP1 
+ 
+ 
+ 
+
+ A Principled Technologies test report  45 
+
+

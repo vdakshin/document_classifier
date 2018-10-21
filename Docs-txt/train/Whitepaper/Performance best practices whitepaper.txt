@@ -1,0 +1,406 @@
+SAN Performance Information Brief 
+ 
+
+ 
+
+ 
+
+ 
+
+Optimizing SAN Performance – Best Practices 
+
+ 
+ 
+ 
+
+August 2011 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+ 
+
+ 
+
+Background 
+While reliability of data and prevention of outages is rightfully a top concern, performance is often what 
+impacts application users the most, and in worst case scenarios, can cause applications to be unusable or 
+even lead to network outages. Although network capacity issues such as congestion and bottlenecks often 
+cause poor network performance, there are other less known causes of poor network performance. These 
+other performance issues often occur on networks that are significantly under-utilized so it is important to 
+consider the right key performance indicators.  
+
+SAN performance is often misunderstood and the term is applied to many different measurements and 
+methods. In many cases it is only thought of in terms of a MB/sec or IOPS measurement. In order to gain a 
+true picture of performance, Virtual Instruments has found it is very important to measure how long each 
+exchange takes to complete. By knowing the minimum, maximum and average exchange completion time for 
+every device and LUN communicating on the SAN, a true picture of performance can be achieved. When 
+exchanges are taking longer than normal to complete, it is important to consider how many commands are 
+outstanding, how quickly the storage array is responding to each request, and how the exchange times relate 
+to the demand in the environment.   
+In this paper, we discuss five high level performance best practices, then we drill down on a common five-
+step process for using VirtualWisdom to monitor and optimize performance. 
+
+Best Practices – High Level 
+1.  Establish a “Cross-Domain” Management Orientation  
+
+Optimal performance only occurs when the server and storage domains interoperate in a load-balanced 
+way. Unfortunately, most of the management software in today’s data center was designed to manage a 
+single element.  There are separate tools for managing servers, storage, networks, etc. Today there are 
+new “cross-domain” management tools emerging that can help get visibility across the data center and 
+find root cause when things go wrong. When deploying a virtual infrastructure, for instance, it is important 
+to deploy management software that can help monitor and manage across the entire infrastructure. 
+
+Another cross-domain challenge is people. The typical IT management team is still organized functionally, 
+around the technology domains. There are server teams, network teams, storage teams, and so forth. 
+These groups of people each have their own management software tools as discussed earlier, and as a 
+result, they sometimes understand the environment very differently. In some companies they don’t even 
+like each other very much. When things go wrong, such as when there is an application performance 
+problem, it’s not uncommon for the different groups to play the “blame game.” This sort of organizational 
+model is a legacy of the “one-application-per-server” model, but in a virtual resource world where storage 
+is a shared utility, this silo-oriented approach doesn’t work. In addition to ensuring cross-domain 
+management tools are implemented, it is important to have a cross-domain IT management team that can 
+provide an end-to-end service level and respond productively when there are availability or performance 
+problems.  
+
+2.  Use “Infrastructure Response Time” as a Key Metric  
+
+Getting people to work together is easier said than done, especially when they have expertise in different 
+areas. That’s where finding and using key metrics come in. If there are a few key metrics that each of the 
+different IT teams can monitor and understand in the same way, people tend to be more aligned. 
+“Infrastructure Response Time” (IRT) is one of these metrics. IRT measures response time from the VM or 
+physical host through the server and HBA all the way to the storage/LUN, and back. When IRT increases 
+for a given application, it is a good indicator that something has changed. This may be the result of 
+
+2                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+increased workload, but it also may mean that something is wrong. If something is wrong, IRT can be 
+used to find out what the problem is. Response time is a function of not only raw throughput but also of 
+queuing or “wait time” at the component level.  Drilling down into IRT can help identify where the I/O 
+bottlenecks originate.  
+
+3.  Look for Contention and Contention-Based Latency in the Storage Layer  
+
+Companies experiencing persistent performance problems in virtualized environments often find the root 
+cause to be contention between virtual servers and a shared storage resource. An increase in the IRT 
+metric flags these issues, and the culprit is very often a RAID group, HBA, or front end port that is being 
+overwhelmed by I/O workloads.  Other culprits can be VM servers mixed with other application servers on 
+the same storage ports or the mix of applications sharing ISLs (inter-switch links) or storage ports. 
+Administrators with new production implementations often find themselves “guilty until proven innocent” 
+when there are performance problems. In the absence of effective tools and practices to help perform 
+root cause analysis, their infrastructure components are likely to get blamed. Frequently, after 
+implementing a cross-domain solution, administrators discover the real causes to be I/O workload 
+mismatches, such as too many VMs writing to a RAID 5 group. Once these sources of contention are 
+found, and workloads rebalanced, then many performance problems can be solved or avoided altogether.  
+
+4.  Strive for “Best Fit” of Workloads to Storage Resources  
+
+All storage is not created equal. The RAID 5 case mentioned above is just one example. In enterprise 
+storage, workloads can be affected by many factors including disk type (e.g. Fibre Channel, SATA), 
+protocol (e.g. iSCSI, NAS), protection level (e.g. RAID 1/0, RAID 5), the number of disks per group, 
+striping, and so forth. When setting up new applications on enterprise storage, project owners should 
+work with a qualified storage administrator to help identify and provision the right class of storage for the 
+given workload. Many performance problems are created when storage is provisioned for a new 
+application based only on available capacity and not the actual workload.  
+
+5.  Work Toward Infrastructure Performance SLAs  
+
+Typically, the only metric in service-level agreements between application owners and storage 
+administrators is capacity. That is, there is a commitment that a specific maximum storage capacity will 
+be available for the application. If there are any other elements in the SLA, they typically have to do with 
+availability, identifying how frequently the data will be backed up, or a maximum amount of system down-
+time that can be expected per year. Companies rarely use performance SLAs. This is likely due to many 
+of the items discussed previously. Many companies do not measure performance in a consistent way, 
+especially with newer virtualization technologies. Few have good cross-domain coordination or have 
+established an agreed upon set of metrics for monitoring and managing performance expectations. SLAs 
+cannot happen without good metrics that people buy into. If the right metrics are put in place, with tools 
+and processes to help measure and manage them, then performance SLAs can be established relatively 
+easily.  
+
+ 
+
+ 
+
+3                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+Best Practice with VirtualWisdom - Measuring Exchange Times and Latency 
+The true performance of the SAN is most accurately measured using Exchange Completion Times (ECT), 
+VirtualWisdom’s version of Infrastructure Response Time (IRT).  Exchange Completion Time is the 
+measurement of how long it takes to fully complete specific types of commands (reads, writes, other).   
+
+There are many factors that can affect how long each exchange takes to complete across the SAN:  HBA’s, 
+servers, number of hops, switching, disk speeds, interfaces, configuration issues (both by design and error), 
+transaction sizes and device incompatibly, as well as a host of other possible issues.  Therefore, due to the 
+multitude of factors each SAN tends to have its own latency range. Applications typically fall into 3 broad 
+categories:  transaction based high latency sensitive, transaction based moderate latency sensitive and batch 
+based. For all 3 categories the maximum response time will often and surprisingly be in the 1 to 3 second 
+(1000-3000 ms) range even on a healthy SAN. When maximum times start to exceed these values, it’s 
+typically an indication that there is a problem. Because of the extreme latency difference between the typical 
+average and the typical maximum values, occasional outliers can occur without indicating application impact.   
+
+The biggest difference between the 3 categories is for acceptable average response times over a minute time 
+period (and excluding low load outliers). For some high latency applications the ideal response times is in the 
+4-7ms range. For most applications the response times should remain below 20-40ms as a high-end average. 
+For batch-based activities (such as backups) often MB/s or IOPS is the best measurement to consider 
+because this affects how long the overall activity takes. For these applications though the exchange 
+completion times and the throughput times are often directly linked. 
+
+VirtualWisdom has the ability to track exchange completion times down to an Initiator, Target-LUN (ITL) 
+granularity. This enables it to find problems where the Initiator (or Server) has good response times when all 
+the Target-LUN’s it is accessing are aggregated together, as you find in a vSphere environment. Similarly, the 
+aggregated response times for a Target or Target-LUN may appear fine when all Initiators are accessing it. 
+There can still be problems for a specific Initiator accessing a specific Target-LUN. At the same time that this 
+is the most granular way to find issues, it will also be the most severely impacted by issues that span multiple 
+devices. Care needs to be used when establishing alarms with Initiator, Target-LUN grouping. The group-by 
+selections affect the trigger and re-arm. Each device in the Group-by setting that matches a condition will 
+have a separate alarm event action triggered for it. It is therefore typically best to have the most stringent 
+alarm policies specified at the Initiator level and only use the full ITL level for reports or when integrated with 
+an Event correlation engine. 
+ 
+
+ 
+
+4                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+Five Steps - Optimizing Performance with VirtualWisdom 
+ 
+Step 1 
+
+The quickest way to identify and understand performance is to look at the response times at the highest 
+granularity ITL issue. While this may not be best for alerts, it is often the best place to start in the reports. The 
+VirtualWisdom report “Performance – ITL ECT vs Demand” can be used to find any latency in the environment 
+as well as to determine the relationship between the demand for the specific ITL to the performance.  
+Examples follow: 
+ 
+Performance – ITL ECT vs Demand 
+
+ 
+
+ 
+
+5                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+ 
+
+ 
+
+Step 2 
+
+If high latency is detected in Step 1 but there appears to be no correlation to the demand it is a good idea to 
+determine if there is a correlation between the response times and the Queue Depth settings or Pending 
+Exchanges. 
+ 
+Performance – ITL ECT vs Queue 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+6                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+Step 3 
+
+Performance should also be configured and understood at the Initiator level. This is typically the closest match 
+to the values the Server teams are seeing and using to determine whether or not they believe the SAN is 
+healthy. It is also typically the best level to set alert thresholds. It is often important to separate and categorize 
+the performance by the size of the transactions, the types of devices in the environment, any tiering or big 
+differences in expected performance and report and understand the performance at different levels. Because 
+this can differ by environment, there aren’t specific examples to deploy for everyone. 
+
+Performance – Initiator ECT vs Demand (or Queue) 
+
+ 
+
+ 
+
+ 
+
+ 
+
+7                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+Step 4 
+
+Typically once the response times are understood for the different categories of traffic it is a good idea to 
+create alarms for when the performance is outside the expected ranges.  An alarm template follows … 
+
+Alarm Policy: Performance – Category or Application specific performance 
+
+Probe Type 
+
+Xgig/SAN Performance Probe   Group 
+
+Initiator 
+
+ 
+
+ 
+
+Metric Set 
+
+SCSI 
+
+by 
+
+ 
+
+ 
+
+Filter 
+
+Category A (B, etc) 
+
+ 
+
+ 
+
+Metric Type 
+
+Operator 
+
+Threshold 
+
+Trigger 
+
+Re-arm 
+
+Max Pending 
+Exchanges 
+
+> 
+
+!= 
+
+TBD 
+
+-1 
+
+Freq 
+
+TBD 
+
+Time Period 
+
+Severity  Actions 
+
+TBD 
+
+Minor 
+
+Email or SNMP 
+
+86,400  86,400 
+
+Normal 
+
+Internal 
+
+ 
+ 
+
+ 
+Step 5 
+
+If any bad response times are detected by alerts, it is often good to see if response times are also seen at the 
+Target-LUN or Link (Target Port) level or if specific Initiators or ITLs are only experiencing them. This can be 
+done by using the following report: 
+ 
+Performance – Target-LUN (or Link) ECT vs Demand (or Queue). 
+
+(Note: Target-LUNs may not be accessed continuously so there  
+may be gaps in the data resulting in more scatter plots than line) 
+
+ 
+
+8                                                    SAN PERFORMANCE INFORMATION BRIEF 
+ 
+
+ 
+
+ 
+
+ 
+
+Conclusion 
+SAN performance monitoring is key to avoiding application slowdowns and even outages. Many mission 
+critical applications are I/O bound. Often, the key to improving application performance is optimizing storage 
+I/O. Most SAN management products today report IOPS or MB/s, which are fine high-level measures of 
+storage performance.  But if you care about application performance, you must measure SAN performance by 
+how it effects application response time for every transaction. Looking at IOPS or MB/s is like looking at an 
+automobile speedometer, and guessing how long it takes to go to the market for a loaf of bread.  Looking at 
+application latency is like having a stopwatch and reporting on exactly how long each trip takes to get to the 
+market and return with that bread. And with a latency measurement, you would know, in real time, if one of 
+those trips is taking 50% longer than normal. 
+
+VirtualWisdom is the only solution that directly measures the I/O performance effect (latency, bandwidth, re-
+tries, errors, etc) on the infrastructure when changes occur, such as capacity additions, configuration 
+changes, component/device changes, or application changes. With this new information, your team can 
+immediately identify and resolve performance problems, improving overall application response times and 
+end-user customer satisfaction.  
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments.  All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom®, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or service marks 
+of, and are used to identify, products or services of their respective owners.   08/11 
+
+ 
+
+ 
+
+

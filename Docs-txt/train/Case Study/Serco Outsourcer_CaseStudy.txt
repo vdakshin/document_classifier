@@ -1,0 +1,299 @@
+CASE STUDY
+
+Outsourcer offers IT infrastructure as a service
+for its public and private sector customers
+offering the benefits of a dedicated solution in a
+shared environment.
+Overview
+
+This company is a service and outsourcing company that has been delivering essential
+public services for more than 40 years. More than 100,000 employees deliver mission-
+critical services to government and private clients in over 30 countries.
+
+IT Environment
+
+This outsourcer has a multi-level shared infrastructure at two sites. The information
+technology infrastructure is provided by multiple vendors, including IBM Intel x86-based
+servers running VMware 4.1, (200 Virtual Machines in their Bourneville Headquarters and
+160 at the Gravely site), Cisco IP networking, Brocade SANs, Emulex HBAs, a mixture of
+Hitachi Data Systems and EMC storage front-ended by a HDS VSP – all supported by
+dual resilient fibre optic connections and asynchronous replication between them.  They
+are nearly 100% virtualised and run both 4Gb and 8Gb fibre channel components within
+the Storage Area Network (SAN).
+
+Challenges
+
+The shared services market is experiencing rapid growth compared to traditional
+dedicated single customer infrastructures. To stay ahead of their competition this
+outsourcer enables its customers to get all the benefits of a dedicated solution within a
+shared environment. This outsourcer is continuously driving to reduce cost.  Most IT
+hosting organisations provide their customers with easy access to their data but do not
+provide a service level agreement (SLA) for application performance. This outsourcer
+wanted to provide fast, reliable and cost efficient application hosting for their customers
+by providing a secure shared IT environment including performance based SLAs.
+
+Role of VirtualWisdom – a proactive approach
+
+The Service Portfolio and Product Manager and Senior Infrastructure Consultant for
+Storage and Backup manage the shared service infrastructure. One of their key initiatives
+is to provide a real-time performance view for their customer’s infrastructure and
+applications within the shared service supported with performance SLAs.
+
+“From a Common Delivery Infrastructure (CDI) perspective we are a virtual platform,
+everything we are trying to do is virtual. One of the things that has driven us to Virtual
+Instruments is that if it had been installed a year ago one of our major customers would not
+have gone back to physical servers. This outsourcer could never prove that it was the
+customer database application that was causing a problem, because it was just as slow on
+physical as it was on virtual.” said Senior Infrastructure Consultant. “They were the
+customer that drove us to monitor the environment. We couldn’t do monitoring before,
+everything was based on looking at logs on VMware, looking at performance management
+files from Hitachi Data Systems and EMC and doing ‘after the fact’ analysis – we lacked
+
+Challenges:
+
+ Provide a fast, resilient
+
+shared services environment
+for multiple customers and
+their multiple applications.
+
+ Provide SLAs for hosted
+application performance.
+
+Solution:
+
+ VirtualWisdom SAN
+
+Availability Probe, SAN
+Performance Probe, Virtual
+Server Probe, and SANInsight
+TAPs
+
+Customer Benefits:
+
+ With VirtualWisdom, root
+
+causes of potential
+application slowdowns can
+be quickly identified and
+corrective action taken before
+users are even aware of a
+problem.
+
+ Improved shared services
+
+environment delivering a cost
+efficient solution, with
+guaranteed SLAs, has been
+instrumental in increasing
+customer confidence and
+business growth
+
+WWW.VIRTUALINSTRUMENTS.COM
+
+CASE STUDY
+
+the ability to look at end-to-end transaction time, and give us an overview of what the
+environment was doing. The whole point of the redesign, eighteen months ago, was to
+move us away from just selling spindles to actually selling infrastructure as a service - and
+being able to prove that we are providing a guaranteed level of service”
+
+There were lots of discussion around the actual causes; people believed it to be VMware,
+or the storage, or the SAN, or the network but they could never pin it down.
+
+“Within minutes of us logging onto the VirtualWisdom application we were pointing out
+issues with the customer’s environment, but we missed the boat in getting them to stop
+going physical. We spent a lot of money going to physical to prove to the customer that it
+wasn’t the virtualisation layer causing the problem.” stated the Service Portfolio Manager.
+“Now we are in a position where we can actually pin point accurately where the errors are.
+Some of the errors we are seeing we would never have picked up before implementing
+VirtualWisdom”.
+
+In addition to finding and quickly resolving issues this outsourcer wanted to optimise its
+existing and future investments and enable it to provision ‘performance capacity’ rather
+than just capacity.
+
+“We offer customers a performance tiering solution, from dynamic tiering where they get
+to use solid state disks all the way down to SATA. At the moment we have 5 different tiers.
+We control where it comes from and its maximum performance. The one thing we hadn’t
+been able to do until now is to give customers detailed reports on that performance. Some
+customers like to know what’s going on and we’ve not been able to do that.  We would
+have people complaining their databases were slow and blaming the storage and we’d
+have no way of proving or disproving it. We’d have to spend hours of our time going
+through how it’s built, what they asked for, and what it’s doing.  Over the last 18 months
+we’ve decided to move away from that kind of model and the missing piece was being
+able to monitor and report on the whole environment”.
+
+VirtualWisdom provides a unique end-to-end view of the infrastructure enabling This
+outsourcer to proactively address all issues and performance inhibitors, enabling them to
+proactively find and resolve issues before they affect customer performance. This
+outsourcer’s existing tools provide management of the infrastructure elements, but not the
+unique end-to end view of the whole infrastructure.
+
+“We are getting to a stage where we have such a big platform, and so many different
+customers, we need to know if one customer is causing a problem for another customer.
+If one customer is having a problem caused by the hardware it might become a problem
+for another customer. Before VirtualWisdom was installed we were pretty much blind.
+Customers expect a higher level of service. They expect us to be able to tell them what is
+going on”. “Each individual area could tell us what was happening with their components
+but we had no way of linking it all together and there was a big black hole in the middle.
+Data left the storage frame and appeared at the vCenter box but we had no clue what was
+going on in the middle. I was completely oblivious to this until we met with Virtual
+Instruments and they pointed out ‘this is the bit you can’t see’. We needed something that
+gave us an end-to- end view of the infrastructure – so we weren’t in the situation where,
+for example,  the VM looks OK, the storage looks OK, ‘well it can’t be us then’, and hoping
+it wasn’t this big black hole in the middle that was causing the problem.
+
+“One of the reasons for going down the Virtual Instruments route was to stop us having
+multiple monitoring tools that only monitor their own devices.  We needed one that
+
+Key Value Drivers:
+
+ VirtualWisdom provides this
+outsourcer with the ability to
+offer real-time performance
+views for key customers and
+applications within a shared
+service supported with
+performance SLAs.
+
+ Optimization of existing and
+future investments (Storage,
+SAN, Physical & Virtual
+Servers) enabling This
+outsourcer to provision
+“Performance Capacity”
+rather than just “Capacity”
+
+ VirtualWisdom provides a
+unique multi -vendor view
+enabling this outsourcer to
+proactively address all
+existing infrastructure issues
+& performance inhibitors
+enabling problems to be
+caught before they affect
+customer performance.
+
+WWW.VIRTUALINSTRUMENTS.COM
+
+CASE STUDY
+
+comprehensively views everything and tells the truth, because some of the enterprise
+management tools don’t.  We needed a single pane view of the entire data path so we can
+just go and have a look at the storage, go and have a look at the fabric, go and have a look
+at the servers – VirtualWisdom lets us actually do the end-to-end lifecycle of a transmit and
+a receive” said the Portfolio Manager.
+
+“Within hours of installing the VirtualWisdom Proof of Value (POV), it pointed out we had a
+faulty SFP in one of the HDS VSP ports. Without VirtualWisdom we wouldn’t have known
+we were having that problem or the effect of that problem”. “Another thing that came out
+was information that would save us buying new servers by expanding some memory,
+which is significantly cheaper. This allows us to put more VMs into the environment
+without buying more hardware. It’s saving us money as we grow.”
+
+This outsourcer could provide reports on uptime and availability SLAs that they could be
+measured against, but they wanted to prove application performance via SLAs.
+
+The Portfolio Manager continued “VirtualWisdom gives us the ability to see what we are
+doing, make improvements where we can, and then to look at what SLAs we can offer
+customers around the different tiers, different services and even different time bands.
+Between 9:00am and 5:00pm we are not doing backups, so we may be able to offer a
+higher SLA within those times – or worst case, see if the backups affect those areas. We
+also want to be proactive to see problems before they affect performance. I particularly like
+VirtualWisdom’s ability to drill down to one of a particular customer’s servers, that we
+thought was causing us issues, and then scroll back in time to watch what it was doing.”
+
+This outsourcer implemented both the VirtualWisdom SAN Availability Probe and the
+VirtualWisdom Virtual Server Probe as well the Traffic Access Points (TAPs) across its
+entire Brocade SAN environment so it would never again have to break an application to
+do problem analysis. The TAPs split a small portion of the fibre-optic signal from the fibre
+channel fabric and send it to the VirtualWisdom SAN Performance Probe for out-of band
+traffic analysis of the frame headers.  This enables full real-time monitoring of the whole
+infrastructure regardless of vendor and without intrusive software agents.
+
+So, what is this outsourcer’s plan for the future?
+
+The team is very concerned about optimizing the cost of their IT infrastructure.  They
+know they have been unnecessarily over-provisioning as a safeguard against performance
+and availability problems, but they simply didn’t have the rights tools to stop over-
+provisioning and ensure SLA adherence.
+
+“VirtualWisdom is going to help us drive the next generation of our service and our
+products which will bring in more customers and revenue. It will help us prove that we
+already have enough storage, SAN, and physical and virtual servers for now and we won’t
+have to make another significant investment. We’re in a much better place than we used
+to be and it’s driving customer uptake”.
+
+Summary
+
+VirtualWisdom provides the end-to-end view This outsourcer needs to optimise its
+infrastructure and provide an improved service to their customers.
+
+“We’ve done a good job. We have moved from an unstable, undesirable platform to
+something that customers want to use. Some of our biggest customers are talking to us
+about using our services as confidence and trust is building. Virtual Instruments gives us
+
+ This outsourcer’s existing
+
+tools provide element
+management of the
+infrastructure based on
+polling technology, not the
+unique end to end view
+VirtualWisdom delivers in
+real-time, meaning this
+outsourcer was blind to
+infrastructure issues.
+
+“We’re in a much better place
+
+than we used to be and it’s
+driving customer uptake.”
+
+Portfolio Manager
+
+WWW.VIRTUALINSTRUMENTS.COM
+
+CASE STUDY
+
+that added element of being able to prove to them that we are trustworthy enough to do it.
+I don’t know anybody else that has anything even remotely similar to VirtualWisdom.  I
+want to get to a situation where I sit with a customer and ask what they want.  If they say
+they don’t know, we will say that we will monitor it for them, tell them how it’s performing,
+and then ask them what service tier they would prefer. We have also shifted from reactive
+to proactive management and we will be fixing issues before a customer even sees them
+or, at the very least, let them know what is going on before they are impacted. The more
+we use VirtualWisdom the more interesting it becomes; we can now optimise the whole
+environment.” the Portfolio Manager concludes.
+
+“The more we use
+
+VirtualWisdom the more
+
+interesting it becomes; we can
+
+now optimise the whole
+
+environment.”
+
+Portfolio Manager
+
+25 Metro Drive, Suite 400
+San Jose, CA 95110
+
+Sales Information
+sales@virtualinstruments.com
+
+Customer Support
+support@virtualinstruments.com
+www.virtualinstruments.com
+
+©2012 Virtual Instruments. All rights
+reserved. Features and
+specifications are subject to change
+without notice 03/12
+
+WWW.VIRTUALINSTRUMENTS.COM
+
+

@@ -1,0 +1,326 @@
+ 
+
+ 
+ 
+
+CISCO HOSTED COLLABORATION SOLUTION 
+FOR HYBRID AND GLOBAL DEPLOYMENTS ON 
+VBLOCK™ SYSTEM 100 
+
+Version 1.0 
+March 2013
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+Copyright © 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+2 
+
+ 
+
+Contents 
+
+Introduction .............................................................................................................................. 4 
+Business case ........................................................................................................................ 4 
+Solution .................................................................................................................................. 4 
+Audience................................................................................................................................. 4 
+Feedback ................................................................................................................................ 4 
+Technology overview ............................................................................................................... 5 
+Vblock™ Systems .................................................................................................................... 5 
+Cisco Hosted Collaboration Solution ....................................................................................... 6 
+Collaboration applications .................................................................................................... 6 
+Customer collaboration ........................................................................................................ 6 
+Telepresence ....................................................................................................................... 6 
+Unified Communications ...................................................................................................... 6 
+Use cases ................................................................................................................................. 7 
+Challenges .............................................................................................................................. 7 
+Hybrid or distributed deployments ....................................................................................... 7 
+Global deployments ............................................................................................................. 7 
+Solution .................................................................................................................................. 8 
+Benefits .................................................................................................................................. 9 
+Conclusion ..............................................................................................................................10 
+Next Steps .............................................................................................................................10 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+3 
+
+ 
+
+Introduction 
+
+Business case 
+
+With the rise of globalization and distributed and mobile workforces, the need for realtime information 
+exchange is increasingly embedded in the way enterprises do business. With Cisco Hosted 
+Collaboration Solution (HCS), service providers can quickly provide the business value of Cisco 
+industry-leading communication and collaboration applications, with rapid and full deployment across 
+a wide range of enterprise clients, regardless of geographic or operational diversity. 
+
+HCS allows service providers to provide these Cisco Unified Communications and collaboration 
+applications as-a-service so that enterprises can focus on their core competencies rather than the 
+complexities of providing the ubiquitous connectivity necessary in today’s business environment. In 
+many cases, however, enterprises still require on-premise location of certain parts of these managed 
+services due to legal, security and compliance, performance and availability, or quality of service 
+reasons. These new challenges require an IT infrastructure that is right-sized for hybrid and global 
+deployments and that easily integrates with the service provider’s primary data center infrastructure. 
+
+Solution 
+
+Vblock™ Systems provide a consistent architecture that makes it easy for service providers to 
+manage hybrid and global HCS deployments for enterprise customers. Vblock Systems offer a 
+predictable infrastructure growth model and easy scalability to meet today’s needs and manage 
+tomorrow’s growth, allowing service providers to focus on IT strategy and planning and not worry 
+about fluctuations in capital and operating expenses while doing so. Vblock Systems deliver 
+repeatable, standardized architectures, and VCE design guidelines optimize the platform according to 
+validated HCS behavior in order to provide consistent HCS deployments across locations. 
+Management tools like VCE Vision™ Intelligent Operations allow you to combine a Vblock™ System 
+100 with the Vblock System 300 family or Vblock System 700 family in your main data center to easily 
+provide HCS to hybrid and global deployments. This consistent experience across Vblock Systems 
+and locations greatly simplifies training, operation, and maintenance in both your main data center and 
+remote locations. 
+
+Audience 
+
+This paper is written for business decision makers in technical, financial, operational, line-of-business, 
+and strategic positions considering virtualized IT infrastructures in midsized and distributed location 
+environments. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send e-mail to 
+docfeedback@vce.com. Include the name of this paper, the name of the topic to which your comment 
+applies, and your feedback. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+4 
+
+ 
+
+Technology overview 
+
+This section describes the technology components discussed in this paper. 
+
+Vblock™ Systems 
+
+The Vblock™ System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+The Vblock System 100 is right-sized to meet the capacity, workload, and space requirements of mid-
+sized data centers and distributed enterprise remote offices. By leveraging the Vblock System 100, 
+companies experience the repeatability, architecture standardization, and business results 
+synonymous with Vblock Systems. 
+
+With pre-defined fixed configurations, the Vblock System 100 is designed to: 
+
+  Bring the power and benefits of the Vblock System family into a value-focused solution 
+  Deliver core IT services (file/print and domain) for mid-sized data centers and distributed 
+enterprise remote locations in industries such as healthcare and advanced manufacturing 
+  Offer dedicated local instance business application support including VDI, SharePoint, and 
+
+Exchange 
+
+  Provide predictable performance and optional characteristics 
+
+The Vblock System 100 is an excellent complement to an existing Vblock System 700 family or 
+Vblock System 300 family product. For more information, go to http://www.vce.com. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+Cisco Hosted Collaboration Solution 
+
+Cisco HCS is an effective way to use the power of the cloud and quickly deliver collaboration 
+applications to your customers. The Cisco partner ecosystem can provide the power of Cisco Unified 
+Communications and Cisco Collaboration using an as-a-service model.  
+
+Cisco offers the industry’s broadest portfolio of unified communications and collaboration applications 
+and services. Central to HCS is the availability of this portfolio in a hosted environment. Users can 
+enjoy the same rich collaboration feature set, whether the application resides on the customer’s 
+premises, in a service provider’s data center, or a combination of the two. 
+
+Collaboration applications 
+
+  Cisco WebEx meetings 
+  Cisco Jabber 
+  Cisco WebEx Social 
+
+Customer collaboration 
+
+  Cisco SocialMiner 
+  Cisco Unified Contact Center Enterprise 
+  Cisco Unified Contact Center Express 
+  Cisco Unified Customer Voice Portal 
+
+Telepresence 
+
+There are a variety of Cisco Telepresence products for different applications and sizes. 
+
+Unified Communications 
+
+  Cisco Midsize Business Collaboration Solutions 
+  Cisco Virtualization Experience Client 
+  Cisco Business Edition 6000 
+  Cisco Unified Communications Gateways and Services 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+6 
+
+ 
+
+Use cases 
+
+Service providers typically provide a mix of purely hosted, hybrid or distributed, and global HCS 
+deployments, using enterprise-class Vblock System 300 family and Vblock System 700 family 
+products in the main data center. Vblock System 100 allows service providers to provide a right-sized 
+solution for customers requiring localized HCS deployments with enterprise-class features and 
+performance. 
+
+Challenges 
+
+Hybrid or distributed deployments 
+
+A service provider needs to manage certain HCS components on customer premises due to: 
+
+  Security and compliance requirements to maintain certain functions on-premises 
+  High availability requirements to use local services 
+  Large regional offices requiring higher quality of service than possible with existing connections 
+  Need for the flexibility of both cloud and on-premise application deployment  
+
+Global deployments 
+
+A service provider needs to support global customers with local HCS deployments due to: 
+
+  Connectivity and latency issues for business-critical realtime applications 
+  Legal requirements, such as lawful intercept 
+  High availability requirements to use local services 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+7 
+
+ 
+
+Solution 
+
+In addition to using Vblock System 300 family or Vblock System 700 family products for pure hosted 
+customers, service providers can deploy Vblock System 100 on a customer premise to extend their 
+range of enterprise offerings available with existing infrastructure. Vblock System 100 scales easily 
+from three to eight UCS C220 servers and is available in rack and half-rack configurations. Vblock 
+System 100 is built on the same architecture as the larger Vblock System 300 family and Vblock 
+System 700 family and offers easy turnkey integrations with customer networks for hybrid 
+deployments and local infrastructures and colocation facilities for global deployments 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+Benefits 
+
+Providing localized HCS services on a Vblock System 100 allows service providers to address a 
+growing range of Enterprise requirements for reach and availability with minimal additional investment 
+in equipment or training: 
+
+  Enterprise-grade IT infrastructure optimized specifically for HCS services 
+  Consistent operational experience using tools like VCE Vision Intelligent Operations 
+  Customizable Unified Communications application deployments 
+  Answers to connectivity and latency challenges in global locations 
+  Infrastructure necessary to comply with local laws and requirements 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+9 
+
+ 
+
+Conclusion 
+
+Vblock System 100 allows service providers to expand their range of enterprise service offerings by 
+providing HCS services in hybrid and global deployments. With Vblock System 100, customers enjoy 
+the same enterprise quality, performance, and availability as customers enjoying a pure hosted 
+solution, while retaining the local control necessary to satisfy legal, performance, availability, or quality 
+of service requirements. Vblock System 100 is built as part of a system architecture that is consistent 
+from model to model and includes management tools such VCE Vision Intelligent Operations for 
+simple and consistent deployments wherever customers need the value of HCS with the economy 
+and dependability of Vblock Systems.  
+
+Next Steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com.
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+10 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to http://www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+Copyright © 2013 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or 
+its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+VCE Confidential –  Internal Use Only 
+
+ 
+
+

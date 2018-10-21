@@ -1,0 +1,1677 @@
+ 
+
+Testing MicroStrategy with VMware 
+
+vCenter™ Site Recovery Manager 5.1 
+
+and vSphere vMotion and High 
+
+Availability 
+
+ 
+
+  
+
+ 
+
+ 
+
+April 2014 
+
+DE P L O Y M E NT   A ND  T E CHN I CA L   CO NS I DE RA T I O NS   G UI DE  
+
+ 
+
+ 
+
+Dis aster Recovery for praireFy re Media  Contact  Cent er using S ite  Recovery Manager 
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+ 
+
+ 
+
+Table of Contents 
+
+Introduction ................................................................................................................3 
+
+MicroStrategy Business Intelligence Suite ................................................................4 
+
+VMware vCenter Site Recovery M anager ...................................................................5 
+
+Recovery Testing Overview........................................................................................7 
+
+Testing Architecture...................................................................................................8 
+
+Testing Scenario ..................................................................................................... 14 
+
+Testing Use Cases .................................................................................................. 15 
+
+Test Workload Generation ....................................................................................... 15 
+
+Test Site Installation ................................................................................................ 15 
+
+Test Site Configuration ............................................................................................ 17 
+
+Recovery Plan Execution ........................................................................................ 18 
+
+Testing Results and Observations ........................................................................... 18 
+
+Recommendations .................................................................................................. 19 
+
+vSphere vMotion and High Availability Testing ....................................................... 20 
+
+vMotion................................................................................................................... 21 
+
+High Availability....................................................................................................... 21 
+
+Conclusion................................................................................................................ 23 
+
+Appendix A: Test System Configuration .................................................................. 24 
+
+Resources ................................................................................................................. 27 
+
+Acknowledgements .................................................................................................. 29 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001  www.vmware.com 
+Copyri ght © 201 4 VMwar e, Inc. All rights reserved. This product is protected by U.S. and internati ona l copyrig ht and inte llectua l prop erty laws. VMware pr oducts are cover ed by on e or more pate nts listed at http://www.vmware.com/go/patents. 
+
+VMware is a reg istered tradem ark or trademark of VMwar e, Inc. in the United States and/or other juris dictio ns. All other marks and nam es mentio ned h erei n may  be tradem arks of their respective com pani es.   
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / I I    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Introduction 
+Businesses using the MicroStrategy® Business Intelligence Suite depend heavily on the 
+continuous availability of their information and processes in deployed application environments. 
+Importantly, business want to ensure that their MicroStrategy business intelligence (BI) 
+applications remain available in the event there is a major service disruption. However, due to 
+the complexity and distributed nature the MicroStrategy BI application platform, implementing 
+and maintaining  traditional disaster recovery solutions has proven to be complicated and costly.  
+
+For this reason, MicroStrategy has been working together with VMware® to develop a joint 
+disaster recovery solution using that meets the challenge of providing continuous availability in a 
+manner that is simplified and cost efficient. For this solution, the MicroStrategy Business 
+Intelligence Suite is run in a VMware vSphere® virtual environment in order to enable a scalable, 
+resilient virtualized multi-tiered application solution.  
+
+By running the Microsoft Strategy solution in a virtualization environment, MicroStrategy can 
+deploy VMware® vCenter™ Site Recovery Manager™ to provide for disaster recovery. Site 
+Recovery Manager provides for the reliable recovery of business critical applications within 
+defined timeframes.  
+
+MicroStrategy decided to use VMware vSphere virtualization technology and VMware vCenter 
+Site Recovery Manager because it provides the optimal environment for a disaster recovery 
+solution. Besides Site Recovery Manager, MicroStrategy is also using VMware vSphere advanced 
+features, including VMware vSphere® vMotion® and VMware vSphere® High Availability (HA), to 
+ensure the best operational performance. 
+
+When a disaster occurs, businesses, at a minimum, initially want to renew operations in 
+“survival” mode. They want to restore at least the business processes that are essential to keep 
+the company running based on a predefined business impact analysis (BIA). Site Recovery 
+Manager supports the recovery of critical business processes that are typically defined using two 
+types of objectives: 
+
+  Recovery Time Objective (RTO) – The RTO defines the criticality of each business process 
+such as Finance or Call Center Operations and its dependencies in the event of a disaster. 
+The RTO quantifies how rapidly the organization needs to have these business processes up 
+and running. 
+
+  Recovery Point Objective (RPO) – For each critical business process, the RPO quantifies the 
+
+minimal amount of data to restore to ensure a successful recovery, and to “what point in 
+time” the data needs to be restored, such as to the prior week or month. 
+
+This paper describes the testing that was performed using MicroStrategy with VMware vCenter 
+Site Recovery Manager, and with VMware vSphere vMotion and VMware vSphere High 
+Availability. The Site Recovery Manager testing used block-based SAN storage and host-based 
+replication to provide an effective availability solution for critical MicroStrategy deployments.  
+
+This paper is written for experienced architects and engineers who are responsible for the 
+VMware virtualization environment. It assumes that the reader has knowledge of the VMware 
+and MicroStrategy products described in the paper.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 3    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+MicroStrategy Business Intelligence Suite 
+MicroStrategy is a leading provider of enterprise software including the MicroStrategy Analytics 
+Platform™ and their Business Intelligence Suite. The MicroStrategy Business Intelligence (BI) 
+platform supports a full range of analytic functionality, from easy-to-use business dashboards to 
+sophisticated statistical analysis and data mining. This BI platform provides the flexibility 
+businesses need to start small, and it scales to large enterprise deployments.  
+
+The MicroStrategy Business Intelligence Suite consists of these modules: 
+
+  Metadata Database Server. The MicroStrategy Metadata Database Server is a metadata 
+
+repository (storage space) for all of the underlying reporting components and logical objects 
+that form a MicroStrategy application. One metadata repository can hold multiple 
+MicroStrategy projects. MicroStrategy Intelligence Server communicates with the metadata 
+repository through Open Database Connectivity (ODBC) communication. Microsoft SQL 
+Server and Oracle Database, as well as other database platforms are supported as metadata 
+repositories. 
+
+  Data Warehouse. The Data Warehouse is the foundation of the MicroStrategy platform. The 
+
+Data Warehouse stores data from the MicroStrategy Business Intelligence Suite for later 
+analysis. Typically, an extraction, transformation, and loading (ETL) process is used to place 
+or load data into the Data Warehouse The ETL process usually uses an online transaction 
+processing (OLTP) system as its main source of original data. 
+
+  MicroStrategy Intelligence Server. This server is the heart of the MicroStrategy Business 
+Intelligence Suite. The MicroStrategy Intelligence Server executes reports and documents 
+that are stored in metadata against the data warehouse. It passes the results of those 
+reports and documents on to the end-users. 
+
+  MicroStrategy Web. The MicroStrategy web allows end-users to perform interactive analysis 
+through a web browser. MicroStrategy Web provides a full set of data browsing, drilling, and 
+reporting development capabilities that enable “stream of consciousness” navigation. 
+Boardroom-quality reports can be generated using a wide range of charting and formatting 
+options. MicroStrategy Web can be run on ASP.NET and JavaServer Pages (JSP) web 
+application servers. 
+
+  MicroStrategy Mobile. This web service provides an interface that enables end-users to 
+
+consume MicroStrategy reports and documents using Apple® iOS (previously iPhone OS) and 
+Android based mobile devices. Users access MicroStrategy content through the 
+MicroStrategy Mobile application available using the device’s application store. 
+MicroStrategy Mobile is supported to run on ASP.NET and JSP web application servers.  
+
+In addition, MicroStrategy is the leading provider of the enterprise-class MicroStrategy Mobile 
+App Platform™, MicroStrategy Identity Platform™, and MicroStrategy Loyalty Platform™. This 
+platform enables businesses to build, deploy, and maintain mobile apps across a range of 
+solutions by embedding business intelligence, transactions, and multimedia into application 
+solutions. Note that these MicroStrategy platforms were not included in the testing described in 
+this paper.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 4    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+The MicroStrategy cloud offering combines the MicroStrategy platforms with third party 
+software, hardware, and services to enable rapid, cost-effective development of hosted business 
+intelligence, mobile, and social applications. The cloud offering is hosted by MicroStrategy, 
+rather than being hosted on-premise by the customer. 
+
+For more information on MicroStrategy and the Business Intelligence Suite, see the “Resources” 
+section near the end of this paper. 
+
+VMware vCenter Site Recovery Manager  
+VMware vCenter Site Recovery Manager is the market-leading product that ensures the simplest 
+and most reliable disaster protection for all virtualized applications. Site Recovery Manager 
+leverages cost-efficient vSphere Replication and supports broad set of high performance 
+storage-replication products to replicate virtual machines from a Protected Site to a Recovery 
+Site, and to provide for failback. Site Recovery Manager automates its recovery processes to 
+provide for rapid recovery within predefined RPOs and RTOs.  
+
+Site Recovery Manager is an extension to VMware vCenter that simplifies and automates 
+disaster recovery to ensure reliability and operational performance. When the MicroStrategy 
+Business Intelligence Suite virtualization solution runs as a workload in a VMware environment, 
+Site Recovery Manager can orchestrate disaster recovery and integrate failover with other 
+virtualized enterprise applications.  
+
+Site Recovery Manager greatly simplifies testing and it saves significant time and resources by: 
+
+ 
+
+Simplifying and automating disaster recovery workflows. 
+
+  Ensuring reliable recovery by enabling non-disruptive testing.  
+
+ 
+
+Simplifying recovery by eliminating complex manual recovery steps and by centralizing the 
+management of recovery plans. 
+
+Disaster recovery testing is used to validate business continuity plans for recovering from a 
+disaster, and restoring partially or completely interrupted critical functions within 
+predetermined timeframes (RTOs and RPOs). Previous, regular testing of recovery plans using 
+Site Recovery Manager is critical to achieving a successful recovery at the time of an actual 
+disaster.  
+
+With Site Recovery Manager, recovery plans can be tested non-disruptively as frequently as 
+required. Unlike other solutions, Site Recovery Manager recovery plan testing minimizes the use 
+of resources, even with extremely complex disaster recovery plans. It provides a simple interface 
+for setting up recovery plans that are coordinated across all infrastructure layers, replacing 
+traditional, error-prone runbooks.  
+
+Site Recovery Manager is a disaster recovery solution that allows businesses to plan, test, and 
+execute a scheduled migration or emergency failover of vCenter inventory from one site to 
+another.  By using virtualization, Site Recovery Manager can be used to test virtual machines and 
+network connections as “walled-off” virtual entities. This testing can be co-resident with 
+production applications that might be running at the recovery site.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 5    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+The typical architecture for Site Recovery Manager includes storage array replication between 
+the Protected Site and the Recovery Site, as shown in the figure below. 
+
+Figure 2. Typical architecture for vCenter Site Recovery Manager 
+
+ 
+
+ 
+Site Recovery Manager is an optional component of VMware vCenter. Site Recovery Manager 
+allows disaster recovery tasks to be executed from the same centralized interface that is used to 
+manage other administrative virtual machine tasks, such as creation, migration, and deletion.  
+
+ 
+
+However, Site Recovery Manager is not a built-in component of VMware® vCenter™. It is a 
+separate server process with its own database that can co-exist on the same server as vCenter, 
+or Site Recover Manager and vCenter can reside on separate servers. Similarly, both the Site 
+Recovery Manager and vCenter data repositories can be created in a single database, or in 
+separate databases. 
+
+Site Recovery Manager relies on the components below: 
+
+  Replication of virtual machines to a secondary site. Site Recovery Manager requires an 
+
+underlying replication product to copy virtual machine data to a secondary site. Replication 
+can be provided either using built-in vSphere Replication or by a third party, storage-based 
+replication product. vSphere Replication provides cost efficient and simple replication for 
+smaller sites and Tier 2 applications. Storage-based replication is mostly used for business-
+critical environments. 
+
+ 
+
+ 
+
+Integration with a replication product. Site Recovery Manager integrates with the 
+underlying replication product through a storage vendor supplied Storage Replication 
+Adapter (SRA) plug-in. The SRA plug-in enables Site Recovery Manager to determine which 
+virtual machines are being replicated and to coordinate the execution of recovery plans with 
+the replication layer. 
+
+Integration with vCenter Server. Site Recovery Manager requires separate vCenter Server 
+instances at both the Protected Site and Recovery Site. Site Recovery Manager instances are 
+deployed at both sites, and these instances integrate directly with local vCenter Server 
+instances. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 6    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+  Set up of recovery plans. Site Recovery Manager provides an intuitive interface to enable 
+the creation of recovery plans for different failover scenarios. This interface allows users to 
+map production resources to recovery resources. It identifies which virtual machines to 
+protect and their relative boot sequences, as well as which lower priority virtual machines to 
+suspended at the Recovery Site. Users can also include custom scripts and automatically 
+reconfigure IP addresses for their virtual machines. 
+
+Besides providing for automated disaster recovery, Site Recovery Manager can be used in other 
+scenarios, such as to provide for high availability and business continuity, where a “actual” 
+disaster has not occurred. These scenarios include: 
+
+  Planned or unplanned extended power outages. While not considered an actual “disaster”, 
+
+an extended power outage such as in a hospital environment could result in a patient care 
+disaster. In this scenario, Site Recovery Manager can be utilized to quickly and effectively 
+bring business critical services back online. 
+
+  Datacenter evacuation, planned or unplanned. Perhaps, as part of their disaster recovery 
+
+plan, a site requires a planned failover to a secondary site. Using Site Recovery Manager, this 
+failover to a secondary site can first be tested and executed/failed over in a very short 
+period of time. 
+
+  Datacenter migration. By using Site Recovery Manager with host-based replication or array-
+
+based replication, a datacenter migration can be performed with minimal downtime.  
+
+Recovery Testing Overview 
+The functional testing scenario for disaster recovery was performed jointly by MicroStrategy and 
+VMware using the MicroStrategy virtualization solution and related products running on 
+VMware vSphere 5.1 with VMware vCenter Site Recovery Manager 5.1.  
+
+The goals of this functional testing are as follows: 
+
+  Verify that the MicroStrategy solution can fail over to the Recovery Site using Site Recovery 
+
+Manager with array-based replication and vSphere Replication, without corrupting the 
+asynchronous replication.  
+
+  Verify that all “test bubble”, “actual failover” and “failback” testing is performed without 
+
+issue and MicroStrategy solution components fail over successfully.  
+
+The results of the functional testing prove that Site Recovery Manager provides a flexible, high-
+performance, high availability platform for disaster recovery that works well when the 
+MicroStrategy solution runs in a VMware environment. 
+
+The functional testing scenario for the MicroStrategy solution is described below: 
+
+  Testing architecture 
+
+  Testing scenario 
+
+  Testing use cases 
+
+  Test workload generation 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 7    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+  Test site installation 
+
+  Test site configuration 
+
+  Recovery plan execution 
+
+  Testing results and observations 
+
+  Recommendations 
+
+Each of these topics is described in the sections below.  
+
+Testing Architecture 
+
+The MicroStrategy solution architecture with Site Recovery Manager is described in the sections 
+below.  
+
+MicroStrategy Solution Architecture 
+
+The solution architecture that was used to perform disaster recovery testing on MicroStrategy 
+workloads with Site Recovery Manager is shown in the figure below. The MicroStrategy solution 
+architecture used array-based replication and host-based replication across two sites.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 8    
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Figure 1. MicroStrategy solution architecture for testing 
+
+ 
+
+Site Recovery Manager Architecture 
+
+Disaster recovery testing with Site Recovery Manager requires the virtual machines in the 
+secondary site to start by using storage that provides a snapshot of the target logical unit 
+numbers (LUNs). This practice ensures that the test is run against a storage infrastructure that is 
+isolated from the production environment. 
+
+ 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 9    
+
+ MicroStrategy MetadataData WarehouseMicroStrategyIntelligence ServerMicroStrategyWeb/MobileOptional Load BalancerApplication HA ClusterHTTPODBC 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Figure 2. Site Recovery Manager architecture 
+
+ 
+
+The testing architecture is described below:  
+
+1.  The lab environments for the Protected Site and Recovery Site were built in two VMware 
+
+datacenters in Palo Alto, California, with the sites located approximately 12 miles apart. 
+
+  The Protected Site and the Recovery Site each run a VMware vCenter Server in a virtual 
+
+machine. Each vCenter Server runs in a virtual machine in order to take advantage of 
+vSphere advanced features including VMware vSphere vMotion and VMware vSphere 
+High Availability.  
+
+  The Protected Site and Recovery Site are configured using the NetApp® FAS 3020 storage 
+
+platform.  
+
+2.  Site Recovery Manager is installed on independent vCenter servers both at the Protected 
+
+Site and Recovery Site in order to enable communication between these sites. 
+
+3.  All virtual machines were configured using VMware Virtual Machine File System (VMFS) 
+
+storage. 
+
+4.  MicroStrategy application components were registered as machine services to start on boot. 
+
+5.  For data replication, the storage platforms used at both the Protected Site and Recovery Site 
+
+were configured using asynchronous replication mode to replicate all of the related LUNs 
+from the primary storage to secondary storage on the NetApp storage platform. Both array-
+based and host-based replication was tested: 
+
+  Asynchronous replication is supported with Site Recovery Manager, although it might 
+
+result in minimal data loss during failover. (Contact the storage vendor for detailed 
+information.)  
+
+  Synchronous solution with Site Recovery Manager is supported, although it was not 
+
+included in this testing. Synchronous replication is the preferred storage area network 
+(SAN) replication strategy for business critical data because there is negligible risk of 
+data loss in the event of failover.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 0   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+6.  Connectivity between MicroStrategy application components were specified with Domain 
+
+Name System (DNS) names instead of IPs. DNS is set up with its routing capability enabled.  
+
+7.  After the MicroStrategy server at the Protected Site fails over to the Recovery Site, the new 
+
+IP address is automatically registered in DNS.  
+
+8.  Once the MicroStrategy server is up and running, communication is established through a 
+
+fully qualified domain name (FQDN). 
+
+9.  MicroStrategy Web and Mobile were configured to automatically reconnect with the 
+
+Intelligence Server once either service is restarted. 
+
+10.  MicroStrategy related services (database, MicroStrategy Intelligence Server, web server 
+
+hosting MicroStrategy Web and Mobile) were configured to start on machine boot. 
+
+For more information, see the “Resources” section near the end of this paper. 
+
+Array-based Replication 
+
+An array-based replication setup requires one or more storage arrays at the Protected Site to 
+replicate data to peer arrays at the Recovery Site. Storage replication adapters (SRAs) are used to 
+integrate Site Recovery Manager with a wide variety of vendor storage arrays. To use array-
+based replication with Site Recovery Manager, the replication needs to be configured first, and 
+then Site Recovery Manager can be configured to use it. 
+
+Some of the properties of array-based replication include: 
+
+  Use the same storage solution, at least the same brand for other vendors. With EMC, use 
+
+Recoverpoint for heterogeneous arrays. 
+
+  Replicate the data on the centralized storage solution (SAN).  
+
+  An unlimited number of virtual machines can be replicated depending on the capacity, 
+
+distance between the locations, and available bandwidth. 
+
+Figure 4: Array-based replication 
+
+ 
+
+ 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 1   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Host-based Replication 
+
+Site Recovery Manager supports host-based replication, which eliminates the need to maintain 
+an identical storage array at the Recovery Site. It enables the use of low cost, direct-attached 
+storage (DAS) for disaster recovery purposes, and it allows for more granular, virtual machine 
+level replication.  
+
+vSphere Replication is a feature of Site Recovery Manager that enables disaster recovery to 
+protect individual virtual machines, without requiring array-based replication. This host-based 
+replication feature is licensed as part of the Site Recovery Manager product. 
+
+vSphere Replication enables these use cases: 
+
+  Allows per virtual machine replication for Site Recovery Manager.  
+
+  Can use Site Recovery Manager without requiring array-based replication.  
+
+  Enables virtual machine replication between heterogeneous arrays. 
+
+In addition, Site Recovery Manager can be deployed to protect virtual machines, regardless of 
+which Hardware Compatibility List (HCL) supported storage is used at Protected Site or the 
+Recovery Site. 
+
+Figure 3: Host-based replication 
+
+ 
+Some of the differences between array-based replication and vSphere Replication (host-based 
+replication) are described in the table below. 
+
+ 
+
+Array-based replication versus Host-based replication com parison 
+
+Array-based replication 
+
+Host-based replication 
+
+  Replication is using storage layer. 
+
+  Replication is using vSphere/hypervisor layer. 
+
+  Data on the centralized storage solution only 
+
+  Replication of local or direct-attached storage is 
+
+can be replicated. 
+
+possible. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 2   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Array-based replication 
+
+Host-based replication 
+
+  Unlimited number of virtual machines can be 
+
+  A maximum of 500 virtual machines can be 
+
+replicated, depending on the capacity, 
+distance between the locations, and available 
+bandwidth. 
+
+replicated. 
+
+  Replication is configured per LUN/VMFS or 
+
+  Replication can be configured per virtual 
+
+NFS volume. 
+
+machine. 
+
+  Can replicate virtual machine templates. 
+
+  Cannot replicate virtual machine templates. 
+
+ 
+For more information about vSphere Replication, see the “Resources” section near the end of 
+this paper.  
+
+Storage Replication Adapter 
+
+With Site Recovery Manager, disaster recovery becomes an integrated part of managing the 
+VMware virtual infrastructure. The Storage Replication Adapter (SRA) is a vendor-supplied plug-
+in that is installed on the Site Recovery Manager server to manage communication with the 
+storage platform. The SRA for the NetApp storage platform used in this testing scenario is tightly 
+integrated with vCenter, vSphere, and NetApp storage replication technologies, as described 
+below.  
+
+For asynchronous testing, the NetApp SRA plugin was installed on the vCenter servers at the 
+Protected Site and Recovery Site to facilitate the Site Recovery Manager testing workflow, and to 
+create a clone of the replicated LUNs to synchronize data between the two sites. For this testing, 
+the schedule for replicating changed or updated data from primary storage to secondary storage 
+device was every 60 seconds. 
+
+SAN Storage and Data Replication 
+
+For this testing, Site Recovery Manager was used with the NetApp FAS 3020 storage platform 
+and NetApp® SnapMirror® 1.4.3 technology using the SRA for NetApp, as described below. Site 
+Recovery Manager has been tested and deployed in a variety of storage area network (SAN) 
+environments.  
+
+Site Recovery Manager works in conjunction with NetApp SnapMirror array-based replication 
+technology through the NetApp Storage Replication Adapter(SRA). NetApp SnapMirror is easily 
+configured using NetApp® ONTAPI® CLI or FilerView. 
+
+For a complete list of storage platforms that are compatible with VMware, see the “Resources” 
+section near the end of this paper.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 3   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Testing Scenario 
+
+In this scenario, the testing goals are to verify that Site Recovery Manager can enable disaster 
+recovery in deployments that run in a VMware environment. These goals include:  
+
+  Demonstrate that the MicroStrategy solution can run successfully with Site Recovery 
+
+Manager to enable disaster recovery in deployments that run in VMware vSphere 5.1:  
+
+  Confirm that the MicroStrategy server can fail over to the Recovery Site using Site 
+
+Recovery Manager with asynchronous replication, and maintain application functionality 
+without corrupting the in-use databases.  
+
+Site Recovery Manager also supports a synchronous solution, although it was not 
+included in this approach.  
+
+  Confirm that both the users and the MicroStrategy servers can regain connectivity once 
+
+these applications are running at the Recovery Site. 
+
+The testing scenario was performed as described below: 
+
+ 
+
+For Site Recovery Manager, as virtual machines at the Protected Site are shut down, virtual 
+machines at the Recovery Site start up and use data replicated from the Protected Site to 
+provide the same services.  
+
+In this scenario:  
+
+  The two datacenters are not synchronized in real time (asynchronous replication), 
+
+although the lag time for replication is just a few seconds. Failover and recovery require 
+only a few minutes. 
+
+  Site Recovery Manager controls the transfer of services by using a recovery plan that 
+
+specifies the order in which virtual machines shut down and start up, compute 
+resources are allocated, and network access is given.  
+
+ 
+
+It enables fast and accurate recovery by maintaining duplicate copies automatically 
+when data spanning multiple volumes and storage systems is replicated across long 
+distances. 
+
+Site Recovery Manager enables the testing of recovery plans in a way that does not disrupt the 
+ongoing operations at either site. For example, Site Recovery Manager can: 
+
+  Create a temporary copy of the replicated data to test the failover process and ensure that 
+
+the secondary image is consistent and usable.  
+
+  Rely on independent vCenter servers both at the Protected Site and Recovery Site to 
+
+facilitate the failover process.  
+
+For more information, see the “Resources” section near the end of this paper. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 4   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Testing Use Cases  
+
+The tests cases that were executed during this testing scenario include: 
+
+1.  Use MicroStrategy Integrity Manager to run a set of reports and documents and compare 
+
+the results against an established known-good baseline. 
+
+2.  Connect to the following MicroStrategy components to verify correct execution of a set of 
+
+reports: 
+
+  MicroStrategy Intelligence Server 
+
+  MicroStrategy Web 
+
+  MicroStrategy Mobile 
+
+3.  Use MicroStrategy Command Manager to trigger the execution of a set of email 
+
+subscriptions and verify correct delivery. 
+
+4.  Connect to MicroStrategy Mobile using an Apple iOS-based device and verify browsing and 
+
+report/document execution capabilities. 
+
+5.  Connect to MicroStrategy Web and verify correct operation of data input and write-back 
+
+features. 
+
+6.  Verify correct reformation of a MicroStrategy Intelligence Server cluster. 
+
+7.  Verify correct reformation of the MicroStrategy Health Center topology. 
+
+Test Workload Generation 
+
+The testing of MicroStrategy with Site Recovery Manager was performed using MicroStrategy 
+Integrity Manager in Baseline versus Project mode. The MicroStrategy Tutorial project was used 
+for the workload. Integrity Manager was configured to compare SQL and grid results returned 
+for reports, and execution results for documents. 
+
+Project 
+
+Number of reports 
+
+Number of documents 
+
+MicroStrategy Tutorial 
+
+660 
+
+143 
+
+ 
+
+Test Site Installation 
+
+This section provides a high level overview of Site Recovery Manager installation and 
+configuration. For detailed configuration information, see “Appendix A” later in this paper.  
+
+1. 
+
+Install Site Recovery Manager server at the Protected Site and Recovery Site. In this test 
+scenario, Site Recovery Manager was installed on a separate virtual machine.  
+
+2. 
+
+Install the Site Recovery Manager plug-in to vCenter: 
+
+  When array-based replication is used, install the SRAs on the Site Recovery Manager 
+
+server at each site, as described below. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 5   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+  When host-based replication is used, configure the replication at host level, as described 
+
+below. 
+
+The hardware and software configuration for array-based replication and host-based replication 
+is described in the sections below. 
+
+Array-based Replication 
+
+Configuring the solution architecture for array-based replication includes these steps: 
+
+1.  Configure storage arrays at the primary and secondary sites. 
+
+2.  Create LUNs on the Protected Site storage and expose them to Protected Site VMware® ESX® 
+
+host server.  
+
+3.  Configure storage replication between primary and secondary site storage arrays.  
+
+4. 
+
+5. 
+
+Install vCenter Server 5.1 on two Windows virtual machines. These virtual machines serve as 
+the Protected Site and Recovery Site vCenter Server instances. 
+
+Install and configure Site Recovery Manager on the Protected Site and Recovery Site vCenter 
+Server instances. See the ”Test Site Configuration” section for detailed information.  
+
+Site Recovery Manager can be installed as a separate standalone virtual machine or use the 
+same database server to support the vCenter database instance and the Site Recovery 
+Manager database instance. 
+
+6. 
+
+Install MicroStrategy virtual machines on the Protected Site. 
+
+After installation, the Site Recovery Manager plug-in is available and can be accessed via the 
+vSphere or VMware Infrastructure (VI) Client.  
+
+For more information on installation and configuration, see the “Resources” section near the 
+end of this paper. 
+
+Host Based Replication 
+
+Configuring the solution architecture for host-based replication includes these steps: 
+
+1.  Configure host-based replication between Protected Site and Recovery Site.  
+
+2.  Configure vCenter Server 5.1. These virtual machines serve as Protected Site and Recovery 
+
+Site vCenter Server instances. 
+
+3. 
+
+Install MicroStrategy virtual machines on the Protected Site. 
+
+For this testing, Site Recovery Manager enables the VMware environment at the Protected Site 
+and Recovery Site to communicate. See the “Test Site Configuration” section for detailed 
+information. 
+
+For more about Site Recovery Manager installation and configuration, see the “Resources” 
+section near the end of this paper. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 6   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Test Site Configuration 
+
+For this solution architecture, the Protected Site and the Recovery Site are configured as 
+described in the sections below. 
+
+Protected Site 
+
+Configuring the Protected Site includes these steps: 
+
+1.  Configure the connection between the Site Recovery Manager servers at the Protected Site 
+
+and Recovery Site. 
+
+2. 
+
+Install the SRAs for NetApp FAS 3020 1.4.3 and configure ArrayManager using Site Recovery 
+Manager. 
+
+3.  Configure the array-based or the hosted-based replication. 
+
+4.  Configure the inventory preferences that provide the mappings between compute resources 
+
+and virtual machine folders. Configure the networks on the Protected Site and their 
+counterparts on the Recovery Site.  
+
+  To configure the mappings, go to the Site Recovery Manager, Administration Guide refer 
+
+to “configure inventory preferences”) at: 
+https://pubs.vmware.com/srm-51/topic/com.vmware.ICbase/PDF/srm-admin-5-1.pdf 
+
+5.  Create a Protection Group named MicroStrategy-Protection for the virtual machines at the 
+
+Protected Site. 
+
+Site Recovery Manager can be used to add virtual machines that share common resources to 
+Protection Groups at the Protected Site. Protection Groups can be configured into recovery 
+plans for restoration at the Recovery Site. 
+
+Recovery Site 
+
+Configuring the Recovery Site includes these steps: 
+
+1.  Create a recovery plan named MicroStrategy-Recovery. 
+
+2. 
+
+In the recovery plan, enable the option to suspend non-critical virtual machines that are 
+running at the Recovery Site in the event of a disaster to maximize the available computing 
+resources.  
+
+Typically, the hardware resources at the Recovery Site are used to host non-critical virtual 
+machines during normal operations such as Test and Dev instances. 
+
+3.  Prioritize the start order of the virtual machines as required. Create a customization 
+
+specification for the virtual machines to enable them to start up on the Recovery Site using a 
+different subnet than the Protected Site.  
+
+Do not create a custom specification and configure the virtual machines to start up in a 
+private test “bubble” network using the same networking parameters as the Protected Site. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 7   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+4.  On as-needed basis, create a post power-on command to execute the script on the virtual 
+
+machines after failover. 
+
+Recovery Plan Execution 
+
+Execute the recovery plan using Site Recovery Manager includes these steps: 
+
+1.  Break the NetApp SnapMirror relationships between the Protected Site and Recovery Site. 
+
+2.  Map the LUNs to the existing NetApp snapshots.  
+
+3.  Trigger the disaster recovery ESX hosts to rescan and detect the storage. 
+
+4.  Suspend any non-critical virtual machines at the Recovery site such as Test or Dev instances, 
+
+in order to maximize the available computing resources. 
+
+5.  Reconfigure the virtual machines as defined for the network at the Recovery Site. 
+
+6.  Power on the virtual machines in the order that was defined in the recovery plan. 
+
+7.  After boot up, the MicroStrategy server automatically receives the new IP address that was 
+
+customized  during the initial configuration steps. 
+
+  For more information, go to the Site Recovery Manager Administration Guide (refer to 
+
+“IP address mapping ”) at: 
+https://pubs.vmware.com/srm-51/topic/com.vmware.ICbase/PDF/srm-admin-5-1.pdf 
+
+Testing Results and Observations 
+
+The testing results demonstrate that Site Recovery Manager provides a flexible, high 
+performance, high availability platform for disaster recovery. It is fully compatible with 
+MicroStrategy solutions that run in a VMware virtualization environment. As a result of this 
+testing, MicroStrategy supports using Site Recovery Manager with the MicroStrategy Business 
+Intelligence Suite.  
+
+The testing exercised the MicroStrategy server using a test workload with forced failover. During 
+the failover process, the server was not responsive until it was fully up and running at the 
+Recovery Site. After failover, the MicroStrategy software was tested on the virtual machine at 
+the Recovery Site. 
+
+After the testing of Site Recovery Manager was completed, it was observed that:  
+
+  All of the virtual machines were cleanly powered on at the Recovery Site. 
+
+  The server responded to its name properly at the new IP address location.  
+
+  When the MicroStrategy server was fully online, users were able to connect to the server at 
+
+the new location without issue. 
+
+  All of the testing on MicroStrategy software passed without issue.  
+
+  There were no errors to indicate any significant data loss or data contamination.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 8   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+The testing included running workloads in an asynchronous configuration only. In this scenario, 
+the potential for data loss was minimal, and it could be anticipated. However, data loss can be 
+minimized within the NetApp array by reducing the synchronization window schedule and/or by 
+using other types of complementary data protection technologies. 
+
+When avoiding data loss is considered a significant issue, the recovery plan might require a 
+synchronous solution. 
+
+Using the MicroStrategy virtualization solution with Site Recovery Manager provides these 
+advantages:  
+
+  Gets you back in business rapidly and allows customers to avoid loss by expediting failover 
+
+and recovery in alignment with predefined RTOs and RPOs.  
+
+  Ensures that business critical applications are protected using built-in disaster recovery 
+
+features that are highly and continually available, redundant, and fully recoverable. 
+
+  Accelerates disaster recovery by minimizing its inherent risks and removing the causes for  
+
+downtime, such as by eliminating manual recovery steps.  
+
+  Delivers advanced capabilities for disaster recovery management, non-disruptive testing, 
+
+and automated failover, especially with long distance replication.  
+
+  Enables automated failover across geographically-dispersed locations. 
+
+  Requires minimal administration and minimal additional hardware. 
+
+  Enables customers to expand protection to other important systems and applications. 
+
+Recommendations  
+
+Based on the testing results, the recommendations for achieving the best performance in 
+implementing the MicroStrategy solution using Site Recovery Manager are described below.  
+
+For more information about using Site Recovery Manager, see the “Resources” section near the 
+end of this paper.  
+
+1. 
+
+Install the Site Recovery Manager database close to the Site Recovery Manager server to 
+reduce the effect of round trips on recovery time performance. Use the same database 
+server to support the vCenter database instance and the Site Recovery Manager database 
+instance.  
+
+2.  Enable faster testing and actual recovery by grouping virtual machines under fewer 
+
+Protection Groups. Ensure that the virtual machines have no constraints preventing them 
+from being added to similar Protection Groups.  
+
+3.  Enable VMware vSphere® Distributed Resource Scheduler™ (DRS) at the Recovery Site. 
+
+Migrations might occur as DRS tries to load balance the cluster during recovery.  
+
+4.  Enable VMware vSphere® Distributed Power Management™ (DPM) on Recovery Site clusters 
+
+when the Recovery Site hosts are in a Standby state. This ensures that adequate physical 
+resources are available at the Recovery Site. More hosts lead to increased concurrency for 
+recovering virtual machines and enabling shorter recovery times.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 1 9   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+If DPM is not enabled and the hosts are in a standby state, bring the hosts out of standby 
+mode manually. Drag and drop shadow virtual machines on them.  
+
+5.  Chart the dependencies between virtual machines. Define recovery priorities and assign 
+
+virtual machines to appropriate Protection Groups to reduce overall failover times. Ensure 
+that only a certain number of required virtual machines are assigned a high priority. High 
+priority Protection Groups power up virtual machines sequentially. In contrast, medium and 
+low Protection Groups power up virtual machines in parallel.  
+
+6.  As an alternative to placing virtual machines in a high priority group, separate all of the 
+
+virtual machines to be recovered into two logical groups: 
+
+  Group1 with level 1 virtual machines – Place Group1 virtual machines in the normal 
+
+priority group. 
+
+  Group2 with level 2 virtual machines (dependent upon virtual machines in Group1) – 
+
+Place Group2 virtual machines in the low priority group within the same plan. 
+
+This maintains dependency across both of these logical groups and reduces the recovery 
+time by introducing more concurrency for these Protection Groups. Maintain dependency 
+between priority groups. There is no dependency across virtual machines within a single 
+priority group.  
+
+7. 
+
+It is strongly recommended that VMware Tools be installed in all protected virtual machines 
+in order to accurately acquire their heartbeats and network change notifications. 
+
+8.  Specify a non-replicated datastore for swap files to speed up replication between the two 
+sites and remote calls to vCenter Server, and to avoid wasting network bandwidth. During 
+recovery, delete swap files for all virtual machines in order to speed up the recovery. 
+
+9.  Make sure any internal script or call-out prompt does not block recovery indefinitely.  
+
+10.  VMware recommends a minimum of two ESX hosts at the Recovery Site. Although this is not 
+
+a requirement, having two ESX hosts ensures availability for VMware services, such as for 
+VMware vSphere vMotion and High Availability, and it improves the recovery time.  
+
+11.  Site Recovery Manager relies on the capabilities of the storage platform for failover. 
+
+Recovery time can vary depending on the SAN vendor, replication type, and other factors. It 
+can take from 5 to 10 minutes to make the changes to the back-end storage. Follow VMware 
+best practices for Site Recovery Manager, along with the SAN vendor’s best practices, to 
+ensure an optimal recovery time.  
+
+vSphere vMotion and High Availability Testing 
+This testing scenario demonstrates that the VMware advanced features, including VMware 
+vSphere vMotion and High Availability, can increase IT agility and improve the operational 
+performance of the MicroStrategy solution. vSphere vMotion and High Availability are fully 
+compatible with MicroStrategy deployments that run in a virtual environment. As a result of this 
+testing, MicroStrategy supports using vMotion and High Availability with MicroStrategy solutions 
+that run in a virtualization environment.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 0   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+vMotion 
+
+VMware vSphere vMotion keeps your IT environment up and running, providing the flexibility 
+and availability needed to meet the increasing demands of the business, with no end user 
+impact. vMotion enables the live migration of running virtual machines from one physical server 
+to another with zero downtime, continuous service availability, and complete transaction 
+integrity. This capability makes hardware maintenance possible at any time and vMotion does 
+not require clustering or redundant servers. In addition, vMotion can move online workloads 
+from one ESX Server host machine to another in order to maintain service levels and 
+performance goals. 
+
+Figure 3. VMw are vSphere vMotion 
+
+ 
+
+Testing Results 
+
+vMotion was successfully tested with different components of the MicroStrategy Business 
+Intelligence platform, including Intelligence Server, Mobile, and Web. Once the vMotion testing 
+completed, it was verified to confirm that all MicroStrategy components successfully executed 
+reports in regards to the MicroStrategy components. In addition, MicroStrategy Command 
+Manager was tested to trigger the execution of a set of email subscriptions and verify correct 
+delivery. 
+
+High Availability 
+
+VMware vSphere High Availability can be enabled with many applications running in virtual 
+machines require, independent of its operating system or underlying hardware configuration, 
+and the application running on it. High Availability provides uniform, cost effective failover 
+protection from hardware and operating system failures in a virtualized IT environment by:  
+
+  Monitoring virtual machines to detect operating system and hardware failures.  
+
+  Restarting virtual machines on other physical servers in the resource pool, without manual 
+
+intervention, when a server failure is detected. 
+
+  Protecting applications from operating system failures by automatically restarting virtual 
+
+machines when an operating system failure is detected. 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 1   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Figure 5. VMw are vSphere High Availability  
+
+ 
+
+Testing Results 
+
+This failover testing was performed using the MicroStrategy Intelligence Server and Mobile 
+server with High Availability and these tests were completed successfully. High Availability 
+failover was performed after an ESX host failure was detected. The MicroStrategy virtual 
+machine was restarted on a different ESX host in the cluster, without human intervention.  
+
+All of the services on the virtual machine were started automatically and no failures were 
+observed. After High Availability was triggered, the MicroStrategy virtual machine rebooted on 
+the other host in the cluster in minutes. All application services started automatically without 
+issues.  
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 2   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Conclusion 
+VMware vCenter Site Recovery Manager provides for effective and automated disaster recovery 
+in a MicroStrategy solution that run in a virtualization environment. For this testing, a multi-tier 
+MicroStrategy application was deployed on VMware virtual infrastructure.  
+
+By using Site Recovery Manager for disaster recovery, the MicroStrategy deployment gained 
+these advantages: 
+
+  Accelerates recovery for the virtual environment through automation. The recovery of 
+
+MicroStrategy virtual machines into a different subnet on the secondary site is fully 
+automated. 
+
+  Ensures reliable recovery by enabling non-disruptive testing. Recovery plan testing can be 
+
+conducted as many times as required to satisfy auditing requirements. 
+
+ 
+
+Simplifies recovery by eliminating complex manual recovery steps and centralizing recovery 
+plan management. 
+
+  Provides for the successful testing of the failback scenario both with array-based and host-
+
+based replication. 
+
+When the MicroStrategy solution runs in the VMware vSphere virtual environment, the solution 
+provides for IT agility, including disaster recovery capabilities. This paper described each of the 
+functional testing scenarios that were performed using MicroStrategy with Site Recovery 
+Manager. In addition to disaster recovery, the MicroStrategy solution was tested with VMware 
+vSphere vMotion and High Availability to ensure that is delivers the best operational 
+performance.  
+
+For each scenario, all of the tests were performed without issue. The testing results for each 
+scenario demonstrate that the MicroStrategy components provided the functionality needed to 
+work successfully in a virtualization environment that is powered by VMware. 
+
+In a disaster, Site Recovery Manager can be used to support di saster recovery for business 
+critical applications running in a VMware environment. For this testing, Site Recovery Manager 
+enables the rapid recovery of resources within defined RTO and RPO timeframes using an 
+asynchronous solution. The testing demonstrates that Site Recovery Manager works well with 
+MicroStrategy software solutions.  
+
+Note that Site Recovery Manager also supports a synchronous solution, although it was not 
+included in this testing. Synchronous replication is the preferred SAN replication strategy for 
+business critical data because there is negligible risk of data loss in the event of failover.   
+
+ 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 3   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Appendix A: Test System Configuration 
+Appendix A describes the configuration of the solution architecture for MicroStrategy testing 
+with VMware, as described in this paper. This includes the hardware and host configuration, 
+installed software, and virtual machine configuration, as shown in the tables below.  
+
+Hardware and Host Configuration 
+
+Table 1 describes the configuration of the physical hardware including VMware ESX® host 
+servers and storage. 
+
+Table 1. Hardw are configuration for solution architecture 
+
+Hardware 
+
+Servers 
+
+Configuration 
+
+  Protected site: 2 HP® Proliant blade server, 480c G1 servers  
+
+Each server is equipped with: 
+
+ 
+
+ 
+
+3 GHz dual quad-core Intel Xeon (R) E5450 
+
+48 GB RAM 
+
+  Recovery site: 1 Hewlett-Packard Proliant blade server, 480c 
+
+G1 server  
+
+Each server is equipped with: 
+
+  2.3 GHz dual quad-core Xeon (R) E5410 
+
+  32 GB RAM 
+
+Storage platform 
+(Protected Site and Recovery Site) 
+
+  1 NetApp FAS 3020 with SnapMirror 1.4.3, 300 GB LUN  
+
+(each site)  
+
+Installed Software 
+
+Table 2 lists the vendor software installed for this solution. 
+
+Table 2. Softw are for solution architecture 
+
+Software Provider 
+
+Software Configuration 
+
+VMware  
+
+Microsoft 
+
+Oracle 
+
+  VMware vSphere 5.1, vCenter Server 5.1, ESX 5.1, Site Recovery Manager 5.1 
+
+  Microsoft® SQL Server™ 2008 R2, Enterprise Edition 
+
+  Oracle® Database 11g R2 
+
+MicroStrategy  
+
+  MicroStrategy 9.3.0 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 4   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Virtual Machine Configuration 
+
+Table 3 describes the configuration of virtual machines running on ESX host servers that were 
+used to implement this solution.  
+
+Table 3. Virtual m achines in solution architecture 
+
+Virtual Machine 
+
+Hardware Configuration  
+
+MicroStrategy Web/Mobile 
+software 
+
+ 
+
+Software configuration 
+
+  Red Hat® Enterprise Linux® 6.3 
+
+  MicroStrategy 9.3.0 
+
+  Oracle® Java Development Kit (JDK) 1.6.0 R35 
+
+  Apache Tomcat 7.0.30 
+
+  Hardware configuration: 
+
+  1 vCPU 
+
+  4 GB memory 
+
+  1 Ethernet card 
+
+  40 GB x 1 storage 
+
+  25GB VMDK only 
+
+MicroStrategy Intelligence server 
+
+ 
+
+Software configuration 
+
+  Red Hat Enterprise Linux 6.3 
+
+  MicroStrategy 9.3.0 
+
+  Hardware configuration: 
+
+  2 vCPUs 
+
+  4 GB memory 
+
+  1 Ethernet card 
+
+  24 GB x 1 storage 
+
+  25 GB VMDK only 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 5   
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Virtual Machine 
+
+Hardware Configuration  
+
+Database server  
+(Microsoft SQL Server) 
+
+ 
+
+Software configuration: 
+
+  Microsoft SQL Server 2008 R2, Enterprise Edition  
+
+Database server  
+(Oracle Database) 
+
+  Hardware configuration: 
+
+  2 vCPUs 
+
+  4 GB memory 
+
+  1 Ethernet card 
+
+  40 GB x 1 storage  
+
+  40 GB VMDK only 
+
+ 
+
+Software configuration: 
+
+  Red Hat Enterprise Linux 6.3 
+
+  Oracle Database 11g R2 
+
+  Hardware configuration: 
+
+  2 vCPUs 
+
+  4 GB memory 
+
+  1 Ethernet card 
+
+  40 GB x 1 storage  
+
+  25 GB VMDK only 
+
+ 
+
+ 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 6   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Resources 
+For more information about VMware and MicroStrategy products and the storage platform that 
+is discussed in this paper, view the links and references lists in the sections below.  
+
+VMware vCenter Site Recovery Manager 
+
+ 
+
+vCenter Site Recovery Manager: 
+http://www.vmware.com/products/site-recovery-manager/  
+
+  VMware vCenter Site Recovery Manager Documentation: 
+http://www.vmware.com/support/pubs/srm_pubs.html 
+
+  What’s New in VMware vCenter Site Recovery Manager 5.0: 
+
+http://www.vmware.com/files/pdf/techpaper/Whats-New-VMware-vCenter-Site-Recovery-
+Manager-50-Technical-Whitepaper.pdf  
+
+vSphere Replication FAQ (2005776): 
+http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&
+externalId=2005776  
+
+Site Recovery Manager Installation and Configuration:  
+http://pubs.vmware.com/srm-51/topic/com.vmware.ICbase/PDF/srm-install-config-5-1.pdf   
+
+Site Recovery Manager Administration Guide: 
+http://www.vmware.com/pdf/srm-admin.pdf   
+
+ 
+
+ 
+
+ 
+
+VMware References 
+
+VMware vSphere 
+
+  VMware vSphere Documentation: 
+
+http://www.vmware.com/support/pubs/vsphere-esxi-vcenter-server-pubs.html  
+
+  What’s New in VMware vSphere 5.1 – Performance: 
+
+http://www.vmware.com/files/pdf/techpaper/Whats-New-VMware-vSphere-51-
+Performance-Technical-Whitepaper.pdf  
+
+  Performance Best Practices for VMware vSphere 5.1: 
+
+http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.1.pdf   
+
+ 
+
+Featured VMware Documentation Sets: 
+http://www.vmware.com/support/pubs/  
+
+  VMware Licensing Help Center: 
+
+http://www.vmware.com/support/licensing/ 
+
+VMware Community and TV  
+
+  VMware Community, VMware Technology Network (VMTN): 
+
+https://communities.vmware.com/community/vmtn    
+
+  VMware Best Practices (see VIOPS links): 
+
+https://communities.vmware.com/community/vmtn/bestpractices   
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 7   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+  VMware Community, VMware Knowledge Base: 
+
+http://communities.vmware.com/community/vmtn/resources/knowledgebase   
+
+  VMware Support Insider: 
+
+http://blogs.vmware.com/kb/   
+
+  VMware TV: 
+
+http://www.youtube.com/user/vmwaretv   
+
+  VMworld TV: 
+
+http://www.youtube.com/user/VMworldTV   
+
+  VMware KBTV (external): 
+
+http://www.youtube.com/user/VMwareKB  
+
+MicroStrategy 
+
+  MicroStrategy Home Site: 
+
+http://www.microstrategy.com/  
+
+  MicroStrategy Analytics Platform: 
+
+http://www.microstrategy.com/platforms/analytics  
+
+  The New MicroStrategy Analytics Platform Is Truly a “Game Changer”: 
+
+http://www.microstrategy.com/blog/october-2013/the-new-microstrategy-analytics-
+platform-is-truly-a-game-changer”    
+
+Storage Platforms 
+
+  VMware vCenter Site Recovery Manager Storage Partner Compatibility MatrixSRAs for SRM 
+
+5.xSRAs for SRM 4.x: 
+http://www.vmware.com/support/srm/srm-storage-partners.html 
+
+ 
+
+Setting up VMware vCenter Site Recovery Manager with Partner Storage Arrays (1014610): 
+http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&
+externalId=1014610   
+
+  VMware Compatibility Guide (for a complete list of compatible storage devices): 
+
+http://www.vmware.com/pdf/vi35_san_guide.pdf  
+
+ 
+
+ 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 8   
+
+ 
+
+Testing MicroStrategy with VMware vCenter™ SRM 5.1,  and vSphere™ vMotion and HA 
+
+Acknowledgements 
+The following individuals contributed to the creation of this paper: 
+
+  Balayya Kamanboina, ISV Validation Engineer, VMware 
+
+  Brian Kane, Principal Systems Engineer, MicroStrategy 
+
+ 
+
+Jon Catanzano, Technical Writer, Consultant 
+
+ 
+
+ 
+
+D E PL O YM EN T   AN D   T EC H N I C AL   C O N S I D ER AT I O N S   G U I D E   / 2 9   
+
+

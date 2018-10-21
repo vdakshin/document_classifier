@@ -1,0 +1,876 @@
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+Philips IntelliSpace Critical Care and Anesthesia 
+on VMware® vSphere 5.1 
+
+Jul 2013 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E  
+
+ 
+
+Philips ICCA on VMware vSphere  
+
+Table of Contents 
+
+Introduction ....................................................................................................................................... 3 
+VMware and Philips ICCA Overview ................................................................................................ 3 
+ICCA Overview ............................................................................................................................ 3 
+VMware vSphere or VMware Virtual Infrastructure ..................................................................... 3 
+ICCA Architecture and Deployment Strategy ................................................................................... 5 
+Testing Methodology and Overview ............................................................................................ 6 
+Hardware and Software Configuration ......................................................................................... 6 
+Virtual Machine Configuration ...................................................................................................... 8 
+Workload Used ............................................................................................................................ 9 
+Results Observed ........................................................................................................................ 9 
+Additional Testing ...................................................................................................................... 13 
+Deployment Best Practices ............................................................................................................ 16 
+Technical Support .......................................................................................................................... 17 
+Conclusions .................................................................................................................................... 17 
+Resources ...................................................................................................................................... 17 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / I I    
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Introduction 
+
+This document provides direction to those interested in running Philips IntelliSpace Critical Care and 
+Anesthesia (ICCA) on VMware® vSphere™ 5.1. It provides basic guidance on the architecture of Philips 
+ICCA, as well as the value of utilizing the VMware platform.  The results of recent testing done jointly by 
+VMware and Philips are covered, where the performance and functionality of IntelliSpace Critical Care and 
+Anesthesia on VMware virtual infrastructure are characterized. Finally, some best practices for utilizing the 
+two product sets together in your datacenter are outlined.   
+
+VMware and Philips ICCA Overview 
+
+ICCA Overview 
+
+ICCA offers clinical decision and clinical workflow support for critical care environments, intra-operative 
+anesthesia, and the anesthesia-critical care continuum.  Integrating information from patient vital sign 
+monitors and ancillary bedside devices, hospital systems such as CPOE and laboratory, and clinical 
+documentation, ICCA uses advisories and evidence-based medicine bundles to provide information to 
+clinicians to save and improve patients’ lives.  The user interface is designed by clinicians to ease the 
+technology adoption process, improve patient safety, and increase hospital efficiency.  In addition ICCA 
+provides a powerful Data Analysis and Reporting (DAR) database and reporting toolset to provide clarity and 
+improve efficiency in the critical care and anesthesia environments. 
+
+VMware vSphere or VMware Virtual Infrastructure 
+
+VMware’s leading virtualization solutions provide multiple benefits to IT administrators and users. VMware 
+virtualization creates a layer of abstraction between the resources required by an application and operating 
+system, and the underlying hardware that provides those resources. A summary of the value of this 
+abstraction layer includes the following: 
+
+  Consolidation: VMware technology allows multiple application servers to be consolidated onto one 
+
+physical server, with little or no decrease in overall performance.   
+
+  Ease of Provisioning: VMware virtualization encapsulates an application into an image that can be 
+
+duplicated or moved, greatly reducing the cost of application provisioning and deployment. 
+
+  Manageability: Virtual machines may be moved from server to server with no downtime using VMware® 
+
+VMotion™, which simplifies common operations like hardware maintenance and reduces planned 
+downtime.   
+
+  Availability: Unplanned downtime can be reduced and higher service levels can be provided to an 
+
+application. VMware® High Availability (HA) ensures that in the case of an unplanned hardware failure, 
+any affected virtual machines are restarted on another host in a VMware cluster.   
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+ 
+
+Figure 1.  VMware vSphere Virtual Infrastructure 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+ICCA Architecture and Deployment Strategy 
+
+The ICCA product is a fully scalable enterprise application.  The architecture consists of one Primary server, 
+1 –n Charting servers, 1 – n Bedside Device servers, 1- n Interface servers and one Reporting server. The 
+application is deployed across a single domain.   
+
+ 
+The conceptual diagram below illustrates a scaled out ICCA deployment. Please consult the ‘Philips ICCA IT 
+Specification’ for specific details. 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Testing Process and Results 
+To characterize the performance of Philips ICCA on VMware Infrastructure performance tests were carried 
+out jointly by VMware and Philips. The configuration tested and the results are summarized below. 
+
+Testing Methodology and Overview  
+
+The primary objectives of testing were to determine Philips ICCA performance characteristics and show that 
+virtualized Philips ICCA performs similar to a physical Philips ICCA deployment. Testing also validated the 
+operation of VMware features including vMotion, VMware DRS and VMware HA with Philips ICCA. 
+
+Hardware and Software Configuration 
+
+The following diagram provides details about the setup of ESXi hosts and virtual machines used to perform 
+the Philips ICCA tests described earlier. 
+
+ 
+
+ 
+
+                              Figure 3. Hardware Configuration for Philips ICCA Testing  
+
+  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Hardware and System Host Configuration 
+
+The following table describes the configuration of ESXi host servers and storage in the Philips ICCA test 
+configurations. 
+
+                                                      
+
+Table 1. ESXi Host Hardware 
+
+H A R D W A R E  
+
+Server 
+
+Storage 
+  
+  
+  
+  
+
+C O N F I G U R A T I O N    
+
+Four HP Proliant BL 460c G7 servers. Each server is 
+equipped with: 
+
+  2.67 GHz dual Hex-core Intel Xeon E5650                                                                                                                                    
+
+  64 GB RAM 
+
+EMC VNX5700: 
+
+  7.5 TB 
+
+  RAID 5 
+
+  8 Gbps fibre connectivity 
+
+  15K RPM disks 
+
+  FC protocol  
+
+ 
+
+Installed Software 
+
+Table 2 lists the software used in the Philips ICCA solution. 
+
+                           
+
+Table 1. Installed Software 
+
+VMware  
+
+Microsoft 
+
+Philips ICCA 
+
+ 
+
+ 
+
+ vSphere 5.1 
+ vCenter Server 5.1  
+ ESXi® 5.1 build-799733 
+ Microsoft SQL Standard 2008 SP2 R2 64bit 
+ .Net 4.0 Framework 
+ Visual Studio 2010 Team 
+ Visual Studio 2010 Ultimate 
+ Load Test Virtual User Pack 2010 
+Philips ICCA G.0 
+ 
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Virtual Machine Configuration 
+
+The following table describes the configuration of virtual machines running on ESXi host servers in the 
+Philips ICCA test configurations. 
+
+                                         
+
+Table 3. Virtual Machine Configuration 
+
+V I R T U A L   M A C H I N E  
+
+H A R D W A R E   C O N F I G U R A T I O N    
+
+Charting Servers  
+ 
+
+Primary Server 
+
+Interface Server 
+  
+  
+  
+  
+
+Bedside Device Servers 
+  
+  
+  
+  
+
+DAR Server 
+  
+  
+  
+  
+
+Domain Controller 
+  
+  
+  
+  
+
+ Load Test Controllers 
+  
+  
+  
+
+Simulator 
+  
+  
+  
+  
+
+  8 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card 
+
+  460 GB storage (160 GB + 300 GB) 
+
+  8 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card 
+
+  460 GB storage (160 GB + 300 GB) 
+
+  8 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card 
+
+  460 GB storage (160 GB + 300 GB) 
+
+  8 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card 
+
+  720 GB storage (160 GB + 300 GB + 300 GB) 
+
+  8 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card 
+
+  820 GB storage (160 GB + 300 GB + 100 GB + 300GB) 
+
+  4 vCPUs 
+
+  6 GB memory 
+
+  1 Ethernet card 
+
+  100 GB storage 
+
+  16 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card 
+
+  100 GB storage  
+
+  8 vCPUs 
+
+  8 GB memory 
+
+  1 Ethernet card 
+
+  460 GB storage (160 GB + 300 GB) 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+ 
+
+ 
+
+Workload Used 
+
+The workload consisted of: 
+
+ 
+
+ 
+
+100 bedside device messages per bed per minute. 
+
+2 infusion pumps per bed with multiple rate changes per hour. 
+
+  High frequency charting of patient data for each bed (via Load Test). 
+
+ 
+
+ 
+
+5 Labs per hour per patient. 
+
+5 Orders per hour per patient. 
+
+  Document Export for 8 documents for each patient, exported on change. 
+
+  Auto charting every 5 minutes for the first 2 hours, every 30 minutes from 2 hours on. 
+
+ 
+
+Results Observed 
+
+The performance of the virtualized Philips ICCA application fell within the acceptable response times for the 
+tested system size and load (as defined in the ‘Workload Used’ section above).  
+
+Below shows key Philips ICCA performance metrics as observed on the virtualized system and their 
+associated graphs: 
+
+ 
+
+Philips ICCA Function 
+
+Average Execution Time 
+
+Acceptable Duration Range 
+
+30 Minute Auto Charting 
+
+47 Seconds 
+
+Under 120 Seconds 
+
+Aperiodic Auto Charting 
+
+23 Seconds 
+
+Under 55 Seconds 
+
+Time Based Calculations 
+
+15 Seconds 
+
+Under 55 Seconds 
+
+Time Based Totals Propagation 
+
+22 Seconds 
+
+Under 55 Seconds 
+
+30 Minute DAR Transformation 
+
+112 Seconds 
+
+Under 15 Minutes 
+
+Scheduled Interventions 
+
+48 Seconds 
+
+Under 200 Seconds 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+ 
+
+ 
+
+ 
+VM resource utilization: 
+ 
+The table below shows the average and Max utilization numbers for all the Philips ICCA components. The 
+system appears to be working normally, without any bottlenecks, even for the high load Philips ICCA tests. 
+ 
+
+ 
+ 
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+AvgMaxAvgMaxPhilips-InterfaceServer9.3619.12342.47208.96217.2592.5761.98251.990.1931.350.238.55Philips-ChartingServer136.5293.796639.88847.3986.541731.2956.862951.920.1446.950.255.77Philips-ChartingServer249.8497.986841.379502.72869.34749.6269.564329.630.114.470.187.72Philips-ChartingServer340.4284.446782.379502.72853.22743.971.261723.46012.820.0131.35Philips-ChartingServer438.3587.386828.518847.36878.08755.8362.255133.970.1533.840.2841.45Philips-ChartingServer539.5796.916602.018683.52884.26757.264.513987.440.1627.850.2749.46Philips-ChartingServer638.1884.85878.767700.48921.41778.880.851877.21011.920.0130.46Philips-DARServer31.33100772.422457.6112.45193.867.6273.560.0312.040.071.15Philips-BDServer11.8716.961859.23768.32269.02146.7350.48588.420.7312.780.571.46Philips-PrimaryServer74.361001792.213768.323315.482823.440.1396.640006.58AvgMaxReadWrite(mb)Packets/secI/O secLatency(ms)AvgMaxAvgMaxRecdTxmittedVMCPUMemoryNetworkDisk(%)Philips ICCA on VMware vSphere 
+
+PrimaryServer CPU Utilization 
+
+CPU %Used 
+
+ 
+
+ 
+
+ 
+
+d
+e
+s
+U
+%
+
+100 
+
+80 
+
+60 
+
+40 
+
+20 
+
+0 
+
+Time (12 hr run) 
+
+ 
+The primary Server CPU utilization peaks and lows correspond to the ICIP Job performance graphs above. 
+ 
+
+ 
+
+ChartingServer CPU Utilization 
+
+ 
+
+d
+e
+s
+U
+%
+
+100 
+
+80 
+
+60 
+
+40 
+
+20 
+
+0 
+
+ 
+
+ 
+
+%Used 
+
+Time (12 hr run) 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Additional Testing 
+
+In addition to the performance testing above, the following other tests were performed: 
+
+VMotion  
+
+VMotion enables the live migration of running virtual machines from one physical server to another with zero 
+downtime, continuous service availability, and complete transaction integrity. This capability makes 
+hardware maintenance possible at any time of the day and does not require clustering or redundant servers. 
+VMotion makes it possible to move online workloads as required from one ESXi Server host machine to 
+another in order to maintain service levels and performance goals. The scope of this test is to check the 
+migration of AppServer virtual machine 
+
+ 
+
+ 
+
+ 
+
+While running Philips ICCA under a heavy performance load (300 ICU bed test) the ESXi host for a 
+Charting, Primary and Bedside Device server was migrated using vMotion. There was a negligible 
+performance impact on the ICCA application during the transition. The migrations were completed within 90 
+to 115 seconds with no failures, indicating that application processing could continue successfully during any 
+vMotion event. 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+VMware DRS 
+
+Philips ICCA on VMware vSphere 
+
+VMware DRS dynamically balances computing capacity across a collection of hardware resources 
+aggregated into logical resource pools, continuously monitoring utilization across resource pools and 
+intelligently allocating available resources among the virtual machines based on pre-defined rules that reflect 
+business needs and changing priorities. While running Philips ICCA under a heavy performance load (as 
+defined above) the DRS was enabled and set to Conservative (1).  
+
+ 
+
+ 
+
+ 
+
+ 
+
+As in the VMotion test there was a negligible performance impact on the ICCA application during the 
+transition. 
+
+Another test was performed where the DRS level was set to Aggressive (5). At this DRS setting the Philips 
+ICCA servers were swapped across the ESXi hosts too frequently, resulting in thrashing and performance 
+degradation.  
+
+NOTE: When deploying Philips ICCA and using VMware DRS do not exceed an Aggressiveness 
+
+setting of more than 2. 
+
+ 
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+VMware HA  
+
+Philips ICCA on VMware vSphere 
+
+VMware High Availability (HA) provides easy-to-use, cost effective high availability for applications running 
+in virtual machines. In the event of physical server failure, affected virtual machines are automatically 
+restarted on other production servers with spare capacity.  
+
+ 
+
+ 
+
+ 
+
+While running Philips ICCA under a heavy performance load (as defined above) VMware HA was enabled 
+and one of the ESXi host containing two Charting Servers was shutdown. After the HA event was detected, 
+the Charting Servers were started on other ESXi hosts within the cluster and Philips ICCA system was made 
+available. 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Deployment Best Practices 
+
+Philips and VMware relentlessly worked closely together to determine how IT data centers can best meet 
+service requirements when deploying ICCA in VMware virtualized environments.  Results from the testing 
+described earlier in this paper shows that running ICCA on VMware virtual machines can provide an 
+effective production-ready platform.  With added benefits such as management and administrative flexibility, 
+strong isolation and higher availability, VMware platform can serve as an ideal platform for ICCA Server 
+consolidation.  
+
+Specific recommendations include:  
+
+For specific requirements regarding the amounts of RAM, CPU and disk please see the ‘Philips IT 
+Specification’. 
+
+The Philips ICCA system is a critical care application that requires resources to be available with low or no 
+latency to provide acceptable response times in clinical environments. Therefore Philips requires that each 
+virtual server have all of its cores reserved. The number of cores required per virtual server is based upon 
+several clinical loading factors which are defined in the Philips ICCA IT Specification. 
+
+  When possible spread the Philips ICCA Charting servers on different ESXI hosts. 
+
+  When deploying Philips ICCA and using VMware DRS do not exceed an Aggressiveness setting of more 
+
+than 2. 
+
+  Carefully design storage configurations and evaluate external storage choices, RAID levels, and latency 
+
+of IO operations.  
+
+  High spindle count on LUNs to ensure I/O capacity available.  
+
+  Use Thick Eager Zeroed disks for better I/O performance. 
+
+  Consider Nehalems or Westmeres with EPT for maximum performance.   
+
+  Consider using server-class network interface cards (NICs) for the best performance and configure 
+
+paravirtualized vmxnet3 adapters for better network throughput. 
+
+  Disconnect or disable unused or unnecessary physical hardware devices, such as 
+
+o  COM and LPT ports 
+
+o  USB controllers 
+
+o  Floppy drives 
+
+o  Optical drives (that is, CD or DVD drives) 
+
+Disconnecting or disabling these devices will help free up interrupt resources, because traditionally 
+some devices such as USB controllers operate using a polling scheme that consumes extra CPU 
+resources. Lastly, some PCI devices reserve blocks of memory, making that memory unavailable to 
+ESX. 
+
+     Install VMware tools on the virtual machines. The VMware Tools package provides support required for 
+shared folders and for drag and drop operations. Other tools in the package support synchronization of 
+time in the guest operating system with time on the host, automatic grabbing and releasing of the 
+mouse cursor, copy and paste operation between guest and host, and improved mouse performance in 
+some guest operating systems 
+
+  Use VMware vMotion with VMware DRS to balance the load.  
+
+  Scale out versus scale up: Determine what components of the architecture work well with more than one 
+
+virtual machine, and how large each virtual machine should be.  
+
+  Adding capacity: Determine how you could extend the configuration tested by adding more virtual 
+
+machines or increasing the size of virtual machines to allow a higher user count or larger batch jobs to 
+be run.  
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+ 
+
+Philips ICCA on VMware vSphere 
+
+Technical Support 
+
+For technical support while deploying the Philips ICCA product please contact your local Philips 
+representative.   
+
+Conclusions  
+
+Overall, testing results show that running Philips ICCA on VMware vSphere platform performs well. 
+Furthermore, it has potential to reduce cost, increase service levels and simplify the manageability of the 
+application.   
+
+With respect to business continuity, Philips ICCA leverages vMotion for planned downtime and HA for 
+unplanned downtime scenarios.  
+
+ 
+
+Acknowledgements 
+
+The following individuals contributed to the creation of this deployment guide: 
+
+  Dean Rose, Philips 
+
+ 
+
+Thomas Chou, Philips 
+
+  Kam Wah Chin, Philips 
+
+  Manvender Rawat, VMware 
+
+Resources  
+
+Customers can find more information about VMware and Philips ICCA products via the links listed below: 
+
+VMware Resources 
+
+  VMware official website: 
+
+http://www.vmware.com/ 
+
+  VMware Documentation: 
+
+http://www.vmware.com/support/pubs/ 
+
+  VMware download Website: 
+
+https://www.vmware.com/download/ 
+
+  VMware support Web site: 
+
+http://www.vmware.com/vmtn/ 
+
+  VMware Performance Tuning Paper: 
+
+http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.1.pdf 
+
+  Compatibility Guide for a complete list of compatible devices: 
+
+http://www.vmware.com/resources/compatibility/search.php 
+
+ 
+
+Philips ICCA Resources 
+
+  Philips ICCA Web site:  
+
+ http://www.healthcare.philips.com/main/products/patient_monitoring/products/intellispace_cca/ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+ 
+
+

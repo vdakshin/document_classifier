@@ -1,0 +1,261 @@
+REGIONAL SUPERMARKET CHAIN  
+CASE STUDY 
+
+ 
+
+       
+
+ 
+
+Leading US regional supermarket chain deploys 
+VirtualWisdom to monitor its SAN to help ensure 
+100% data availability 
+VirtualWisdom chosen after a comprehensive, two year search for the 
+most cost-effective SAN optimization solution 
+Overview  
+
+This award-winning large regional grocer is a privately-owned full service Supermarket 
+Chain with over 150 retail outlets, and over 15,000 employees. 
+
+To support the supply chain infrastructure, the Information Technology team must 
+provide extremely high levels of application availability for payroll, pharmacy, financials 
+and merchandising, including the very critical credit card and warehousing system.  
+With data growth exceeding 20% per year and pressure to maintain profitability in a 
+hyper-competitive market known for thin margins, the data storage team is expected to 
+help contribute to the financial success of the company.  
+
+IT Environment  
+
+The IT staff supports over 200TB of online data in its main data center.  Storage is 
+primarily IBM DS8000s, and secondarily, NetApp Filers.  Cisco MDS switches support 192 
+SAN ports. VMware ESX hosts are widely deployed, though not yet supporting the primary 
+SQL database and mail servers.   Like many IT departments, especially in the retail sector, 
+this team is challenged with tight budgets and with getting more and more performance 
+out of existing hardware assets and personnel.  The IT team’s success is measured by 
+two metrics: keep the data available, and control costs to help contribute to the bottom 
+line.     
+Solution Evaluation  
+The IT team was challenged with tight budgets and with getting maximum productivity 
+from existing resources – hardware, software, and personnel.  To do this, IT knew it must 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+  
+
+Challenges:  
+• Pressure on IT staff to do 
+more with existing CAPEX 
+and OPEX budgets 
+
+• Availability requirements of 
+
+business critical applications 
+dictate the need to predict 
+problems before they 
+escalate to application 
+slowdowns or outages 
+
+Solution:  
+
+•  Virtual Instruments 
+
+VirtualWisdom Jumpstart kit 
+
+Customer Benefits:  
+
+•  With VirtualWisdom, causes 
+of potential application slow-
+downs can be identified and 
+corrective action provided 
+before users are even aware 
+of a problem 
+
+•  Productivity of existing staff 
+is maximized, to ensure that 
+issues are quickly identified 
+and remediated without 
+wasted time 
+
+“Most of the storage 
+
+management products out 
+
+there are operational in 
+
+nature … covering resource 
+and capacity, but they can’t 
+tell you what’s happening 
+
+with the SAN.”  
+
+UNIX and Storage 
+Administrator 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+REGIONAL SUPERMARKET CHAIN  
+CASE STUDY 
+
+ 
+
+       
+
+  
+
+be proactive; it had to avoid problems and anticipate issues before the application owners 
+felt the pain.  The only way to do this without increasing the staff size was to find some 
+way to proactively automate the monitoring and analysis of the SAN to ensure application 
+availability.   
+
+The company looked at several solutions, including the SAN management tools from their 
+system, switch, and storage vendors, and settled on Virtual Instruments’ VirtualWisdom in 
+early 2011.  The company wanted a solution that was: 
+
+•  Capable of seeing physical layer issues in the SAN to help predict problems before 
+
+they became serious 
+
+• 
+
+Flexible, so reporting and alerting could be tweaked to ensure that the staff would not 
+be bombarded with meaningless data, but would not miss critical events  
+
+•  Easily implemented in stages, allowing them to meter the degree of sophistication in 
+
+their SAN management architecture, as resources allowed 
+
+•  Simple to deploy.  Not heavyweight and expensive to buy and deploy, like many SRM 
+
+solutions on the market 
+
+Focused on performance and not just a resource utilization manager  
+
+• 
+In the final analysis, the IT team was able to demonstrate to management that with the 
+availability of VirtualWisdom, some of the previous years’ inefficiencies and slowdowns 
+could have been mitigated or eliminated. 
+
+Role of VirtualWisdom – a proactive approach 
+
+A proactive approach to system availability was required, and in early 2011, this IT team 
+deployed the VirtualWisdom Jumpstart Kit, a lower cost entry-level solution from Virtual 
+Instruments.   VirtualWisdom sees loss of sync, link resets, packet discards, aborts, code 
+violations, SCSI reservation conflicts, and CRC errors and can send alarms for out-of-
+bounds conditions.  Two examples of VirtualWisdom value: 
+
+Multipath coverage 
+VirtualWisdom reported that one link from the ESX was experiencing a Loss of Signal 
+(LOS).   This was not being picked up by the Cisco or the ESX server monitoring tools, 
+even though they would get ten or twelve LOS’s in a short period of time.  Further 
+investigation uncovered a dead path.  Though this wasn’t causing a problem, if left 
+uncovered, it could easily have resulted in an outage if left un-remediated.   
+
+SCSI reservation conflicts 
+SCSI reservation conflicts are a normal part of the SCSI protocol, and they are not 
+actually errors. The SCSI protocol uses the reservation to allow exclusive access to a 
+LUN.  It does this to prevent data corruption should there be competing devices for 
+the same LUN.  But problems occur with excessive reservation conflicts, which is 
+what VirtualWisdom uncovered.  Though this team has not yet implemented the 
+VirtualWisdom ProbeVM, they were able to identify the physical hosts and ultimately, 
+the VMs responsible, and remediated the issue before it became serious. 
+
+Lessons Learned 
+
+When asked what he would recommend to new VirtualWisdom customers, the UNIX and 
+SAN Admin remarked that he was very pleased with the cost-effectiveness of the 
+Jumpstart configuration.  He recommended considering it for a cost-effective way to get 
+into the VirtualWisdom family. 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+“We started with the 
+
+VirtualWisdom Jumpstart Kit.  
+
+It was perfect … had 
+
+everything we needed.” 
+
+UNIX and Storage 
+Administrator 
+
+ 
+
+ 
+25 Metro Drive, Suite 400  
+San Jose, CA 95110  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2012 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 01/12 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

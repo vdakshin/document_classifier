@@ -1,0 +1,162 @@
+Top 5 mobile APM myths
+
+Mobile is now regarded as the most explosive 
+source of revenue growth, employee productivity 
+improvement, and customer engagement. GigaOm 
+research reports that mobile users represented 
+40 percent of eBay’s 36 million new users in 2013, 
+accounting for $35 billion in enabled commerce 
+volume (ECV) — an astounding increase of 88 percent 
+over the prior year.
+
+An AppDynamics Business White PaperAngry Birds app only 35 
+days to reach 50 million 
+users!
+
+However, mobile engagement is a very tricky one. Because the mobile user is so 
+focused on the mobile app while interacting with it, it is an intense interaction 
+over a rather small screen. With so many alternative choices at their fingertips, 
+the user has almost no tolerance towards ill-designed or poorly performing mobile 
+applications. The last I heard the iTunes App Store has 1.2 million apps. For the 
+Android user, there are about 1.3 million apps to try from. Loyalty needs to be 
+earned, and cannot be taken for granted. Plus, a lot of your brand value and 
+revenue/cost savings are at stake.
+
+It is not as hopeless as it sounds, however. Remember, mobile users are also known 
+for rewarding a great experience; it took the Angry Birds app only 35 days to reach 
+50 million users! The total franchise value including merchandise, etc. had exploded 
+to a few billion dollars at their peak. Mobile is a high velocity market. The first 
+mover’s advantage is tremendous, and you need to take charge of your experience 
+with the right mobile application performance monitoring (mAPM) tools at hand.
+
+There is a lot of confusion in the market today. So in this blog post, I’d like to dispel 
+some key myths around mobile apps. And how, with the right mAPM tool, you can 
+nail your mobile app experience — both interactivity-wise and performance-wise — 
+and thereby win the market. 
+
+Myth #1: Unforgiving app ratings on the app store is an unfortunate reality 
+There is no such thing as bug-free code. Any sufficiently complex code will have 
+bugs, and so will your mobile app. Your users understand this reality but are 
+looking for well thought-out designs that have fewer performance and crash issues. 
+Customers are also amenable to quick fixes and are willing to give chances to 
+organizations that are responsive to bugs, performance issues, and crashing issues. 
+The critical success factor here is the turnaround time. 
+
+In order to avoid brutal app ratings, you need to a ship a good product, but more 
+importantly show you are willing to respond to your user problems and fix them 
+promptly. Use state of the art crash analytics and network request analytics 
+to understand how your app is performing. The ideal mAPM tool should show 
+the crashes and their stack traces in near real-time as they happen. For fastest 
+response time, the mAPM tool should group these crashes based on common 
+patterns and uniqueness. The same mAPM tool should also provide network 
+request latencies at group levels as well as individual request levels. Resolution of 
+information should not be lost when troubleshooting performance and crash issues. 
+
+2
+
+Top 5 mobile APM mythsIn order to avoid brutal 
+app ratings...show you 
+are willing to respond to 
+your user problems and 
+fix them promptly. 
+
+Myth #2: Backend services are black boxes of performance bottlenecks and I 
+should just give up on them
+I keep observing the finger pointing between mobile developers and the IT Ops 
+teams. Those mobile developers who use mobile-only APM tools have visibility 
+only till the point where a network request is made from the mobile app. Anything 
+beyond is pretty much a black box which is usually the main cause for performance 
+delays and mobile app’s poor response time. For the lack of better information, the 
+mobile developer is quick to blame the back end service. On the other hand, the IT 
+Ops team that has invested in legacy APM solutions that are unable to distinguish 
+mobile-originating transactions from the others. They often struggle to isolate the 
+mobile transaction delays caused by their services and get defensive.
+
+A modern end-to-end APM solution that delivers context-awareness for 
+transactions originating from mobile devices all the way to the backend database 
+or even storage would completely take away the guesswork in performance 
+troubleshooting. And if the entire infrastructure can be managed with a single pane 
+of glass, there will be no information lost in translation and the mobile dev and IT 
+Ops team can collaborate to focus on nailing down the end-user experience rather 
+than play the blame game.
+
+This is the most critical requirement we hear from our customers time and again.
+
+3
+
+Top 5 mobile APM mythsThe entire infrastructure 
+can be managed with a 
+single pane of glass.
+
+Myth #3: Users are an enigma that I can never really understand 
+You cannot nail down the mobile end-user experience unless you know your 
+audience. You need to understand where the end user is spending time while using 
+your application. Are they spending time scrolling down search results to find what 
+they want? In other words, are you presenting the most relevant information at the 
+top? Are they abandoning the shopping cart at any specific points in the checkout 
+process? Is there funnel friction you need to optimize your app against?
+
+The modern mobile APM tools have some great capabilities to understand your end 
+user and their behavior. You can inject timers across any two arbitrary points and 
+measure times taken for a collection of any number of steps. For example, you can 
+measure how long it takes your user from conducting the first search to purchasing a 
+product or a service. This can be done at an individual user or at aggregate levels. You 
+can measure how much time users spend on which screen. This will give you great 
+insights into who your typical user is and what interactions do they indulge in with your 
+application. You can then optimize the app experience for those common patterns.
+
+Myth #4: I’m going to spend the rest of my life certifying my mobile app on the 
+infinite permutations and combinations of device types, OS types, and network 
+carriers/types
+This is where you need concrete data to understand your user demographics. A 
+good mAPM solution will give you detailed breakdown of who your core audience 
+is. What device types they prefer, what OS’s (iOS vs. Android) they run, and which 
+networks they mostly originate from. A good APM solution will also allow you to 
+correlate this information with revenue or engagement information to determine 
+your highest-value audience.
+
+With all this valuable information, you can prioritize development, testing, and 
+certification of your mobile app. You can even optimize your app experience and test 
+for performance bottlenecks for the high-value audience. And lastly, you can focus on 
+retaining them by delivering on their roadmap demands over the lesser engaging ones.
+
+4
+
+Top 5 mobile APM mythsOptimize the app 
+experience for those 
+common patterns.
+
+Prioritize development, 
+testing, and certification 
+of your mobile app.
+
+Myth #5: There’s no way to know the business impact of the performance 
+issues of my mobile app
+Most mAPM tools in the market today are too developer-centric. They deliver 
+crash analytics and performance delays caused by delayed response from backend 
+services but little else. Often times, the mobile channel is an enabler of some 
+business goals such as better customer engagement, additional revenue streams, 
+cost savings from productivity or efficiency gains. Plus, it’s the broader context that 
+feeds investments into the mobile channel. Ignoring the business context is like 
+missing out on half the picture.
+
+The right tool needs to deliver full context on the mobile application. The full 
+context should include what impact the app has on business metrics such as 
+revenues, cost savings, customer engagement KPIs, etc. A comparative chart 
+that shows performance impact of mobile app on these business metrics can be 
+incredibly powerful to raise awareness among the organization.
+
+With these myths dispelled, I hope you have gotten a different perspective on your 
+mobile app initiatives and are rethinking your approach to mobile APM. 
+
+Try it FREE at  
+appdynamics.com
+
+AppDynamics, Inc. 
+appdynamics.com
+
+Copyright © 2014 AppDynamics, Inc. All rights reserved. The term 
+APPDYNAMICS and any logos of AppDynamics are trademarked or 
+registered trademarks of AppDynamics, Inc.
+
+

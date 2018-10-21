@@ -1,0 +1,849 @@
+Whitepaper  
+
+ 
+
+ 
+
+ 
+
+Financial Benefits of Deploying 
+
+VirtualWisdom® 
+
+ 
+
+Sept 13, 2011 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+ 
+
+ 
+
+Contents 
+ 
+1. Introduction ............................................................................................................................ 3 
+
+2. The Financial Impact of Reduced Downtime ......................................................................... 5 
+
+3. The Financial Impact of Improved SAN Operational Efficiency ............................................. 7 
+
+4. The Financial Impact of SAN Links Optimization ................................................................... 9 
+
+5.  The Financial Impact of Tiered Storage Optimization ......................................................... 10 
+
+6.  The Financial Impact of Server Virtualization Optimization ................................................ 11 
+
+7. Summary .............................................................................................................................. 14 
+
+ 
+
+ 
+
+ 
+
+ 
+
+2                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+ 
+
+1. Introduction 
+ 
+
+Virtual Instruments’ VirtualWisdom® collects, computes and tracks metrics from the Fibre Channel SAN and 
+virtual infrastructure to provide both real-time monitoring and historical trend analysis of overall performance, 
+availability, and utilization metrics.  VirtualWisdom does this today by collecting data from three key sources: 
+
+1.  Fibre Channel switches 
+2.  VMware vCenter servers and 
+3.  Headers of Fibre Channel frames 
+
+VirtualWisdom delivers when detailed knowledge of Virtual Server and SAN performance is essential, such as 
+business-critical enterprise applications, business continuity planning, storage and server virtualization, and 
+server consolidation projects. VirtualWisdom saves organizations a significant amount of money and improves 
+IT operational efficiency. 
+
+Given today’s budget realities, unless an IT purchase can be clearly shown to result in a positive return on 
+investment, it will often be postponed in favor of those projects with ROIs that are more clearly defined. 
+
+The purpose of this document is to articulate the business value of VirtualWisdom and highlight common 
+instances where Virtual Instruments’ customers found OPEX or CAPEX savings due in part, to their 
+VirtualWisdom product or services deployments.  We have tried not to suggest broad, unsubstantiated, 
+sweeping generalizations such as “you’ll pay for your software in 6 months”, or “you’ll increase the TB under 
+management by FTE by 25%”.  Instead, we’ve suggested specific, concrete problems and solutions that our 
+customers can talk about.  Of course, not all examples herein will apply to every business, as environments 
+vary across different organizations.   
+
+The primary business benefits of VirtualWisdom come from three areas:   
+
+1.  Efficiency of SAN operations 
+2.  Reduced application downtime  
+3.  Optimization of the virtual infrastructure including: 
+
+a.  SAN links 
+b.  Tiered storage 
+c.  Virtualized servers 
+
+Each of these areas of business value is discussed in more detail in the sections below.  In Sections 2 – 6 we 
+offer more detail, including an overview on how we calculate the financial impact of the business benefit and 
+explore some customer examples. 
+
+3                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+Efficiency of SAN Operations 
+
+VirtualWisdom increases operational efficiency by reducing the number of SAN-related problems and 
+providing the information needed to quickly identify and efficiently resolve problems when they do occur.  
+Early problem identification and efficient troubleshooting capabilities VirtualWisdom provides will be vitally 
+important to keeping low headcount in the face of ongoing SAN growth and complexity. Our customers 
+frequently report both a large reduction in trouble tickets and a much faster time to problem resolution.  
+Instead of taking days or weeks to resolve issues, VirtualWisdom can enable nearly instantaneous problem 
+identification and reduce resolution times hours to minutes. This dramatic reduction in troubleshooting 
+time increases productivity and improves operational efficiency, allowing administrators to focus on 
+revenue-generating IT projects.  
+
+VirtualWisdom can identify problems before you go live with production applications, avoiding 
+catastrophes and subsequently dissatisfied customers. VirtualWisdom can be a critical solution to assure 
+the quality of newly deployed virtualized applications.  
+
+When applications are being measured and monitored, the business can be confident that it’s running 
+efficiently. When using the trending information provided by VirtualWisdom, administrators can identify and 
+avoid performance and availability problems before they become real problems to the end users. 
+
+Reduced Application Downtime 
+Every minute and hour systems are down, the company loses money and/or productivity. The effects of 
+downtime of applications can be huge and may result in loss of customers. Most companies are able to 
+estimate the cost to the business of an hour of downtime for each business-critical application.   
+
+The deployment of VirtualWisdom helps dramatically increase the uptime of the storage infrastructure, one 
+of the primary causes of application downtime. Only VirtualWisdom can provide real-time root-cause 
+analysis of problems in a SAN or virtual infrastructure. When implementing an instrumented and monitored 
+infrastructure, system and storage administrators can immediately identify and quickly resolve application 
+performance and availability problems. By reducing downtime, slow performance, or intermittent outages, 
+the business will increase and protect revenue by avoiding these incidents.  
+
+Infrastructure Optimization – Reduced SAN / Storage Links 
+VirtualWisdom helps increase SAN utilization by allowing SAN administrators to ensure that SAN workload 
+is more evenly distributed across all of the available SAN capacity.  Workload and storage traffic within 
+most SANs today is unevenly distributed across the SAN infrastructure resulting in congestion in some 
+areas while other areas are significantly underutilized. This often results in the unnecessary purchase of 
+SAN ports and storage links.  
+
+With VirtualWisdom, administrators have greater visibility into the SAN workload across the entire SAN 
+infrastructure including virtual machines, LPARS, servers, HBAs, switches and storage arrays.  There is 
+visibility into which ports, servers and storage links are under or over-provisioned.  This provides the ability 
+to balance server and SAN resources for maximum application performance and optimum utilization.  
+
+Infrastructure Optimization – Tiered Storage 
+In addition to enabling broad management of utilization, performance, and availability, VirtualWisdom’s 
+detailed views provide deep insight into real-time SAN performance and SLA compliance. Many of our 
+customers have found that this level of objective, verifiable insight to application storage response time 
+empowers them to deliver a more cost-effective tiered storage strategy.  “Down-tiering” application 
+storage is made less risky through the measurement, reporting and alerting of real-time response time 
+metrics available with VirtualWisdom. 
+
+ 
+
+ 
+
+4                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+Infrastructure Optimization – Virtualized Servers 
+The virtualization of servers is ubiquitous in data centers today, and the business benefits of this server 
+deployment strategy are well-understood. However, many businesses have struggled to meet the financial 
+goals projected by their server virtualization initiatives. The server virtualization objectives set by the 
+business have not been met for a variety of reasons including reluctance by the business to virtualize 
+certain applications due to concerns regarding performance and availability. In addition, the number of 
+virtualized applications hosted on a physical server is often limited by performance concerns, particularly 
+storage performance.  VirtualWisdom gives system and storage administrators the ability to ensure storage 
+performance meets the needs of the business by facilitating the use of storage performance SLAs. This 
+allows more applications to be virtualized and ensures the capacity of the physical server is used to 
+maximum potential resulting in reduced operating and capital costs. 
+
+ 
+
+ 
+
+ 
+
+Illustration of a VirtualWisdom Deployment in a Heterogeneous SAN 
+
+Note:  The customer examples in this document are anonymous.  Most global enterprises are not eager to 
+share their IT challenges publically, but if you find an example that you would like to learn more about, your 
+Virtual Instruments representative can accommodate you with a personal introduction to the customers we 
+anonymously highlight in this whitepaper.  The individuals at these businesses are your peers and very 
+often open to sharing what they’ve learned with others in their profession. 
+
+5                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+2. The Financial Impact of Reduced Downtime 
+
+2.0  The Impact of Downtime on Cost 
+Many organizations are able to estimate the cost to the business when applications are unavailable or 
+significantly impacted by degraded application performance.  The impact to the business is a function of 
+which application is impacted as well as the kind of “outage” (e.g. complete loss of functionality, reduced 
+performance, intermittent failure).  Some applications directly impact the businesses ability to collect 
+revenue and some organizations also consider the long-term impact that may arise due to the less-than-
+satisfactory experience the customer may have during the application downtime. Other outages, while not 
+directly impacting revenue or the customer experience, impact the productivity of the businesses 
+employees and consequently have a “soft cost” impact to the business.  Some businesses include these 
+soft costs when quantifying the business impact of application outages while others choose to ignore them 
+since there is not a direct impact to expenses. 
+
+2.1  Calculating Business Impact of Downtime 
+
+Sample calculation: 
+For Revenue Generating Applications: 
+
+Number of failure incidents per year 
+
+X  Average incident duration in hours 
+X  Cost to the business per hour  
+=  Annual business impact of downtime 
+
+For Internal Business Applications: 
+
+Number of failure incidents per year 
+
+ 
+X  Average incident duration in hours 
+X  Business impact per hour 
+=  Annual business impact of downtime 
+
+2.2 VirtualWisdom Benefits – Reduced Downtime 
+Each business has its own costs for staff and business impact.   It doesn’t take long to discover that 
+anything that can be done to increase application availability can save businesses large sums of money, 
+year after year. Of course, a system that is always available will give your customers confidence in your 
+company, which is paramount in many vertical industries such as retail, telecommunication, finance, 
+healthcare and e-commerce. VirtualWisdom helps improve the availability of the IT infrastructure and save 
+large sums of money by alerting users proactively to potential storage outages, as well as system and 
+network failures, helping to eliminate or substantially mitigate those problems. 
+
+Sample calculation: 
+
+Annual business impact of revenue generating application downtime (from above) 
+
++  Annual business impact of internal business application downtime (from above) 
+=  Total annual costs of downtime 
+x  VirtualWisdom-driven percentage reduction (e.g. 20%) 
+=  Net annual benefit of VirtualWisdom attributed to reduced downtime 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+6                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+2.3 Customer example – Reduced Downtime 
+
+Here, we will point to one of the world’s great consumer goods companies with over 150,000 
+employees in 100 countries supporting 300+ brands spanning over 10 categories of home, personal 
+care and foods products.  This company has a 12 petabyte SAN growing at almost 50% annually 
+connected to over 3,000 servers, and 12,000 SAN ports, supported by 8 full-time-equivalent (FTE) 
+engineers.  The SAN uses IBM’s SVC on the UNIX servers, which allows them to standardize the 
+storage path and present a unified storage stream.  The most mission-critical applications use IBM 
+DS8000s for Tier 1 storage, with SVCs for virtualization, driven by IBM pSeries servers running AIX 
+and VIO. Other storage is supplied by HP, with both XP and EVA systems.   
+
+Business Impact of Downtime 
+Ensuring the storage infrastructure is up and running 24x7x365 is essential for this business. 
+VirtualWisdom helps the IT staff identify issues before they escalate into a potential application 
+outage.  This company estimates a 24 hour outage on their critical applications could cost in the 
+region of $70M, or $48K/minute.  In 2009 this company turned to Virtual Instruments’ VirtualWisdom 
+to provide their IT organization with an unparalleled view of the current system status as well as the 
+ability to accurately pin-point problem areas before they resulted in frustrated users or costly 
+downtime. Since the VirtualWisdom deployment in 2009, it reports less than one “urgent” event per 
+year.   
+
+ 
+
+ 
+
+3. The Financial Impact of Improved SAN Operational Efficiency 
+
+3.0  The Impact of Operational Efficiency on Cost 
+SAN administrators along with system administrators, database administrators and other personnel within 
+the business spend a significant amount of time addressing SAN problems (or perceived SAN problems). 
+This is due to the sheer number of problems that occur and the difficulty and complexity in 
+troubleshooting, identifying root cause and ultimately resolving these problems.  Part of this operational 
+burden is reflected in the number of problem tickets logged and the resources and lead time required 
+solving them.  However, for most businesses, the total SAN operational workload is not completely 
+reflected by problem ticket statistics. Rather, there is a significant amount of operational work that takes 
+place more informally, outside of the problem management system.  
+
+Operating in a primarily reactive operational mode and lacking the tools necessary to quickly identify and 
+troubleshoot problems results in a labor-intensive SAN operational environment.  This ultimately drives up 
+the total cost of ownership of the SAN since more personnel are required to support the infrastructure. 
+
+Computing the operational cost of the SAN requires looking at the number of personnel required to 
+support the SAN infrastructure. This assessment of personnel cost must also include the hours spent by 
+non-SAN personnel (e.g. system administrators, DBAs, management personnel, application owners). 
+
+7                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+ 
+
+3.1  Calculating SAN Operational Costs 
+
+Sample calculation: 
+
+(Total weekly hours spent by SAN administrators 
+
+(Total weekly hours spent by “other” personnel 
+
+x  Burdened hourly rate for SAN administrators) 
++ 
+x  Burdened hourly rate for “other” personnel) 
+=  Total Weekly SAN Operational Cost 
+x  52 weeks 
+=  Total Annual SAN Operational Cost 
+
+3.2 VirtualWisdom Benefits – Improved SAN Operational Efficiency 
+Early problem identification and efficient troubleshooting capabilities that VirtualWisdom provides can be 
+vitally important to keeping headcount low in the face of ongoing SAN growth and complexity. Our 
+customers frequently report a large reduction in trouble tickets, much faster time to resolution and reduced 
+effort to resolve problems from their use of VirtualWisdom.  Many IT organizations track how long it takes 
+to identify and resolve trouble tickets and the people resources involved.  Unless a solution like 
+VirtualWisdom is deployed, the isolation and identification of problems is the larger issue.  With 
+VirtualWisdom, our customers report the inverse; more time is spent on post-identification remediation.  
+The ability to identify and locate errors immediately drastically cuts troubleshooting time. 
+
+Sample calculation: 
+
+ 
+
+Annual SAN Operational cost (from above calculation) 
+
+x  VirtualWisdom-driven percentage efficiency improvement (e.g. 20%) 
+=  Net annual financial benefit of VirtualWisdom attributed improved operational efficiency 
+
+3.3 Two customer examples – Reduced Trouble Tickets 
+
+Customer 1:  Reduced Administrative Overhead due to Reduced Trouble Tickets 
+Because this is so closely related to reducing downtime, we again use our example of one of the 
+world’s great consumer goods companies, with a 12 petabyte SAN growing at almost 50% annually 
+connected to over 3,000 servers, and 12,000 SAN ports, supported by 8 full-time-equivalents (FTEs).  
+Within 3 months of deploying VirtualWisdom, this organization’s trouble tickets dropped by 75%.  
+And today, with nearly double the storage, the number of tickets has not increased. 
+
+When compared to other large organizations, this IT organization manages its storage with an 
+average one-half of the staff.  Today, it manages 12 PB of storage with 8 FTEs.  If you assume a fully 
+burdened cost of an admin to be $150K/year, then this organization is recognizing an OPEX saving of 
+about $1.2M (8 FTEs x $150K/FTE). 
+
+Customer 2:  Reduced Administrative Overhead due to Reduced Trouble Tickets 
+This financial management and advisory firm is one of the largest in the world, with more than $2 
+trillion in client assets.  It’s a leading provider of global corporate and investment banking services, 
+including commercial lending, global high-yield debt, global equity, and global M&A.  Customer 
+service and responsiveness are hallmarks of the firm, which means their IT infrastructure must be one 
+of the most reliable in the world.  The IT department is tasked with maintaining extremely high service 
+levels in the face of high storage growth and flat headcount.  This customer reports that 
+“VirtualWisdom saves us 100 hours/week by helping us be proactive instead of waiting for an 
+application owner to contact us.”  At a fully burdened cost/year of $150K, that’s a yearly savings of 
+approximately $375K. 
+
+ 
+
+8                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+4. The Financial Impact of SAN Links Optimization 
+
+4.0 The Impact of Underutilized SAN Infrastructure on Cost 
+Storage infrastructure is the fastest growing capital cost component within the typical Global 2000 data 
+center. Gartner research shows that storage is increasing on average by about 30 percent per year. 
+Research also shows that only about 20 to 30 percent of the storage infrastructure is effectively used, 
+which means over-provisioning is extensive.  With VirtualWisdom, administrators can easily uncover the 
+under-utilized SAN links in their environment and reallocate those SAN resources to other applications, 
+thus deferring spending by eliminating unnecessary SAN link expansion.  The savings calculation is pretty 
+simple: 
+
+4.1  Calculating the Cost of SAN Links 
+
+Sample calculation: 
+
+ 
+
+Annual forecast for storage links added or refreshed 
+
+X  Cost per link (switch port, storage port, cabling and associated maintenance) 
+=  Annual forecasted cost of new/refreshed storage links 
+
+4.2  VirtualWisdom Benefits – SAN Links Optimization 
+In addition to increased availability and streamlined management, which have a dramatic impact on a 
+company’s bottom line, a significant cost justification for VirtualWisdom comes from enhanced SAN asset 
+utilization.  With detailed, real-time metrics of both utilization and performance, customers are able to 
+safely increase the utilization of their existing SAN infrastructure, accommodating increased storage 
+workloads without negatively impacting either performance or reliability. We typically find storage port 
+utilization can be increased by 50% or more. 
+
+The industry average “all in” cost of a storage port, comprising a storage port, core switch port, and 
+attendant cabling  is currently in the neighborhood of $4,000 per port, for a fairly substantial potential 
+CAPEX saving. 
+
+Sample calculation: 
+
+ 
+
+Annual forecasted cost of new/refreshed storage links (from above) 
+
+x  VirtualWisdom-driven percentage reduction (e.g. 20%) 
+=  Net annual benefit of VirtualWisdom attributed to reduction in SAN / storage links 
+
+4.3  Customer example – SAN Links Optimization 
+
+This company, with revenues growing 33% year over year, is one of the leading e-commerce 
+businesses, allowing payments and money transfers to be made securely through the internet. The 
+payment service is as an electronic alternative to traditional paper methods such as checks and 
+money orders and operates in over 100 markets with millions of accounts. The HDS storage 
+environment in their U.S. datacenters includes USP-V for Tier 1 storage and AMS for Tier 2, running 
+through a Brocade Fiber Channel SAN totaling 2400 ports and over 400 SAN connected hosts 
+(Solaris and AIX).  Primary applications are deployed on very large Oracle databases, with over 7 
+petabytes of storage and roughly 50% yearly growth.   
+
+According to the Operations Manager, Network and Storage Engineering, “With VI, we were able to 
+track link utilization and it enabled us to save a boatload of dough by reducing the number of storage 
+front-end ports.  We went from 128 ports to 64, and then to 32 per new frame.”  At a cost per port of 
+$4K, that’s a CAPEX savings of $384K for every storage frame this customer deploys. 
+
+ 
+
+9                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+5. The Financial Impact of Tiered Storage Optimization 
+
+5.0 The Impact of Inefficient Storage Tiering on Cost 
+For companies whose volumes of data are growing, adequate storage and retrieval of that data is 
+becoming a serious concern. In years past, IT would simply "buy more storage", which meant adding the 
+fastest (and most costly) storage capacity to existing storage arrays or adding new storage arrays.  
+
+Most companies are rethinking their approach to data storage. High-end, “Tier 1” storage is very 
+expensive, and using the highest performance storage for all data storage requirements is no longer a 
+cost-efficient solution.  In addition, most companies are now required to meet regulatory and legal 
+requirements, so they must account for what data they have, where it is located and who is accessing it.  
+These things cannot be determined by just adding disks.  Tiered storage is an established means to 
+address these changes. 
+
+Implementing a cost-effective tiered storage strategy has been hampered by reluctance to “down tier” 
+data storage from both the business/data owners as well as the storage architecture team. This reluctance 
+is generally driven by concerns regarding the performance of non-Tier 1 storage technology.  However, the 
+reality is that performance requirements for many applications can be comfortably met by Tier 2 (Tier 3 in 
+some cases) storage technology.  What is needed is a way to establish the performance requirements (via 
+measurement and then defined SLAs) and then the ability to continuously measure and monitor storage 
+performance in order to ensure that those requirements are being met. VirtualWisdom provides exactly this 
+capability. 
+
+To determine the financial benefits you need to know the total costs of each tier of storage, including the 
+cost of providing the SLAs you sign up for.  It’s not just the difference between SATA and FC disks, or 
+SSDs.  You’ll need to factor in controllers, services to get up and running, maintenance, power, and 
+perhaps most significantly, the very different software costs associated with various storage tiers.   
+Software on traditional Tier 1 arrays can easily exceed Tier 2 software costs by three to six.  In addition to 
+the simple calculation shown below, savings calculations may also include significant floor space and 
+environmental costs (cooling, power, etc.). 
+
+5.1  Calculating Costs of Tier 1 and Tier 2 Cost Differential 
+
+Sample calculation: 
+ 
+
+Hardware costs of Tier 1 storage, per TB 
+
+Hardware costs of Tier 2 storage, per TB 
+
++  Software costs of Tier 1 storage, per TB (or apportioned from other licensing types) 
++  Hardware and Software maintenance costs of Tier 1 storage, apportioned per TB 
++  Professional services costs of Tier 1 storage, apportioned per TB 
+=  Total Tier 1 cost per TB 
+ 
+ 
++  Software costs of Tier 2 storage, per TB (or apportioned from other licensing models) 
++  Hardware and Software maintenance costs of Tier 2 storage, per TB 
++  Professional services costs of Tier 2 storage, apportioned per TB 
+=  Total Tier 2 costs per TB 
+ 
+ 
+- 
+=  Per TB difference between Tier 1 and Tier 2 storage 
+
+Total Tier 1 cost per TB (from above) 
+Total Tier 2 costs per TB (from above) 
+
+ 
+
+10                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+ 
+
+ 
+
+5.2  VirtualWisdom Benefits – Tiered Storage Optimization  
+Many IT teams rely on vendor “best practices” and “rules of thumb” when establishing rules for their tiered 
+storage environment because they lack good performance metrics and instrumentation of the Fibre 
+Channel storage environment.  For instance some install Oracle databases served by UNIX/LINUX hosts on 
+Tier 1 while all Windows applications are served by Tier 2 storage.   This is done rather arbitrarily, without 
+regard to the real performance requirements of the application.  
+
+VirtualWisdom’s detailed views provide deep insight into real-time I/O performance and SLA compliance. 
+Several VirtualWisdom customers have found this level of objective, verifiable insight empowers them to 
+deliver Tier 1 SLAs with less-costly Tier 2 storage devices.  The cost benefits here can be very compelling, 
+as the price difference between Tier 1 and Tier 2 storage can be significant. 
+
+Sample calculation: 
+
+Expected Tier 1 TB growth + expected Tier 1 TB refresh in the next year 
+
+x  Expected percentage of Tier 1 that can be accommodated on Tier 2, using VirtualWisdom  
+=  TB of storage that can be accommodated on Tier 2, instead of Tier 1, over the next year 
+
+ 
+
+x  Cost differential of Tier 1 and Tier 2 storage, per TB (from above) 
+=  Potential cost savings when VirtualWisdom is used to ensure that performance of Tier 2 
+ 
+ 
+
+ Storage meets SLAs 
+
+5.3  Customer example – Tiered Storage Optimization  
+
+This Virtual Instruments customer is a leader in the grocery retailing industry – one of the top 3 in the 
+U.S. This grocer combines expertise in retail and supply chain operations - two highly complementary 
+core competencies.  To support the extensive supply chain infrastructure, the Information Technology 
+team must provide extremely high levels of application availability for payroll, pharmacy, financials 
+and merchandising, amongst others.  With data growth exceeding 20% per year and pressure to 
+maintain profitability in a hyper-competitive market, the data storage team is expected to help 
+contribute to the financial success of the company.  Like most businesses, this grocer is challenged 
+with tight budgets and with getting more and more performance from existing infrastructure capacity.   
+
+According to the IT staff, “We always use VirtualWisdom for performance testing.  We use it to 
+determine performance characteristics on EMC DMX and CLARiiON when deciding between Tier 1 
+and Tier 2 storage.  In fact, we wouldn’t have nearly as much Tier 2 storage without VirtualWisdom 
+because it enables us to monitor response times for our critical applications and proactively respond 
+if we detect any degradation.  It allows us to deploy more Tier 2 storage and still meet the 
+requirements of the business.”  
+
+Although this team has not assigned a dollar value to the savings, with over 2 petabytes of online 
+storage and the mandate to help the company maintain profit margins, the contribution to the 
+company’s bottom line is substantial. 
+
+ 
+
+ 
+
+11                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+6.  The Financial Impact of Server Virtualization Optimization 
+
+6.0 The Impact of Inefficient Server Virtualization Optimization on Cost 
+Most businesses have deployed some, or many types of server virtualization within their data centers with 
+the goal of reducing “server sprawl” and driving down both operating and capital expenses of their 
+computing environment.  The cost benefits of server virtualization are very real and well-understood by 
+most businesses.  These benefits are derived from having to deploy fewer physical assets (servers in this 
+case) while making more efficient use of the capacity of those assets (i.e. driving higher levels of server 
+utilization).  
+
+All IT organizations recognize that having to procure, install, operate and support fewer physical servers 
+results in cost savings, both from and operating as well as capital expense perspective.  Most businesses 
+have established aggressive goals for running applications on virtualized servers. For example, one 
+business that we have talked to set a goal of running 90% of their applications on virtualized servers. 
+
+However, many businesses have not been able to achieve their stated server virtualization and financial 
+benefits goals for two key reasons.  First, they have not been able to virtualize all the applications they had 
+targeted. Second, they have had to deploy more physical servers than they planned on.  In the first case, 
+server virtualization adoption has lagged behind stated goals because either the business units have been 
+reluctant to virtualize their specific applications due to concerns about reliability or performance or IT has 
+taken a very conservative approach when selecting applications for virtualization, again due to concerns 
+about performance. In the second case, again due to performance concerns, fewer virtualized applications 
+are running on a single physical machine which ultimately means that more physical servers are required to 
+support the virtualized applications. 
+
+Therefore, computing the financial benefit of increasing server virtualization adoption and density is a 
+matter of quantifying the difference in cost of deploying an application on a physical server versus on a 
+virtualized server. This cost differential must then be applied across the estimated number of applications 
+that would be migrated to a virtualized server and adding that cost savings to the change in server 
+virtualization density that would be achieved (e.g. 30 applications per physical server instead of 25 
+applications). 
+
+6.1 Calculating the Difference in Physical versus Virtual Application Deployment 
+
+Sample Calculation 
+For a physical application server: 
+
+CapEx Costs 
+ 
+Physical server hardware procurement cost 
++  Physical server software procurement cost 
++  Server facility costs (cabling, floor space) 
++  Personnel installation and configuration cost 
+=  Total Physical Server CapEx Cost 
+
+OpEx Annual Costs 
+Physical server environmental costs (power, cooling) 
+
+ 
++  Hardware and software maintenance 
++  Server personnel support cost (hours x burdened rate) 
+=  Total Physical Server OpEx Cost per year 
+
+ 
+
+ 
+
+ 
+
+12                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+For a virtual application server: 
+
+CapEx Costs 
+ 
+Apportioned component of physical server hardware procurement cost 
++  Apportioned component of physical server software procurement cost 
++  Apportioned component of server facility costs (cabling, floor space) 
++  Apportioned component of personnel installation and configuration cost 
+=  Total Virtual Server CapEx Cost 
+
+OpEx Annual Costs 
+Apportioned component of physical server environmental costs (power, cooling) 
+
+ 
++  Apportioned component of hardware and software maintenance 
++  Apportioned component of server personnel support costs (hours x burdened rate) 
++  Virtual server personnel support cost (hours x burdened rate) 
+=  Total Annual Virtual Server OpEx Cost 
+
+Total Physical Server CapEx Cost 
+Total Virtual Server CapEx Cost 
+
+ 
+- 
+=  Physical versus Virtual CapEx Cost Differential 
+
+Total Physical Server OpEx Cost per year 
+Total Virtual Server OpEx Cost per year 
+
+ 
+- 
+=  Physical versus Virtual Annual OpEx Cost Differential 
+
+6.2  VirtualWisdom Benefits – Server Virtualization Optimization 
+Increasing the number of applications that get virtualized (i.e. increasing the adoption rate) and increasing 
+the number of applications running per physical machine (i.e. increasing server virtualization density) will 
+lead to fewer physical machines which in-turn decreases both operating and capital costs of the server 
+infrastructure.  VirtualWisdom allows a business to proactively manage storage performance so that I/O 
+performance does not artificially constrain either the adoption rate or density of virtual server deployments. 
+
+Sample calculation: 
+ 
+(Number of existing applications on physical servers being refreshed per year 
++  Number of net-new applications on physical servers being deployed per year) 
+x  Percentage of these applications that can be virtualized due to VirtualWisdom  
+=  Number of newly virtualized applications due to VirtualWisdom  
+
+Number of newly virtualized applications due to VirtualWisdom 
+
+ 
+x  Physical versus Virtual CapEx Cost Differential (from above) 
+=  Total CapEx Savings from server virtualization optimization 
+
+Number of newly virtualized applications due to VirtualWisdom 
+
+ 
+x  Physical versus Virtual OpEx Cost Differential (from above) 
+=  Total Annual OpEx Savings from server virtualization optimization 
+
+13                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+6.3  Two customer examples – Server Virtualization Optimization 
+
+Customer 1:  Increased Adoption of Server Optimization 
+This large utility company in the Northeast US had an aggressive application server virtualization goal. 
+Their goal was to run 90% of their applications on virtualized servers by 2015.  However, they were 
+stalled at about 40% virtualization due to concerns by both the IT organization and the business units 
+regarding how application performance would be impacted by the consolidation of multiple 
+applications on a physical server. Without the tools to track and monitor performance from the VM to 
+the storage LUN, how would they be assured of meeting their application performance requirements? 
+They had successfully migrated all of the “low hanging fruit” applications to virtual servers, which 
+represented about 800 of their 2,100 total applications. This company immediately saw how 
+VirtualWisdom could help them meet their server virtualization goal of 90% of applications. They 
+estimated the cost difference between an application deployed on a virtual server versus a physical 
+server was about $5,000 in CapEx and $500/year in OpEx. Over a three-year period they estimated 
+CapEx savings of over $4 million and OpEx savings of almost $1 million by virtue of being able to 
+virtual existing and net-new applications. While this company has obviously not yet achieved this level 
+of application of virtualization, they clearly saw that they needed VirtualWisdom to provide them with 
+the tools needed to ensure that storage performance did not constrain their server virtualization 
+initiatives. 
+
+Customer 2:  Reduced Physical Server Infrastructure Costs 
+This financial management and insurance company based in the Northeast US is a large IBM System 
+p server user.  They are in the process if upgrading their System p environment from POWER6-based 
+servers to POWER7-based servers. Their current POWER6 deployment consists of approximately 80 
+LPARs per server and leverages the Virtual I/O Server (VIOS) capability by running two to four pairs of 
+VIOS LPARs on each server to consolidate I/O workload. This upgrade provides significant 
+improvements in CPU and memory speed and capabilities, which the business plans on leveraging by 
+increasing the number of LPARs on each server, thereby reducing the overall number of servers 
+required to support the business applications and reducing overall costs. However, the company and 
+their System p business partner were concerned about storage performance because the POWER7 
+I/O subsystem is still essentially the same as the POWER6 version.  Because each of these high-end 
+servers, when fully configured, could cost over $3 million, they wanted to ensure that they designed a 
+cost-effective server infrastructure that efficiently leveraged the new CPU and memory capabilities 
+while ensuring storage performance did not constrain overall performance.  Virtual Instruments and 
+VirtualWisdom were leveraged to assess the current storage workload and performance profile of the 
+existing POWER6 environment. This data was then used in the design of the I/O architecture for the 
+new POWER7 environment. At the time of writing this whitepaper the final design had not yet been 
+completed but it is estimated that by better understanding the storage workload requirements the 
+company will save between $500 thousand and $1 million in System p hardware and software in the 
+initial rollout of the POWER7 servers. 
+
+ 
+
+ 
+
+14                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+ 
+
+7. Summary 
+ 
+
+Every company has its own challenges and business imperatives, but at the end of the day, all decisions 
+must be justified by some return on investment.  Candidly, it’s a rarity to find anyone who does a 
+completely exhaustive ROI analysis, and just as rare to find someone who closely examines the actual 
+results of all investments on an ongoing basis.  Still, we learn from what our customers tell us, and we 
+hope by using actual customer experiences in this whitepaper, it helps to identify some real-world savings 
+that might apply to your environment.  
+
+We encourage you to examine this whitepaper, and tell us what you think. Your comments will help to 
+improve the value of our analysis.  Please email us at:  marketing@virtualinstruments.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 09/11 
+
+15                                                    VIRTUAL INSTRUMENTS WHITEPAPER 
+ 
+
+

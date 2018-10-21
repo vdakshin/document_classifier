@@ -1,0 +1,962 @@
+ 
+
+ 
+ 
+ 
+ 
+ 
+SERVICE CATALOG STRATEGIES  
+FOR VBLOCK™ INFRASTRUCTURE 
+PLATFORMS 
+
+ 
+
+IaaS COE 
+January 2011
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+ 
+
+1 
+
+ 
+
+Table of Contents 
+
+Executive Summary ................................................................................................................................................... 3 
+The Challenge ................................................................................................................................................... 3 
+ 
+The Solution ...................................................................................................................................................... 4 
+ 
+ 
+Scope of This Paper ......................................................................................................................................... 4 
+Audience ........................................................................................................................................................... 4 
+ 
+ 
+Terminology ...................................................................................................................................................... 5 
+ 
+What is a Service Catalog? ....................................................................................................................................... 6 
+ 
+Attributes of a Service Catalog ................................................................................................................................ 7 
+ 
+How to Create a Service Catalog ............................................................................................................................. 9 
+Inventory and Categorize New and Existing IT Services ............................................................................ 10 
+ 
+ 
+Identify Optimization Opportunities with Vblock Technologies.................................................................... 10 
+Standardize the Service Descriptions ........................................................................................................... 10 
+ 
+Develop Associated Workflows .................................................................................................................... 11 
+ 
+ 
+Design Presentation and Navigation Interface ............................................................................................. 11 
+ 
+Lifecycle of a Service Catalog ............................................................................................................................... 12 
+ 
+Benefits of Creating a Service Catalog on Vblock Infrastructure Platforms ................................................. 13 
+ 
+Case Study—ACME Quality Products ................................................................................................................. 14 
+Inventory and Categorize New and Existing IT Services ............................................................................ 14 
+ 
+Identify Optimization Opportunities with Vblock Technologies.................................................................... 15 
+ 
+Standardize the Service Descriptions ........................................................................................................... 16 
+Develop Associated Workflows .................................................................................................................... 16 
+Design Presentation and Navigation Interface ............................................................................................. 17 
+
+ 
+ 
+Conclusion   ............................................................................................................................................................ 18 
+ 
+Next Steps 
+ 
+References   ............................................................................................................................................................ 18 
+ 
+ 
+
+ ............................................................................................................................................................ 18 
+
+ 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+ 
+
+2 
+
+“Eighty percent of system failures 
+are a direct result of 
+misadministration and poor 
+configuration. A significant part of 
+making IT infrastructure more 
+resilient will be to reduce the 
+chance for human error through 
+high levels of automation...”  
+
+Neil MacDonald,  
+VP & Gartner Fellow 
+
+ 
+
+Executive Summary 
+
+Businesses large and small are moving rapidly to leverage the economic and 
+environmental advantages of computing in the cloud. However, to take full advantage 
+of the many benefits that cloud computing offers—greater operational efficiency, 
+greater resource availability, better quality of resources, reduced costs—requires more 
+than just moving to a virtualized converged infrastructure. 
+
+Converged infrastructure enables IT organizations to centralize the management of IT 
+resources, consolidate systems, increase resource utilization rates, and lower costs. 
+To maximize the increased efficiencies associated with the converged infrastructure, IT 
+must adopt processes, tools, and organizational structures to offer IT as a Service. 
+Offering standardized services to users through use of an intuitive service catalog is 
+the starting point for IT as it sets out to realize this new operating model. 
+
+The service catalog is the central source of information about the services offered by IT 
+to the business, and is fundamental to the successful transformation of an IT 
+organization or service provider from the traditional method of delivering IT capabilities 
+to delivering IT as a Service.  
+
+ 
+The Challenge 
+In a traditional data center environment, IT is typically separated into silos of 
+capabilities such as network, server, and storage. Although this traditional operating 
+model allows for specialization and focus within the silos, it also propagates 
+inefficiencies in IT operations, which affects the business as well as IT itself. The 
+traditional model of IT service provisioning and delivery often leads to: 
+
+Decreased efficiency—delivering IT services serially across silos—transferring a 
+
+service request from one subject matter expert to another until the request is 
+complete—increases the time needed to deliver the service. Lack of 
+standardization of services and solutions can affect the delivery schedule and 
+reduce operational efficiency since IT personnel must customize each service 
+request individually. 
+
+Increased cost—building and delivering customized services and systems is a 
+
+significant cost to the business due to hardware capital expenditures, software 
+licenses, the personnel required to interface with the business, and the technical 
+experts who engineer, build, and maintain the services and systems. 
+
+Inconsistent quality—allowing users to provision customized and unique solutions 
+
+increases the likelihood for errors and the subsequent need for rework. These 
+errors can result in unstable and underperforming systems, the potential for a 
+security exposure, and user downtime and dissatisfaction. Errors also require 
+time to resolve appropriately, increase the cost to the business, and place IT 
+operational efficiency at risk. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+ 
+
+3 
+
+ 
+
+IT organizations need to create and implement business-focused rather than technology-focused delivery and 
+support methods. These new methods must contain or reduce overall costs and provide faster and more efficient 
+provisioning of services. As a result, IT will gain greater operational efficiency by freeing IT staff to work on 
+strategic activities. 
+
+The Solution 
+A strategy that includes identifying, categorizing, and optimizing new and existing IT capabilities into standardized 
+services that are both business-focused and valued transforms the IT service model from the traditional model of 
+separate silos of capabilities to a streamlined delivery of solutions. A service catalog provides the mechanism to 
+centralize and present these standardized services. 
+
+Standardizing services and solutions and presenting them to users in an intuitive, easy to understand service 
+catalog helps reduce costs and facilitates budgeting and forecasting activities. Standardized configurations that 
+have been tested and validated ensure the consistency and accuracy of the solutions delivered by IT to the 
+business and the user. In addition, by combining and standardizing the needed components and associated 
+support into a single service offering, IT can sometimes even provision an entire solution at once, saving valuable 
+time and cost.  
+
+Discussed in this paper are: 
+
+Purpose of a service catalog  
+
+Attributes of a service catalog 
+
+How to create a service catalog 
+
+Service catalog lifecycle 
+
+A case study that illustrates the design decisions inherent in creating a service catalog 
+
+Scope of This Paper 
+Outlined in this paper is a strategy for creating and implementing a service catalog. It provides a framework and 
+steps for creating a service catalog including a case study that illustrates the thought processes and decision-
+making involved. Reading this paper will provide the information necessary to plan a strategy for creating a 
+business-focused service catalog as the foundation for providing IT as a Service. 
+
+Audience  
+CIOs, Infrastructure and Operations VPs, Directors, and Managers, and any technical management responsible 
+for defining IT strategy will benefit from reading this paper. Sales engineers, field consultants, professional 
+services, IT managers, infrastructure architects, partner engineers, and customers may also find the content 
+useful when creating a service catalog.  
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+4 
+
+ 
+
+Terminology 
+The following table contains terms used throughout this paper. 
+
+Term 
+
+Definition 
+
+Cloud Computing 
+
+Converged Infrastructure 
+
+IT as a Service 
+
+ITIL 
+
+Service Catalog 
+
+ 
+
+Cloud computing is an evolving term used to describe a new model of 
+computing whereby shared servers provide resources, software, and data to 
+computers and other devices on-demand, as with the electricity grid. Cloud 
+computing is a natural evolution of the widespread adoption of virtualization, 
+service-oriented architecture, and utility computing. 
+
+A converged infrastructure packages multiple IT components into a single, 
+optimized computing solution. Components of a converged infrastructure 
+solution include servers, data storage devices, virtualization, networking 
+equipment, and software for IT infrastructure management, automation, and 
+orchestration.  
+
+IT as a Service (ITaaS) refers to a method by which an IT organization or 
+service provider delivers well-defined services delineated at a clear business 
+interface, usually to multiple consumers and/or different business units. 
+Delivering services in this manner, as opposed to operating as pure 
+infrastructure administrators, allows an IT organization to increase underlying 
+resource utilization and reduce associated operational costs. It also enables IT 
+to offer pay-per-use business consumption. 
+
+The Information Technology Infrastructure Library (ITIL®) is a set of concepts 
+and practices for Information Technology Services Management (ITSM), IT 
+development, and IT operations. ITIL is the most widely adopted approach for 
+IT Service Management in the world. It provides a practical, no-nonsense 
+framework for identifying, planning, delivering, and supporting IT services to the 
+business.  
+
+The service catalog provides a central source of information on the IT service 
+offerings delivered to the business by the provider organization, ensuring that 
+business areas can view an accurate, consistent picture of the IT services 
+available, their details, and status. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+5 
+
+ 
+
+What is a Service Catalog? 
+
+A service catalog is a vehicle that IT uses to articulate all its available services and solutions to its user 
+community. The service catalog abstracts the technology to make the presenting, requesting, and provisioning of 
+standardized services faster, more transparent, and of consistent quality. The driving goal behind IT is to provide 
+value to the business, and the service catalog is its showcase. The service catalog demonstrates value to users 
+by linking IT capabilities to business requirements by way of standardized service offerings (Figure 1). By 
+implementing and utilizing a robust, standardized service catalog, IT brings the business and services together 
+efficiently while enabling reduction in the underlying operating expenses. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 1.  Relationship between IT, the Service Catalog, and the Business 
+
+As an everyday example of this concept, consider a restaurant’s menu. The menu is the vehicle by which a 
+restaurant presents its offerings to its customers. In doing so, it does not offer its customers an unlimited number 
+of dishes nor does it ask them to choose the ingredients that will make up the dish. Rather, it offers its customers 
+a limited and standardized set of menu items that have been carefully pre-defined based on the expertise and skill 
+of the chef and staff, and on the market that the restaurant is trying to satisfy. The resulting menu allows for a 
+simple selection by the customer, and, equally importantly, provides the restaurant a means to manage its 
+operations efficiently while providing consistently high-quality dishes. By defining exactly what is presented to its 
+customers, the restaurant can make sure it has the proper raw ingredients available, can obtain these ingredients 
+from the best sources, and can employ the right number of chefs and staff. 
+
+The service catalog provides these same benefits to an IT organization. By presenting a carefully selected and 
+standardized set of services in its service catalog, IT is able to achieve a number of operational and user-facing 
+benefits. In particular, it will be able to optimize its infrastructure and personnel requirements, and better forecast 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+6 
+
+ 
+
+future operating and capital expenditures. At the same time, the delivery of consistent services to users will 
+improve quality, delivery times, customer satisfaction, and ultimately the value of IT. 
+
+Attributes of a Service Catalog 
+
+Clarity, completeness, and usefulness are important criteria when describing service offerings in the service 
+catalog. Equally important is using the parlance of the business to describe service offerings unambiguously. As a 
+best practice, the following attributes should be included for each service offering entry. 
+
+Attribute 
+
+Description 
+
+Service Name 
+
+Users should easily understand what a service offering is by its Service Name. IT and 
+the business should collaborate and agree on Service Names before publication of the 
+service catalog to avoid misunderstandings, confusion, and ordering mistakes. 
+Categorizing services also helps avoid confusion, and is a best practice in the case of 
+larger, more complex organizations. 
+
+Description 
+
+The Description tells users what the service is and what value the service provides. The 
+Description should be clear, concise, and complete, using simple and appropriate 
+language. For example, compare the following two descriptions. 
+
+Description 1 
+
+Corporate approved Silver Package virtual desktop installed 
+and configured with the latest Office productivity suite of 
+applications. You and your manager will receive login 
+instructions via email after creation and initial configuration of 
+your virtual desktop. After you successfully log in, 
+configuration of the virtual desktop will automatically 
+complete. 
+
+ 
+Description 2 
+
+Image of MS ver 5.1.2600 w/4GB RAM, 30GB HDD, needed 
+binaries and apps installed and configured to 90%. Final 10% 
+after successful Kerberos authentication. 
+
+Description 1 is preferable to description 2 given its use of common sense business 
+terms as opposed to technical jargon. 
+
+Features and Options 
+
+ 
+
+The Features and Options attribute describes the technical components of the solution. 
+Technical components will change as IT and the business evolve the services over 
+time. For example, the business may decide to retire Windows XP and make Windows 
+7 the standard virtual desktop operating system. If limited customization of a service 
+were allowed, the different options would be listed here for selection. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+7 
+
+ 
+
+ 
+
+Attribute 
+
+Description 
+
+Service and Support 
+Expectations 
+
+The Service and Support Expectations attribute clearly communicates the quality of 
+service and support provided with the service to ensure the user’s expectations will be 
+met.  
+
+Approval Requirements 
+
+The level of service is dependent on the type of solution and the agreed upon level of 
+support that IT will provide to the business. For example, standard virtual desktop 
+service may be Monday through Friday during normal business hours with a 4-hour 
+response time, while a hosted, mission-critical, and public facing Web server may have 
+continuous monitoring with 24-hour technical support.  
+
+These service and support parameters may or may not equate to formal Service Level 
+Agreements (SLAs) depending on agreements between IT and the business for each 
+solution. 
+
+Service catalog requests still require the appropriate approvals even in the case where 
+a self-service request interface exists. During the planning and implementation of the 
+service catalog, the established approval processes are integrated to provide 
+streamlined and accountable processing of requests. For example, low-end, basic, 
+non-customized virtual desktop requests may progress with only notification (passive 
+approval) to the requestor’s direct supervisor. Requests for high-end configurations, 
+such as servers, might require a formal (active) approval workflow before being 
+processed. Depending on fiscal policy, the service catalog entry may need to 
+accommodate multiple approval levels. 
+
+Price 
+
+Every service request has a cost associated with it even if this information is not visible 
+to the user. The value of IT to the business as well as any costs associated with non-
+standard features or options should be taken into consideration when determining the 
+final price of providing a service or solution. 
+
+Provisioning Timeframe 
+
+Transparency of the price for each service allows the business to be knowledgeable 
+and accountable for the costs incurred and better able to utilize this information for 
+planning and budgeting purposes. Visibility to the price associated with virtual services 
+and solutions helps eliminate the perception that virtual services are “free”. In addition, 
+presenting the price of the resources required for each virtual instance allows 
+comparison with a physical solution to determine return on investment.  
+
+Clear expectations on the timing of service delivery are paramount. The timeframe 
+must be realistic and be attainable for IT. For example, if the selected configuration 
+requires three levels of approval, reasonable time for the approvals must be included. A 
+provisioning timeframe of one day would not be feasible if management is allowed 
+three business days to review and approve the request. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+8 
+
+ 
+
+How to Create a Service Catalog 
+
+One of the first and most important steps in the move to operating as a service-oriented business is to implement 
+a usable service catalog.  While the service catalog is not a new concept, embarking on the development of a 
+modern service catalog can be a daunting task as the creation of appropriate service offerings for this new 
+environment is new for most companies.  
+
+One common approach is to make use of a logical top down methodology that can extend and build on a 
+traditional service catalog, if one exists, but is also focused on business and user requirements. Figure 2 illustrates 
+this top down process. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 2.  Creating a Service Catalog 
+
+ 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+9 
+
+ 
+
+Inventory and Categorize New and Existing IT Services 
+The first step in creating a service catalog is to inventory and categorize service offerings that can be delivered in 
+a standard manner and can be offered to users through an easy to understand and use interface. For example, a 
+high-level categorization of existing services may result in creating categories such as User Computing, 
+Connectivity, Communications, and Server Infrastructure (Figure 3). These high-level categories function as 
+buckets that organize and contain the services and solutions offered to users. As services and solutions are 
+categorized, different classes of service (Bronze, Silver, and Gold) may also become apparent. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 3.  Sample Categories and Service Offerings 
+
+Identify Optimization Opportunities with Vblock Technologies 
+Not only does a high-level categorization of services help form the structure of the service catalog, it can also help 
+to identify opportunities to optimize services and solutions with Vblock technologies. For example, a high-level 
+categorization of Vblock technologies reveals Vblock Infrastructure Platforms could easily provide a variety of 
+standardized solutions such as a Virtual Desktop Interface (VDI) that would provide consistency and 
+manageability for common user environments. 
+
+Standardize the Service Descriptions 
+After identifying, categorizing, and optimizing service offerings with Vblock technologies, it is important to make 
+sure they are named and described clearly and completely so that both IT and the business share the same 
+understanding of what will be delivered. As it is likely that IT and the business have different names for the same 
+service, it is important they agree on naming conventions to prevent confusion and misunderstanding. This 
+collaboration between IT and business should result in agreed upon names and descriptions for each service 
+offering in the service catalog. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+10 
+
+ 
+
+Develop Associated Workflows 
+Once IT and the business agree on names and descriptions for each service offering, the technology, processes, 
+and procedures for delivering, using, and maintaining the service catalog are developed, reviewed, and put in 
+place. Although the process may initially consist of creating a simple work ticket that captures details of the service 
+offering from the service catalog, the requirement is to ensure consistency and accuracy of each service and 
+solution delivered.  
+
+Design Presentation and Navigation Interface 
+In addition to the information presented to the user about the services and solutions, the usability of the service 
+catalog is an important consideration. Implementation of a service catalog may take the form of a Web portal, a 
+Microsoft SharePoint portal, an Excel file, or any number of commercially available products. In any case, the 
+service catalog must minimally be: 
+
+Easy to understand and use 
+
+Consistent in form and function 
+
+Supported by IT 
+
+Able to provide metric and reporting data 
+
+Finding and selecting services should be simple, not complex. Presenting choices in a progressive flow helps 
+guide the user in a controlled manner rather than overwhelming him or her with a myriad of choices that may be 
+incompatible. Sequenced selections help maintain the focus of a user's attention by reducing clutter, confusion, 
+and cognitive workload. This improves usability by presenting only the minimum data required for the user to 
+select the services they need.  
+
+Figure 4 illustrates how the user navigates the service catalog. Each step in this flow takes the user closer to a 
+solution that will meet his or her business need without having to make one or more telephone calls, wait for a 
+service desk operator to answer, describe the service they want, wait while the operator writes the service 
+request, and so on. The process and the outcome are predictable. At the end, the user knows what they will get 
+and when they will get it. 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 4.  Navigating the Service Catalog 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+11 
+
+ 
+
+Lifecycle of a Service Catalog 
+
+Business drivers and technology are ever changing, and services and solutions cannot remain static. To optimize 
+efficiency, ensure quality, and maintain value, IT must continually measure, evaluate, and improve the service 
+catalog. The service catalog lifecycle describes the life of the service catalog from planning and creating service 
+offerings to align with the business strategy, through the design and delivery of the service catalog, to its ongoing 
+operation and continual improvement.  
+
+To provide solutions to ever-changing business and user needs and optimize IT operational efficiency, IT must 
+continually: 
+
+Create service offerings—develop consistent, standardized service offerings that provide value to the 
+
+business and the user and enhance IT operational efficiency.  
+
+Present services—make service offerings accessible to users in a simple, intuitive interface with names 
+
+and descriptions that clearly indicate the value provided. 
+
+Report on services—provide measurements and reports that include the metrics most useful to IT and the 
+
+business for evaluating service offerings and developing billing models. 
+
+Maintain services—add, adapt, and retire service offerings as needed. Maintain clear communication 
+
+channels with the business to ensure service offerings continue to meet evolving and changing business 
+needs and priorities. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 5.  Service Catalog Lifecycle 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+12 
+
+ 
+
+Benefits of Creating a Service Catalog on Vblock Infrastructure Platforms 
+
+Vblock Infrastructure Platforms integrate best-of-breed compute, network, storage, virtualization, and 
+management technologies from VMware®, Cisco®, and EMC ®. The unique nature of the Vblock Infrastructure 
+Platform presents new opportunities for IT to improve on traditional delivery methods for the services offered to 
+internal and external users. A service catalog can help to maximize the benefits of the Vblock converged 
+infrastructure and better align IT with the needs of the business.  
+
+By combining and standardizing the needed components and associated support into a single service offering, 
+users can choose and then IT can provision an entire solution at once, saving valuable time, reducing cost, and 
+improving quality. The service catalog provides many important benefits to the business and users including: 
+
+Reduces complexity—clear, unambiguous descriptions in the service catalog provide a layer of abstraction 
+
+that reduces complexity by hiding the details and exposing only the essential features of the service or 
+solution. 
+
+Facilitates consistent and predictable outcomes—standardized service deliverables help IT to eliminate 
+
+customized and fragmented “accidental architectures” and move toward integrated, optimized 
+technologies that lower risk, increase efficiency, and produce consistent and predictable outcomes. 
+
+Enhances business agility and responsiveness—standardized services and solutions facilitate fast 
+
+deployment and the ability to quickly respond to changing priorities on a wide scale. 
+
+Enables IT as a Service—basing service offerings on solutions to business and user needs rather than the 
+underlying technologies helps IT to align services with business functions and to operate IT as a Service. 
+
+Reduces cost—standardization of services and solutions helps to eliminate the misuse and waste of 
+
+resources associated with configuration errors, which reduces the overall costs of IT service delivery and 
+support. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+13 
+
+ 
+
+Case Study—ACME Quality Products 
+
+Consider the fictional company ACME—makers and distributers of personal propulsion products such as jetpacks 
+and giant slingshots. After years of inefficiency, poor quality, and increasing operating costs, ACME decided to 
+renovate its prior generation data center through the purchase of a Vblock system. ACME also recognized that a 
+thorough review and update of its practices and procedures was long overdue. 
+
+In the case of ACME, our fictional company, the business and IT needed to address two main issues—
+standardizing computing services to increase both user satisfaction and IT operational efficiency and making the 
+user community aware of the available services. 
+
+Inventory and Categorize New and Existing IT Services 
+ACME started by reviewing and analyzing the overall listing of services provided by IT. These services covered all 
+aspects of technological solutions ranging from new client computers to server provisioning. ACME then 
+categorized the services into four major categories (User Computing, Connectivity, Communications, and Server 
+Infrastructure). The high-level categorization resulted in logical groupings of services and solutions for 
+presentation in their service catalog (Figure 6). 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 6.  ACME Categories 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+14 
+
+ 
+
+Identify Optimization Opportunities with Vblock Technologies 
+To achieve their goal of increased efficiencies through standardization of services, the ACME IT organization and 
+representatives of the business met extensively to discuss which services and solutions delivered by Vblock 
+technologies should be included in the service catalog.  
+
+ACME decided to utilize the technologies provided by the new Vblock system to replace its aging desktop 
+environment with a Virtual Desktop Interface solution for each of its user communities: Corporate, Engineering, 
+and Sales. Figure 7 shows the service offerings that ACME decided to offer users. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 7.  Final ACME Service Catalog Offerings 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+15 
+
+ 
+
+Standardize the Service Descriptions 
+IT and the business agreed that three levels of configuration (Bronze, Silver, and Gold) for each VDI service 
+offering was sufficient to satisfy the majority of user needs. IT and the business then collaborated on choosing 
+service names and descriptions that their users would easily understand. Figure 8 illustrates the three VDI solution 
+packages offered to the Corporate User community. 
+
+ 
+Figure 8.  ACME Corporate User Virtual Desktop Interface Packages 
+
+ 
+
+Develop Associated Workflows 
+Although the ultimate goal of ACME is the back-end automation of the entire provisioning process, the initial 
+service catalog solution acted as a front end capturing pertinent information to create work tickets and populate 
+the existing problem ticketing system. Work tickets were then automatically assigned to the correct queues for 
+resolution. This standardization of the service request and provisioning process increased efficiency and accuracy 
+while reducing costs. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+16 
+
+ 
+
+Design Presentation and Navigation Interface 
+Before publishing their service catalog, ACME visualized the provisioning flow illustrated in Figure 9. In this 
+visualization, the user: 
+
+1.  Selects the appropriate category from a list of categories. 
+
+2.  Browses through the different offerings, and then selects the most appropriate. 
+
+3.  Selects a package or specific configuration of the service or solution. 
+
+4.  Confirms the details of the service offering including features and options, delivery timeframe, required 
+
+approvals, and price. 
+
+5.  Submits the request for provisioning. 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 9.  ACME Service Catalog Navigation Flow 
+
+ 
+
+After reviewing, testing, and validating the content in the service offerings and the navigation flow of the service 
+catalog, ACME made the service catalog accessible to their users with a customized Web portal integrated into 
+the IT ticketing system behind the scenes. By utilizing the service catalog, ACME users were able to request 
+standardized services in a consistent manner, which allowed IT to streamline its provisioning processes resulting 
+in an improved user experience as well as decreased operating expenses. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+17 
+
+ 
+
+Conclusion 
+
+IT is undergoing a transformation brought on by the introduction of virtualization technology. The transformation 
+has led to a desire to re-engineer IT and move to a model of true IT as a Service. The driving force is the 
+opportunity to reduce operating expenses, increase business agility, and increase the efficiency and consistency 
+with which IT provides services to business users. 
+
+To achieve their goal of offering IT as a Service, IT organizations must adopt new practices and methods for 
+presenting and delivering services to users. Presenting services and solutions to users by means of a service 
+catalog is a foundational and critical element in the transition to this new IT operational model.  
+
+The requirement to demonstrate value to the business is also driving many IT organizations to implement best 
+practices for provisioning, delivering, and supporting IT services. The service catalog is a means to capture and 
+communicate the key linkages between IT and the business and demonstrate the value provided by IT. 
+
+Following the simple, five-step process outlined in this paper will result in a well-structured service catalog of 
+standardized services and solutions that add value to the business and improve IT operational efficiency. 
+
+A service catalog with standardized service offerings described clearly and presented in an intuitive interface can 
+optimize service provisioning to the business, reduce the overall costs of IT service delivery and support, and, as a 
+result, facilitate the transition to an IT as a Service model. The service catalog will yield the following benefits: 
+
+Standardized , high-quality service and support offerings 
+
+Business needs linked directly to IT services  
+
+Timely, consistent, and cost-effective IT service delivery 
+
+Improved IT operational efficiency 
+
+Increased customer satisfaction 
+ 
+
+Next Steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+References 
+
+MacDonald, Neil, Why Cloud-Based Computing Will Be More Secure Than It Is Today, Gartner Data Center 
+Conference 2010, December 6-9, 2010. 
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+18 
+
+ 
+
+ABOUT VCE  
+VCE, the Virtual Computing Environment Company formed by Cisco and EMC with investments from VMware and Intel, 
+
+accelerates the adoption of converged infrastructure and cloud-based computing models that dramatically reduce the 
+
+cost of IT while improving time to market for our customers. VCE, through the Vblock platform, delivers the industry's first 
+
+completely integrated IT offering with end-to-end vendor accountability. VCE's prepackaged solutions are available 
+
+through an extensive partner network, and cover horizontal applications, vertical industry offerings, and application 
+
+development environments, allowing customers to focus on business innovation instead of integrating, validating and 
+managing IT infrastructure. For more information, go to www.vce.com. 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+Copyright © 2011 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, 
+LLC. and/or its affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+  
+
+© 2011 VCE Company, LLC. All rights reserved.    
+
+ 
+
+19 
+
+

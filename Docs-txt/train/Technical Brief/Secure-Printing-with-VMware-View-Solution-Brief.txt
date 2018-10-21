@@ -1,0 +1,221 @@
+Secure Printing with VMware View 
+
+KEY BENEFITS
+
+•  Leverage the same single sign-on 
+
+process for desktop access and print 
+job release 
+
+•  Allow direct management of print jobs 
+
+from any virtual desktop
+
+•  Enable a seamless generic printing 
+release process for mobile roaming 
+devices, e.g. tablets, medical carts, and 
+laptops
+
+•  Simplify management processes with 
+
+integrated reporting and auditing 
+
+•  Reduce unnecessary CAPEX and OPEX 
+
+spending for acquiring newer MFP 
+printers—compatible with legacy and/
+or MFP printers 
+
+•  Ensure compliance with personal 
+information mandates (e.g. HIPPA, 
+PCI, SOX, etc.)
+
+SOLUTION COMPONENTS
+
+VMware® ESXi™ or vSphere™ 5
+
+VMware vCenter™ Server 5.0
+
+VMware View™ 4.x or above
+
+Print Release Partner Solution  
+
+Print Server enabled on Microsoft 
+Windows Server 2003/2008/2008R2
+
+Network-Based Printer(Legacy or MFP) 
+
+125Khz Proximity Card Reader
+
+Mifare, Casi-Rusco, ISO/IEC 14443 
+Proximity Card 
+
+Virtual Desktop Mobility Printing with Security   
+Traditional “walled garden” ! rewalls or security perimeters centralize corporate data and 
+help control user access, but they do not secure the printing process. The risks and 
+consequences of an unsecured printing environment can result in leaks of corporate or 
+government data. Violating compliance mandates (HIPAA, PCI, SOX, etc.) on personal 
+information is another serious risk. 
+
+Every day, employees send business-critical information to networked printers away from 
+their workstations—but there is no way to physically ensure that the correct person picks 
+up a speci! c print job. It’s critical for security and management to be able to audit what’s 
+been printed by whom and when at which location.  
+
+Employees at a company with a virtual desktop environment can access their data from 
+anywhere within the network or over a trusted VPN, and send it to a networked printer. 
+
+In the location-aware mobile computing environment, virtual desktop secure printing is 
+becoming a requirement. 
+
+Secure Print Release enables any VMware View user to securely print their documents with 
+an easy tap-and-print process for either legacy or modern MFP printers. 
+
+The VMware View user will be able to send their print job to any networked printer and 
+then retrieve their document on demand, all from the virtual desktop. By leveraging 
+existing VMware View technology, the end user can access their virtual desktop on multiple 
+devices: thin clients, tablets, notebooks, mobile phones, or mobility carts—and take 
+advantage of secure printing. 
+
+Business Process Challenges
+•  Allow on-demand reporting and compliance auditing on who prints what job at what time 
+
+at which location 
+
+•  Print delegation for releasing the job to other authorized sta"  to be able to print
+
+•  Eliminate inconvenient queued print jobs for on-the-# y document printing to any 
+
+networked printers
+
+Secure Print Release Solution
+The ! rst step in implementing Secure Print Release is to acquire the Secure Print Server 
+solution from a printing partner. The Secure Print Control software will be installed on the 
+same machine as your existing Print Server. 
+
+The Secure Print Control software can use Active Directory for authentication or will 
+integrate with an existing single sign-on solution. The Secure Print Control vendor solutions 
+have modular SSO architecture and can work with you to integrate any existing SSO 
+solution in your current infrastructure. Companies that do not want to use Active Directory 
+or that have an existing SSO solution can alternatively use local lists or user input to a SQL 
+database. The single sign-on and user login data are aggregated for compliance auditing 
+purposes. 
+
+To modify your printers to work with Secure Print Control, you need to update the ! rmware 
+on your MFP printers to include the Secure Print Control Client Application, and attach a 
+USB proximity card reader. For Legacy printers that are not MFP, you need to install and 
+
+S O L U T I O N   B R I E F   /   1
+
+Secure Printing with VMware View 
+
+con! gure a network-based proximity card reader. In addition to this, you would connect a thin client next to the Legacy 
+printer, or require the VMware View user to use their mobile device to access the Secure Print Client application. 
+
+The diagram below shows how the Secure Print Release solution ! ts in with your existing infrastructure. 
+
+Virtual Desktop
+
+Virtual Desktop Server
+
+Single Sign-On
+(SSO) Server
+
+Active Directory
+
+OR
+
+Mobile Devices 
+
+Remote Application 
+
+Server
+
+Secure Print Control
+
+Figure 2: Secure Print Release Solution Network Architecture
+
+Result
+Implementation of a Secure Print Release solution will allow your organization to:
+
+•  Give job release control to the user and eliminate unclaimed print output waste 
+
+•  Change the printer queue to follow the user instead of following the printe
+
+ 
+
+Figure 1: VMware View User Print Release Flow
+
+Summary
+
+S O L U T I O N   B R I E F   /   2
+
+Secure Printing with VMware View 
+
+The common printing solution is either having the proximity card reader attached to a thin client printing station 
+to identify the location or connecting the proximity card reader to the printer and associate its location within 
+corporate directory. Either approach has its pros and cons on maintenance and cost. Secure printing solution in 
+the virtual desktop environment help associate the printing authorization and tracking along with the virtual 
+desktop logon activities, you will be able to easily allow users to securely queue documents sent from any virtual 
+desktop, to be released and printed to any networked printers within their organization.  
+
+Solution Partners 
+
+Name
+
+Plus Technologies
+
+Jetmobile
+
+ 
+
+Bill of Material
+
+URL
+
+Secure Print Release 
+Software
+
+SecureJet
+
+http://www.plustechnologies.com/
+PrintSolutions/SecurePrintingSolutions.
+aspx
+https://www.jetmobile.com/SecureJet_
+enterprise_online_demo
+
+Authors 
+The solution management team with VMware’s End-User Computing business unit built the solution 
+infrastructure, validated the design, and produced this solution brief. Please note the solution is NOT exclusive 
+with partners below. Consult with your print service provider for better business decision making. 
+
+About Plus Technologies
+Plus Technologies has been developing and providing quality software and service solutions targeted to the 
+enterprise print market since 1994. Our solutions help customers:
+
+•  Improve IT and help desk productivity
+
+•  Improve compliance/security
+
+•  Reduce printing costs
+
+•  Avoid unnecessary printing
+
+•  Add print routing/delegation capabilities
+
+•  Provide pro-active break/! x noti! cation
+
+•  Increase print throughput and scalability
+
+•  Track user and device print metrics
+
+About Jetmobile 
+Jetmobile, an ISO 9001:2008 certi! ed company, invents, develops and provides since 1994 a range of innovative 
+printing solutions that generate savings for your company on a daily basis.
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at
+http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be 
+trademarks of their respective companies. Item No: VMW-SB-SECUREPRINTING-USLET-02120217-WEB
+
+

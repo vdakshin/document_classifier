@@ -1,0 +1,269 @@
+Software-Defined,  
+Hyper-Converged VDI 
+Solutions Brief
+
+The Virtual Desktop Opportunity
+
+ 
+
+Virtual desktop infrastructure (VDI) can yield security, manageability, and productivity benefits. 
+In fact it’s estimated that with VDI, help desk costs can be reduced by up to 66%, and IT labor 
+costs by as much as 74% . That’s in addition to the security benefits achieved through the 
+centralization of intellectual property. To realize these benefits, it’s important that VDI be 
+architected and implemented properly. Historically, one of the architectural (and cost) challenges 
+of correct implementation has been storage. This challenge was further compounded due 
+to the separation of compute from the storage environment. Externally shared data storage 
+systems supply applications with capacity, performance, and data protection, but their limited 
+automation and inability to adapt in real time to dynamic changes can cause problems with VDI. 
+
+Converged and Hyper-Converged Systems to the Rescue
+IT departments have tried to resolve the problems caused by this separation by seeking out 
+appliances that combine servers and storage. But when a converged appliance reaches capacity, 
+companies have to buy additional units, which ends up creating separate storage elements. 
+To solve storage challenges in a scalable way, organizations need hyper-convergence: unified 
+appliances containing compute, storage, and networking resources that leverage storage across 
+an enterprise in one or more software-defined pools. When built with file-sharing services, these 
+pools can be of any size, located across any number of resources, providing complete scalability 
+and flexibility for the organization.
+
+Better Together: VMware Horizon with View on EVO: RAIL  
+with NexentaConnect
+VMware enables easy-to-implement VDI with VMware Horizon® with View, which delivers 
+virtualized and remote desktops and applications through a single platform and supports end 
+users with access to all their desktop and online resources through one unified workspace. Now 
+Horizon runs on VMware EVO: RAIL™, a hyper-converged infrastructure appliance that combines 
+VMware compute, networking, and storage resources into a simple, easy-to-deploy, all-in-one 
+solution offered by VMware partners.
+
+Both Horizon and EVO: RAIL leverage VMware Virtual SAN™ (VSAN) technology, which 
+automates storage provisioning and leverages direct attached storage resources to drive 
+down storage costs for desktop workloads. NexentaConnect for VMware Virtual SAN and 
+
+Visit us online at nexenta.com
+
+Combined  
+Key Benefits
+•  300% capacity improvement 
+
+with compression
+
+•  80% improved storage capacity 
+
+for linked clones
+
+•  23% improved storage capacity 
+
+utilization for full clones
+
+•  Hyper-converged system for VDI 
+
+based on VMware EVO: RAIL 
+that is easy to deploy and simple 
+to manage and scale
+
+•  Complete solution for VDI based 
+
+on market-leading VMware 
+Horizon 6
+
+•  Integrated scale-out file services 
+
+with NexentaConnect for user 
+data and profiles with no 
+additional hardware required
+
+NexentaConnect for VMware Horizon complement these VMware 
+solutions by providing file services that make it easy to share files across 
+storage pools and users, for maximum seamless scalability. 
+
+About EVO: RAIL
+
+Horizon 6
+
+EN
+
+GINE
+
+AIL
+
+EVO: R
+Virtual SA
+vSphere
+EVO: R
+
+CPU
+
+CPU
+
+N
+CPU
+
+CPU
+
+CPU
+
+CPU
+
+CPU
+
+CPU
+
+AIL
+
+About VMware Horizon
+
+Horizon 6 allows IT to centrally manage virtual, physical, and BYO 
+Windows images to streamline management, reduce costs, and maintain 
+compliance. With Horizon 6, virtualized or remoted desktops and 
+applications can be delivered through a single platform to end users. 
+These desktop and application services—including RDSH-hosted apps, 
+VMware ThinApp® packaged apps, SaaS apps, and even virtualized apps 
+from Citrix—can all be accessed from one unified workspace to provide 
+end users with all of the resources they want, at the speed they expect, 
+with the efficiency business demands. 
+
+Deliver virtual or remoted desktops and applications through a single 
+platform to streamline management, easily entitle end users, and quickly 
+deliver Windows desktops and applications to end users across devices 
+and locations. Horizon 6 now supports a single platform for delivering 
+hosted Windows applications and shared desktop sessions from 
+Windows Server instances using Microsoft Remote Desktop Services 
+(RDS), virtual desktops, and VMware App Volumes™ containerized 
+applications. 
+
+VMware EVO: RAIL combines compute, networking, and storage 
+resources into a hyper-converged infrastructure appliance to create a 
+simple, easy-to-deploy, all-in-one solution offered by VMware qualified 
+partners. EVO: RAIL provides several key benefits:
+
+Simplicity Transformed – EVO: RAIL enables power-on to VM creation 
+in minutes, radically easy VM deployment, one-click, non-disruptive 
+patches and upgrades, simplified management, and more.
+
+Software-Defined Building Block – EVO: RAIL is a scalable,  
+Software-Defined Data Center (SDDC) building block that delivers 
+compute, networking, storage, and management to empower private 
+and hybrid cloud, end-user computing, test and dev, and branch office 
+environments.
+
+Trusted Foundation – Building on the proven technology of VMware 
+vSphere®, VMware vCenter Server™, and VMware Virtual SAN,  
+EVO: RAIL delivers the first hyper-converged infrastructure appliance 
+100% powered by VMware software.
+
+Highly Resilient by Design – Resilient appliance design starting with 
+four independent hosts and a distributed Virtual SAN datastore ensures 
+zero application downtime during planned maintenance or during disk, 
+network, or host failures.
+
+Infrastructure at the Speed of Innovation – Meet accelerating 
+business demands by simplifying infrastructure design with predictable 
+sizing and scaling, by streamlining purchase and deployment with a 
+single appliance SKU, and by reducing CapEx and OpEx.
+
+Freedom of Choice – EVO: RAIL is delivered as a complete appliance 
+solution with hardware, software, and support through leading systems 
+vendors; customers choose their preferred brand.
+
+About NexentaConnect 
+
+NexentaConnect is a complete suite of software solutions to combine 
+software-defined storage with cloud, enterprise, and desktop 
+deployments. The suite provides acceleration, automation, and 
+analytics that can only be delivered when storage is integrated with 
+the entire solution stack. NexentaConnect for VMware Virtual SAN 
+provides file services for VMware Virtual SAN environments, adding 
+NFS and SMB access on top of existing Virtual SAN to complete the 
+software hyper-convergence model. NexentaConnect for Virtual SAN 
+features complete vCenter–integrated, wizard-driven automation and 
+powerful I/O acceleration for file storage options.
+
+Deeply integrated into the VMware fabric, NexentaConnect solutions 
+support scale-out functions including full NFS file services, lowering 
+overall cost of storage by 10–15% at a minimum through management 
+and infrastructure simplification with no performance or scale 
+compromises. Some of the key metrics seen by users deploying 
+NexentaConnect in an EVO: RAIL with Horizon with View are:
+
+•  23% improved storage capacity utilization for full clones 
+•  80% improved storage capacity for linked clones
+•  Over 300% capacity improvement with compression
+•  Up to 66% physical space savings – No need to add another 4U NAS 
+
+(6U total compared to 2U)
+
+•  No extra power, cooling, or capital purchase needed
+•  Fully hyper-converged VDI with file services included
+
+Deploying VMware Horizon  
+with View on EVO: RAIL with  
+NexentaConnect
+
+The goal of hyper-converged solutions is to provide simplicity alongside 
+performance. Deployment of the VDI solution based on EVO: RAIL 
+and NexentaConnect is no exception. Beginning with the initial user 
+configuration of the Marvin interface to configure networking and user 
+parameters, EVO: RAIL can be deployed in under 15 minutes.  
+
+This deployment includes the configuration and installation of the 
+VMware Virtual SAN architecture along with the vCenter Web Client. 
+To add the needed file services to the EVO: RAIL solution, or any 
+Virtual SAN deployment, you simply install the NexentaConnect Web 
+Client Plugin and corresponding .ovf file. File services are now available 
+with the total deployment in less than 30 minutes. The final piece of 
+the puzzle is to configure and deploy the View Connection Server and 
+needed components. Again, based on simplicity, the View Connection 
+Server is deployed as a single Windows server within the EVO: RAIL 
+environment, residing on the Virtual SAN. Following the well-known 
+Windows installer process, the only steps left are deploying the 
+desktops. Desktop deployment then utilizes the Virtual SAN storage 
+profiles for image storage and the NexentaConnect–provided SMB 
+shares for user profiles and data. Full integration with Active Directory 
+allows for self-service profile and data restores from within the 
+Windows management consoles. 
+
+For more information about this state-of-the-art, hyper-converged 
+solution to the challenges of VDI, visit the Nexenta Web site at  
+http://www.nexenta.com/products/nexentaconnect/ or the VMware 
+Web site at http://www.vmware.com/products/horizon-view/ and 
+http://www.vmware.com/products/evorail.
+
+EVO: RAIL
+
+System
+
+Nexenta
+Connect
+Install
+
+VMware
+Horizon
+Install
+
+Deploy
+
+Desktop and
+
+Apps
+
+NexentaConnect for VMware Virtual SAN is VMware Ready, designating the highest level of VMware 
+endorsement for products and solutions created by its established partners.
+
+Nexenta Systems, Inc. 451 El Camino Real, Unit 201, Santa Clara, CA 95050  
+Toll free: + 1-855-639-3682  |   EMEA: +31-36-3030700  |  sales@nexenta.com 
+nexenta.com  |  facebook.com/nexenta  |  twitter.com/nexenta
+
+VMware, Inc. 3401 Hillview Avenue, Palo Alto, CA 94304 USA 
+Tel: 877-486-9273  |  Fax: 650-427-5001  |  www.vmware.com 
+
+© 2015 Nexenta Systems, Inc. Nexenta is a registered trademark of Nexenta Systems Inc., in the United States and other countries. All other trademarks,  
+service marks and company names mentioned in this document are properties of their respective owners. Notice: This document is for informational purposes only,  
+and does not set forth any warranty, expressed or implied, concerning any equipment or service offered or to be offered by Nexenta Systems, Inc.
+
+20150129
+
+Copyright © 2015 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are  
+covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States  
+and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. 
+
+

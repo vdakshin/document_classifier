@@ -1,0 +1,212 @@
+Information Brief  
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Mission Critical Applications on 
+
+x86 Platforms 
+
+Eliminating VMware / Storage Related Performance Challenges 
+
+with VirtualWisdom® 
+
+ 
+
+August, 2011 
+
+ 
+
+ 
+
+VirtualInstruments.com 
+
+ 
+
+ 
+Introduction 
+
+Whether on a virtualized or non-virtualized platform, application performance is heavily affected by its 
+underlying storage infrastructure.  In fact storage related problems are reported by VMware as the cause 
+of 80%+ of VMware related performance problems.   
+
+Though most industry analysts flatly state that there’s no technical reason to not put mission critical 
+applications on virtual servers on x86 architecture, many IT professionals remain skeptical.  This is often 
+referred to as the “virtual stall”. This document addresses how to proactively deal with the performance 
+and troubleshooting related issues found in a Fibre Channel SAN / vSphere on x86 environment. Using 
+Virtual Instruments’ revolutionary platform, VirtualWisdom, this document showcases the need for a 
+comprehensive and real-time view to proactively deal with performance issues in a virtual server and 
+SAN environment, enabling IT operations to deliver the performance and availability SLAs demanded by 
+mission critical application owners. 
+
+The Beginning of the Performance Problem Cycle 
+
+The cycle typically starts when application owners requesting Virtual Machines begin to ask for over-
+provisioned resources to ensure they have no performance issues. This in turn exerts pressure on VM 
+administrators to overprovision Memory and CPU to avoid any potential application slowdowns being 
+falsely ascribed to vSphere. In terms of storage, the VM administrator will falsely think along the lines of 
+capacity that needs to be added to their VMFS and subsequently request the amount of storage they 
+feel is best to satisfy the performance requirements of their Virtual Machines. At best they may request 
+the RAID level and the type of storage, e.g. 15K RPM FC disks.  It is here that the discrepancy arises for 
+the storage administrator. The storage admin, used to provisioning LUNs on the basis of application 
+requirements, will instead not be thinking of capacity but rather in terms IOPS and RAID levels. 
+Eventually, though as there is no one-to-one mapping and the requested LUN is to be merely added to a 
+VMFS, the storage administrator, not wishing to be the bottleneck of the process, will proceed to add 
+the requested LUN to the pool. This is the source of a lot of eventual performance problems as overtly 
+busy LUNs begin to affect all of their aligned virtual machines as well as those that share the same 
+datastore.  Moreover, if the LUN is part of a very busy RAID group on the backend of the storage 
+system, such saturated I/O will impact all of the related physical spindles and hence all of the LUNS they 
+share. The workload of individual applications presented to individual volumes will be significantly 
+different to that of multiple applications being consolidated onto a single VMFS volume. The numerous 
+I/Os of multiple applications alone, even if sequential, will push the storage system to deal with these 
+numerous requests as random, thus requiring different considerations than those for individual 
+applications, such as RAID level, LUN layout, cache capacity, etc..  
+
+So how do you bring true visibility and insight into vSphere’s storage I/O stack? 
+
+Looking Beyond Device-Specific and Averaged-Out Metrics 
+
+Currently, despite the plethora of VM/storage related products and tools in the market, the performance 
+metrics they provide on VM memory, CPU, Network and Disk I/O are all polling and depending on 
+metrics averaged over the sampling period, usually from vCenter, the storage system, or both. The 
+conundrum with such device-specific views is that true I/O latency is often missed, especially when 
+these issues occur intermittently or only during peak periods, and therefore beyond the scope of the 
+‘averages’. At best, such tools may give you the highest peak in that given averaged out time frame, but 
+even this misses the true picture of what is occurring.  
+
+2                                                    VIRTUAL INSTRUMENTS INFO BRIEF 
+ 
+
+ 
+
+The Need for a Comprehensive View that Incorporates Exchange Completion Times  
+
+To fully understand application requirements prior to virtualization and have an insight into storage 
+related performance problems, it’s vital to have a solution that reports in real time and on the Exchange 
+Completion Time.  By being able to measure the Exchange Completion Time, administrators are 
+empowered with the knowledge of the exact amount of time it takes for that all frames and sequences 
+have passed from the host to the storage port to the LUN and acknowledged back to the host. Coupled 
+with the metrics taken from vCenter via the VirtualWisdom Virtual Server Probe and from the switches 
+via the VirtualWisdom SAN Availability Probe, VirtualWisdom provides a comprehensive, real-time 
+monitoring system that is out of band and able to report on application I/O latency down to the sub-
+millisecond level. This ability to accurately measure response time also bridges the gap between the 
+application, server and storage silos. The VM and storage administrator, together with the application 
+owner, can work together to optimize virtualized applications, and deliver SLAs that can effectively 
+overcome the “virtual stall”.  
+
+Historical Trending and Playback That Goes Beyond Disk I/O Metrics 
+
+With the knowledge of Exchange Completion Times, long, laborious and often aimless troubleshooting 
+can be avoided. For example, if we see the graph below, VirtualWisdom reports the disk I/O from 
+vCenter having no issues. When we look at the corresponding and more accurate Exchange Completion 
+Times we are in fact seeing significant latency. 
+
+Here, we have the read and write metrics from vCenter indicating latency of the given ESX servers to be 
+14-19ms. The more accurate Exchange Completion Time gives a radically different reading of 40-43ms. 
+With a Tier 1 application that’s been virtualized, such metrics are vital in eliminating potential slowdowns 
+or worse still, unplanned downtime. In fact, such discrepancies are common in situations where host-
+based measurements are relied upon. 
+
+Additionally, if monitoring is relied upon a use of a host based tool, such a tool would use server CPU 
+and memory which in itself causes latency. Server administrators are often falsely led to believe there’s 
+latency occurring 
+elsewhere when 
+in fact it’s the 
+servers 
+themselves that 
+have become 
+overloaded. An 
+end-to-end 
+comprehensive 
+view is the 
+solution to this 
+problem. 
+
+3                                                    VIRTUAL INSTRUMENTS INFO BRIEF 
+ 
+
+ 
+
+Other availability and performance optimization methods, through VirtualWisdom 
+
+Though covering more deeply in the associated Virtual Instruments whitepaper, follow are examples of 
+other areas that can be optimized, improving availability and performance of applications virtualized on 
+x86 platforms.   
+
+Ensuring the I/O for SIOC - while SIOC can bring great dividends in solving storage / vSphere related 
+problems, if there are still underlying problems with the storage configuration or the SAN fabric, the 
+benefits of SIOC will still not be fully realized.  
+
+Ensuring Multipathing is Not at Risk via Imbalanced Throughput - VirtualWisdom enables users to see the actual 
+throughput on their HBAs, SAN ports and storage ports and even allows them to historically trace back 
+and trend this data. VirtualWisdom provides the ability to quickly detect or be alerted of imbalances 
+ensuring that the I/O load can proactively be spread or balanced across multiple devices, satisfying the 
+I/O demand.  
+
+Optimizing Queue Depth - with VirtualWisdom, users are now empowered with the only solution that can 
+measure real-time aggregated queue depth regardless of storage vendor or device, i.e. in a 
+comprehensive manner that takes into consideration the whole process from Initiator to Target to LUN. 
+VirtualWisdom’s unique ability to do this ensures that storage ports are optimized for maximum 
+application health, performance, and SAN efficiency.  
+
+Balance I/O Traffic to Ensure Successful Storage vMotion Operations - to counter complaints that Storage 
+vMotion is slow or even fails, and to be best prepared for Storage vMotion operations, VirtualWisdom 
+can deliver clear insight of SAN utilization and to ensure that I/O traffic is correctly balanced.  
+
+Getting the Most from VAAI Primitives - VirtualWisdom’s value in gaining the most from VAAI includes its 
+ability to identify and enable the proactive elimination of physical layer issues which may exist, and 
+consequently hinder the benefits of VAAI.  
+
+Avoiding Performance Degradation Caused by Poor Balancing - VirtualWisdom’s granular, real-time reporting 
+and alerting can help avoid situations where performance is degraded by the Datastore or VM’s RDM 
+LUNs being provisioned on very busy RAID groups or aligned to poorly balanced back-end processors 
+on the storage system.  
+
+Identifying VM to LUN Correlations – in the case of RDMs, VirtualWisdom can provide correlations from the 
+VM to the LUN by deploying N_Port ID Virtualization (NPIV), effectively reducing the barriers between 
+storage and server optimization. 
+
+Conclusion 
+
+For vSphere managers, VirtualWisdom adds SAN I/O intelligence for comprehensive performance 
+optimization and availability assurance, enabling a more aggressive deployment of virtual machines 
+based on real-time measurements and feedback of I/O performance. By identifying potential virtualized 
+application performance bottlenecks, VirtualWisdom results in significantly higher virtual infrastructure 
+utilization and helps administrators deliver on the promise of reduced capital and operational costs and 
+improved business agility promised by server virtualization on the x86 platform. 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+Sales 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+Support 
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks 
+of, and are used to identify, products or services of their respective owners. 08/11 
+
+4                                                    VIRTUAL INSTRUMENTS INFO BRIEF 
+ 
+
+

@@ -1,0 +1,210 @@
+ Tech Brief                       
+
+ 
+
+How Virtual Instruments Infrastructure Optimization Best 
+Practices Accelerate Datacenter Consolidation Initiatives 
+Introduction 
+
+Data center consolidation projects are typically initiated in order to lower IT costs and improve overall IT operational 
+efficiency.  The trend to consolidate data centers has been enabled by both server consolidation and storage 
+consolidation.  Server consolidation is an approach to the efficient usage of computer server resources in order to 
+reduce the total number of servers that an organization requires. The practice developed in response to the problem of 
+server sprawl, a situation in which multiple, in some cases hundreds or thousands of, under-utilized servers take up 
+more space and consume more resources than can be justified by their workload. 
+
+Although consolidation of servers and storage can substantially increase the efficient use of resources, it may also result 
+in complex configurations of data, networks, applications, and virtual servers that need to support highly unpredictable 
+workloads. To alleviate this problem, server virtualization is used to mask the details of server resources from users 
+while optimizing resource sharing. Another approach to server consolidation is the use of blade servers to maximize the 
+efficient use of space. Yet a third is the technology refresh, where previous-generation servers are simply replaced by 
+much more efficient devices. 
+
+The changing mix of applications and evolving data management requirements is driving major change in storage 
+requirements. IT managers are demanding storage solutions that allow them to deploy complementary tiers of 
+networked storage systems optimized to meet specific requirements for performance, capacity, reliability, and cost.  
+Consolidating older, expensive Tier 1 storage systems into newer, more cost-effective lower tiered storage is another 
+strategy often employed in data center consolidation projects. 
+
+Consolidation challenges for servers and storage infrastructure 
+
+Growth 
+challenge 
+
+Complexity 
+challenge 
+
+Troubleshooting 
+challenge 
+
+Consolidation will only mitigate some of the effects of data growth. Chronic over-provisioning of 
+server capacity and storage infrastructure, partially due to uncontrolled growth, will remain a key 
+issue and is not likely to be significantly affected unless other changes are made to planning and 
+reporting.   
+
+Consolidation alone will not add a reporting capability that ties infrastructure to quality of storage 
+service delivered to applications.  In fact, storage- and server-consolidation initiatives traditionally 
+simplify the asset layer but move complexity of storage management to server infrastructure, with 
+no net difference in overall effort.  With consolidation, you increase the need to establish a 
+concrete method for validating interoperability and performance on new or changed devices – 
+before introduction to the production environment. 
+
+There has long been some comfort to be found in the “physicality” and accessibility of key devices.  
+Data center infrastructure consolidation will create more interdependencies between systems. For 
+a given application, dependencies may cross multiple other applications, servers, SAN fabrics, IO 
+adapters, and network hops. In the meantime, IT departments, for the most part, continue to be 
+“siloed” and the tools to monitor and analyze problems likewise continue to provide either very 
+simple views of the infrastructure, or more commonly, isolated view of components.  
+
+Virtualization / 
+private cloud 
+challenge 
+
+When problems arise, we have always been able to identify a switch port for examination, a server 
+at the end of a wire that might be causing problems, an HBA for inspection, or any number of other 
+physical things we can turn to for further examination.  But in a datacenter that uses virtualization 
+and private cloud technologies to achieve cost reduction and speedier provisioning, that comfort 
+has vanished.  
+
+Performance / 
+sizing challenge 
+
+Accurately sizing all infrastructure components in the consolidated data center has traditionally 
+been more of an art than science.  Understanding the performance and workload characteristics of 
+virtualized applications is often very difficult to assess, often leading to major performance issues 
+occurring at peak times due to resource contention between the resources. 
+
+ Tech Brief                       
+
+ 
+
+Storage network 
+infrastructure 
+challenge 
+
+A new, consolidated datacenter will inevitably include new network infrastructures to support the 
+greater I/O demands.  While these networks are potentially beneficial from a performance 
+perspective, transitioning to higher speeds creates some real challenges for SAN architects.   
+
+How Virtual Instruments’ can help with datacenter infrastructure consolidation 
+
+Virtual Instruments offers an Infrastructure Optimization solution that holistically assesses the entire physical, virtual, and 
+private cloud infrastructure, and provides the IT staff with the data necessary to make intelligent decisions about 
+capacity, utilization, and performance for every layer of the I/O infrastructure – from the host to the storage.  Our 
+recommended best practices include:  
+
+Monitoring and Measurement Best Practice 
+
+A best practices-compliant physical layer must be capable of being both maintained and monitored in order to meet 
+performance and availability demands. Physical layer maintenance requires the ability to quickly and easily add, change, 
+or remove links and devices. Monitoring ensures the accuracy of the changes and validates that they produce only the 
+desired results. Physical layer monitoring and measurement is the real-time acquisition and correlation of error, 
+performance, and utilization data.  This is enabled via optical splitters, called Traffic Access Points, or TAPs that allow 
+passive access to this real-time data, and by probe instrumentation that analyzes the fibre channel frames. Virtual 
+Instrument’s SANInsight TAP Patch Panel System and VirtualWisdom SAN Performance Probe provide a range of 
+options for monitoring and analyzing the I/O path from the physical or virtual host to the LUN.  
+
+ 
+
+                                                                   VirtualWisdom Deployment  
+
+Tiering Management Best Practice 
+
+Virtual Instruments VirtualWisdom® is the missing puzzle piece of the tiering value proposition.  Drive speed is only one 
+factor in achieving the desired application performance for a storage tier and is often the smallest, most expensive 
+performance differentiator.  VirtualWisdom tracks I/O conversations to provide both real-time monitoring and trend 
+analysis of overall performance between applications and all
+switches, virtualization appliances, storage ports, and LUNs.  Combined with the storage vendor SRM tools with their 
+emphasis on storage system metrics, VirtualWisdom provides the critical missing data to enable IT organizations to 
+more confidently use lower cost, lower tier storage to provide higher tier performance.  Virtual Instruments adds 
+application latency data and other information to properly plan and optimize the environment.  This is combined with 
+alerting capabilities to prevent user impact as demands change, enabling IT to realize huge CAPEX improvements while 
+delivering on SLAs. 
+
+ components of the Fibre Channel SAN – the host HBA, 
+
+ 
+
+ Tech Brief                       
+
+ 
+
+High Availability Best Practice 
+
+Beyond adding full I/O path awareness to let IT make more intelligent performance-based tiering decisions, 
+VirtualWisdom also provides deep, physical-layer knowledge of the fabric to enable actual problem avoidance, 
+accelerate troubleshooting, and help de-risk the move to a consolidated computing model.  Every network has hidden 
+issues, from physical layer errors to configuration and load-balancing issues such as failed multipathing. By setting 
+alerts keyed to these issues, administrators can proactively eliminate them while they are still benign, making IT 
+administration a proactive activity rather than a series of firefighting drills.  
+
+Problem Resolution Best Practice 
+
+Decreasing time to problem resolution is accomplished by monitoring transactions from the physical or virtual host to 
+the LUN with VirtualWisdom. The ability to rapidly zero in on the source of the problem, proving within minutes whether 
+the SAN is to blame for slow application performance or not, focuses the right team on the task and allows other teams 
+to remain focused on other strategic imperatives.  VirtualWisdom is the only product that can monitor and send an alert 
+about storage access times, congestion, link errors, and SCSI errors, and generate trend reports that show the behavior 
+of a heterogeneous SAN, by host and by application. This information helps to dramatically expedite troubleshooting 
+and allows the IT manager to prove whether the problem is in the SAN, the application, or the server.  
+
+Storage Network Provisioning Best Practice 
+
+The lack of ability to actively measure SANs means storage architects design for the very worst case. In our 
+engagements with customers, we have consistently found that storage networks at larger datacenters are significantly 
+over-provisioned, with average network link utilization rates of less than 5%. VirtualWisdom can help consolidate 
+underutilized SAN ports to postpone acquiring additional expensive core switch ports, storage ports, related cables, and 
+SFPs.   
+
+Private Cloud Best Practices 
+
+When you look at where people historically focus on system management, it’s around capacity and utilization.  Server 
+and storage virtualization now make capacity planning relatively easy, shifting the key criteria for success in private 
+cloud computing to performance.  When you look at a virtualized or private cloud environment, optimizing CPU and 
+memory only gets you so far.  For I/O-intensive applications such as those running OLTP databases, looking only at 
+server-related metrics is simply inadequate.  I/O optimization is the key as it is the third leg of the “systems optimization 
+stool”.  What administrators need is a way to see into multiple dimensions of the infrastructure, in real time. 
+VirtualWisdom’s hardware monitoring is non-intrusive to the link and to the cloud component.   It sees evidence of 
+degraded behavior because it sees and measures everything, not just the upper layers of the stack, and not just what a 
+cloud component tells it.  
+
+Summary  
+
+Real-time proactive monitoring, measurement, correlation, and alerting enables high consolidation rates without 
+impacting performance as demands change. It eliminates the risk associated with data center consolidation by enabling 
+delivery of and adherence to SLAs.  Changes in demand and performance can now be detected long before users are 
+impacted. With VirtualWisdom’s “what if” performance modeling capabilities, IT staff can provide extremely accurate 
+performance forecasts by using actual historical data and applying configuration changes to that data.  Running reports 
+that show latency and throughput enable the comparison and recommendation of other options that balance utilization 
+and result in faster and less risky consolidation. 
+
+The benefits of consolidation are well understood and Virtual Instruments can accelerate the initiative by providing best 
+practices around server and storage consolidation with an advanced measuring, monitoring, analysis, and optimization 
+solution. 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+European Headquarters 
+One Kingdom Street 
+Paddington Central * London W2 6BD 
+Phone:  44 (0) 203 402 3353 
+
+Sales 
+sales@virtualinstruments.com 
+Support 
+support@virtualinstruments.com 
+ 
+
+©2012 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or 
+servicemarks of, and are used to identify, products or services of their respective owners. 05/12 
+
+ 
+
+

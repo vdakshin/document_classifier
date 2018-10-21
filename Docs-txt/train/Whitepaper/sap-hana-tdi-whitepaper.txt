@@ -1,0 +1,1277 @@
+www.vce.com 
+
+Leveraging VCE Vblock® 
+Systems for SAP HANA tailored 
+data center integration (TDI) 
+
+Version 1.0 
+ 
+October 2014 
+
+ 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+Copyright 2014 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ................................................................................................................................................. 5 
+Key features and benefits ....................................................................................................................... 5 
+Purpose .................................................................................................................................................. 6 
+Audience ................................................................................................................................................. 6 
+Feedback ................................................................................................................................................ 6 
+SAP HANA deployment options ................................................................................................................ 7 
+SAP HANA certified appliance ............................................................................................................... 7 
+SAP HANA tailored data center integration ............................................................................................ 8 
+Comparing the SAP HANA certified appliance and SAP HANA TDI ..................................................... 9 
+Virtualized SAP HANA .......................................................................................................................... 11 
+Choosing between physical and virtual SAP HANA deployment ......................................................... 11 
+Tailored data center integration-ready Vblock Systems ....................................................................... 13 
+Support model ...................................................................................................................................... 13 
+VCE Professional Services ................................................................................................................... 14 
+Mixed workloads in SAP HANA TDI environments .............................................................................. 15 
+Data center replication for disaster tolerance ....................................................................................... 16 
+Design considerations .............................................................................................................................. 17 
+SAP HANA TDI hardware and software requirements ......................................................................... 17 
+Server ............................................................................................................................................. 17 
+Storage ........................................................................................................................................... 17 
+Software ......................................................................................................................................... 18 
+Hardware ........................................................................................................................................ 18 
+Registration considerations .................................................................................................................. 18 
+Sizing considerations ............................................................................................................................ 19 
+Server sizing .................................................................................................................................. 19 
+Network sizing ................................................................................................................................ 19 
+Storage sizing ................................................................................................................................ 20 
+Virtual SAP HANA sizing................................................................................................................ 20 
+Implementation considerations ............................................................................................................. 21 
+Setting up the SAP HANA landscape ............................................................................................ 21 
+Validating the landscape ................................................................................................................ 23 
+Installing SAP HANA ...................................................................................................................... 23 
+Post-production maintenance and support .................................................................................... 23 
+Conclusion ................................................................................................................................................. 24 
+Additional information ........................................................................................................................... 25 
+Cisco .............................................................................................................................................. 25 
+EMC ............................................................................................................................................... 25 
+
+3 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+ 
+
+ 
+
+SAP ................................................................................................................................................ 25 
+VMware .......................................................................................................................................... 25 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+Increasingly, organizations need to be able to handle complex business processes in real-time, whether they 
+are complex transactional workloads, business analytics, or the new generation of data mining applications. To 
+support this trend, SAP launched the SAP HANA platform, which is designed to help organizations cope with 
+the increasing rates of change and innovation by enabling them to respond in real-time. While recognizing 
+information as an asset to use to make better decisions, the ability to capitalize on data remains one of the 
+highest priorities for regulated industries. 
+
+Converged infrastructure delivers on that need by providing the speed and ability to power SAP HANA while 
+remaining cost effective. Vblock® Systems seamlessly integrate leading compute, network, and storage 
+technologies to provide an optimized converged infrastructure solution that ensures secure and predictable 
+performance through pre-engineered, modular infrastructure. Vblock Systems provide the highest levels of 
+virtualization and application performance. 
+
+Organizations can choose between procuring SAP certified appliance hardware for SAP HANA or leveraging 
+SAP HANA tailored data center integration (TDI) to capitalize on existing infrastructure investments. Many 
+operations teams have achieved their goal of getting their SAP HANA deployment up and running using the 
+certified appliance model. However, these appliances might not integrate well with existing data center 
+standards or management and operational processes, adding cost and complexity to data center operations. 
+SAP HANA TDI offers the ability to deploy SAP HANA software on standard Vblock Systems to leverage the 
+benefits of VCE’s converged infrastructure solutions. 
+
+This paper examines how organizations can stay ahead in the ever-changing SAP HANA landscape. SAP 
+HANA tailored data center integration – enabled by VCE – is designed for rapid technology expansion and 
+scaling of the Vblock System compute, network, and storage resources. It provides the benefits of the VCE 
+Experience – built, delivered, and supported by VCE.  
+
+Key features and benefits 
+
+Organizations can choose to deploy SAP HANA on: 
+
+  SAP certified appliances, such as the VCE Vblock® Specialized System for SAP HANA® software 
+
+(VSS SAP HANA) 
+
+  SAP HANA certified hardware components, using SAP HANA TDI 
+
+The SAP HANA certified appliance model, while stable and predictable, has some limitations including server 
+and storage flexibility and the ability to use existing data center infrastructure and processes. 
+
+The SAP HANA TDI model removes the limitations of the SAP HANA certified appliance model by allowing 
+flexibility in hardware choice, as it allows use of existing hardware and operational processes. Vblock Systems 
+offer a range of storage options that are certified for SAP HANA TDI. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+5 
+
+ 
+
+ 
+
+SAP HANA TDI-ready Vblock Systems are standard Vblock Systems delivered with SAP HANA certified 
+blades and storage. SAP HANA TDI can be used with either EMC VMAX or EMC VNX storage. Organizations 
+can integrate SAP HANA TDI on Vblock Systems into an existing, well-established data center infrastructure. 
+This provides multiple benefits, including: 
+
+Increased ROI, through the use of new or existing Vblock Systems investment 
+
+  Risk mitigation and optimized time-to-value by using existing IT processes 
+ 
+  Flexible mixed-workloads to run alongside the SAP HANA deployment 
+  Options to use storage replication for disaster tolerance 
+  Seamless support model 
+
+Purpose 
+
+This paper looks at the deployment options available for organizations using SAP HANA with Vblock Systems 
+and compares the different options. It describes the benefits available using SAP HANA TDI-ready Vblock 
+Systems. It also includes design considerations and best practice recommendations for deploying SAP HANA 
+TDI in a Vblock System environment. 
+
+This document is neither a solution architecture nor a detailed solutions guide. It is not intended to replace 
+existing best practices documents. Customer-specific use cases, workflows, workloads, and other variables 
+might affect the recommendations made in this document. 
+
+Audience 
+
+The audience for this document consists of organizations who are planning to deploy SAP HANA using their 
+existing or planned IT infrastructure, and looking to include VCE Vblock Systems. Specifically, the audience 
+consists of: 
+
+•  C-level executives chartered with their company’s overall technology direction and looking at the 
+
+benefits of converged infrastructure 
+
+• 
+
+IT directors and managers responding to their SAP users’ HANA requirements and looking to 
+leverage existing or planned Vblock Systems, EMC storage, Cisco UCS servers or fabrics 
+
+•  SAP application architects looking at SAP HANA as the key technology platform for future SAP 
+
+analytics and business process application deployments 
+
+  SAP business users looking to exploit the power of SAP HANA for their applications 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment applies, 
+and your feedback. 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+6 
+
+ 
+
+ 
+
+SAP HANA deployment options 
+
+SAP HANA is a software solution that integrates a number of SAP components including the SAP HANA in-
+memory database system, SAP HANA studio, SAP HANA client, and SAP HANA Extended Application 
+Services. These components help improve operational efficiency, agility, and flexibility. 
+
+SAP HANA software requires the use of SAP certified platforms to ensure that performance meets SAP 
+criteria and can provide enterprise-level business continuity with high availability and disaster tolerance. 
+Organizations considering using SAP HANA for their high-performance in-memory database and data analysis 
+needs should also consider their ongoing business IT operations and processes.  
+
+When choosing SAP HANA deployment, organizations need to consider whether they want to deploy SAP 
+HANA on a dedicated infrastructure (appliance) or use their current infrastructure landscape. 
+
+SAP HANA certified appliance 
+
+Traditionally, SAP HANA has been delivered and installed as an appliance.  
+
+The appliance is a fully integrated hardware and software solution in which all the hardware is dedicated to 
+running SAP HANA software. It comes with all the necessary components pre-configured and provided by 
+certified SAP HANA hardware partners. VCE’s SAP HANA certified appliance is the Vblock Specialized 
+System for SAP HANA. Optimized for SAP HANA software, the system represents best-of-breed compute, 
+network, and storage components from Cisco and EMC.  
+
+Appliance delivery of SAP HANA is standardized and highly optimized. Memory requirements drive the system 
+size and number of nodes. The appliance is easy to use with preconfigured hardware and preinstalled 
+software, and is fully supported by SAP. It provides stability and predictability; however, it might introduce 
+some limitations regarding hardware flexibility and might require changes to established IT operation 
+processes. As this is a preconfigured system, the SAP HANA certified appliance does not allow for change or 
+additional use. The appliance supports only a single SAP HANA database instance in production. Multiple 
+production SAP HANA database instances require multiple separate appliances. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+7 
+
+ 
+
+ 
+
+SAP HANA tailored data center integration 
+
+SAP HANA TDI lets an organization run SAP HANA as part of a certified server, network, and storage 
+solution. SAP HANA users can leverage existing hardware and infrastructure components for their SAP HANA 
+environment.  
+
+Instead of using the fixed components delivered with an SAP HANA certified appliance, SAP HANA TDI 
+enables the reuse of certain hardware and infrastructure components already existing in an organization’s 
+landscape. Best-of-breed certified storage, certified servers and networking components can be combined–
+even using their own existing components to support their SAP HANA TDI installation. Organizations with an 
+existing Vblock System or considering implementing a new Vblock System can deploy SAP HANA through 
+TDI on a standard Vblock System, provided that certified SAP HANA TDI compute and storage components 
+are included.  
+
+SAP HANA TDI offers a more open, flexible approach to integrating SAP HANA in the data center. Reusing an 
+existing Vblock System or EMC storage can reduce hardware and operation costs. Enabling SAP HANA 
+software to leverage existing IT management processes for SAP HANA software implementation mitigates 
+risks and optimizes time-to-value. Using SAP HANA TDI helps organizations stay within IT budget, shortens 
+implementation cycles, and allows better consumption of hardware innovations to drive the adaptation of SAP 
+HANA.  
+
+Using an SAP HANA TDI-ready Vblock System removes concerns about configuration complexity due to too 
+many choices from multiple vendors. With TDI, SAP HANA software is deployed on Vblock Systems following 
+a strict set of rules defined by SAP. These rules define what servers can be used and how the storage must be 
+configured to ensure that the hardware delivers the required performance. The SAP HANA software can be 
+self-installed, installed by VCE, or installed through any SAP services partner with certified staff. The resulting 
+solution is supported by SAP and VCE. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+8 
+
+ 
+
+ 
+
+Comparing the SAP HANA certified appliance and SAP HANA 
+TDI 
+
+The following diagram illustrates the difference between the SAP HANA certified appliance and SAP HANA 
+TDI deployment options. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+The following table compares key benefits for both approaches. 
+
+Key benefit 
+
+Pre-integrated and pre-validated Vblock System infrastructure 
+
+Uses existing infrastructure 
+
+Factory pre-installation and configuration of the SAP HANA 
+certified appliance hardware, operating system, and SAP HANA 
+Platform Edition software with SUSE Linux Enterprise Server 
+operating system pre-installed 
+
+Customer or chosen partner installs SAP HANA software 
+
+Virtualization layer (optional) 
+
+Single-purpose environment with all server resources dedicated 
+to the SAP HANA certified appliance 
+
+Supports SAP HANA database scale out and scale up 
+
+Provides openness and freedom of choice to configure the 
+hardware for SAP HANA depending on existing data center 
+standard 
+
+Reduce hardware and operational costs by reusing existing 
+Vblock System hardware components and operation processes 
+
+Mitigate risks and optimize time to value by enabling existing IT 
+management processes for SAP HANA software implementations 
+
+Helps stay within IT budget, shortens implementation cycles, and 
+allows better consumption of hardware innovations to drive the 
+adoption of SAP HANA 
+
+ 
+
+ 
+
+SAP HANA 
+certified appliance 
+Yes 
+
+SAP HANA 
+TDI 
+No 
+
+No 
+
+Yes 
+
+No 
+
+No 
+
+Yes 
+
+No 
+
+No 
+
+No 
+
+No 
+
+No 
+
+Yes 
+
+No 
+
+Yes 
+
+Yes 
+
+No 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+10 
+
+ 
+
+ 
+
+Virtualized SAP HANA 
+
+Virtual SAP HANA is SAP HANA running on a VMware vSphere virtual machine. VMware-based virtualization 
+of SAP HANA enables the easy deployment and maintenance of production and non-production SAP HANA 
+workloads, subject to the limitations of the SAP HANA TDI certification process. 
+
+The following are the prerequisites and conditions for installing virtual SAP HANA: 
+
+  SAP HANA 1.0 SPS 05 and later is supported on VMware vSphere 5.1 for non-production use 
+  SAP HANA 1.0 SPS 07 and later is supported on VMware vSphere 5.5 for production and non-
+
+production use 
+
+  Each SAP HANA instance deployed on a virtual machine should be sized the same as SAP HANA 
+
+deployed on bare metal physical SAP HANA certified appliances 
+
+  Only single node (scale up) SAP HANA deployments are supported; multi-node scale out 
+
+deployments are not supported 
+
+  Over-provisioning of RAM or CPU is not allowed for SAP HANA 
+
+For more information on SAP HANA on VMware on non-production systems (development, test, QA, training), 
+see SAP Note 1788665 – SAP HANA Support for VMware Virtualized Environments.  
+
+For more information on SAP HANA on VMware on production systems see SAP Note 1995460 - Single SAP 
+HANA VM on VMware vSphere in production. 
+
+Choosing between physical and virtual SAP HANA 
+deployment 
+
+With SAP HANA TDI, organizations can choose between additional flexibility by running virtual SAP 
+HANA, maximum performance by running SAP HANA on bare-metal physical hardware, or a combination. 
+Deciding which solution is the best fit is largely a question of business processes and organizational 
+strategy and expertise. For example, if your data center uses a Vblock System 720 with EMC VMAX 
+storage and EMC SRDF replication for disaster tolerance, you could integrate SAP HANA into that 
+environment by deploying SAP HANA on a TDI-ready Vblock 720. If your data center policy is to 
+consolidate and virtualize all workloads and manage them with VMware vCloud Suite, virtualizing SAP 
+HANA is a good solution. 
+
+For fast performance, using physical servers avoids the overhead of a hypervisor. For continuous operations 
+without downtime, virtualized SAP HANA allows SAP HANA to migrate from one server to another while 
+keeping it running, thus freeing the hardware for maintenance or updating. In addition, disaster tolerance is 
+possible with VMware Site Recovery Manager. The performance overhead of virtual SAP HANA varies but is 
+typically less than 12%. If the SAP HANA database system makes a process run 100 times faster on physical 
+hardware, it might run only 90 times faster on virtual; however, for most use cases that is more than sufficient. 
+
+For training systems, VMware snapshot functionality is a key feature that enables the SAP HANA server state 
+to be saved and restored at any time. This allows a return to the original state at the end of a training session. 
+Do not confuse VMware snapshots with SAP HANA snapshots (an SAP HANA functionality). 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+11 
+
+ 
+
+ 
+
+On test and development systems, cost savings can be achieved by deploying several SAP HANA virtual 
+machines on a single host. 
+
+The following table compares the advantages of SAP HANA on virtual and physical hardware. 
+
+Feature 
+Virtualization across all layers 
+
+SAP HANA TDI 
+
+Highest performance 
+
+VMware vCenter Operations Manager 
+
+VMware vSphere vMotion 
+
+VMware Snapshots 
+
+SAP HANA Snapshots 
+
+VMware vSphere High Availability 
+
+VMware vCenter Site Recovery Manager 
+
+VMware Distributed Resource Scheduler 
+
+Virtual SAP HANA 
+Yes 
+
+Physical hardware 
+No 
+
+Yes 
+
+No 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+Yes 
+
+No 
+
+No 
+
+No 
+
+Yes 
+
+No 
+
+No 
+
+No 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+12 
+
+ 
+
+ 
+
+Tailored data center integration-ready Vblock 
+Systems 
+
+The Vblock System is essentially one hardware component – pre-engineered, pre-validated, and pre-tested to 
+work together. SAP HANA can be installed with a virtualization layer or without one using an SAP HANA TDI-
+ready bare-metal physical Vblock System. Using a TDI-ready Vblock System frees organizations from 
+worrying about whether their infrastructure will pass the SAP HANA hardware configuration check tool. With 
+SAP HANA TDI, the SAP HANA database becomes just another resource to consolidate onto a shared 
+infrastructure. It is treated like any other SAP supported database, run on shared hardware alongside those 
+databases, the SAP application tier, and other supporting third party applications.  
+
+SAP HANA TDI-ready Vblock Systems are standard Vblock Systems with SAP HANA certified servers and 
+storage. The Vblock System 300 family comes with EMC VNX storage and the Vblock System 700 family 
+features EMC VMAX storage. They are factory built in the same way as the Vblock Specialized System for 
+SAP HANA, following a set of SAP HANA TDI configuration rules. The difference is that an SAP HANA TDI-
+ready Vblock System can have additional servers and storage to support other workloads, such as non-SAP 
+HANA databases, SAP application servers, and other non-SAP workloads. 
+
+SAP HANA TDI allows use of either a new or an existing Vblock System for SAP HANA. Organizations can 
+leverage existing or new EMC VMAX or EMC VNX storage arrays for more flexible storage deployment. 
+Storage can be used for SAP HANA and other non-HANA persistence, for disaster tolerance, or for other 
+production and non-production use cases. 
+
+When using an existing Vblock System, organizations can add SAP HANA-certified Cisco certified servers 
+along with additional disk storage, following EMC guidelines to deliver the required infrastructure for SAP 
+HANA. New or existing Cisco UCS fabrics can be deployed in a number of flexible topologies. Only SAP 
+HANA-certified Cisco certified blades can be used. 
+
+Choosing VCE Vblock Systems provides access to a solution that assists with system management through 
+support or extended support offerings. 
+
+Support model 
+
+Organizations can rely upon SAP and VCE to jointly provide support for the SAP HANA TDI-ready Vblock 
+System and corresponding SAP HANA platform. SAP provides standard support focused upon both HANA 
+platform components and the dependent operating system configurations. VCE provides standard support 
+focused on the Vblock System and all components, according to the corresponding Release Certification 
+Matrix. Our support staff is expertly trained in all aspects of Vblock Systems, and we are committed to helping 
+protect your investment 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+13 
+
+ 
+
+ 
+
+VCE Professional Services 
+
+All VCE™ Professional Services leverage the combined expertise of ecosystem technology experts in 
+networking, compute, information management, virtualization, and cloud computing. 
+
+Since SAP HANA TDI uses a standard Vblock System, the standard VCE deployment and implementation 
+services for the platform are required. These include Vframework, where applicable, or hardware expansion 
+services if the hardware for SAP HANA TDI is added as an expansion to an existing Vblock System. This 
+provides the logical and physical configuration of the hardware so it is ready for installation of the Linux and 
+SAP HANA software. 
+
+ 
+
+In addition, VCE Professional Services can help with: 
+
+  SUSE or Red Hat Linux installation 
+  VMware vSphere installation, if the nodes are to be virtualized 
+  Running the SAP hardware configuration check tool (hwcct) 
+  SAP HANA software installation 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+14 
+
+ 
+
+ 
+
+The cost of this service depends on: 
+
+  Number of blade servers used for SAP HANA 
+  Number of blade servers to be virtualized and number to remain physical 
+  Number of disk arrays to be used, VNX or VMAX 
+  Number of SAP HANA database instances that need to be created 
+  Whether disaster tolerance is required, and whether it uses system replication or storage replication 
+ 
+
+If disaster tolerance is required, whether the secondary Vblock System is used to run other SAP 
+HANA instances (for example, non-production HANA instances) 
+
+Mixed workloads in SAP HANA TDI environments 
+
+A key benefit of SAP HANA TDI on Vblock Systems is that it allows flexible mixed-workloads to run alongside 
+the SAP HANA deployment. 
+
+When deploying SAP HANA software on a Vblock System using TDI there are potentially three types of 
+workload within the Vblock System: 
+
+  Production SAP HANA databases 
+  Non-production SAP HANA databases (test, development, sandbox, and so forth) 
+  Other SAP and non-SAP workloads (SAP application servers, other SAP databases, other non-SAP 
+
+workloads) 
+
+To ensure maximum isolation of workloads, VCE recommends the following: 
+
+  Use a separate Cisco UCS 5108 chassis for SAP HANA production, SAP HANA non-production, and 
+
+other workloads 
+
+  For EMC VNX storage, only half the maximum number of production SAP HANA nodes can be 
+
+supported in a mixed workload environment 
+
+  For EMC VMAX storage, use separate VMAX engines for SAP HANA production, SAP HANA non-
+
+production and other workloads 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+15 
+
+ 
+
+ 
+
+Data center replication for disaster tolerance 
+
+Data center replication allows maintaining operations despite a disaster that leads to the loss of a data center. 
+SAP support two types of data center replication: 
+
+  SAP HANA System Replication – this is a function of the SAP HANA software and supports 
+
+synchronous and asynchronous replication with an active or passive standby 
+
+  SAP HANA Storage Replication – this uses underlying storage replication methods, such as SRDF 
+
+There are no specific hardware requirements or certifications needed for SAP HANA System Replication. If the 
+data tolerance system is also used for non-production (DEV, QAS, and so forth), add additional storage 
+following the same rules as for primary storage. 
+
+For SAP HANA Storage Replication, EMC has tested both SRDF and RecoverPoint with VMAX storage and 
+published the following documents: 
+
+  Business Continuity Best Practices for SAP HANA Tailored Data Center Integration with EMC 
+
+Symmetrix VMAX 
+
+  SAP HANA TDI with VMAX and RecoverPoint 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+16 
+
+ 
+
+ 
+
+Design considerations 
+
+A typical SAP HANA TDI project lifecycle involves: 
+
+  Determining hardware and software requirements 
+  Registration 
+  Sizing 
+ 
+
+Implementation 
+
+SAP HANA TDI hardware and software requirements 
+
+Server  
+
+Only servers that are validated or certified are supported. The SAP Product Availability Matrix lists the SAP 
+HANA validated appliances up to Westmere processors. Starting with Ivybridge processors, the SAP Certified 
+Appliance Hardware for SAP HANA lists the SAP HANA certified appliances. 
+
+When connecting a certified appliance server to shared enterprise storage in an SAP HANA TDI configuration, 
+keep the following in mind: 
+
+  There is no requirement to include any local disks or flash cards that were used as part of the 
+
+certification. 
+
+  Additional Fibre Channel adapters can be added for a boot from a storage-area network. 
+
+Storage  
+
+All storage devices must have successfully passed the hardware certification for SAP HANA. For more 
+information, see the SAP Certified Enterprise Storage Hardware for SAP HANA. 
+
+Note:  Vblock Systems that use EMC VNX5300, VNX5500, VNX5700, or VNX7500 storage arrays are not 
+
+eligible for SAP HANA TDI. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+17 
+
+ 
+
+ 
+
+Software 
+
+The following combination of software has been tested and verified as working with SAP HANA TDI: 
+
+  Cisco UCS Manager 2.1 
+  VMware ESXi 5.5 
+  VMware vCenter Server 5.5 
+  SUSE Linux Enterprise Server 11 SP3 or Red Hat Enterprise Linux 6.5 
+  SAP HANA 1.0 SPS07 or later for SUSE Linux; SAP HANA 1.0 SPS08 or later for Red Hat Enterprise 
+
+Linux 
+
+VCE strongly advises that you do not use earlier releases of these products. 
+
+Later releases are useable as long as the combinations are reflected in the Cisco UCS HW and SW 
+Interoperability Matrix and the VMware Compatibility Guide. 
+
+Hardware  
+
+SAP defines the main parameters for an SAP HANA solution as follows: 
+
+ 
+
+Intel Xeon processor E7-4870 CPU and up to 128 GB per CPU socket maximum, or Intel Xeon 
+processor E7-4890 v2 CPU and up to 256 GB per CPU socket maximum 
+–  The SAP HANA installer checks the CPU model and stops installation if the wrong CPU is 
+
+installed 
+
+  10 Gigabit Ethernet or 8-Gbps Fibre Channel redundant storage connectivity 
+  10 Gigabit Ethernet redundant connectivity between SAP HANA nodes 
+  1 and 10 Gigabit Ethernet redundant uplink to applications and users 
+
+Registration considerations 
+
+Registration with SAP is required to use the network switches inside a Vblock System for SAP HANA network 
+traffic as well as other application traffic. Contact SAP to request permission and register. Registration is not 
+required if using shared storage only.  
+
+Additionally, SAP permission is required to run more than one virtual machine per host on production with SAP 
+HANA. Open an SAP support message to initiate this request. 
+
+For additional information, refer to SAP HANA Tailored Data Center Integration (TDI). 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+18 
+
+ 
+
+ 
+
+Sizing considerations 
+
+SAP provides a range of tools and guidelines for sizing SAP HANA databases. Sizing considerations are the 
+same for both tailored data center integration and the certified appliance hardware. Sizing helps determine: 
+
+  Total memory required for the database and to provide runtime space 
+  Whether the database can scale out or must scale up 
+  The number of blades needed in a scale out solution, depending on the memory per blade 
+  RAM needed for the blades 
+  Required storage capacity 
+
+Sizing influences the choice of Vblock System. The Vblock System 300 family with EMC VNX storage offers a 
+lower-entry cost but offers less scalability, while the Vblock System 700 family has a higher entry cost but 
+offers increased scalability as additional storage engines can be added to handle more SAP HANA server 
+nodes. For example, an EMC VNX 5400 can cater up to 10 SAP HANA hosts while an EMC VMAX can cater 
+up to 12 hosts per engine.  
+
+Sizing is a complex topic. VCE maintains a staff of SAP sizing experts who can assist organizations with this 
+process.  
+
+Server sizing 
+
+If installing virtual SAP HANA, do not over-commit resources when creating virtual machines on VMware ESX 
+hosts. This means that all virtual machines on a single host must not be configured with more virtual memory, 
+RAM, or CPUs than what physical memory and CPUs exist. Also, be sure to consider that the hypervisor 
+consumes a certain small amount of RAM. 
+
+Network sizing 
+
+For SAP HANA TDI, the standard networking within Vblock Systems is sufficient: 
+
+  Unified or segregated networking 
+  Cisco UCS 2204XP or 2208XP Fabric Extender each with 4 x 10 Gigabit Ethernet interfaces to the 
+
+Fabric Interconnect 
+
+  Cisco UCS 6248UP or 6296UP Fabric Interconnect 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+19 
+
+ 
+
+ 
+
+Storage sizing 
+
+Each SAP HANA node has a database log volume, database data volume, root volume, local SAP 
+volume, and shared SAP volume. The storage needs to deliver enough performance for SAP HANA. This 
+is why certain rules apply to the choice of disk drives and RAID configuration cabling and a certain 
+amount of disks are needed. This might result in more storage capacity than needed, even if the disk 
+space is not needed. The number of drives is important to ensure adequate storage performance.  
+
+For more information on these rules, refer to the following documents: 
+
+  Vblock System 700 family rules in the EMC VMAX Configuration Recommendations for SAP HANA 
+
+TDI white paper 
+
+  Vblock System 300 family rules in the EMC VNX Configuration Recommendations for SAP HANA TDI 
+
+white paper 
+
+Virtual SAP HANA sizing 
+
+SAP HANA virtualized with VMware vSphere is sized the same as non-virtualized SAP, with the following 
+exceptions: 
+
+  Maximum virtual machine size 
+
+–  VMware supports SAP HANA databases in scale up mode, up to the maximum size of a virtual 
+
+machine. For example, on VMware vSphere 5.5, this is 64 virtual CPUs and 1 TB virtual memory. 
+
+–  VMware states that the virtualization overhead for SAP HANA is less than 12% (SAP HANA on 
+
+VMware vSphere 5.5 for Production Environments). 
+
+  Virtual CPU to physical CPU mappings 
+
+Intel processors use hyper threading, which increases performance. 
+
+– 
+–  VMware recommends enabling hyper threading when running virtual SAP HANA. This doubles 
+the effective number of physical CPUs, meaning more virtual CPUs can be allocated to use all 
+available resources. 
+
+  Memory overhead 
+
+–  Virtual machines have full access to and use the amount of memory assigned to a virtual machine 
+
+when created. Memory is used by the VMware ESXi hypervisor and virtual machine memory 
+overhead. The host must have an amount of unassigned memory for the hypervisor RAM.  
+
+–  For 512 GB RAM, the dynamic memory overhead is typically around 2 GB. For more information, 
+
+refer to SAP HANA TDI on Cisco UCS and VMware vSphere.  
+
+SAP HANA databases are sized the same way for physical and virtual environments. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+20 
+
+ 
+
+Implementation considerations 
+
+The following diagram provides an overview of the implementation steps: 
+
+ 
+
+This section provides Vblock System-specific implementation information. 
+
+ 
+
+Setting up the SAP HANA landscape 
+
+Storage considerations 
+
+The storage on SAP HANA TDI systems and TDI-ready Vblock Systems must meet specific requirements. 
+The storage used must be listed in one of the following documents: 
+
+  SAP Product Availability Matrix (PAM), which lists all validated appliances 
+  SAP Certified Appliance Hardware for SAP HANA, which lists all certified appliances 
+  Listing of certified SAP HANA TDI storage, located at SAP Certified Enterprise Storage Hardware for 
+
+SAP HANA. 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+21 
+
+ 
+
+ 
+
+Special configuration requirements for EMC VNX storage are listed in the EMC VNX Configuration 
+Recommendations for SAP HANA TDI white paper. Special configuration requirements for EMC VMAX 
+storage are listed in the EMC VMAX Configuration Recommendations for SAP HANA TDI white paper. 
+
+Once storage is set up, check its performance. The same test tool is used to validate both SAP HANA TDI and 
+the SAP HANA certified appliance, with slightly different KPIs. SAP Note 1943937 provides documentation on 
+how to download the latest version of the test tool and run the tests. 
+
+Compute considerations 
+
+The BIOS settings are the same for both virtual and physical installations of SAP HANA. For more information, 
+refer to SAP HANA TDI on Cisco UCS and VMware vSphere. 
+
+Networking considerations 
+An SAP HANA data center deployment can range from a database running on a single host to a complex 
+distributed system with multiple hosts located at a primary site and one or more secondary sites and 
+supporting a distributed multi-terabyte database with full high availability and disaster recovery. 
+
+SAP HANA has different types of network communication channels to support the various SAP HANA 
+scenarios and setups, including client zone, internal zone, and storage zone.  
+
+Before installing SAP HANA, use the hwcct tool to check the networking component to ensure the 
+hardware and the configuration are operating properly. In order to get the required performance, all 
+network communication must allow for jumbo frames (network packets with a size of 9000 bytes). 
+
+Fully redundant switches and routers are recommended and are included as standard in Vblock Systems. 
+
+Virtualization considerations 
+SAP HANA can be installed as an SAP HANA TDI project on VMware for test and production use. 
+However, many restrictions apply when running SAP HANA on VMware for production use (see SAP 
+Note 1788665 – SAP HANA Support for VMware Virtualized Environments for non-production use and 
+SAP Note 1995460 - Single SAP HANA VM on VMware vSphere in production for production use of SAP 
+HANA on VMware).  
+
+The VMware ESXi host provides the platform on which virtual machines run. The Cisco service profile contains 
+the hardware configuration in a Cisco UCS environment. Use service profile templates or VMware vSphere 
+auto deploy to ease the VMware ESXi deployment process. For more information, refer to Implementing 
+VMware vSphere 5 Auto Deploy on the Cisco Unified Computing System. 
+
+For each vSwitch, it is recommended that two uplink interfaces with MTU 9000 as the trunk be configured. The 
+VLAN assignment takes place in the port group configuration of the vSwitch. 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+22 
+
+ 
+
+ 
+
+Validating the landscape  
+
+The SAP hwcct tool is used to verify that all is set up correctly and delivering the required performance. This 
+tool is described in SAP Note 1943937 - Hardware Configuration Check Tool - Central Note. It is available 
+independently of SAP HANA and contains tests for the SAP HANA landscape, file system, and network. 
+
+Installing the hwcct tool takes about one hour. Running the long test in a 3+1 landscape (three workers and 
+one standby) takes five to ten hours. In a larger environment, it is best to schedule it to run over a weekend. 
+
+Installing SAP HANA 
+
+Once the landscape is validated, SAP HANA can be installed. An SAP-certified SAP HANA Installation 
+Technology Specialist must supervise the installation. VCE Professional Services can help with this process. 
+
+The SAP HANA Server Installation and Update Guide describes the SAP HANA database server 
+installation. When following it, be aware that VCE has tested all SAP HANA failover mechanisms using 
+the Storage Connector API. 
+
+Post-production maintenance and support 
+
+Supporting an SAP HANA environment requires management of the following components:  
+
+  Firmware patches 
+  Operating system patches 
+  SAP HANA platform component patches 
+  Peripheral component patches 
+
+Choosing Vblock Systems for an SAP HANA TDI solution provides access to the VCE Release Certification 
+Matrix and VCE seamless support. The Release Certification Matrix (RCM) provides a fully tested firmware 
+and software stack including VMware vSphere for virtualized servers and up to the firmware for physical 
+servers. The RCM is regularly updated and provides an upgrade guide to help with the upgrade or VCE can 
+perform the upgrade as a chargeable service.  
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+23 
+
+ 
+
+ 
+
+Conclusion 
+
+SAP HANA software can be deployed on SAP certified appliance hardware or installed through SAP HANA 
+TDI. Organizations can choose between procuring a dedicated SAP HANA certified appliance and tailoring the 
+SAP HANA installation to their data center. While the SAP HANA certified appliance provides stability and 
+predictability, SAP HANA TDI offers more flexibility as it allows a selection of hardware that integrates it into 
+existing processes, instead of having to adapt processes to fit with the appliance hardware. 
+
+Both VNX-based Vblock 300 family and VMAX-based Vblock 700 family systems provide a pre-engineered, 
+pre-validated, and pre-tested platform on which to run SAP HANA. This platform comprises the storage, 
+networking, compute, and optionally, the virtualization layer. It is supported as a single product, meaning there 
+is no need to worry if the support issue was caused by a networking, storage or compute component. The 
+platform provides a stable and reliable base for an SAP HANA installation. With SAP HANA TDI, organizations 
+can consolidate SAP HANA workloads alongside both SAP and non-SAP workloads on the Vblock Systems 
+shared infrastructure.  
+
+Virtual SAP HANA adds to the benefits of SAP HANA TDI, making it easier to upgrade or maintain hardware, 
+and allowing the use of monitoring software.  
+
+For fastest performance, choose bare-metal physical hardware. For continuous operations without any 
+downtime, virtualized SAP HANA allows SAP HANA to migrate from one server to another while keeping it 
+running, thus freeing the hardware for maintenance or updating. 
+
+ 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+24 
+
+ 
+
+ 
+
+Additional information 
+
+Cisco 
+
+  Cisco UCS HW and SW Interoperability Matrix 
+ 
+
+Implementing VMware vSphere 5 Auto Deploy on the Cisco Unified Computing System 
+
+EMC 
+
+  Business Continuity Best Practices for SAP HANA Tailored Data Center Integration with EMC 
+
+Symmetrix VMAX 
+
+  SAP HANA TDI with VMAX and RecoverPoint 
+  EMC VMAX Configuration Recommendations for SAP HANA TDI white paper 
+  EMC VNX Configuration Recommendations for SAP HANA TDI white paper  
+
+SAP 
+
+  SAP Product Availability Matrix  
+  SAP Certified Appliance Hardware for SAP HANA 
+  SAP Certified Enterprise Storage Hardware for SAP HANA 
+  SAP HANA Tailored Data Center Integration (TDI)  
+  SAP HANA TDI on Cisco UCS and VMware vSphere 
+  SAP HANA Server Installation and Update Guide 
+  SAP help portal 
+
+References requiring a SAP login and password 
+
+  SAP Note 1788665 – SAP HANA Support for VMware Virtualized Environments  
+  SAP Note 1995460 - Single SAP HANA VM on VMware vSphere in production  
+  SAP Note 1943937 - Hardware Configuration Check Tool - Central Note  
+
+VMware  
+
+  VMware Compatibility Guide 
+  SAP HANA on VMware vSphere 5.5 for Production Environments 
+
+ 
+
+ 
+
+© 2014 VCE Company, LLC. 
+
+All Rights Reserved. 
+
+25 
+
+ 
+
+ 
+
+www.vce.com 
+
+ 
+
+ 
+
+About VCE 
+
+VCE,  formed  by  Cisco  and  EMC  with  investments  from  VMware  and  Intel,  accelerates  the  adoption  of  converged 
+infrastructure and cloud-based computing models that dramatically reduce the cost of IT while improving time to market for 
+our  customers.  VCE,  through  Vblock  Systems,  delivers  the  industry's  only  fully  integrated  and  fully  virtualized  cloud 
+infrastructure system. VCE solutions are available through an extensive partner network, and cover horizontal applications, 
+vertical industry offerings, and application development environments, allowing customers to focus on business innovation 
+instead of integrating, validating, and managing IT infrastructure. 
+
+For more information, go to www.vce.com. 
+
+© 2014 VCE Company, LLC. All rights reserved. VCE, Vblock, VCE Vision, and the VCE logo are registered trademarks or 
+trademarks of VCE Company, LLC. and/or its affiliates in the United States or other countries. All other trademarks used 
+herein are the property of their respective owners. 
+
+ 
+
+

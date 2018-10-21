@@ -1,0 +1,1384 @@
+ 
+
+ 
+
+ 
+
+VMware View™ Backup Best Practices 
+
+September 2011 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E  
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Table of Contents 
+
+Executive Summary ....................................................................................................................... 3 
+
+View Architecture Overview .......................................................................................................... 4 
+
+Understanding View Architecture ................................................................................................ 4 
+
+View Operation Workflow ............................................................................................................ 7 
+
+Storage Configuration ................................................................................................................... 7 
+
+View Backup and Restore ............................................................................................................. 9 
+
+View Components Requiring Backup .......................................................................................... 9 
+
+View Backup Procedures ............................................................................................................. 9 
+
+View Restore Procedure ............................................................................................................ 12 
+
+View Backup Troubleshooting ................................................................................................... 13 
+
+Virtual Desktop Backup Scenarios ............................................................................................ 14 
+
+Backup Frequency Recommendations ...................................................................................... 15 
+
+Other Considerations ................................................................................................................. 16 
+
+Conclusion .................................................................................................................................... 17 
+
+Resources ..................................................................................................................................... 18 
+
+Acknowledgements ...................................................................................................................... 19 
+
+Appendix A: VMware View Backup Automation ....................................................................... 20 
+
+VMware, VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com  
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. VMware is a 
+registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies. Item No: XXXXXXX 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / I I    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Executive Summary 
+VMware View is a cost effective, “best of breed” virtual desktop solution. It that allows businesses to 
+deliver office systems, applications, and infrastructure to users as a high performance, highly scalable 
+centralized managed service. View also provides the capabilities needed to protect the systems and 
+applications it supports and the associated user data. It enables archived data to be backed up and 
+restored conveniently.  
+
+Typically, businesses initially protect their virtual desktop environment using the backup methodologies 
+they have already deployed to support their physical infrastructure. In some cases, this standard practice 
+is sufficient. In other situations, businesses implement solutions for backing up and restoring View that 
+are designed specifically for the virtual environment. 
+
+This white paper describes a VMware best practices approach businesses can use to build View data 
+backup and recovery solutions for the datacenter including a reference architecture that can be used to 
+develop these solutions. It also describes backup and restore scenarios for View storage components and 
+procedures for implementing these scenarios. Note that this paper does not address disaster recovery 
+procedures for the View environment.  
+
+This paper is written as a deep-dive for experienced architects and engineers who are responsible for 
+developing backup solutions for the VMware View environment. This paper assumes that the reader has 
+an advanced knowledge of virtualization, VMware vSphere and View, and Microsoft Active Directory and 
+Active Directory Lightweight Directory Services (AD LDS), also called ADAM. 
+
+It is written as a companion to other published materials about VMware View. The Resources section at 
+the end of this paper provides a complete list of reference documents for VMware View.  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 3    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+View Architecture Overview 
+VMware View enables IT departments to run virtual desktops in the datacenter and deliver desktops to 
+the user’s client device as a managed service. View enables authorized end users to use a familiar, 
+personalized environment that they can access on demand from any number of devices anywhere, and at 
+any time. View allows administrators to maintain centralized control, operational efficiency, and the 
+security of their desktop systems, applications, and the associated data from the datacenter, rather than 
+from the user’s PC. 
+
+View is used to configure the virtual desktop environment, create administrators, provision and deploy 
+View desktops, set up user authentication, configure policies, and manage virtualized applications. See 
+the Resources section at the end of this paper for more information. 
+
+Understanding View Architecture 
+
+A typical VMware View deployment with each of its key components is shown in the figure below. 
+
+ 
+
+Figure 1. High level example of a VMware View deployment 
+
+View Components 
+
+The key components of View include View Client, View agent and guest, View server, other VMware 
+product components, and vendor components that can be used with View, as described in the following 
+sections. 
+
+View Client Components 
+
+The View Client components are described in the table below. 
+
+Table 1. VMware View client components 
+
+VIEW COMPONENT  DESCRIPTION 
+
+View Client 
+
+The types of View Clients include: 
+
+  Zero client. Hardware device that is built for presenting View desktops. This device has no 
+
+operating system. It is simple to use and requires little maintenance. 
+
+  Thin client. Hardware device that is built for presenting View desktops. This device runs a 
+
+custom-built operating system and it has View Client software pre-installed. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 4    
+
+VMware View™ Backup Best Practices 
+
+VIEW COMPONENT  DESCRIPTION 
+
+ 
+
+  Thick client. Windows PC or Mac computer that has View Client installed locally for 
+
+accessing View desktops. 
+
+  Tablet client. Tablet device that has the VMware Client software preinstalled. 
+
+Note that View Client with Local Mode (formerly called Offline Desktop) has been extended 
+to allow end users to download or “check out” virtual machines and use them on their local 
+systems, either with or without a network connection. 
+
+ 
+
+ 
+
+View Agent and Guest Components 
+
+The View agent and guest components are described in the table below. 
+
+Table 2. VMware View agent and guest components 
+
+VIEW COMPONENT  DESCRIPTION 
+
+View Agent 
+
+Service that is installed on all virtual machines, physical systems, and Terminal Service 
+servers that act as sources for View desktops. This agent communicates with View Client to 
+provide features such as connection monitoring, virtual printing, and access to locally-
+connected USB devices. 
+
+View Composer 
+Agent 
+
+Service that is active when recomposing or provisioning the machine. If linked-clones are not 
+enabled, this agent does not get installed.  
+
+View Guest 
+
+This virtual machine serves as a View desktop for thin client users. 
+
+View Server Components 
+
+The View infrastructure components including View Connection Server, View Security Server, View 
+Composer, and View Transfer Server are described in the table below. 
+
+Note that all View servers run on the Microsoft Windows Server operating system. 
+
+Table 2. VMware View server components 
+
+VIEW COMPONENTS 
+
+DESCRIPTION 
+
+View Connection Server 
+
+This server acts as a broker for client connections. View Connection Server authenticates 
+and manages users through Active Directory, and directs the request to the appropriate 
+virtual machine, physical or blade PC, or Windows Terminal Services server.  
+
+It uses AD-LDS to store configuration data. Inside the corporate firewall, a group of two 
+or more View Connection Server instances can be installed and configured. In this case, 
+View configuration data is stored in an embedded AD-LDS directory and replicated 
+among members of the group. 
+
+View Connection server communicates with vCenter in order to manage the virtual 
+desktops. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 5    
+
+VMware View™ Backup Best Practices 
+
+VIEW COMPONENTS 
+
+DESCRIPTION 
+
+View Security Server 
+
+View Security Server can optionally be installed outside the corporate firewall, in the 
+DMZ, and configured as a Security Server (using Security Server mode). The Security 
+Server offers a subset of View Connection Server functionality and it is not required to be 
+in an Active Directory domain.  
+
+View Composer 
+
+When installed on a vCenter Server instance, View Composer can  rapidly create linked-
+clone desktop pools (desktop images) that share virtual disks with a specified parent 
+virtual machine using a single, centralized master image. Unlike View Connection server, 
+View Composer uses a separate database server to store its configuration. The View 
+Composer database backup and control procedure can be manually controlled from the 
+Administrator console. 
+
+View Transfer Server 
+
+This server manages and streamlines data transfers between the datacenter and View 
+Local Mode enabled clients that have the Desktop checked out. View Transfer Server is 
+required to support desktops that run View Client with Local Mode. 
+
+ 
+
+ 
+
+Other VMware and Vendor Products Used with View 
+
+View deployments are typically used with VMware products including VMware ThinApp, VMware ESX 
+server, and VMware vCenter, as well as other compatible vendor products. 
+
+Table 3. VMware and vendor products used with View 
+
+COMPONENTS  
+
+DESCRIPTION 
+
+VMware ThinApp 
+
+ThinApp decouples an application from the underlying operating system and its libraries and 
+framework, and it bundles the application into a single executable file called an application 
+package.  
+
+VMware vSphere 
+(ESX server hosts) 
+
+vSphere is the platform for virtual desktop provisioning, hosting, and high availability 
+services. It also hosts View components including View Connection Server instances, Active 
+Directory servers, and vCenter instances. 
+
+VMware vCenter  
+
+Microsoft Active 
+Directory 
+
+Microsoft AD-LDS 
+
+vCenter manages the assignment of virtual machines to physical servers and storage, as well 
+as CPU and memory resources to virtual machines. It provides the central point for 
+configuring, provisioning, and managing virtual machines, and for managing all VMware 
+ESX/ESXi servers connected on a network. 
+
+When installed on a vCenter server instance, View Composer enables View to communicate 
+with the vCenter host. View Composer can then rapidly create linked-clone desktop pools. 
+See View Composer above for more details.  
+
+VMware View relies on Active Directory for user authentication and management. 
+
+VMware View uses AD-LDS to store virtual desktop infrastructure configuration information. 
+On View Connection Servers, AD-LDS is an embedded LDAP directory that is provided as part 
+of the installation. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 6    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+COMPONENTS  
+
+DESCRIPTION 
+
+Vendor Client 
+Management 
+Servers 
+
+Most of the client vendors have their own client management servers. These servers can 
+provide remote configuration, firmware updates, and power control functionality. Please 
+check the vendor information for your client management server for more information. 
+
+View Operation Workflow 
+
+The workflow within a typical VMware View deployment performs as follows: 
+
+1.  User connects to the View environment using View Client as a zero, thin, thick, or tablet client. 
+
+2.  In scenarios where the View user connects, the user initially connects to View Security Server. The 
+
+Security server acts as the external network gateway to View and it is typically placed in the DMZ. The 
+Security server forwards all session requests to the internal View Connection Server.  
+
+3.  View Connection Server acts as the session broker between virtual desktop and user’s View Client. It 
+authenticates and manages users through Active Directory. It connects the end point device with the 
+appropriate virtual machine, physical or blade PC, or Windows Terminal Services server. All View 
+settings are stored on an AD-LDS store.  
+
+4.  In scenarios where View Composer is used, View communicates with View Composer and pre-
+
+provisions the linked-clone desktops from a single master image. 
+
+5.  Once View Connection Server authenticates the user, the virtual desktop session is initiated. In this 
+
+case, View Connection Server retrieves the virtual desktop virtual machine resource for the user. 
+
+6.  In scenarios where Local Mode is enabled, View Connection Server uses View Transfer Server to 
+create, track and transfer local mode virtual machine images. All virtual machine images on View 
+Transfer Server are encrypted by default. 
+
+Storage Configuration 
+The storage configuration for a typical VMware View deployment is shown in the figure below. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 7    
+
+ 
+
+ 
+
+VMware View™ Backup Best Practices 
+
+] 
+Figure 3. Example of VMware View Storage Configuration 
+
+View Storage Components 
+
+The View storage components for fully virtualized environments are described in the table below.  
+
+Table 4. View storage components 
+
+COMPONENTS  
+
+DESCRIPTION 
+
+VMDK containers for 
+virtual machine storage 
+
+vSphere uses the VMware Virtual Machine File System (VMFS) for the storage of virtual 
+machines. This high-performance file system is optimized to store large files such as 
+virtual machine disk images. In the virtual implementation of View, all View components 
+are stored on VMFS volumes and run in VDMK (virtual disk) containers. 
+
+In addition, vCenter, Active Directory, and AD-LDS servers are installed as virtual 
+machines and run in VMDK containers.  
+
+AD-LDS store for View 
+configuration 
+
+The AD-LDS service database stored in Active Directory contains configuration data and 
+events/logs. By default, this database resides on View Connection Server. 
+
+View Connection Server 
+logs database 
+
+View Connection Server can be configured to use the event database hosted on 
+Microsoft SQL Server. The event database holds historical data that is not critical to View 
+functionality. 
+
+vCenter and View 
+Composer databases 
+
+vCenter and View Composer rely on Microsoft SQL Server or Oracle Database to store 
+configuration and run-time data. 
+
+CIFS share for ThinApps 
+
+CIFS acts as the primary storage for ThinApp applications. ThinApp can run on any 
+storage appliance or virtual machine hosting a CIFS share. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 8    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+View Backup and Restore 
+This section describes the steps needed to perform a complete backup and restore of View components.  
+
+View Components Requiring Backup 
+
+View back up includes the components and functionality that is needed for the View environment to 
+function properly. The critical View components include: 
+
+  View Connection Server 
+
+  View Composer (if installed) 
+
+  vCenter server and ESX hosts for virtual desktop virtual machines 
+
+  Active Directory 
+
+In addition, the critical database components include:  
+
+  View Connection Server AD-LDS datastore 
+
+  View Composer database (if installed) 
+
+  vCenter server database 
+
+VMware recommends backing up all View components at the same time to avoid data discrepancies. 
+
+Note: If the View Composer database is attached to a new installation of the View Composer service, first 
+transfer the RSA key container that was created by the original View Composer service to the new host 
+system.  For more information, see the View Manager Administration Guide: 
+
+http://www.vmware.com/pdf/view45_admin_guide.pdf, on page 267  
+
+View Backup Procedures 
+
+Perform a backup of the View environment in the following sequence: 
+
+  Back up vSphere 
+
+  Back up View Connection Server AD-LDS datastore 
+
+  Back up View Composer database 
+
+  Back up vCenter database 
+
+Each of these procedures is described in the sections below.  
+
+Backing Up vSphere 
+
+To back up the vSphere    
+
+Use the recommended steps to back up and restore vSphere and VMFS volumes in the upgrade guide 
+associated with your version of the product: 
+
+http://www.vmware.com/support/pubs/vi_pubs.html   
+
+Backing Up the View Connection Server AD-LDS Datastore 
+
+To back up the View Connection Server AD-LDS datastore    
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 9    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+For more information, see the View Manager Administration Guide: 
+
+http://www.vmware.com/pdf/view45_admin_guide.pdf 
+
+1.  Verify that there are no ongoing create, recompose, and delete operations in progress.  
+
+2.  Disable provisioning of new virtual machines from all pools to prevent data synchronization 
+
+problems: 
+
+a.  Click View Administrator > Pools. 
+
+b.  Select each Pool and click Status.  
+
+c.  Click Disable Provisioning… and then click OK. 
+
+LDIF data is exported from View Connection Server using the vdmexport.exe tool that 
+accompanies each standard and replica of View Connection Server. The path to the executable 
+file is: 
+
+C:\Program Files\VMware\VMware View\Server\tools\bin\vdmexport.exe  
+
+3.  From the command prompt on a standard or replica View Connection Server, create a file called 
+
+VDMConfig.LDF by executing the command:  
+
+vdmexport > vdmconfig.ldf 
+
+VDMConfig.LDF contains the exported View LDAP configuration information.  
+
+Backing Up the View Composer Database 
+
+To back up the View Composer database  
+
+1.  Stop the View Composer service to get a clean backup of the database: 
+
+a.  Click Start > Administrative Tools > Services.  
+
+b.  Right-click VMware View Composer service.  
+
+c.  Choose Stop. 
+
+Note: When the View Composer service is stopped, it stops accepting any new requests for 
+linked-clone related operations. Current actions on the View Composer database finish and the 
+service shuts down. Any View Composer operations attempted (recompose/refresh) through the 
+View Administrator fail, which can leave clones in an erred state. This can be fixed by manually 
+recomposing or refreshing the desktop. 
+
+2.  Back up the View Composer database. Follow the recommended practice for backing up the database 
+
+with third party utilities. 
+
+For quick verification with Microsoft SQL 2005 databases: 
+
+a.  Right-click on the database.  
+
+b.  Choose Tasks.  
+
+c.  Click Backup. By default, the backup is stored in: 
+
+C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\Backup\<database_name>.bak  
+
+Backing Up the vCenter Database 
+
+To back up the vCenter database  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 0    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+1.  Perform the backup of the vCenter database. See the instructions in the vSphere 4.x Backup 
+
+Knowledge Base article: 
+
+http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalI
+d=1023985%20  
+
+2.  Restart the View Composer service. 
+
+3.  Enable provisioning of new virtual machines from all pools: 
+
+a.  Click View Administrator > Pools. 
+
+b.  Select each Pool and click Status.  
+
+c.  Click Enable Provisioning… and then click OK. 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 1    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+View Restore Procedure 
+
+Perform a restore of the View environment from backups as described below. 
+
+To restore the View backup  
+
+1.  Verify that there are no ongoing create, recompose, and delete operations in progress.  
+
+2.  Stop the View Connection Server service: 
+
+a.  Click Start > Administrative Tools > Services.  
+
+b.  Right-click VMware View Connection Server service and select Stop. 
+
+3.  Stop the View Composer Service: 
+
+a.  Click Start > Administrative Tools > Services.  
+
+b.  Right-click VMware View Composer service and select Stop. 
+
+4.  Restore the vCenter database. See the instructions in the vSphere 4.x Backup Knowledge Base article: 
+
+http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalI
+d=1023985%20  
+
+Note: Stop the VMware vCenter Server service before attempting a restore. 
+
+5.  Restore the View Composer database. Use the recommended practice for restoring your database 
+
+with third party utilities. 
+
+Note: If the View Composer database is attached to a new installation of the View Composer service, first 
+transfer the RSA key container that was created by the original View Composer service to the new host 
+system. For more information, see the View Manager Administration Guide: 
+
+http://www.vmware.com/pdf/view45_admin_guide.pdf, on page 267  
+
+For quick verification with Microsoft SQL Server 2005 databases: 
+
+a.  Right-click on the database.  
+
+b.  Choose Restore.  
+
+c.  Click Database.  
+
+Restore the View Manager AD-LDS datastore. see the View Manager Administration Guide.  
+
+To uninstall View Connection Server and AD-LDS: 
+
+Note: If restoring to a multi-broker environment, uninstall all Connection Server instances. 
+
+a.  Click Start > Control Panel > Add/Remove Programs.  
+
+b.  Click VMware View Connection Server and click Remove. 
+
+c.  Click and AD-LDS (ADAM) Instance VMwareVDMDS and click Remove. 
+
+6.  Reinstall View Connection Server, AD-LDS with View Connection Server. If restoring to a multi-broker 
+
+environment, install only one instance of the View Connection Server.  
+
+7.  LDIF data is imported into View Connection Server using the vdmimport.exe tool that accompanies 
+
+each standard and replica View Connection Server. The path to the executable file is: 
+
+C:\Program Files\VMware\VMware View\Server\tools\bin\vdmimport.exe  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 2    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+a.  From the command prompt on a standard or replica View Connection Server, import View LDAP 
+
+backup file VDMConfig.ldf using this command: 
+
+vdmimport -f vdmconfig.ldf  
+
+b. 
+
+If this is a single View Connection Server environment, proceed to Step c. If restoring to a multi-
+broker environment, reinstall the remaining View Connection Servers making them replicas of 
+the one that was restored.  
+
+c.  Verify that the View Connection Server, View Composer, and vCenter Server services are started.  
+
+View Backup Troubleshooting 
+
+Reconciliation is required when the View Connection Server environment is out of sync with the current 
+state due to administrator actions taken after the backup. Examples of common situations where 
+reconciliation is required are described below. 
+
+Case 1: Missing desktops appear in the View Manager Admin user interface after a restore of the View 
+Connection Server’s AD-LDS database. This typically occurs when the administrator takes either of these 
+actions after the backup, but before the restore:  
+
+  Deletes pools and/or desktops.  
+
+  Recomposes a desktop pool, which results in the removal of unassigned desktops (spare virtual 
+
+machines).  
+
+In this case, the View administrator manually removes missing desktops/pools from the View Manager 
+Admin user interface.  
+
+Case 2: Some automated desktops may become disassociated from their pools when a View administrator 
+creates a pool between the time the backup took place and the restore time.  
+
+In this case, the View administrator can return them to use by cloning the linked-clone desktop as a full 
+clone desktop through vCenter, creating it as an Individual desktop in View Manager, and assigning the 
+desktop to a specific user.  
+
+Case 3: After restoring vCenter, the administrator removes orphaned virtual machines pertaining to View 
+desktop pools using the VMware infrastructure client.  
+
+Orphaned virtual machines and templates appear as disconnected in the VMware infrastructure client. In 
+this case, restart the vCenter Server service. Disconnected virtual machines may appear with an 
+erroneous status of READY in the View Server Admin user interface.  
+
+Contact VMware Support for instructions for removing orphan sources and replicas under 
+VMwareViewComposerReplicaFolder after a restore from backup. Some orphan replicas and sources are 
+removed by subsequent actions by View Composer.  
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 3    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Virtual Desktop Backup Scenarios 
+
+In addition to the View backup procedures described above, virtual desktop backup scenarios might be 
+required, depending on how the virtual machine pools and storage is configured.  
+
+These additional backup scenarios can include: 
+
+  Linked-clone desktops 
+
+  Stateful virtual desktops 
+
+  Stateless virtual desktops 
+
+Each of these backup scenarios is described in the sections below.  
+
+Linked-Clone Desktops 
+
+ 
+
+Figure 5: VMware View linked-clone desktops 
+
+Linked-clones created using the VMware Storage API generate a single VMDK file for backup. Restoring 
+the virtual machine is challenging since there are no tools to split the backup VMDK image into the 
+original parent and snapshot images. The recommendation is to restore the backed up virtual machine as 
+a separate virtual machine in vSphere. Once the virtual machine is restored, go to View Administrator 
+console and add a virtual desktop in View as a dedicated virtual machine. 
+
+Stateful Virtual Desktops 
+
+In a stateful desktop pool scenario, all virtual desktops retain user data when the user logs back in to the 
+virtual desktop. In this case, VMware recommends backing up the virtual machines with third party tools 
+as with any other virtual machine in vSphere. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 4    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Stateless Virtual Desktops 
+
+In the stateless desktop architecture, virtual desktop does not retain the desktop state when the user logs 
+back into the desktop. This architecture relies on ThinApp applications and user data disks configured on a 
+separate volume. In this case, there is no need to back up the virtual machines. 
+
+Backup Frequency Recommendations 
+
+The frequency for backing up View components and functionality is defined according to the criticality of 
+the component in the View environment. The recommendations described in the table below are 
+provided as a guideline for building a backup strategy. These guidelines may vary in actual practice.   
+
+Table 5. Recommendation for minimum backup frequencies 
+
+COMPONENT 
+
+INCREMENTAL 
+BACKUP 
+FREQUENCY 
+
+FULL 
+BACKUP 
+FREQUENCY 
+
+DESCRIPTION 
+
+View Composer 
+event database 
+
+Daily 
+
+Daily 
+
+vSphere SQL 
+Server database 
+
+Daily 
+
+Weekly 
+
+Active Directory 
+database 
+
+As per 
+Microsoft best 
+practices 
+
+As per 
+Microsoft 
+best 
+practices 
+
+AD-LDS database  Daily 
+
+Daily 
+
+The View Composer event database is critical for the View 
+environment to function properly. VMware highly recommends 
+implementing high availability for SQL Server. 
+
+The vSphere SQL Server database is critical for the View 
+environment to function properly. VMware highly recommends 
+implementing high availability for SQL Server. 
+
+Active Directory is critical for the View environment to function 
+properly. VMware highly recommends implementing high 
+availability for Active Directory.   
+
+AD-LDS is critical for the View environment to function 
+properly. VMware recommends daily backups for this 
+database. 
+
+View Transfer 
+Server 
+
+Stateful View 
+virtual desktops 
+
+ThinApp share 
+repository 
+
+Weekly 
+
+Monthly 
+
+View Transfer server hosts files are required with Local Mode 
+enabled desktops, thus daily backup is highly recommended. 
+
+Daily 
+
+Weekly 
+
+VMware recommends backing up virtual desktops frequently 
+since user data is stored on the virtual desktops. 
+
+Daily 
+
+Weekly 
+
+Some ThinApps can be configured to store user data on this 
+share. VMware highly recommends keeping files on a highly 
+available share.  
+
+View Connection 
+Server 
+
+Weekly 
+
+Monthly 
+
+View Connection Server does not change frequently, thus 
+monthly server backups are adequate to keep your server up-
+to-date.  
+
+View Security 
+Server 
+
+Weekly 
+
+Monthly 
+
+View Security Server does not host any significant data, thus a 
+full backup monthly is sufficient.  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 5    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+COMPONENT 
+
+INCREMENTAL 
+BACKUP 
+FREQUENCY 
+
+FULL 
+BACKUP 
+FREQUENCY 
+
+DESCRIPTION 
+
+vCenter server  Weekly 
+
+Monthly 
+
+vSphere server does not store frequently changing files, thus a 
+full backup monthly is sufficient. 
+
+View Composer 
+Server 
+
+Weekly 
+
+Monthly 
+
+Since View Composer server has to reside on the same 
+operating system where vCenter server is installed, the backup 
+frequency is the same as for vCenter server. 
+
+View Error Log 
+SQL database 
+
+Weekly 
+
+Monthly 
+
+ESX hosts 
+
+None 
+
+Once 
+
+SQL database can be configured for View Connection Server to 
+log user logins, desktop provisioning information, errors, and 
+similar data. Data in the database changes frequently, but it is 
+not required for View to function properly. 
+
+The ESX host typically does not need to be backed up due to 
+the nature of the servers, especially in highly available vSphere 
+configurations. 
+
+View replica 
+servers 
+
+Vendor client 
+management 
+servers 
+
+None 
+
+None 
+
+Backup is not required for View Security and View Connection 
+replica servers. 
+
+None 
+
+Once 
+
+Vendor client management servers are not required for the 
+View environment to function properly as they do not store 
+historical data. 
+
+Other Considerations 
+
+View components are considered to be physical when any part of the View server software is running 
+non-virtualized operating systems. In some scenarios, View Connection Servers, virtual desktop blade PCs 
+and View Security Servers can run on dedicated servers in a non-virtualized environment. In this case, 
+VMware generally recommends following the backup procedure for the physical environment that is 
+established within your organization. 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 6    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Conclusion 
+VMware View is a cost effective, “best of breed” virtual desktop solution. It that allows businesses to 
+deliver office systems, applications, and infrastructure to users as a high performance, highly scalable 
+centralized managed service. View also provides the capabilities needed to protect the systems and 
+applications it supports and the associated user data. It enables archived data to be backed up and 
+restored conveniently.  
+
+This white paper describes a VMware best practices approach businesses can use to build View data 
+protection solutions for the datacenter. The paper provides a reference architecture that can be used to 
+develop VMware View backup and recovery solutions. It also describes backup and restore scenarios for 
+View storage components and procedures for implementing these scenarios. Note that this paper does 
+not address disaster recovery procedures for the View environment.  
+
+In particular, a well-planned View backup strategy improves business infrastructure availability. 
+Implementing a stateless desktop architecture removes the need to backup virtual desktop machines, 
+thus removing virtual Infrastructure complexity, which simplifies manageability and can reduce support 
+cost. For highly critical systems, VMware also recommends implementing high availability architecture for 
+virtual desktops. 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 7    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Resources 
+For more information about VMware and related products, use the links and references below. 
+
+VMware References 
+
+  VMware View Administration Guide and release documentation:  
+
+http://www.vmware.com/support/pubs/view_pubs.html   
+
+  VMware View Architecture and Planning Guide and other documentation:  
+
+http://www.vmware.com/support/pubs/view_pubs.html   
+
+  VMware Infrastructure 3 Documentation including hardware compatibility list and release notes: 
+
+http://www.vmware.com/support/pubs/vi_pubs.html  
+
+  VMware Documentation: 
+
+http://www.vmware.com/support/pubs/  
+
+  VMware Licensing: 
+
+http://www.vmware.com/support/licensing/  
+
+  Application Performance Troubleshooting: 
+
+http://www.vmware.com/resources/techresources/10066  
+
+  VMware vSphere 4.1 Performance Best Practices: 
+
+http://www.vmware.com/resources/techresources/10161  
+
+  VMware Proven Best Practices (VIOPS): 
+
+http://communities.vmware.com/community/viops  
+
+  VMware Solutions/Product/Partner Podcasts: 
+
+http://www.vmware.com/technical-resources/podcasts/  
+
+  VMware Global Support KB: 
+
+http://kb.vmware.com  
+
+  VMware Global Support Videos: 
+http://blogs.vmware.com/kbtv/  
+
+  VMware TV: 
+
+http://www.youtube.com/user/vmwaretv  
+
+  VMworld TV: 
+
+http://www.youtube.com/user/VMworldTV  
+
+  VMware KB TV: 
+
+http://www.youtube.com/user/VMwareKB  
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 8    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Acknowledgements 
+The following people contributed to the creation and design of this guide: 
+
+  Laurynas Kavaliauskas, Technical Alliances Manager, VMware 
+
+  Lebin Cheng, Group Product Manager, VMware 
+
+  Mike G. Coleman, Sr. Alliances Manager, VMware 
+
+  Ravindra Neelakant, Sr. Technical Alliances Manager, VMware 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 9    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Appendix A: VMware View Backup Automation 
+This paper describes how to back up View directly using the View Administrator and its various backup 
+menus. Appendix A describes how View backups can also be performed through the View API using 
+automation scripts.  
+
+View backup automation scripts can be enabled using any of the following tools: 
+
+  Microsoft Windows PowerShell. This interactive command console and scripting language allows you 
+
+to manage the latest Windows machines and various applications.  
+
+  VMware View PowerCLI. The VMware snap-in for Power Shell is installed on View Connection server 
+
+by default. More information about PowerCLI, go to PowerShell Integration with VMware® View™ 
+4.5/4.6 at: 
+http://www.vmware.com/files/pdf/techpaper/PowerShell-Integration-View45-WP.pdf 
+
+  VMware vSphere PowerCLI. This snap-in can be installed on Windows servers to provide script 
+
+automation tools for both vSphere administrators and software developers. For more information, go 
+to: http://www.vmware.com/technical-resources/script-automation/  
+
+Vendors can also use the VMware VDDK API automation tool for backups. For more information, go to the 
+Virtual Disk Development Kit Documentation at: 
+http://www.vmware.com/support/developer/vddk/ 
+
+Example Backup Automation Scripts  
+
+The commands and example scripts described in this section can be used to help create automated 
+backup solutions. Note that the example backup scripts are provided for reference only. 
+
+Stop View Manager Service 
+This command gracefully stops View Manager service to enable an uninterrupted backup. 
+
+# 
+
+# Stop Critical Services to Perform Backup 
+
+# 
+
+function StopServices 
+
+{  
+
+        $service = Get-Service -name wsbroker 
+
+ 
+
+        if($service.status -eq "Running") 
+
+        { 
+
+ 
+
+ 
+
+write-output("wsbroker -- Running") 
+
+                write-output("Quescing Services for backup") 
+
+stop-service -name wsbroker -ErrorAction silentlycontinue 
+
+ 
+
+write-output("Services not running - OK to Backup") 
+
+ 
+
+ 
+
+        } 
+
+else 
+
+{ 
+
+ 
+
+} 
+
+ 
+
+ 
+
+ 
+
+ 
+
+} 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 0    
+
+ 
+
+VMware View™ Backup Best Practices 
+
+Quesce Desktop Pool Status 
+GetPoolStatus command is used to provide the status of the pools. 
+
+$poolAuto = 0 
+
+$poolLinked = 0 
+
+$rem_Count = 0 
+
+$loc_Count = 0 
+
+ 
+
+function GetPoolStatus 
+
+{ param ($pool) 
+
+# Get list of remote and local sessions for specified pool 
+
+# 
+
+$rem_session = Get-RemoteSession -pool_id $pool.pool_id -ErrorAction SilentlyContinue 
+
+$loc_session = Get-LocalSession -pool_id $pool.pool_id -ErrorAction SilentlyContinue 
+
+ 
+
+if ($rem_session) { 
+
+ 
+
+} 
+
+$rem_Count = ([Object[]]($rem_session)).Count 
+
+if ($loc_session) { 
+
+ 
+
+} 
+
+$loc_Count = ([Object[]]($loc_session)).Count 
+
+# Get list of Automatic Pools and Linked clone Pools 
+
+if (($pool.deliveryModel -eq "Provisioned") -and ( $pool.desktopSource -eq "VC")) { 
+
+ 
+
+ 
+
+} 
+
+$poolAuto++ 
+
+Write-Output("Pool "+ $pool + "is Automatic") 
+
+elseif (($pool.deliveryModel -eq "Provisioned") -and ( $pool.desktopSource -eq "SVI")) { 
+
+ 
+
+ 
+
+} 
+
+$poolLinked++ 
+
+Write-Output("Pool "+ $pool + "is Linked") 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+} 
+
+# 
+
+# Start Main 
+
+# 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+$numpools = get-pool -ErrorAction SilentlyContinue 
+
+foreach ($p in $numpools) { 
+
+ 
+
+ 
+
+ 
+
+} 
+
+getPoolStatus $p 
+
+Write-Output("Number of Remote Sessions: "+$rem_count) 
+
+Write-Output("Number of Local Sessions: "+$loc_count) 
+
+Write-Output("Number of Automatic Pools: "+$poolAuto) 
+
+write-Output("Number of Linked Clone Pools: "+$poolLinked) 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 1    
+
+

@@ -1,0 +1,550 @@
+MOBILE DATA SOLUTIONS CASE 
+STUDY 
+
+ 
+
+       
+
+ 
+
+ 
+Leading world-wide supplier of mobile data 
+solutions deploys VirtualWisdom to monitor its 
+
+SAN to help ensure 100% data availability 
+
+Overview  
+This U.S.-based provider of mobile data solutions enables wireless carriers and enterprises 
+around the world to deliver high-value, highly personalized mobile data services to their 
+subscribers and consumers. It provides a comprehensive suite of hosted, managed service 
+offerings which enable wireless carriers and enterprises to deliver customized, branded mobile 
+data experiences to millions of subscribers. 
+
+At the center of the services solution is a carrier-grade platform that enables consumers to easily 
+reach the information, content and applications that matter most to them on a real-time basis. 
+The platform delivers a complete solution, including portal, marketplace, connect, search, 
+managed web, mobile campaign management, messaging, billing and settlement. All of these 
+services are delivered on a hosted, managed service basis, to provide wireless carrier and 
+enterprise customers with a cost-effective means to meet the challenges of the increasingly 
+complex mobile data ecosystem. 
+IT Environment  
+The IT staff supports almost 2 PB of online data in several datacenters with over 125 HP servers.  
+Storage is primarily HP EVA and secondarily, NetApp Filers, supporting over 60 storage ports.  
+The primary datacenter supports two Brocade fabrics. VMware ESX hosts are deployed though 
+not yet supporting the primary database –based applications.   Like many IT departments, this 
+
+ 
+
+ 
+
+  
+
+Challenges:  
+• 
+
+• 
+
+• 
+
+Pressure on IT staff to do 
+more with existing CAPEX and 
+OPEX 
+Availability requirements 
+dictate the need to predict 
+problems before they 
+escalate to application 
+slowdowns or outages 
+Being alerted to failing 
+components and quickly 
+replacing them before users 
+are impacted  
+
+Solution:  
+• 
+
+Virtual Instruments 
+VirtualWisdom ProbeSW and 
+professional services 
+QuickStart Assessment 
+Consulting 
+
+Customer Benefits:  
+•  With VirtualWisdom, causes 
+of potential application slow-
+downs can be identified and 
+corrective action provided 
+before users are even aware 
+of a problem 
+
+Productivity of existing staff is 
+maximized, to ensure that 
+issues are quickly identified 
+and remediated without 
+wasted time 
+
+VirtualWisdom enables a 
+reduction in the need to 
+replace suspected bad SAN 
+components because of 
+superior fault diagnosis, 
+which saves on both CAPEX 
+and OPEX 
+
+• 
+
+• 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+MOBILE DATA SOLUTIONS CASE 
+STUDY 
+
+ 
+
+       
+
+  
+
+team is challenged with tight budgets and with getting more and more performance out of 
+existing hardware assets and personnel.  The SAN team’s success is measured by a simple 
+metric: keep the data available.  So taking a purely reactive approach to SAN troubleshooting 
+and performance optimization was out of the question.   
+Solution Evaluation  
+Like many IT shops, they were challenged with tight budgets and with getting maximum 
+productivity from existing resources – hardware, software, and personnel.  To do this, IT knew it 
+must be proactive; it had to avoid problems and anticipate issues before the application owners 
+felt the pain.  The only way to do this without increasing the staff size was to find some way to 
+proactively automate the monitoring and analysis of the SAN to ensure application availability.   
+
+The company looked at several solutions, including the SAN management tools from their 
+system, switch, and storage vendors, and settled on Virtual Instruments’ VirtualWisdom 
+ProbeSW software in late 2010.  The company wanted a solution that was: 
+
+• 
+
+• 
+
+• 
+
+Capable of seeing physical layer issues in the SAN to help predict problems before they 
+became serious 
+
+Flexible, so reporting and alerting could be tweaked to ensure that the staff would not be 
+bombarded with meaningless data, but would not miss critical events  
+
+Easily implemented in stages, allowing them to meter the degree of sophistication in their 
+SAN management architecture, as resources allowed 
+
+•  Hardware agnostic and vendor-neutral  
+Role of VirtualWisdom 
+A more proactive approach to system availability was needed, and in early 2011, this IT team 
+deployed VirtualWisdom ProbeSW software.  After the initial installation service, VI completed 
+the second half of the QuickStart Service.  Together, VI and the customer established a baseline 
+of metrics, and developed additional reports and alerts using custom filters.   VirtualWisdom 
+sees loss of sync, link resets, packet discards, aborts, code violations, and CRC errors and can 
+send alarms for out-of-bounds conditions.   
+SAN QuickStart Assessment  
+Virtual Instruments was initially engaged to help provide visibility into the Fibre Channel SAN on 
+an ongoing basis to assist with troubleshooting issues and finding root cause.  During the 
+analysis period, VirtualWisdom identified several configuration, connectivity and capacity 
+planning items for review.  Very often VI finds that storage-related outages and/or performance 
+incidents are not caused by a single issue but are the result of multiple, seemingly unrelated 
+issues in the environment. The net result is that the SAN infrastructure, running in a somewhat 
+vulnerable state is not able to deal with additional issues as they arise resulting in outages or 
+“brownouts”.   Some of the initial findings and recommendations: 
+
+Multipath balancing 
+
+The multipath verification and redundancy showed that 45% of the HBAs were balanced 
+while 21% were Active/Active but not balanced.  17% of the ports were found to have no 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+“Virtual Wisdom provides 
+critical information about 
+storage infrastructure that 
+
+is not available from 
+traditional monitoring 
+
+solutions.  We have found 
+that the ProbeSW solution, 
+when used in tandem with 
+
+host and array-based 
+monitoring, provides a 
+
+holistic picture of utilization 
+and capacity at the host, 
+fabric, and disk level.” 
+
+IT Manager 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+MOBILE DATA SOLUTIONS CASE 
+STUDY 
+
+       
+
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+traffic to either redundant HBA.   10% of the servers were configured as Active/Passive. 5% of 
+the HBAs were found not to have a peer HBA that could be identified   Often half, if not more, 
+of the cost of the infrastructure is in place to eliminate single points of failure and reduce risk. 
+Environments that aren’t properly configured can lose all of the advantages of a redundant 
+environment while still incurring the full cost both in terms of hardware and administrative 
+overhead.  Additionally, unbalanced configurations can cause one fabric to handle more than 
+its share of the workload and increase the likelihood of congestion.  VI recommended that 
+the environment should be reviewed to ensure that all servers are performing per their 
+configuration and that the HBAs that don’t have a peer don’t require redundancy or actually 
+have peers, but the nicknames didn’t match. The imbalanced HBAs should be checked to 
+ensure they are all zoned to the same storage array or are behaving as expected 
+
+Multipath Balancing Report Graph 
+
+Inconsistent port alias naming 
+
+ 
+
+During the multipath verification process it was identified that there are different naming 
+schemes for port aliases in use on the SAN.  While the environment is small, these sorts of 
+naming inconsistencies can be a mild nuisance.  However, as the environment grows these 
+issues can lead to operational errors due to misunderstanding the role of a specific port.  VI 
+recommended that a naming scheme policy be implemented immediately.  Ports whose 
+
+ 
+
+ 
+
+MOBILE DATA SOLUTIONS CASE 
+STUDY 
+
+ 
+names do not adhere to the policy should be renamed for clarity. 
+
+       
+
+ 
+
+Connectivity - Events and Errors 
+
+There were a small number of CRC errors identified.  Servers and applications were 
+being forced to retransmit data affecting overall performance and health of the 
+environment.  VI recommended that the links experiencing CRCs should have the SFPs 
+and cables examined for issues and replaced as needed.   
+
+Port 
+
+Number 
+
+Attached Port WWN  Attached 
+Device 
+Type 
+
+Channel 
+
+Probe 
+Name 
+
+Attached Port Name 
+
+CRC 
+Errors 
+
+329 
+1784 
+1252 
+610 
+2533 
+1244 
+
+27704505331EA3EQQ  Switch 
+80000044C4901782  Server 
+3401440051E03X728  Switch 
+1 0 2 2 4 3 C 9 8 2 4 1 B C  Server 
+501 456 11E 03 B8D D   Switch 
+501E200151E5E4R49  Switch 
+
+Ch 2 
+Ch 2 
+Ch 2 
+Ch 2 
+Ch 2 
+Ch 2 
+
+GSW-PSF  y20115551rt5e0ff 
+GSW-PSF  yhiiio6_m2_p1_a 
+GSW-PSF  p20145051a55b718 
+GSW-PSF  qarttxkkbcl01p_2_a 
+GSW-PSF 
+r50165051e03b8gt 
+r0122251e5e4d49 
+GSW-PSF 
+
+179 
+7 
+3 
+2 
+1 
+1 
+
+Connectivity and Errors - Physical Layer Errors:  CRC Errors 
+
+Connectivity – Flapping Ports 
+
+Four ports were identified as “flapping”.  These ports showed continuous Loss of Sync 
+(LOS) / Loss of Signal (LOSIG) events, roughly 1 LOS event every 5 minutes per port for 
+the duration of the analysis period.  This sort of continual resetting at a minimum 
+requires switch resources to deal with and in extreme cases can impact the stability of 
+the switch and fabric.   VI recommended that these ports should be unplugged from the 
+SAN or disabled, noting that there was no valid communication over these ports since 
+VirtualWisdom was implemented, and so whatever is plugged into these ports serves 
+no business purpose.   
+
+Capacity Planning - Under Utilization and Pockets of Congestion 
+
+The analysis revealed that the SAN was underutilized. This is a very common finding in 
+SANs across the globe. Historically, without sufficient visibility, companies have opted 
+to over-provision with a goal of avoiding problems and due to the lack of necessary 
+information to fully utilize the environment.  There were a small number of specific 
+hosts, ISLs, and array ports in the environment that occasionally exceeded 50% 
+utilization, however, the remaining were underutilized.   
+
+For instance, approximately 28% of the storage ports accounted for 84% of the storage 
+read traffic SAN.  Based on this information, it is best to consolidate storage ports.  At 
+the bare minimum, this information allows a storage administrator to select quiet 
+storage ports for future allocations, thus helping spread the load on the storage ports 
+more evenly.   
+
+Infrastructure was not being utilized to the fullest extent. While at the same time that 
+the majority of the environment goes underutilized, portions of it are congested 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+  
+
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+MOBILE DATA SOLUTIONS CASE 
+STUDY 
+
+ 
+thereby not delivering the performance that the environment could provide if the load 
+were more evenly distributed.  VI recommended that SAN I/O bandwidth should be 
+integrated into the capacity planning and storage provisioning processes. Simply by 
+selecting and zoning to the least utilized ports when provisioning, new storage the 
+environment can grow in balance and be fully utilized. 
+
+Lessons Learned 
+When asked what he would recommend to new VirtualWisdom customers, the IT Manager 
+offered this suggestion:  “As your storage infrastructure grows, be sure to rely on VW to ensure 
+proper health and configuration, such as device naming, load balancing, port errors, etc., as it is 
+much easier to correct issues at the outset than after a device is already put into service.  In 
+addition, dedicate time for your engineers to learn how to effectively use the Virtual Wisdom 
+software, as the reporting interface is very powerful and therefore potentially complex.” 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+       
+
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 25 Metro Drive, Suite 400  
+
+ 
+
+San Jose, CA 95110  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2011 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 12/11 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

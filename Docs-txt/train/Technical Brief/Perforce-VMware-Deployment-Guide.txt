@@ -1,0 +1,1183 @@
+ 
+
+Perforce Versioning Engine  
+on VMware vSphere®  
+ 
+ 
+ 
+   
+
+ 
+
+ 
+
+December 2012 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E  
+
+   
+
+ 
+
+Table of Contents 
+
+ 
+Perforce Versioning Engine on VMware vSphere ® 
+ 
+
+ 
+
+Introduction .................................................................................................................................... 3 
+
+VMware and Perforce Overview.................................................................................................... 3 
+
+Perforce Overview ....................................................................................................................... 3 
+
+VMware vSphere ......................................................................................................................... 3 
+
+Architecture and Deployment Strategy ....................................................................................... 5 
+
+Testing Process and Results ........................................................................................................ 6 
+
+Testing Methodology .................................................................................................................... 6 
+
+Workload Used ............................................................................................................................ 7 
+
+Hardware and Software Configuration ........................................................................................ 7 
+
+Results Observed ...................................................................................................................... 10 
+
+Conclusions .................................................................................................................................. 13 
+
+For More Information ................................................................................................................... 14 
+
+Licensing ....................................................................................................................................... 14 
+
+Technical Support ........................................................................................................................ 14 
+
+Resources ..................................................................................................................................... 15 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2012 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / I I    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Introduction 
+This document provides information to users who want to run Perforce Versioning Engine 
+(referred to as “Perforce VE” in this paper) on VMware vSphere®. The results of recent testing 
+done jointly by VMware® and Perforce characterize the performance and functionality of 
+Perforce VE on VMware. Finally, a set of best practices are described for utilizing the two 
+product sets together in your datacenter.   
+
+VMware and Perforce Overview 
+This section describes the VMware and Perforce products at a high level and explores the value 
+proposition of using them together. 
+
+Perforce Overview 
+
+Perforce Software Version Management is one of the most popular products used today for 
+version control and source code management for a wide variety of software assets. It is in use at 
+many major institutions for controlling the versioning and releases of many different artifacts, 
+including the software development content and assets that are used for digital game 
+development.  
+
+Users can check-in their original files, and any further changes to their software in all forms, to 
+Perforce VE or servers. They or others can then check those versioned items out to make further 
+refinements to them in a safe way. Perforce software is essential for the smooth functioning of 
+any team of developers or designers that require their product to be stored in different versions 
+in its development and deployment lifecycle. 
+
+The architecture of the Perforce system allows it to be deployed in many different configurations 
+to suit different customer needs. Some customers depend on one “central instance” of Perforce 
+VE to control all of their enterprise version management needs. Other customers dedicate a 
+unique Perforce VE to each development project or to each department within the company. 
+There are cache servers that complement the main Perforce VE so that some work can be 
+offloaded from it. These architectural approaches are described further in the Architecture and 
+Deployment Strategy Section below. 
+
+VMware vSphere 
+
+VMware’s leading virtualization solutions provide multiple benefits to IT administrators and 
+users. VMware virtualization creates a layer of abstraction between the resources required by an 
+application and operating system, and the underlying hardware that provides those resources. A 
+summary of the value of this abstraction layer includes the following: 
+
+  Consolidation: VMware technology allows multiple application servers to be consolidated 
+
+onto one physical server, with little or no decrease in overall performance.   
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 3    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+  Ease of provisioning: VMware virtualization encapsulates an application into an image that 
+
+can be duplicated or moved, greatly reducing the cost of application provisioning and 
+deployment. 
+
+  Manageability: Virtual machines may be moved from server to server with no downtime 
+
+using VMware vSphere® vMotion®. vMotion simplifies common operations such as hardware 
+maintenance and it reduces planned downtime.   
+
+  Availability: Unplanned downtime can be reduced and higher service levels can be provided 
+
+to an application. VMware vSphere® High Availability (HA) ensures that in the case of an 
+unplanned hardware failure, any affected virtual machines are restarted on another host in a 
+VMware cluster.   
+
+Figure 1. VMware vSphere virtual infrastructure 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 4    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Architecture and Deployment Strategy 
+Perforce VE is comprised of a database, one or more depots, and a set of files used for 
+monitoring and backup/recovery procedures.  
+
+Figure 2. Perforce VE architecture 
+
+ 
+
+The depots contain the actual versioned file content. Several depots can be created to contain 
+different types of data with different storage requirements, or simply to provide a convenient 
+organization. 
+
+Perforce VE should have three file systems for the components shown above. Maintaining three 
+file systems helps prevent data loss in the event of disk failure, and it enables advanced 
+deployment mechanisms with simple, near-zero downtime backups. 
+
+Table 1. Example volume locations and contents 
+
+Volume 
+
+Sample location 
+
+Contents 
+
+Performance considerations 
+
+Metadata 
+
+/metadata 
+
+P4ROOT with database files 
+
+  Optimize I/O for random read/write. 
+
+Vulnerable to high latency or low 
+bandwidth.  
+
+Logs 
+
+/logs 
+
+Server logs and active journal 
+
+  High performance demands. 
+
+Depot Data 
+
+/depotdata 
+
+Archive files 
+
+  Typically more sequential read/write. 
+Potentially very large amount of data. 
+
+ 
+Perforce VE may be deployed on several platforms including Windows® and popular Linux® 
+distributions. For the best performance a 64-bit platform is recommended. 
+
+Backup and recovery procedures are well documented and a white paper on High Availability 
+and Disaster Recovery is available. See the Resource section later in the document for more 
+information. 
+
+The Perforce VE executable is a single binary, p4d, which normally runs as a background process 
+and spawns additional processes and threads to service requests.   
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 5    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Several additional components are available to support remote teams, high data volume, and 
+distributed development, as shown below.  
+
+Figure 3. Perforce VE deployment architecture 
+
+ 
+
+Testing Process and Results 
+To characterize the performance of Perforce VE on VMware vSphere, a series of performance 
+tests were carried out by Perforce. The configuration was tested and the results are summarized 
+below. 
+
+Testing Methodology  
+
+The primary objective of this testing was to determine Perforce VE performance characteristics 
+and to show that Perforce can run resiliently on vSphere and can scale up to large numbers of 
+concurrent users. The testing performed concentrated mainly on performance characterization 
+and did not validate the operation of VMware advanced features including VMware vMotion, 
+VMware HA, VMware vSphere® Distributed Resource Scheduler™, and VMware vSphere® Fault 
+Tolerance (FT) with Perforce deployments in a virtual environment.  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 6    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Workload Used 
+
+The testing performed used the browse benchmark created by the Perforce Software 
+Performance Lab. This benchmark can be configured to simulate varied numbers of Perforce 
+users. Users browsing a Perforce repository are simulated by the browse benchmark’s 
+browsechild application.  
+
+The browsechild application continuously browses a Perforce repository tree down many 
+different random paths. Because the browsechild application continuously browses, it simulates 
+the actions of many Perforce users working on tasks, Perforce or otherwise, and thinking time. 
+Many separate instances of the browsechild application can run on several client machines, 
+thereby simulating a very large number of Perforce users. The resulting simulated load on 
+Perforce VE can be significant. 
+
+Identical suites of the browse benchmark that varied the number of browsechild instances were 
+run with Perforce VE deployed on both virtual and native machines with nearly identical 
+configurations. The number of cores was also varied similarly on both the virtual and native 
+machines, maintaining the nearly identical configurations between virtual and native.  
+
+The suites used the reference11 dataset distributed by the Perforce Software Performance Lab. 
+The reference11 dataset contains definitions for Perforce users, groups, and protections 
+modeled after those at a Perforce production site.  
+
+The results from the browse benchmark suites were then evaluated to determine the 
+performance overhead attributable to deploying Perforce VE in a virtual machine on vSphere, 
+and to approximate the number of licensed Perforce users that a configuration might support 
+while delivering a consistent user experience. 
+
+Hardware and Software Configuration 
+
+Figure 4 provides an overview of the hardware and software configuration used for testing 
+Perforce VE performance. 
+
+Figure 4. Perforce VE performance testing configuration 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 7    
+
+ 
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+vSphere Host Configuration 
+
+The following table details the vSphere host configuration used for testing Perforce VE 
+performance within vSphere.  
+
+Table 2. vSphere Host Configuration 
+
+Host  machine 
+
+Server 
+
+ 
+
+Storage 
+
+ 
+
+VMware 
+
+ 
+
+Configuration 
+
+  HP® Proliant™ DL580 G7 
+  4 Intel® X7542 2.66 GHz six-core CPUs (24 cores total) 
+  512 GB of physical memory 
+  2 1 Gbps Ethernet ports 
+
+ 
+
+  3 146 GB RAID 1+0 LUNs on 6 146 GB 15K RPM SAS drives 
+  VMFS-5 used for all LUNs 
+
+  vSphere 5.0.0-469512 
+
+Perforce VE Virtual Machine Configuration 
+
+The table below details the configuration of the virtual machine on which Perforce VE was 
+deployed for testing Perforce performance within vSphere. 
+
+Table 3. Perforce VE virtual machine configuration 
+
+Virtual machine 
+
+Server 
+
+ 
+
+Storage 
+
+ 
+
+Operating system 
+
+Perforce 
+
+ 
+
+Configuration 
+
+  4, 8 vCPUs  
+  128 GB of memory 
+  1 1 Gbps Ethernet port 
+
+  3 146 GB RAID 1+0 LUNs on 6 146 GB 15K RPM SAS drives  
+  32 GB /partition on LUN 2 
+  135.5 GB /db partition on LUN 3 
+  1 GB /boot partition on LUN 2 
+
+  SUSE® Linux Enterprise Server 11 SP1 
+  VMware vmxnet3 virtual NIC driver version 1.0.36.0 
+
+  Perforce  Versioning Engine LINUX26X86_64/2010.2/322263 
+
+Perforce VE Native Machine Configuration 
+
+For a valid performance comparison between Perforce VE on a virtual machine running on 
+vSphere and on a native machine, the same physical HP Proliant DL580 G7 server was used for 
+both configurations. There were two notable differences in the native machine configuration.  
+
+First, the native machine was configured with only 128 GB of physical memory so that its 
+memory footprint matched that of the virtual machine within vSphere. The reduced memory 
+was achieved by physically removing 384 GB of memory from the HP DL580 G7 in the native 
+machine configuration.  
+
+Second, the operating system was booted from a USB flash drive in the native machine 
+configuration. The MBR of LUN 1 was used by the vSphere installation, so the USB flash drive 
+was used as an alternative for booting the operating system in the native machine configuration. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 8    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+The following table details the configuration of the native machine on which Perforce VE was 
+deployed for comparing Perforce performance with that on vSphere. 
+
+Table 4. Perforce VE native machine configuration 
+
+Native machine 
+
+Server 
+
+Storage 
+
+Operating system 
+
+Perforce 
+
+ 
+
+Configuration 
+
+  HP DL580 G7 
+  4 Intel X7542 2.66 GHz six-core CPUs (24 cores total) 
+  4, 8  Hotplug CPUs 
+  128 GB of physical memory 
+  1 1 Gbps Ethernet port 
+
+  2 146 GB RAID 1+0 LUNs on 
+  4 146 GB 15K RPM SAS drives 
+  32 GB /partition on LUN 4 
+  146 GB /db partition on LUN 3 
+  1 GB /boot partition on USB flash drive 
+
+  SUSE Linux Enterprise Server 11 SP1 
+
+  Perforce Versioning Engine LINUX26X86_64/2010.2/322263 
+
+browsechild Client Machine Configuration 
+
+The browsechild application is a lightweight P4API C++ application. The browsechild application 
+continuously browses a Perforce repository tree down many different random paths. Because 
+the browsechild application continuously browses, it simulates the actions of many Perforce 
+users working on tasks, Perforce or otherwise, and thinking. Since the browsechild application is 
+lightweight, many separate instances can run on just a few client machines, simulating a very 
+large number of Perforce users connecting from a very large number of client machines. 
+
+The browsechild instances communicate with Perforce VE using TCP/IP. For this performance 
+testing, Perforce VE and client machines were connected using a single dedicated and isolated 1 
+Gb network switch. No disk I/O activity results from a browsechild execution, other than reading 
+the ~1 MB browsechild application from /tmp on the client machine, and perhaps reading from 
+some libraries. 
+
+For both the virtual and native machine configurations on which Perforce VE was deployed, the 
+browsechild client machines were always native configurations. 
+
+The following table details the configuration of a typical native machine on which the 
+browsechild instances were executed for testing Perforce performance. 
+
+Table 5. browsechild client machine configuration 
+
+browsechild client machine 
+
+Configuration 
+
+Client 
+
+Storage 
+
+  Dell 2950 
+  2 Intel X5450 3.00 GHz quad-core CPUs (8 cores total) 
+  32 GB of physical memory 
+  1 1 Gbps Ethernet port 
+
+  2 146 GB 15K RPM SAS drives 
+  4 GB /tmp partition 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 9    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+browsechild client machine 
+
+Configuration 
+
+Operating system 
+
+Perforce 
+
+  SUSE Linux Enterprise Server 10 SP3 
+
+  browsechild LINUX26X86_64/2010.2/279478 
+
+Results Observed 
+
+The figures below show the best execution time of the browse benchmark for the various 
+configurations. The results for four and eight cores are presented as these configurations might 
+be typical of the virtual machines on which Perforce VE is deployed within vSphere.  
+
+Figure 5. Browse benchmark on four cores 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 0    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Figure 6. Browse benchmark on eight cores 
+
+The following table details the performance overhead attributable to deploying Perforce VE on a 
+virtual machine within vSphere for all configurations shown in the figures above. Results in the 
+virtual configuration of using more CPU sockets with a smaller number of cores per socket are 
+highlighted.  
+
+Table 6. Performance overhead attributable to deploying Perforce VE on a virtual machine 
+
+Total cores  Browsing 
+children 
+
+Cores per 
+socket 
+
+Number of 
+sockets 
+
+Virtual run 
+time 
+
+Native run 
+time 
+
+Percentage 
+overhead 
+
+ 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+4 
+
+8 
+
+8 
+
+8 
+
+8 
+
+2 
+
+2 
+
+4 
+
+4 
+
+8 
+
+8 
+
+16 
+
+16 
+
+32 
+
+32 
+
+64 
+
+64 
+
+2 
+
+2 
+
+4 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+2 
+
+4 
+
+2 
+
+4 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+1 
+
+4 
+
+2 
+
+4 
+
+2 
+
+12.27 
+
+12.99 
+
+13.59 
+
+15.52 
+
+22.51 
+
+22.82 
+
+51.95 
+
+53.13 
+
+107.62 
+
+111.46 
+
+202.35 
+
+201.74 
+
+12.18 
+
+12.48 
+
+13.26 
+
+13.97 
+
+12.59 
+
+11.44 
+
+14.03 
+
+11.72 
+
+22.56 
+
+21.77 
+
+51.83 
+
+49.62 
+
+95.41 
+
+103.14 
+
+184.43 
+
+194.71 
+
+11.67 
+
+11.57 
+
+12.05 
+
+11.75 
+
+-2.54 
+
+13.55 
+
+-3.14 
+
+32.42 
+
+-0.22 
+
+4.82 
+
+0.23 
+
+7.07 
+
+12.80 
+
+8.07 
+
+9.72 
+
+3.61 
+
+4.37 
+
+7.87 
+
+10.04 
+
+18.89 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 1    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Total cores  Browsing 
+children 
+
+Cores per 
+socket 
+
+Number of 
+sockets 
+
+Virtual run 
+time 
+
+Native run 
+time 
+
+Percentage 
+overhead 
+
+8 
+
+8 
+
+8 
+
+8 
+
+8 
+
+8 
+
+8 
+
+8 
+
+8 
+
+8 
+
+16 
+
+16 
+
+32 
+
+32 
+
+64 
+
+64 
+
+2 
+
+4 
+
+2 
+
+4 
+
+2 
+
+4 
+
+2 
+
+4 
+
+4 
+
+2 
+
+4 
+
+2 
+
+4 
+
+2 
+
+4 
+
+2 
+
+16.38 
+
+16.85 
+
+29.46 
+
+30.04 
+
+54.39 
+
+54.30 
+
+102.20 
+
+103.11 
+
+14.92 
+
+14.06 
+
+27.76 
+
+29.44 
+
+50.55 
+
+51.65 
+
+94.39 
+
+98.30 
+
+9.79 
+
+19.84 
+
+6.12 
+
+2.04 
+
+7.60 
+
+5.13 
+
+8.27 
+
+4.89 
+
+ 
+There are several potential variables that can affect the number of licensed Perforce users that a 
+configuration can support with a consistent user experience. Some of the variables might 
+include: 
+
+  Ratio of licensed users to "active" users 
+  How "active" is a user 
+ 
+
+If Secure Sockets Layer (SSL) is used at the Perforce layer. (If so, the number of "active" users 
+that a given configuration can support might be significantly reduced.) 
+
+  Speed of the CPUs 
+  Speed of the I/O subsystem 
+  Site type as either "metadata heavy" or "file content heavy" 
+ 
+
+If the interactive users are competing with heavy automation 
+
+There can also be other variables to consider. In light of these potential variables, determining 
+the number of licensed Perforce users that a configuration can support with a consistent user 
+experience  from observing the performance of an artificial benchmark such as the browse 
+benchmark used in this performance testing  is at best an approximation. 
+
+For this performance testing, an approximation of the number of licensed Perforce users that a 
+configuration can support with a consistent user experience might be generalized as: 
+
+Each continuously browsing child in the browse benchmark using the reference11 
+dataset with users, groups, and protections modeled after those at a production site 
+approximates 250 licensed Perforce users. 
+
+Relative to the figures shown earlier in this section, this generalization can be used to 
+approximate the number of licensed Perforce users that a virtual machine of a given 
+configuration might support with a consistent user experience.  
+
+In the figure that shows the results of the browse benchmark on four cores, the user experience 
+begins to degrade when there are between four and eight continuously browsing children. 
+Therefore, the generalization approximates that a virtual machine with four cores might support 
+1,000 licensed Perforce users with a consistent user experience. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 2    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+In the figure that shows the results of the browse benchmark on eight cores, the user 
+experience begins to degrade when there are between eight and sixteen continuously browsing 
+children. Therefore, the generalization approximates that a virtual machine with eight cores 
+might support 2,000 licensed Perforce users with a consistent user experience.  
+
+Conclusions  
+The performance testing results show that deploying Perforce VE on a virtual machine within 
+VMware vSphere performs well. Furthermore, it has potential to reduce cost and increase 
+service levels. 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 3    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+For More Information 
+Perforce is now making it easy for everyone to take advantage of enterprise version 
+management. The company is headquartered in Alameda, California, with international 
+operations in the United Kingdom, Canada and Australia.  
+
+For more information, visit www.perforce.com. 
+
+Licensing 
+There are no relevant exceptions for licensing Perforce on a virtualized platform. A free version 
+of Perforce is available that supports 20 users and 20 workspaces with unlimited files. A 
+commercial license can be purchased to support unlimited users, workspaces, and files.  
+
+Technical Support 
+Contact Perforce Technical Support by email (support@perforce.com) or call one of our offices: 
+
+United States 
+Monday to Friday 
+8:00 A.M. to 6:00 P.M., San Francisco 
+Phone: +1 510.864.7400 
+Fax: +1 510.864.5340 
+
+United Kingdom 
+Monday to Friday 
+8:00 A.M. to 5:00 P.M., London 
+Phone: +44 (0) 845 345 0116 
+Fax: +44 (0) 845 345 0117 
+
+Australia 
+Monday to Friday 
+8: 00 A.M. to 6: 00 P.M., Sydney 
+Phone: +61 (0)2 8912-4600 
+Fax: +61 (0)2 9929-5590 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 4    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+Resources 
+For more information about the VMware and Perforce products and solutions discussed in this 
+guide, view the links and references below. 
+
+VMware  
+
+Perforce Versioning Engine, P4D is located within the online VMware Solution Exchange (VSX) at: 
+https://solutionexchange.vmware.com/store/products/the-perforce-versioning-engine-p4d. 
+
+Deployment References 
+
+  VMware vSphere: 
+
+http://www.vmware.com/products/datacenter-virtualization/vsphere/overview.html   
+
+  VMware Support and Downloads Web site: 
+
+https://www.vmware.com/support/  
+
+  VMware Technology Network (Community) Web site: 
+  http://communities.vmware.com/community/vmtn 
+  Performance Best Practices for VMware vSphere 5.0: 
+  http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.0.pdf 
+  What’s New in VMware vCenter Site Recovery Manager 5.0: 
+
+http://www.vmware.com/files/pdf/techpaper/Whats-New-VMware-vCenter-Site-Recovery-
+Manager-50-Technical-Whitepaper.pdf 
+
+General Information 
+
+  VMware web site: 
+www.vmware.com 
+
+  Featured VMware Documentation Sets: 
+
+http://www.vmware.com/support/pubs/  
+
+  VMware Licensing Help Center: 
+
+http://www.vmware.com/support/licensing/  
+
+  VMware Product Podcasts: 
+
+http://www.vmware.com/technical-resources/podcasts/  
+
+  Community, VMware Knowledge Base: 
+
+http://communities.vmware.com/community/vmtn/resources/knowledgebase   
+
+  VMware Support Insider: 
+
+http://blogs.vmware.com/kbtv/  
+
+  VMware TV: 
+
+http://www.youtube.com/user/vmwaretv   
+
+  VMworld TV: 
+
+http://www.youtube.com/user/VMworldTV  
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 5    
+
+ 
+
+Perforce Versioning Engine on VMware vSphere ® 
+
+ 
+
+  VMware KB TV (external): 
+
+http://www.youtube.com/user/VMwareKB  
+
+Perforce 
+
+Deployment Best Practices 
+
+Knowledge Base articles 
+
+  Planning Your Perforce Server Installation: 
+
+http://kb.perforce.com/article/77   
+
+  General Performance Recommendations: 
+
+http://kb.perforce.com/article/931 
+
+  Recommended Server Hardware Configurations: 
+
+http://kb.perforce.com/article/5  
+
+User Conference presentations 
+  Scaling Servers and Storage for Film Assets: 
+
+http://www.perforce.com/user-conferences/2011/pixar-presentations   
+
+  A Perforce Server Dream Machine: 
+
+http://info.perforce.com/2011user-conf-video-perforce-server.html   
+
+General Information 
+
+  Perforce Web site:  
+
+http://www.perforce.com  
+  Perforce Knowledge Base: 
+
+http://kb.perforce.com  
+
+  Perforce System Administrator’s Guide: 
+
+http://www.perforce.com/perforce/doc.current/manuals/p4sag/index.html  
+
+  Administration Knowledge Base: 
+
+https://kb.perforce.com/article/498/-admin-tasks  
+
+  High Availability and Disaster Recovery Solutions for Perforce:  
+
+http://www.perforce.com/sites/default/files/pdf/perforce-high-availability-disaster-
+recovery-solutions_0.pdf   
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 6    
+
+

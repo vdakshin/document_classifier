@@ -1,0 +1,1260 @@
+ 
+Oracle E-Business Suite and RAC Performance and Elasticity 
+on Vblock Systems 
+
+Table of Contents 
+
+www.vce.com 
+
+ 
+
+ORACLE E-BUSINESS SUITE AND RAC 
+PERFORMANCE AND ELASTICITY ON 
+VBLOCK™ SYSTEMS 
+
+Version 2.0 
+February 2013 
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ............................................................................................................................... 5 
+Business case ......................................................................................................................... 5 
+Solution ................................................................................................................................... 5 
+Objectives ................................................................................................................................ 5 
+Key results ............................................................................................................................... 6 
+Benefits ................................................................................................................................... 6 
+Audience ................................................................................................................................. 6 
+Feedback ................................................................................................................................. 6 
+Technology overview ............................................................................................................... 7 
+Vblock™ Systems ..................................................................................................................... 7 
+Vblock System 720 ............................................................................................................... 7 
+Vblock System 320 ............................................................................................................... 7 
+Oracle 11g R2 Enterprise Edition ............................................................................................. 8 
+Oracle Real Application Clusters 11g R2 ................................................................................. 8 
+Oracle E-Business Suite Release 12 ....................................................................................... 8 
+EMC Ionix Unified Infrastructure Manager ............................................................................... 8 
+Architecture overview............................................................................................................... 9 
+High-level architecture ............................................................................................................. 9 
+Physical topology ................................................................................................................... 10 
+Performance test environment ............................................................................................... 11 
+Scalability test environment ................................................................................................... 12 
+Hardware components ........................................................................................................... 13 
+Software components ............................................................................................................ 13 
+Storage layout ....................................................................................................................... 14 
+Performance testing ............................................................................................................... 16 
+Test objective ........................................................................................................................ 16 
+Test environment ................................................................................................................... 16 
+Test procedures ..................................................................................................................... 16 
+Test results and analysis ....................................................................................................... 16 
+Scalability testing ................................................................................................................... 18 
+Test objective ........................................................................................................................ 18 
+Test environment ................................................................................................................... 18 
+Test procedures ..................................................................................................................... 18 
+Scaling Oracle RAC............................................................................................................ 18 
+Scaling the application tier .................................................................................................. 19 
+Test results and analysis ....................................................................................................... 19 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+3 
+
+ 
+
+ 
+
+Conclusion .............................................................................................................................. 21 
+Next steps ............................................................................................................................. 21 
+References .............................................................................................................................. 22 
+VCE .................................................................................................................................... 22 
+Oracle ................................................................................................................................. 22 
+Appendix A .............................................................................................................................. 23 
+Preparing the test environment .............................................................................................. 23 
+Test tools ............................................................................................................................... 23 
+Workload description ............................................................................................................. 24 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+4 
+
+ 
+
+ 
+
+Introduction 
+
+Organizations can be challenged by dynamic workloads that are driven by rapid business cycles and 
+continuous changes due to rollouts, release changes, and process automation. As a result, 
+performance and elasticity are key success factors in achieving the operational efficiency and agility 
+required in business applications. 
+
+This paper describes how Vblock™ Systems address these issues for Oracle E-Business Suite 
+(EBS). To validate the solution, a typical Oracle customer environment was built on a Vblock System. 
+The environment consisted of a Vblock System 700 with VMware vSphere 4.1, Oracle EBS 
+applications, and an Oracle clustered database. Baseline physical and virtual performance under load, 
+and performance under load while scaling was measured. Test results are presented in this paper. 
+
+Business case 
+
+Enterprise Resource Planning (ERP) solutions such as EBS have been historically slow to migrate to 
+a converged infrastructure and virtualization. Performance and elasticity are two of the key barriers. 
+Customers want assurance that virtualizing their Oracle production systems and business applications 
+will provide: 
+
+  Performance that meets the needs of business service level agreements (SLA)  
+  Flexibility to address application needs while efficiently scaling out in response to continuously 
+
+changing resource requirements. 
+
+  Lower total cost of ownership (TCO) while maintaining a high return on investment (ROI). 
+
+Solution 
+
+Vblock Systems offer compute, network, storage, virtualization, and management technologies from 
+industry-leading vendors to ensure the highest levels of availability, data protection, and security. IT 
+organizations can migrate their Oracle EBS and RAC deployments from a physical environment to a 
+virtual environment without disruption. As a result, Oracle EBS and RAC instances can be 
+consolidated on less hardware to improve utilization and reduce licensing costs. Vblock Systems allow 
+IT organizations to effectively manage and allocate resources to meet the demands of a dynamic 
+Oracle EBS environment. 
+
+Objectives 
+
+The objectives of the testing were to demonstrate that: 
+
+  Performance of Oracle EBS and RAC running I/O intensive application-based workloads on 
+
+vSphere 4.1 on Vblock Systems meets the needs of typical business SLAs. 
+
+  The virtual environment provided by vSphere 4.1 on Vblock Systems allows scaling out and 
+
+scaling up of Oracle EBS and RAC deployments to accommodate dynamic workloads. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+5 
+
+ 
+
+ 
+
+Key results 
+
+VCE conducted extensive performance testing of Oracle EBS applications in a virtual Oracle RAC 
+environment on a Vblock System. Key results were: 
+
+  Application response time for transactions in the physical and virtual environments was within a 
+
+5-10% range. 
+
+  Scaling out and scaling up Oracle EBS and RAC on a Vblock System improves performance. 
+
+Benefits 
+
+Virtualizing Oracle EBS and Oracle RAC on a Vblock System provides the following benefits: 
+
+IT Cost Containment 
+
+  Maximize licensing return on investment (ROI) by deploying more Oracle instances on less 
+
+hardware. 
+Increase utilization and reduced cost through server consolidation. 
+
+ 
+
+Simplified Performance Management 
+
+  Accelerate deployment and simplify operation with standardized, prepackaged units of 
+
+converged infrastructure on a Vblock System. 
+
+  Accommodate growth, dynamic workloads, and scheduled maintenance with dynamic virtual 
+
+machine migration and vertical and horizontal scaling. 
+
+Non-disruptive Innovation 
+
+  Ensure the highest levels of availability, data protection, and security by leveraging industry-
+
+leading preconfigured converged infrastructure platform. 
+
+  Accelerate migration from a physical to a virtual environment and deployment of Oracle 
+
+instances with VMware virtual machine templates, Oracle Rapid Cloning technologies, and EMC 
+replication software. 
+
+Audience 
+
+Individuals tasked with evaluating, acquiring, managing, operating, or deploying Oracle EBS in a 
+virtualized data center environment will benefit from reading this paper. 
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the name of this paper, the page your comment applies to, and your 
+feedback. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+6 
+
+ 
+
+ 
+
+Technology overview 
+
+This solution uses the following major hardware and software:  
+
+  Vblock Systems 
+  Oracle Database 11g R2 Enterprise Edition 
+  Oracle Real Application Clusters (RAC) 11g R2 
+  Oracle E-Business Suite Release 12 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+Vblock System 720 
+
+The Vblock System 720 is an enterprise, service provider class mission-critical system in the Vblock 
+System 700 family, for the most demanding IT environments—supporting enterprise workloads and 
+SLAs that run thousands of virtual machines and virtual desktops. It is architecturally designed to be 
+modular, providing flexibility and choice of configurations based on demanding workloads. These 
+workloads include business-critical enterprise resource planning (ERP), customer relationship 
+management (CRM), and database, messaging, and collaboration services. The Vblock System 720 
+leverages the industry’s best director-class fabric switch, the most advanced fabric based blade 
+server, and the most trusted storage platform. The Vblock System 720 delivers greater configuration 
+choices, 2X performance and scale from prior generations, flexible storage options, denser compute, 
+five 9s of availability, and converged network and support for a new virtualization platform that 
+accelerates time to service and reduces operations costs. 
+
+Vblock System 320 
+
+The Vblock System 320 is an enterprise and service provider ready system in the Vblock System 300 
+family, designed to address a wide spectrum of virtual machines, users, and applications. It is ideally 
+suited to achieve the scale required in both private and public cloud environments. The Vblock 
+System 320 has been engineered for greater scalability and performance to support large enterprise 
+deployments of mission-critical applications, cloud services, VDI, mixed workloads and application 
+development and testing. The Vblock System 320 delivers greater configuration choices, 2X 
+performance and scale from prior generations, flexible storage options, denser compute, five 9s of 
+availability, and converged network and support for a new virtualization platform that accelerates time 
+to service and reduces operations costs. Every Vblock System 320 is available with the market-
+leading EMC VNX storage arrays. 
+
+For more information, go to www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+Oracle 11g R2 Enterprise Edition 
+
+In Oracle 11g R2 Enterprise Edition, both Oracle Automatic Storage Management (ASM) and Oracle 
+Clusterware have been integrated into a single set of binaries and named Oracle Grid Infrastructure. 
+This now provides all cluster and storage services required to run an Oracle RAC database. 
+
+Oracle Real Application Clusters 11g R2 
+
+Oracle RAC combines storage and processing power across a cluster of machines for high 
+availability. Oracle RAC extends the Oracle Database so that you can store, update, and efficiently 
+retrieve data from multiple instances on different servers at the same time. Oracle RAC provides the 
+software that allows the servers to work together as a cluster. The physical structures that make up 
+the database must reside on shared storage that is accessible from all servers in the cluster. Each 
+server in the cluster runs the Oracle RAC software. 
+
+In Oracle RAC environments, multiple cluster database instances form a single database. The 
+instances can be on different servers and can be referred to as hosts or nodes. The combined 
+processing power of the multiple servers provides greater throughput and scalability than is available 
+from a single server. 
+
+Note:  For Oracle's support policy on Oracle products running on VMware, refer to My Oracle Support Doc [ID 
+
+249212.1]. 
+
+Oracle E-Business Suite Release 12 
+
+The Oracle EBS architecture is a framework for multitiered distributed computing. In the Oracle EBS 
+model, services are distributed among multiple levels or tiers. A service is a process or a group of 
+processes that exercise some business logic and provide a particular functionality. A tier is a grouping 
+of services that can potentially span physical machines. In other words, a tier is a logical grouping of 
+services that is not limited by physical nodes or machines. Each tier can consist of one or more nodes, 
+and each node can accommodate more than one tier. For example, a single machine can contain 
+database, application, and desktop tiers; in the same way, a database can reside on one of many 
+application servers or on a separate machine by itself.  
+
+Note:  For more details, refer to Oracle Applications Concepts [B10642-01]. 
+
+EMC Ionix Unified Infrastructure Manager 
+
+EMC Ionix Unified Infrastructure Manager/Provisioning (UIM/P) provides simplified management for 
+Vblock Systems, including provisioning, configuration, change, and compliance management. UIM/P 
+provides the functionality to package portions of the compute, storage, and network resources of a 
+Vblock System into infrastructure services. Once in a service, the resources can be reserved, 
+deployed, allocated, and managed as a single entity through UIM/P. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+Architecture overview 
+
+The performance and scalability testing described in this paper was conducted on a virtualized Oracle 
+environment created on a Vblock System using VMware vSphere virtualization software. Intended to 
+replicate a common customer environment, the virtual environment included Oracle EBS applications 
+and a virtualized Oracle clustered database (Oracle and Oracle RAC).  
+
+High-level architecture 
+
+Figure 1 shows the high-level architecture of the test environment. 
+
+Figure 1. High-level architecture 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+Physical topology 
+
+Figure 2 shows the physical topology of the test environment. 
+
+Figure 2. Physical topology 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+10 
+
+ 
+
+ 
+
+Performance test environment 
+
+Figure 3 illustrates the performance test environment. 
+
+Figure 3. Performance test environment 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+11 
+
+ 
+
+ 
+
+Scalability test environment 
+
+Figure 4 illustrates the scalability test environment. 
+
+Figure 4. Scalability test environment 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+Hardware components 
+
+A virtual Oracle RAC can be deployed on any Vblock System that provides SAN connectivity. The 
+performance testing described in this paper was performed on a Vblock System 700 model MX. The 
+following table lists the hardware components used in testing. 
+
+Component 
+Cisco Unified Computing 
+System (UCS) 
+
+Quantity 
+1 
+
+Configuration 
+ 
+ 
+
+2 x 6120 Fabric Interconnects 
+8 x Cisco B-Series blades (12 x CPU cores and 192 
+GB memory on each blade) 
+- 
+- 
+- 
+
+3 x used for physical environment tests 
+3 x used for virtualized environment tests 
+2 x additional used for scale out tests 
+
+Storage 
+
+Network 
+
+1 
+
+2 
+
+EMC VMAX storage 
+
+Cisco MDS 9513 Switch 
+
+Software components 
+
+The following table lists the software components used in testing. Also, refer to “Test tools” in 
+Appendix A. 
+
+Platform 
+Red Hat Linux 5 
+
+Role 
+Operating system 
+
+Version 
+RHEL 5 U4 (64-bit) 
+
+Oracle 12.1 E-Business Suite 
+
+Application 
+
+Oracle 11g R2 Enterprise 
+Edition 
+
+Oracle 11g R2 Real 
+Application Clusters (RAC) 
+
+Database 
+
+Clusterware 
+
+VMware vSphere 4 
+
+Virtualization 
+
+ 
+
+12.1.1 
+
+11.2.0.2 
+
+11.2.0.2 
+
+4.1 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+13 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Storage layout 
+
+For performance testing, two VMAX thin storage pools comprising Fibre Channel (FC) disks were 
+used. These disks were 15K 600 GB RPM. 
+
+Pool 1 (eBizR10) contained twenty 50 GB RAID 1 data devices with 1TB of usable storage. The 
+following table lists the thin LUNs (TDEVs) created from this pool. 
+
+Environment 
+Physical 
+
+LUNs 
+Oracle DB online redo logs 
+
+Virtual (provisioned as RDMs) 
+
+Oracle DB online redo logs 
+
+Virtual disks 
+3 x 100 GB 
+
+3 x 100 GB 
+
+Pool 2 (eBizR5) contained 2000 50-GB RAID 5 data devices with 10 TB of usable storage. The 
+following table lists the thin LUNs (TDEVs) created from this pool. 
+
+Tier 
+Oracle DB 
+
+Environment 
+Physical 
+
+Virtual (provisioned 
+as RDMs) 
+
+Oracle 
+Application 
+
+Physical 
+
+Virtual (provisioned 
+as VMDKs) 
+
+LUNs 
+Oracle RAC voting/OCR disks 
+Oracle Archive Log DG  
+Oracle Data DG 
+Oracle Temp space DG 
+
+Oracle RAC voting/OCR disks 
+Oracle Archive Log DG  
+Oracle Data DG 
+Oracle Temp space DG RAC 
+
+OS 
+Application tier binary and shared 
+application tier files 
+
+OS 
+Application tier binary and shared 
+application tier files 
+
+Note: DG = Automatic Storage Management Disk Group 
+
+ 
+
+Virtual disks 
+6 x 4 GB 
+1 x 536GB 
+3 x 365 GB 
+1 x 256 GB 
+
+6 x 4 GB disks 
+Oracle RAC 
+voting/OCR disks 
+
+1 x 100 GB 
+1 x 500 GB 
+
+1 x 100 GB 
+1 x 500 GB 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+14 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 5 shows storage mappings for the Oracle database. 
+
+Figure 5. Storage layout 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+15 
+
+ 
+
+ 
+
+Performance testing 
+
+To characterize performance of Oracle EBS and Oracle RAC on a Vblock System, performance 
+testing was conducted for Oracle EBS applications and Oracle RAC operating in each of the following 
+environments: 
+
+  Physical environment 
+  Virtual environment with VMware vSphere 4.1 
+
+Test objective 
+
+The objective of performance testing was to demonstrate that performance of Oracle EBS and RAC 
+running I/O intensive application-based workloads on vSphere 4.1 on a Vblock System meets the 
+needs of typical business SLAs. 
+
+Test environment 
+
+Figure 3 illustrates the performance test environment. Refer to “Preparing the test environment” in 
+Appendix A for the procedure used to set up the test environment. 
+
+Test procedures 
+
+Performance testing consisted of execution of Order Management Transactions. Refer to “Workload 
+description” in Appendix A for a description. To test performance with increased load, the number of 
+concurrent users was incremented from 100 to 500.  
+
+Test results and analysis 
+
+Five load tests were performed in each environment. Results were averaged to find the average 
+application response time (in seconds) for each transaction in the load test. Figure 6 compares 
+average application response times in the physical Oracle RAC environment to average application 
+response times in the virtual Oracle RAC environment.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+16 
+
+ 
+
+ 
+
+Figure 6. Average application response times 
+
+The major findings are: 
+
+  As shown in Figure 6 above, a slight increase in the average application response time was 
+
+observed in the virtual test environment when compared to the physical test environment. 
+
+  A comparison of the average 90th percentile response time for each transaction showed that 
+
+Oracle EBS in the virtual environment on a Vblock System performed at 87% of Oracle EBS in 
+the physical environment. The minimal degradation is due to ESXi overhead. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+17 
+
+ 
+
+ 
+
+Scalability testing 
+
+To demonstrate the scalability and elasticity benefits of the virtualized Oracle environment, load 
+testing with 500 active concurrent users was conducted and performance was measured after adding 
+one Oracle EBS application node and one Oracle RAC database node to the virtual Oracle 
+environment.  
+
+Test objective 
+
+The objective of scalability testing was to demonstrate that the virtual environment provided by 
+vSphere 4.1 on a Vblock System allows scaling out Oracle EBS and RAC deployments to meet 
+dynamic workloads. 
+
+Test environment 
+
+Oracle E-Business Suite 12 provides the option for a multi-node configuration to share the application 
+file system. Because a shared application file system is recommended for load balancing 
+configurations with Oracle EBS R12, a shared application file system was implemented for both 
+physical and virtualized Oracle EBS environments. An NFS server was used to mount the shared 
+application file system for Oracle EBS. 
+
+Figure 4 illustrates the scalability test environment. 
+
+Note:  My Oracle Support Doc ID 384248.1 (Sharing the Application Tier File System in Oracle E-Business Suite 
+Release 12) provides details on how to migrate from a non-shared application tier with Oracle EBS R12 to 
+the recommended configuration for a shared application file system. 
+
+Test procedures 
+
+Scaling Oracle RAC 
+
+To determine when to scale the Oracle RAC environment by adding nodes, Oracle Enterprise 
+Manager (OEM) 11g R1 Grid Control and native system tools were used to monitor utilization on the 
+Oracle RAC database nodes. When CPU and memory utilization reached 80% of available resources 
+for the Oracle RAC database nodes, one Oracle RAC node and one Oracle EBS node was added to 
+the environment to provide sufficient resources for additional users to perform tasks within the Oracle 
+EBS environment.  
+
+Step  Action 
+1 
+
+Add a virtual Oracle RAC node to the cluster. 
+
+2 
+
+3 
+
+Add an Oracle RAC instance to the new node. 
+
+Register the instance with the listener on the new node. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+18 
+
+ 
+
+ 
+
+Note:  For additional information, refer to Adding and Deleting Oracle RAC Nodes for Oracle E-Business Suite 
+Release 12 [ID 1134753.1] or Oracle Clusterware Administration and Deployment Guide 11g Release 2 
+(11.2). 
+
+Scaling the application tier 
+
+The following steps were performed. 
+
+Step  Action 
+1 
+
+Prepare the environment. 
+
+2 
+
+3 
+
+4 
+
+5 
+
+6 
+
+7 
+
+Configure the new application node. 
+
+Update profile options. 
+
+Verify the APPLCSF variable setting  . 
+
+Update the SESSION_COOKIE_DOMAIN value in ICX_PARAMETERS. 
+
+Configure load balancing.  
+
+Configure parallel concurrent processing. 
+
+Test results and analysis 
+
+Load testing was also conducted and performance measured after adding one Oracle RAC database 
+node and one Oracle EBS application node to the virtual Oracle environment. This demonstrated 
+elasticity while scaling out and scaling up. Figure 7 shows the average application response time (in 
+seconds) per transaction while scaling out the virtual environment compared to performance in the 
+physical and virtual environment with no scaling factor. 
+
+ Figure 7. Average application response times—while scaling out 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+19 
+
+ 
+
+ 
+
+The major findings are: 
+
+  A comparison of the average 90th percentile response time for each transaction before and after 
+
+scaling out in the vSphere 4.1 environment on a Vblock System showed that response times 
+were 21% lower after scaling out.  
+
+  Performance in the scaled-out virtual environment was only 3.8% lower than performance in the 
+
+physical environment.  
+
+  Additional resources can be provisioned on-demand to meet customer requirements for future 
+
+growth. 
+
+  Scaling out and scaling up Oracle EBS and RAC on a Vblock System improves performance. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+20 
+
+ 
+
+ 
+
+Conclusion 
+
+Results from the performance and scalability testing of Oracle EBS in a physical and virtual Oracle 
+RAC environment show that the benefits of virtualization provide a high level of return on investment 
+(ROI) and reduced total cost of ownership (TCO) for customers wishing to migrate from a physical to 
+virtual environment on a Vblock System. The performance delta is not significant for transactions 
+executed for Oracle EBS applications based on test results demonstrated by VCE.  
+
+Next steps 
+
+To learn more about this and other solutions, contact a VCE representative or visit www.vce.com. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+21 
+
+ 
+
+ 
+
+References 
+
+VCE 
+
+Oracle 
+
+  Zero Downtime Bi-directional Physical to Virtual Migration for Oracle EBS R12 With RAC on 
+
+Vblock Systems 
+www.vce.com 
+
+  My Oracle Support Notes 
+http://support.oracle.com 
+
+  Cloning Oracle Applications Release 12 with Rapid Clone (Doc ID 406982.1, requires an Oracle 
+
+support account to view) 
+
+  Using Oracle 11g Release 2 Real Application Clusters with Oracle E-Business Suite Release 12 
+
+(Doc ID 823587.1) 
+
+  Using Load Balancers with Oracle E-Business Suite Release 12 
+
+(Doc ID 380489.1) 
+
+  Configuration of Load Balancing and Transparent Application Failover (Doc ID 226880.1) 
+  How to Implement Load Balancing With RAC Configured System Using JDBC (Doc ID 
+
+247135.1) 
+
+  Using Cisco ACE Series Application Control Engine with Oracle E-Business Suite Release 12 
+
+(Doc ID 603325.1) 
+
+  Sharing the Application Tier File System in Oracle E-Business Suite Release 12 (Doc ID 
+
+384248) 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+Appendix A 
+
+This appendix describes the tools used to measure performance and the workflow used to generate 
+workload for performance testing.  
+
+Preparing the test environment 
+
+The following table describes how the performance test environment was set up. 
+
+Step  Action 
+1 
+
+Install and configure a split-node Oracle EBS R12 (12.1.1) 
+environment consisting of one application tier server and 
+one Oracle 11g database tier server.  
+
+2 
+
+3 
+
+4 
+
+Create a 2-node physical Oracle RAC. 
+
+Migrate the physical Oracle RAC to the virtual VMware 
+vSphere 4 environment. 
+ 
+
+Clone the virtual Oracle EBS and RAC environment to the 
+physical environment using EMC storage replication 
+technology with Oracle Rapid Clone Technology. 
+
+Notes 
+Refer to the appropriate Oracle 
+documentation for instructions. 
+
+Refer to the appropriate Oracle 
+documentation for instructions. 
+
+Refer to Zero Downtime Bi-
+directional Physical to Virtual 
+Migration for Oracle EBS R12 
+With RAC on Vblock Systems 
+for instructions.  
+
+Refer to Cloning Oracle 
+Applications Release 12 with 
+Rapid Clone (Doc ID 406982.1) 
+for detailed information. You 
+need an Oracle support account 
+to view it. 
+
+Test tools 
+
+The following table describes the tools used to generate load and collect measurements. 
+
+Tool 
+HP LoadRunner 11 
+
+SolarWinds Network 
+Performance Monitor 
+(NPM) 
+
+Description 
+  Emulates hundreds or thousands of concurrent users to apply 
+
+consistent, measurable, and repeatable production workloads to 
+application platforms. 
+
+  Supports performance testing for a wide range of application 
+
+environments and protocols, including Oracle. 
+
+  Delivers detailed monitoring and analysis of performance data from 
+
+routers, switches, servers, and other SNMP-enabled devices. 
+
+  Automatically discovers network devices and shows performance 
+
+statistics in real time through dynamic network maps. 
+Includes out-of-the-box dashboards, alerts, reports, and best practice 
+thresholds. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+23 
+
+ 
+
+ 
+
+Tool 
+Oracle Automatic 
+Workload Repository 
+(AWR) and Automatic 
+Database Diagnostic 
+Monitor (ADDM 
+
+Oracle Enterprise 
+Manager (OEM) 11g R1 
+Grid Control 
+
+EMC Symmetrix 
+Performance Analyzer 
+(SPA) 
+
+EMC STP 
+
+VMware esxtop 
+
+ 
+
+ 
+
+Workload description 
+
+Description 
+  AWR stores statistical data needed for diagnostics. 
+ 
+
+ ADDM analyzes data in the AWR to identify potential performance 
+bottlenecks. For each of the identified issues it locates the root cause 
+and provides recommendations for correcting the problem. 
+
+  ADDM performs analysis task, its findings and recommendations 
+
+stored in the database every time an AWR snapshot is taken 
+
+  Monitors and maintains a highly available environment across all tiers 
+
+of the application stack. 
+
+  Monitors both physical and virtual Oracle environments. 
+  Provides the ability to monitor and administer host environments 
+including operating system, network, and storage configurations. 
+
+  Simplifies analysis of Symmetrix performance trends. 
+  Provides intuitive application monitoring in real-time 
+  Provides diagnostic drill-down capability to identify the root cause of 
+
+performance issues 
+
+  Analyzes performance for Symmetrix and host systems after data 
+
+collection completed. 
+
+  Uses collected data to create displays of Symmetrix and host 
+
+performance along with configuration data. 
+
+  Displays information about the state of the physical server running an 
+
+ESXi Server. 
+Lists CPU utilization for each physical processor, memory utilization, 
+and disk and network bandwidth for each network and disk device 
+available to the ESXi Server machine.  
+Lists CPU and memory utilization for each individual VMkernel world. 
+
+The following table describes the customized Order to Cash (O2C) workflow used to generate 
+workload for the performance and scalability testing. This workload demonstrates the performance 
+and scalability of Oracle Applications and provides metrics for comparing Oracle Applications 
+performance on different system configurations. The transactions were scripted using HP LoadRunner 
+and executed under predefined user loads. Each user executes the transactions as part of the O2C 
+process. 
+
+Step 
+1 
+
+2 
+
+3 
+
+ 
+Enter 
+Order/Create 
+Sales Order 
+
+Pick Release 
+
+Ship Confirm 
+
+Description 
+The cycle begins in the Order Management Module where an order is 
+created with about 4 lines. This order is then booked and passed to Pick 
+Release. 
+
+Pick Release finds and releases the order and creates a move order request. 
+The process of transacting move orders creates a reservation against the 
+source sub-inventory. 
+
+Ship Confirm is the process of confirming that items have shipped. 
+Shipping execution confirms that the delivery lines associated with the 
+delivery have shipped. Interface Trip Stop (ITS) creates a trip and related 
+stops for all eligible deliveries that have not been assigned to a trip. The 
+ITS process happens automatically when you ship confirm the order. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+24 
+
+ 
+
+ 
+
+Step 
+4 
+
+ 
+Workflow 
+Background 
+Process 
+
+Description 
+To create an Invoice from the Shipped/Closed order lines, the Workflow 
+Background Process, OM Order Line, must run to interface eligible order 
+lines into Accounts Receivable (AR) as invoices. In most 
+production/customer environments, this process is set up to run 
+automatically as prescribed by business requirements. For this test, this 
+process will be manually submitted after the completion of ITS. 
+
+5 
+
+Receivables 
+Query Invoice 
+
+An invoice is created based on the customer and the items that were 
+ordered previously. 
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+25 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+

@@ -1,0 +1,1089 @@
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+Making the Invisible Visible – the modern data center 
+
+requires infrastructure visibility  
+
+April 2010 
+
+ 
+
+ 
+Today,  when  we  bring  up  the  topic  of  “visibility”  within  the  mission  critical 
+networks  of  the  enterprise,  most  organizations  turn  immediately  to  their 
+practices  with  sniffers,  traffic  analyzers,  and  trending  tools  –  more  often  than 
+not focused purely on their IP-based communication networks.  But these tools 
+can  turn  into  nothing  more  than  a  temporary  placebo  when  fighting 
+performance  problems,  and  trying  to  gain  visibility  into  the  infrastructure  for  more  strategic 
+management.    Why?    The  performance  of  business  critical  applications  often  depends  upon 
+more difficult to access fabrics – such as the fiber of Fibre Channel (FC) and FICON networks 
+threaded  between  mission  critical  storage,  switches,  directors,  and  HBAs  of  computing 
+systems.  Peering into an easier to access communications network may offer valuable insights 
+into symptoms such as increasing latency, but such tools will reveal little about the domain of 
+the  infrastructure  that  is  really  the  root  of  most  performance  issues  –  the  storage  network.  
+Treating  such  symptoms  without  insight  into  the  underlying  cause  does  little  more  than 
+applying  a  short-term  patch  to  the  problem.    We  can  call  out  time  and  again  the  tales  of  IT 
+practitioners  where  a  troublesome  problem  could  only  be  solved,  or  the  claims  of  a  vendor 
+could only be verified, by peering into an enterprise SAN. 
+ 
+In the past, it used to be costly and difficult to analyze interactions across fiber connections.  
+But the equipment to tap into and analyze the data streams within a fiber connection are now 
+more affordable than ever, and designing in easy access for monitoring and visibility of these 
+fabrics should be a ubiquitous best practice.  But too often it remains the case that access is an 
+afterthought  -  often  coming  to  light  only  after  a  significant  failure  occurs.    With  out-of-sync 
+expectations  about  cost,  and  increasingly  complex  fabrics,  the  enterprise  often  fails  to  think 
+about how and where to integrate access when systems are being designed and deployed.  In 
+turn, gaining visibility when problems occur means retrofitting access and this can become an 
+enormous problem, often requiring planned downtime, or causing unplanned disruption.  This 
+shouldn’t be the case.   
+ 
+In this solution profile, we’ll examine the importance of SAN visibility.  We’ll then examine one 
+solution  for  integrating  physical  access  –  Virtual  Instrument’s  SANInsight  Tap  Patch  Panel 
+Systems,  and  look  at  the  common  questions  that  come  into  practitioners’  minds  about  how, 
+when, why, and where to integrate access into today’s infrastructures. 
+ 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+1 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+Visibility – beyond mandatory 
+Providing  visibility  into  the  complex  data 
+center  is  an  increasing  challenge. 
+  Data 
+centers have become denser, larger scale, and 
+more  complex  than  ever  before. 
+  With 
+complexity,  the 
+laissez-faire  approach  to 
+traditional troubleshooting – figure out what 
+tools are available, or find a sniffer, and then 
+figure out how to get access to the right parts 
+of a data stream – is simply no longer viable.  
+Systems  are  too  complex  and  too  mission 
+critical to tolerate such latencies.  Moreover, 
+visibility is simply mandatory for optimizing 
+the  use  of  the  virtualized  data  center  – 
+environments  without  visibility  will  never 
+observe  latency  issues,  transmission  errors, 
+or  misconfigurations  before  they  become 
+problems  or  extract  a  needless  premium  in 
+  Then  when  such 
+wasted  capabilities. 
+common 
+(we’ve  never  seen  an 
+infrastructure without at least a few) do fully 
+blossom  into  full-fledged  problems,  IT  staff 
+will find it impossible to cost-effectively drill 
+into the root causes behind these issues. 
+ 
+Patching over Access 
+The  problem  boils  down  to  getting  the  right 
+physical access to this complex infrastructure 
+in the midst of increasing density and scale – 
+and physical access in this case is inclusive of 
+access  by  a  human  body  or  monitoring  tool, 
+as  well  as  access  to  live,  unaltered  data 
+streams.  While  physical  access  is  difficult 
+enough in the ubiquitous IP network, the IP 
+network  barely  touches  the  more  mission 
+critical fabrics in the enterprise – such as the 
+fiber  networks  supporting  protocols 
+like 
+Fibre  Channel  or  FICON.    And  while  the 
+ubiquitous  IP  network  –  as  a  point  of 
+
+issues 
+
+access 
+
+patch 
+
+10 
+
+related 
+
+to 
+
+panels 
+
+for  monitoring 
+
+physical 
+and 
+observation  –  may  offer  somewhat  better 
+access  than  fiber  networks,  the  underlying 
+issues behind major application problems or 
+performance impacts are today as often as 9 
+times  out  of 
+storage 
+interactions, and the fiber networks that such 
+interactions commonly take place upon. 
+ 
+In our view, this is a strange problem to have 
+in  an  industry  that  has  long  ago  come  to 
+terms  with  a  strategic  use  of  patch  panels 
+being a best practice when designing physical 
+connectivity.    Physical  cabling  is  a  key  asset 
+in today’s complex data center, and can be so 
+dense  and  interwoven  that  it  practically 
+becomes  a  part  of  the  physical  building.  
+Integrating 
+provides 
+configurability,  and  flexible  on-going  use  of 
+the cabling plant as the data center changes.  
+ 
+But  in  this  industry  immersed  in  patch 
+panels  and  highly  standardized  cabling 
+practices, designing cabling infrastructure for 
+visibility  into  the  SAN  has  barely  matured. 
+Today’s  systems  simply  cannot 
+tolerate 
+disruptions,  and  the  lowly  patch  panel  does 
+nothing  to  provide  access  to  live  sessions. 
+The  consideration  of  access 
+these 
+networks, 
+environments 
+leveraging  highly  optimized  cabling  plants 
+and state of the art connectivity, is too often 
+left by the wayside. 
+ 
+Devices = Access-lite 
+In  realization  of  this,  network  vendors  have 
+long built equipment to perform actions like 
+port mirroring.  But there are too many cases 
+where  port  mirroring  simply  isn’t  sufficient.  
+A  port  mirror  never 
+represents  pure 
+
+even  within 
+
+to 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+2 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+for 
+
+Model 
+
+unadulterated  access  to  a  live  data  stream.  
+With mirrored ports, lower level interactions 
+on  a  fabric  are  filtered  out  as  frames  are 
+repeated  out  the  monitoring  port.    Such 
+repeated traffic only includes logical and data 
+interactions,  and  may  miss  many  physical 
+characteristics  on  any  given  cable  –  such  as 
+framing or CRC problems, latency, and other 
+characteristics  –  that  can  only  be  directly 
+observed.    Within  the  5  layer,  FC0  to  FC4, 
+Fibre  Channel  corollary  to  the  abstract  OSI 
+Reference 
+network 
+communications,  over  half  of  the  layers  are 
+missed  with  port  mirroring  approaches.  
+Moreover,  port  mirroring  can  do  little  to 
+easily provide real-time, latency-aware access 
+to  interactions  that  cross  multiple  devices 
+and  ports,  or  provide  full  visibility  into 
+sessions that exceed the bandwidth of single 
+ports  on  single  switches.    Mirror  ports  also 
+shut  down  when  traffic  is  heavy,  which  is 
+exactly when you need data on infrastructure 
+performance the most. 
+ 
+Access must be Best Practice 
+Given  the  importance  of  visibility,  and  the 
+limitations  of  switch  and  router  based 
+solutions, 
+it  stands  to  reason  that  the 
+industry  should  be  insisting  on  physical 
+access  to  a  degree  never  before  witnessed.  
+For  many  in  the  industry,  the  possibility  of 
+increasing 
+specialized  high 
+performance  networks  is  often  overlooked 
+because  it  is  assumed  to  be  unobtainable  or 
+economically  unfeasible.    But  this  simply 
+isn’t  true.    The  technology  exists  today  to 
+provide access to these infrastructures – even 
+fiber-based  networks  –  even  on  a  very  wide 
+scale  that  includes  every  port  on  even  the 
+largest  fabrics.    These  devices  are  Traffic 
+
+access 
+
+to 
+
+  Moreover, 
+
+Access  Points  (TAPs)  –  passive 
+in-line 
+splitters  that  are  integrated  in  dense  patch 
+panels  to  provide  full  visibility  of  what  is 
+being transmitted over individual cables and 
+ports. 
+these  solutions  are 
+economic  in  cost  and  physical  space  and 
+consume no power.  Such solutions can make 
+access  economically  achievable 
+for  any 
+organization. 
+ 
+Organizations too often do not consider these 
+technologies,  and  when  they  do  consider 
+them, they are pressed to figure out why and 
+how  to  integrate  such  technology  into  their 
+infrastructure.   
+ 
+To be clear, retrofitting taps into an existing 
+infrastructure can be a challenging endeavor.  
+While  organizations  facing  a  crisis  and 
+suddenly  in  need  of  access  within  existing 
+physical  plants  easily  overcome  any  of  the 
+potential  obstacles,  the  simple  truth  of  the 
+matter  is  that  reworking  an  operational 
+physical  plant  often  demonstrates  one  or 
+more  of  Murphy’s 
+laws  (accidents  will 
+happen  when  least  convenient),  and  that 
+putting technologies like multi-pathing to the 
+test turns up less robustness than expected. 
+ 
+In  turn,  there  are  three  places  in  which  to 
+realize that physical access is a best practice, 
+and  to  make  efforts  to  put  physical  access 
+into place.   
+ 
+Best  Practice  #1:  With  visibility  in 
+mind, realize access should be a “built-
+to”  specification  for  all  new  data 
+center  infrastructure.    First,  with  an 
+understanding of the importance of visibility 
+and its relationship to physical access at top 
+of mind, all data center technologists should 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+3 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+to 
+
+in 
+
+intentionally  bridging 
+
+turn 
+the  gap 
+between  how  their  organizations  build  the 
+data center versus how they need to use the 
+data  center.    Each  new  build  should  make 
+sure  that  physical  plant  specialists  and 
+technologists  work  together  to  design  for 
+access into their mission critical fabrics. 
+ 
+Best Practice #2: Realize visibility is a 
+mandatory  best  practice 
+the 
+consolidating  infrastructure,  and  you 
+should  therefore  introduce  improved 
+visibility  with  every  major  system 
+change.  But it isn’t necessary to wait until a 
+new  data  center  is  built  to  improve  access.  
+Systems  change  periodically,  and  it  is  quite 
+possible  that  such  changes  will  provide  an 
+opportunity  to  non-disruptively  implement 
+access  for  broad  swaths  of  the  physical  fiber 
+in  your  data  center  –  as  we’ll  discuss, 
+solutions  available  on  the  market  today  can 
+be implemented within the same footprint as 
+existing  patch  systems,  without  drastic 
+changes to physical configurations. 
+ 
+Best  Practice  #3:  Plan  and  implement 
+physical  access  when  the  symptoms 
+show up, and before it is too late.   But 
+outside  of  new  data  centers  and  new 
+equipment,  the  organization  often  has  more 
+than  justified  reason  to  implement  access. 
+When symptoms of performance issues show 
+up,  do  so  before  it  is  too  late.    This  may 
+happen  during 
+integration  of  new 
+technology,  or  when  administrators  are  less 
+than  confident  that  full  performance  and 
+system  capabilities  of  any  system  are  being 
+delivered.    On  the  other  hand,  this  may  be 
+when  latency  or  general  slow  downs  occur, 
+and the specific interactions behind the slow 
+down  cannot  be  fully  determined.    NetNet, 
+
+the 
+
+any 
+
+plant 
+
+during 
+
+anytime  lack  of  confidence  surfaces,  your 
+visibility  isn’t  good  enough.    Instead  of  wild 
+reaction, realize the lack of visibility makes it 
+clear  that  better  access  is  needed,  and  begin 
+planning  to  introduce  better  access  into  the 
+physical 
+available 
+maintenance windows. 
+ 
+With this in mind, we’ve selected one vendor 
+from  which  to  more  closely  examine  what  is 
+available  in  TAP  technology  today.    We’ll 
+highlight Virtual Instruments, as they bring a 
+unique  selection  of  both  TAP  and  analysis 
+technology to the table.  At the end of the day 
+though,  we  believe  key  questions  remain  in 
+many  administrator’s  minds  about  how  and 
+why  to  tap  infrastructures.    Following  a 
+review  of  Virtual  Instrument’s  capabilities, 
+we’ll  examine  how  the  Virtual  Instruments 
+technology  should  be  brought 
+into  an 
+infrastructure  by  addressing 
+the  most 
+common  questions  about  taps  that  we 
+regularly  field  from  today’s  data  center 
+practitioners. 
+ 
+Focus on Virtual Instruments 
+TAPs 
+Virtual  Instruments,  based  in  Scotts  Valley, 
+CA was spun out of Finisar in 2008 and is a 
+recognized  leader  in  SAN  monitoring  and 
+analysis solutions.  They primarily sell virtual 
+infrastructure  optimization  (VIO)  solutions 
+to  companies  with 
+large  SANs  running 
+business-critical applications.  Their primary 
+products  include  VirtualWisdom,  a  software 
+monitoring  and  analysis  solution,  and 
+SANInsight,  their  hardware  solutions  for 
+SAN instrumentation and monitoring.    
+ 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+4 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+to 
+
+systems 
+
+accompany 
+
+Virtual Instruments has long been providing 
+sophisticated  analysis  and  management 
+solutions  for  the  enterprise  infrastructure  – 
+ranging  from  the  virtual  infrastructure  to  a 
+sophisticated  and  time  tested  platform  for 
+SAN instrumentation. 
+ 
+SANInsight Tap Patch Panel System 
+In  April  of  2010,  Virtual  Instruments 
+introduced  a  comprehensive  line  of  physical 
+access 
+their 
+monitoring  systems.    Those  products  are 
+patch-integrated Traffic Access Points (TAPs) 
+for  all  manner  of  fiber  fabrics  -  50  and 
+62.5um  multimode  and  9um  single  mode.  
+Under  the  solution  set  name  of  SANInsight 
+Tap  Patch  Panel  Systems,  this  product  line 
+includes  panels  and  accompanying  optical 
+TAP  cassettes  or  adapter  plates  (cassettes 
+that  are  interchangeable  with  other  vendor 
+adapter  plates).    Virtual  Instrument’s  TAP 
+Patch Cassettes are available with a mix of LC 
+and  MT  connectors  for  the  live,  patch,  and 
+TAP  connections;  the  number  of  fibers  per 
+Cassette  varies  with  the  connector  type.  The 
+densest configuration uses MT connectors for 
+both trunk and TAP connections, supporting 
+24  live  fibers  (12  duplex  links)  per  cassette. 
+At  96 
+this 
+configuration  matches  the  density  of  the 
+most efficient patch-only shelves. 
+ 
+While  the  pure  basics  of  being  able  to  get 
+access when it is needed in our view justifies 
+integrating  TAPs  as  a  best  practice,  the 
+technical benefits of integrating TAPs go way 
+beyond this.  An integrated Tap Patch System 
+works  with  all  fabric  material  –  single  and 
+multi-mode up to 10Gbps specifications, and 
+provides  lossless  access  to  the  full  physical 
+fiber  with  zero  latency  introduced.    In  turn, 
+
+fibers  per  1U  rack  shelf, 
+
+organizations 
+
+can 
+
+when  paired  with  the  right  analysis  tools 
+such  as  Virtual  Instrument’s  NetWisdom  or 
+VirtualWisdom, 
+see 
+everything  from  bad  connection  indications 
+at  the  FC0  layer  up  to  individual  SCSI 
+transactions in the upper layers, empowering 
+complete SAN optimization. 
+ 
+Differentiation in Integration 
+With that kind of physical access in place, all 
+it  takes  is  integration  with  the  right  analysis 
+and  monitoring  tools  to  greatly  extend  the 
+management 
+troubleshooting 
+capabilities within an infrastructure.  And in 
+this  category,  the  SANInsight  Tap  Patch 
+Panel  System  is  truly  differentiated,  as  it 
+comes  from  the  same  vendor  who  is  behind 
+the  considerable  reputation  and  longevity  of 
+the  only  well-recognized 
+fiber  analysis 
+platform around – NetWisdom.  NetWisdom 
+and 
+instantiation, 
+VirtualWisdom, 
+a 
+sophisticated,  distributable  management 
+platform 
+fiber 
+infrastructure  and  reconstruct  application-
+level  interactions  across  the  infrastructure.  
+This allows them to identify problems in real-
+time, collect trending information, and serve 
+up  a  comprehensive  set  of  dashboards  to 
+improve the monitoring and management for 
+all of the key systems in an enterprise.  Over 
+the  years,  we  have 
+time  and  again 
+encountered  a 
+list  of  NetWisdom 
+customers.    They  consistently  have  concrete 
+evidence  that  NetWisdom  helps  with  their 
+most significant challenges, including: 
+(cid:1)  Providing 
+
+that  can  peer 
+
+instrumentation 
+
+next-generation 
+
+to  ensure 
+
+give 
+
+companies 
+
+into  a 
+
+its 
+
+and 
+
+long 
+
+optimal infrastructure performance 
+
+(cid:1)  Reducing troubleshooting time and effort 
+– as well time to problem resolution – to 
+a fraction of what was required before. 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+5 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+(cid:1)  Providing  monitoring  and  utilization 
+trending  that  helps  lower  OPEX  and 
+CAPEX  costs  by  enabling 
+strategic 
+planning 
+infrastructure 
+purchases,  both  for  storage  and  SAN 
+equipment. 
+
+for  optimal 
+
+through 
+
+ 
+Those  capabilities  along  with  massively 
+improved  physical  access 
+the 
+SANInsight  Tap  Patch  Panel  System  add  up 
+to cost of ownership impacts that are nothing 
+less than highly significant. 
+ 
+Integrating Tap Patch Panel Systems 
+Following  our  best  practices,  when  it  comes 
+to putting a Tap Patch Panel System in place, 
+new  datacenter  buildups  or 
+large  scale 
+refreshes  can  make  use  of  TAP  Patch 
+components  in  Virtual  Instrument’s  own 
+shelves.    But  for  nearly  any  use,  including 
+existing physical plants, custom cassettes are 
+available  by  special  order 
+for  retrofit 
+installation  into  existing  installed  shelves  in 
+live  environments,  where  matching 
+the 
+existing cabling design and density is critical 
+to minimizing disruption.  
+ 
+One  example:  LGX-compatible  cassettes  for 
+the  densest,  fully-populated  LC-LC  288  4U 
+panels  where  TAP  output  is  accommodated 
+over  jacketed  ribbon  cables  that  are  broken 
+out 
+for 
+monitoring connectivity.  For connectivity in 
+less  dense  panels 
+that  have  sufficient 
+available  mounting  space,  retrofit  cassettes 
+will  simply  add  additional  LC  adapters  for 
+the TAP outputs. 
+Using 
+enable 
+organizations  to  pursue  our  best  practice 
+recommendations in any scenario.  
+ 
+
+connectors 
+
+separately 
+
+solutions 
+
+such 
+
+can 
+
+to  LC 
+
+Strategic Considerations 
+As  we  talk  to  end  users  about  the  potential 
+issues  lurking  beneath  the  surface  of  their 
+fiber  networks,  and  why  physical  access 
+should  be  a  prioritized  pursuit,  we 
+consistently 
+find  ourselves  addressing  a 
+number of common questions.  Let’s explore 
+the  most  significant  of  these  questions  that 
+call  out  the  strategic  importance  of  insight 
+into  the  fiber  foundations  of  the  enterprise.  
+In  our  mind,  every  data  center  architect 
+should  consider  these  questions  during  the 
+design  of  the  physical  cable  plant  behind 
+their fiber networks. 
+ 
+Q: Why do I need physical access into 
+my cabling infrastructure? 
+In our view, physical access into fiber cabling 
+plants should be considered nothing short of 
+an industry best practice in order to confirm 
+optimal  operations,  diagnose  root  causes, 
+resolve  problems  and  optimize  performance 
+within  today’s  complex  infrastructures,  well 
+beyond  the  capabilities  of  sniffers  and 
+analysis  tools  restricted  to  limited  ports  of 
+access  and  the  port  mirroring  capabilities  of 
+network  devices,  especially  when  unused 
+ports are a rarity in today’s dense and highly 
+oversubscribed fabrics. 
+ 
+In  the  world  of  high  performance  fiber,  it 
+takes  access  to  ensure  that  everything  is 
+operating  smoothly.    In  directly  monitored 
+environments, it is common that we see new 
+equipment  implementations  suffering  from 
+misconfigurations 
+incompatibilities.  
+Undetected,  misconfigurations  can  become 
+entrenched  in  an  environment,  and  lead  to 
+additional 
+or 
+replacements  well  before  they  are  needed.  
+
+equipment 
+
+purchases 
+
+and 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+6 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+Even  worse,  in  this  critical  infrastructure 
+within  the  enterprise,  lack  of  access  may 
+mean  you  are  left  without  tools  to  resolve 
+trouble  with  anything  less  than  disruptive 
+exercises  that  may  well  end  up  as  extended, 
+uninformed  guesswork  to  resolve  problems.  
+And just as importantly, lack of access leaves 
+you without the tools to understand and plan 
+for the long-term needs of your applications.  
+ 
+Q: Can I afford physical access? 
+With products like Virtual Instruments TAPs, 
+enterprises  can  build  in  access  in  typical 
+patch  panel 
+locations  without  additional 
+space or power requirements, minimal signal 
+deterioration,  and  a  minimal  incremental 
+cost.    Moreover,  those  minimal  incremental 
+costs  are  especially  negligible  when  weighed 
+against  the  long  term  cost  implications  of 
+insufficient access.  What are those costs? As 
+we  survey  the  enterprise  customers  for  the 
+issues they are facing in their infrastructure, 
+limited  visibility  and  access  is  reflected  in 
+indirect costs incurred in 3 dimensions. 
+1.  Lack  of  access  costs  you 
+in 
+
+lower 
+
+lost 
+capabilities. 
+  This  first  shows  up  in 
+customer’s  limited  ability  to  extract  and 
+validate  promised  performance  from  key 
+technology  systems.    With  no  ability  to 
+see  into  fabrics,  minor  misconfigurations 
+may  mean  that  realized  performance  is 
+much 
+promised 
+performance 
+be 
+realizing.    This  may  be  a  correctable 
+condition,  but  only  if  configurations  can 
+be  altered.    In  other  cases,  this  may  be 
+entirely a matter of false advertising, and 
+having  access  and  the  accompanying 
+visibility may provide the customer with a 
+tool  to  hold  the  vendor’s  feet  to  the  fire, 
+and negotiate contractual or new solution 
+
+customers 
+
+should 
+
+than 
+
+the 
+
+2.  Lack  of  capabilities  costs  you 
+
+remedies.    Without  visibility,  less  than 
+promised  performance  can  be  common, 
+and  leads  many  customers  to  add  or 
+replace  key  systems,  such  as  storage 
+arrays,  well  before  they’ve  fully  utilized 
+what they bought.  
+
+limited 
+
+in 
+troubleshooting  time,  effort,  and  delays.  
+The  second  case  where  costs  show  up  is 
+around 
+troubleshooting 
+capabilities.    As  we’ve  discussed,  without 
+physical access, valuable information may 
+not  be  visible  to  diagnostic  tools,  and 
+we’ve  frequently  observed  cases  where 
+troubleshooting  effort  is  exponentially 
+increased  because  of 
+the  difficulty 
+involved in identifying where and how to 
+access a fabric.  Moreover, in the worst of 
+cases,  such  access  may  require  an 
+operational  outage.    In  the  best  of  these 
+worst  cases,  such  an  outage  is  planned, 
+but  we  have  many  times  heard  tales  of 
+physical  access  attempts  –  unplugged 
+cables,  or  changed  device  configurations 
+–  accidentally  disrupting  production 
+systems.  When  such  events  happen  in 
+highly  utilized  production  environments, 
+they  can  have  significant 
+impact  on 
+revenue  generating  or  key  supporting 
+platforms. 
+
+the 
+
+into 
+
+3.  Lack of access costs you in planning and 
+strategic  management.    Third,  limited 
+the  consequent  reduced 
+access  and 
+infrastructure  can 
+visibility 
+in 
+indirectly  create  costs 
+long-term 
+management  and  planning. 
+  Limited 
+leave  enterprises 
+visibility  can  easily 
+without 
+utilization 
+trending 
+data.  
+Without  an  awareness  of  infrastructure 
+growth  and  demand 
+resources, 
+enterprises  will  typically  overprovision 
+
+for 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+7 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+their  infrastructure  (often  by  factors  of  5 
+to  10 
+times),  unnecessarily  wasting 
+valuable  capital  and  operating  costs.  
+With  access  to  the  right  data,  SAN 
+switching  expenses 
+can  be  greatly 
+reduced  and  lower  cost  storage  can  be 
+deployed  as  instrumentation  will  enable 
+SAN  managers  to  guarantee  their  SLAs 
+when 
+lower 
+performance storage.  
+
+lower 
+
+using 
+
+cost, 
+
+the 
+
+their 
+
+specifics 
+
+ 
+We  believe  underutilized  systems,  increased 
+management  time  and  effort,  and  poor 
+infrastructure  performance  over  time  can 
+easily  exceed  the  cost  of  even  far  reaching 
+physical  access  designs. 
+  For  customers 
+examining  these  costs  in  greater  detail  and 
+using 
+own 
+of 
+infrastructure,  we  believe 
+the  penalties 
+incurred  by  lack  of  physical  access  to  key 
+fabrics  will  far  outweigh  the  costs  of  even 
+comprehensive  solutions  on  the  market 
+today. 
+ 
+Q:  Will  physical  access  compromise 
+the  simplicity  and  efficiency  of  my 
+cabling infrastructure? 
+TAPs  in  the  market  today,  such  as  Virtual 
+Instrument’s TAPs, are near lossless and can 
+deliver  similar  functionality  and  simplicity 
+when  compared  to  regular  cabling  plant 
+patch panels that have long been accepted as 
+best  practice.    In  fact,  using  the  Tap  Patch 
+Panel  System,  the  simplicity  of  integrated 
+and  modular  TAP  and  patch  panels  can 
+actually  improve  upon  legacy  patch  panels, 
+and  allow  users  to  easily  upgrade  or  change 
+connections for small subsets of cables, while 
+preserving  physical  access.    In  our  view,  the 
+strategic  use  of  TAPs  throughout  key  fabrics 
+
+into 
+
+that  TAPs  are  built 
+
+in the infrastructure is every bit as important 
+a best practice as the use of patch panels.   
+ 
+Q: Where should I tap? 
+Understanding  where  to  tap,  and  making 
+sure 
+the 
+infrastructure at all the right points, takes an 
+understanding  of 
+the  applications  and 
+systems 
+that  are  associated  with  your 
+infrastructure, and should be an exercise that 
+is  elevated  well  beyond  where  it  has  been 
+considered  in  the  past;  a  concern  of  solely 
+physical  layer  specialists.  With  the  right 
+multi-disciplinary  stakeholders  at  the  table, 
+it  is  our  opinion  that  accessibility  should  be 
+looked  at  as  a  standard  for  the  enterprise, 
+and should be incorporated in all new system 
+and storage deployments.   
+ 
+Moreover,  for  existing  infrastructure,  the 
+possibilities  on  how  to  get  to  this  ideal  are 
+endless,  and  we  recommend  working  closely 
+with  physical  plant  partners  who  also 
+understand  data 
+  Significant 
+infrastructure  evolution  is  well  underway  in 
+the  enterprise  today,  with  data  centers 
+growing  to  greater  scale  than  ever  before.  
+While  ideally  TAPs  should  be  installed  near 
+core  directors  for  more  effective  access,  for 
+organizations  adding  dense  racks  of  servers 
+or  pockets  of  high  performance  servers,  we 
+can  even  see  opportunities 
+to  deploy 
+solutions  like  the  SANInsight  Tap  Patch 
+Panel  System  chassis  as  a  top  of  rack 
+patching  and  TAP  panel,  along  with 
+distributed, 
+rack-integrated  monitoring 
+probes.  This would integrate TAPs gradually, 
+following  a  pattern  similar  to  best  practices 
+for 
+the 
+enterprise. 
+ 
+
+integrating  new 
+
+systems. 
+
+fabrics 
+
+into 
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+8 of 9 
+
+ 
+ 
+
+S O L U T I O N   P R O F I L E 
+
+to  gain 
+
+is 
+
+TAPs 
+
+alongside 
+
+analysis 
+
+solutions 
+
+those 
+set 
+
+to  not  build  access 
+
+into 
+
+that  make  up  the  real  muscle  behind 
+enterprise IT. 
+ 
+Moreover,  with 
+like  Virtual 
+Instruments  Tap  Patch  System  on 
+the 
+market,  there  simply 
+isn’t  a  reasonable 
+excuse 
+the 
+infrastructure.    The  cost  is  negligible,  and 
+dwarfed  by  the  tremendous  impact  that 
+access  can  have  in  the  form  of  extracting 
+maximum  infrastructure  use,  and  massively 
+reducing  the  time  and  effort  involved  in 
+troubleshooting  as  well  as  the  operational 
+and strategic, long term management of that 
+infrastructure.    A  look  around  the  industry 
+makes  it  clear  that  these  capabilities  are  at 
+the  very  center  of  IT  best  practices  today.  
+Incident  management?    Yes,  pure  visibility 
+delivers  massively  reduced  time  and  effort.  
+Capacity  management?    Yes,  pure  visibility 
+delivers 
+alternative 
+(guesstimates  drawn  from  less  insightful 
+tools).    Problem  management?    Yes,  pure 
+insight gives you the toolset to optimize away 
+recurrent  issues.    And  the  list  goes  on.    In 
+today’s  service-driven  enterprise  IT  practice, 
+visibility 
+  For 
+organizations  realizing  this,  it  is  clear  that 
+this  is  a  strategic  consideration,  and  that 
+there  simply  must  be  long  term,  intentional 
+planning  to  better  implement  access  and 
+visibility with each and every IT effort. 
+
+Q: What should I tap with? 
+Look for a tapping solution set from a vendor 
+who  can also help assess your infrastructure 
+and give you insight on where to tap and how 
+intelligence  by 
+you’re  going 
+a 
+leveraging 
+sophisticated 
+and 
+of 
+  In  this  regard, 
+management  solutions. 
+Virtual 
+Instruments 
+distinctly 
+differentiated  as  they  bring  both  intelligent 
+software  –  the  only  solution  on  the  market 
+truly  capable  of  peering  deep  into  a  Fibre 
+Channel  SAN  –  along  with  a  comprehensive 
+set  of  tapping  solutions  that  can  provide 
+physical access anywhere in an infrastructure 
+and  within  the  same  efficient  footprint  that 
+your current cabling plant utilizes.  
+ 
+Taneja Group Opinion 
+It  is  clear  to  us  that  considering  visibility 
+within  next  generation  data  centers  is  more 
+important than ever.  In fact, we’re confident 
+that neglecting the full consideration of how 
+to  peer  into  the  performance  behind  a 
+consolidated,  high  performance  data  center 
+will significantly limit the capabilities of that 
+data  center.    For  the  strategic  enterprise, 
+those  considerations  should  be  top  of  mind 
+during  any  significant  data  center  activity 
+that  presents  the  opportunity  to  open  up  a 
+portal into the mission critical fiber networks 
+ 
+ 
+ 
+                                                   
+. NOTICE:  The information and product recommendations made by the TANEJA GROUP are based upon public information and sources 
+and  may  also  include  personal  opinions  both  of  the  TANEJA  GROUP  and  others,  all  of  which  we  believe  to  be  accurate  and  reliable. 
+However, as market conditions change and not within our control, the information and recommendations are made without warranty of 
+any kind. All product names used and mentioned herein are the trademarks of their respective owners. The TANEJA GROUP, Inc. assumes 
+no  responsibility  or  liability  for  any  damages  whatsoever  (including  incidental,  consequential  or  otherwise),  caused  by  your  use  of,  or 
+reliance upon, the information and recommendations presented herein, nor for any inadvertent errors which may appear in this document. 
+
+is  simply  a  must  have. 
+
+better 
+
+than 
+
+the 
+
+.
+
+87 Elm Street, Suite 900     Hopkinton, MA  01748      Tel:  508-435-5040    Fax:  508-435-1530      www.tanejagroup.com 
+
+Copyright© The TANEJA Group, Inc. 2010. All Rights Reserved 
+
+ 
+
+9 of 9 
+
+

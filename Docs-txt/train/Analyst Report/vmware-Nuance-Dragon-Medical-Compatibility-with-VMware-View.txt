@@ -1,0 +1,1421 @@
+ 
+
+ 
+
+April 2012 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Nuance Dragon® Medical Compatibility 
+with VMware® View 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+
+Table of Contents 
+
+Introduction .................................................................................................................................... 3 
+About Nuance Dragon Medical ..................................................................................................... 3 
+About VMware View ....................................................................................................................... 3 
+VMware View: “AlwaysOn” Point Of Care Desktop .................................................................... 5 
+Validation Testing Process ........................................................................................................... 5 
+Testing Goals ............................................................................................................................... 5 
+Test Methodology ........................................................................................................................ 6 
+Physical Hardware and System Host Configuration .................................................................... 6 
+Installed Software ........................................................................................................................ 7 
+Virtual Machine Configuration ...................................................................................................... 7 
+Functional Test Configuration ...................................................................................................... 8 
+Functional Test Results and Findings ......................................................................................... 9 
+Summary of Test Scenarios and Results .................................................................................... 9 
+Bandwidth Utilization Measurements ......................................................................................... 10 
+Summary of Findings ................................................................................................................. 10 
+Performance Testing .................................................................................................................... 11 
+Performance Testing Methodology and Tools ....................................................................... 11 
+Performance Testing Setup ................................................................................................... 12 
+Performance Testing Results .................................................................................................... 13 
+Performance Testing Summary ................................................................................................. 13 
+Summary of Results and Recommendations ............................................................................ 14 
+Conclusions .................................................................................................................................. 17 
+Acknowledgements ...................................................................................................................... 17 
+Resources ..................................................................................................................................... 17 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E    
+
+I I  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Introduction 
+Dictation and transcription are ubiquitous functions in healthcare. Clinicians are able to spend more time 
+with patients by dictating prescriptions, case notes, and diagnosis directly into clinical applications rather 
+than using a keyboard to type data. Medical dictation software recognizes healthcare specific vocabulary 
+and seamlessly converts dictated speech to text. This software is typically integrated into ambulatory and 
+inpatient  healthcare applications. Users  interact  with the  application using a  variety of USB and Analog 
+multi-function microphones. Nuance is the leader in healthcare speech recognition and dictation software 
+and Dragon Medical is integrated with the majority of the clinical applications used today.  
+
+VMware  View,  the  market  leading  desktop  virtualization  software,  is  the  cornerstone  for  VMware 
+AlwaysOn  Point  of  Care™  solution.  This  tested  and  validated  solution  provides  clinicians  with  constant 
+availability to their point of care applications and data through a virtual desktop that “follows” the user 
+from device to device.  Virtual desktops are fast, secure and mobile. The VMware AlwaysOn Point of Care 
+solution  enables  clinicians  to  spend  more  time  with  patients  and  less  time  logging  into  desktops  and 
+applications.  
+
+Providers  are  eager  to  leverage  Dragon  Medical  on  VMware  View,  and  to  respond  to  this  demand, 
+Nuance and VMware conducted a series of tests to ensure that Dragon Medical running on VMware View 
+provides  the  same  dictation  experience  that  end  users  are  familiar  with  in  a  physical  desktop 
+environment. This document  describes the  functionality, hardware, and software  that  were tested, and 
+provides the results of this testing.   
+
+About Nuance Dragon Medical  
+Dragon  Medical  is  a  real-time  speech  recognition  program  that  works  with  virtually  any  Microsoft 
+Windows®-based  electronic  health  records  (EHR)  system  or  other  application,  for  efficient  report 
+completion  and  voice-driven  navigation.  Its  medical  vocabularies  cover  over  60  specialties  and 
+subspecialties. Clinicians also save additional time by using customized voice commands, or “macros,” to 
+enter frequently-dictated text with a single voice command. Additionally, the Dragon Medical Template 
+Library—a  library  of  more  than  two  dozen  macros  for  standard  notes  and  an  extensive  list  of  “medical 
+normals” by body system—facilitates rapid note creation. 
+
+About VMware View  
+VMware View is the industry’s leading desktop virtualization platform, and the only purpose-built solution 
+for  delivering  desktops  as  a  secure  managed  service.  Built  on  the  proven  power  of  VMware  vSphere™, 
+VMware View provides the platform, management tools and rich user experience that organizations need 
+to reduce costs, streamline administration and increase end-user satisfaction.  
+
+Figure 1 depicts the typical architecture of a VMware View implementation showing its different features. 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     3  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Figure 1: VMware View Components 
+
+ 
+
+Some of the features and benefits of VMware View are: 
+
+  Reduce  Operational  Costs:  Centralizing  your  desktop  infrastructure  with  VMware  View  makes  it 
+faster,  easier  and  less  costly  for  IT  staff  to  provision,  deploy,  maintain  and  monitor  desktop  images 
+across their entire life cycle.  
+
+  Simplify  Desktop  and  Application  Management:  Using  VMware  View,  we  can  manage  tens  of 
+thousands of virtual desktops, applications and user data from a centralized administrative interface 
+while  simplifying  key  IT  processes  such  as  provisioning,  configuration  management,  connection 
+brokering, policy enforcement, and application assignment. 
+
+  Deliver Rich User Experiences on Demand: VMware View is the only solution that lets you deliver rich 
+user experiences for end-users across your organization on any device at any location—online or off 
+the grid. High-performance PC-over-IP (PCoIP) technology lets users work with their virtual desktops 
+via  a  LAN  or  WAN  connection,  while  VMware  View  Client  with  Local  Mode  enables  them  to  work 
+offline  and  leverage  local  processing  resources.  The  result  is  a  seamless  user  experience  that 
+combines the best of VDI and client virtualization. 
+
+  Automated  Desktop  Provisioning:  Provides  a  single  management  tool  to  provide  new  desktops  or 
+groups  of  desktops,  and  an  easy  interface  for  setting  desktop  policies.  Using  a  template,  you  can 
+customize virtual pools of desktops and easily set policies, such as how many virtual machines can be 
+in a pool, or logoff parameters. 
+
+  Advanced  Virtual  Desktop  Image  Management:  Based  on  the  mature  Linked  Clone  technology, 
+VMware View Composer enables the rapid creation of desktop images from a golden image. Updates 
+implemented  on  the  parent  image  can  be  easily  pushed  out  to  any  number  of  virtual  desktops  in 
+minutes,  greatly  simplifying  deployment,  upgrades  and  patches  while  reducing  desktop  operational 
+costs.  With  the  core  components  of  the  desktop  being  managed  separately  the  process  does  not 
+affect user settings, data or applications, so the end-user remains productive on a  working desktop, 
+even while changes are being applied to the master image. 
+
+  Availability  and  Scalability:  VMware  View  delivers  high  availability,  with  no  single  point  of  failure. 
+VMware  High  Availability  (HA)  ensures  automatic  failover  and  provides  pervasive,  cost-effective 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     4  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+protection  within  your  virtualized  desktop  environment  to  ensure  service  level  agreements  are  met 
+and downtime is minimized. Advanced clustering capabilities on the physical and virtual layers provide 
+enterprise-class scalability with no single point  of  failure.  VMware View  can also be integrated  with 
+existing systems management platforms already deployed within the enterprise. 
+
+VMware View: “AlwaysOn” Point Of Care Desktop 
+As  healthcare  makes  the  transformation  from  a  paper-based  model  to  a  digitized  electronic  medical 
+record model, clinical desktops and applications have to be available at all times. This is not  just mission 
+critical; it is life critical.  That is why modernization of the Point-of-Care desktop and increasing access to 
+these  new  clinical  workspaces  has  become  an  urgent  priority  for  hospital  IT  professionals  as  well  as 
+hospital caregivers. Desktops and patient  care applications must  be immediately accessible at all times, 
+security mandates must be met; and the access to these systems must be fast and easy for the clinician.  
+ 
+VMware  View,  a  key  component  of  the  AlwaysOn  Point  of  Care  solution,  modernizes  desktops  and 
+applications by moving them into the  cloud and delivering them as a  highly available  managed  service. 
+From the  end user’s perspective, View makes it  easy  to  use any  qualified device  (PCs,  thin clients, zero 
+clients, iPads, etc.) to access clinical desktops and Point of Care applications. Since the desktop is always 
+up and running in the datacenter, access is immediate without boot-up times and the caregiver can roam 
+from  device  to  device  and  have  their  desktop  and  applications  “follow”  them  from  room  to  room. 
+Integration  with  major  single  sign  on  vendors  allows  clinicians  to  use  proximity  cards  or  biometric 
+authentication to gain access – no more passwords to remember, and strong authentication means IT has 
+an audit trail. PHI data is secure as all data and information is in the datacenter and nothing is stored on 
+the device that is accessing the desktop. 
+
+The  ability  to  use  Nuance’s  industry  leading  Dragon  Medical  software  with  the  VMware  Point  of  Care 
+desktop  solution  enhances  the  clinical  workflow  by  allowing  clinicians  to  leverage  familiar  dictation 
+devices  like  the  Philips  SpeechMike  and  the  Nuance  PowerMic™  to  interact  with  clinical  applications 
+running on the virtual desktop.  
+
+Validation Testing Process 
+
+Testing Goals 
+Testing was conducted to validate the interaction of USB and Analog microphones attached to thick and 
+thin client devices, with Dragon Medical running on a VMware View virtual desktop. The primary goal of 
+these  tests  was  to  determine  if  audio  quality  and  control  functionality  from  USB/Analog  peripherals 
+attached to the end user device connected to a VMware View virtual desktop met the requirements for 
+Dragon Medical to be able to perform speech-to-text conversion and application control. 
+
+The testing had the following objectives: 
+
+  Verify  the  functionality  of  representative  end-user  features  of  Dragon  Medical  when  running  on  a 
+
+VMware View virtual desktop. 
+
+  Verify  the  functioning  of  the  following  microphones/peripherals  when  interacting  with  the  Dragon 
+
+Medical software running on a VMware View virtual desktop and ensure accurate functionality: 
+
+o  Nuance  PowerMic  II,  including  button  and  integrated  barcode  scanner  functionality  in 
+
+Dragon 
+
+o  Philips SpeechMike, including button and mouse/trackball functionality 
+
+o  Analog  headset  such  as  the  standard  headset  shipped  with  Dragon,  without  the  USB 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     5  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+pod installed 
+
+  Measure the network bandwidth consumed by dictation traffic between the microphone on the end 
+user  device  and  Dragon  Medical  running  on  VMware  View  virtual  desktop.  Determine  maximum 
+number of virtual desktops that could be run on a specific host with simultaneous ongoing dictation 
+sessions. 
+
+  Measure  Dragon  Medical  speech  recognition  engine  performance  when  the  View  Desktop 
+
+environment is saturated 
+
+  Provide best practices for optimal functioning of USB and Analog microphones with Dragon Medical 
+
+running on a VMware View desktop. 
+
+  Note: Though this testing was performed with Dragon Medical Practice Edition, the results also apply 
+
+to Dragon Medical 360 | Network Edition (DM360 Network Edition).  
+
+o 
+
+In Both the Dragon Medical Practice Edition and DM360 Network Edition, the speech recognition 
+occurs on the client desktop – which is virtualized with VMware View.  
+
+o  Although the speech engine for these versions vary slightly, the CPU and memory load are 
+
+similar, and won’t affect performance in any significant way. 
+
+ 
+
+Test Methodology 
+The  Dragon  Medical  application  was  installed  within  a  VMware  View  virtual  desktop  and  a  series  of 
+functional user scenarios were tested using different peripheral microphones attached to a variety of end 
+user clients connected to the virtual desktops. 
+
+Different  test  scenarios  were  executed  against  Dragon  Medical  running  in  the  VMware  View  virtual 
+desktop, such as Dictation, speech-to-text conversion, Play Back, and Roaming User Profile etc. Details of 
+testing are discussed in “Test Results” section. 
+
+ 
+
+Physical Hardware and System Host Configuration 
+Table  1  describes  the  configuration  of  servers,  storage  and  client  hardware  used  in  the  solution 
+architecture. 
+
+Table 1: Client Hardware Configurations 
+
+Hardware 
+
+Configuration 
+
+Microphones Tested 
+
+  Philips SpeechMike 6274  
+
+  Nuance PowerMic II  
+
+  Nuance PowerMic II – SC (with Scanner) 
+
+  Wireless Mic: xTag from Revolabs, Inc.  
+
+  Pen Mic: Buddy StylusMic from InSync Speech Technologies, Inc.  
+
+  Andrea NC-181 (Analog Headset) 
+
+Thin Client 
+
+  Wyse R90LW WES (Windows XP embedded OS) (RealTek Sound 
+
+Card) 
+
+Teradici Zero Client 
+
+  Wyse P20 (Firmware Version 3.3) (There was no speaker in it) 
+
+Thick Client 
+
+  Intel Core (TM) 2 U7600 @ 1.20 GHz, 2 GB RAM Windows XP SP3  
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     6  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Hardware 
+
+Configuration 
+
+( SigmaTel Sound Card) 
+
+Installed Software 
+
+Table 2: Software Installed 
+
+Software Provider 
+
+Software Configuration 
+
+VMware  
+Microsoft 
+Nuance  
+
+Philips 
+
+  
+
+vSphere 5.0, vCenter Server 5.0 (Windows Version),  VMware View 5.0 
+Microsoft AD/DNS 
+Dragon Medical (Dragon Medical Practice Edition  and 
+DM360|Network Edition) 
+
+Philips SpeechMike Control Application (Downloadable from Philips 
+website) 
+
+Virtual Machine Configuration 
+Table 3 describes the configuration of VMware View virtual desktops and the infrastructure virtual 
+machines used for this testing. 
+
+Table 3: Virtual Desktops Used in Testing 
+
+Virtual Machine (VIEW Desktops) 
+
+Hardware Configuration  
+
+Windows XP SP3 – 32 bit  
+ 
+
+  1 vCPU 
+
+  2 GB memory 
+
+  1 Ethernet card (flexible) 
+
+  30 GB storage (vmdk only) 
+
+Windows 7 Professional 64-bit  
+ 
+
+  1 vCPU 
+
+  4 GB memory 
+
+  1 Ethernet card (e1000 driver) 
+
+  32 GB storage (vmdk only) 
+
+Virtual Machine (SERVERS) 
+
+Hardware Configuration  
+
+VMware View Manager Server: 
+Microsoft Windows Server 2008 R2 – 64 bit 
+
+  2 vCPU 
+
+  4 GB memory 
+
+  1 Ethernet card (E1000 driver) 
+
+  40 GB storage (vmdk only) 
+
+VMware vCenter Server: 
+Microsoft Windows Server 2008 R2 – 64 bit 
+
+  2 vCPU 
+
+  4 GB memory 
+
+AD/DNS Server: 
+
+  1 vCPU 
+
+  1 Ethernet card (E1000 driver) 
+
+  40 GB storage (vmdk only) 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     7  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Virtual Machine (VIEW Desktops) 
+
+Hardware Configuration  
+
+Windows Enterprise Server 2003 – 64 bit 
+
+  1 GB memory 
+
+  1 Ethernet card (E1000 driver) 
+
+  15 GB storage (vmdk only) 
+
+Functional Test Configuration  
+The technical architecture for testing Nuance’s Dragon Medical application with VMware View is 
+described below. 
+
+Figure 2: Test Configuration 
+
+Centralized Virtual Desktops 
+(Installed Dragon Software) 
+
+VMware 
+
+View 
+
+Manager 
+
+VMware 
+vCenter 
+Server 
+
+Microphone(s) 
+
+Microsoft 
+
+Active 
+
+Directory 
+
+ 
+
+Virtual 
+
+Desktops 
+Running 
+Dragon 
+
+User 
+Profile 
+
+VMware View 
+and Teradici 
+Zero Client 
+
+ 
+
+  VMware View 5.0 virtual desktops configured with different versions of Dragon Medical, running on 
+
+vSphere 5.0. 
+
+ 
+
+ 
+
+ 
+
+The  VMware  View  Manager,  VMware  vCenter  Server  and  Windows  AD/DNS  running  as  virtual 
+machines on vSphere. 
+
+Thin, thick and zero clients on a shared corporate 100Mbps LAN. 
+
+Connectivity between client devices and virtual desktops was over a shared corporate network. 
+
+  Different  types  and  models  of  microphones  (listed  in  table  1.2)  were  connected  to  thin,  thick  and 
+
+zero clients. 
+
+ 
+
+ 
+
+ 
+
+Philips SpeechMike speech control drivers were installed inside the virtual desktops in order to make 
+the microphone control buttons work. 
+
+Thin and Thick clients were configured to “auto connect” USB devices. See Recommendations section 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     8  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+for details. 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+  Human Interface Device (HID) USB redirection was configured for the microphones wherever needed. 
+
+See Recommendations section for details. 
+
+Functional Test Results and Findings 
+
+Summary of Test Scenarios and Results 
+The summary of the tests and resulting observations is given below. 
+
+Table 4: Test Results Summary: 
+
+View Desktop 
+
+Desktop 
+
+Accessibility1 
+
+Win XP SP3 Prof – 32 
+bit 
+
+Thin Client 
+
+Nuance PowerMic II 
+(Without Scanner) 
+
+Microphone 
+
+Dragon Medical 
+
+Test Status 
+
+Application Version 
+
+Practice Edition 
+
+PASS 
+
+Win 7 Prof – 64 bit 
+
+Zero Client 
+
+Philips SpeechMike 
+
+Practice Edition 
+
+Win 7 Prof – 64 bit 
+
+Thick Client 
+
+Analog Headset Mic2 
+
+DM360|Network 
+
+PASS 
+
+FAIL3 
+
+Edition 
+
+Win XP SP3 Prof – 32 
+bit 
+
+Zero Client 
+
+Nuance PowerMic II – SC 
+(WithScanner) 
+
+Practice Edition 
+
+PASS 
+
+Win 7 Prof – 64 bit 
+
+Thin Client 
+
+Philips SpeechMike 
+
+Practice Edition 
+
+Win 7 Prof – 64 bit 
+
+Thick Client 
+
+Win 7 Prof – 64 bit 
+
+Thick Client 
+
+Win XP SP3 Prof – 32 
+bit 
+
+Thin Client 
+
+Win 7 Prof – 64 bit 
+
+Thin Client 
+
+Nuance PowerMic II – SC 
+(With Scanner) 
+
+Wireless Mic: xTag from 
+Revolabs, Inc. 
+
+Pen Mic: Buddy 
+StylusMic from InSync 
+Speech Technologies, 
+Inc. 
+
+Nuance PowerMic II 
+(Without Scanner) 
+
+Practice Edition 
+
+PASS 
+
+PASS 
+
+Practice Edition 
+
+PASS 
+
+Practice Edition 
+
+PASS 
+
+DM360|Network 
+
+PASS 
+
+Edition 
+
+Win 7 Prof – 64 bit 
+
+Zero Client 
+
+Philips SpeechMike 
+
+DM360|Network 
+
+PASS 
+
+Edition 
+
+                                                 
+1 VMware View Client is used when the desktop is accessed from thin or thick clients. 
+2 Teradici bidirectional audio driver is installed in the virtual desktop to conduct the tests. Both the “playback” function and 
+“recording” function were configured to use the Teradici audio driver. 
+3 This scenario did not pass the voice quality check test and the use of this device (Analog Headset Mic) is not recommended with 
+Dragon Medical running on VMware View. 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     9  
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Bandwidth Utilization Measurements 
+During dictation with the various microphones connected to the desktop, PCoIP network bandwidth 
+utilization is measured. The following table describes the utilization matrix for various operations: 
+
+Table 6: Network Bandwidth Utilization 
+
+Type of Operation 
+
+Avg. Network Utilization (Mbps) 
+
+Moderate Activity* in View Desktop with No 
+Microphone Connected 
+
+Moderate Activity in View Desktop with PowerMic 
+II connected and configured with Dragon Medical 
+application. Microphone is turned on in Dragon 
+Medical but no dictation is being done. 
+
+Moderate Activity in View Desktop and PowerMic II 
+connected and configured. Microphone is turned 
+on in Dragon Medical and dictation is being done. 
+
+0.16 
+
+1.07 
+
+1.08 
+
+* Moderate activity is a series of manual steps including screen resize of Dragon Medical, typing text into 
+DragonPad, and minimizing/maximizing DragonPad for a period of two minutes.   
+
+Summary of Findings 
+The  Dragon  Medical  application  works  well  in  a  VMware  View  environment  when  using  different 
+makes/models of USB microphones. 
+
+The test results show that the user experience with Dragon Medical is  the same as expected in physical 
+desktop environment. 
+
+The  dictation  audio  quality  and  speech-to-text  conversion  accuracy  was  excellent  and  no  errors  were 
+observed.  
+
+The  playback  of  dictation  worked  well  with  the  built-in  speaker  on  the  Philips  SpeechMike  and  the 
+Nuance PowerMic II as well as thin and thick client integrated speakers. 
+
+There was no delay observed while dictating the sentences into DragonPad or WordPad. 
+
+All the tested microphone button operations worked as expected during dictation. The barcode scanner 
+functionality of the PowerMic II microphone worked well.  
+
+A small delay  (2-3 sec)  is observed in  reconnecting the  microphone, when  a user  disconnects from one 
+client/endpoint and reconnects from another client/endpoint.  
+
+In each case, Dragon Medical was configured to use Dragon Roaming User profiles. 
+ 
+ These tests verified a cross section of functionality:  
+
+Creating a Dragon Medical user profile with and without training 
+
+ 
+  Dictating into WordPad and DragonPad 
+ 
+  Using the Dictation Box within Dragon Medical 
+ 
+
+Correcting and editing text using Full Text Control commands in WordPad and DragonPad 
+
+Transcribing a recorded file; playing back and correcting the transcription 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 0  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+We also verified microphone functionality with several types of microphones: 
+
+  Nuance  PowerMic 
+
+II:  microphone,  speaker, 
+
+joystick  mouse  controller,  mouse  buttons, 
+
+ 
+
+customizable buttons, and barcode scanner all function correctly. 
+Philips  SpeechMike  model  6724  with  SpeechMike  Control  Software:  microphone,  speaker, 
+trackball mouse controller, mouse buttons, and customizable buttons all function correctly (with 
+some exceptions. See recommendations section) 
+
+  Buddy  StylusMic:  microphone  only  (we  did  not  test  the  buttons).  It  functions  correctly  as  a 
+
+standard USB microphone. 
+
+  Revolabs  xTag:  microphone  only  (we  did  not  test  the  earphone).  It  functions  correctly  as  a 
+
+standard USB microphone. 
+
+During a session roam, where a user disconnected from the virtual desktop at one location and signed on 
+to  the  same  virtual  desktop  at  another  location,  Dragon  Medical  worked  well  when  with  the  same  or 
+different make/model of USB microphone attached at the two endpoints. The ongoing session of Dragon 
+Medical  within  the  virtual  desktop  was  not  impacted  and  the  user  could  continue  dictating  when 
+reconnected.  
+
+When the View desktop session is disconnected from Thin or Thick clients and reconnected to the same 
+session from Zero clients using Dragon Roaming User profiles, the user profile needed to be reloaded to 
+continue the existing session, though there was no loss of text dictated from the previous connections. 
+
+Performance Testing  
+Load tests were conducted with Dragon Medical Practice Edition running on VMware View to simulate a 
+deployment scenario of concurrent virtual desktop dictation sessions deployed on a single physical host. 
+The goal of this testing was to determine resource utilization impact and the maximum number of virtual 
+desktops that could be run on a specific host with simultaneous ongoing dictation sessions.  The results of 
+this test are specific to a simultaneous dictation scenario on a specific host configuration and may not be 
+directly applicable to a customer deployment for the following reasons: 
+
+a.  Customer’s host configuration is different  
+
+b.  Not all clinicians are dictating simultaneously  
+
+c.  Virtual desktops with Dragon Medical might not all be deployed on the same host 
+
+Performance Testing Methodology and Tools 
+VMware View Planner is a performance testing tool used to systematically simulate workloads and adjust 
+sizing and configuration parameters to demonstrate the impact. View Planner simulates application 
+workloads for various user types, (task workers, knowledge workers, and power users) by running 
+applications typically used in a Windows desktop environment. During the execution of a workload, 
+applications are randomly called to perform common desktop user operations, including open, save, 
+close, minimize and maximize windows; view an HTML page, insert text, insert words and numbers, 
+conduct a slideshow, view a video, send and receive email, and compress files. View Planner uses a patent 
+pending watermark technique to quantify the user experience and measure application latency on a user 
+client/remote machine. View Planner also has the capability to exercise custom applications like Dragon 
+Medical using the AutoIT scripting framework. 
+Using VMware View Planner’s customized workload capability, the Dragon Medical Practice Edition load 
+testing script is automated using the AutoIT framework.  
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 1  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+“Virtual  Audio  Cable  (VAC)”,  an application to simulate audio  devices,  is installed and configured in  the 
+View desktop to simulate a user dictation scenario. The purpose of VAC is to simulate the dictation audio 
+stream  coming  into  a  virtual  desktop  through  the  Nuance  PowerMic  II  or  the  Philips  Speech  Mike  as 
+manual dictation cannot be done for a load test. 
+
+The load is driven from View Planner and user load is incremented with 8, 16 and 24 users. The load script 
+executed two key functions against the Dragon Medical application running on the View desktop: 
+
+Dragon-Open: 
+Open the Dragon Medical application and connect the microphone. 
+ 
+Dragon-Dictate: 
+Dictate 35 line of text including medical terminology needed to describe the medical condition of a 
+patient. The dictation is accomplished using Virtual Audio Cable software installed in each virtual desktop. 
+
+Performance Testing Setup 
+ 
+Table 7: Physical Server Specifications 
+Server 
+
+ESX Hosts 
+
+Specifications 
+
+ 
+
+2 x Genuine Intel(R) Xeon(R) CPU X5560 
+processors (Hyperthreading Active)  
+
+  48 GB memory  
+ 
+
+4 x 1 Gb/s network interface cards 
+
+ 
+
+Table 8: VM Configuration 
+Server 
+vSphere Host A 
+
+VMs 
+
+vSphere Host B 
+
+ 
+
+ 
+
+vCenter, View Manager, AD/DNS, 
+View Planner Appliance, View 
+Planner Client VMs (Windows XP 
+SP3, 1vCPU, 1GB RAM) 
+View Desktops (Windows 7 
+Professional, 2vCPU, 2GB RAM) 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 2  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Performance Testing Results 
+Figure 3: View Desktop Host Utilization Summary  
+
+Host Memory Utilization 
+
+Host Core Utilization 
+
+ 
+
+ 
+s
+B
+M
+d
+e
+s
+U
+
+50000
+
+40000
+
+30000
+
+20000
+
+10000
+
+0
+
+           
+
+Max
+
+Avg
+
+ 
+)
+
+%
+
+ 
+
+(
+ 
+l
+i
+t
+U
+e
+r
+o
+C
+U
+P
+C
+
+ 
+
+100
+90
+80
+70
+60
+50
+40
+30
+20
+10
+0
+
+ 
+
+Avg
+
+Max
+
+8
+
+16
+
+24
+
+Number  of Users/ View Desktops 
+
+8
+
+16
+
+24
+
+Numbers of Users/View Desktops 
+
+ 
+
+Table 9: The following table describes VM level CPU Utilization measured using esxtop: 
+
+No. of Users 
+
+Avg. CPU Utilization of Each View Desktop (%) 
+
+8 
+
+16 
+
+24 
+
+ 
+
+28.74 
+
+29.18 
+
+31.11 
+
+Table 10: The following table describes VM level Memory Utilization measured using esxtop: 
+
+No. of Users 
+
+8, 16, 24 
+
+Avg. Memory Utilization of Each View Desktop (MB) 
+
+1230 
+
+Performance Testing Summary 
+It was observed that the host utilization peaked when 24 virtual desktops were running on the host with 
+simultaneous ongoing dictation being done on each desktop. The performance of the Dragon Medical 
+application, dictation, speech recognition and conversion to text was not impacted at this level. For this 
+physical hardware configuration, it was thereby found that 24 virtual desktops would be the maximum 
+number that could be run under the scenario of simultaneous dictation without exceeding host resources 
+and impacting performance. 
+However, most healthcare providers dictate intermittently, not continuously, so the practical limit on the 
+number of virtual desktops with Dragon Medical running simultaneously is much higher (100 or more in 
+some installations ). As you add Dragon users, carefully observe the load on your servers. 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 3  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+Summary of Results and Recommendations 
+This  section  summarizes  the  best  practices  for  the  use  of  various  USB  and  non-USB  peripherals  with 
+Dragon Medical on VMware View. 
+
+  Nuance PowerMic II (with or without scanner) does not require installing any additional device 
+drivers  inside  the  View  desktops.  This  is  because  the  Dragon  Medical  application  has  built-in 
+drivers for this device. 
+
+ 
+
+To  enable  the  functioning  of  the  control  buttons  on  the  Philips  SpeechMike,  ,  download  the 
+speech  control  application  and  drivers  from  Philips  web  site  and  install  and  configure  this 
+software inside the View desktops.  
+
+  By default, the View Client excludes certain devices such as Human Interface Devices (HID) from 
+the drop-down menu for configuring redirection. This affects the mouse controller (trackball) in 
+the Philips SpeechMike. To allow redirection of this HID, use the instructions provided in VMware 
+KB  http://kb.vmware.com/kb/1011600.  The  screen  shot  below  shows  the  the  modified  registry 
+key  in  thin  or  thick  client  machines  after  the  change  described  in  the  KB  has  been  made 
+(\HKLM\Software\VMware Inc.\VMware VDM\USB) 
+
+Figure 4: Human Interface Device (HID) Registry Key
+
+ 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 4  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+  Do  not  configure  Nuance  PowerMic  II  (with  or  without  scanner)  for  HID  redirection.  This  device  is 
+
+automatically shown in the drop down menu of available USB devices within a View session. 
+
+  Sometimes  the  position  of  the  mouse  pointer  is  not  updated  on  the  guest  system's  display  as  you 
+move the device. This behavior was observed with the Philips SpeechMike model that was tested, but 
+not  with the Nuance PowerMic II. Refer to VMware  KB article  http://kb.vmware.com/kb/1022076  for 
+further details and resolution.   
+
+  With a Windows 7 View desktop, there is a limitation seen with Philips SpeechMike where the mouse 
+pointer movement is not updated while using the trackball. An older model of the Philips Speechmike 
+was used for this testing and this issue may not occur  with newer model of Philips SpeechMike and 
+mouse pointer movement may work fine. 
+
+  For  the  analog  headset,  the  Teradici  audio  driver  needs  to  be  installed  in  the  View  Desktop.  Please 
+note that VMware does not provide support for this driver.  This driver can be downloaded from the 
+Teradici website. Nuance does not recommend using the analog headset with VMware View as it did 
+not pass the voice quality tests of Dragon Medical. 
+
+  Different users have different choices to playback their audio.  
+
+o  To playback audio through the thin/thick  clients’ built-in speakers, follow these steps: 
+
+  On Win XP thick/thin clients: Configure the playback to the built-in sound 
+
+card/speakers. This can be done by going to the “Sound and Audio Devices” 
+option available in the “Control Panel”. Launch the “Sound and Audio Devices” 
+and select the “Audio” tab and from the drop down option of “Sound Playback” 
+select the built-in sound card as default device. 
+
+  On Win 7 clients: Configure the playback to the built-in speakers. This can be 
+done by launching the “Sound” option available in the “Control Panel”. In the 
+“Playback” tab, select the built-in speakers as the Default device for playback. 
+
+ 
+
+Configure the playback to “VMware Virtual Audio” in View Desktop. It needs 
+the same steps as mentioned above depending on the version of Windows 
+used. 
+
+o 
+
+For playing back the audio through the built-in speaker on the USB microphone, follow 
+the below steps: 
+
+  Use steps mentioned in the VMware KB http://kb.vmware.com/kb/1014686 to 
+
+ 
+
+disable the audio in PCoIP session. 
+Configure the playback to the microphone device audio output in both the 
+View Desktop and thin/thick client. This can be done using the steps described 
+above.  
+
+The above settings are applicable to the SpeechMike, PowerMic II and any other microphone. 
+  VMware View provides a feature where the user can disconnect from one client and access the same 
+
+desktop from another client without losing the running virtual desktop session. While using this 
+feature, follow the below instructions:  
+
+o  While switching between thin or thick clients connected with same make and model of 
+
+microphone, Dragon Medical will display the pop-up error messages shown below in the 
+reconnected View Desktop session. These errors do not cause any loss of functionality and 
+can be closed out without impacting the application. The microphone and all its button 
+functionality will start working in 2-3 seconds. 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 5  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+ 
+
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+ 
+
+ 
+
+ 
+
+o 
+
+It  is  recommended  not  to  playback  speech  through  Dragon  Medical  when  View  Desktop 
+session  is  disconnected  from  one  client  and  reconnected  back  from  another  client.  In  this 
+scenario,  the  Dragon  Medical  session  becomes  unresponsive  occasionally  and  further 
+dictation cannot be done.  
+
+o  While switching from thin/thick clients to zero clients, users will need to reload the Dragon 
+
+Medical user profile when the session is reconnected through the zero client. 
+
+o  While switching between thin/thick/zero clients connected with different  model and make 
+
+of microphones, reload the Dragon Medical user profile in the reconnected session. 
+
+Since significant network traffic (almost 1.1 Mbps) is generated whenever the microphone is turned 
+on, system architects should make sure there is sufficient bandwidth between the end user client and 
+the virtual desktop to meet this requirement.  
+
+o 
+
+Since this traffic is generated whether or not the user is dictating, users should be trained to 
+turn the microphone off (rather than putting it to sleep) when they are not dictating.  
+
+The  following  configuration  is  implemented  on  thin  and  thick  clients  so  that  any  USB  microphone 
+connected to the client device gets connected automatically to the View desktop without any manual 
+intervention whenever the View Desktops are accessed. 
+
+o 
+
+o 
+
+“Connect all USB devices to the desktop on launch: Enabled” 
+
+“Connect USB devices to the desktop when they are plugged in: Enabled” 
+
+The above two settings are available in “vdm_client.adm” template and can be added in “Administrative 
+Templates”  section  of  Windows  Group  Policy  editor.  For  further  details,  refer  the  VMware  View 
+Administrative guide. 
+
+Figure 5: VMware View Client ADM Template Group Policy for USB Devices 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 6  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+ 
+
+Conclusions 
+This  document  discusses  the  validation  testing  that  was  done  with  the  Nuance  Dragon  Medical 
+application in a VMware View virtual desktop. The critical function of speech recognition and speech-to-
+text conversion, when using USB microphones with the Dragon Medical application running on a VMware 
+View virtual desktop worked well and is recommended for customer deployments. All functionality of the 
+Dragon Medical application performed as expected in a VMware View environment. 
+
+From  performance  test  perspective,  it  has  been  observed  that  even  if  the  vSphere  host  resources  are 
+saturated due to a heavy concurrent user load, the recognition engine of Dragon Medical Practice Edition 
+performed well. It can be concluded that larger hardware with more compute and memory capacity can 
+easily accommodate a greater number of View desktops on a single host than what was achieved here.  
+
+Acknowledgements 
+The following individuals contributed to the creation of this deployment guide: 
+
+  Valerie Matthews, Nuance 
+
+ 
+
+Lee Elliott, Nuance 
+
+  Biswapati Bhattacharjee, VMware 
+
+  Manvender Rawat, VMware 
+
+ 
+
+Pramod Mahadevan, VMware 
+
+Resources 
+For more information about VMware and related products, use the links and references given below: 
+
+VMware References 
+
+  VMware Documentation: 
+
+http://www.vmware.com/support/pubs/ 
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 7  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+ 
+ 
+
+Nuance Dragon Medical Compatibility with VMware View 
+ 
+
+VMware View 5.0 Architectural Planning Guide: 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-architecture-planning.pdf   
+
+  VMware View 5.0 Installation Guide: 
+
+http://pubs.vmware.com/view-50/topic/com.vmware.ICbase/PDF/view-50-installation.pdf  
+
+Nuance References 
+
+For more information about Nuance and related products, use the links and references given below: 
+
+  Nuance Communications, Inc.: 
+
+http://www.nuance.com 
+
+  Dragon Medical: 
+
+ http://www.nuance.com/products/dragon-medical-family/index.htm 
+
+  Virtual Audio Cable: 
+
+http://software.muzychenko.net/eng/vac.htm  
+
+ 
+
+  D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E     1 8  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2011 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at http://www.vmware.com/go/patents. 
+VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.  
+
+

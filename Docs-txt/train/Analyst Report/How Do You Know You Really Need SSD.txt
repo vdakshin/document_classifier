@@ -1,0 +1,247 @@
+STORAGE SWITZERLAND 
+
+ HOW DO YOU KNOW IF YOU REALLY 
+
+NEED SSD? 
+
+ 
+ 
+
+ 
+
+ 
+
+Eric Slack, Senior Analyst 
+
+The role of storage latency in 
+
+application performance 
+
+ 
+Poor application performance can be a serious issue, in 
+some cases it’s a gating factor to how much revenue a 
+company can realize. While the need for improved 
+performance is clear, the road to that solution is not. Given 
+that the speed of HDDs are orders of magnitude slower 
+than memory or CPU, conventional wisdom has held that 
+storage must be the problem. This has led to the use of 
+faster disk drives, increased drive count implementations 
+and most recently, the use of solid state drives (SSDs). But 
+storage isn’t always the reason for slow application 
+performance, prompting the question “how do you know if 
+you really need SSDs?” 
+ 
+ 
+Why we turn to SSDs 
+ 
+Part of the appeal of a solution can be how easy it is to 
+implement. SSDs are available in drive form-factor 
+packages and PCIe cards making them a relatively simple 
+replacement for HDDs. If disk drive performance is in fact 
+the cause of a slow application then putting in SSD-
+storage can be a good solution.  
+
+ 
+ 
+ 
+ 
+In many cases the insertion of SSD in the environment will 
+only show minimal performance improvement, indicating 
+that the performance bottleneck is elsewhere -  often in 
+the server-to-storage network. In these situations, all an 
+upgrade to SSD would do is hide that bottleneck to some 
+degree. It’s important then to isolate and identify potential 
+bottlenecks before turning to costly measures, like 
+implementing solid state storage.  
+ 
+ 
+The Storage Network Bottleneck 
+ 
+This idea that storage subsystems are the sole 
+performance bottlenecks may hold some truth for direct 
+attached systems but shared storage brings another 
+dimension to the problem that makes performance 
+isolation much more complex. While shared storage and 
+storage networking can make it seem like applications are 
+accessing storage devices simultaneously these accesses 
+are actually happening serially, albeit very fast.  
+ 
+
+[1] 
+
+ 
+
+As a result efficient sharing requires understanding the true 
+performance demand over time and between users and 
+resources. This creates the need for real-time visibility to 
+understand that time component and to balance those 
+resource requests. This same understanding is essential in 
+order to isolate the cause of a performance problem. 
+ 
+Poor application performance can also be caused by 
+relatively simple things, like configuration problems, faulty 
+network components, protocol issues, even physical 
+connectivity. These problems are often overlooked 
+because most of the tools in use only provide a device-
+level perspective that’s focused on gross performance 
+statistics. Without an infrastructure-level perspective that 
+shows more granular metrics, such as latency in individual 
+storage transactions, these root causes can be difficult to 
+see. When this happens upgrading storage subsystems, 
+(like adding SSD) is often the default answer. But in order 
+to get to the root causes of performance problems, it’s 
+important to first define what performance is and how it’s 
+measured. 
+ 
+ 
+What is Performance? 
+ 
+In high demand applications, like online transactions, big 
+databases, etc. the performance metric that’s most 
+commonly cited is I/O operations per second, or IOPS, 
+instead of throughput which is measured in Gb per second. 
+IOPs represents an aggregate of I/O transactions that take 
+place across a single storage connection, between storage 
+media (like a disk drive) and the storage controller, or the 
+controller and the server requesting that data. However, for 
+determining root causes of slow applications measuring 
+IOPS may not be the best tool.  
+ 
+Rather than looking at an aggregate of multiple 
+transactions, it may be better to examine an individual 
+transaction to see if something is delaying its completion. 
+Looking at IOPS might tell you if a problem exists, but to 
+identify what the cause of a performance bottleneck is, 
+latency is a more useful statistic. 
+
+What is Latency 
+ 
+Where IOPS is an aggregate statistic, latency is an 
+individual measurement, like the propagation delay of a 
+signal through an integrated circuit. In the storage context 
+latency is how long a single transaction takes to make its 
+way through a component in the infrastructure, like a 
+storage controller, or how long it takes the shared storage 
+infrastructure to complete a data request made by an 
+application server.  
+ 
+The point is that only through examination of latency can 
+bottlenecks in a complex system like a shared storage 
+network, be accurately identified. When the time required 
+for individual transactions, or exchanges, between servers 
+and storage systems is known issues affecting latency can 
+be found. Platforms like VirtualWisdom by Virtual 
+Instruments show this latency with a metric called 
+Exchange Completion Time (ECT). An ECT tells how long 
+the requesting device, typically the application server, has 
+to wait for its data requests to be fulfilled.  
+ 
+ 
+Identifying and Correcting Latency 
+ 
+Each ECT represents the latency produced by all the 
+components in a shared storage network, from server 
+NIC/HBA to switch port to storage controller and finally, 
+the individual LUN that contains the requested data. It 
+shows the transaction time between each server-LUN pair 
+or host-storage mapping for each data request, not just an 
+average of all exchanges that are serviced by a LUN or 
+controller port.  
+ 
+Comparing ECTs identifies those I/O paths which have 
+problems, saving the IT staff hours or days (sometimes 
+even months), spent searching for the ‘needle in the 
+haystack’. It’s this granularity that can indicate where 
+bottlenecks are occurring in the entire storage 
+environment, bottlenecks which increase latency and 
+reduce application performance.  
+ 
+ 
+ 
+ 
+[2] 
+
+ 
+
+ 
+
+Connectivity and Configuration 
+ 
+Physical layer problems, such as dirty connections, failed 
+or intermittent cabling, faulty transceivers, etc., can be 
+hidden when only aggregate measurements like IOPS are 
+used. These problems can cause fibre channel link failures 
+and increased CRC errors which can impact performance. 
+Similarly, configuration problems in network elements, 
+application servers and storage systems can cause time-
+outs and resets. When individual transactions between a 
+host and the storage LUN are examined instead of average 
+performance for an entire storage port, these problems 
+with connectivity and configuration can be uncovered and 
+addressed.  
+ 
+ 
+Queue depth 
+ 
+Queue depth on an HBA represents the number of 
+transactions that can be sent to a storage device at one 
+time. Since each port on a storage controller has a physical 
+maximum to the number of exchanges that can be open 
+simultaneously, care must be taken to limit the number of 
+host connections each LUN supports and the queue 
+depths of each host HBA. An HBA queue depth that’s too 
+high can over-run the storage controller, potentially 
+causing an error in the application server OS. Queue 
+depths that are too low can result in underutilization of 
+available storage, both conditions that can reduce 
+performance. Many IT shops just accept the 
+manufacturers’ default settings, which are often not close 
+to the best configuration for a particular application I/O 
+pattern. 
+ 
+
+Tuning 
+ 
+Unfortunately, most storage monitoring tools measure only 
+IOPS or bandwidth, they don’t show individual exchanges 
+that each storage controller port is handling, or what its 
+effective maximum is. With real-time monitoring of 
+requests between individual HBAs and storage LUNs, 
+these over-run conditions can be identified and realistic 
+thresholds set for storage resources. Infrastructure 
+Performance Management (IPM) solutions, like 
+VirtualWisdom, can provide this essential information.  
+ 
+ 
+Summary 
+ 
+Maximizing application performance is one of IT’s most 
+important tasks, especially when it can directly affect 
+company revenue. The problem is that accurately 
+identifying the root causes of poor performance is difficult, 
+especially when metrics like IOPS and bandwidth are used, 
+instead of latency. This often leads to the assumption that 
+storage subsystems are the bottleneck resulting in 
+expensive upgrades, such as adding solid state storage 
+devices, which still may not solve the problem. Through the 
+use of a real-time, systems-level, IPM platform and 
+extremely granular metrics like transaction latency, IT can 
+identify the real causes of application performance issues 
+and fix those problems. 
+ 
+ 
+ 
+ 
+ 
+
+About Storage Switzerland 
+
+Storage Switzerland is an analyst firm focused on the virtualization and storage marketplaces. For more 
+
+information please visit our web site: http://www.storage-switzerland.com 
+
+Copyright © 2012 Storage Switzerland, Inc. - All rights reserved 
+
+[3] 
+
+

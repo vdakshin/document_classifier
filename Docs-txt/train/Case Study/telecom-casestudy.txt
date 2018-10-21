@@ -1,0 +1,182 @@
+TELECOM
+
+	 CLIENT
+
+Global service provider
+
+	 CHALLENGE
+
+Enhance performance of 
+critical databases 
+
+	 SOLUTION
+
+Vblock System 300
+
+	 RESULTS
+
+Total cost of ownership 
+almost halved compared to 
+nearest competitor
+
+Processing time for critical 
+app reduced from 12.67 
+hours to just 2.03 hours
+
+Administration reduced 
+through integrated 
+architecture
+
+www.vce.com
+
+VBLOCK DELIVERS PERFORMANCE AND 
+
+VALUE IN ORACLE DATABASE MIGRATION 
+
+BENCHMARK	DEMONSTRATES	VBLOCK	ADVANTAGE	OVER	 	
+LEADING	COMPETITOR	
+
+One of the world’s leading service providers faced a challenge when the servers for 
+some of its core Oracle databases were nearing end-of-life. Seeking a replacement, 
+the company benchmarked four leading server and storage combinations including 
+Vblock™ Systems from VCE. 
+
+VCE ran the database without changes to the application to demonstrate 
+performance and rapid time to market. The Vblock System achieved a performance 
+equivalent to 94 percent of that of the leading competitor. While the quote for the 
+integrated architecture came in at around half the price of the competition, the 
+Vblock System offered a level of flexibility and administrative simplicity that no 
+competitor could match.
+
+The	Challenge
+This world-leading service provider relies heavily on Oracle-based network 
+planning systems. Historically, these databases resided on Unix-based 
+servers that, over time, were failing to deliver the performance needed by the 
+business. With the servers reaching end-of-life, it was clear that the company 
+needed to upgrade to a new infrastructure that could improve performance 
+while delivering rapid return on investment. 
+
+While the quote for the 
+integrated architecture came 
+in at around half the price of 
+the competition, the	Vblock	
+System	offered	a	level	of	
+flexibility	and	administrative	
+simplicity that no competitor 
+could match.
+
+The	Solution
+The service provider used its own 
+expertise to benchmark three technology 
+options over a nine-month period. 
+Of these, two were hybrid systems 
+featuring more than one vendor, and 
+one was an integrated platform whose 
+vendor was given free rein to customize 
+the databases to suit its technology. 
+Because Vblock Systems brought into 
+consideration later in the process, VCE 
+decided to run the benchmark on a bare-
+metal, four-socket blade server without 
+the benefit of modifying the application 
+to suit the hardware. 
+
+For the test, VCE put together a Vblock 
+System 300 featuring two Cisco Unified 
+Computing System B440 Series Blade 
+Servers, each with four 2.26GHz 10-core 
+CPUs with 256GB of memory, combined 
+with EMC VNX 7500 Series Unified 
+Storage Systems. Switching and routing 
+used Cisco Nexus 5000 and 6000 
+Series Switches and Cisco ASR 9000 
+Series Aggregation Services Routers. 
+The Vblock System supported Oracle 
+Database 11g Release 2 on a Red Hat 
+Enterprise Linux 5.5 OS.
+
+The	Results
+All four systems tested by the 
+customer achieved more than a 90 
+percent improvement over its existing 
+infrastructure.
+
+In one critical benchmarking test the 
+processing time for a critical application 
+was running at 12.67 hours with the 
+legacy system. The Vblock System 
+reduced that to just 2.03 hours, without 
+any database optimization, whereas 
+the competitor system achieved 1.30 
+hours with extensive prior database and 
+platform optimization. In other words, 
+a standard Vblock System installation 
+achieved 94 percent of the performance 
+improvement of the optimized  
+competitor system.
+
+During the selection, the company had 
+been won over by the idea of having an 
+integrated platform instead of a hybrid 
+system because it simplified purchasing, 
+contracts, and maintenance. That left 
+only the Vblock System and one other 
+competitor in the running. Of those two, 
+VCE offered a significant number of 
+added benefits including:
+
+•  The customer’s Oracle databases could 
+run straightaway on the Vblock System 
+without any customization
+
+•  The Vblock System could also host 
+
+tiered web and desktop applications, 
+delivered over Citrix, while the 
+competitor’s infrastructure could only 
+be used for databases
+
+•  The Vblock System used in the 
+
+benchmark had not been optimized 
+so further performance enhancements 
+could be gained with new CPUs easily 
+integrated into the infrastructure
+
+•  Unique Vblock System features, such 
+
+as the ability to create Oracle backups 
+without loading production servers, 
+offered large savings on database 
+administration time and effort
+
+•  Built on industry-leading technologies 
+
+from EMC, Cisco, and VMware, the 
+Vblock System did not need the 
+company to acquire new specialist 
+expertise, avoiding a skills silo.
+
+Perhaps the biggest advantage, however, 
+was the return on investment offered 
+by the Vblock System. VCE’s strategy of 
+delivering factory integrated standardized 
+infrastructure with lifecycle assurance 
+means the Vblock System would cost 
+significantly less to purchase,  deploy,  
+and operate.
+
+In the final analysis the service provider 
+chose Vblock Systems because it could 
+achieve 94 percent of the performance 
+improvement of the leading competitor, 
+with significant cost benefit. 
+
+Copyright © 2013 VCE Company, LLC. All rights reserved. VCE, VCE Vision and Vblock are registered trademarks or trademarks of VCE Company LLC or its  
+affiliates in the United States and/or other countries. All other trademarks used herein are the property of their respective owners.
+
+www.vce.com
+
+THE	WORLD’S	MOST	ADVANCED	CONVERGED	INFRASTRUCTURE
+
+

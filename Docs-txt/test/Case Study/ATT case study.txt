@@ -1,0 +1,513 @@
+ 
+
+ TELECOMMUNICATIONS SERVICE 
+PROVIDER CASE STUDY 
+
+ 
+
+Challenges:  
+
+• 
+
+• 
+
+• 
+
+Escalating costs of IT in a 
+hyper-competitive market 
+puts pressure on staff to do 
+more with existing CAPEX and 
+OPEX 
+Supporting the I/O peaks and 
+valleys caused by significant 
+product / service launches 
+Being alerted to failing 
+components and quickly 
+replacing them before users 
+are impacted  
+
+Solution:  
+• 
+
+Virtual Instruments 
+VirtualWisdom software and 
+SANInsight hardware 
+monitoring and professional 
+services consulting 
+
+Customer Benefits:  
+
+ 
+
+Causes of potential 
+application slow-downs 
+identified and corrective 
+action provided before users 
+are even aware of a problem 
+
+Ability to accurately monitor, 
+analyze and optimize I/O in 
+real-time, even in the face of 
+large spikes in I/O 
+
+Reduction in the need to 
+replace suspected bad SAN 
+components because of 
+superior fault diagnosis, 
+which saves on both CAPEX 
+and OPEX 
+
+• 
+
+• 
+
+• 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+Telecom company deploys VirtualWisdom to monitor its 
+SAN to ensure highest possible data availability 
+­  Anticipate the peaks and valleys caused by product launches 
+­  Avoid or mitigate problems before they cause application 
+
+slowdowns or outages 
+
+Overview  
+
+This U.S. telecommunications company provides fixed and mobile telephony, broadband and 
+subscription television services, as well as internet services, with tens of millions of customers.   
+
+IT Environment  
+Their IT department supports three major U.S. data centers, with data warehouses generating 
+heavy I/O workloads.  Activities often peak during significant product launches of new mobile 
+phones, when hundreds of thousands of activations occur in a short period of time.  IT is 
+considered a strategic advantage and the goal is to continue to push the envelope and to be 
+more leading edge.  Product launches are expected to be fully supported with 99.999% 
+availability and no negative impact to response time.   
+Storage is split between tier 1 and tier 2 arrays, with customer-facing services on tier 1, primarily 
+HDS and EMC enterprise class arrays.   Tier 2 storage is based primarily on HP EVA systems. Total 
+online storage exceeds 75 PB and is growing.   
+Servers mostly run Unix and Linux, but their IT department supports many host operating 
+systems connected to their SAN.  The Fibre Channel switches are nearly all director-class devices.  
+The SAN infrastructure is provided by a variety of top tier vendors. 
+
+Because this institution considers IT to be a competitive edge, there is pressure to not only 
+maintain superior customer-facing application performance and overall high application 
+availability, but also to deploy the newest technologies quickly.  
+
+Existing measurement tools and 
+
+1 
+
+ 
+
+ 
+
+ TELECOMMUNICATIONS SERVICE 
+PROVIDER CASE STUDY 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+“Guys, I can’t tell you how 
+long it’s taken us to get a 
+tool in place like this to 
+provide us this level of 
+information, it’s exactly 
+what we’ve needed!” 
+SAN Administrator 
+U.S. telecom company 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+testing methodologies such as EMC’s Ionix ControlCenter and Brocade’s DCFM, while critical to 
+many management tasks, were not up to the challenge of optimizing existing applications, 
+improving customer service, and making technology leaps all at the same time
+
+.   
+
+Challenges and Concerns 
+
+One of the key challenges was in maintaining traditional high service levels in the face of 
+accelerating data growth and huge spikes in I/O load, while keeping costs down.  In such a 
+service-oriented business, response time and availability are absolutely critical.  Any negative 
+user experiences become front-page news around the world.  With a growing number of ports 
+and disk, lack of standardization amongst vendor-supplied tools, and an inability to do predictive 
+problem avoidance, it was becoming a challenge to manage and optimize the SAN.  For a select 
+number of business-critical services, increasing data availability and reducing performance issues 
+were the key imperatives.  But simply buying more hardware and over-provisioning the 
+infrastructure was becoming cost-prohibitive. 
+
+Solution Evaluation  
+
+The IT team was challenged with tight budgets and with getting better performance from 
+existing resources.  To do this, senior IT management knew it must be proactive; it had to avoid 
+problems and anticipate issues before users and application owners were affected.  The only 
+way to do this without dramatically increasing the staff size was to find some way to proactively 
+automate the monitoring and analysis of the effect of the SAN on application availability.   The 
+team put a set of criteria together and specifically looked for: 
+•  A complementary solution to existing vendor-oriented management and monitoring 
+
+solutions.  A reporting mechanism that could take a deeper look than vendor-supplied tools, 
+something at the hardware level to find things that might cause application problems 
+Centralized monitoring, to accommodate multiple datacenters 
+
+• 
+•  A predictive analysis tool, something that could alert to issues before they become serious 
+
+problems that would affect users 
+
+•  A vendor-neutral solution that would enable them to avoid finger pointing and empower 
+
+the vendors to offer better advice in a proactive manner 
+
+VirtualWisdom was the Answer 
+
+After an initial consulting-only engagement, VirtualWisdom software and SANInsight hardware 
+monitoring were deployed in 2010, eventually supporting over 35,000 fibre channel ports, 
+including over 500 ports connected to the ProbeFCX.  Specific Virtual Instruments benefits to the 
+IT team included: 
+• 
+
+Improved communications with server team and storage vendors.  Customer can send 
+vendors the VirtualWisdom reports and ask for their advice.  The vendor and device-
+independent support of VirtualWisdom  virtually eliminates vendor finger pointing 
+
+•  A non-intrusive monitoring solution with no impact on application hosts  
+• 
+• 
+
+Problems are identified before they affect application performance or availability 
+Storage tiering strategies can now be validated via a neutral third-party solution to help 
+match application requirements with the appropriate tier of storage 
+
+2 
+
+ 
+
+ 
+
+•  Quantitative modeling helps eliminate “rules of thumb” capacity and performance planning; 
+
+• 
+
+provides critical input for future purchasing decisions. 
+Faster troubleshooting – incident identification and resolution process was dramatically 
+improved via trend analysis and access to metrics there was simply no other way to see 
+
+•  Helps enable the IT infrastructure to comply with service level agreements  
+
+Troubleshooting the SAN  
+
+According to this leading telecommunications service provider, VirtualWisdom has enabled them 
+to more quickly respond to potential performance and availability problems.  In many cases, 
+they got an early warning of failing devices and were able to replace them before they 
+completely failed and caused significant problems.   
+
+Application Performance 
+
+Ultimately, the storage staff is judged by how effectively they support the application 
+consumers.  According to a senior administrator, “reducing the instances of response time 
+problems has probably been the most obvious benefit to deploying VirtualWisdom.  Getting 
+fewer trouble tickets is an obvious way to point to a solid ROI for this decision”. 
+
+SAN QuickStart Assessment 
+
+In late 2010, VI performed a QuickStart Assessment Service at one of the major datacenters; 
+below are a couple of the key findings. 
+
+Class 3 Discards 
+
+A Class 3 Discard occurs when a switch drops a Fibre Channel frame while providing the 
+Class 3 level of service. The switch notes that it has dropped the frame but no notification is 
+provided to either the initiator or the target. Higher-level functions on the host or storage 
+array are typically designed to overcome the problem of the missing frame.  These dropped 
+frames have several side effects. The multiple full exchange requests attempted in order to 
+complete a single problematic data request will cause increased utilization as well as a 
+significant delay in completing the data request. A high volume of Class 3 Discards may also 
+cause a switch to perform a Link Reset, in order to re-negotiate the number of buffer-to-
+buffer credits it has available.  Leaving the root cause of a Class 3 Discard unresolved also 
+leaves the SAN in a state that is more likely to see a significant diminishment of service or an 
+outage caused by compounding root causes. The numbers found were significant and 
+immediate remediation was recommended. 
+
+Class 3 Discards table 
+
+ 
+
+ 
+
+Multipathing 
+
+3 
+
+ 
+
+ 
+
+ TELECOMMUNICATIONS SERVICE 
+PROVIDER CASE STUDY 
+
+ 
+
+ “If your suppliers are 
+concerned about your use of 
+3rd party monitoring, then 
+you should be concerned 
+about your suppliers” 
+SAN architect 
+U.S. telecom company 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+The multipath verification and redundancy analysis showed that 48% of the HBAs were 
+balanced while 18% were Active/Active but not balanced. 11% of the servers were 
+configured as Active/Passive. 10% of the HBAs were found not to have a peer HBA that 
+could be identified.  Because there can be a significant performance impact due to servers 
+not working in an Active/Active fashion, VI recommended that the environment should be 
+reviewed to ensure that all servers are performing per their configuration. The HBAs that do 
+not have peers should also be reviewed to ensure they don’t require redundancy or are 
+peers themselves. The imbalanced HBAs should be checked to make sure they are all zoned 
+to the same storage array or are behaving as expected. 
+
+Multipathing report graph 
+
+ 
+
+Performance 
+
+During the review period, there were two large spikes in response times.  These spikes were 
+further investigated, by looking at the one minute summary on the dashboard to examine 
+long Exchange Completion Times.  Both slowdowns only occurred for 3-4 minutes (see graph 
+below), something that other monitoring tools could not find due to their use of averaging 
+metrics. By drilling down further, it was demonstrated that an HBA with a high queue depth 
+setting was impacting the performance of the other hosts.  VI’s recommendation was to set 
+the queue depths to a lower figure and set an alert on those ITL paths to watch for any 
+problems. 
+
+One-minute granularity – worst ITL ECT 
+
+ 
+
+HBA Queue Depths 
+
+4 
+
+ 
+
+ 
+
+ TELECOMMUNICATIONS SERVICE 
+PROVIDER CASE STUDY 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+ TELECOMMUNICATIONS SERVICE 
+PROVIDER CASE STUDY 
+
+ 
+
+As mentioned above, queue depths can have a dramatic impact on performance. With 
+Queue depth settings set too high, storage ports can be overrun or congested, you can 
+experience poor application performance and even data corruption. Though there is a 
+queue depth policy in place, several serious violations were found, as evidenced by “Max 
+Pending Exchanges” below.   
+
+Queue Depth Usage 
+
+ 
+
+Lessons Learned 
+
+When asked what the IT team would recommend to new VirtualWisdom customers, the person 
+who uses VirtualWisdom most frequently replied “Take advantage of the collective experience 
+of the VI consultants and of other VI customers.  VirtualWisdom generates a lot of metrics and 
+learning quickly to pay attention to the most important ones is critical”.   
+
+The company found that most vendors welcomed the additional reports they got from 
+VirtualWisdom.  It’s interesting to see which vendors like the idea of a third party monitoring 
+solution like Virtual Instruments.  Since the company has a redundant SAN infrastructure, it was 
+easy to add the SANInsight Fibre Channel TAPs (signal splitters) during maintenance windows 
+with no effect on users.  Having said that, it would be better to provide TAPs when the initial 
+SAN is deployed, and make it a corporate standard.  The cost is small, and the upside is 
+significant. 
+
+5 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 25 Metro Drive, Suite 400 
+
+ 
+
+San Jose, CA 95110 
+Phone: 408-579-4000  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+Phone: 408-579-4080  
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+©2011 Virtual Instruments. All 
+rights reserved. Features and 
+specifications are subject to 
+change without notice. 
+VirtualWisdom®, Virtual 
+Instruments, SANInsight are 
+trademarks or registered 
+trademarks in the United States 
+and in other countries. All other 
+brands, products, or service names 
+are or may be trademarks or 
+servicemarks of, and are used to 
+identify, products or services of 
+their respective owners. 04/11 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+

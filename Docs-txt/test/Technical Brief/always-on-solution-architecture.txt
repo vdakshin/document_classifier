@@ -1,0 +1,2475 @@
+ 
+<full title of document> 
+
+ 
+
+ 
+
+ 
+
+Table of Contents 
+
+www.vce.com 
+
+ALWAYSON POINT OF CARE WORKSPACE 
+SOLUTION ARCHITECTURE 
+
+May 2013 
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+VCE Confidential – Internal Use Only 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+1 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Copyright 2013 VCE Company, LLC. All Rights Reserved. 
+VCE believes the information in this publication is accurate as of its publication date. The information is subject to 
+change without notice. 
+
+THE INFORMATION IN THIS PUBLICATION IS PROVIDED "AS IS." VCE MAKES NO 
+REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN 
+THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OR 
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+2 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Contents 
+
+Introduction ............................................................................................................................... 5 
+Healthcare industry transformation .......................................................................................... 5 
+Building a HITECH healthcare infrastructure ........................................................................ 5 
+Challenge of achieving meaningful use ................................................................................ 5 
+Securing protected health information .................................................................................. 6 
+Ensuring continuous availability for non-stop care ................................................................ 6 
+Business case ......................................................................................................................... 7 
+Solution overview .................................................................................................................... 7 
+About this document ................................................................................................................ 8 
+Summary of main findings .................................................................................................... 8 
+Audience .............................................................................................................................. 8 
+Feedback ............................................................................................................................. 8 
+Technology overview ............................................................................................................... 9 
+Vblock™ Systems ..................................................................................................................... 9 
+VMware Horizon View ............................................................................................................. 9 
+Imprivata OneSign Authentication Management .................................................................... 11 
+Architecture overview............................................................................................................. 13 
+Logical architecture ................................................................................................................ 13 
+Hardware and software components ..................................................................................... 15 
+Master image ......................................................................................................................... 16 
+Design considerations............................................................................................................ 17 
+Storage configuration ............................................................................................................. 17 
+VSANs ................................................................................................................................ 18 
+Storage array configuration ................................................................................................ 18 
+VNX pools, RAID groups, and LUNs .................................................................................. 19 
+VNX file systems and NFS exports ..................................................................................... 20 
+Microsoft Distributed File System ....................................................................................... 21 
+Network configuration ............................................................................................................ 22 
+Virtualization configuration ..................................................................................................... 23 
+Load balancing ................................................................................................................... 23 
+Compose/recompose best practices ................................................................................... 23 
+Client access devices ......................................................................................................... 25 
+VMware datastores............................................................................................................. 26 
+VMware virtual infrastructure .............................................................................................. 26 
+VMware Horizon View ........................................................................................................ 29 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+3 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Compute configuration ........................................................................................................... 34 
+Unified Computing System configuration ............................................................................ 34 
+Imprivata One Sign configuration ........................................................................................... 35 
+Solution validation .................................................................................................................. 38 
+Test environment design........................................................................................................ 38 
+AlwaysOn Point of Care solution workspace configuration ................................................. 39 
+Stateless workspace configuration ..................................................................................... 39 
+Active/active configuration .................................................................................................. 40 
+Test 1: Using RAWC to generate load during site failure ....................................................... 41 
+Test procedure ................................................................................................................... 42 
+Test 2: Using a proximity card (manual) ................................................................................. 45 
+Test procedure ................................................................................................................... 45 
+Validation results ................................................................................................................... 48 
+Additional considerations and references ............................................................................ 49 
+Additional considerations ....................................................................................................... 49 
+References ............................................................................................................................ 49 
+VCE .................................................................................................................................... 49 
+VMware .............................................................................................................................. 49 
+Cisco .................................................................................................................................. 50 
+EMC ................................................................................................................................... 50 
+EMR ................................................................................................................................... 50 
+Other .................................................................................................................................. 50 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+4 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Introduction 
+
+Healthcare industry transformation 
+
+The healthcare industry is undergoing a major technological transformation. Electronic medical record 
+(EMR) systems, mobile devices and other innovations hold the promise of improving the safety and 
+quality of healthcare delivery. Many studies also show that EMR systems can reduce long-term 
+operating costs and lower the occurrence of malpractice claims. 
+
+As with other clinical applications, electronic medical records must be delivered to the actual point of 
+care, which refers to the ability or requirement to physically bring a solution to the patient’s bedside or 
+an exam room. Examples of electronic point-of-care solutions include wall-mounted displays and 
+mobile devices in exam rooms that provide clinicians with access to patient records and computerized 
+physician order-entry systems. These solutions play a central role in enabling healthcare 
+organizations to accelerate their journey from paper-based to electronic healthcare information 
+systems.  
+
+See the References section of this paper for links to additional information about EMR. 
+
+Building a HITECH healthcare infrastructure  
+
+The United States government has set an ambitious goal of establishing a nationwide EMR 
+infrastructure by 2015. In 2009, Congress passed the American Recovery and Reinvestment Act 
+(ARRA), a law that includes a major sub provision known as the Health Information Technology for 
+Economic and Clinical Health (HITECH) Act. The overall goal of HITECH is to stimulate the adoption 
+and “meaningful use” of healthcare information technology.  
+
+By 2015, U.S. hospitals must demonstrate meaningful use of certified EHR technology. Penalties will 
+start with reduced reimbursements that decrease annually, and eventually, penalized organizations 
+will no longer receive Medicare funding at all.  
+
+Challenge of achieving meaningful use  
+
+Despite the proven benefits and incentives for adopting EMR technology and the penalties for non-
+compliance, many healthcare providers have struggled to satisfy even the most basic requirements for 
+meaningful use. The traditional approach to healthcare IT is too costly and complex. Some 
+applications must be installed locally on endpoint devices, while some must be accessed over the 
+network, and others still can only be used on dedicated PCs or workstations. Another issue is that 
+many clinical applications are pre-installed on specialized hardware as appliances, which forces 
+healthcare IT organizations to manage their infrastructure in silos. Many facilities have more servers 
+than hospital beds. The result is an expensive, hard-to-manage infrastructure for IT teams and a 
+cumbersome workflow for caregivers.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+5 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Securing protected health information  
+
+Security and compliance have always been major concerns for the healthcare industry, but the 
+proliferation of electronic health information has led to increased attention of data security breaches 
+involving protected health information.  
+
+In response to incidents affecting confidential medical records, the federal government mandated 
+significant penalties for security lapses as part of the HITECH Act. Meeting the stricter guidelines is 
+especially difficult in environments where clinicians are demanding remote access to patient data and 
+support for laptops, smart phones, tablet computers, and other mobile devices, most of which are hard 
+to secure and extremely vulnerable to theft and loss.  
+
+Security and compliance concerns are also hindering the adoption of cloud-based solutions for point-
+of-care access to EMR systems and clinical applications. Some healthcare organizations are 
+considering third-party cloud services as a way to lower IT costs, reduce the risk of medical errors, 
+and make vital information more accessible to patients and caregivers in real time. But the notion of a 
+public cloud can still make providers nervous around the security and control of moving the storage of 
+patient data off-premise, and many public cloud services lack the security and control providers need 
+to maintain compliance with internal policies and government regulations.  
+
+Ensuring continuous availability for non-stop care  
+
+The failure of a mission-critical system can become a disaster for any organization, but in a clinical 
+setting where caregivers are completely dependent on electronic solutions, system availability can 
+literally be a matter of life and death. As computing devices replace paper charts and physician 
+prescription pads, these endpoints (mobile and fixed) become safety-critical IT systems that must 
+deliver the highest levels of reliability and availability to ensure patient safety. If a caregiver must make 
+a fast medical decision but cannot access the patient’s records because of a service outage or 
+computer problem, the situation can escalate into a Severity-1 event with serious consequences. 
+EMR systems must be accessible as a non-stop service that is available to clinicians wherever and 
+whenever they need patient information.  
+
+The challenges of achieving meaningful use, protecting patient information, and ensuring continuous 
+access to point-of-care solutions have created a dilemma that cannot be solved with traditional 
+approaches to desktop and application management. To overcome these and other challenges, 
+healthcare providers need a new approach to point-of-care delivery: one that will enable them to 
+modernize their IT infrastructures so they can improve patient outcomes and get the most from the 
+millions of dollars they are investing in EMR technology.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+6 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Business case 
+
+The business drivers for the AlwaysOn Point of Care Workspace solution are:  
+
+  Conversion to EHR, causing rapid increase in distributed locations where point-of-care 
+
+workspaces must be available.  
+
+  Tier-1 clinical workspaces requiring fast recovery and application continuity during disasters.  
+  Point-of-care access that must be more fluid than traditional fixed-device PC experience.  
+  Session mobility, a required feature tied to patient care and clinical productivity. VDI is the only 
+
+way to meet this requirement.  
+
+  An ideal opportunity to rapidly roll out a fully managed desktop platform in preparation for 
+
+paperless clinical workflows.  
+
+Solution overview 
+
+The AlwaysOn Point of Care Workspace solution is a highly available solution leveraging multiple 
+Vblock™ Systems and VMware Horizon View (formerly known as VMware View). By deploying the 
+AlwaysOn Point of Care Workspace solution across multiple data centers, enterprises can realize 
+workspace scalability and high availability. Imprivata OneSign automatically and securely connects 
+users to applications that require authentication.  
+
+Workspace service recovery is the process of automatically enabling a user to gain access to a new 
+workspace in the event their current workspace goes offline or fails for any reason. Upon re-entering 
+the system, the end user is assigned a new workspace (running the same master image). A load-
+balance appliance accomplishes the dynamic routing of the new request to a functional workspace 
+pool. This component allows various types of rules to be deployed in order to ensure optimal request 
+routing and workspace assignment. 
+
+The solution leverages an Active-Active design model, which ensures an end user has one or more 
+paths to clinical workspaces available at all times. Should a site go down, the end users can quickly 
+access alternate workspace pools by re-entering the system from their endpoint compute node such 
+as a laptop, thin terminal, desktop, tablet, or other device. 
+
+Solution benefits include the following: 
+
+Benefit 
+High availability 
+
+Mobility 
+
+Security 
+
+Description 
+Access to clinical workspaces in point-of-care locations is made highly 
+reliable from the built-in levels of redundancy in the architecture. Clinical 
+workspace “service” can withstand various levels of component failures. 
+
+Clinicians can continue to work on the same workspace as they move 
+throughout the care facilities, as well as in off-premise locations. This 
+capability extends to tablet devices, such as the Apple iPad, as clinicians 
+increasingly use tablets in their normal care delivery practice. 
+
+Clinical devices that are shared among a diverse set of care providers 
+become secure and auditable through the use of card-based and/or biometric 
+access controls. This is accomplished without causing disruptive 
+authentication overhead on the clinicians. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+7 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+About this document 
+
+This document, written in collaboration between VCE, VMware, Imprivata, and Vital Images, details a 
+solution architecture design for delivering clinical workspaces and patient care applications as non-
+stop services. This solution for delivering a non-stop point-of-care solution provides all of the benefits, 
+efficiencies of scale, and the 24 x 7 uptime demanded of a public cloud service from a private cloud 
+environment.  
+
+This solution architecture illustrates a highly available, virtual workspace solution for healthcare 
+professionals, but can be leveraged in other end user environments as desired. This paper:  
+
+  Describes the technologies, hardware and software components, and architecture used in the 
+
+solution 
+
+  Outlines the design configuration of the solution 
+  Provides failover validation results 
+
+Summary of main findings  
+
+In the AlwaysOn Point of Care Workspace solution validation, the key findings are:  
+
+  A stateless workspace architecture is ideally suited for shared clinical workspace environments 
+
+where a few common images are deployed and used with diverse teams of care providers. 
+  Even with multiple master images in the environment, pools of clinical workspace scan be 
+
+provisioned on demand with low maintenance costs and lifecycle management. 
+
+  By using an architecture that allows at least two paths to the clinical workspace pools, clinicians 
+
+can receive a significantly higher level of service availability. 
+
+  The architecture used for this solution does not require real-time data replication between sites 
+
+and subsystems. Storage replication was used to ensure that offline objects ,such as master 
+(gold) images used to create workspace pools, were maintained in two sites concurrently. This 
+would ensure that each site remains self-sufficient for creation and management of workspace 
+pools. For this solution, bidirectional, file-based replication was used. 
+
+Audience 
+
+This document is intended for use by sales engineers, field consultants, advanced services 
+specialists, and customers who will configure and deploy a highly available virtual workspace solution.  
+
+Feedback 
+
+To suggest documentation changes and provide feedback on this paper, send email to 
+docfeedback@vce.com. Include the title of this paper, the name of the topic to which your comment 
+applies, and your feedback. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+8 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Technology overview 
+
+This solution uses the following hardware and software components and technologies: 
+
+  Vblock Systems 
+  VMware Horizon View 
+  Imprivata OneSign Authentication Management 
+
+Vblock™ Systems 
+
+The Vblock System from VCE is the world's most advanced converged infrastructure—one that 
+optimizes infrastructure, lowers costs, secures the environment, simplifies management, speeds 
+deployment, and promotes innovation. The Vblock System is designed as one architecture that spans 
+the entire portfolio, includes best-in-class components, offers a single point of contact from initiation 
+through support, and provides the industry's most robust range of configurations. 
+
+VMware Horizon View 
+
+With VMware Horizon View, workspace administrators virtualize the operating system, applications, 
+and user data to deliver modern workspaces to end users. Get centralized automated management of 
+these components for increased control and cost savings. Improve business agility while providing a 
+flexible high performance workspace experience for end users, across a variety of network conditions.  
+
+VMware Horizon View includes ESXi, vCenter, View Manager, Persona Manager, View Composer, 
+and ThinApp. With VMware Horizon View’s virtual workspace infrastructure technologies, which 
+include View Manager’s administrative interface, workspaces can be provisioned quickly and easily 
+using templates. The technology permits rapid creation of virtual workspace images from one master 
+image, enabling administrative policies to be set and patches and updates applied to virtual 
+workspaces in minutes without affecting user settings, data, or preferences.  
+
+VMware Horizon View key components are listed below. 
+
+Component 
+View Persona Management 
+
+View Composer 
+
+View Client with Local Mode 
+
+Description 
+Dynamically associates a user persona to stateless floating 
+workspaces. IT administrators can streamline migration from physical to 
+stateless virtual workspaces while preserving user settings. 
+
+An optional tool that uses VMware Linked Clone technology employing 
+a master image to rapidly create workspace images that share virtual 
+disks. This conserves disk space and streamlines management. 
+
+Client software for accessing the virtual workspace from a desktop, 
+notebook, or tablet. The administrator can configure the client to allow 
+users to select a display protocol, such as PcoIP or RDP. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+9 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Component 
+VMware ThinApp 
+
+Description 
+Allows you to accelerate application deployment and simplify 
+application migration with agentless application virtualization. 
+Applications are packaged into single executables that run completely 
+isolated from each other and the operating system for conflict-free 
+execution on end-point devices. Application packages can be deployed 
+to different Windows platforms, eliminating costly recoding and 
+regression testing so you can easily migrate existing applications to 
+Windows 7. ThinApp also eliminates the need for additional server 
+hardware or software investments. 
+
+Additional components include the following: 
+
+  View Connection Server: Acts as the broker for client connections. It authenticates the users 
+
+through the Active Directory and then directs that request to the virtual workspace. 
+
+  View Agent: Enables discovery of the virtual machine used as the template for virtual workspace 
+
+creation. Additionally, the agent communicates with the View client to provide features such as 
+access to local USB devices, printing, and monitoring connections. 
+
+  View Manager: An enterprise-class workspace management solution that streamlines the 
+
+management, provisioning, and deployment of virtual workspaces. The View Manager is installed 
+at the same time as the connection server, and allows the user to administer the connection 
+server. For this solution, a single instance of the view manager was used for deploying and 
+managing the 768 and 1536 workspace environments. 
+
+  Centralized Virtual Desktops: A method of managing virtual desktops that enables remote sites 
+
+to access virtual desktops residing on server hardware in the data center.  
+
+  View Composer: An optional tool that uses VMware Linked Clone technology employing a 
+
+master image to rapidly create desktop images that share virtual disks. This conserves disk space 
+and streamlines management. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+10 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Imprivata OneSign Authentication Management 
+
+Imprivata OneSign Authentication Management provides No Click Access for user authentication, 
+permitting users to access all workstations and applications they are authorized to use. OneSign 
+enables IT staff to rapidly enable any application for single sign-on without the need for scripting or 
+changing the end user’s workflow.  
+
+For fault tolerance within a site that has multiple appliances, OneSign can accommodate a failure of 
+one appliance with no interruption or degradation of service. Additional appliances at the site can 
+provide higher levels of availability. If an appliance fails, other appliances in the site take the load.  
+
+ 
+
+Figure 1. Imprivata multi-site architecture  
+
+Appliances in multiple sites can provide fault tolerance by serving as backups to one another over a 
+WAN. User enrollments, policies, and SSO data are constantly synchronized among sites. If all 
+appliances in a site are inaccessible, OneSign Agents can communicate with appliances in other sites 
+and the switchover occurs automatically. If an entire site is down, appliances at another site can serve 
+agents. 
+
+There are three key components to the Imprivata architecture:  
+
+  OneSign Appliances, which host the OneSign management system, store data, provide policy at 
+the user and machine levels, fulfill network authentication requests, and enable Enterprise Single 
+Sign-On. 
+
+  OneSign Agents, which reside on client-side workstations to manage user access and upload 
+
+user activity data to the appliances.  
+
+  OneSign UI, which is a web-based interface for managing OneSign and the appliances in the 
+
+enterprise.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+11 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+This distributed AlwaysOn Point of Care Workspace solution design:  
+
+  Provides scalability and performance. Support hundreds of thousands of users by adding 
+appliances as needed. Maintain authentication time by load sharing across appliances.  
+
+  Enables user roaming across sites. Share and maintain enrollments, policies, and SSO services. 
+
+Manage users, computers, and policies centrally.  
+
+  Increases up-time with local and remote fault tolerance. Failover across LAN/WAN to appliance(s) 
+
+in the same or another site. 
+
+  Allows OneSign appliances to be placed in multiple locations. The license used in the design is 
+OneSign Enterprise with a cluster of four active appliances over two sites that can be connected 
+over LAN and/or WAN. The OneSign database is replicated and synchronized, and OneSign 
+agents can fail over across the WAN.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+12 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Architecture overview 
+
+Individual laptops and desktops are managed as standalone entities residing outside of the data 
+center environment and are not always subject to an organization’s information security, backup and 
+recovery, and application usage policies. As enterprises and IT organizations require more secure, 
+highly available, and efficient means for managing corporate resources, the need to bring all of these 
+resources under the control of a centralized data center managed by IT becomes paramount. Vblock 
+Systems, VMware Horizon View, and Imprivata SSO technologies offer the capabilities for a 
+centralized data center managed by IT.  
+
+This solution architecture has been designed as a low-impact, cost-effective approach to bring all of 
+these resources under the control of the data center, while providing a rich, single view of an end 
+user’s applications and data.  
+
+Logical architecture 
+
+The following diagram shows the logical topology for the AlwaysOn Point of Care Workspace solution 
+architecture. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+13 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 2. AlwaysOn Point of Care workspace solution logical diagram  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+14 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Hardware and software components  
+
+The following table lists the hardware and software used to validate this solution. The solution was 
+validated using a Vblock System 300. 
+
+Resource 
+Compute 
+
+Network 
+
+Storage 
+
+Virtualization 
+
+Description 
+Cisco Nexus 5010 and 5020 Switches (Site A used 5010s, and Site B used 
+5020s)  
+Cisco Unified Computing System (UCS) with (per site):  
+ 
+
+2 x UCS B200 M2 Series Blades with 3.33 GHz Intel Xeon 6 core CPU, 
+96 GB RAM (using 12, 8 GB 1067 MHz DIMMs)  
+2 x UCS B250 M2 Series Blades with 3.33 GHz Intel Xeon 6 core CPU, 
+192 GB RAM (using 48, 4 GB 1067 MHz DIMMs)  
+1 x UCS B440 M1 Series Blades with 2.266 GHz Intel Xeon 8 core CPU, 
+128 GB RAM (using 32, 4 GB 1067 MHz DIMMs) 
+2 x Cisco MDS 9148 FC Switch 
+2 x Cisco 5548 Ethernet Switch 
+
+ 
+
+ 
+
+ 
+ 
+1 x VNX Storage array (per site) 
+
+VMware vSphere ESXi 5.0 
+VMware Horizon View 
+
+The following table provides the configuration details for additional solution components.  
+
+Resource 
+Hardware: 
+Cisco 
+
+Software:  
+
+Cisco 
+
+Other 
+
+Description 
+
+  Catalyst 3750 switches (shared by both sites)  
+  Catalyst 6506 switch (shared by both sites)  
+  MDS 9506 (both sites shared the MDS infrastructure)  
+  Nexus 7010 Switches (shared by both sites)  
+  Wyse  
+ 
+
+Z90 Terminals  
+
+IOS 12.2(55) SE1 on 3750s  
+IOS 12.2(33) SXI5 on 6506  
+
+  Application Networking Manager (ANM) 4.2 (0)  
+ 
+ 
+  NX-OS 4.2(5) on 9506  
+  NX-OS 5.1(2) on 7010s  
+ 
+  Vital Images Vitrea Core 6.0 Update 02  
+  VMware Reference Architecture Workload Simulator 
+
+Imprivata OneSign SSO 4.5-27 (virtual appliance)  
+
+ (RAWC )1.2.0.0 
+
+  Windows XPe SP3 on Wyse Terminals  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+15 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Master image 
+
+The master image used for this solution contains a selection of applications typically present on 
+shared clinical workspaces. These include: 
+
+  Electronic medical records application 
+  PACS viewer application (from Vital Images) 
+  Single-sign-on agent (from Imprivata) 
+  Browser 
+  Imprivata OneSign agent (from Imprivata) 
+  Common workspace components, such as the Acrobat.net framework and Flash 
+
+Imprivata OneSign and Vital Images appliances are configured for failover and high availability. Active 
+Directory is configured with high availability enabled.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+16 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Design considerations 
+
+This section contains design considerations for implementing the AlwaysOn Point of Care Workspace 
+solution on Vblock Systems. 
+
+Storage configuration 
+
+EMC VNX storage technologies provide administrators with the tools to manage and maintain each 
+end user’s data and applications in the virtual workspace infrastructure. Using EMC VNX and a host of 
+best-of-breed software applications, administrators have a comprehensive set of solutions to maintain 
+administrative and security policies.  
+
+EMC PowerPath/VE (virtual edition) is included for intelligent path routing and optimized load 
+balancing across all Vblock Systems. PowerPath/VE enables customers to improve performance and 
+simplify, standardize, and automate storage path management across the virtual environment.  
+
+The following diagram shows the storage infrastructure design for the solution. 
+
+ 
+
+ 
+
+Figure 3. Storage infrastructure  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+17 
+
+ 
+
+ 
+
+VSANs 
+
+The following figure shows the list of VSANs configured and usable in each Vblock System.  
+
+Figure 4. Site A and B VSANs  
+
+Verify that the WWN pool is defined. 
+
+  
+
+Storage array configuration  
+
+The VNX storage system in Vblock Systems was used for testing the virtual workspace deployment. 
+The ESXi clusters, which contained hosts from two chassis, were mapped to four front-end ports of 
+the VNX. All the virtual workspace files (vmdks, vmx, logs, and so forth) were laid out on Fibre 
+Channel (FC) disks at the array backend, except the virtual machine swap file, which was laid out on 
+SATA disks at the array backend. The following screenshot shows the ESXi virtual machine swap file 
+location configuration. 
+
+Figure 5. ESXi host swap file location  
+
+Additionally, the ESXi cluster swap file location property needs to be modified:  
+
+ 
+
+ 
+
+Figure 6. vCenter cluster swap file location 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+18 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VNX pools, RAID groups, and LUNs 
+
+A single pool, named “Pool 0 - AlwaysOn Point of Care,” was created using 50 FC 15K RPM 450 GB 
+drives in a RAID 5 configuration with EMC FAST Cache and enabled using four 200 GB EFDs. 
+
+Figure 7. EMC FAST Cache configuration  
+
+ 
+
+The pool was used for storing the View linked clones and replicas of the user workspaces. The details 
+of the storage pool are shown below.  
+
+Figure 8. Storage pool configuration  
+
+RAID groups, named “RAID Group 1” (RG1) and “RAID Group 2” (RG2), were created. RG1 uses 
+four FC 15K RPM 450 GB drives in a 3+1 RAID 5 and RG2 uses eight SATA 7.2K RPM 2TSB drives 
+in a 6+2 RAID 6 configurations.  
+
+ 
+
+Figure 9. RAID group configuration 
+
+LUNs from RG1 had FAST Cache enabled and were used to store the 15 GB boot LUNs for the ESXi 
+hosts and several 250 GB infrastructure LUNs for general use by the environment. LUNs from RG2 
+did not have EMC FAST Cache enabled and were used to store the virtual workspace virtual machine 
+swap files.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+19 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 10. Storage group configuration  
+
+VNX file systems and NFS exports 
+
+ 
+
+A single file system supported by five FC 15K 450 GB drives in a RAID 5 4+1 configuration was 
+exported via NFS and used to store the golden workspace images. Asynchronous, cross-site 
+replication was configured to copy each site’s golden workspace image to the other site for 
+safekeeping. 
+
+ 
+
+ 
+
+Figure 11. EMC Replicator configuration 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+20 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Microsoft Distributed File System 
+
+Microsoft Distributed File System (DFS) is a set of client and server services that allows an 
+organization using Microsoft Windows servers to organize many distributed SMB file shares into a 
+distributed file system. DFS provides location transparency and redundancy to improve data 
+availability in the face of failure or heavy load by allowing shares in multiple different locations to be 
+logically grouped under one folder or DFS root.  
+
+DFS has two major logical components: 
+
+  DFS namespaces provide an abstraction layer for SMB network file shares, allowing one logical 
+
+network path to be served by multiple physical file servers. 
+
+  DFS Replication (DFSR), which supports the replication of data between servers. 
+
+This solution uses a domain-based DFS namespace to store user data and DFSR to cross-site 
+replicate the files to ensure user access during a site outage. 
+
+A domain-based DFS namespace stores the DFS configuration within Active Directory. The DFS 
+namespace root is accessible at \\domainname\<dfsroot> or \\fq.domain.name\<dfsroot>. Namespace 
+roots can reside on member servers instead of domain controllers. If domain controllers are not used 
+as the namespace root servers, use multiple member servers to provide full fault tolerance. 
+
+ 
+
+ 
+
+Figure 12. Microsoft DFS architecture 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+21 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Network configuration 
+
+The following diagram shows the network infrastructure and design: 
+
+ 
+
+ 
+
+Figure 13. Network infrastructure  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+22 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Virtualization configuration 
+
+Load balancing 
+
+Load balancing optimizes performance by distributing workspace sessions evenly across all available 
+VMware Horizon View connection servers. It improves serviceability and availability by directing 
+requests away from unavailable servers, and improves scalability by automatically distributing 
+connection requests to new resources as they are added to the environment. 
+
+Support for a redundancy and failover mechanism, typically at the network level, prevents the load 
+balancer from becoming a single point of failure. For example, Virtual Router Redundancy Protocol 
+(VRRP) communicates with the load balancer to add redundancy and failover capability. If the main 
+load balancer fails, another load balancer in the group automatically starts handling connections.  
+
+To provide fault tolerance, a load-balancing solution must be able to remove failed VMware Horizon 
+View server clusters from the load-balancing group. How failed clusters are detected may vary, but 
+regardless of the method used to remove or blacklist an unresponsive server, the solution must 
+ensure that new, incoming sessions are not directed to the unresponsive server. If a Horizon View 
+server fails or becomes unresponsive during an active session, users do not lose data. Instead, 
+workspace states are preserved in the virtual workspace so that when users reconnect to a different 
+connection server in the group, their workspace sessions resume from where they were when the 
+failure occurred.  
+
+Compose/recompose best practices  
+
+The Horizon View workspace platform comprises two independent implementations, with one at each 
+site. A pool of workspaces are created at each site from the same master image. While these pools 
+are essentially separate from each other, building them with the same naming conventions and using 
+the same master image gives the end user the perception that they are identical. 
+
+Designate one site as the source for the master image that both sites will use. Do not make changes 
+to the master image on the non-source site. This allows the virtual machine to be updated via storage 
+replication.  
+
+Note:  Thoroughly test changes to the master before deploying to either production pool. Consider making a 
+
+small test pool for beta users to ensure that any updates are fully functional.  
+
+In both sites, create pools with identical configuration options using the same master image. 
+Generally, these should be “floating” pools of workspaces that are “refreshed” or rolled back to their 
+original state after each user logs off. This prevents the unnecessary buildup of temporary files and 
+personal information on each workspace. 
+
+When sizing the pools, take into account the maximum size of the pool during failover. The pool 
+should have the capacity to handle (or expand to handle) 100% of the users in event of an 
+emergency. Provisioning extra workspaces up front allows for faster logon in an emergency. Unused 
+workspaces can be left powered off to conserve resources, but each step (including a power on 
+operation) that needs to be performed at failover adds time to the user’s logon experience. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+23 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+To maintain the identical appearance, it is advisable to build and prep the master image, allowing (or 
+forcing) it to replicate from the source to the non-source location before composing either location. 
+Once the master image is in place at both sites, a typical compose or recompose operation can be 
+performed.  
+
+Note:  This is not a fully automated process. The administrator should perform the same task on the pool at both 
+sites and set the options identically as much as possible. End users could notice any differences in naming 
+or configuration. 
+
+If workspace availability is more critical than having the latest version of the image, administrators can 
+simply change the “Default Image for New Desktops” on the pool and set the recompose to occur on 
+user logoff. This will gradually replace the older images with the newer updated version as 
+workspaces become available for maintenance. 
+
+If having a specific version of the workspace image is a higher priority and a downtime window is 
+established, the entire recompose of a pool can be completed by forcing users to log off. This takes 
+less time to complete and keeps the pools in a more consistent state, but prevents using the pools 
+during the operation. 
+
+For environments with more than one pool or more than one master image, the process is the same 
+on a pool-by-pool basis: 
+
+  Designate a source site for the master image. Do not modify that image on any other site. 
+  Make sure the master image virtual machine is replicated effectively from the source to the non-
+
+source site. 
+
+  Any action performed on the pool at the source location should also be performed at the non-
+source site. This includes pool creation, user entitlement, recompose operations, application 
+entitlement (where used), and other general modification of pool settings. 
+
+Not all pools need to be protected. If you have pools that do not perform critical functions, choose a 
+site for that pool, and do not perform the replication or pool creation steps on the other site. If that site 
+becomes unavailable, so will the workspaces associated with it. 
+
+Note:  If a pool is only going to exist in one site, users of that pool need to be directed to that site by the top-level 
+
+load balancers. 
+
+Choosing some pools for protection and leaving other non-critical pools out of the process could 
+substantially reduce the overall hardware costs. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+24 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Client access devices 
+
+VMware Horizon View supports client/endpoint devices for accessing virtual workspace deployment, 
+including:  
+
+  Zero client 
+
+-  Teradici PCoIP portal processor 
+-  Operating system independent 
+-  Support for graphic intensive applications, including 3D graphics, CAD, video animation, and 
+
+more 
+
+-  Secure and risk-free from viruses 
+-  Multi-monitor support 
+-  Support for VMware Horizon View 
+
+  Thin client 
+
+-  Operating systems can be Windows Embedded Standard, Windows XPe, CE, Linux, or 
+
+proprietary distribution 
+-  Multi-monitor support 
+-  Support for VMware Horizon View 
+-  Secure lockdown, but endpoint security protection is required 
+
+In addition, VMware Horizon View Client also runs on the Apple iPad tablet and traditional notebook 
+computers for workspace mobility access. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+25 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware datastores 
+
+The following screenshot outlines the details from a VMware vCenter perspective for Site A. Site B 
+was configured in the same manner.  
+
+Figure 14. Datastore configuration  
+
+VMware virtual infrastructure  
+
+VMware vSphere ESXi servers 
+
+Each VDI site was configured as follows: 
+
+ 
+
+  Implemented three ESXi servers to support the virtual workspaces 
+  Implemented two ESXi servers to support the vSphere and Horizon View infrastructures (see Site 
+
+A and Site B figures below) 
+
+  Implemented two ESXi servers to manage the RAWC test 
+  Leveraged two ESXi servers (other non-RA workloads were also on these hosts) to support the 
+
+Microsoft Exchange 2010 and Vital Images servers (see Site C figure below) 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+26 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 15. Site A resources  
+
+ 
+
+Figure 16. Site B resources  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+27 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 17. Site C workload generation and shared applications  
+
+ 
+
+VMware vSphere advanced parameters 
+
+No specific advanced parameters were tuned for this testing. All VAAI parameters were left turned on 
+by default. 
+
+Datastores 
+
+Datastores were configured as follows: 
+
+  8 x 499 GB datastores for storing the View Linked Clones and Replicas labeled 
+
+“Desktop_LUN_XX.”  
+
+  1 x 99 GB datastore labeled “SiteA_Gold” used specifically to store golden images of virtual 
+
+workspaces, which are replicated asynchronously to Site B. A similar datastore is configured in 
+Site B (labeled “SiteB_Gold”) and is replicated asynchronously to Site A. 
+
+  3 x 1 TB datastores for storing the virtual machine swap files for each virtual workspace. 
+  3 x 249 GB datastores for storing the required infrastructure virtual machines. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+28 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 18. Site A datastores  
+
+VMware Horizon View 
+
+ 
+
+Before deploying the workspace pools, ensure that the following steps from the VMware Horizon View 
+Installation document have been completed: 
+
+1.  Prepare Active Directory, DNS, and DHCP. 
+2. 
+3. 
+4.  To add the vCenter Server instance to View Manager, click vCenter Servers. Click Add and 
+
+Install View Composer 3.0 on the vCenter Server. 
+Install the View Manager Server. 
+
+complete the settings. 
+
+VMware Horizon View workspace pool configuration 
+
+To create one of the persistent automated workspace pools as configured for this solution, complete 
+the following steps: 
+
+1.  Log on to the VMware View Administration page at https://server/admin, where “server” is the 
+
+IP address or the DNS name of the View Manager server. 
+In the left pane, click Pools. Click Add under the Pools banner. 
+In the Add Pool page, under Pool Definition, click Type.  
+In the Type page, select Automated Pool in the right pane. Click Next.  
+In the User Assignment area, click Floating and select Automatic Assignment. Click Next. 
+
+2. 
+3. 
+4. 
+5. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+29 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+6. 
+
+In the vCenter Server page, click View Composer linked clones, and in the server list, click a 
+vCenter Server that supports View Composer. Click Next. 
+
+7.  Type the required information in the Pool Identification page. Click Next. 
+8.  Make any required changes in the Pool Settings page. Click Next. 
+9. 
+
+In the Provisioning Settings page, click Use a naming pattern. In the Naming Pattern field, 
+type the naming pattern. In the Max number of desktops field, type the number of desktops to 
+provision. Click Next. 
+
+10.  In the View Composer Disks page, make any required changes. Click Next. 
+11.  In the Storage Optimization page, click Next and select Replica disks. Select Select separate 
+
+datastores for replica and OS disk. Click Next.  
+
+12.  In the vCenter Settings page, complete the following steps:  
+
+a.  Default Image—Click Browse in each of these sections, to select the parent virtual machine 
+
+and snapshot (the snapshot to use for the default image). 
+
+b.  Virtual Machine Location—Click Browse to select VM Folder Location (a folder for the 
+
+virtual machines). 
+
+c.  Resource Settings—Click Browse in each of these sections to select Host or Cluster (the 
+
+cluster hosting the virtual workspace). 
+-  Resource Pool (the resource pool to store the workspaces). 
+-  In Linked clone datastores, click Browse. The Select Linked Clone Datastores page 
+
+appears.  
+
+-  Select each of the four LUNs that were provisioned for linked clone storage. Click OK. The 
+
+Select Replica Disk Datastores page appears. 
+
+-  In the list, select the replica disk datastores to use for this pool. Click OK. The Advanced 
+
+Storage Options page appears. 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+30 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+13.  Verify that Use host caching is selected and enable Blackout times for host cache 
+
+regeneration. Click OK. 
+Note:  Host cache regeneration may temporarily impact workspace performance. It is recommended to set a 
+
+blackout time to prevent the host cache regeneration from taking place during periods of heavy 
+workspace usage. 
+
+14.  Finish the customization settings in the Guest Customization page. 
+
+In this environment, four View Connection Servers were used to illustrate local load balancing.  
+
+Note:   A single connection server could have handled all 400 workspace. 
+
+The following figure shows vCenter Server Integration with VMware Horizon View. It also shows that 
+VMware Composer is enabled.  
+
+Figure 19. Site A vCenter/View Composer settings  
+
+ 
+
+The following figure shows the View Connection Servers and related configuration information. 
+
+Figure 20. Site A View Connection Servers  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+31 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The event database was configured to log all the events occurring. The following figure shows the 
+configuration details. 
+
+Figure 21. View Event Database configuration  
+
+ 
+
+Virtual workspace pool 
+
+For testing the virtual workspace environment, two workspace pools with 200 workspace per pool 
+were created within each site. In production environments, pools should be further segregated to allow 
+for flexible maintenance of workspaces. 
+
+VMware Horizon View Persona Management 
+
+The profile1 and home1 CIFS file systems were used for the VMware Horizon View Persona 
+Management repositories. We enabled VMware Horizon View Persona Management by using a 
+Windows group policy template. The group policy template is located on the View Connection Server in 
+this directory: Install Drive\Program Files\VMware\VMware View\Server\extras\GroupPolicyFiles. 
+
+The group policy template, named ViewPM.adm, is needed to configure VMware Horizon View Persona 
+Management. Enable VMware Horizon View Persona Management by applying computer group policies 
+to the organizational unit containing the virtual workspace computer objects. 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+32 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The following screenshot shows an example of the policies configured to enable VMware Horizon 
+View Persona Management in the workspace environment. 
+
+When deploying VMware Horizon View Persona Management in a production environment, it is 
+recommended to redirect the folders that users commonly use to store documents or other files. The 
+following screenshot shows the VMware Horizon View Persona Management group policy settings 
+required to redirect the user workspace and My Documents folders. You can set similar policies for 
+Downloads and for the My Pictures folder. 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+33 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Storage synchronization configuration  
+
+In addition to periodic backups of the golden workspace images, consider replicating them to another 
+site. EMC Replicator can enable this replication as it provides efficient, asynchronous data replication 
+over Internet Protocol (IP) networks. With Replicator, you can create point-in-time, network-attached 
+storage (NAS) file system copies and consistent iSCSI logical unit number (LUN) copies on local or 
+remote sites. 
+
+Figure 22. Virtual machine gold image replication configuration  
+
+ 
+
+You can use scripted and/or manual procedures to re-instantiate replicated golden workspace images 
+if necessary. 
+
+Compute configuration 
+
+Unified Computing System configuration  
+
+Following are the configuration details of the Cisco Unified Compute System implemented for the 
+solution. 
+
+VLAN configuration 
+
+The following figure shows the list of VLANs configured in each Vblock System. The dVLAN## VLANs 
+are used for the Horizon View workspaces themselves. 
+
+Figure 23. Site A VLANs  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+34 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 24. Site B VLANs  
+
+ 
+
+Imprivata One Sign configuration 
+
+For each site in your OneSign enterprise, you can designate a primary and a secondary failover site. 
+OneSign agents automatically fail over to appliances within the same site first, and only then will fail 
+over to an appliance within the failover sites specified.  
+
+Each agent determines its home site, based on the workstation’s IP configuration. According to the 
+OneSign enterprise topology, each active site has a list of IP address ranges for subnets belonging to 
+this site. The initial attempt to determine the agent’s home site involves matching the workstation’s IP 
+address against any range in any site. If a range is found, then the site owning this range is 
+considered to be the home site for the agent.  
+
+Once all servers in the home site become unavailable, agents will switch to using a failover site (if 
+specified). After a failover is completed, the OneSign session will preserve the connection to the 
+appliance in the failover site for the duration of the session lifetime. Once appliances in the home site 
+become available again, new sessions authenticated on computers that belong to this site will start 
+connecting back to the home site. However, active sessions do not automatically switch back. To 
+force agents to fail back to the active session, users must lock and unlock their OneSign session or 
+log out and log back in.  
+
+Imprivata OneSign appliances can be implemented as a physical 1U server or virtual appliance. For 
+this solution architecture, we deployed the OneSign appliances as virtual appliances using an open 
+virtual format (OVF) provided by Imprivata. To ensure local (per site) and remote (across site) 
+availability, we implemented two OneSign appliances in each site.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+35 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 25. AlwaysOn Point of Care Workspace solution distributed architecture  
+
+ 
+
+After the OVFs were deployed, a wizard guided us through implementation, which included pairing the 
+appliances into local and remote clusters, as well as configuring a replication process to keep all 
+appliances synchronized. Once the configuration tasks were completed, we connected to the web-
+based GUI to perform the following tasks: 
+
+  License the product (per user) 
+  Configure Proximity Card settings 
+  Integrate with Active Directory 
+  Create polices to handle the One-Touch login behavior 
+
+The following is an example of a computer policy that automatically launches the Horizon View Client 
+and connects it to a View Connection Server at https://10.1.54.16. (This is actually a virtual IP on the 
+load balancer; FQDN or IP addresses will work. We used both in our testing.)  
+
+Figure 26. Imprivata View configuration  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+36 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Additionally, user policies can be configured specific to authentication, password self-service, offline 
+authentication, and RADIUS integration. Below is the user policy used for this solution architecture, 
+which enables password and proximity card authentication: 
+
+Figure 27. Imprivata authentication configuration  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+37 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Solution validation 
+
+We performed the following tests to validate the solution: 
+
+  Using RAWC to generate load during site failure 
+  Using a proximity card (manual) 
+
+Test environment design 
+
+The test environment was used as set up and described in the Architecture Overview and Design 
+Considerations sections. 
+
+The goal of this solution architecture is to explore the ability to reconnect a user to a workspace after a 
+complete site outage (meaning all resources within a single site are unavailable). To simulate the 
+outage, we disabled the northbound Ethernet uplinks on one of the site’s Cisco UCS 6100s as shown 
+below:  
+
+ 
+
+ 
+
+Figure 28. Simulating an outage  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+38 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+AlwaysOn Point of Care solution workspace configuration  
+
+The Windows 7 golden virtual workspace image was created as follows:  
+
+  Windows 7 Enterprise, SP1 (Build 7601), 32-bit 
+  One vCPU 
+  1 GB vRAM 
+  VMXNET 3 Adapter 
+  Adobe Reader 9.4 
+  Imprivata OneSign Agent 4.5.217.217 
+  Microsoft Office Enterprise 2007 
+  Internet Explorer 8.0 
+  VMware Desktop RAWC Workload Simulator 1.2.0 
+  VMware Tools 8.3.2.2658 
+  VMware Horizon View Agent 4.6.0.366101 
+
+Stateless workspace configuration  
+
+We used automated pools using virtual machine snapshots to generate the virtual workspaces, and 
+configured floating user assignment to randomly pick workspaces for users each time they log in. For 
+this solution architecture, additional personalization of the workspace (for example, the use of persona 
+or profile management) was not necessary. We achieved the statelessness of the virtual workspace 
+using a Microsoft Active Directory GPO to redirect My Documents to a DFS share via a global name 
+space.  
+
+Figure 29. Automated/floating workspace pool 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+39 
+
+ 
+
+ 
+
+Active/active configuration  
+
+We created multiple automated/floating (AF) virtual workspace pools in Site A for Site A users as their 
+primary workspace and in Site B for Site B users as their primary workspace, thereby creating an 
+Active/Active configuration. Additionally, multiple standby AF virtual workspace pools were created in 
+each site to deliver AlwaysOn workspaces. 
+
+Figure 30. Site A pool configuration  
+
+ 
+
+Figure 31. Site B pool configuration  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+40 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 1: Using RAWC to generate load during site failure  
+
+The RAWC workload runs on a Windows 7 or XP guest operating system, and is executed on each 
+workspace virtual machine on one or more ESXi hosts. The RAWC workload has a set of functions 
+that performs operations on common workspace applications, including Microsoft Office, Adobe 
+Reader, Windows Media Player, Java, and 7-Zip.  
+
+The applications are called randomly and perform operations that mimic a typical workspace user, 
+including open, save, close, minimize and maximize windows, view an HTML page, insert text, insert 
+random words and numbers, conduct a slideshow, view a video, send and receive email, and 
+compress files.  
+
+The RAWC workload uses a configuration file that is created via the RAWC GUI and writes 
+application open/ close times and any errors to log files in a shared network folder. Various test 
+variables can be configured via the RAWC GUI, including a start delay for creating boot storms and 
+density (delay between application operations), application speed, number of emails created and sent, 
+and typing speed. For more information on RAWC, see the Workload Considerations for Virtual 
+Desktop Reference Architectures by VMware.  
+
+The following screenshot shows the RAWC workload configuration used for this solution architecture. 
+This workload randomly loaded Microsoft Word, Excel, Internet Explorer, PowerPoint, and Adobe 
+Acrobat for three iterations. 
+
+Figure 32. RAWC workload configuration  
+
+ 
+
+This test employed two VMware Horizon View workspace pools per site. One pool was for active 
+workspaces and the other was for standby workspaces. All of the linked clones were created from the 
+same parent virtual machine. This configuration resulted in 75 virtual workspaces per datastore, well 
+within best practice recommendation of 128 virtual workspaces per datastore. 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+41 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Common infrastructure components, such as Active Directory, DFS, DNS, DHCP, and VMware 
+Horizon View Connection Servers, as well as Imprivata SSO appliances, did not share the same 
+compute or storage resources as the virtual workspaces. A vSphere cluster (outside of the Vblock 
+Systems) consisting of two ESXi hosts was used to host the RAWC workload generation tool, 
+Exchange 2010 server, and Vital Images servers. Each workspace infrastructure service was 
+implemented as a virtual machine running Windows 2008 R2.  
+
+Test procedure 
+
+Before starting the RAWC workload generation, we captured screenshots from within Horizon View 
+Manager to illustrate the number of current sessions and available workspaces.  
+
+Figure 33. Site A pre-test status  
+
+Figure 34. Site B pre-test status  
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+42 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+1.  RAWC workload generation starts and the load balancer processes the requests for workspaces 
+
+by distributing the load across each site, based on the source IP of the RAWC launcher.  
+
+2.  Midway through the test, we captured the following screenshots from within Horizon View 
+
+Manager to illustrate the number of remote/connected sessions.  
+
+ 
+
+Site A mid-test status  
+
+Site B mid-test status  
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+43 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3.  Although application response time metrics were not critical to the success of this validation, we 
+
+captured the results to illustrate load on the system.  
+
+ 
+
+4.  Disabled the northbound Ethernet uplinks on Site B to simulate an outage. Almost immediately, 
+
+the RAWC session launchers lost connection to their remote workspace sessions.  
+
+5.  Since the remote workspace sessions for Site B have disconnected, we used RAWC to restart 
+
+them. The load balancer accepted the Horizon View Server connection requests, determined that 
+Site B was down, and automatically redirected the connections to Site A. Workspace sessions 
+were restarted.  
+
+6.  All 200 remote workspace sessions originally connected to Site B are now reestablished on Site 
+
+A.  
+
+7.  We captured application response time metrics to illustrate load on the system for the Site B 
+
+workload running on Site A resources.  
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+44 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test 2: Using a proximity card (manual) 
+
+The second test was performed manually using a proximity card reader attached to a Wyse Z90 
+terminal. Additionally, we tested the effects of distance latency by acquiring a virtual workspace over a 
+wide-area network. A Cisco VPN client was used to access the solution architecture resources. (View 
+Security Servers could also have been used.) The load balancer was configured to send all 
+connections from the VPN’s DHCP IP range (assigned to Wyse terminal) to Site B to obtain their 
+primary virtual workspace. This test used the golden image and workspace pool configuration 
+described in the Test Environment Design section.  
+
+Test procedure 
+
+1.  Logged into the environment using the Imprivata SSO mechanism, which chains into the 
+
+Windows GINA and provides manual or proximity card methods of authentication.  
+
+2.  Once the user is authenticated (in this case, via Microsoft AD account), Imprivata SSO polices 
+started the VMware Horizon View client and passed the credentials to enable a seamless login 
+experience to the users’ virtual workspaces in Site A.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+45 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3.  The next series of screenshots illustrates the accessing of critical applications and files. First are 
+Vitrea Core’s VIS and a three-dimensional knee scan that was accessed via a web browser and 
+manufacturer plug-in. The Vitrea back-end application was housed at a separate site and was not 
+subjected to our simulated outage.  
+
+Next, we accessed email via the Microsoft Outlook client. The Exchange 2010 instance serving 
+up the email is located at a separate site with Vitrea Core’s VIS.  
+
+ 
+
+Then we accessed files within a DFS-based share. The files were located within each site, and 
+DFSR (replication) was configured to ensure copies of files were distributed between the sites. 
+We used GPO redirection to map the user’s Documents folder to the DFS share.  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+46 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+4.  We disabled the northbound Ethernet uplinks on Site A to simulate an outage. Almost 
+
+immediately (3-10 seconds), the Horizon View client disconnected, and the Imprivata login 
+window appeared. We then re-authenticated (manually or using a proximity card), and the load 
+balancer directed us to a standby workspace in Site B.  
+
+ 
+
+5.  The following screenshots illustrate accessing the applications initially tested. This time, however, 
+
+they were accessed from the user workspace in Site B.  
+
+ 
+
+Vitrea Core VIS access from Site B  
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+47 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Outlook  
+
+Files  
+
+Validation results  
+
+ 
+
+ 
+
+The most critical metric for this virtual workspace validation is the amount of time it took to obtain a 
+new workspace after a simulated outage occurred. In this envelope testing, the system was optimized 
+such that obtaining a new workspace after site failure occurred within 30 seconds. The majority of this 
+delay (~20 seconds) was spent waiting for the Horizon View Client to give up trying to connect to the 
+previous Horizon View Connection server. 
+
+Outside the scope of this effort is an extremely important metric for virtual workspace validation: the 
+end user application response time. Careful design considerations should be given to ensure the end 
+user response time for any application activity is less than three seconds. Response time metrics 
+were collected during the RAWC testing to illustrate load on the environment during failover.  
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+48 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Additional considerations and references  
+
+Additional considerations 
+
+In any virtual workspace deployment, data center services, such as backup, recovery, security, and 
+business continuity, need to be considered. These considerations may impose additional restrictions 
+on scalability and performance. VCE provides in-depth discussions on solutions that address these 
+use cases.  
+
+For additional security and compliance management, there are many other components that can be 
+leveraged, such as VMware vCloud Networking and Security, Trend Micro Deep Security, VMware 
+configuration manager, and so forth. For more information, refer to the VCE paper Vblock Systems 
+Mobile Secure Workspace Solution Architecture on www.vce.com.  
+
+References 
+
+For supporting and additional information, refer to the following. 
+
+VCE 
+
+VMware 
+
+  Vblock Systems Mobile Secure Workspace Solution Architecture 
+
+www.vce.com/solution/applications/end-user 
+
+  VMware View Reference Architecture 
+
+www.vmware.com/products/desktop_virtualization/view/technical-resources.html 
+
+  VMware Workload Considerations for Virtual Desktop Reference Architectures 
+www.vmware.com/files/pdf/VMware-WP-WorkloadConsiderations-WP-EN.pdf 
+
+  VMware Horizon View 
+
+www.vmware.com/products/view/ 
+
+  VMware vSphere 
+
+www.vmware.com/products/vsphere 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+49 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Cisco 
+
+  Cisco UCS 
+
+www.cisco.com/go/unifiedcomputing 
+
+  Cisco Data Center Solutions 
+
+www.cisco.com/go/datacenter 
+
+  Cisco Validated Designs 
+
+www.cisco.com/go/designzone 
+
+EMC 
+
+EMR 
+
+Other 
+
+ 
+
+  EMC PowerPath/VE 
+
+www.emc.com/products/detail/software/powerpath-ve.htm 
+
+  Electronic Health Records and Meaningful Use 
+
+www.healthit.gov/policy-researchers-implementers/meaningful-use 
+
+  Study: EHR cuts long term operating costs 
+
+www.healthdatamanagement.com/news/ehr-cuts-long-term-operating-costs-41218-1.html 
+
+  Study: Electronic medical records reduce malpractice claims 
+
+www.computerworld.com/s/article/9122063/Study_Electronic_medical_records_reduce_malpracti
+ce_claims 
+
+  Overview of EHR incentive programs 
+www.cms.gov/ehrincentiveprograms 
+
+  CNN article: VA will pay $20 million to settle lawsuit over stolen laptop’s data 
+
+www.cnn.com/2009/POLITICS/01/27/va.data.theft/index.html 
+
+  Imprivata OneSign 
+  www.imprivata.com/onesign_platform  
+  Wyse Z90 
+  www.wyse.com/solutions/vmware/index.asp 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+ 
+
+ 
+
+50 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged infrastructure and 
+cloud-based computing models that dramatically reduce the cost of IT while improving time to market for our customers. VCE, 
+through the Vblock Systems, delivers the industry's only fully integrated and fully virtualized cloud infrastructure system. VCE 
+solutions are available through an extensive partner network, and cover horizontal applications, vertical industry offerings, and 
+application development environments, allowing customers to focus on business innovation instead of integrating, validating, and 
+managing IT infrastructure.  
+For more information, go to www.vce.com. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Copyright 2013 VCE Company, LLC. All Rights Reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2013 VCE Company, LLC. All Rights Reserved. 
+
+VCE Confidential – Internal Use Only 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

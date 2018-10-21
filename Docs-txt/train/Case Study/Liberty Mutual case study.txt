@@ -1,0 +1,372 @@
+ 
+
+  U.S. Insurance Company 
+                         Case Study 
+
+ 
+
+Challenges:  
+
+•  Outages were affecting critical 
+
+applications and causing 
+disruptions  
+
+• 
+
+Internal application and 
+storage personnel, as well as 
+vendor support personnel 
+spent weeks trying to narrow 
+down the source of problems.  
+
+Solution:  
+• 
+
+VirtualWisdom SOS4SANs 
+Emergency Troubleshooting 
+Service found “silver bullet” 
+root causes of outage 
+problem 
+
+Company Benefits:  
+• 
+
+Application outages and slow-
+down causes were identified 
+and corrective actions were 
+taken 
+
+• 
+
+Dramatically reduced time 
+spent replacing suspected bad 
+SAN components because of 
+superior fault diagnosis, 
+which saves on both CAPEX 
+and OPEX 
+
+Vendor Benefits:  
+
+The resolved application 
+outages significantly reduced 
+customer support costs 
+
+Freed up HQ Escalation 
+Engineering for other tasks 
+
+Helped create a satisfied  
+customer  
+
+• 
+
+• 
+
+• 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+Virtual Instruments delivers SOS4SANs emergency 
+troubleshooting service  
+Identifies root cause of application outages resulting in dramatically improved 
+application availability 
+Overview  
+This U.S.-based company provides a full line of homeowner and automobile insurance through 
+more than 400 offices throughout the U.S.  It markets a wide array of property & casualty, and 
+group benefits commercial insurance coverage through independent agents, brokers and benefit 
+consultants.   Additionally, it has an international presence in over a dozen countries throughout 
+Latin America, Europe, and Asia. 
+
+IT Environment   
+Storage is supplied by two major vendors, connected via a native Fibre Channel SAN to IBM 
+System z mainframes running Red Hat Linux.  
+
+IT Challenge 
+The insurance company started to experience problems where 64 paths would go offline causing 
+production outages in its environment.  A company SWAT team, which included IBM, Red Hat, 
+plus the primary storage and storage network vendors worked for several weeks to address and 
+resolve these urgent issues. During this period, the company experienced 400 minutes of outage 
+to its top revenue generating application. 
+
+Virtual Instruments SOS4SANs Emergency Troubleshooting Service 
+Virtual Instruments deployed a mobile Performance Assessment Kit (PAK) and services 
+personnel within 24 hours of receiving the “go” from the company and from the primary storage 
+vendor.   The PAK is a ruggedized collection of the Virtual Instruments product line including the 
+VirtualWisdom Server, networking, ProbeFCX, Rover, and a Protocol Analyzer. The PAK is 
+purpose-built for rapid collection and correlation of SAN metrics, enabling fast resolution time 
+when facing urgent SAN issues. 
+
+Sequence of events: 
+• 
+
+Several weeks of outages with increasing efforts from SWAT team involving customer, 
+vendor field support and vendor escalation engineering 
+
+•  Day 0 - Initial discussions between VI, storage vendor and insurance company; defining 
+
+1 
+ 
+
+ 
+
+  U.S. Insurance Company 
+                         Case Study 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+"In four days, VI has 
+
+shown me more 
+
+information and real 
+
+data than I've seen in the 
+previous month from the 
+
+rest of the team" 
+
+VP Infrastructure 
+
+ 
+the problem 
+
+•  Day 1 – Approval to deploy VI in an SOS4SANs service capacity; VI dispatches 
+
+technicians and overnight freight-ships the PAK to the company  
+•  Day 2 – The PAK instrumentation begins on the customer’s SAN.  
+•  Day 4 – Resolution of collection of company WWN nicknames and link configurations is 
+
+achieved and VirtualWisdom begins collecting SAN metrics. 
+
+•  Day 5 – During a SWAT team meeting, an event occurs, and within 20 minutes VI is able 
+
+to identify multiple contributing factors, using correlation from the VirtualWisdom 
+dashboard.  These factors are later confirmed to include the ‘root causes’. 
+
+•  Day 6 – VI issues an interim report relating the potential problem areas of the SAN and 
+helps to collectively determine prioritization; multiple vendors/parties are engaged in 
+deep trouble-shooting. 
+
+•  Day 7 – Trends are now apparent in the SAN and VI further refines recommendations 
+for investigation and resolution.  Root cause and effect relationship between the array 
+firmware and server reboots is established. 
+
+•  Day 8 – The storage vendor develops remediation plan. 
+
+Findings Summary & Outage Root Cause 
+Though VI found several SAN “anomalies” in the environment with varying degrees of severity, 
+the problem that the company was experiencing that led to the application outages manifested 
+itself as SCSI timeouts of I/O transactions that caused “channel control checks” on the Linux-
+based virtual servers. This ultimately led to the I/O paths being “dropped” (i.e. going offline) 
+which meant that the storage was no longer accessible to the server. As a result, the application 
+stopped functioning.  Note that prior to the SOS4SANs engagement, Red Hat (the Linux 
+operating system vendor) had already identified a driver bug which caused the O/S to overreact 
+to these timeouts. However, the root-cause of the storage vendor array Link Resets was not yet 
+known. 
+
+During the period in which VirtualWisdom was monitoring the SAN, this condition occurred and 
+was visible through the VirtualWisdom dashboard. Specifically, several links on the storage array 
+experienced a “Link Reset” condition which resulted in SCSI timeouts on several servers.  VI also 
+noticed that at the same time that these storage Link Resets occurred, several other servers that 
+were mapped to these storage links had been rebooted. VI was able to correlate these 
+seemingly independent events through the VirtualWisdom dashboard. 
+
+Based on this correlation, it was determined that the server reboots were the root-cause events
+ 
+that resulted in the storage vendor storage links being reset. The storage array port issued a Link 
+Reset at every login / reboot. This is not a “normal” storage link response to an event like a 
+server reboot. Consequently, the storage vendor was able to isolate the condition and develop a 
+plan for a firmware code change that would address this issue. In the meantime, the company 
+put together an interim measure with the intent of limiting the number of server reboots that 
+take place during business hours in order to minimize the risk of the event occurring again, until 
+such time that the storage vendor fix is implemented. 
+
+2 
+ 
+
+ 
+
+  U.S. Insurance Company 
+                         Case Study 
+
+ 
+
+Other findings 
+CRC Errors 
+The FC link of one server was tapped and monitored by VirtualWisdom since there was 
+some suspicion regarding this server and its potential role in the storage Link Reset issue. 
+Frequent CRC errors were seen during backup jobs. It was determined that these errors 
+were unrelated to the storage Link Resets. The errors were related to the physical Fibre 
+Channel infrastructure, which was addressed separately. 
+
+Storage array-related CRC errors were reported but it was determined that these were not 
+related to the outage issue. However, random CRC errors are still being reported on these 
+array links, and the customer is investigating further. 
+
+Multiple ISLs Reporting Class 3 Discards (2 core switches) 
+It was determined that this issue was not related to the outage issue. Class 3 Discards 
+should always be investigated since they could be an indicator of some transaction not 
+completing properly or in a timely manner. The switch vendor is working with the company 
+to determine the cause of these discards but these events were not causing application 
+performance problems. 
+
+Empty Ports Generating Error Traffic on the Fabric 
+Ports without devices properly logged-in are generating errors. This condition induces 
+unnecessary workload on the FC switch although it is not causing issues in the SAN today. 
+This is caused by a connected device (e.g. HBA) that does not have a driver loaded so that it 
+may log in to the fabric properly. It was recommended that the company should disable 
+these ports until such time that the device is properly configured. 
+
+Summary 
+Virtual Instruments was brought into this insurance company through the storage vendor to 
+help diagnose problems using VI’s VirtualWisdom technology (hardware and software) and 
+Professional Services. This service, SOS4SANs
+, involves the installation of SANInsight TAPs 
+combined with VirtualWisdom probe hardware and software to obtain a detailed understanding 
+of the storage transactions occurring within the Fibre Channel SAN.  Through the collection and 
+analysis of I/O data by Virtual Instruments’ Professional Services, the source of the problem was 
+identified and a remediation plan was developed. This enabled the company to quickly resolve 
+issues and improve services to its customers.  For the IT vendors, demands on their services and 
+escalation engineering teams were dramatically lowered. 
+
+It should be noted that in VI’s experience, most application-impacting SAN events are a 
+combination of problems similar to the ones uncovered during this analysis. Often, these issues 
+can exist undetected in an environment until the overhead in dealing with them overwhelms the 
+SAN’s ability to manage them.  It was recommended that long term monitoring and alerting be 
+put in place so that these types of issues can be addressed as they arise and before applications 
+or users are impacted.  
+
+ 
+
+3 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+25 Metro Drive, Suite 400 
+San Jose, CA 95110 
+Phone: 408-579-4000  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+Phone: 408-579-4080  
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+©2011  Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 06/11 
+ 
+
+

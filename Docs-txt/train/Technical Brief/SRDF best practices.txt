@@ -1,0 +1,175 @@
+Technical Brief 
+ 
+
+	  
+
+ 
+
+ 
+
+Best Networking Practices for EMC® SRDF® Replication  
+
+Overview  
+Most large organizations now replicate key information and systems at one or remote 
+sites, as protection against natural or man-made disasters. It is extremely important to 
+the health of these organizations that replication processes work as expected, and that 
+process latencies are within acceptable limits. The long-distance links supporting your 
+SRDF replication process are extremely important and expensive, so being able to 
+monitor their usage and to identify problems is vital. Virtual Instrument’s VirtualWisdom® 
+offerings help you to efficiently diagnose remote replication problems, to anticipate and 
+prevent potential issues, and to confidently plan and execute future replication efforts. 
+VirtualWisdom can provide value to your organization as you instrument and measure 
+your network, analyze meaningful metrics, and optimize your replication network.  
+INST R UM ENT   AND  M EASUR E: VirtualWisdom allows you to examine your 
+replication traffic at the link level, analyzing and understanding every conversation 
+between your local and remote systems and subsystems. When needed, Virtual 
+Instruments SANInsight® Protocol Analyzer can provide an even deeper look, and can 
+generate industry-standard “traces” that can be provided electronically to EMC to 
+expedite problem resolution. This information is especially valuable when encountering 
+intermittent problems or vendor interoperability issues.  In cases where the SAN is not at 
+fault when replication problems occur, VirtualWisdom allows you to demonstrate that the 
+SAN fabric is operating correctly. 
+ANALYZE: VirtualWisdom can be used to examine SRDF replication traffic for any 
+unknown or unexpected occurrences, identifying and addressing them before they create 
+problems. VirtualWisdom can also be used to “baseline” your replication process during 
+periods of normal operation, and then by comparing those statistics with real-time ones, 
+you can detect changes in your environment that may cause, or be indicators of, 
+imminent problems. 
+OPT IM IZE: VirtualWisdom offerings can play a vital role in preparing your replication 
+strategy and plans for the future. It can help you understand the complex inter-
+relationships between bandwidth, replication speed, cost and reliability, so you can make 
+the best decisions for your organization. 
+ 
+Best Practices 
+Planning 
+Application demand is a key part of planning a remote replication infrastructure. Using 
+VirtualWisdom to assess the current environment provides information needed to 
+correctly plan the new architecture and layout. By understanding the demand that each 
+application will place on the replication infrastructure, the replication pipe can be 
+appropriately sized.  It is important to establish a performance baseline and resolve 
+existing problems prior to implementing remote replication. An environment that is 
+
+	  
+
+SRDF® Replication 
+Network Challenges 
+	  
+•  WAN problems can mean 
+
+that replication is not 
+occurring at the expected 
+rate, resulting in 
+unacceptably long 
+application response 
+times, or in increased lag 
+times for remote site 
+updates to occur 
+
+•  Under-utilized WAN links 
+
+can represent unnecessary 
+expense  
+
+•  Achievement of service 
+
+level agreements (SLAs) by 
+WAN providers cannot be 
+measured or verified 
+
+• Performance issues and 
+
+intermittent failures cannot 
+be analyzed or understood 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+	  
+
+Technical Brief 
+ 
+
+	  
+already experiencing even minor issues can add to the complexity of rolling out a remote 
+replication infrastructure. Without a baseline it may be difficult to determine if an issue is 
+new, a compound problem of a new condition and an old somewhat benign issue, or 
+was simply an existing issue that was not detected because the environment was not 
+being adequately scrutinized. This can make it very difficult to resolve these issues and 
+can cause the replication to be blamed for problems it did not create. Virtual Instruments 
+offers a health check assessment service to establish the baseline health and 
+performance of the SAN, so that the replication can be applied to a healthy SAN. Now is 
+the time to plan the network infrastructure to be analysis-ready. By including Traffic 
+Access Points (TAPs) to the replication infrastructure, your network can be readied for 
+immediate analysis of problems, and for proactive monitoring to prevent problems. An 
+infrastructure that is analysis-ready can prevent future downtime when problems are 
+encountered, can minimize the need to chase or recreate intermittent issues, and should 
+speed problem resolution. Synchronous remote replication can cause slowdowns of all 
+applications when problems arise. These links can become single points of performance 
+issues, so they should be very closely monitored. 
+Implementation 
+Prior to adding replication traffic to your remote link, the link should be tested to ensure 
+that its latency times are well within the requirements of the planned replication method. 
+Skipping this step can lead to serious problems later, and simply testing the WAN portion 
+of the link does not yield an adequate representation of the real latency that will be 
+experienced. As each server or application is configured for replication, it is important to 
+monitor the performance of the environment. The performance should be compared to 
+the baseline established during the planning phase, in order to ensure that there is 
+minimal latency introduced by the replication, and that no issues or errors are occurring 
+on the new network.  Virtual Instruments provides solutions to monitor the latency as 
+well as software to generate various real-world-like loads, so the latency can be trended 
+under various conditions. Other Virtual Instruments services can help you test and tune 
+the environment before the replication process is online and while it is rolled out. 
+Production 
+As application demands change, it is important to ensure that the replication method 
+(synchronous or asynchronous) is still business-justified. VirtualWisdom can monitor and 
+report on these changing demands, so that the associated costs can be compared to the 
+current business value of the application and its data. Because problems with remote 
+links can affect all of the applications served by a SAN, it is vital to ensure that minor 
+errors don’t cascade into major problems. Proactively keeping the minor issues in check 
+keeps these links healthy, optimally performing and robust. 
+ 
+ 
+
+Corpora t e  He a dqua rt e rs 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+S a le s 
+sales@virtualinstruments.com 
+Phone:  408-579-4081 
+
+S upport  
+support@virtualinstruments.com 
+ 
+
+©2011 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or 
+servicemarks of, and are used to identify, products or services of their respective owners. 09/11 
+	  
+
+

@@ -1,0 +1,292 @@
+Ecommerce Business Deploys Virtual
+Instruments’ VirtualWisdom to Gain Transaction
+Visibility and Ensure SAN Uptime
+De-risked datacenter migration and Oracle consolidation
+project
+
+Company Background
+The company, with revenues growing 33% year over year, is one of the leading e-
+commerce businesses allowing payments and money transfers to be made securely
+through the internet. The payment service is as an electronic alternative to traditional
+paper methods such as checks and money orders and operates in over 100 markets
+with millions of accounts.
+
+IT Environment
+The HDS storage environment in their U.S. datacenters includes USP-V and VSP for
+tier-one storage and AMS for tier-two, running through a Brocade Fiber Channel SAN
+fabric totaling 2400 ports and over 400 SAN connected hosts (Solaris and AIX).
+Primary applications are deployed on very large Oracle databases, with over 8
+petabytes of storage and roughly 50% yearly growth.  Hosts are primarily Solaris, AIX,
+and Linux based.
+
+Business Challenge
+The company’s revenues come from online financial transactions.  While this company
+is one of the leaders in this space, consumers have many choices when paying online.
+In the physical world, if you are standing in line to pay for something
+In the local grocery store, and one line appears to be slow, you will move to another line.
+So it is in the online world.  If one online payment option is slow or has an outage,
+consumers will move over to another option, such as paying by another credit card. For
+this business, online performance and uptime directly equate to revenue.  A slowdown for
+any reason can mean hundreds of thousands of dollars, or even millions of dollars are
+lost.  And a severe outage would be front page news in financial publications around the
+world.
+
+IT Challenges
+The primary objective of the IT department is to support the growth and smooth
+
+Challenges:
+ Keep IT infrastructure up and
+
+running 24x7x365 at peak
+performance.
+
+ Huge growth in Oracle
+
+databases and escalating costs
+of IT in a hyper competitive
+market put pressure on staff to
+do more with existing staff
+resources, and to optimize
+CAPEX
+
+ Migration of mission critical
+Oracle applications across
+datacenters and consolidated
+storage arrays had to be
+performed flawlessly
+
+ Inordinate amount of IT staff
+
+and vendor services time spent
+on trying to diagnose SAN
+problems
+
+ SAN team lacked the tool
+
+necessary to move to a
+chargeback model, to provide
+QoS environment to its
+customers
+
+Solution:
+ Virtual Instruments
+
+VirtualWisdom software and
+SANInsight Tap Patch Panel
+Systems and SAN
+
+ Performance Probe monitoring,
+
+and professional services
+consulting
+
+www.virtualinstruments.com
+
+Customer Benefits:
+
+ Used in test lab to validate
+vendor claims and test for
+compatibility issues
+
+ Reduction in CAPEX and OPEX
+
+by reducing over provisioning
+of ports
+
+ Tracks SAN performance in real
+
+time during migrations,
+upgrades, and reconfigurations,
+to ensure that changes do not
+hurt application performance,
+and to provide assurances to
+the Oracle DB, host and
+application teams that latency
+changes during the migration /
+consolidation events are within
+expected ranges
+
+ Potential application slow-
+downs can be more easily
+identified and corrective action
+taken, often before the
+application consumer is even
+aware of a problem
+
+ Provides SAN team the tools
+necessary to move to a cloud
+or chargeback model, to
+provide a QoS environment to
+its customers
+
+ Integrated TAPs and patch
+panels provide immediate
+access to all network traffic
+without downtime or disruption
+to live environment
+
+operation of the business unit. IT must ensure new applications are rolled out quickly and
+reliably, applications are up and available to users 24x7x365, and application response
+times to the users meet their expectations.  The challenge facing the IT administrators is
+really one of transaction visibility through the I/O system, getting meaningful data about
+their infrastructure on a continuous, real-time basis. Without this data and measurement
+system, application performance is difficult to optimize, and every application demands
+the most expensive, tier 1 storage.
+Most recently, in 2012, the team was challenged with moving its primary production
+datacenter 500 miles, at the same time consolidating its two most mission critical Oracle
+databases from two HDS USP/Vs to one VSP.
+
+The Virtual Instruments Solution
+VirtualWisdom offers instrumentation, monitoring, and analysis platform that simplifies
+the lives of IT storage professionals.  With Virtual Instruments, the eCommerce company
+can holistically assess the entire multi-vendor SAN infrastructure, and get the data
+necessary to make intelligent decisions about capacity, utilization, and performance for
+every layer of the infrastructure - network, server, storage, and applications.  Vendor
+finger-pointing is nearly eliminated, making both customers and the vendor service
+organizations more productive.
+
+The diagram above is a simple representation of the deployment.  VirtualWisdom gets its
+data from the Brocade switches via SNMP, and from the physical layer via an optical
+splitter (Tap Patch Panel System).  This TPPS provides real-time, bit-for-bit copy of all
+traffic, unlike switch mirror or SPAN ports. The SAN Performance Probe analyzes every
+Fibre Channel frame (transaction) in real-time to provide dozens of critical statistics about
+storage traffic, transmission errors, and SAN read and write latency.
+
+For the datacenter migration, the customer (1) benchmarked the application performance
+at the old datacenter, (2) tracked the latency metrics during the migration, and (3)
+provided assurance once the migration/consolidation was complete that there was no
+negative effect on application performance.  Additionally, the customer used
+VirtualWisdom to instrument and analyze the new SAN, remediating several physical and
+configuration problems before the production applications went live.  Issues found and
+remediated included:
+
+www.virtualinstruments.com
+
+1. Multi-path configuration errors, including causing excessive link utilization
+2. Missing or incorrect nicknames
+3. HBA queue depths set too high
+4. CRC errors
+5. Class 3 discards
+6. Loss of synchronization, loss of signal, link resets and link failures
+7. Two SFPs were found to be out of spec
+8. Vendor monitoring software was causing performance impact
+
+This last issue was serious enough that without VirtualWisdom, the customer was
+prepared to fail back to the old storage arrays, rather than risk performance problems on
+its mission critical Oracle applications.
+
+Customer Benefits
+ Potential application slow-downs can be proactively identified and corrective action
+taken before the application consumer experiences a problem and chooses another
+online payment vendor
+
+ Reduced over-provisioning of array front end ports, with no risk to performance
+
+ Test and development lab can more easily validate vendor claims and test for
+
+compatibility issues
+
+ Over time, will help to optimize tiering by validating latency against baseline values
+
+when LUNs are moved to lower cost tiers, and to “right tier” in the first place
+
+ Tracks SAN performance in real time during migrations, upgrades, and
+
+reconfigurations, to ensure that changes do not hurt application performance, and to
+provide assurances to the DB, host and application teams that changes during the
+events are within expected ranges
+
+ Substantial reduction in the need to replace suspected bad SAN components
+
+because of superior fault diagnosis, which saves on both CAPEX and OPEX
+
+ Significant reduction in finger pointing between IT departments and with vendors;
+
+can provide better metrics to the vendors to assist them in making real-world
+decisions on migrations and upgrades
+
+ Over time, IT staff plans to use VirtualWisdom to help balance over-utilized and
+
+under-utilized ports and reduce links that are too heavily subscribed.
+
+ Immediate access to all network traffic without downtime or disruption to live
+
+environment enables dynamic connection of analysis, monitoring, and security
+devices into fibre optic networks
+
+ Quantitative modelling helps eliminate “rules of thumb” capacity and performance
+
+planning; provides critical input for future purchasing decisions.
+
+ Over time, expected to help enable the IT infrastructure management team to
+
+generate, promote, and comply with service level agreements, provide SLAs, and
+demonstrate the health of the SAN via dashboard displays in the Network Operations
+Center.
+
+“If you’ve got a SAN refresh
+coming up, TAP your switches.
+Just put them in. Our Oracle team
+can report performance figures at a
+one-second granularity.  With the
+TAPs and hardware monitoring, so
+can we.”
+
+Senior Manager Network and
+Storage Engineering
+eCommerce Business
+
+With VI, we were able to track link
+utilization and it enabled us to save
+a boatload of dough by reducing
+the number of storage front-end
+ports.  We went from 128 ports to
+64, and then to 32 per new frame.
+That’s a savings of over $300K per
+array.”
+
+Operations Manager Network
+and Storage Engineering
+eCommerce Business
+
+“Before VI, our latest storage
+upgrade would have been an all-
+hands-on-deck call-out and my
+team would have been severely
+criticized for what could have been
+interpreted as a real problem.  With
+VI monitoring, we could
+demonstrate, in real-time, that
+longer latencies were due to the
+upgrade and not by any real
+problems in the SAN”.
+
+Senior Manager Network and
+Storage Engineering
+eCommerce Business
+
+www.virtualinstruments.com
+
+Corporate Headquarters
+25 Metro Drive Suite 400
+San Jose, CA 95110
+Phone:  408-579-4000
+Fax:  408-579-4001
+
+European Headquarters
+One Kingdom Street
+Paddington Central * London W2 6BD
+Phone:  44 (0) 203 402 3353
+
+Sales
+sales@virtualinstruments.com
+Support
+support@virtualinstruments.com
+
+©2012 Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks
+of, and are used to identify, products or services of their respective owners. 08/12
+
+www.virtualinstruments.com
+
+

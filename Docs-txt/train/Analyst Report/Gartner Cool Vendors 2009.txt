@@ -1,0 +1,325 @@
+ 
+
+Publication Date: 23 March 2009 
+ 
+Cool Vendors in Storage Technology and Systems, 2009 
+Roger W. Cox,  John Monroe,  Pushan Rinnen,  Stanley Zaffos,  Donna Taylor,  Joseph Unsworth 
+
+Research
+ID Number: G00165287
+
+This report analyzes five vendors that develop and bring to market technologies that 
+address the issues of cost, performance, management and disaster recovery (DR) 
+associated with a storage infrastructure. IT personnel responsible for deploying and 
+managing storage infrastructures can benefit from learning about the technologies 
+covered in this report as they seek to better manage service-level agreements (SLAs) 
+during these difficult economic times. 
+
+ 
+
+Key Findings 
+
+•  Performance, use and availability of large complex and sophisticated storage area 
+
+networks (SANs) can be improved by using advanced analytical tools that provide real-
+time visibility into SAN traffic flow, actual performance and use at the fabric level. 
+
+•  Solid-state drive (SSD) technology addresses the input/output (I/O), power and cooling 
+dilemma associated with extreme transaction-oriented applications that, until now, the 
+user has had to downstroke hard-disk drives (HDDs) to satisfy performance SLAs. 
+
+•  Cost-effective and foolproof DR solutions are critical should a catastrophic event impact 
+
+the primary data center. 
+
+•  Applications such as digital media benefit from storage and file systems that support 
+highly scalable multipetabyte capacities under a single name space with near-linear 
+performance scaling as nodes are added. 
+
+Recommendations 
+
+• 
+
+• 
+
+IT professionals should consider and evaluate innovative technologies from emerging 
+vendors if they reduce cost and simplify the storage infrastructure and improve data 
+availability. 
+
+IT personnel responsible for implementing and managing SANs should evaluate the 
+benefit of incorporating deep monitoring and analytical tools to improve performance, 
+availability, and to reduce capital expenditure (capex) and operating expenditure (opex). 
+
+© 2009 Gartner, Inc. and/or its Affiliates. All Rights Reserved. Reproduction and distribution of this publication in any form 
+without prior written permission is forbidden. The information contained herein has been obtained from sources believed to 
+be reliable. Gartner disclaims all warranties as to the accuracy, completeness or adequacy of such information. Although 
+Gartner's research may discuss legal issues related to the information technology business, Gartner does not provide legal 
+advice or services and its research should not be construed or used as such. Gartner shall have no liability for errors, 
+omissions or inadequacies in the information contained herein or for interpretations thereof. The opinions expressed herein 
+are subject to change without notice. 
+
+ 
+
+ANALYSIS 
+
+This research does not constitute an exhaustive list of vendors in any given technology area, but 
+rather, is designed to highlight interesting, new and innovative vendors, products and services. 
+Gartner disclaims all warranties, express or implied, with respect to this research, including any 
+warranties of merchantability or fitness for a particular purpose. 
+What You Need to Know 
+The storage infrastructure continues to grow in capacity and complexity. Current HDD technology 
+is insufficient to meet demanding performance SLAs without sacrificing capacity, thereby 
+increasing capex and opex. In many cases, SANs now represent an organization's primary 
+storage infrastructure architecture for the delivery of mission-critical applications and data. Yet, 
+the intricate construction of SAN infrastructures puts optimum performance, use and availability at 
+risk. Applications outside the purview of a general IT infrastructure, such as converting digital 
+content into different video formats, require scale-out storage systems with integrated file systems 
+that support an extremely large pool of data and scale performance as capacity is increased. The 
+vexing issues associated with data protection, data loss and distance between primary and DR 
+centers, as well as cost, are being addressed by leveraging technology associated with the 
+aviation industry. The challenges associated with database monitoring, compliance management, 
+and security and event management require new and innovative solutions that simplify these 
+tasks. 
+Axxana, Wellesley, Massachusetts, U.S.; headquarters, Tel-Aviv, Israel (www.axxana.com) 
+Analysis by Stanley Zaffos 
+Why Cool: The aptly named Axxana Phoenix is designed to recover every last protected write 
+operation in the midst of catastrophic failure or from the ruins of a production data center and 
+transmit it to the DR site using broadband technologies. Phoenix achieves this zero data loss 
+without the use of "data bunkers," and their attendant capex and opex, in storage systems. 
+Phoenix is an out-of-band network-based replication appliance that during normal data center 
+operation functions as a hardened repository for pending protected writes. Unlike other network-
+based replication appliances that replace storage-system-based replication functionality, Phoenix 
+sends only the pending writes it is holding to the secondary site following a catastrophic event at 
+the primary site. This makes Phoenix deployments less disruptive than other network-based 
+replication solutions and lowers the cost and complexity of Phoenix hardware and software. The 
+reduced hardware requirements made it easier to package the repository and broadband portions 
+of the appliance in a fireproof impact-proof black box similar in design to the flight data recorders 
+used on all commercial aircraft. Furthermore, instead of using relatively fragile, power-hungry, 
+heat-producing disks, the black box uses an SSD to hold and protect pending protected writes. 
+Challenges: Axxana's primary challenge is its ability to negotiate cooperative agreements with 
+various storage vendors to provide the Phoenix appliance with the asynchronous replication 
+status data it needs to flush successfully transmitted writes to the secondary site. So far, Axxana 
+has negotiated agreements with two established storage vendors, and it claims to have additional 
+agreements in its pipeline. The system is in beta test, with general availability scheduled for April 
+2009. 
+Who Should Care: If Axxana successfully negotiates agreements with major storage vendors, 
+and the Phoenix appliance performs as advertised, it will deliver the benefits of three-site storage 
+solutions at a dramatically lower price without the disruptions normally associated with changing 
+storage-system-based DR topologies. 
+
+Publication Date: 23 March 2009/ID Number: G00165287 
+© 2009 Gartner, Inc. and/or its Affiliates. All Rights Reserved. 
+ 
+
+Page 2 of 6
+
+ 
+
+ 
+Fusion-io, Salt Lake City, Utah, U.S. (www.fusionio.com) 
+Analysis by John Monroe and Joseph Unsworth 
+Why Cool: Fusion-io is currently providing enterprise-grade SSDs that deliver industry-leading 
+ultrafast random I/O performance with sub-50-microseconds access latency through the PCI-
+express (PCIe) interface. The relative ubiquity of the PCI bus in network environments creates an 
+opportunity to link with multiple devices, which is why Fusion-io decided to put enterprise-grade 
+SSD SAN functionality in a PCIe-based design. This approach requires considerable software 
+expertise to ensure seamless integration with existing network and storage architectures, which 
+Fusion-io seems to have achieved. Through proprietary NAND flash management techniques, 
+which feature redundant array of independent disks (RAID) functionality, Fusion-io has achieved 
+impressive performance — in some instances, greater than 100x increases in I/O access speeds 
+compared with HDDs — without great compromise to the reliability of their solutions. The 
+company commenced shipments in April 2008, has announced deals with HP and IBM, and 
+currently claims to have more than 300 customers. Dell has taken a financial stake in Fusion-io. 
+Challenges: Although Fusion-io has a unique and valuable technology that can be integrated 
+with the system at the kernel level and can have clear benefits for performance, power and total 
+cost of ownership, its initial cost will prove to be an obstacle for mainstream adoption, given the 
+difficult economic climate and reduced IT spending budgets. Also, the enterprise-grade SSD 
+market is permeated by hype and deluged by disappointing vendor offerings that have created 
+widespread confusion and impeded adoption. As NAND flash technology advances to new 
+capacity levels, which will increase the need to prevent data degradation, Fusion-io must maintain 
+and extend the quality of its solutions in both read and write performance, as well as reliability, to 
+continue to attract Tier 1 customers. Developing a clear and consistent marketing message 
+supported by major OEM customers will be critical to differentiate Fusion-io's products from those 
+of its competitors, to create awareness and to drive understanding, but expectations for the 
+implementation of this nascent technology must be correctly set. Finally, Fusion-io's single-source 
+solution comes from a small company that is competing against larger established storage 
+solution providers. To stimulate adoption, multiple sources and critical software support will be 
+vital, but this will also invite considerable competition in the long term. 
+Who Should Care: Enterprise users with extraordinary demands for storage network 
+acceleration would benefit from high-bandwidth performance gains with minimal latency, reduced 
+footprint and reduced power. 
+LogLogic, San Jose, California, U.S. (www.loglogic.com) 
+Analysis by Donna Taylor 
+Why Cool: Founded in 2002, LogLogic is a global provider of open-log management and 
+intelligence. With more than 700 customers, LogLogic takes a unique approach to log 
+management using a software appliance, instead of what's previously been done at the hardware 
+level and in the kernel. Bandwidth is reduced, because it is carrying only the compressed and 
+encrypted log file and not the results of every write associated with the transaction. Adding layers 
+of intelligence enables the technology to collect and translate log files, delivering normalized 
+views of the data and summarizing activity in a heterogeneous environment, while adding 
+meaning and context to the data automatically. The technology also addresses compliance, risk 
+mitigation, and security issues. Because the fingerprint could one day be needed as evidence in 
+court, the data is stored in original/complete (but compressed) form, and chain of custody is 
+maintained at all times. The archives are tamperproof (by creating a check sum upon collection) 
+and can be encrypted. LogLogic introduced three new "log-powered applications" in February 
+2009. The applications are focused on specific business needs, such as database activity 
+monitoring, compliance management, and security event management, as well as further 
+
+Publication Date: 23 March 2009/ID Number: G00165287 
+© 2009 Gartner, Inc. and/or its Affiliates. All Rights Reserved. 
+ 
+
+Page 3 of 6
+
+ 
+
+ 
+automating workflow and tailoring reports. The additional complement of offerings will expand its 
+feature set of storage-agnostic log management tools. 
+Challenges: LogLogic's greatest challenge comes from its competitors. Although LogLogic's 
+approach to log and records management is unique, its competitors offer alternatives that 
+address the same issues, but with a different approach. Larger, vertically integrated competitors 
+offering log management products and services may present a hurdle in a bid to secure a 
+customer that prefers to sole-source its business. 
+Who Should Care: IT professionals interested in better managing their data and addressing their 
+records management needs, based on legislative requirements and in preparation for e-
+discovery, should consider LogLogic in their purchasing decisions. Bandwidth reduction and 
+greater safeguards against internal and external threats via log management will result in cost 
+savings to the customer in time saved and threats avoided. 
+Omneon, Sunnyvale, California, U.S. (www.omneon.com) 
+Analysis by Pushan Rinnen 
+Why Cool: Founded in 1998, Omneon made its name in the video server market and the TV 
+broadcasting industry with its media servers for multichannel ingest and playout. In June 2006, it 
+launched its MediaGrid Active Storage System, which constitutes a small portion of its $100 
+million overall annual revenue and 700 customers. The MediaGrid is composed of content 
+directors (metadata server cluster) and content servers (six or more nodes with embedded Serial 
+Advanced Technology Attachment disk drives). A clustered file system runs on Linux and 
+manages the grid's storage volumes. Client access is either through an agent (Windows, Linux 
+and Apple) or a NAS gateway that supports Network File System, Common Internet File System, 
+Advanced Function Printing and FTP protocols. Although many cluster file systems are in the 
+market, what is cool about Omneon MediaGrid storage is its ability to leverage the grid to run 
+CPU-intensive processing applications, as well as its own transcoding application to automatically 
+convert the digital content into different video formats, simplifying the IT infrastructure and 
+workflow for the broadcasting industry. It also has a long list of software developers for the 
+broadcasting and digital media industry, whose software are integrated with Omneon products via 
+its open application programming interfaces. 
+Challenges: Omneon has a low profile and weak brand as a storage company. It has practically 
+zero storage presence outside the media/broadcasting industry. Omneon's key competitors, Isilon 
+and DataDirect Networks, are also growing fast in this industry and may catch up in the 
+application integration front. Those competitors have much-stronger storage brands, as well as 
+broader presence in multiple vertical industries. 
+Who Should Care: IT specialists in the media/broadcasting industry should consider Omneon on 
+their shortlist for storage vendors. 
+Virtual Instruments, Scotts Valley, California, U.S. (www.virtualinstruments.com) 
+Analysis by Roger W. Cox 
+Why Cool: Virtual Instruments addresses the complex and thorny issues associated with large-
+scale Fibre Channel SAN performance optimization, availability, root cause fault analysis and 
+overprovisioned switches. Its SAN infrastructure, vendor-agnostic VirtualWisdom family of deep-
+monitoring and analysis hardware and software products provides real-time visibility into SAN 
+traffic flows, actual performance and use at the fabric level. This enables IT personnel 
+responsible for managing Fibre Channel SAN and virtualized server infrastructures to have real-
+time visibility of application-to-SAN performance, respond faster to issues affecting availability, 
+
+Publication Date: 23 March 2009/ID Number: G00165287 
+© 2009 Gartner, Inc. and/or its Affiliates. All Rights Reserved. 
+ 
+
+Page 4 of 6
+
+ 
+
+ 
+correlate trends over time, verify SLA performance, and reduce capital and operating SAN-related 
+expenditures. 
+Virtual Instruments Traffic Analysis Points (TAPs), Fibre Channel ProbeFCX devices, and Portal 
+and Views software represents the standard VirtualWisdom Enterprise solution. The high-density 
+TAPs are passive and nonintrusive hardware devices that connect to Fibre Channel SAN links 
+collecting real-time data for failure analysis and performance-monitoring purposes. The 
+VirtualWisdom Fibre Channel ProbeFCX, an out-of-band appliance, use the passive TAPs to 
+access storage network traffic to detect slowdowns in application performance; measure latency 
+from servers to storage systems; proactively detect failing SAN devices; identify congested or 
+underutilized ports; and detect and track Fibre Channel and Small Computer System Interface 
+(SCSI) protocol metrics and faults. A baseline of performance and maintenance metrics can be 
+created to verify any impacts caused by changes to the SAN infrastructure, such as operating 
+system or firmware upgrades and zone modifications. The ProbeFCX analyzes every packet on a 
+single, or when configured with the VirtualWisdom Rover, multiple Fibre Channel SAN link(s) at 
+line rates. The Probe FCX end-to-end SCSI device conversations and link metrics are collected 
+by the VirtualWisdom Portal every second and stored in a local MySQL database for viewing and 
+analysis. The VirtualWisdom Views software enables IT personnel to proactively review detailed 
+metrics and alerts in table and graph presentation, as well as to chart historical trends regarding 
+the performance, use and health of the SAN infrastructure. All views may be updated at user-
+defined intervals. 
+Challenges: Virtual Instruments' success will largely depend on how broadly and swiftly it can 
+translate its SAN optimization technology leadership into market leadership. 
+Who Should Care: IT professionals should consider Virtual Instruments' SAN optimization and 
+performance evaluation VirtualWisdom solution as an integral part of their cost optimization and 
+infrastructure modernization strategy as they strive to meet demanding user SLA requirements 
+within constricted budgets. 
+
+RECOMMENDED READING 
+
+"Emerging Technology Analysis: Solid-State Drives for Enterprise Storage" 
+"User Survey Analysis: Data Center Conference Instant Polling Results for Enterprise Storage 
+and Vendor Analysis, SSDs and SRM, North America, 2008" 
+"U.S. Data Center Conference Focuses on How to Do More With Less" 
+
+ 
+
+Publication Date: 23 March 2009/ID Number: G00165287 
+© 2009 Gartner, Inc. and/or its Affiliates. All Rights Reserved. 
+ 
+
+Page 5 of 6
+
+ 
+
+ 
+REGIONAL HEADQUARTERS 
+
+Corporate Headquarters 
+56 Top Gallant Road 
+Stamford, CT 06902-7700 
+U.S.A. 
++1 203 964 0096 
+
+European Headquarters 
+Tamesis 
+The Glanty 
+Egham 
+Surrey, TW20 9AW 
+UNITED KINGDOM 
++44 1784 431611 
+
+Asia/Pacific Headquarters 
+Gartner Australasia Pty. Ltd. 
+Level 9, 141 Walker Street 
+North Sydney 
+New South Wales 2060 
+AUSTRALIA 
++61 2 9459 4600 
+
+Japan Headquarters 
+Gartner Japan Ltd. 
+Aobadai Hills, 6F 
+7-7, Aobadai, 4-chome 
+Meguro-ku, Tokyo 153-0042 
+JAPAN 
++81 3 3481 3670 
+
+Latin America Headquarters 
+Gartner do Brazil 
+Av. das Nações Unidas, 12551 
+9° andar—World Trade Center 
+04578-903—São Paulo SP 
+BRAZIL 
++55 11 3443 1509 
+
+Publication Date: 23 March 2009/ID Number: G00165287 
+© 2009 Gartner, Inc. and/or its Affiliates. All Rights Reserved. 
+ 
+
+Page 6 of 6
+
+ 
+
+

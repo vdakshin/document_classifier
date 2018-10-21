@@ -1,0 +1,341 @@
+fpo image
+
+ALwAySON	POINT	OF	CARE
+
+Constant	Availability	to	Patient	Care	Applications
+
+Continuous Access to EMR is Critical for Patient Safety 
+Digitized medical records can reduce medical errors, improve patient safety and 
+produce better clinical outcomes—but if the caregiver cannot access the Electronic 
+Medical Record (EMR) system because their datacenter is down, the consequences can 
+be serious. When electronic devices replace paper charts and physician prescription 
+pads, the reliability, availability and security of the underlying system delivering clinical 
+workspaces becomes critical.
+
+That is why modernization of the point-of-care desktop has become an urgent priority 
+for hospital IT professionals as well as hospital caregivers. Desktops and patient care 
+applications must be immediately accessible and available to caregivers even in the 
+event of site failures and outages.
+
+VMware and VCE have a solution. By virtualizing desktops and hosting them on VMware 
+vSphere™, a key component of VMware View, and using this tested architectural design, 
+healthcare organizations can now have unparalleled desktop and application reliability 
+and availability. If an outage should occur, the caregiver simply logs back into their 
+desktop by either tapping a proximity card, swiping their finger on a biometric device 
+or entering their username and password, and they will be immediately presented with 
+their clinical desktop so they can resume caring for patients.
+
+•	VALIdATEd	solution	
+
+architecture	that	provides	non-
+stop	access	to	clinical	desktops	
+and	Electronic	Medical	Record	
+applications	for	healthcare	
+providers
+
+•	INTEgRATEd	and	tested	
+VMware	and	Technology	
+Alliance	Partner	solution	based	
+on	mobile,	wireless,	and	wired	
+networks
+
+•	PROVIdES	constant	
+
+monitoring,	load	balancing		
+and	data	replication	features	
+for	optimizing	performance	
+and	uptime
+
+www.vce.com
+
+www.vce.com
+
+THE WORLD’S MOST ADVANCED CONVERGED INFRASTRUCTURE
+
+AlwaysOn Point of Care  
+Improves Patient Care
+The VMware AlwaysOn Point of Care 
+solution architecture allows clinicians 
+and staff to achieve the continuous 
+level of availability they demand. In 
+a typical IT environment, only the 
+production environment is backed up. 
+But by having an Active-Active desktop 
+environment running identical desktop 
+images, even if there is a failure at the 
+primary site, end users can promptly 
+access their desktops and applications. 
+If a healthcare provider’s infrastructure 
+is compromised through a natural 
+disaster or other outage, caregivers—
+who are many times among the first 
+responders—can be assured they 
+can reach their clinical desktops and 
+applications where and when they are 
+needed the most. 
+
+This new architectural design features 
+continuous monitoring capabilities, as 
+well as load balancing with constant 
+data replication across sites to ensure 
+that if the primary site is down 
+VMware View will seamlessly failover 
+to the secondary site so the caregiver 
+experiences minimal disruption. As a 
+result, IT can now deliver non-stop point 
+of care desktops with all applications 
+and data readily available where and 
+when they are needed most.
+
+Solution Elements
+AlwaysOn Point of Care is a validated 
+solution architecture offered by VMware 
+and VCE. It is specifically built to meet 
+the needs of healthcare organizations. It 
+combines VMware, VCE and ecosystem 
+products and services to meet stringent 
+requirements for availability, security, 
+elastic scaling, rapid and automated 
+provisioning, high capacity, and low 
+latency with no single point of failure. 
+Key solution elements include:
+
+VMware View
+
+The cornerstone of the AlwaysOn 
+Point of Care solution, VMware View 
+modernizes desktops and applications 
+by moving them into the cloud and 
+delivering them as a highly available 
+managed service. From the end user’s 
+perspective, View makes it possible to 
+work from virtually any location using 
+any qualified device to access clinical 
+desktops—PCs, thin clients, zero clients, 
+iPads, and other tablets. The user’s 
+familiar desktop appears on each device 
+with everything in the right place, with 
+all authorized applications, files, and 
+data available, and with everything 
+functioning as expected.
+
+In the event of a site disruption, users 
+can connect back to the same desktop 
+running the identical master image 
+within seconds.
+
+VCE Vblock Systems
+
+AlwaysOn Point of Care desktops are 
+ideally hosted on Vblock Systems, which 
+seamlessly integrate leading compute, 
+network, and storage technologies. 
+Through intelligent discovery, awareness, 
+and automation, Vblock Systems provide 
+at-scale virtualization and application 
+performance. Vblock Systems are 
+designed with security in mind, drawing 
+upon the resources of RSA, EMC, 
+Cisco, and VMware. Security is tested 
+and proven not only within VCE R&D, 
+but also at many of the world’s most 
+demanding government and enterprise 
+data centers.  By taking a system-level 
+viewpoint of converged infrastructure 
+and driving standardization of best-of-
+breed technologies, Vblock Systems 
+can uniquely optimize a virtual desktop 
+project so that it can flexibly meet any 
+processing, bandwidth, transactional, 
+or capacity requirements, enabling high 
+concurrency rates typical of a virtual 
+desktop workload.
+
+www.vce.com
+
+Imprivata OneSign 
+
+Cloud-based records management 
+
+Imprivata OneSign® provides SSO 
+and strong authentication, permitting 
+users to access all workstations and 
+applications they are authorized to use. 
+By configuring and linking multiple 
+instances of virtual appliances at 
+both sites with fault tolerance, during 
+the site failover, desktop agents 
+can continuously look up the next 
+working instance without disrupting 
+the workflow. Users easily connect to 
+virtual desktops and applications via 
+Imprivata OneSign single signon from 
+the access point all the way through to 
+the EMR application. 
+
+The AlwaysOn Point of Care solution 
+incorporates services such as Health 
+Info Exchanges (HIEs), which transition 
+previously siloed medical information to 
+a mesh environment and make it readily 
+accessible using high-capacity mobile, 
+wireless and wireline services. The 
+solution design simulates the application 
+configuration (i.e. VitalImages Vitrea, 
+Microsoft Exchange, VMware View 
+and Imprivata OneSign) workload 
+analysis and reporting in the third-party 
+application hosting and cloud sites. 
+
+The Vblock System uses EMC storage 
+for reliable high performance. Site-to-
+site replication of the Master Images is 
+performed with EMC VNX Replicator 
+storage technology to provide data 
+redundancy and reduced recovery 
+times. Asynchronous replication is used 
+with NFS datastores. EMC storage 
+platforms have the flexibility to support 
+a variety of replication models, including 
+synchronous or asynchronous block-
+based replication as well with EMC 
+Recoverpoint.
+
+Figure 1: The AlwaysOn Point of Care solution integrates mobile, 
+wireless and wired networks via VMware and partner products to 
+deliver continuous desktop uptime.
+
+	 VMware	services	and	
+
+partnerships	make	it	easy	
+to	implement	the	solution	
+without	specialized		
+in-house	expertise
+
+The chart below summarizes the key VMware, VCE and partner  
+products that comprise the AlwaysOn Point of Care solution.
+
+PARTNER 
+PRODUCTS
+
+USE CASE — HIGH 
+AVAILABILITY AND 
+CAPACITY EXTENSIBILITY
+
+USE CASE — DISASTER 
+RECOVERY AND DESKTOP 
+PORTABILITY
+
+•  Compose and recompose 
+
+•  Access from mobile or 
+
+desktop images
+
+stationary devices
+
+VMware View
+
+•  Profile redirection to keep 
+
+•  Desktop follows clinician 
+
+user data persistent
+
+from device to device
+
+•  High-performance desktop 
+
+•  Instant desktop provisioning 
+
+experience with PCoIP
+
+and user entitlement 
+
+VCE Vblock
+
+Imprivata 
+OneSign
+
+•  Well defined scalability
+
+•  Simplified provisioning
+
+•  Repeatable, modular 
+
+architecture
+
+•  High availability design
+
+•  Redundant components and 
+
+data paths
+
+•  Multiple replication, archive, 
+
+and backup solutions
+
+•  Application and session 
+
+roaming
+
+•  Multiple appliance 
+
+configuration for HA
+
+•  Single signon to 
+
+applications
+
+•  Fault tolerance
+
+•  Use access policy for virtual 
+
+desktop and endpoint
+
+•  Kiosk Mode Application SSO
+
+AlwaysOn Learn More 
+For additional information about 
+how the AlwaysOn Point of Care 
+solution is built and validated, read 
+the AlwaysOn Point of Care Reference 
+Validation document at: www.vce.
+com/solution/applications/end-user/
+AlwaysOnSolutionArchitecture.pdf
+
+Or call VCE for an assessment today. 
+Our experts will help you determine the 
+opportunity for your organization—and 
+chart your course to continuous desktop 
+access. For more information or to 
+purchase VCE products, visit vce.com
+
+Summary 
+AlwaysOn Point of Care from VMware 
+and VCE is a managed network/
+connectivity solution optimized for 
+the specific, stringent requirements 
+of medical organizations. It integrates 
+technology and solutions from VMware, 
+VCE and our thriving ecosystem of 
+partners. The solution leverages mobile, 
+wireless and wired networks that are 
+customized to health care industry 
+requirements. 
+
+Together, VMware, VCE and our partners 
+can deliver continuous desktop uptime 
+to enable access to critical medical 
+applications and records. More than 
+that, we deliver true peace of mind for 
+medical professionals—and the highest 
+levels of patient care. 
+
+	
+Copyright	©2013	VCE	Company,	LLC.	All	rights	reserved.	VCE,	VCE	Vision,	Vblock,	and	the	VCE	logo	are	registered	trademarks	or	trademarks	of	VCE	Company	LLC	or	its	
+affiliates	in	the	United	States	and/or	other	countries.	All	other	trademarks	used	herein	are	the	property	of	their	respective	owners.
+
+FOR	MORE	INFORMATION,	VISIT	US	AT  www.vce.com
+
+

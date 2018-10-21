@@ -1,0 +1,389 @@
+Lab Validation 
+Report 
+ 
+
+Virtual Instruments – VirtualWisdom  
+(Preview) 
+
+A Big Window Into SAN Performance 
+
+ 
+
+By Ginny Roth 
+ 
+
+August 2011 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2011, Enterprise Strategy Group, Inc.  All Rights Reserved. 
+
+     
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           2 
+
+Contents 
+
+Introduction .................................................................................................................................................. 3 
+Background ............................................................................................................................................................... 3 
+The VirtualWisdom Solution ..................................................................................................................................... 4 
+
+ESG Lab Validation ........................................................................................................................................ 5 
+SAN Utilization and Performance Optimization ....................................................................................................... 5 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+
+ESG Lab Reports 
+
+The goal of ESG Lab reports is to educate IT professionals about emerging technologies and products in the 
+storage, data management and information security industries. ESG Lab reports are not meant to replace the 
+evaluation process that should be conducted before making purchasing decisions, but rather to provide insight 
+into these emerging technologies. Our objective is to go over some of the more valuable feature/functions of 
+products, show how they can be used to solve real customer problems and identify any areas needing 
+improvement. ESG Lab's expert third-party perspective is based on our own hands-on testing as well as on 
+interviews with customers who use these products in production environments. This ESG Lab report was 
+sponsored by Virtual Instruments.  
+
+All trademark names are property of their respective companies. Information contained in this publication has been obtained by sources The Enterprise 
+Strategy Group (ESG) considers to be reliable but is not warranted by ESG. This publication may contain opinions of ESG, which are subject to change from 
+time to time. This publication is copyrighted by The Enterprise Strategy Group, Inc. Any reproduction or redistribution of this publication, in whole or in 
+part,  whether  in  hard-copy  format,  electronically,  or  otherwise  to  persons  not  authorized  to  receive  it,  without  the  express  consent  of  the  Enterprise 
+Strategy Group, Inc., is in violation of U.S. Copyright law and will be subject to an action for civil damages and, if applicable, criminal prosecution. Should 
+you have any questions, please contact ESG Client Relations at (508) 482.0188.  
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           3 
+
+Introduction  
+
+It’s no surprise that server virtualization has had a significant impact on supporting infrastructure as IT 
+organizations struggle to effectively manage, monitor, and scale resources to meet the needs of a dynamic 
+environment. Getting visibility into the virtualized infrastructure remains a critical IT requirement.  This ESG Lab 
+Validation examines Virtual Instrument’s VirtualWisdom product line and validates VirtualWisdom’s ability to 
+provide visibility of fibre channel traffic from virtual servers to storage within an IT data center. ESG Lab completed 
+testing of the VirtualWisdom product line, including its new SAN Performance Probe, in August, 2011. This excerpt 
+is a preview of the full VirtualWisdom ESG Lab Validation report, which will be published in September, 2011. 
+
+Background 
+
+When IT organizations were asked the impact server virtualization has had on their storage infrastructure 35% 
+responded that it has increased their use of SAN-based storage.1 This number will only grow as virtualization 
+continues to move into the data center to support business critical applications. 
+
+One of the benefits of virtualization is that it obscures the physical complexity of the underlying hardware from 
+applications. But that abstraction complicates the causes of performance problems and outages from IT Operations, 
+as multiple support teams in IT must come together (server, networking, and storage) making it difficult to diagnose 
+and resolve issues. 
+
+Figure 1. Virtualization’s Impact on Storage Infrastructure  
+
+How has the use of server virtualization technology impacted your 
+organization’s storage infrastructure and/or processes? (Percent of 
+
+respondents, N=190, multiple responses accepted)
+
+We have increased our use of SAN-based 
+
+storage 
+
+Changed our disaster recovery strategy 
+
+We have increased our use of storage 
+
+virtualization technology
+
+We have changed backup tools and processes
+
+Implemented deduplication technology
+
+It has increased the need for collaboration 
+
+with other infrastructure groups
+
+35%
+
+29%
+
+25%
+
+19%
+
+18%
+
+18%
+
+0%
+
+10%
+
+20%
+
+30%
+
+40%
+
+ Source: Enterprise Strategy Group, 2011. 
+
+ 
+
+                                                      
+1 Source: ESG Research Report, The Evolution of Server Virtualization, November, 2010 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           4 
+
+The VirtualWisdom Solution 
+
+Virtual Instruments delivers a unique solution, providing real-time operational, utilization, performance monitoring 
+and root-cause diagnostics for the SAN. VirtualWisdom passively mirrors traffic flowing across the SAN to examine 
+an out-of-band copy of the traffic, combining the results with monitoring data gathered from both VMware ESX 
+servers and the SAN switches to present a comprehensive set of granular, accurate monitoring data.  
+
+As shown in Figure 2, VirtualWisdom deploys multiple probes, both hardware and software, to collect data from 
+servers to SAN. The combined data is hosted on the VirtualWisdom server and provides a central store for analysis 
+and real-time monitoring of the SAN infrastructure. 
+
+Figure 2. The Virtual Instruments VirtualWisdom Product Line 
+
+ 
+
+VirtualWisdom provides a solution that facilitates the following key benefits: 
+
+  Virtual infrastructure optimization–Performance metrics not only at the virtual server level, but also at the 
+
+switch and storage array helps virtual server administrators more accurately identify where performance 
+problems are occurring and provide a more intelligent plan for provisioning and load balancing applications 
+deployed on virtual machines. 
+SAN optimization–With a comprehensive view of SAN traffic and a historical data trail, administrators can 
+quickly pinpoint the root cause of application service interruptions. This allows SAN administrators to 
+determine without a doubt if the SAN is the root cause of an outage or slow application performance.   
+
+ 
+
+  Private cloud optimization–IT organizations looking to move services to a private cloud can use the 
+
+monitoring and reporting capabilities of VirtualWisdom to help fulfill service level agreements related to 
+performance and availability and minimize the costs associated with providing the high level SLA’s required 
+for cloud services. 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           5 
+
+ESG Lab Validation  
+
+ESG Lab performed hands-on evaluation and testing of the VirtualWisdom product line at the Virtual Instruments 
+headquarters in San Jose, California. Testing was designed to demonstrate the capabilities of VirtualWisdom in ease 
+of implementation and management, SAN utilization and performance optimization, and real-time monitoring and 
+analysis. 
+
+SAN Utilization and Performance Optimization 
+
+The test bed used by ESG Lab is illustrated in Figure 3. A VirtualWisdom SAN Performance Probe, Model ProbeFC8, 
+is attached to a Fibre Channel Traffic Access Point (TAP) to receive out of band SAN traffic for continuous 
+monitoring and reporting. The data is sent to the VirtualWisdom server every second for collection and analysis. In 
+addition, SAN Availability Probe and Virtual Server Probe software are installed on the VirtualWisdom server to 
+monitor the fibre channel switch fabric and virtual server environment. 
+
+Figure 3. The ESG Lab Test Bed 
+
+ 
+
+ESG Lab Testing 
+
+ESG Lab tested ease of use and deployment of the VirtualWisdom software. The server software was installed in 10 
+easy steps and leasing probes for monitoring SAN traffic was straightforward and simple to implement. The views 
+application allowed ESG Lab to look at SCSI metric sets showing end to end data from virtual machine to SAN, along 
+with a complete layout of the logical topology of the SAN infrastructure. 
+
+Next, ESG Lab examined the dashboard application that provides a comprehensive view of performance metrics for 
+the SAN environment. ESG Lab was able to configure widgets to examine multiple metrics for the SAN, switches and 
+virtual machines, and set thresholds to determine where potential performance problems occurred. 
+
+ 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           6 
+
+ESG Lab created a custom tab in the dashboard application that examined performance of the SAN infrastructure 
+from an application point of view. Using SAP as an example, ESG Lab was able to see metrics on the server such as 
+average CPU utilization and memory utilization. In addition, ESG Lab measured buffer to buffer credits and 
+frames/sec on the switch attached to the virtual servers. On the storage side ESG Lab saw multiple metrics from 
+MB/sec on the ports to errors such as aborts and busy. 
+
+Finally, ESG Lab tested the performance of the virtual server environment by first creating a widget to measure the 
+CPU utilization of two virtual machines on two separate storage LUN’s. As shown in Figure 4, virtual server esx4-cl1a 
+was exceeding the threshold for CPU utilization averaging 84.68%, while esx4-cl1b was within the acceptable limits 
+of CPU utilization at 30.76%. ESG Lab used vMotion to move a virtual machine, ESX4-VMotionTestVM-XP, to 
+another virtual server on another storage LUN to alleviate the high CPU utilization.   
+
+Figure 4. Virtual Machine Overutilization 
+
+ 
+
+ 
+
+ESG Lab examined the average CPU usage on both esx4-cl1a and esx4-cl1b and found both were now under the 
+acceptable threshold of 57.23% and 30.99% respectively after a successful move of virtual image. Figure 5 shows 
+the new metrics for both virtual machines. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           7 
+
+Figure 5. Virtual Machine Moved To New Storage  
+
+ 
+
+ 
+ 
+ 
+
+Why This Matters  
+
+ 
+
+When asked what areas IT organizations plan to make the most significant investments in their storage 
+infrastructure 21% responded with improved storage management tools. This comes as no surprise since growth in 
+virtualization and storage tend to go hand in hand. Key to the successful growth of virtualization is the ability to 
+monitor and respond proactively to the demands of this dynamic environment. This can be a difficult task when 
+multiple constituents in IT are required to coordinate the design and management of servers, storage and the 
+network that are key support components. When performance problems arise, in can take hours or days to 
+diagnose the root cause. IT organizations need the real-time visibility to see how these servers, storage and 
+network switches are impacted by new applications that are provisioned into the virtual environment to minimize 
+potential service interruptions. 
+
+Virtual Instruments provides that visibility with a solution that actively monitors and reports on all traffic within the 
+SAN infrastructure to easily identify the cause of service interruptions and provide IT the ability to act quickly to 
+mitigate the effect of performance problems. ESG Lab found the solution easy to install and manage, and found a 
+wealth of information to help measure key performance metrics and identify transmission errors and their source.  
+
+ 
+
+This excerpt is a preview of the full VirtualWisdom ESG Lab Validation report, which will be published in September, 
+2011. 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           8 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+20 Asylum Street  |  Milford, MA 01757  |  Tel:508.482.0188  Fax: 508.482.0128  |  www.enterprisestrategygroup.com 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+ Lab Validation: Virtual Instruments Virtual Wisdom                                                                                                           9 
+
+ 
+
+© 2011, Enterprise Strategy Group, Inc. All Rights Reserved. 
+
+

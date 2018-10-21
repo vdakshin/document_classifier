@@ -1,0 +1,254 @@
+DATASHEET
+
+Product Features
+•  Real-time, full line rate FC SAN 
+
+traffic monitoring of up to 48 
+concurrent SAN ports
+
+•  Detailed I/O performance, health, 
+
+and utilization measurements
+
+•  Transmission, protocol, and 
+
+fabric error detection
+
+•   Port and resource utilization and 
+
+congestion reporting
+
+•  Buffer credit starvation and slow-
+
+draining device detection
+
+•   Out-of-band, vendor-agnostic 
+
+operation
+
+•  Field-reversible airflow and 
+
+replaceable cooling fans
+
+•   Hot-swappable redundant power 
+
+supply modules
+
+•  Remote administration (includes 
+
+firmware maintenance, 
+configuration and monitoring)
+
+VirtualWisdom® 
+SAN Performance Probe
+Model ProbeFC8-HD48
+
+48 port model of industry’s only Fibre Channel
+monitoring probes enables comprehensive 
+Infrastructure Performance Management
+
+SAN Performance ProbeFC8-HD48
+
+Introduction
+
+The VirtualWisdom 48-port SAN Performance ProbeFC8-HD48 expands
+the industry’s first and only real-time, full line rate family of monitoring
+solutions for Fibre Channel storage area networks (SANs). Working
+completely out-of-band, the SAN Performance Probe analyzes every
+Fibre Channel frame on monitored SAN ports and reports hundreds of
+metrics every second to provide comprehensive, accurate, and vendor 
+agnostic monitoring from the protocol level.
+
+SAN Performance Probe metrics are correlated with those from other
+VirtualWisdom Probes, persistently stored, and presented by the
+VirtualWisdom Server, providing holistic and timely insight into the
+health, utilization, and performance of large-scale, heterogeneous,
+open systems-based infrastructures.
+
+VirtualWisdom’s best-in-class capabilities for deriving actionable
+insights  from  these  comprehensive  metrics  deliver  tremendous  value 
+across the Infrastructure Performance Management domains:
+
+•   Proactive Monitoring. VirtualWisdom provides early identification of 
+emergent performance, health, and utilization issues, enabling rapid 
+implementation  of  corrective  actions to  improve  performance  and 
+availability and reduce operational risk. 
+
+•   Deep Diagnostics. Detailed, time-coherent data helps to identify the 
+root  causes  of  even the  most  sporadic  and  complex  performance 
+and availability issues, so they can be definitively eliminated.
+
+•   Infrastructure  Optimization.  Comprehensive  insights  into  the  relationships  between  workload,  performance,  and 
+utilization that supports the optimal alignment of application demands with infrastructure capabilities—delivering the 
+required performance at the lowest cost and highest availability.
+
+•   SLA Management. The ability to measure and report on I/O performance in near real-time enables the implementation 
+of true performance-based SLAs, enabling tighter and more transparent alignment between infrastructure, application, 
+and line-of-business groups.
+
+Deployment
+
+The SAN Performance Probe is typically deployed on the links between storage ports and next-tier switches, or on
+both sides of fabric-based storage virtualizers. Connectivity to the live links is provided by traffic access points (TAPs),
+which use passive optical couplers to access the optical signal on both channels of the link. A TAP diverts a small
+amount of the optical power on each channel to a full line rate monitoring output for out-of-band access by the SAN
+Performance Probe. TAPs certified for compatibility with the SAN Performance Probe are available from both Virtual
+Instruments and a growing number of leading physical infrastructure providers.
+
+Monitoring and Metrics
+
+Connected to the TAP monitor ports, the 48-port SAN Performance Probe analyzes all received traffic at the full-duplex 
+8Gb line rate. It reports on over 150 metrics per second per port, with details at link, channel, and initiator-target-LUN 
+levels. This set of high frequency, highly detailed metrics includes the following:
+
+•   Health. Metrics including CRCs and other frame errors, loss of signal or synchronization, logins and logouts, SCS 
+check conditions, discards, and aborts are all monitored to identify transmission, exchange, or fabric-level errors and 
+trends.
+
+•   Utilization. The amount and type of traffic on each channel is monitored, providing direct observation of channel- and 
+port-level utilizations and the fabric operating state. Metrics can be flexibly aggregated by VirtualWisdom to monitor 
+the utilization of backplanes, control processors, and other critical device resources.
+
+•   Performance. The SAN Performance Probe monitors the performance of every SCSI exchange between each unique 
+combination of initiator port, target port, and LUN (ITL), calculating metrics by exchange type including completion 
+time, time to first response, and size. As with other VirtualWisdom metrics, these performance measurements can be 
+flexibly aggregated in user-defined contexts to enable monitoring of total I/O workload, type of I/O, and performance 
+by business application, application tier, storage tier, or other logical grouping.
+
+High–Impact Performance Insight
+
+While all three categories of metrics provide valuable insight, the performance metrics are both the most differentiated 
+and the most impactful. They are differentiated because no other solution has the ability to measure I/O performance 
+across the SAN at comparable levels of frequency and detail. They are impactful because of the increased efficiency and 
+effectiveness they drive across the Infrastructure Performance Management domains: 
+
+•   Monitoring.  Performance  metrics  provide  the  most  accurate  and  timely  indicator  into  the  state  of  the  entire 
+infrastructure. Utilization or health problems emergent at any level can often be identified in their earliest stages by 
+their impact on performance. 
+
+•   Diagnostics. The “3 dimensional” view of the concurrent state of utilization, health, and performance is vitally important 
+to root cause diagnostics, especially of multi-faceted problems that may originate in areas of the SAN far removed 
+from where their impacts are first observed. 
+
+•   Planning and Analysis. The comprehensive and accurate view combining application I/O workload with infrastructure 
+performance and utilization is the fundamental key to better aligning application requirements with the performance 
+capabilities, utilization levels, and costs of different tiers and configurations of infrastructure.
+
+Specifications
+
+Connectivity
+
+•   SAN  Link  Interface.  Connectivity  to  the TAP  monitor  outputs  is  provided  via  field-replaceable  small  form  factor 
+
+pluggable plus (SFP+) optical transceivers.
+
+•   SAN Link Capacity. The ProbeFC8-HD48 SAN Performance Probe monitors up to 48 concurrent Fibre Channel SAN 
+
+Links operating at 2/4/8 Gbps speeds. 
+
+ 
+
+•   VirtualWisdom Platform Connectivity. The SAN Performance Probe connects to the VirtualWisdom server platform 
+
+via Gigabit Ethernet to transfer calculated SAN metrics for persistent storage, analysis, and display.
+
+Deployment and Serviceability
+
+•   True  appliance  without  physical  or  remote  console  access.  Firmware  maintenance,  device  configuration,  and 
+
+operational monitoring are all performed remotely via VirtualWisdom.
+
+•   Initial configuration and ongoing management are performed through a standard browser interface via a dedicated 
+
+and directly connected Ethernet port (not a networked port).
+
+•   Redundant hot-swappable power supply modules for high availability. 
+•  Field-replaceable and -reversible cooling fan modules support both front-to-rear and rear-to-front airflow.
+
+Safety and Emissions Compliance
+
+•  Emissions
+
+• United States: FCC Part 15, Subpart B (Class A Device)
+• Canada: ICES 
+• Europe: EN 55022
+• Korean: KN 22
+
+•  Safety 
+
+• UL/EN/IEC 60950-1
+
+Environmental
+•  Temperature
+
+• Operating: +10 to +35° C (50° to +95° F), max gradation 10° per hour 
+• Non-Operating: -20 to +80°C, (-4° F to 176° F) max gradation 20°C per hour
+
+•  Humidity
+
+• Operating: 20% to 80% non-condensing, max gradation 20% per hour
+• Non-Operating: 5% to 95% non-condensing, max gradation 20% per hour
+
+Mechanical
+
+Height
+
+Width
+
+Depth
+
+Minimum Cable Bend
+Radius Allowance
+
+Weight
+
+Rack Mounting
+
+MODEL PROBEFC8-HD48
+
+3.5 in / 8.9 cm (2U)
+
+17.2 in. / 43.7 cm (excluding rack mounting)
+
+28.2 in. / 71.6 cm (excluding front and rear panel projections). Front face projects 
+maximum 0.5 in / 1.3 cm from rack rails. Maximum fixed projection from front 
+face 0.75 in / 1.9 cm, from rear face 1.0 in / 2.5 cm. Optional cable manager 
+projects 4.5 in / 11.4 cm from front face.
+
+4.5 in / 11.4 cm front and 3.5 in / 8.9 cm rear
+
+52 lbs. / 23.6 kg including rack rails and cable management system
+
+Sliding rack rails support 4 post racks with square, round, or tapped holes with 
+rail-to-rail depths of 26.5 in / 67.31 cm to 36 in / 91.4 cm. 1U, 24 in / 61 cm 
+deep shelf kit available for alternate rack deployments.
+
+Air Flow (cooling)
+
+3 internal fans with reversible air flow. Power supply has separate dedicated fans
+
+Electrical
+
+Input Voltage
+
+Input Frequency
+
+Current Rating
+
+Inrush Current
+
+MODEL PROBEFC8-HD48
+
+100–240V AC
+
+50/60 Hz
+
+7-3 A
+
+60/80 A @ 115/230V (25° C)
+
+Typical Operating Power
+
+750 W (max.)
+
+©2013  Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13European Headquarters46 New Broad StreetLondon EC2M 1JHPhone: +44 (0) 203-651-5685Corporate Headquarters25 Metro Drive, San Jose, CA 95110 · USAPhone: 408-579-4000Fax: 408-579-4001Asia Pacific Headquarters8 Cross Street Level 28PWC Building, Singapore 048424Phone: +65 6850-7841Salessales@virtualinstruments.comPhone: 888-522-2557Supportsupport@virtualinstruments.com

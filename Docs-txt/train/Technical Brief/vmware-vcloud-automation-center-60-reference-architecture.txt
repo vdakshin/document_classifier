@@ -1,0 +1,1935 @@
+VMware 
+vCloud Automation Center 6.0 
+
+Reference Architecture 
+
+T E C H N I C A L   W H I T E   P A P E R  
+
+ 
+
+Table of Contents 
+
+Overview ......................................................................................................................................................... 4 
+
+Initial Deployment Recommendations ............................................................................................................. 4 
+General Recommendations ........................................................................................................................ 4 
+vCloud Automation Center ......................................................................................................................... 4 
+Load Balancer Considerations ............................................................................................................... 4 
+Database Deployment ........................................................................................................................... 4 
+Data Collection Configuration ................................................................................................................ 5 
+Proxy Agents ......................................................................................................................................... 5 
+Distributed Execution Manager (DEM) Configuration ............................................................................ 5 
+vCenter Orchestrator ............................................................................................................................. 5 
+vCloud Application Director ........................................................................................................................ 5 
+IT Business Management ........................................................................................................................... 6 
+Load Balancer Considerations ............................................................................................................... 6 
+
+Scalability Considerations ............................................................................................................................... 6 
+vCloud Automation Center ......................................................................................................................... 6 
+Data Collection Scalability ..................................................................................................................... 6 
+Performance Analysis and Tuning ......................................................................................................... 6 
+Workflow Processing Scalability ............................................................................................................ 7 
+Performance Analysis and Tuning ......................................................................................................... 7 
+vCloud Application Director ........................................................................................................................ 7 
+Memory Configuration ........................................................................................................................... 7 
+IT Business Management ........................................................................................................................... 8 
+
+High Availability Considerations ...................................................................................................................... 8 
+vCloud Automation Center ......................................................................................................................... 8 
+Identity Appliance ................................................................................................................................... 8 
+vCloud Automation Center Appliance .................................................................................................... 8 
+Infrastructure Web Server ...................................................................................................................... 9 
+Infrastructure Manager Service.............................................................................................................. 9 
+Agents ................................................................................................................................................... 9 
+Distributed Execution Manager (DEM) Worker ...................................................................................... 9 
+Distributed Execution Manager (DEM) Orchestrator .............................................................................. 9 
+Microsoft SQL Server............................................................................................................................. 9 
+vCenter Orchestrator ............................................................................................................................. 9 
+vCloud Application Director ........................................................................................................................ 9 
+IT Business Management ......................................................................................................................... 10 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2  
+
+ 
+
+ 
+
+ 
+
+vCloud Automation Center Machines ............................................................................................................ 10 
+
+Deployment Profiles ....................................................................................................................................... 11 
+Small Deployment .................................................................................................................................... 11 
+vCloud Automation Center .................................................................................................................... 11 
+vCloud Application Director .................................................................................................................. 12 
+IT Business Management .................................................................................................................... 12 
+Certificates ........................................................................................................................................... 12 
+Ports .................................................................................................................................................... 12 
+Diagrams ............................................................................................................................................. 14 
+Medium Deployment ................................................................................................................................ 16 
+vCloud Automation Center ................................................................................................................... 16 
+vCloud Application Director .................................................................................................................. 16 
+IT Business Management .................................................................................................................... 16 
+Certificates ........................................................................................................................................... 16 
+Ports .................................................................................................................................................... 17 
+Diagrams ............................................................................................................................................. 20 
+Large Deployment .................................................................................................................................... 22 
+vCloud Automation Center ................................................................................................................... 22 
+vCloud Application Director .................................................................................................................. 22 
+IT Business Management .................................................................................................................... 22 
+Certificates ........................................................................................................................................... 22 
+Ports .................................................................................................................................................... 23 
+Diagrams ............................................................................................................................................. 26 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 3  
+
+ 
+
+Overview 
+
+This document provides recommendations about deployment topology, hardware specifications, 
+interoperability, and scalability for the following VMware components. 
+•  VMware vCloud® Automation Center™ 6.0 
+•  VMware vCloud® Application Director™ 6.0 
+•  VMware® IT Business Management Suite™ Standard Edition 1.0 
+For software requirements, software installations, and supported platforms, see the Documentation Centers 
+for these products.  
+
+Initial Deployment Recommendations 
+
+This section describes the general deployment configuration for vCloud Automation Center, vCloud 
+Application Director, and IT Business Management. 
+
+General Recommendations 
+Keep IT Business Management Standard Edition, vCenter Server, your VMware identity virtual appliance, 
+and vCloud Automation Center in the same time zone and with their clocks synchronized. Otherwise, data 
+synchronization might be delayed. 
+You can deploy the vCloud Automation Center DEM Worker and proxy agents over a WAN, but do not 
+deploy other components of vCloud Automation Center, vCloud Application Director, or IT Business 
+Management Standard Edition over a WAN as performance might be degraded.  
+Deploy IT Business Management Standard Edition in the same LAN where your vCenter Server is deployed. 
+You can use vCenter SSO 5.5.0b instead of the Identity Appliance. 
+
+vCloud Automation Center  
+The general deployment configuration for vCloud Automation Center should be considered as a starting 
+point for deployment. After initial testing and deployment to production, you should continue to monitor 
+performance and allocate additional resources if necessary, as described in Scalability Considerations. 
+
+Load Balancer Considerations 
+Use the Least Response Time or Round Robin method to balance traffic to the vCloud Automation Center 
+virtual appliances and infrastructure web servers. Enable session affinity or the sticky session feature to 
+direct subsequent requests from each unique session to the same web server in the load balancer pool. 
+You can use a load balancer to manage failover for the Manager Service, but do not use a load balancing 
+algorithm because only one Manager Service is active at a time. Do not use session affinity when managing 
+failover with a load balancer. 
+Use only port 443, the default HTTPS port, when load balancing the vCloud Automation Center Virtual 
+Appliance, Infrastructure Web server, and Infrastructure Manager server together. 
+
+Database Deployment 
+For production deployments, you should deploy a dedicated database server to host the vPostgres and 
+MSSQL databases. 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 4  
+
+ 
+
+Data Collection Configuration 
+The default data collection settings provide a good starting point for most implementations. After deploying 
+to production, continue to monitor the performance of data collection to determine if you need to make any 
+adjustments. 
+
+Proxy Agents  
+Agents should be deployed in the same data center as the endpoint they are associated with. Thus, it is 
+possible for a deployment to have multiple agent servers distributed around the globe. Additional agents can 
+be installed to increase throughput and concurrency. 
+For example, a user has vSphere endpoints in Palo Alto and in London. Based on the reference 
+architecture, four agent servers should be deployed to maintain high availability, two in Palo Alto and two in 
+London. 
+
+Distributed Execution Manager (DEM) Configuration 
+In general, DEMs should be located as close to the Model Manager host as possible. The DEM Orchestrator 
+must have strong network connectivity to the Model Manager at all times. You should have two DEM 
+Orchestrator instances (one for failover) and two DEM Worker instances in your primary data center. 
+If a DEM Worker instance must execute a location-specific workflow, the instance should be installed in that 
+location. 
+You must assign skills to the relevant workflows and DEMs to ensure that those workflows are always 
+executed by DEMs in the correct location. For information about assigning skills to workflows and DEMs 
+using the vCloud Automation Center Designer console, see the vCloud Automation Center Extensibility 
+documentation. 
+For the best performance, DEMs and agents should be installed on separate machines. For additional 
+guidance about installing vCloud Automation Center agents, see the vCloud Automation Center Installation 
+and Configuration guide. 
+
+vCenter Orchestrator 
+In general, an external vCenter Orchestrator system should be used for each tenant to enforce tenant 
+isolation. 
+
+vCloud Application Director 
+vCloud Application Director supports a single instance setup. 
+To avoid security and performance problems occurring in the vCloud Application Director server, do not add 
+unsupported services or configure the server other than what is mentioned in this document and the product 
+documentation. See the VMware vCloud Application Director 6.0 Documentation Center. 
+Do not use vCloud Application Director as the content server. A separate content server or servers with 
+appropriate bandwidth and security features are required. vCloud Application Director hosts only the 
+predefined sample out-of-the-box (OOB) content. 
+The content server should be in the same network as the deployments to improve performance when a 
+deployment requires downloading a large file from an external source. Multiple networks can share a content 
+server if the traffic and the data transfer rate are light. 
+
+RabbitMQ and Postgres 
+You should keep the default configurations of RabbitMq and Postgres. If you do plan to change those 
+
+T E C H N I C A L   W H I T E   P A P E R   / 5  
+
+ 
+
+ 
+
+ 
+
+configurations, consult their documentation. 
+
+Authentication Setup 
+When setting up vCloud Application Director, you can use the vCloud Automation Center Single Sign-On 
+(SSO) capability to manage users in one place.  
+
+IT Business Management 
+
+Load Balancer Considerations 
+For data collection connections, load balancing is not supported. For more information, see Scalability 
+Considerations. 
+In the IT Business Management virtual appliance, for UI/API client connections, you can use the vCloud 
+Automation Center load balancer.  
+NOTE: This has not been tested officially. 
+
+Scalability Considerations 
+
+This section describes various performance characteristics of vCloud Automation Center, vCloud Application 
+Director, and IT Business Management. It provides recommendations for your initial deployment based on 
+anticipated usage and guidance for tuning performance based on actual usage over time. 
+
+vCloud Automation Center 
+
+Data Collection Scalability  
+The time required for data collection to complete depends on several factors, including the capacity of the 
+compute resource and the number of machines on the compute resource or endpoint, current system, and 
+network load, among other variables. The performance scales at a different rate for different types of data 
+collection.  
+Each type of data collection has a default interval that can be overridden or modified. Infrastructure 
+administrators can manually initiate data collection for infrastructure source endpoints and fabric 
+administrators can manually initiate data collection for compute resources. The following values are the 
+default intervals for data collection. 
+
+DATA COLLECTION TYPE 
+
+DEFAULT INTERVAL 
+
+Inventory 
+
+State 
+
+Performance 
+
+Every 24 hours (daily) 
+
+Every 15 minutes 
+
+Every 24 hours (daily) 
+
+Performance Analysis and Tuning 
+As the amount of resources to be data collected increases, the time required to complete data collection 
+may become longer than the interval between data collections, particularly for state data collection. Check 
+the Data Collection page for a compute resource or endpoint to determine whether data collection is 
+completing in time or is being queued. If the Last Completed field always displays “In queue” or “In progress” 
+instead of a timestamp when data collection last completed, you may need to decrease the data collection 
+frequency (that is, increase the interval between data collections). 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 6  
+
+ 
+
+Alternatively, you can increase the concurrent data collection limit per agent. By default, vCloud Automation 
+Center limits concurrent data collection activities to two per agent and queues requests that are over this 
+limit. This allows data collection activities to complete quickly while not affecting overall performance. It is 
+possible to raise the limit to take advantage of concurrent data collection but this should be weighed against 
+any degradation in overall performance. 
+If you do increase the configured vCloud Automation Center per-agent limit, you may want to increase one 
+or more of these execution timeout intervals. For more information about configuring data collection 
+concurrency and timeout intervals, see the vCloud Automation Center System Administration guide.  Data 
+collection is CPU-intensive for the Manager Service. Increasing the processing power of the Manager 
+Service host can decrease the time required for data collection overall. 
+Data collection for Amazon EC2 in particular can be very CPU-intensive, especially when running data 
+collection on multiple regions concurrently and when those regions have not had data collection run on them 
+before. This can cause an overall degradation in website performance. You should decrease the frequency 
+of Amazon inventory data collection if it is having a noticeable effect on performance. 
+
+Workflow Processing Scalability 
+The average workflow processing time (from when the DEM Orchestrator starts preprocessing the workflow 
+to when the workflow finishes executing) increases with the number of concurrent workflows. Workflow 
+volume is a function of the amount of vCloud Automation Center activity, including machine requests and 
+some data collection activities. 
+
+Performance Analysis and Tuning 
+You can use the Distributed Execution Status page to view the total number of workflows that are in 
+progress or pending at any time, and you can use the Workflow History page to determine how long it takes 
+to execute a given workflow. 
+If you have a large number of pending workflows, or if workflows are taking longer to complete, you should 
+add more DEM Worker instances to pick up the workflows. Each DEM Worker instance can process 15 
+concurrent workflows. Excess workflows are queued for execution. 
+Additionally, you can adjust workflow schedules to minimize the number of workflows scheduled to be kicked 
+off at the same time. For example, rather than scheduling all hourly workflows to execute at the top of the 
+hour, you can stagger their execution so they do not compete for DEM resources at the same time. For 
+more information on workflows, see the vCloud Automation Center Extensibility documentation. 
+Some workflows, particularly certain custom workflows, can be very CPU-intensive. If the CPU load on the 
+DEM Worker machines is high, consider increasing the processing power of the DEM machine or adding 
+more DEM machines to your environment. 
+
+vCloud Application Director 
+vCloud Application Director can scale to over 10,000 managed VMs and over 2,000 catalog items. You can 
+run over 40 concurrent deployments and support over 100 concurrent users. 
+The performance does not take into account the cloud provider capacity or other external deployment tools 
+vCloud Application Director depends on. An application needs a cloud provider to provision a VM and other 
+resources. Overloading a cloud provider might not allow vCloud Application Director to meet the minimum 
+load expectations. Refer to the product documentation for your cloud infrastructure product or external tool 
+for information on how the system can handle a certain load. 
+
+Memory Configuration 
+You can adjust the available vCloud Application Director server memory by configuring the maximum heap 
+
+T E C H N I C A L   W H I T E   P A P E R   / 7  
+
+ 
+
+ 
+
+ 
+
+size. 
+1.  Navigate to the /home/darwin/tcserver/bin/setenv.sh file. 
+2.  Open the file and locate JVM_OPTS and change the Xmx value. 
+
+For example, to increase the maximum heap size to 3GB, change the Xmx value to 3072m in 
+the code.  
+
+(Sample code) JVM_OPTS="-Xms256m –Xmx3072m -XX:MaxPermSize=256m 
+
+3.  Restart the vCloud Application Director server. 
+
+vmware-darwin-tcserver restart 
+
+You can also specify a larger initial heap size by changing the -Xms value to reserve larger memory. If the 
+load is uncertain, you can reserve a smaller initial memory footprint to conserve the memory for other 
+processes running on the server. If the load is consistent, then you can have an initial large reserve for 
+efficiency.  
+You can configure different heap size values to find the best one for your load. The maximum heap size of 
+an application server should be at least half of the total memory. The rest of the memory should be left for 
+the Postgres, RabbitMq, and other system processes. 
+There is no need to change the -XX:MaxPermSize value unless you are trying to troubleshoot a permgen 
+error. 
+
+IT Business Management 
+IT Business Management Standard Edition can scale up to 20,000 virtual machines across four vCenter 
+Server instances. The first synchronization of the inventory data collection takes around three hours to 
+synchronize 20,000 virtual machines across three vCenter Server instances. Synchronization of statistics 
+from vCenter Server takes around one hour for 20,000 virtual machines. By default, the cost calculation job 
+runs every day and takes around two hours for each run for 20,000 virtual machines. 
+NOTE: In version 1.0, the default configuration of the IT Business Management virtual appliance can support 
+up to 20,000 VMs. Increasing the limits of the virtual appliance beyond its default configuration does not 
+increase the number of VMs it can support. 
+
+High Availability Considerations 
+vCloud Automation Center 
+
+Identity Appliance 
+High availability (HA) and failover protection for the Identity appliance are handled outside of vCloud 
+Automation Center. Use a vSphere HA-enabled cluster to protect the virtual appliance. 
+
+vCloud Automation Center Appliance 
+vCloud Automation Center appliances support active-active high availability. To enable high availability for 
+these virtual appliances, place them under a load balancer and use an external vPostgres appliance.  See 
+the vCloud Automation Center Installation and Configuration guide for more information. 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 8  
+
+ 
+
+Infrastructure Web Server 
+The Infrastructure Web Server components all support active-active high availability. To enable high 
+availability for these components, place them under a load balancer. 
+
+Infrastructure Manager Service 
+The Manager Service component supports active-passive high availability. To enable high availability for this 
+component, place two Manager Services under a load balancer. As two Manager Services cannot be active 
+at the same time, disable the passive Manager Service in the cluster and stop the Windows service. 
+If the active Manager Service fails, stop the Windows service (if not already stopped) under the load 
+balancer. Enable the passive Manager Service and restart the Windows service under the load balancer. 
+See the vCloud Automation Center Installation and Configuration documentation for more information. 
+
+Agents 
+Agents support active-active high availability. See the vCloud Automation Center System Administration 
+documentation for information on configuring agents for high availability. You should also check the target 
+service for high availability. 
+
+ 
+
+Distributed Execution Manager (DEM) Worker 
+DEMs running under the Worker role support active-active high availability. If a DEM Worker instance fails, 
+the DEM Orchestrator detects the failure and cancels any workflows being executed by the DEM Worker 
+instance. When the DEM Worker instance comes back online, it detects that the DEM Orchestrator has 
+canceled the workflows of the instance and stops executing them. To prevent workflows from being 
+canceled prematurely, a DEM Worker instance must be offline for several minutes before its workflows can 
+be cancelled. 
+
+Distributed Execution Manager (DEM) Orchestrator 
+DEMs running under the Orchestrator role support active-active high availability. When a DEM Orchestrator 
+starts, it searches for another running DEM Orchestrator. If none is found, it starts executing as the primary 
+DEM Orchestrator. If it does find another running DEM Orchestrator, it goes into a passive mode and 
+monitors the other primary DEM Orchestrator to detect an outage. If it detects an outage, it takes over as the 
+primary. When the previous primary comes back online, it detects that another DEM Orchestrator has taken 
+over its role as primary and goes into a passive state.  
+
+Microsoft SQL Server 
+Cluster the Microsoft SQL Server database using Windows clustering for high availability.  
+
+vCenter Orchestrator 
+See the vCenter Orchestrator documentation for information on high availability. 
+
+vCloud Application Director 
+vCloud Application Director 6.0 does not support load balancing for multiple instances.  
+To reduce the down time and provide quick recovery from disaster, you can implement some or all of the 
+following strategies. 
+•  Select appropriate resources for the vCloud Application Director load. Do not overload the system. Refer 
+
+to the hardware specification section for the recommended load. 
+
+•  Divide the application deployments to use multiple vCloud Application Director instances. If there are 
+
+T E C H N I C A L   W H I T E   P A P E R   / 9  
+
+ 
+
+ 
+
+ 
+
+shared applications or components, you can use the import and export feature to synchronize the data 
+among instances. 
+
+•  Take snapshots of the vCloud Application Director virtual appliance when there is a major change 
+applied to the environment. The snapshot minimizes the downtime and you can recover data if the 
+system fails. 
+
+•  Use the vSphere High Availability feature, which restarts a failed VM. See the vSphere product 
+
+documentation for instruction on how to set up the feature. 
+
+IT Business Management 
+Use the vSphere HA feature for the IT Business Management virtual appliance. To configure the vSphere 
+HA feature on the ESXi host, see the VMware vCenter Server and Host Management guide. 
+
+vCloud Automation Center Machines 
+
+The following table indicates which components to install on each server profile in your deployment, along 
+with their required and recommended hardware specifications. 
+
+SERVER ROLE 
+
+DESCRIPTION 
+
+COMPONENTS 
+
+Identity Appliance 
+
+vCloud Automation 
+Center Appliance 
+
+Infrastructure Web 
+Server 
+
+Infrastructure 
+Manager Server 
+
+Infrastructure 
+Web/Manager 
+Server 
+
+Infrastructure DEM 
+Server 
+
+Virtual appliance that 
+provides Single Sign-
+On (SSO) capabilities 
+for the vCloud 
+Automation Center 
+environment 
+
+Virtual appliance that 
+deploys the vCloud 
+Automation Center 
+server 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+tcServer 
+vPostgresSQL 
+VMWARE SLES 
+
+Website 
+
+Manager Service 
+DEM Orchestrator 
+
+Infrastructure 
+Web/Manager Server 
+
+(one or more) DEM 
+Workers 
+
+REQUIRED 
+HARDWARE 
+SPECIFICATIONS  
+
+CPU: 1 vCPU 
+RAM: 2 GB 
+Disk: 10GB 
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 8 GB  
+Disk: 30 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 2 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 2 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 4 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 2 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+RECOMMENDED 
+HARDWARE 
+SPECIFICATIONS 
+
+Not applicable 
+
+CPU: 4 vCPU 
+RAM: 16 GB  
+Disk: 30 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 4 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 4 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 8 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 6 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 0 
+
+ 
+
+Infrastructure Agent 
+Server 
+
+vPostgres Virtual 
+Appliance 
+
+MSSQL Database 
+Server 
+
+vCloud Application 
+Director 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Small deployment 
+(see Small 
+Deployment  
+on page 11) 
+
+Medium deployment 
+(see Medium 
+Deployment   
+on page 16) 
+
+Large deployment 
+(see Large 
+Deployment 
+on page 22) 
+
+IT Business 
+Management Virtual 
+Appliance 
+
+ 
+
+Deployment Profiles 
+Small Deployment 
+
+Per DEM Worker 
+
+Per DEM Worker 
+
+(one or more) Proxy 
+Agent 
+
+ 
+
+Infrastructure 
+Database 
+
+tcServer 
+PostgresSQL 
+VMWARE SLES 
+RabbitMQ 
+
+tcServer 
+PostgresSQL 
+VMWARE SLES 
+RabbitMQ 
+
+tcServer 
+PostgresSQL 
+VMWARE SLES 
+RabbitMQ 
+
+vPostgresSQL 
+tcServer 
+VMWARE SLES 
+
+CPU: 2 vCPU 
+RAM: 4 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 2 GB  
+Disk: 20 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 8 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 4GB 
+Disk: 16GB 
+Network: 1 GB/s 
+
+CPU: 4 vCPU 
+RAM: 8GB 
+Disk: 30GB 
+Network: 1 GB/s 
+
+CPU: 8 vCPU 
+RAM: 16GB 
+Disk: 50GB 
+Network: 1 GB/s 
+
+CPU: 2 vCPU 
+RAM: 4GB 
+Disk: 50GB 
+Network: 1 GB/s 
+
+CPU: 2 vCPU 
+RAM: 4 GB  
+Disk: 40 GB  
+Network: 1GB/s 
+
+CPU: 2 vCPU 
+RAM: 4 GB  
+Disk: 20 GB  
+Network: 1GB/s 
+
+CPU: 8 vCPU 
+RAM: 16 GB  
+Disk: 80 GB  
+Network: 1GB/s 
+
+Same as required 
+
+Same as required 
+
+Same as required 
+
+CPU: 2 vCPU 
+RAM: 4GB 
+Disk: 50GB 
+Network: 1 GB/s 
+
+vCloud Automation Center 
+Supports 
+•  1,000 managed machines 
+•  2,500 catalog items 
+•  10 concurrent deployments 
+NOTE: All host names used in this document are for illustration purposes only. 
+Identity Virtual Appliance (small-sso.ra.local) 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 1 
+
+ 
+
+vCloud Automation Center Virtual Appliance (small-vcacva.ra.local) 
+Infrastructure Core Server (small-Infrastructure.ra.local) 
+
+Configure this server with a minimum of 2 processors and 8 GB of memory. A smaller configuration 
+can lead to out-of-memory exceptions and timeouts. 
+
+MSSQL Database Server (small-mssql.ra.local) 
+
+vCloud Application Director 
+vCloud Application Director Server (small-appd.ra.local) 
+Supports up to 10 concurrent deployments.  Each deployment has approximately 3 to 14 VM nodes.  
+
+IT Business Management 
+IT Business Management Server (small-itbm.ra.local) 
+Supports up to 20,000 VMs. 
+Requires IT Business Management Virtual Appliance. 
+
+Certificates 
+NOTE: All host names used in this document are for illustration purposes only. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance (VA) 
+
+CN / SAN  
+
+ 
+
+CN = small-sso.ra.local 
+
+vCloud Automation Center Virtual Appliance (VA) 
+
+CN = small-vcacva.ra.local 
+
+Infrastructure Core Server 
+
+MSSQL Database Server 
+
+ 
+
+vCloud Application Director 
+
+CN = small-Infrastructure.ra.local 
+
+N/A 
+
+ 
+
+ 
+
+vCloud Application Director Server 
+
+CN=small-appd-.ra.local 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+ 
+
+ 
+
+CN = small-itbm.ra.local 
+
+Ports 
+Users require access to the ports in the following table. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance 
+
+vCloud Automation Center Virtual Appliance (VA) 
+
+PORT 
+
+ 
+
+7444 
+
+443 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 2 
+
+ 
+
+Infrastructure Core Server 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+443 
+
+ 
+
+ 
+
+8443 
+
+ 
+Administrators require access to the same ports as users, and to the ports in the following table. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+PORT 
+
+ 
+
+5480 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5480 
+
+ 
+
+ 
+
+SERVER ROLE 
+
+INBOUND PORTS  
+
+SERVICE/SYSTEM: OUTBOUND PORTS 
+
+vCloud Automation Center 
+
+ 
+
+Identity Virtual Appliance (VA) 
+
+vCloud Automation Center Virtual 
+Appliance (VA) 
+
+Infrastructure Core Server 
+
+MSSQL Database Server 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+7444 
+SSH: 22 
+VAMI: 5480 
+
+443 
+SSH: 22 
+VAMI: 5480 
+
+443 
+
+1433 
+
+ 
+
+These ports should not be 
+changed or blocked. 
+
+8443 HTTPS User Interface 
+connection 
+8080 HTTP (legacy port; do not 
+use) 
+
+vFabric RabbitMQ 
+
+5671 AMQP over SSL 
+
+External SSH connection 
+
+22 
+
+Content Server  
+
+80 HTTP (used to host OOB 
+
+ 
+
+LDAP: 389 
+LDAPS: 636 
+
+Identity VA: 7444 
+
+MSSQL: 1433 
+
+Not applicable 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 3 
+
+ 
+
+ 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+content, agent binary, and CLI 
+binary) 
+
+ 
+
+ 
+
+ 
+
+IT Business Management UI 
+connection 
+
+443 HTTPS 
+
+External SSH connection 
+
+Web console access (VAMI) 
+
+22 
+
+5480 
+
+Diagrams 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 1a. Minimum Footprint for Small Configuration (vCloud Automation Center) 
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 4 
+
+ 
+
+Figure 1b. Minimum Footprint for Small Configuration (vCloud Application Director) 
+ 
+
+ 
+
+Figure 1c. Minimum Footprint for Small Configuration (IT Business Management) 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 5 
+
+ 
+
+Medium Deployment 
+
+Identity Virtual Appliance (med-sso.ra.local) 
+
+vCloud Automation Center 
+Supports 
+•  10,000 Managed Machines 
+•  2,500 Catalog Items 
+•  50 Concurrent Deployments 
+Virtual Appliances 
+• 
+•  vPostgres Virtual Appliance (med-psql.ra.local) 
+•  vCloud Automation Center Virtual Appliance 1 (med-vcacva-1.ra.local) 
+•  vCloud Automation Center Virtual Appliance 2 (med-vcacva-2.ra.local) 
+Windows Server Virtual Machines 
+• 
+• 
+• 
+• 
+• 
+• 
+•  Clustered MSSQL Database (med-mssql.ra.local) 
+Load Balancers 
+•  vCloud Automation Center VA Load Balancer (med-vcacva.ra.local) 
+• 
+• 
+ 
+
+Infrastructure Web Load Balancer (med-web.ra.local) 
+Infrastructure Manager Service Load Balancer (med-manager.ra.local) 
+
+Infrastructure Web/Manager Server 1 (Active Web/DEM-O, Active Manager) (med-webman-1.ra.local) 
+Infrastructure Web/Manager Server 2 (Active Web/DEM-O, Passive Manager) (med-webman-2.ra.local) 
+Infrastructure DEM Server 1 (med-dem-1.ra.local) 
+Infrastructure DEM Server 2 (med-dem-2.ra.local) 
+Infrastructure Agent Server 1 (med-agent-1.ra.local) 
+Infrastructure Agent Server 2 (med-agent-2.ra.local) 
+
+vCloud Application Director 
+vCloud Application Director Server (med-appd.ra.local) 
+Supports up to 20 concurrent deployments. Each deployment has approximately 3 to 14 VM nodes. 
+
+IT Business Management 
+IT Business Management Server (med-itbm.ra.local) 
+Supports up to 20,000 VMs. 
+Requires IT Business Management Virtual Appliance. 
+
+Certificates 
+NOTE: All host names used in this document are for illustration purposes only. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+CN/SAN 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 6 
+
+ 
+
+Identity Virtual Appliance (VA) 
+
+vCloud Automation Center Virtual Appliance (VA) 
+
+Infrastructure Web/Manager Server 
+
+Infrastructure DEM Server 
+
+Infrastructure Agent Server 
+
+vPostgres Virtual Appliance  
+
+MSSQL Database Server 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+CN=med-sso.ra.local 
+
+SAN contains  
+med-vcacva.ra.local 
+med-vcacva-1.ra.local 
+med-vcacva-2.ra.local 
+
+SAN contains 
+med-web.ra.local 
+med-manager.ra.local 
+med-webman-1.ra.local 
+med-webman-2.ra.local 
+
+N/A 
+
+N/A 
+
+N/A 
+
+N/A 
+
+ 
+
+ 
+
+CN=med-appd.ra.local 
+
+ 
+
+ 
+
+CN=med-itbm.ra.local 
+
+Ports 
+Users require access to the ports in the following table. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance 
+
+vCloud Automation Center Virtual Appliance Load Balancer 
+
+vCloud Automation Center Infrastructure Web Load Balancer 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+ 
+
+PORT 
+
+ 
+
+7444 
+
+443 
+
+443 
+
+ 
+
+ 
+
+8443 
+
+ 
+
+ 
+Administrators require access to the same ports as users, and to the ports in the following table. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+PORT 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 7 
+
+ 
+
+ 
+ 
+
+Identity Virtual Appliance 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+5480 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5480 
+
+SERVER ROLE 
+
+INBOUND PORTS  
+
+SERVICE/SYSTEM: OUTBOUND PORTS 
+
+vCloud Automation Center 
+
+ 
+
+Identity Virtual Appliance (VA) 
+
+7444 
+
+vCloud Automation Center Virtual 
+Appliance (VA) 
+
+443 
+
+Infrastructure Web/Manager Server 
+
+443 
+
+Infrastructure DEM Server 
+
+Not applicable 
+
+Infrastructure Agent Server 
+
+Not applicable 
+
+ 
+
+LDAP: 389 
+LDAPS: 636 
+
+Identity VA: 7444 
+vPostgres Virtual Appliance: 5432 
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+vCloud Orchestrator Systems: 8281 
+
+MSSQL: 1433 
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+
+Identity VA: 7444 
+vCloud Automation Center Virtual Appliance 
+    Load Balancer: 443 
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+vCloud Automation Center Infrastructure 
+Manager 
+    Load Balancer: 443 
+
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+vCloud Automation Center Infrastructure 
+Manager 
+    Load Balancer: 443 
+
+vPostgres Virtual Appliance  
+
+MSSQL Database Server 
+
+ 
+
+ 
+
+ 
+
+5432 
+
+1433 
+
+ 
+
+Not applicable 
+
+Not applicable 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 8 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+These ports should not be 
+changed or blocked. 
+
+8443 HTTPS User Interface 
+connection 
+8080 HTTP (legacy port; do not 
+use) 
+
+vFabric RabbitMQ 
+
+5671 AMQP over SSL 
+
+External SSH connection 
+
+22 
+
+E Content Server  
+
+80 HTTP (used to host OOB 
+content, agent binary, and CLI 
+binary) 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+ 
+
+ 
+
+ 
+
+IT Business Management UI 
+connection 
+
+443 HTTPS 
+
+External SSH connection 
+
+Web console access (VAMI) 
+
+22 
+
+5480 
+
+ 
+
+ 
+
+ 
+
+22 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+LOAD BALANCER 
+
+PORTS BALANCED 
+
+vCloud Automation Center Virtual Appliance Load Balancer 
+
+vCloud Automation Center Infrastructure Web Load Balancer 
+
+vCloud Automation Center Infrastructure Manager Service Load 
+Balancer 
+
+443 
+
+443 
+
+443 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 9 
+
+ 
+
+Diagrams 
+
+Figure 2a. Minimum Footprint for Medium Configuration (vCloud Automation Center) 
+ 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 0 
+
+ 
+
+ 
+
+Figure 2b. Minimum Footprint for Medium Configuration (vCloud Application Director) 
+ 
+
+ 
+
+Figure 2c. Minimum Footprint for Medium Configuration (IT Business Management) 
+ 
+
+ 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 1 
+
+ 
+
+Large Deployment 
+
+Identity Virtual Appliance (lg-sso.ra.local) 
+
+vCloud Automation Center 
+Supports 
+•  50,000 Managed Machines 
+•  2,500 Catalog Items 
+•  100 Concurrent Deployments 
+Virtual Appliances 
+• 
+•  vPostgres Virtual Appliance (lg-psql.ra.local) 
+•  vCloud Automation Center Virtual Appliance 1 (lg-vcacva-1.ra.local) 
+•  vCloud Automation Center Virtual Appliance 2 (lg-vcacva-2.ra.local) 
+Windows Server Virtual Machines 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+•  Clustered MSSQL Database Server (lg-mssql.ra.local) 
+Load Balancers 
+•  vCloud Automation Center VA Load Balancer (lg-vcacva.ra.local) 
+• 
+• 
+
+Infrastructure Web Server 1 (lg-web-1.ra.local) 
+Infrastructure Web Server 2 (lg-web-2.ra.local) 
+Infrastructure Manager Server 1 (lg-manager-1.ra.local) 
+Infrastructure Manager Server 2 (lg-manager-2.ra.local) 
+Infrastructure DEM Server 1 (lg-dem-1.ra.local) 
+Infrastructure DEM Server 2 (lg-dem-2.ra.local) 
+Infrastructure Agent Server 1 (lg-agent-1.ra.local) 
+Infrastructure Agent Server 2 (lg-agent-2.ra.local) 
+
+Infrastructure Web Load Balancer (lg-web.ra.local) 
+Infrastructure Manager Server Load Balancer (lg-manager.ra.local) 
+
+vCloud Application Director 
+vCloud Application Director Server (lg-appd.ra.local) 
+Supports up to 40 concurrent deployments. Each deployment has approximately 3 to 14 VM nodes. 
+
+IT Business Management 
+IT Business Management Server (lg-itbm.ra.local) 
+Supports up to 20,000 VMs. 
+Requires IT Business Management Virtual Appliance. 
+
+Certificates 
+NOTE: All host names used in this document are for illustration purposes only. 
+
+SERVER ROLE 
+
+CN/SAN 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 2 
+
+ 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance (VA) 
+
+vCloud Automation Center Virtual Appliance (VA) 
+
+Infrastructure Web Server 
+
+Infrastructure Manager Server 
+
+Infrastructure DEM Server 
+
+Infrastructure Agent Server 
+
+vPostgres Virtual Appliance  
+
+MSSQL Database Server 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+ 
+
+CN=lg-sso.ra.local 
+
+SAN contains  
+lg-vcacva.ra.local 
+lg-vcacva-1.ra.local 
+lg-vcacva-2.ra.local 
+
+SAN contains 
+lg -web.ra.local 
+lg -web-1.ra.local 
+lg -web-2.ra.local 
+
+SAN contains 
+lg-manager.ra.local 
+lg-manager-1.ra.local 
+lg-manager-2.ra.local 
+
+N/A 
+
+N/A 
+
+N/A 
+
+N/A 
+
+ 
+
+ 
+
+CN=lg-appd.ra.local 
+
+ 
+
+ 
+
+CN=lg-itbm.ra.local 
+
+Ports 
+Users require access to the ports in the following table. 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance 
+
+vCloud Automation Center Virtual Appliance Load Balancer 
+
+vCloud Automation Center Infrastructure Web Load Balancer 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+PORT 
+
+ 
+
+7444 
+
+443 
+
+443 
+
+ 
+
+ 
+
+8443 
+
+Administrators require access to the same ports as users, and to the ports in the following table. 
+
+ 
+
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 3 
+
+ 
+
+ 
+
+ 
+
+SERVER ROLE 
+
+vCloud Automation Center 
+
+Identity Virtual Appliance 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+PORT 
+
+ 
+
+5480 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+5480 
+
+SERVER ROLE 
+
+INBOUND PORTS  
+
+SERVICE/SYSTEM: OUTBOUND PORTS 
+
+vCloud Automation Center 
+
+ 
+
+Identity Virtual Appliance (VA) 
+
+7444 
+
+vCloud Automation Center Virtual 
+Appliance (VA) 
+
+443 
+
+Infrastructure Web Server 
+
+Infrastructure Manager Server 
+
+443 
+
+443 
+
+Infrastructure DEM Server 
+
+Not applicable 
+
+Infrastructure Agent Server 
+
+Not applicable 
+
+ 
+
+LDAP: 389 
+LDAPS: 636 
+
+Identity VA: 7444 
+vPostgres Virtual Appliance: 5432 
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+vCloud Orchestrator Systems: 8281 
+
+MSSQL: 1433 
+
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+MSSQL: 1433 
+
+Identity VA: 7444 
+vCloud Automation Center Virtual Appliance 
+    Load Balancer: 443 
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+vCloud Automation Center Infrastructure 
+Manager 
+    Load Balancer: 443 
+
+vCloud Automation Center Infrastructure 
+Web 
+    Load Balancer: 443 
+vCloud Automation Center Infrastructure 
+Manager 
+    Load Balancer: 443 
+
+vPostgres Virtual Appliance  
+
+5432 
+
+Not applicable 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 4 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+MSSQL Database Server 
+
+ 
+
+vCloud Application Director 
+
+vCloud Application Director Server 
+
+1433 
+
+ 
+
+These ports should not be 
+changed or blocked. 
+
+8443 HTTPS User Interface 
+connection 
+8080 HTTP (legacy port; do not 
+use) 
+
+vFabric RabbitMQ 
+
+5671 AMQP over SSL 
+
+External SSH connection 
+
+22 
+
+Content Server 
+
+80 HTTP (used to host OOB 
+content, agent binary, and CLI 
+binary) 
+
+ 
+
+IT Business Management 
+
+IT Business Management Server 
+
+ 
+
+ 
+
+ 
+
+IT Business Management UI 
+connection 
+
+443 HTTPS 
+
+External SSH connection 
+
+Web console access (VAMI) 
+
+22 
+
+5480 
+
+Not applicable 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+LOAD BALANCER 
+
+PORTS BALANCED 
+
+vCloud Automation Center Virtual Appliance Load Balancer 
+
+vCloud Automation Center Infrastructure Web Load Balancer 
+
+vCloud Automation Center Infrastructure Manager Service Load 
+Balancer 
+
+443 
+
+443 
+
+443 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 5 
+
+ 
+
+Diagrams 
+
+Figure 3. Minimum Footprint for Large Configuration (vCloud Automation Center) 
+For a minimum footprint of the large configuration of vCloud Application Director or IT Business 
+Management, see the corresponding medium configuration in Diagrams on page 20. The medium and large 
+configurations for these products are identical. 
+
+ 
+
+ 
+
+V M w a r e ,   I n c .   3 4 0 1   H i l l v i e w   A v e n u e   P a l o   A l t o   C A   9 4 3 0 4   U S A   T e l   8 7 7 - 4 8 6 - 9 2 7 3   F a x   6 5 0 - 4 2 7 - 5 0 0 1   w w w . v m w a r e . c o m    
+C o p y r i g h t   ©   2 0 1 4   V M w a r e ,   I n c .   A l l   r i g h t s   r e s e r v e d .   T h i s   p r o d u c t   i s   p r o t e c t e d   b y   U . S .   a n d   i n t e r n a t i o n a l   c o p y r i g h t   a n d   i n t e l l e c t u a l   p r o p e r t y   l a w s .   V M w a r e   p r o d u c t s   a r e   c o v e r e d   b y   o n e   o r   m o r e   p a t e n t s  
+l i s t e d   a t   H t t p : / / w w w . v m w a r e . c o m / g o / p a t e n t s .   V M w a r e   i s   a   r e g i s t e r e d   t r a d e m a r k   o r   t r a d e m a r k   o f   V M w a r e ,   I n c .   i n   t h e   U n i t e d   S t a t e s   a n d / o r   o t h e r   j u r i s d i c t i o n s .   A l l   o t h e r   m a r k s   a n d   n a m e s   m e n t i o n e d  
+h e r e i n   m a y   b e   t r a d e m a r k s   o f   t h e i r   r e s p e c t i v e   c o m p a n i e s .   I t e m :   E N - 0 0 1 3 9 0 - 0 2  D a t e :   2 0 - M a r - 1 4   C o m m e n t s   o n   t h i s   d o c u m e n t :   d o c f e e d b a c k @ v m w a r e . c o m  
+
+T E C H N I C A L   W H I T E   P A P E R   / 2 6 
+
+

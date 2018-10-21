@@ -1,0 +1,1149 @@
+ 
+
+  
+
+VMware® Operations 
+Management and EMC® 
+Storage Analytics for the 
+VSPEX® Proven Virtual 
+Infrastructure 
+
+T E C H N I C A L   W H I T E   P A P E R  
+ 
+
+ 
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Table of Contents 
+
+Introduction .................................................................................................................................... 2 
+Product name change .................................................................................................................. 2 
+EMC VSPEX Solution Overview .................................................................................................. 2 
+VMware Software Defined Datacenter and Cloud Management ................................................. 2 
+Datacenter and Cloud Management approaches ........................................................................ 3 
+Issues with legacy management tools ......................................................................................... 3 
+A better approach to management .............................................................................................. 3 
+Integrated Management........................................................................................................... 4 
+Converged Management ......................................................................................................... 4 
+Managing the Software Defined Datacenter ................................................................................ 4 
+Operations management in a VMware vSphere infrastructure ................................................. 4 
+VMware vSphere with vCenter Server ......................................................................................... 4 
+Datacenter and Cloud management using vSphere with Operations Management ................... 5 
+Business Benefits ........................................................................................................................ 5 
+VMware vCenter Operations Management Advanced Suite ...................................................... 6 
+Why move to vCenter Operations Management Advanced Suite? ............................................. 6 
+Intelligent Operations ............................................................................................................... 7 
+Policy-Based Automation......................................................................................................... 7 
+Unified Management ................................................................................................................ 8 
+Problem resolution with vCenter Operations Management Advanced Suite............................... 8 
+Comprehensive visibility into the environment ........................................................................ 8 
+vCenter Operations Management Packs................................................................................. 8 
+EMC Storage Analytics .................................................................................................................. 8 
+Storage management with EMC Storage Analytics ..................................................................... 8 
+Problem resolution with vCenter Operations Manager Advanced and EMC ESA ...................... 9 
+vCenter Operations in Action: Use Cases ................................................................................. 10 
+Virtual machine CPU performance ............................................................................................ 10 
+Virtual machine Memory performance ....................................................................................... 11 
+Virtual machine Storage performance ....................................................................................... 13 
+Physical Storage monitoring with ESA ...................................................................................... 14 
+Optimizing the environment ....................................................................................................... 17 
+Summary ....................................................................................................................................... 18 
+Addendum ..................................................................................................................................... 19 
+ 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Introduction 
+
+This whitepaper provides an overview of the best EMC® and VMware® datacenter management products 
+and services that work together to empower our customers to accelerate the adoption and implementation of 
+the private cloud. This paper outlines the capabilities of VMware® vSphere™ with Operations Management, 
+VMware® vCenter™ Operations Management Advanced Suite and EMC Storage Analytics (ESA) building 
+on the VSPEX® Private Cloud with vSphere proven Infrastructure solution.  
+
+On October 14th, 2014, VMware announced the rebranding of VMware vCenter Operations Management 
+Suite to VMware® vRealize Operations™. See the addendum for the list of products that were rebranded.  
+
+EMC VSPEX Solution Overview  
+
+EMC has joined forces with industry leading providers of IT infrastructure to create virtualization solutions 
+that accelerate the deployment of cloud infrastructure. VSPEX enables faster deployment, more simplicity, 
+greater choice, higher efficiency, and lower risk. Validation by EMC provides predictable performance and 
+enables customers to select technology that uses existing IT infrastructure while reducing planning, sizing, 
+and configuration burdens. VSPEX provides an infrastructure for customers who want to gain the simplicity 
+of converged infrastructures and have more choice in individual solution components. 
+
+VMware Software Defined Datacenter and Cloud Management  
+The Software-Defined Data Center is not a product or a set of products, but an architectural approach that 
+enables customers to achieve the promises of agility and lower costs provided by cloud services for on-
+premise infrastructure.   
+ 
+This approach to data center architecture is to break down the traditional silos of IT where each application 
+has dedicated services provided for compute, storage and availability, networking and security, and 
+compliance. This architecture includes the following components: 
+ 
+  Virtualized Infrastructure services-- where resources (compute, network, storage) are abstracted from 
+
+the hardware and pooled to enable agility and ease of management  
+
+  Policy-based management and automation 
+
+  Physical / Converged Infrastructure  
+
+In the cloud era, intelligent virtual infrastructure provides the foundation for faster, more agile and 
+accelerated delivery of IT services and business applications. However, within virtual and cloud 
+environments, the boundaries between operations and infrastructure management have blurred. As a result, 
+managing these new environments using tools designed for physical environments creates operational and 
+business problems—blocking the path to flexible, service-oriented cloud infrastructure. 
+
+This paper explores the need for a novel management approach to meet the challenges that infrastructure 
+and operations management teams face most often in today’s heterogeneous IT environments, such as: 
+
+  Performance and availability issues  
+
+  Capacity management and optimization  
+
+  Configuration and compliance issues  
+
+  Workload mobility and rapid changes on demand 
+
+As virtual environments continue to grow, converge, and evolve toward self-service private clouds, and 
+merge with public clouds, IT needs new capabilities to anticipate and overcome the challenges of the next 
+stage of the virtualization journey.  
+
+This management solution demonstrates the new cloud management approach by offering quality of 
+
+T E C H N I C A L   W H I T E   P A P E R   / 2    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+service, comprehensive visibility, policy-based automation for guided troubleshooting, root-cause isolation, 
+and remediation of even the most complex scenarios. When coupled with the EMC VSPEX validated 
+modular architecture, the solution enables faster deployment, greater efficiency, lower risk, easier 
+management, and faster problem resolution. 
+
+Datacenter and Cloud Management approaches 
+
+Issues with legacy management tools  
+
+Using yesterday’s solutions on today’s operations management challenges leads to costly and time-
+consuming business impacts across the entire organization.  
+
+Organizations that manage virtual and cloud environments using legacy infrastructure practices and tools 
+cannot deliver the cost efficiency or the quality of service and business agility their customers expect. In fact, 
+the organizational and business ramifications can be wide ranging. Failure to transform your management 
+approach impacts people across the entire organization. 
+
+Virtual and cloud environments have remapped the way infrastructure is organized. Workloads no longer 
+operate independently which means the boundaries separating operations and infrastructure management 
+are less distinct. Instead, workloads move within and between private datacenters and the public cloud. 
+Rebalancing and reconfiguration, auto-scaling, and workload movement across pools of resources also 
+occurs much more quickly in virtual environments than it does in physical environments. 
+
+For IT, both virtualization awareness and situational awareness are essential for quick problem resolution. 
+Without this awareness, administrators depend on “rules of thumb,” “tribal knowledge,” and best guesses to 
+hunt down issues, especially when it comes to configuration changes that can cause contention far from the 
+problem’s source. 
+
+Another day-to-day challenge that crystallizes the inability of yesterday’s solutions to successfully manage 
+today’s virtual and cloud environments is false alerts triggered by overly conservative thresholds or “high 
+normal” conditions. Traditional static thresholds can’t adapt to rapid change in dynamic environments where 
+workloads and infrastructure are interdependent. The resulting false alerts consume administrators’ time and 
+focus with firefighting and manual attempts to set and reset threshold levels that reduce operational 
+efficiency. False alarms also encourage resource over-commitment to accommodate high normal conditions, 
+undermining virtualization’s cost-effectiveness. The net impact is wasted IT labor, assets, and budget. 
+
+These IT inefficiencies do not exist in a vacuum. In fact, these inefficiencies ripple throughout the entire 
+organization. Management becomes slow and costly because people and processes at the operational or 
+administrator level can’t work at the speed and volume of events. The management of these legacy systems 
+interferes with the resource optimization needed to meet budgets and service-level requirements set by IT 
+managers or directors. At the business/CIO level, operations management issues show up as failures to 
+both maintain promised service levels and to deliver economies expected from virtualization. 
+
+To alleviate negative business impact and drive IT efficiency, today’s virtual infrastructure requires a new, 
+simplified approach to the traditional disciplines of operations management as well as an updated approach 
+to the processes and tools that support them. 
+
+A better approach to management  
+
+VMware takes a comprehensive approach to simplifying virtual and cloud infrastructure complexity that is 
+not only based on embedded, integrated and converged management, but is also based on running IT like a 
+business.  
+
+As the complexity of IT environments increases, so does the need for greater simplicity when it comes to 
+managing those environments. VMware simplifies management by eliminating as many tasks as possible 
+through intelligent automation. This simplification means the IT staff can focus on activities with greater 
+
+T E C H N I C A L   W H I T E   P A P E R   / 3    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+business impact.  
+
+VMware’s approach to enterprise management is based on Integrated and Converged management.  
+
+Integrated Management 
+Performance issues can originate from any component, virtual machine (“VM”), physical host, or cluster. 
+What’s more, the rate of change for workloads has outstripped the capabilities of traditional management 
+approaches. For this reason, it’s essential for management capabilities to be tightly integrated with the 
+virtualization and cloud platforms themselves. 
+
+Converged Management 
+Workload interdependence in virtual and cloud environments stymies the ability of specialized teams to 
+address performance, capacity and configuration issues in isolation. Highly virtualized and cloud 
+environments require both the integration of management disciplines and metrics for a holistic view of the 
+health of virtual and physical infrastructures, and the tools to maintain it. 
+
+In operations, the disciplines of performance, capacity, and configuration management are converging, 
+necessitating greater collaboration between traditionally siloed IT teams. VMware facilitates this 
+collaboration, for example, by providing a single dashboard that can be used by VI and operations 
+administrators alike to look at health, risk, and efficiency across the entire IT environment. When deployed 
+as part of the EMC VSPEX architecture, the VMware management tools provide a significantly lower 
+operational expense as well as a faster time to problem resolution. 
+
+Managing the Software Defined Datacenter 
+
+Interdependent, dynamic virtual and cloud infrastructures exceed the capabilities—and outstrip the speed—
+of traditional management processes and tools designed to manage physical IT assets. 
+
+Virtual and cloud infrastructures differ from the traditional physical architectures that preceded them in 
+important ways. Traditional, siloed environments are built on tightly-coupled applications as well as 
+infrastructures dedicated to certain components and application tiers. The resulting rigid vertical stack offers 
+limited flexibility and agility, and requires a complex stack of tools and equally complex set of processes to 
+manage it. 
+
+In contrast, highly-virtualized and cloud-abstracted resources, shared capacity and fluid configurations 
+characterize environments. Tools and processes designed for traditional architectures have difficulty 
+managing this highly dynamic, constantly changing, and interdependent environment. Virtual and cloud 
+computing requires organizations to embrace a new management approach—one that is as agile, flexible 
+and dynamic as their new IT infrastructure.  
+
+By converging and integrating the disciplines of performance, capacity, and configuration management into 
+a consolidated, context-sensitive, virtualization-aware solution, vSphere with Operations Management offers 
+IT a tool designed to take on today’s enterprise management challenges. 
+
+Operations management in a VMware vSphere 
+infrastructure  
+
+VMware vSphere with vCenter Server  
+
+vCenter Server provides a centralized and extensible platform for managing virtual infrastructure. vCenter 
+Server manages vSphere environments, giving IT administrators simple and automated control over the 
+virtual environment to deliver infrastructure with confidence. 
+
+vCenter Server provides centralized management of virtualized hosts and virtual machines from a single 
+console. It gives administrators deep visibility into the configuration of the critical components of a virtual 
+
+T E C H N I C A L   W H I T E   P A P E R   / 4    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+infrastructure—all from one place.  Key capabilities enabled by vCenter Server include vSphere vMotion, 
+vSphere Distributed Resource Scheduler, vSphere High Availability (HA), and vSphere Fault Tolerance. 
+
+The next steps 
+vCenter management is a powerful tool for administrators, but there’s another solution that provides a 
+visibility into the overall performance of the environment, includes the ability to monitor operational trends, 
+analyzes potential problems, and provides the capability to find and resolve the root causes of the issue. 
+That solution is vSphere with Operations Management. 
+
+Datacenter and Cloud management using vSphere with Operations 
+Management  
+
+vSphere with Operations Management integrates vCenter Operations Manager Standard with vSphere to 
+offer comprehensive visibility, policy-based automation and proactive management required by today’s 
+complex and constantly changing IT reality.  It provides: 
+
+  Powerful visualization of performance, capacity and configuration issues, and risks across your IT 
+
+environment’s heterogeneous virtualized infrastructure stack. It collects and analyzes virtual 
+machine performance data, correlates abnormalities and identifies the root cause of building 
+performance problems.  
+
+ 
+
+Infrastructure context – connecting elements logically according to dependencies, peer 
+relationships, and interactions in specific virtual environments. This dynamic solution learns normal 
+conditions and cycles, and gauges departures from those cycles to track trends and anticipate 
+performance degradation or capacity shortfalls. 
+
+  Dashboard abstracts of millions of metrics into health, risk, and efficiency measures across the 
+
+entire IT environment to help administrators manage overall system performance and ensure 
+operational efficiency. These views give the administrator better visibility and actionable intelligence 
+to quickly identify what’s causing current workload conditions as well as spot potential future 
+problems, and find areas with inefficient resource use.  
+
+  Capacity planning, reporting, and optimization views to help administrators deliver on performance 
+
+SLAs while ensuring the efficient utilization of the vSphere virtual infrastructure. It shows you the 
+impact of capacity shortfalls on performance and identifies opportunities to increase VM density 
+and to reclaim excess capacity and idle VMs. Automated “what-if” scenario planning forecasts and 
+evaluates the effects of administrative actions. From a business point of view, this approach to 
+capacity management is a major step toward IT as a service, delivered on demand, and helps 
+determine the optimal configuration for ensuring service levels and operational efficiency. 
+
+This converged, integrated approach enables rapid problem resolution, higher quality of service with fewer 
+incidents, and less downtime of critical business application services. It allows the administrator to be more 
+proactive and to enable optimal performance and resource utilization in the face of growing service level 
+expectations and accelerating change. 
+
+Business Benefits 
+
+This virtualization-aware, context-sensitive, and predictive analytics-based approach to operations 
+management helps streamline processes, achieve efficiencies, and to deliver on SLAs.  
+
+Organizations that make the transition to this new class of management tools may see improvements in: 
+
+  Efficiency with less time required for routine tasks and issues resolution. 
+
+  Span of control since administrative staff can accomplish more within the constraints of currently 
+
+available resources. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 5    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+  Cost-effectiveness due to improved staff and resource utilization leading to reduce operational 
+
+expenditures. 
+
+  Quality of service because routine issues are resolved quickly with automated assistance. 
+
+  Availability because issues are resolved “on the fly” without planned downtime and before they raise 
+
+risks of service interruption. 
+
+  Planning via “what-if” scenarios to ensure future capacity needs are met while optimizing capital 
+
+expenditure and operational efficiency. 
+
+In addition to these benefits for the business as a whole, management staff often sees improvements in their 
+ability to manage their time and professional growth. Firefighting an endless list of routine issues is replaced 
+by proactive, high-level administration with automated support. 
+
+The information presented so far explains how vSphere with Operations Management provide overall virtual 
+machine performance data as well as information about the virtual environment. Suppose an administrator 
+needs more information about hardware, applications, configurations, other parts of the datacenter and 
+cloud environments—the complete converged environment. Being able to collect information directly from 
+hardware and applications provides the administrator with the ability to see a problem from both application-
+down and hardware-up perspectives for even faster resolution of complex issues in the environment. To 
+enable this expanded set of features, vSphere with Operations Management can be upgraded to the 
+vCenter Operations Management Advanced Suite. 
+
+VMware vCenter Operations Management 
+Advanced Suite 
+
+Why move to vCenter Operations Management Advanced Suite?  
+
+The role of operations management is to ensure and restore service levels while continuously optimizing 
+operations for efficiency and cost. Today’s virtual and cloud infrastructure present new challenges to 
+infrastructure and operations teams, including the following: 
+
+  Scale – An administrator might manage up to 5–10 times more virtual machines (compared to physical 
+environments), and a large number of alerts and false positives need a response. Span of control with 
+administrative staff accomplishing more within the constraints of currently available resources. 
+
+  Change – Infrastructure and application services delivered through self-service portals enable business 
+
+agility, but also make workloads and demand for resources unpredictable, resulting in unplanned 
+changes. 
+
+  Convergence – Management capabilities directly embedded in the platform and new hardware 
+
+architectures require a new class of metrics that enable IT to understand the overall workload and health 
+of the environment. 
+
+vCenter Operations Management Advanced Suite provides a new approach that 
+delivers on three characteristics essential for success: 
+  Automated – Predictive, self-learning analytics enable a much higher degree of automation than 
+
+traditional management tools, delivering nearly 70 percent gains in IT productivity, 30 percent reduction 
+in resource consumption, and additional business benefits, according to Forrester1. 
+
+1 Forrester Consulting Reports on the 
+Total Economic Impact of VMware vCenter Operations Management  Advanced Suite 
+ 
+http://www.vmware.com/files/pdf/products/vCenter/vCenter-Operations-Management-Forrester-Report.pdf 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 6    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+ 
+
+Integrated – The suite provides an integrated approach to performance, capacity and configuration 
+management. It converges management disciplines and unifies teams across infrastructure and 
+operations. 
+
+  Comprehensive – Built on an open and extensible operations platform designed for hybrid cloud 
+
+environments, vCenter Operations Management Advanced Suite delivers a comprehensive set of 
+management capabilities, including performance, capacity, change, configuration, and compliance 
+management, and application discovery and monitoring. 
+
+The vCenter Operations Management Advanced Suite gives you greater visibility across all layers of the 
+infrastructure. It collects and analyzes performance data, correlates abnormalities, and identifies the root 
+cause of emerging performance problems. vCenter Operations Management Advanced Suite provides 
+capacity management to optimize resource usage and policy-based configuration management to assure 
+compliance. Application discovery and dependency mapping enable infrastructure and operations teams to 
+ensure service levels of critical applications and build disaster recovery plans. 
+ 
+Intelligent Operations 
+Gain deep operational insights into the health, risk, and efficiency of infrastructure and applications to help 
+ensure quality of service and early detection of performance, capacity, and configuration issues. 
+
+  Enhanced application monitoring with vCenter Hyperic® provides out-of-the-box dashboards for 
+
+business-critical applications (Microsoft SQL, Exchange). 
+
+  Storage analytics provides deep visibility into storage infrastructure, bringing together views into 
+
+topology, statistics, and events across host bus adapters, fabric, and arrays. 
+
+  Monitoring data is automatically analyzed and expressed as health, risk, and efficiency measures that 
+
+enable IT to detect potential issues in the environment more easily. 
+
+  Prebuilt and configurable operations dashboards provide real- time insights into infrastructure behavior, 
+
+upcoming problems, and opportunities for optimization. 
+
+  Visual correlation of change events with performance data across virtual infrastructure, OS, and 
+
+applications provide visibility into performance degradation from configuration changes. 
+
+  Flexible group policies define specific thresholds, alert types, notifications, and other configuration 
+
+settings at a group level to prioritize operational activities for business-critical applications and 
+production workloads. 
+
+Policy-Based Automation 
+Automated root-cause analysis with advisory tools and orchestration workflows to enable optimal resource 
+utilization, operational efficiency, and enforcement of configuration standards. 
+ 
+ 
+
+Infrastructure and operations analytics eliminate time consuming problem resolution processes through 
+automated root-cause analysis. 
+
+  Actionable recommendations provide simplified explanations of underlying problems and corrective 
+
+actions to remediate them. 
+
+  Automated workflow triggers enable administrators to associate workflows created in vCenter 
+
+Orchestrator with vCenter Operations alerts. 
+
+  Detection, enforcement, and remediation of security-hardening guidelines, configuration standards, and 
+regulatory requirements are automated across virtual and physical infrastructure and operating systems. 
+
+  Automated capacity optimization reclaims overprovisioned capacity and eliminates the need for 
+
+spreadsheets or complex scripts. “What if” scenarios facilitate capacity optimizations and help defer 
+unnecessary hardware investments. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 7    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Unified Management  
+Get a holistic view into what is driving performance, capacity, and configuration issues as well as 
+infrastructure and application dependencies. Meet service-level agreements (SLAs) by using real-time 
+performance dashboards across hybrid and heterogeneous cloud environments. 
+ 
+  Extensibility enables integration with existing monitoring tools to provide a holistic view and proactive 
+
+management capabilities across hybrid cloud infrastructure, including physical and virtual hardware and 
+applications. 
+
+  Self-learning performance analytics and dynamic thresholds adapt to the environment to simplify 
+
+operations management and eliminate false alerts. 
+
+  Real-time, integrated dashboards of performance, capacity, and configuration change events enable a 
+
+proactive management approach and help ensure that SLAs are met. 
+
+  Application dependency, discovery and visualization bring application-level awareness to infrastructure 
+and operations teams to ensure service levels and disaster-recovery protection for all critical application 
+services. 
+
+  Out-of-the-box compliance templates ensure continuous compliance with security best practices, 
+
+hardening guidelines, and regulatory requirements across all aspects of the data center infrastructure. 
+
+Problem resolution with vCenter Operations Management Advanced 
+Suite 
+Comprehensive visibility into the environment  
+vCenter Operations Management Advanced Suite also offers a wide variety of third party Operations 
+Management Packs and solutions that extend the capabilities of the suite. These management packs offer 
+administrators a view into the physical infrastructure, specific applications, or services. This expanded view 
+can significantly decrease the time needed to resolve problems. 
+
+vCenter Operations Management Packs 
+vCenter Operations Management Packs extend the capabilities of vCenter Operations to third-party 
+products and technologies to enable end-to-end operations intelligence with data visualizations, dashboards, 
+reports, alerts, and actions. An Operations Management Pack can be delivered in the form of an agent 
+plugin, content pack or compliance pack. vCenter Operations Management Packs extend the power of 
+vCenter™ Operations Management Advanced Suite to hybrid and heterogeneous environments, providing 
+comprehensive visibility in a single operations console across applications, storage, and network devices. 
+The next section of this paper takes a closer look at the EMC Storage Analytics™ (ESA™) management 
+pack. 
+
+EMC Storage Analytics 
+
+Storage management with EMC Storage Analytics 
+
+EMC Storage Analytics (ESA) delivers actionable performance analysis and proactively facilitates increased 
+insight deep into storage resources to help detect capacity and performance issues so they can be corrected 
+before they cause a major impact. ESA provides increased visibility, metrics, and a rich collection of storage 
+analytics for EMC VNX®, VNXe®, VMAX®, VPLEX® and XtremIO® storage infrastructures in VMware 
+virtual environments. 
+ 
+Benefits include:  
+
+  Visibility and customizable dashboards for storage administrators, showing health, performance and 
+
+capacity metrics.  
+
+T E C H N I C A L   W H I T E   P A P E R   / 8    
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+  Simplified troubleshooting and reduced IT infrastructure management complexity.  
+
+  Problem detection (performance and capacity anomalies), isolation, and remediation assistance to 
+
+ensure service levels.  
+
+Problem resolution with vCenter Operations Manager Advanced and 
+EMC ESA  
+
+vCenter™ Operations Manager presents aggregated data through alerts, dashboards, and in pre-defined 
+reports that administrators can easily interpret. EMC Storage Analytics further extends the integration 
+capabilities across EMC and VMware solutions to provide out-of-the-box analytics and visualization across 
+the physical and virtual infrastructure. 
+ 
+EMC Storage Analytics provides pre-configured, customizable dashboards so users can manage their 
+storage environment. Dashboards types include: 
+
+ 
+
+Topology Dashboards — enables greater visibility across the VMware and storage domains in terms of 
+an end-to-end mapping. 
+
+  Metrics Dashboards — provides metrics based on “normal” behavior of that application workload (which 
+
+it learns over a period of time), after which it can analyze and make sense of all the data that has been 
+collected and appropriately point out anomalies in behavior. 
+
+  Overview Dashboards — populates heat maps that show administrators the health of their systems and 
+
+reflect which workloads are stressed. In addition, it shows performance and utilization statistics for 
+features such as EMC FAST™ Cache and SRDF®.  
+
+ 
+
+Top-N Dashboards – identifies the top 5 storage resources by metric categories including IOPs, 
+bandwidth, Latency and Capacity. 
+
+  Create-Your-Own-Dashboard — choose from a list of several templates and customize the look of a 
+
+dashboard based on a specific environment. 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 9    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+vCenter Operations in Action: Use Cases 
+
+The following use cases demonstrate vCenter Operations’ integrated performance, capacity and 
+configuration capabilities, including EMC ESA for complete storage monitoring. 
+
+Virtual machine CPU performance 
+
+Change is a constant in data centers, whether planned or completely unexpected. Administrators need the 
+ability to proactively solve for performance issues, including CPU, Memory, Network, and Storage. 
+vCenter™ Operations helps diagnose workload-related performance issues, perform root cause analysis, 
+proactively single out looming problems and identify resource usage inefficiencies. In this example, CPU 
+performance is a dynamic value that can change from second to second. Analysis of CPU performance 
+requires the ability to monitor both average and peak values. As shown in Figure 1, vCenter Operations 
+presents health badges and alerts that can be monitored for situations where the CPU utilization is 
+beginning to impact performance of the virtual machine. 
+
+ 
+Figure 1: Excessive virtual machine CPU utilization 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 0    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Virtual machine Memory performance 
+
+Occasionally, over-consolidation or virtual machine sprawl can lead to memory or other resource contention 
+and can degrade overall system performance. vCenter Operations provides easy to use dashboards and 
+visual charts that help VI administrators pinpoint performance hotspots in the data center and determine how 
+frequently these incidents occur so they can balance workloads across their data center resource pool. As 
+seen in Figure 2, memory utilization is at 29% and, being the highest value, sets the Workload health sub-
+badge to 29. If memory utilization were to become excessive, the workload badge would transition from 
+green to yellow to red, which would generate a risk value, as seen in Figure 3. The transition to yellow would 
+alert the administrator to address the issue before it leads to an application performance issue. 
+
+ 
+
+ 
+
+ 
+Figure 2: Monitoring virtual machine utilization 
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 1    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 3: Potential memory utilization risk 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 2    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Virtual machine Storage performance 
+
+Storage I/O is critical and is often a leading cause of performance bottlenecks in virtualized environments. 
+vCenter Operations offers in-depth visibility into data center elements including storage (IOPS, throughput, 
+latency). As seen in Figure 4, this enables VI administrators to design their virtual data centers to effectively 
+rule out or diagnose storage I/O contention and other storage-related VM performance issues. 
+ 
+
+ 
+Figure 4: Root cause analysis 
+ 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 3    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Physical Storage monitoring with ESA  
+
+The next three figures show what additional information can be provided using EMC Storage Analytics 
+(ESA) for vCenter Operations (vCenter Operations Management  Advanced Suite or higher required). Figure 
+5 shows information about the storage system from the top down and would enable an administrator to 
+determine that the root cause was due to resets on the host bus adapter (HBA). An administrator could then 
+dive deeper into the storage system using the ESA management pack. Figure 5 demonstrates the view into 
+the topology and health of the EMC storage system. Being able to view the health of the storage system all 
+the way from the virtual machine to the individual components provides the ability to quickly find and 
+schedule repair for the defective component.  
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Figure 5: Storage topology and Health 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 4    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+As seen in Figure 6, VNX arrays have their own specific dashboard – VNX Performance Overview. This 
+dashboard covers the main storage system resource types: thin pools, storage groups, LUNs, storage 
+processors (VNX), and FAST Cache Performance (VNX). The dashboard also provides a few metrics from 
+each one. The heat map colors work on two different levels. There is a green-to-red legend for some, which 
+represents either usage (for example, thin pool allocation) or performance (for example, latency), and there 
+is a blue legend for relative usage across that metric within an array (for example, total writes). For any one 
+of the objects shown, a full historical perspective is available on the EMC Storage Metrics dashboard as 
+seen in Figure 7.  
+ 
+
+Figure 6: VNX Performance Overview 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 5    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+ 
+Figure 7: EMC Storage Metrics 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 6    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Optimizing the environment 
+
+Effective capacity management allows the administrator to match the right amount of resources with the 
+represented workload demand in order to maintain service health while limiting overhead and waste. 
+vCenter Operations helps assess capacity risk, and identifies opportunities to reclaim unused capacity to 
+optimize virtual resource utilization. It also simulates “what-if” scenarios to model the impact of capacity 
+changes to the datacenter as seen in Figure 8.  
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 8: What-if scenario models 
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 7    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Summary  
+
+Operations management disciplines are converging in the cloud. Performance and capacity management 
+are becoming inseparable due to the heterogeneous nature of converged infrastructure. Traditional tools 
+and processes designed for siloed and legacy infrastructures don’t provide the automation, insight, and 
+control needed to effectively manage highly virtualized and private cloud environments. vCenter Operations 
+Advanced Suite is designed to simplify and automate operations management. This integrated approach 
+provides the visibility needed to proactively ensure service levels in dynamic virtual and cloud environments. 
+ 
+Virtual and cloud environments will continue to grow in scale and complexity, outstripping the capabilities of 
+manual processes—even those augmented by automated troubleshooting, analysis, and remediation tools. 
+The VMware vision for the management end-state includes: 
+ 
+  Automation with embedded problem solving and management expertise at each layer to optimize virtual 
+
+and cloud environments. 
+
+ 
+
+Intelligent policy management that provides services’ performance, compliance, and security for self-
+service with complete control. 
+
+As companies and organizations continue on their virtualization and cloud journey, EMC VSPEX validated 
+architecture, EMC Storage Analytics, and vCenter Operations Management Advanced Suite can help them 
+proactively manage the evolving needs of their IT environment by: 
+ 
+  Continuing to integrate management capabilities into the infrastructure platform, thereby turning 
+
+“management” into “manageability” and freeing staff from routine tasks to focus on activities that add 
+higher value to the business. 
+
+  Continuing to converge, adding security, compliance, and business-process layers to virtual 
+
+infrastructure and applications. 
+
+  Evolving toward self-service and IT business management so business owners can select services with 
+
+capabilities, performance, and compliance that match their requirements while understanding the true 
+cost and value of the services IT delivers. 
+
+ 
+
+Incorporating public cloud services such as infrastructure and software as services, when they suit 
+business objectives without surrendering visibility or control. 
+
+At the end of the day, this is the kind of IT operations management solution that enterprises need--a solution 
+that delivers on SLAs for business critical applications, enables continuous compliance with operational and 
+regulatory requirements, optimizes resource utilization, and streamlines operational costs. In other words, an 
+operations management solution designed for today that’s ready for tomorrow.  
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 8    
+
+ 
+
+VMware Operations Management and EMC Storage Analytics for the VSPEX 
+Proven Virtual Infrastructure 
+
+Addendum 
+
+The list below are the rebranding and name changes of the cloud management products for vRealize 
+
+Operations™ and vRealize Suite™. 
+
+FORMERLY 
+
+NEW NAME 
+
+vCenter Operations Management Suite™ 
+
+vRealize Operations™ 
+
+vCenter Operations Manager™ 
+
+vRealize Operations Manager™ 
+
+vCenter Configuration Manager™ 
+
+vRealize Configuration Manager™ 
+
+vCenter Hyperic™ 
+
+vRealize Hyperic™ 
+
+vCloud Automation Center™ 
+
+vRealize Automation™ 
+
+vCloud Application Director™ 
+
+vRealize Application Services™ 
+
+vCenter Log Insight™ 
+
+vRealize Log Insight™ 
+
+IT Business Management Suite™ 
+Standard 
+
+vRealize Business™ Standard 
+
+IT Business Management Suite™ 
+Advanced/Enterprise 
+
+vRealize Business™ 
+Advanced/Enterprise 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2014 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by 
+
+ 
+
+one or more patents listed at http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions.  
+EMC, ESA, EMC Storage Analytics, VSPEX, VNX, VNXe, VMAX, FAST, and SRDF are registered trademarks or trademarks of EMC Corporation in the United States and other 
+countries. All other marks and names mentioned herein may be trademarks of their respective companies. 
+ 
+
+T E C H N I C A L   W H I T E   P A P E R   / 1 9    
+
+

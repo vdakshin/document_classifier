@@ -1,0 +1,369 @@
+ 
+
+NORTH AMERICAN FINANCIAL 
+INSTITUTION CASE STUDY 
+
+ 
+
+Challenges:  
+
+• 
+
+• 
+
+Finding  contributing issues 
+and root cause of problems 
+that impact performance and 
+availability 
+
+Server / network / storage/ 
+application performance 
+problem diagnosis 
+
+Solution:  
+
+• 
+
+Virtual Instruments SAN 
+Health Audit discovered 
+several discrete issues that, 
+once uncovered, enabled the 
+customer to take measures to 
+avoid SAN related slowdowns 
+or even outages 
+
+ Benefits:  
+
+Introduced best practices to 
+help eliminate wasted staff 
+time finger-pointing at 
+vendors 
+
+Gave IT operations staff the 
+data to know where to spend 
+time for the best payback 
+
+Identified the most likely 
+causes of application 
+slowdowns 
+
+Enabled the customer to 
+eliminate configuration 
+problems that could have led 
+to application unavailability 
+
+• 
+
+• 
+
+• 
+
+• 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Virtual Instruments SAN Health Audit Brings SAN Maturity 
+Best Practices to a Leading Financial Institution 
+
+Company Overview  
+Established over 100 years ago, this Financial Group serves more than 7 million 
+personal, commercial, corporate and institutional customers in North America and 
+internationally. Through its various operating divisions, including commercial and 
+personal banking and wealth management, the institution strives to offer a great 
+customer experience.   
+IT Environment  
+This company’s data center houses multi-petabytes of data, with additional storage in 
+secondary and disaster recovery sites.  Storage is supplied primarily by EMC, with 
+director-class switches by Brocade.   
+Challenges and Solutions Summary 
+This multi-national institution was experiencing an application slowdown related to its 
+trading application.  It allocated dozens of company and vendor resources, a “tiger 
+team” that met every day during market open and market close, for many months. 
+•  Customer was dealing with application latency (response time) issues that it 
+
+suspected were storage-related. 
+
+•  Customer had worked closely but unsuccessfully with its storage partners in an 
+
+effort to determine the root cause of these performance issues for several months.  
+The storage partners, working collaboratively, had not identified any significant 
+SAN- or storage-related issues that correlated with the observed issues. 
+
+Virtual Instruments shipped in a VirtualWisdom PAK (Portable Assessment Kit), and 
+tapped storage links using SANInsight TAPs and performed a detailed SAN Health Audit 
+
+1 
+
+ 
+
+ 
+
+NORTH AMERICAN FINANCIAL 
+INSTITUTION CASE STUDY 
+
+ 
+
+Professional Services engagement.  During that period, the team, including the 
+customer’s engineering and operations personnel and Virtual Instruments met to 
+review the metrics provided by VirtualWisdom and to discuss the ongoing analysis.  
+While the problem itself didn’t occur during the time that VI instrumentation was in 
+use, there were several anomalies observed in the environment that helped explain 
+why it is prone to outages should other anomalies arise.  
+Virtual Instruments often finds that storage-related outages and/or performance 
+incidents are not caused by a single issue but are the result of multiple, seemingly 
+unrelated issues in the environment. The net result is that the SAN infrastructure, 
+running in a somewhat vulnerable state is not able to deal with additional issues as 
+they arise resulting in outages or “brownouts”.  Through this services engagement, the 
+customer learned best practices related to identifying risk areas that when taken in 
+total, often result in application performance problems. 
+Problems found 
+The customer engaged with Virtual Instruments to help find multiple SAN-related 
+problems, remediate them, and just as importantly, provide guidance to help prevent 
+similar problems from recurring in the future.  VirtualWisdom’s unique ability to 
+measure, capture, and analyze SAN events, I/O workload and transaction latency was 
+deemed essential to solve this application slowdown. 
+•  Connectivity and Errors 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+“Two weeks ago, if a 
+
+storage resource issue was 
+brought to the tiger team, it 
+would take almost an entire 
+afternoon to correlate the 
+data needed to determine 
+
+next steps in the 
+
+troubleshooting process, 
+and again the next day if 
+there was a recurrence. 
+With a tool like Virtual 
+
+Wisdom, that process takes 
+
+a matter of minutes. 
+
+VirtualWisdom has given us 
+
+the chance to monitor in 
+
+real time, pause the activity 
+seen and scroll through all 
+the different dashboards to 
+determine how that issue 
+
+correlates across the 
+
+infrastructure.” 
+
+SAN Manager 
+Customer IT 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Errors in the SAN can cause significant impact to performance and latency.  There 
+were several areas of concern found that could affect overall performance and 
+reliability of the environment. An excessive number of SCSI inquiries were being 
+made by many of the servers. While inquiries are a normal part of the reboot and 
+device discovery process, they are usually not a normal part of steady state 
+operations. In many five-minute time periods there were as many as 1,000 inquires 
+per server. The concern was that inquiries at this level would not be well-tolerated 
+by some storage arrays and would lead to poor and unpredictable performance.   
+It was also noted that several physical layer problems were resolved during the 
+analysis period. There were a number of Class 3 Discards, CRC Errors, SCSI Check 
+Condition, Accepts and Aborts identified during this assessment.  Servers and 
+applications were being forced to retransmit data affecting overall performance 
+and health of the environment.  This added additional load and increased 
+congestion in the fabric. 
+Virtual Instruments suggested that the links experiencing CRC’s should have the 
+SFP’s and cables examined for issues and replaced as needed. Many ISL’s and 
+storage ports were experiencing Class 3 Discards while utilization levels were low. 
+This behavior is indicative of slow draining devices in the environment. Virtual 
+Instruments recommended that going forward, VirtualWisdom ProbeFCX will be 
+used to identify and properly tune HBA settings and configurations to avoid these 
+problems. Often, properly configuring Queue Depth settings, avoiding mixing link 
+rates and alerting when high numbers of exchanges are pending can eliminate 
+these issues.  The SCSI Check Condition Errors appeared to be coming from the 
+
+2 
+
+ 
+
+several server HBAs.  Virtual Instruments recommended that the HBA and storage 
+vendors should be engaged to review these errors in greater detail. 
+
+•  Configuration 
+
+Ensuring that redundant data paths are functioning as intended is important to 
+availability and fault tolerance. There were over 1,000 HBAs that were visible to 
+VirtualWisdom.  Of those, 11% were operating in a balanced active/active mode.  
+5% were identified as acting in an Active/Passive mode.  35% of HBAs were 
+identified as Single, meaning that no secondary data path could be identified for 
+many of the servers on the SAN.  There also were many servers where it appeared 
+that all of the HBAs were attached to the same switch which could result in failures 
+if the switch or fabric encountered errors.  
+
+Single
+
+No Nickname
+
+Balanced
+
+Imbalanced
+
+Active/Passive
+
+     
+
+Multi-pathing 
+
+ 
+
+•  Capacity Planning 
+
+The SAN was largely underutilized with some areas of congestion. 7% of the storage 
+ports had 51% of the traffic. This means that 93% of the storage ports had the other 
+half of the traffic.   Some of the ISLs were found to peak above 50%.  If one of the 
+paths were to fail, then the ISL peer would struggle to meet the expected 
+performance requirement, which could result in degraded performance, increased 
+latency and possibly an outage.  There were some servers that were responsible for 
+the majority of the traffic in the data center. The remaining portion of the 
+environment could be optimized to reduce the number of storage ports by 
+consolidating them. 
+
+VirtualWisdom Value 
+The VirtualWisdom SAN Health Audit is a key step in SAN maturity. It offers an initial 
+baseline of the environment so progress can be tracked as improvements and 
+optimization changes to the environment are made.  And it provides a blueprint for 
+avoiding SAN-related slowdowns.  This analysis contains many findings and 
+recommendations that are typical for initial SAN instrumentation and should not be 
+perceived as any lack of planning or architecture of the environment.  
+
+ 
+
+3 
+
+ 
+
+NORTH AMERICAN FINANCIAL 
+INSTITUTION CASE STUDY 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+“Without a doubt, I’ve never 
+
+been part of an 
+
+implementation for 
+something of this 
+
+magnitude that happened 
+so efficiently, especially 
+
+under the time constraints.” 
+SAN Manager 
+Customer IT 
+
+ 
+
+25 Metro Drive,  Suite 400 
+ San Jose CA 95110  
+Sales Information  
+sales@virtualinstruments.com 
+Support Information 
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+©2011 Virtual Instruments. All rights 
+reserved. Features and specifications 
+are subject to change without notice. 
+VirtualWisdom®, Virtual Instruments 
+are trademarks or registered 
+trademarks in the United States 
+and/or in other countries. All other 
+brands, products, or service names 
+are or may be trademarks or service 
+marks of, and are used to identify, 
+products or services of their 
+respective owners.   3/11 
+
+ 
+
+

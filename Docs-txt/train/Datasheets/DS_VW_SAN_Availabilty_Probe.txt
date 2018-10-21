@@ -1,0 +1,134 @@
+DATASHEET
+
+Benefits
+•  Dramatically reduces the time 
+
+to identify and resolve SAN-
+related problems, reducing 
+downtime and improving IT staff 
+productivity
+
+•  Highlights over-utilized resources 
+
+to prevent outages and 
+performance problems
+
+•  Historical trending analysis 
+
+enables proactive fault 
+identification, reducing the 
+number of trouble tickets and 
+reducing downtime by up to 75%
+•  Enables greater data availability 
+by proactively finding multi-path 
+failures before they affect end 
+users.
+
+•  Enables greater throughput by 
+
+finding opportunities to tune the 
+use of multi-path links, ISLs, and 
+storage virtualizers
+
+•  Reduces overall SAN-related 
+
+capital and operating costs by 
+identifying over-provisioned links, 
+helping avoid unnecessary future 
+expenses. 
+
+VirtualWisdom® 
+SAN Availability Probe 
+Model ProbeSW
+ 
+Virtual Instruments products provide an 
+unprecedented scope of diagnosis and prevention 
+capabilities for complex, heterogeneous FC SANs
+
+As a component of the Virtual Instruments’ VirtualWisdom solutions, the 
+SAN Availability Probe is a non-agent based software probe that utilizes 
+the MIB (management information block) from Fibre Channel switches 
+via  SNMP  to  gather  switch  performance  and  link  error  statistics  in  a 
+non-intrusive  manner. These  critical  switch  statistics  are  collected  by 
+VirtualWisdom’s Server software and presented to the user in an easy to 
+use configurable, graphical user interface.
+
+Use  of  VirtualWisdom’s  SAN  Availability  Probe  results  in  significantly 
+higher  infrastructure  utilization  and  helps  administrators  substantially 
+improve data availability and application performance through correlation 
+techniques that help quickly troubleshoot, or even avoid problems. 
+
+The  SAN  Availability  Probe  supports  all  Fibre  Channel  switch 
+manufacturers,  creating  a  vendor-agnostic  view  of  switch  port 
+performance.  VirtualWisdom  utilizes  the  data  collected  by  the  SAN 
+Availability Probe to track switch performance, identify oversubscribed 
+resources,  conduct  historical  trending  analysis,  and  quickly  alert 
+administrators of link error problems or performance bottlenecks. 
+
+The SAN Availability Probe runs on the VirtualWisdom Server. The Server 
+collects continuous real-time data and correlates server, network, and 
+I/O metrics from the Probe. Along with the Virtual Server Probe and the 
+SAN Performance Probe, the VirtualWisdom server provides a complete 
+view of the data path between hosts and/or virtual machines and SAN 
+storage. Performance deviations, link errors, and improperly configured 
+multi-pathing  are  quickly  diagnosed  utilizing  real-time  and  historical 
+trends and reports. The number of problems and time spent on resolving 
+performance issues or network faults are systematically and dramatically 
+reduced. 
+
+If  more  detailed  performance  analysis  is  needed,  the  SAN  Availability 
+Probe  can  be  used  with  the  hardware  based Virtual  Instruments  SAN 
+Performance Probe. The Performance Probe is inserted into the network 
+using Traffic Access Points (TAPs), so it does not affect the network it’s 
+monitoring.  This  full  line  rate  hardware  probe  can  calculate  real-time 
+performance  metrics  from the  SAN,  providing the  most  accurate  SAN 
+performance statistics by tracking all individual end device conversations.
+
+Features
+•  Provides a dedicated, real-time SAN monitoring solution with flexible thresholds and alerts
+•  Gathers Switched Fabric Performance Statistics with a non-agent based software probe
+•  Provides overall view of fabric health through centralized switch event monitoring
+•  Offers vendor-agnostic view of Fibre Channel switch statistics with no impact on switch performance
+•  Identifies highly utilized and underutilized ports and links
+•  Detects failed multi-pathing and sub-optimized links (passive vs. active multi-pathing)
+•   Support for monitoring and measuring virtual fabrics from Cisco: VSAN, NPV, 
+
+FlexAttach and from Brocade: Virtual Fabric, Access Gateway
+•  Records & plays back metrics to pinpoint Intermittent Issues
+•  Measures exhaustion of Buffer to Buffer Credit to help identify and avoid potential bottlenecks
+•  Provides historical performance trending over time and detects degraded Inter-Switch Links 
+
+ 
+The  VirtualWisdom  Server  Dashboard  is  a  continuous  real-time 
+display that provides a correlated view of the SAN infrastructure, 
+based on the metrics available from probes. It provides a simple, 
+customizable  and  complete  view  of  I/O  from  the  application  on 
+the host server and/or Virtual Machine to the LUNs on the storage 
+arrays. Metrics, fault warnings and policy deviations are continually 
+updated  with  quick  drilldown  reports.  Reports  are  user-definable 
+and can easily be exported for use in other management solutions 
+to ensure maximum performance on mission-critical applications.
+
+SAN Availability Probe Compaired
+Compared to the most common switch fabric management tools, the SAN Availability Probe provides more complete 
+trend analysis for capacity planning, a virtually unlimited record & playback of metrics to pinpoint intermittent issues, and 
+supports a wider range of vendor devices. More significantly, along with VirtualWisdom’s SAN Performance Probe and 
+Virtual Server Probe it provides more robust instrumentation, monitoring, measurement, root cause analysis/correction 
+and optimization of the complete SAN infrastructure, from the host server and/or Virtual Machine to Switch Fabric to the 
+LUNs on the storage arrays.
+
+Technical Specifications
+Metrics collected or generated by the SAN Availability Probe include:
+
+•   Switch Port Information: Worldwide names of attached devices, manufacturers 
+
+of attached devices, link rate, port type, nickname, FCID
+
+•   Switch Metrics: received/transmitted bytes and frames, CRC errors, link 
+
+resets, link failures, loss of signal, loss of sync, Class3 Discards
+
+•  Switch LED: Error state, signal state. Exhaustion of Buffer to Buffer Credit
+•  Standards: ProbeV supports SNMP versions 1, 2c, and 3
+
+©2013  Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice. VirtualWisdom, Virtual Instruments, SANInsight are trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 10/13European Headquarters46 New Broad StreetLondon EC2M 1JHPhone: +44 (0) 203-651-5685Corporate Headquarters25 Metro Drive, San Jose, CA 95110 · USAPhone: 408-579-4000Fax: 408-579-4001Asia Pacific Headquarters8 Cross Street Level 28PWC Building, Singapore 048424Phone: +65 6850-7841Salessales@virtualinstruments.comPhone: 888-522-2557Supportsupport@virtualinstruments.com

@@ -1,0 +1,255 @@
+Internal Sales Success Flash 
+
+ 
+
+ 
+
+SC Johnson Deploys Virtual Instruments’ 
+VirtualWisdom® to Gain Transaction Visibility 
+and Ensure SAN Uptime  
+
+Summary 
+
+By aggressively ensuring that multiple IT departments were exposed to the VirtualWisdom 
+value propositions, and by conducting a well orchestrated POV that addressed all the 
+customer concerns, the U.S. account team was able to accelerate the sales cycle and 
+bring in a substantial initial order of $80,000, even though the customer had no CAPEX 
+budget available.  
+
+SC Johnson Background 
+
+A 125-year-old company, SC Johnson is one of the world’s leading makers of household 
+brands. Employing 12,000 people and generating $8B in sales, with operations in over 70 
+countries, the company is headquartered in Racine, Wisconsin, where it was founded. 
+The product portfolio includes global brands such as Pledge®, Duck®, Mr. Muscle®, 
+Windex®, Scrubbing Bubbles®, Glade®, Raid®, OFF!®, Baygon® and Ziploc®. 
+
+IT Environment 
+
+The data centers are in Racine, Wisconsin, and Waxdale, Wisconsin for DR.  Servers are 
+primarily HP, with Brocade FC switches and EMC Symmetrix and CLARiiON  storage.  
+VMware is widely deployed and the customer is running SAP on AIX/VIO hosts. 
+
+IT Challenge 
+
+The IT staff was looking for an SRM and a VMware solution to improve the visibility and 
+ease of management of their datacenter infrastructure.  The existing EMC and Brocade 
+tools were not deemed to be able to meet the growing needs of the staff with regards to 
+maximizing performance and availability. 
+
+Sales Cycle 
+
+SC Johnson entered the VI world via the SNW show in late 2010.  More recently, the 
+Great Lakes sales team engaged with the IT staff due to prior relationships.  The SCJ 
+team liked the value proposition, but when they seemed to balk at the initial price 
+estimates, the sales team knew they had a challenge. 
+
+A bellwether event was a customer and prospect get-together at a Milwaukee Brewers 
+baseball game.  The SAN Manager, Jim Melcher, got to rub elbows with other companies 
+like GE Healthcare, Snap-On Tools, and American Family Insurance, who are talking with 
+VI and he came away with a feeling that by talking with VI, he was part of a trend, not 
+alone.  During some one-on-one time with Jim, the VI team communicated the success 
+we are having as a company and most notably, how we’re helping other companies to 
+de-risk applications in AIX/VIO environments. The ball game led to follow-on meetings 
+that in turn led to an agreement to do a POV. 
+
+The POV was conducted very structured, including a detailed success criteria checklist, 
+which the VI SC was able to complete for the customer, based on detailed customer 
+
+ 
+
+ 
+
+ 
+Challenges:  
+• 
+
+Lack of visibility of the 
+infrastructure 
+
+ 
+
+•  Hesitancy for running VIO 
+in an AIX environment due 
+to perceived risks to SAP 
+implementation 
+
+•  Current tools were judged 
+
+to be inadequate for 
+ensuring maximum 
+application performance 
+and availability 
+
+Initial Solution:  
+• 
+
+VirtualWisdom ProbeSW 
+(406 links),three TAP Patch 
+Panels and a QuickStart 
+Service. 
+
+•  Additional 90 day ProbeSW 
+
+and ProbeVM evaluation 
+licenses for use in 
+production environments 
+
+Customer Benefits:  
+•  Potential application slow-
+downs can be more easily 
+identified and corrective 
+action taken, often before 
+the application consumer is 
+even aware of a problem 
+
+•  Proactively prevent 
+
+slowdowns and outages 
+
+Improve SAN utilization 
+and new deployment 
+planning 
+
+• 
+
+ 
+ 
+ 
+
+“Mike Salins’ and Stew 
+
+Carless’ involvement during 
+the week of the POV was 
+key to accelerating the 
+
+sales cycle”. 
+
+Chuck DeMars 
+RSM, Great Lakes 
+
+ 
+
+ 
+
+                                       VIRTUAL INSTRUMENTS INTERNAL ONLY 
+
+ 
+
+ 
+
+Internal Sales Success Flash 
+
+ 
+
+ 
+
+discussions.  The key was the VI team’s understanding of the customer environment. 
+
+A key question posed prior to the POV was “how many SC Johnson people will be 
+engaged throughout the POV and who are they?”  Based on the answer, VI 
+recommended that presentations should be made to all the stakeholders.  This turned out 
+to be a tremendous success and created a lot of buzz at the customer.  This turned into a 
+wide base of support when they started to look for the budget for VI. Everyone knew what 
+it was and what it meant for them.  Some of the other groups included the server group 
+with VMware responsibility, the UNIX/AIX team, the management team from the first level 
+(outsourced) support group, and of course, senior IT management. 
+
+The PAK arrived on Monday, was installed on Tuesday, the team spent Wednesday and 
+Thursday onsite going through dashboards and evangelizing to all the different buying 
+influences.  Friday was the presentations, including screenshots and descriptions of all 
+the things they wanted to see, and the value to each group.  By the time the senior 
+manager walked into the room, he already knew that everyone loved what they saw.  And 
+Friday afternoon was decommissioning the PAK and shipping it home.  
+
+Because it was a direct deal, getting set up in the SC Johnson procurement system for 
+the POV TAP allowed the VI team to  close a follow-on deal within the same quarter. 
+
+The deal was structured so that VI would cover their production datacenter with SAN 
+Availability Probes, and install TAPS as well.  The customer saw a lot more value in our 
+hardware probes but did not have the budget, so ninety-day eval license was set up for 
+additional SAN Availability Probe licenses for their secondary site and for Virtual Server 
+Probes.  On a monthly basis the VI team will revisit the budget with the customer, to get 
+the additional spend. 
+
+VirtualWisdom Value Props 
+
+The customer is confident that potential application slow-downs can be more easily 
+identified, and with the greater awareness of the infrastructure, they can more easily and 
+proactively prevent slowdowns and outages.  Though it was not originally an 
+expectation, the POV made them aware that they can actually improve SAN utilization 
+and optimize new deployment planning. 
+
+The SC Johnson VMware team is particular impressed with how easy it is to create ad 
+hoc dashboard widgets, and the VI team was able to give the customer metrics in 
+minutes, that their current team had struggled for weeks to deliver! 
+ 
+
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+                                       VIRTUAL INSTRUMENTS INTERNAL ONLY 
+
+ 
+
+ 
+SUCCESS FLASH 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+01/19/12 
+
+

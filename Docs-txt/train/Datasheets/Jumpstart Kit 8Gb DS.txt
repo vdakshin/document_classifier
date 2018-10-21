@@ -1,0 +1,198 @@
+VirtualWisdom® Jumpstart Kit 
+
+ 
+
+ 
+
+ 
+
+VirtualWisdom® Jumpstart Kit 
+
+As  a  member  of  the  Virtual  Instruments’  VirtualWisdom  solutions  family,  the  Jumpstart  Kit  is 
+designed  to  provide  all  of  the  features  and  benefits  of  VirtualWisdom  and  SANInsight®-based 
+instrumentation,  monitoring,  and  measurement 
+in  an  entry-level,  standard  deployment 
+configuration.   
+
+VirtualWisdom products and services provide comprehensive, real-time instrumentation 
+and measurement that allow IT managers to optimize the performance, utilization, and 
+availability of their SAN (Storage Area Network) infrastructure.  Strong I/O performance 
+is the most critical component of superior application performance. The key to achieving 
+strong I/O performance is deploying instrumentation technology that directly measures 
+what is going on at a deep level in the transaction workflow, from the host to storage 
+array. 
+
+For  SAN  managers,  VirtualWisdom  provides  comprehensive  instrumentation  and  SAN 
+I/O  measurement  capabilities  that  reduce  application  response  time, 
+increase 
+availability, and improve resource utilization. VirtualWisdom is the only product that can 
+non-intrusively  improve  the  performance  of  applications  and  increase  the  benefits  of 
+storage virtualization in real time by analyzing actual SAN I/O traffic data.  
+
+VirtualWisdom Jumpstart Kit Components 
+
+VirtualWisdom SAN Availability ProbeSW 
+ProbeSW is a virtual software probe that collects status from SAN switches via SNMP. 
+ProbeSWs collect metrics for each port, and these metrics are generated and reported 
+to the VirtualWisdom Server by each ProbeSW. Each ProbeSW monitors all ports of a 
+particular  fibre-channel  switch  and  collects  the  metrics  for  each  port,  such  as  the 
+number of frames and bytes transmitted, as well as the key faults for each port, such as 
+loss of synchronization, link resets, link failures, packet discards, and CRC errors. 
+ 
+VirtualWisdom Server 
+VirtualWisdom  Portal  Server  software  resides  on  your  Windows  server  platform, 
+controlling  and  collecting  metrics  from  probes.  It  manages  the  database  of  metrics, 
+handles integration with third party products via SNMP traps, and handles alerting. The 
+VirtualWisdom Portal Server co-resides with the ProbeSW software.   
+
+ 
+
+ 
+
+ 
+
+Jumpstart Kit Features  
+•  Dedicated, real-time 
+
+hardware and 
+software-based SAN 
+monitoring solution 
+with flexible thresholds 
+and alerts, in a 
+standard easy-to-
+deploy configuration 
+Project management, 
+planning, logistics, 
+remote preparation, 
+and up to four days 
+onsite installation 
+assistance for basic 
+configuration and 
+transfer of knowledge 
+for basic measurement 
+and analysis of data 
+Seamless upgrade 
+available to additional 
+SANInsight Probes and 
+Rovers 
+
+• 
+
+• 
+
+Jumpstart Kit Benefits 
+• 
+
+Achieve the full CapEx 
+and OpEx benefits of a 
+VirtualWisdom-based 
+platform for faster 
+troubleshooting, 
+optimized application 
+performance, reduced 
+outages, improved SAN 
+utilization, more 
+effective storage 
+tiering, effective 
+monitoring of SLAs, 
+and accelerated 
+application 
+deployments  
+
+ 
+
+ 
+ 
+ 
+ 
+
+VirtualInstruments.com 
+
+VirtualWisdom Dashboard and Views  
+VirtualWisdom Dashboard software is a real-time summary display that 
+provides an overview of the virtual and physical infrastructure performance and 
+faults, based on the metrics available from the probes. It displays the key 
+activity related to servers and storage including measurements for percent 
+utilization, reads, writes, events, alarms, as well as signal and error status on 
+the probe channels.  VirtualWisdom Views software allows users to access the 
+VirtualWisdom SAN metrics and alerts from their workstations in the form of 
+reports, graphs, and tables, in either real-time or via historical trends.  
+
+VirtualWisdom SAN Performance ProbeFC8  
+Fibre-Channel probes (ProbeFC8s) analyze every frame header on a fibre-
+channel SAN at line rates up to 8 Gbits per second. ProbeFC8 probes detect 
+application performance slowdowns and transmission errors by measuring 
+every SCSI I/O transaction in real-time from start to finish, for every 
+server/volume combination (initiator/target/ LUN).  
+
+SANInsight™ TAP Patch Panel System 
+Traffic Access Points (TAPs) provide a passive, fail-safe access point to fibre-
+channel network traffic on a SAN for failure analysis, problem diagnosis, and 
+performance monitoring. TAPs operate “out-of-band” by transparently 
+diverting a portion of the signal through the TAP to another port, which 
+provides a copy of the Fibre Channel frame headers. The agent-less TAP has 
+no impact on application or SAN performance.  
+
+SANInsight™ 8GFC Rover  
+The Rover physical layer switch extends the monitoring reach of each 
+ProbeFC8 probe to groups of SAN links. ProbeFC8 probes and protocol 
+analyzers can be attached to Rover physical layer switches and access any of 
+the connected SAN links. Rovers provide a way to deploy a tiered monitoring 
+architecture to lower the cost of monitoring and extend the investment in 
+VirtualWisdom.  
+
+VirtualWisdom QuickStart Installation & Training Service 
+QuickStart Service is designed to jumpstart the deployment of Virtual Instruments’ VirtualWisdom and SANInsight 
+products such as Traffic Access Points (TAPs), SAN monitoring probes (ProbeFC8, ProbeSW), and Rovers. These 
+services combine on-site training, deployment and baseline assessment services to help ensure a successful initial 
+VirtualWisdom deployment. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+Corporate Headquarters 
+25 Metro Drive Suite 400 
+San Jose, CA 95110 
+Phone:  408-579-4000 
+Fax:  408-579-4001 
+
+ 
+
+European Headquarters 
+One Kingdom Street 
+Paddington Central * London W2 6BD 
+Phone:  44 (0) 203 402 3353 
+
+Sales 
+sales@virtualinstruments.com 
+
+Support 
+support@virtualinstruments.com 
+
+©2012Virtual Instruments. All rights reserved. Features and specifications are subject to change without notice.  Virtual Instruments, SANInsight are 
+trademarks or registered trademarks in the United States and/or in other countries. All other brands, products, or service names are or may be 
+trademarks or servicemarks of, and are used to identify, products or services of their respective owners. 5/12 
+
+ 
+
+

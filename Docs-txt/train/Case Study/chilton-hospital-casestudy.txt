@@ -1,0 +1,208 @@
+CHILTON HOSPITAL ACCELERATES 
+INNOVATION WITH VBLOCK 
+
+AWARD-WINNING HOSPITAL TRANSFORMS HEALTHCARE IT
+
+Chilton Hospital has been transforming the way it delivers medical care to 
+communities in northwestern New Jersey. The 260 bed hospital has expanded 
+clinical care services and adopted advanced medical care technologies to enable 
+excellence in the quality of care. Additionally, Chilton has launched the Chilton 
+Health Network, offering community-based services throughout the region. 
+
+All of this has increased the pressure on the data center. Chilton was facing dozens 
+of new projects to expand its MEDITECH environment and meet meaningful use 
+requirements for electronic healthcare record (EHR) projects. However, silos of 
+legacy systems were hampering agility, and space constraints were threatening to 
+impact patient care. To keep pace with the business, Chilton had to either build out 
+a new data center or consolidate its existing infrastructure.
+
+Chilton chose VblockTM Systems for its data center consolidation project. The 
+decision accelerated the rollout of MEDITECH applications, improved application 
+performance, and increased overall IT efficiency.
+
+HEALTHCARE
+
+  CLIENT
+
+Chilton Hospital, an award-
+winning acute care hospital 
+with 1,400 employees serving 
+Northwestern New Jersey
+
+  CHALLENGE
+
+Speed the delivery of critical 
+IT projects, streamline 
+administration and increase 
+infrastructure reliability
+
+  SOLUTION 
+
+Vblock™ System 300 
+
+  RESULTS
+
+Rolled out dozens of new 
+IT projects that increased 
+hospital efficiency and 
+improved quality of patient 
+care while creating an agile 
+infrastructure for continued 
+innovation and growth
+
+www.vce.com
+
+“The magnitude and speed 
+of change and innovation 
+for the hospital has been 
+remarkable. VCE was pivotal 
+in enabling such a dramatic 
+transformation.”
+
+“VCE Support has been 
+excellent. They have great 
+knowledge of MEDITECH 
+and all of the Vblock System 
+technologies, which has been 
+a huge benefit in helping 
+us resolve issues quickly 
+and enabling accelerated 
+healthcare delivery.”
+
+— Meraz Nasir,  
+
+director of  technology 
+services, Chilton Hospital 
+
+The Challenge
+Chilton had been running its applications 
+on a mix of dedicated IBM and HP servers, 
+none of which were virtualized systems. 
+Although server and storage utilization was 
+low, new deployments required additional 
+hardware, expanding the data center foot-
+print and increasing complexity. 
+
+As a result, Chilton IT was primarily a sup-
+port-focused organization consumed with 
+troubleshooting issues. When issues arose, 
+vendors often engaged in finger pointing, 
+extending time to resolution and wasting 
+Chilton’s limited IT resources.
+
+Even when IT carved out time for strate-
+gic projects, it would take weeks or even 
+months to deliver needed server and  
+storage technologies. The backlog of 
+requests was growing while projects in 
+progress were often delayed.
+
+The Solution
+Chilton evaluated solutions from HP, 
+EMC and VCE. Ultimately, the healthcare 
+provider replaced its HP and IBM systems 
+with a single VCE VblockTM System 300 
+comprised of Cisco Unified Computing 
+System (UCS) blade servers and EMC VNX® 
+unified storage. Approximately 93 percent 
+of the server infrastructure is virtualized 
+with VMware® vSphere™ 5 and physicians’ 
+remote access desktops are virtualized 
+with VMware View 5.
+
+The Vblock System now provides Chilton 
+with the agility, efficiency and easy 
+manageability it needs to move forward on 
+dozens of critical projects. All of Chilton’s 
+clinical and business applications—
+including MEDITECH EHR, Quantum 
+medical coding, Cardiac Science Pyramis 
+ECG management, Varian oncology 
+systems, and Alpha ImageWorks EMR 
+(electronic medical record), as well as 
+Microsoft Exchange, SQL Server Cluster, 
+Microsoft Lync 2013 and SharePoint—run 
+on the Vblock System.
+
+To protect its applications, Chilton 
+deployed EMC backup and recovery 
+solutions, including EMC Data Domain® 
+deduplication storage systems with 
+EMC Data Domain Boost software, EMC 
+NetWorker® unified backup and recovery 
+software, EMC NetWorker Module for 
+MEDITECH backup and recovery software 
+(NMMEDI), and EMC RecoverPoint™ remote 
+data protection. The Data Domain system 
+is replicated to another system at  
+a secondary site for added protection.
+
+EMC partner CDI designed, installed,  
+and configured the Vblock System.  
+Post-implementation support is provided 
+by VCE.
+
+The Results
+With the agility enabled by virtualization 
+and IT as a Service (ITaaS), Chilton Hospital 
+has rolled out 60 new applications in one 
+year, including new MEDITECH applications 
+such as computerized physician order 
+entry (CPOE), medication administration 
+and reconciliation, as well as new business 
+applications. IT estimates it takes half a 
+day to deploy and configure new servers, 
+compared to the weeks or months 
+previously required.
+
+With the Vblock System, IT has significantly 
+improved efficiency, performance and 
+availability of critical applications:
+
+•	 Evolved	from	zero	to	93	percent	
+
+virtualized in nine months
+
+•	 Reduced	the	number	of	data	center	
+
+racks from 22 to 10, avoiding $4 million 
+in construction costs to build a new data 
+center while creating more space for 
+innovation and growth
+
+•	 Increased	storage	utilization	from	6	to	 
+
+93 percent
+
+•	 Improved	system	performance	by	two	to	
+three times, shrinking the time to deliver 
+lab blood results to doctors from ten 
+minutes to one or two minutes
+
+•	 Improved	recovery	time	objective	(RTO)	
+
+from 24 hours to 30 minutes
+
+•	 Achieved	daily	full	backups	with	
+
+MEDITECH backups completing in a few 
+hours compared to two days
+
+Thanks to the Vblock System, Chilton’s  
+IT staff has more time for projects that help 
+the hospital continually improve patient 
+care. In fact, the role of IT is evolving 
+to become much more of a service 
+provider. With a more efficient, reliable 
+and streamlined infrastructure, IT is more 
+focused on developing innovative solutions 
+that align with Chilton’s strategic plan.
+
+Copyright © 2013 VCE Company, LLC. All rights reserved. VCE, VCE Vision, Vblock, and the VCE logo are registered trademarks or trademarks of VCE Company LLC 
+or its affiliates in the United States and/or other countries. All other trademarks used herein are the property of their respective owners.
+
+www.vce.com
+
+THE WORLD’S MOST ADVANCED CONVERGED INFRASTRUCTURE
+
+

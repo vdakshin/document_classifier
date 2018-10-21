@@ -1,0 +1,312 @@
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+BMO Financial Deploys Virtual Instruments SOS-4-SANs 
+Service and VirtualWisdom® to Ensure Availability and 
+Response Time of Business-Critical Online Trading 
+Application 
+ 
+
+Softchoice wins $800K in incremental business by partnering with Virtual 
+Instruments 
+ 
+
+Summary 
+
+By partnering with Virtual Instruments, Softchoice closed $800K in incremental business - 
+with minimal time invested - and helped the Bank of Montreal (BMO) ensure the 
+performance and availability of its business-critical online trading application. 
+ 
+
+Bank of Montreal Background 
+
+Headquartered in Canada, BMO Financial Group serves 13 million personal, commercial, 
+corporate and institutional customers in North America and internationally. BMO 
+InvestorLine is an online investing service that provides self-directed investors with 
+efficient trade execution for a wide range of investments including stocks, options, 
+bonds, GICs and mutual funds.  Clients have access to trading, quotes and account 
+information 24 hours a day through a website or Automated Telephone Trading.  
+ 
+
+IT Environment 
+
+The SAN infrastructure at BMO includes EMC storage running through a large Brocade 
+fabric.  The servers are primarily IBM AIX-based. 
+ 
+
+Business Challenge 
+
+A significant percentage of BMO’s revenue comes from online brokerage transactions. 
+While BMO InvestorLine has received awards from the Wall Street Journal and Canada’s 
+“The Globe and Mail” newspaper, consumers have many online trading options.  If BMO 
+cannot process financial transactions rapidly, consumers will take their business 
+elsewhere.  For BMO, application performance directly correlates to revenue, and a 
+slowdown can mean hundreds of thousands of dollars - even millions - in lost revenue.  
+ 
+
+ 
+Challenge 
+
+•  Performance issues with 
+
+business-critical online 
+trading application. 
+
+ 
+
+ 
+
+Solution 
+
+•  $800K deal for Virtual 
+
+Instruments SOS-4-SANS 
+services, VirtualWisdom 
+software, and SANInsight 
+TAP hardware.  
+
+ 
+ 
+
+Softchoice Benefits 
+
+•  Large enterprise 
+
+incremental revenue 
+opportunity with minimal 
+time invested. Several 
+additional opportunities 
+are in development.  
+
+ 
+
+ 
+
+BMO Benefits 
+
+•  Potential application 
+
+slowdowns can be more 
+readily identified and 
+corrected, often before 
+the application user is 
+even aware of them.  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+CONFIDENTIAL TO VIRTUAL INSTRUMENTS  
+
+ 
+
+ 
+
+IT Challenge 
+
+BMO IT must ensure that business critical applications like InvestorLine are up and 
+available to users 24x7x365, and that response time meets users’ expectations.  BMO 
+administrators were encountering latencies in the SAN infrastructure that were directly 
+impacting revenue.  Since IBM sold the switches into BMO and was responsible for 
+support, they took the lead in identifying root cause and remediation, but slowdowns 
+continued due to lack of meaningful SAN infrastructure data on a continuous, real-time 
+basis.  Without this data and a measurement system, InvestorLine performance is 
+difficult to optimize.  After several months of troubleshooting and the issues 
+progressively worsening, BMO’s director of operations approached IBM to suggest using 
+Virtual Instruments in the remediation efforts.  IBM agreed with the approach remarking 
+that they had successfully engaged Virtual Instruments in the past to address similar 
+situations.  It’s worth noting that VirtuaI Instruments had actually met with the BMO 
+operations, infrastructure, and design teams long before the InvestorLine performance 
+issues arose.  These highly skilled teams played a key role in influencing the BMO 
+director of operations’ decision to work with Virtual Instruments in the remediation 
+process. 
+
+ 
+
+Virtual Instruments Solution Description 
+
+Virtual Instruments recommended a one-week Virtual Instruments SOS-4-SANs service 
+engagement to address latency issues in the SAN infrastructure.  SOS-4-SANs is 
+designed for large enterprises struggling with SAN performance or availability issues that 
+are negatively effecting business-critical applications. The SOS-4-SANs service relies on 
+Virtual Instruments VirtualWisdom® infrastructure optimization solution, which is 
+comprised of hardware and software probes that provide cross-domain monitoring, 
+measurement, and analysis of the physical and virtual infrastructure.  By implementing 
+the service, a number of anomalies were discovered and a remediation list of items to 
+
+fix was created.  BMO line-of-
+business (LOB) personnel saw 
+such value in the service that 
+they extended the 
+engagement to two weeks.  A 
+month later, more latency 
+problems with InvestorLine 
+surfaced and Virtual 
+Instruments was contacted for 
+a second service engagement 
+that was also extended.  At 
+that point BMO realized that 
+they couldn’t live without the 
+Virtual Instruments tool and 
+quickly moved down the path 
+
+CONFIDENTIAL TO VIRTUAL INSTRUMENTS  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+•  “Working with Virtual 
+Instruments is about 
+solving a customer 
+business problem – not 
+just chasing a PO.”  
+
+ 
+
+  Geoff Wadham,  
+
+  Softchoice Account Executive 
+
+ 
+
+ 
+
+  
+
+ 
+
+to acquisition of the hardware and software solution for optimizing their SAN 
+infrastructure.  With Virtual Instruments, BMO can holistically assess the entire SAN 
+infrastructure and get the data they need to make intelligent decisions about capacity, 
+utilization, and performance for every layer of the infrastructure - network, server, 
+storage, and applications.  The architecture diagram on the previous page is a simple 
+representation of the deployment.  VirtualWisdom gets its data from the Brocade 
+switches via SNMP, and from the physical layer via an optical splitter (TAP Patch Panel 
+System).  The SANInsight ProbeFCX analyzes every Fibre Channel frame (transaction) in 
+real-time to provide dozens of critical statistics about storage traffic, transmission errors, 
+and SAN read and write latency.  
+ 
+
+Softchoice Sales Team Working with Virtual Instruments 
+
+BMO vendor management directed the local Virtual instruments team to Geoff Wadham, 
+Softchoice enterprise account executive, since Softchoice does a significant amount of 
+business at BMO.  Per Geoff, “Virtual Instruments did 95% of the positioning, 
+presentations and product demos; Softchoice took it from the five-yard line managing 
+sourcing, contracts and legal.”  The primary benefit, however, of working with Virtual 
+Instruments was getting intelligence on why the InvestorLine application was not 
+performing.  “There is no other tool in the market that can do this,” Geoff noted, “and 
+Virtual Instruments is a differentiator that Softchoice can leverage to become more 
+relevant to our clients.” As a partner, Softchoice struggles to be relevant to customers in 
+terms of the actual business applications.  With Virtual Instruments, Softchoice has an 
+innovative solution that can address customer concerns when an application isn’t 
+performing. 
+ 
+
+Key Takeaways 
+
+The best opportunities for SOS-4-SANs services and the VirtualWisdom performance and 
+availability optimization solution are in business-critical application environments.  When 
+hundreds of thousands of dollars or more per hour are at stake, customers readily see 
+the benefits. Often times OEM vendors position their own proprietary software solutions 
+to solve complex SAN infrastructure problems that are not necessarily best for the 
+customer.  Working with Virtual Instruments, Softchoice was able to provide a solution 
+that best met BMO’s requirements.  Unlike other software products, VirtualWisdom is 
+the only real-time monitoring solution for enterprise SANs available in the market today. 
+ 
+
+CONFIDENTIAL TO VIRTUAL INSTRUMENTS  
+
+

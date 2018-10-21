@@ -1,0 +1,1569 @@
+ 
+
+Oracle® Database High Availability 
+on VMware vSphere®  
+ 
+ 
+   
+ 
+
+ 
+
+May 2013 
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E  
+
+           
+
+ 
+
+ 
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+ 
+
+ 
+
+ 
+
+Contents 
+
+Introduction .................................................................................................................................... 3 
+
+Solution Overview .......................................................................................................................... 4 
+
+Oracle Database .......................................................................................................................... 4 
+
+VMware vSphere ......................................................................................................................... 4 
+
+vMotion and Storage vMotion ...................................................................................................... 6 
+
+Distributed Resource Scheduler ................................................................................................ 10 
+
+High Availability ......................................................................................................................... 11 
+
+Fault Tolerance .......................................................................................................................... 13 
+
+Testing Architecture .................................................................................................................... 15 
+
+Testing ........................................................................................................................................... 15 
+
+Testing Methodology ................................................................................................................. 15 
+
+Workload Used .......................................................................................................................... 16 
+
+Test Cases ................................................................................................................................. 16 
+
+Results Observed ...................................................................................................................... 16 
+
+Deployment Best Practices ......................................................................................................... 21 
+
+Conclusion .................................................................................................................................... 22 
+
+Appendix A: Testing Configuration ............................................................................................ 23 
+
+Resources ..................................................................................................................................... 26 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+VMware, Inc. 3401 Hillview Avenue Palo Alto CA 94304 USA Tel 877-486-9273 Fax 650-427-5001 www.vmware.com 
+Copyright © 2013 VMware, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. VMware products are covered by one or more patents listed at 
+http://www.vmware.com/go/patents. VMware is a registered trademark or trademark of VMware, Inc. in the United States and/or other jurisdictions. All other marks and names mentioned herein may be trademarks of their 
+respective companies.  
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / I I    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Introduction 
+Oracle database deployments can generate significant server sprawl due to the need to 
+provision separate systems for development, quality assurance, test, and production 
+environments. As a result, Oracle database implementations can increase exponentially, and 
+even small implementations can have a relatively large IT footprint. In a typical deployment, the 
+database server environment is hosted on dedicated physical systems that are not fully utilized 
+much of the time.  
+
+VMware vSphere enables the deployment of multiple virtual machines running different Oracle 
+database solutions consolidated on to the same physical server and storage. This consolidation 
+results in increased CPU utilization, a reduction in overall server requirements, and a lower total 
+cost of ownership (TCO).  
+
+This paper describes the validation testing for high availability that was performed using Oracle 
+Database with vSphere 5.1 advanced features including vMotion, Storage vMotion, Distributed 
+Resource Scheduler (DRS), High Availability (HA), and Fault Tolerance (FT). All of the tests were 
+conducted on a testing architecture that employed Hewlett-Packard server and storage 
+hardware.  
+
+This paper is written for  architects and engineers who are responsible for Oracle Database and 
+the VMware vSphere environment. This paper assumes that the reader has advanced knowledge 
+of Oracle Database products, the VMware vSphere virtualization and cloud computing platform, 
+and related VMware products. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 3    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Solution Overview 
+VMware conducted validation testing with Oracle Database 11g Release 2 running VMware 
+vSphere 5.1 advanced features, including vMotion, Storage vMotion, DRS, HA, and FT, and using 
+a Swingbench workload. The Oracle Database and VMware vSphere products used in this 
+solution are described in the sections below. 
+
+Oracle Database 
+
+As business operations become more complex, the demand for change in IT increases 
+accordingly, as do the associated risks that must be mitigated. Today’s IT professionals are 
+asked to manage more information and deliver it to their users, with ever-increasing quality of 
+service, in a timely manner. And in today’s economic climate, IT must also reduce budgets and 
+derive greater value out of existing investments. 
+
+Oracle Database 11g Release 2 delivers industry leading performance, scalability, security, and 
+reliability on a choice of clustered or single-servers running Windows, Linux, and UNIX. It 
+provides comprehensive features to easily manage the most demanding transaction processing, 
+business intelligence, and content management applications. 
+
+Oracle Database 11g Release 2 enables IT professionals to deliver more information with higher 
+quality of service, make more-efficient use of their budgets, and reduce the risk of change in 
+datacenters. By deploying Oracle Database 11g R2 as their data management foundation, 
+organizations can utilize the full power of the world’s leading database to: 
+
+  Reduce server costs by a factor of 5 
+
+  Reduce storage requirements by a factor of 10 
+
+ 
+
+ 
+
+Improve mission-critical system performance by a factor of 10 
+
+Increase DBA and developer productivity by a factor of 2 
+
+  Maximize availability and eliminate idle redundancy 
+
+  Maximize security and enable compliance 
+
+  Simplify their overall IT software portfolio 
+
+For more information, see the “Resources” section at the end of this paper.  
+
+VMware vSphere 
+
+VMware vSphere is an optimal virtualization platform and enabler for cloud computing 
+architectures. vSphere enables IT to meet service level agreements (SLAs) for the most 
+demanding business-critical applications at the lowest total cost of ownership (TCO). VMware 
+vSphere delivers control over all IT resources with the highest efficiency and choice in the 
+industry, as shown below.  
+
+VMware vSphere virtualization solutions provide for: 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 4    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+  Consolidation. VMware virtualization allows multiple application servers to be consolidated 
+onto one physical server, with little or no decrease in the overall performance. This helps to 
+minimize or eliminate underutilized server hardware, software, and infrastructure.  
+
+  Manageability. The live migration of virtual machines from server to server and the 
+
+associated storage is performed with no downtime using VMware vSphere® vMotion®, 
+which simplifies common operations such as hardware maintenance, and VMware vSphere® 
+Storage vMotion®.  
+
+  Availability. High availability can be enabled to reduce unplanned downtime and enable 
+
+higher service levels for applications. VMware vSphere® High Availability (HA) ensures that, 
+in the event of an unplanned hardware failure, the affected virtual machines are 
+automatically restarted on another host in a VMware cluster.  
+
+  Automation. VMware automated load balancing takes advantage of vMotion and Storage 
+
+vMotion to migrate virtual machines among a set of VMware® ESX® hosts. VMware 
+vSphere® Distributed Resource Scheduler™ (DRS) and VMware vSphere® Storage DRS™ 
+enable automatic resource relocation and optimization decisions for virtual machines and 
+storage.  
+
+  Provisioning. VMware virtualization encapsulates an application into an image that can be 
+duplicated or moved, greatly reducing the cost of application provisioning and deployment. 
+
+Figure 1. VMware vSphere virtual infrastructure 
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 5    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+vSphere creates a layer of abstraction between the resources required by an application, the 
+operating system, and the underlying hardware that provides those resources. vSphere enables 
+multiple, isolated execution environments to share a single hardware platform. It implements 
+each environment with its own set of hardware resources. 
+
+For more information about vSphere, see the Resources section at the end of this paper. 
+
+In addition, vSphere advanced features increase availability and automation and improve the 
+operational performance and manageability of Oracle Database solutions. The advanced 
+features described in this paper include VMware vMotion, Storage vMotion, Distributed 
+Resource Scheduler (DRS), High Availability (HA), and Fault Tolerance (FT). Each of these features 
+is described in the sections below.  
+
+vMotion and Storage vMotion 
+
+Together, VMware vMotion and Storage vMotion provide for the complete virtualization of 
+servers, storage, and networking in order to move an entire running virtual machine 
+instantaneously, from one physical server to another. The virtual machine retains its network 
+identity and connections, ensuring a seamless migration process.  
+
+In addition, VMware vSphere 5.1 enables a virtual machine to change its host and datastore 
+simultaneously, even when the hosts do not have a shared storage environment. It allows virtual 
+machine migration between clusters in a larger datacenter that might not have a common set of 
+datastores between them. vSphere also allows virtual machine migration in small environments 
+without requiring access to expensive, shared storage equipment, as shown below. 
+
+Figure 2. VMware vMotion and Storage vMotion 
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 6    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+vSphere 5.1 allows vMotion and Storage vMotion to be combined into one process. This 
+combined migration copies both the virtual machine memory and its disk over the network to 
+the destination host. After the memory and disk data are sent over, the destination virtual 
+machine resumes and the source virtual machine is powered off. 
+
+vMotion and Storage vMotion are described in more detail in the sections below.  
+
+vMotion 
+
+VMware vMotion enables the live migration of running virtual machines from one physical 
+server to another with zero downtime, continuous service availability, and complete transaction 
+integrity. vMotion is a key enabling technology for creating the dynamic, automated, and self-
+optimizing datacenter. This capability makes hardware maintenance possible at any time, and 
+vMotion does not require clustering or redundant servers, as shown below.  
+
+Figure 3. VMware vMotion 
+
+VMware vMotion: 
+
+ 
+
+  Moves entire running virtual machines instantly. Performs live migrations with zero 
+
+downtime, undetectable to the user. 
+
+  Manages and schedules live migrations with ease at pre-defined times without an 
+
+administrator’s presence, with the reliability and manageability that is derived from a 
+production-proven product. 
+
+  Performs multiple concurrent migrations of a virtual machine running any operating system, 
+
+across any type of hardware and storage that is supported by vSphere, complete with an 
+audit trail. 
+
+  Moves online workloads from one ESXi server host machine to another in order to maintain 
+
+service levels and performance goals.  
+
+  Continuously and automatically optimizes virtual machine placement within resource pools. 
+
+Proactively moves virtual machines away from failing or underperforming servers.  
+
+  Performs hardware maintenance without the need to schedule downtime and disrupt 
+
+business operations. 
+
+VMware vMotion is enabled by these underlying technologies:  
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 7    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+  The state of a virtual machine is encapsulated by a set of files stored on shared storage, 
+such as Fibre Channel, iSCSI Storage Area Network (SAN) or Network Attached Storage 
+(NAS). VMware Storage Virtual Machine File System (VMFS) allows multiple installations of 
+VMware ESXi® to access the same virtual machine files concurrently. 
+
+  The active memory and precise execution state of the virtual machine is rapidly transferred 
+
+over a high speed network, allowing the virtual machine to instantaneously switch from 
+running on the source ESXi host to the destination ESXi host.  
+
+  vMotion keeps the transfer period imperceptible to users by keeping track of on-going 
+memory transactions in a bitmap. Once the entire memory and system state has been 
+copied over to the target ESXi host, vMotion suspends the source virtual machine, copies 
+the bitmap to the target ESXi host, and resumes the virtual machine on the target ESXi host. 
+This entire process takes less than two seconds on a Gigabit Ethernet network. 
+
+  The networks being used by the virtual machine are also virtualized by the underlying ESXi 
+
+host, ensuring that even after the migration, the virtual machine network identity and 
+network connections are preserved. vMotion manages the virtual MAC address as part of 
+the process. Once the destination machine is activated, vMotion pings the network router 
+to ensure that it is aware of the new physical location of the virtual MAC address. Since the 
+migration of a virtual machine with vMotion preserves the precise execution state, the 
+network identity, and the active network connections, the result is zero downtime and no 
+disruption to users. 
+
+Storage vMotion 
+
+Storage vMotion enables organizations to perform proactive storage migrations, simplify array 
+migrations, improve virtual machine storage performance and free up valuable storage capacity. 
+It enables the live migration of virtual machine disk files within and across storage arrays, 
+without a service disruption, and it provides for automated storage management. Storage 
+vMotion relocates virtual machine disk files and it provides for continuous service availability 
+and complete transaction integrity, as shown below. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 8    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Figure 4. VMware Storage vMotion 
+
+vSphere Storage vMotion: 
+
+ 
+
+  Enables the live, automated migration of virtual machine disk files from an existing shared 
+
+storage location to different classes of tiered storage with zero downtime. 
+
+  Migrates virtual machines running any supported operating system on any supported server 
+
+hardware based on usage and priority policies for tiered storage. 
+
+  Perform live migration of virtual machine disk files across any Fibre Channel, Internet Small 
+
+Computer System Interface (iSCSI), Fibre Channel over Ethernet (FCoE), and Network File 
+System (NFS) storage system supported by vSphere. 
+
+  Dynamically optimizes storage I/O performance by moving virtual machine disk files to 
+alternative LUNs that deliver the required performance without scheduled downtime.  
+
+  Eliminates over-allocation of storage resources in order to proactively deal with I/O 
+
+bottlenecks. 
+
+  Efficiently manages storage capacity  and utilization by reclaiming unused or “stranded” 
+
+storage capacity and allocating it to other virtual machines.  
+
+  Moves virtual machines with higher performance needs or critical workloads to larger 
+
+capacity storage LUNs as virtual machine disk files approach their total available LUN size 
+limits. 
+
+  Storage vMotion is fully integrated with VMware vCenter Server to provide easy migration 
+
+and monitoring. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 9    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Distributed Resource Scheduler 
+
+VMware Distributed Resource Scheduler (DRS) is an automated load balancing technology that 
+aligns resource usage with business priority by enabling automated load balancing across hosts, 
+balances computing capacity, and it optimizes power consumption in the datacenter by turning 
+off hosts during lower load periods. DRS continuously monitors utilization across vSphere servers 
+and intelligently allocates available resources among virtual machines according to business 
+needs. DRS takes advantage of vMotion to migrate virtual machines among a set of ESXi hosts.  
+
+DRS enables automatic initial virtual machine placement on any of the hosts in the cluster. It also 
+makes automatic resource relocation and optimization decisions as hosts and virtual machines 
+are added or removed from the cluster, or the load on individual virtual machines goes up or 
+down. VMware DRS makes cluster wide resource pools possible. When DRS is configured for 
+manual control, it makes recommendations for review and later implementation only; there is 
+no automated activity. 
+
+Figure 5. VMware Distributed Resource Scheduler 
+
+DRS also provides the capability to control the placement of virtual machines based on different 
+affinity rules. This enables virtual machines to be placed based on high availability or other 
+business criticality requirement. 
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 0    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Figure 6. VMware DRS affinity rules 
+
+ 
+
+High Availability 
+
+VMware HA delivers the high availability many applications running in virtual machines require, 
+independent of the operating system or underlying hardware configuration. HA provides 
+failover protection from hardware and operating system failures in the virtualized IT 
+environment by:  
+
+  Monitoring virtual machines to detect operating system and hardware failures.  
+
+  Restarting virtual machines on other physical servers in the resource pool, without manual 
+
+intervention when a server failure is detected. 
+
+  Protecting applications from operating system failures by automatically restarting virtual 
+
+machines when an operating system failure is detected. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 1    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Figure 7. VMware High Availability 
+
+ 
+
+The VMware cluster provides the power of multiple hosts with the simplicity of managing a 
+single entity. It enables the aggregation of the hardware resources of individual ESXI server 
+hosts, and manages the resources as if they are residing on a single host. VMware HA allows 
+virtual machines running on a specific ESXi hosts to be restarted automatically using other host 
+resources in the cluster, in the case of host machine failures.  
+
+VMware HA continuously monitors all ESXi server hosts in a cluster and detects failures. The 
+VMware HA agent placed on each host maintains a heartbeat with the other hosts in the cluster 
+using the service console network. Each server sends heartbeats to the others servers in the 
+cluster at five-second intervals. If any servers lose heartbeat over three consecutive heartbeat 
+intervals, VMware HA initiates the failover action of restarting all affected virtual machines on 
+other hosts.  
+
+Figure 8. Host failover using VMware HA 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 2    
+
+ 
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+VMware HA also monitors whether sufficient resources are available in the cluster at all times, 
+in order to be able to restart virtual machines on different physical host machines, in the event 
+of host failure. Safe restart of virtual machines is made possible by the locking technology in the 
+ESXi server storage stack, which allows multiple ESXi server hosts to have simultaneous access 
+to the same virtual machine files.  
+
+VMware HA can be turned on by simply checking Data Center settings in vSphere client as 
+shown below. 
+
+Figure 9. VMware HA feature settings 
+
+ 
+
+Fault Tolerance 
+
+VMware Fault Tolerance (FT) allows virtual machines to operate continuously, even when server 
+failures occur. When Fault Tolerance is enabled on a virtual machine called the Primary VM, a 
+copy of the Primary VM, called the Secondary VM, is automatically created on another host that 
+is selected by DRS. If DRS is not enabled, the target host is chosen from the list of available 
+hosts. Fault Tolerance then runs the Primary and Secondary VMs in lockstep with each other – 
+essentially mirroring the execution state of the Primary VM to the Secondary VM.  
+
+During a hardware failure that causes the Primary VM to fail, the Secondary VM immediately 
+picks up where the Primary VM ended. It continues to run without any loss of network 
+connections, transactions, or data.  
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 3    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+Figure 10. VMware Fault Tolerance 
+
+ 
+
+ 
+
+It provides operational continuity and high levels of uptime in VMware vSphere environments, 
+with simplicity and at a lower cost. 
+
+Figure 11. VMware Fault Tolerance operations 
+
+ 
+
+When enabled for a virtual machine, VMware Fault Tolerance: 
+
+  Creates a live shadow instance of the Primary VM, running on another physical server.  
+
+  Keeps the two instances in virtual lockstep with each other using VMware vLockstep 
+
+technology, which logs non-deterministic event execution by the Primary VM, and transmits 
+them over a Gigabit Ethernet network to be replayed by the Secondary VM.  
+
+  The two virtual machines play the exact same set of events, because they receive exactly 
+
+the same set of inputs at any given time.  
+
+  The two virtual machines access a common disk and appear as a single entity, with a single 
+IP address and a single MAC address to other applications. Only the Primary VM is allowed 
+to perform writes. 
+
+  The two virtual machines constantly check heartbeats and if either virtual machine instance 
+
+loses the heartbeat, the other takes over immediately. The heartbeats are very frequent, 
+with millisecond intervals, making the failover instantaneous with no loss of data or state. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 4    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+  VMware Fault Tolerance requires a dedicated network connection between the two 
+
+physical servers, separate from the VMware vMotion™ network. 
+
+Testing Architecture  
+The architecture used in this testing, as well as how one typically deploys the architecture, 
+includes: 
+
+  VMware vSphere infrastructure was built at the VMware Lab in Palo Alto, California.  
+
+  Hewlett-Packard servers included two HP Proliant DL 380p Gen8 servers, with one ESXi host 
+
+on each physical server (Host 1 and Host 2). 
+
+  Network switch configuration for both hosts is described in “Appendix A: Testing 
+
+Configuration”. No external connection was required.  
+
+  Hewlett-Packard storage include HP Proliant P4500 G2 iSCSI storage. The storage was 
+
+connected using iSCSI hardware. 
+
+  One virtual machine was configured on each host. This included one virtual machine for the 
+Oracle Database 11g, R2 server, and one for the Swingbench load generator and the vCenter 
+appliance. 
+
+For more details on the testing configuration, see “Appendix A: Testing Configuration” below.  
+
+Testing 
+The primary objective of the validation testing was to determine the high availability use cases 
+for Oracle Database 11g, R2 running on VMware vSphere 5.1 for a given workload using 
+Swingbench. The testing used VMware advanced features for high availability and business 
+continuity, including vMotion, Storage vMotion, DRS, HA, and FT with Oracle Database 
+deployments in a virtual environment. Note that VMware also provides separate solution for 
+disaster recovery (DR), but this was not part of this testing. 
+
+The testing methodology, workload used, test cases, results observed, and recommendations 
+are described in the sections below.   
+
+Testing Methodology  
+
+VMware conducted testing to validate that Oracle Database  11g, Release 2 can successfully 
+sustain the planned downtime, and recover from unplanned downtime, when VMware 5.1 high 
+availability features including vMotion, Storage vMotion, DRS, HA, and FT. This testing also 
+outlines the best practices for deploying this solution in the datacenter.  
+
+Note that the testing conducted in the VMware Lab was for validation only. No scalability tests 
+were conducted. 
+
+The workload for this testing was generated using the Swingbench load generator as described 
+below.   
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 5    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Workload Used 
+
+The Swingbench load generator was used to enable the workload for this testing. Swingbench is 
+an open source tool that is comprised of scripts and load drivers. Swingbench generates 
+business transactions that simulate large scale order entry OLTP loads that are I/O-intensive. It 
+is a TPC-C (database throughput) workload generator that includes a data generator tool that 
+was used to create larger schemas that generate much higher levels of I/O (larger index 
+lookups).  
+
+The Swingbench Order Entry workload for Oracle Database was enabled on one virtual machine. 
+The workload was used to generate a reasonable load in the system. Data was loaded to grow 
+the database size to 400 GB. This workload had a read/write ratio of 80/20. 
+
+For more information, see the “Resources” section at the end of this paper. 
+
+Test Cases 
+
+The test set used for this testing was selected to verify that Oracle Database behavior and 
+functionality is not affected when VMware vSphere high availability operations are performed. 
+The test set was defined to validate the operation of each of the vSphere advanced features 
+used in this testing for a given workload, including vMotion, Storage vMotion, DRS, HA, and FT.  
+
+The results for each of these tests are described in the section below.  
+
+Results Observed 
+
+This testing was performed using the test set and workload described above. The results 
+observed for each test case are described in the sections below. Overall, the testing results 
+demonstrate that the behavior and functionality of Oracle Database 11g, R2 running on VMware 
+vSphere 5.1 was not affected when vSphere high availability operations were performed. 
+VMware functioned well with the workload and all of the tests passed successfully.  
+
+The average transactions per second (TPS) was well within an acceptable range for all tests. The 
+TPS indicates the number of transaction per second that occur for a given workload. 
+
+The test results observed and their impact during the testing of high availability operations are 
+summarized in the table below. For detailed information, review each specified test area. 
+
+Table 1. Testing results summary 
+
+VMware vSphere advanced feature 
+
+Test duration* 
+
+vMotion 
+
+Storage vMotion 
+
+20 seconds 
+
+8 minutes 
+
+Distributed Resource Scheduler (DRS) 
+
+20 seconds 
+
+High Availability (HA) 
+
+Fault Tolerance (FT) 
+
+3 minutes 
+
+4 seconds 
+
+* The transactions per second (TPS) results  are described in the sections below. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 6    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+vMotion Testing Results 
+
+vMotion testing was successful and all tests passed. The average TPS was well within an 
+acceptable range for all tests.  
+
+For vMotion testing, two tests were performed. One test included 200 users and the other test 
+included 400 users. The purpose for varying the number of users was to demonstrate that, even 
+when the number of users is increased, the minimal TPS decrease during the vMotion transition 
+remains the same, regardless of the number of users, as described in the table below.  
+
+Table 2. vMotion testing results summary 
+
+vMotion testing 
+
+Results 
+
+Description 
+
+vMotion initiation 
+
+1 second 
+
+The workload starts at a steady state. When vMotion starts in the source 
+host, the TPS value decreases, and then returns to its nominal value. 
+
+vMotion host switch - 
+(host 1 to host 2) 
+
+3 seconds 
+
+When the virtual machine switches hosts (Host 1 to Host 2), the TPS 
+value decreases, and then returns to its steady state. 
+
+Test duration 
+
+20 seconds 
+
+The TPS value remains steady during the vMotion operation, with the 
+exception of vMotion start, and the host migration. 
+
+* The transactions per second (TPS) averages for vMotion testing are described in the tables below. 
+
+The TPS variation and CPU utilization in the virtual machine during the vMotion operation is 
+shown in the figures below.  
+
+Figure 12. VMware vMotion testing results  
+
+The Swingbench results for 200 users provides the TPS before and after a vMotion migration 
+from Host 1 to Host 2, as shown in the figure below.  
+
+Figure 13. Swingbench vMotion test results for 200 users 
+
+ 
+
+ 
+
+ 
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 7    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+The results for vMotion test of 200 users shows: 
+
+1  At vMotion start, there is a minor decrease in TPS (1 second). 
+
+2  When vMotion switches hosts, the TPS value decreases (3 seconds). 
+
+3  Duration of the vMotion test (20 seconds) 
+
+The results for the vMotion test of 200 users are described in the table below.  
+
+Table 3. vMotion test results for 200 users* 
+
+Users 
+
+Test 
+duration 
+(seconds) 
+
+VM CPU % 
+utilization 
+
+Average 
+TPS  
+
+Average TPS - 
+vMotion kick 
+off (drop) 
+
+Duration -
+vMotion 
+kick off 
+(seconds) 
+
+Average TPS - 
+vMotion 
+completion (drop) 
+
+Duration - 
+vMotion 
+completion 
+(seconds) 
+
+200 
+
+20 
+
+50 
+
+850 
+
+750 
+
+1 
+
+30 
+
+3 
+
+* All values in the table above are approximate. 
+ 
+Similar results were observed during the first vMotion migration for 400 users, as shown below.  
+
+Figure 14. Swingbench vMotion test results for 400 users 
+
+ 
+
+ 
+
+ 
+ 
+The results of the vMotion test for 400 users shows: 
+
+1  When vMotion starts, there is a minor decrease in TPS (1 second), and then a return to 
+
+the steady state. 
+
+2  When vMotion switches hosts, the TPS value decreases (3 seconds), and then returns to 
+
+a steady state once vMotion is completed. 
+
+3  Duration of the vMotion test (20 seconds) 
+
+The test results for vMotion with 400 users are described in the table below.  
+
+Table 4. vMotion test results for 400 users* 
+
+Users  Test 
+
+duration 
+(seconds) 
+
+VM CPU % 
+utilization 
+
+Average 
+TPS  
+
+Average TPS - 
+vMotion kick 
+off (drop) 
+
+Duration -
+vMotion kick 
+off (seconds) 
+
+Average TPS - 
+vMotion 
+completion (drop) 
+
+Duration - 
+vMotion 
+completion 
+(seconds) 
+
+400 
+
+ 20 
+
+70 
+
+1050 
+
+650 
+
+1 
+
+50 
+
+3 
+
+* All values in the table above are approximate. 
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 8    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+Storage vMotion Testing Results 
+
+Storage vMotion testing was successful and all tests passed. The average TPS was well within an 
+acceptable range for all tests.  
+
+The Swingbench test results for Storage vMotion show the workload starts at a steady state. 
+When the Storage vMotion operation starts, the TPS value can fluctuate for approximately 60 
+seconds to 10 percent of its initial value. Then the workload returns to a steady state for the 
+remainder of the operation. When Storage vMotion is about to complete, the value drops 
+incidentally for approximately 1 second. The TPS value returns to its nominal value once the 
+Storage vMotion operation is completed.  
+
+Figure 15. VMware Storage vMotion testing results 
+
+Figure 16. Swingbench Storage vMotion test results 
+
+ 
+
+ 
+
+ 
+
+ 
+
+1  The initial spike in TPS when Storage vMotion started (approximately 60 seconds). 
+
+2  When the storage vMotion about to complete, the value drops (1 second) and then 
+
+returns to a steady state. 
+
+3  Duration of the Storage vMotion operation (8 minutes) 
+
+The test results for Storage vMotion are described in the table below.  
+
+Table 5. Storage vMotion test results*  
+
+Users  Test 
+
+duration 
+(minutes) 
+
+Average 
+TPS 
+
+Average TPS 
+(with drop) 
+
+Average TPS - 
+kick off (drop) 
+
+Duration - Kick 
+off (seconds) 
+
+Average TPS - 
+completion 
+(drop) 
+
+Duration - 
+completion 
+(seconds) 
+
+200 
+
+8 
+
+850 
+
+750 
+
+400 
+
+60 
+
+30 
+
+3 
+
+* All values in the table above are approximate. 
+ 
+
+DRS Testing Results 
+
+For DRS testing, similar results obtained as vMotion. For more information, see “vMotion 
+Testing Results” above.  
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 1 9    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+HA Testing Results 
+
+HA test was successful and all tests passed. The average TPS was well within an acceptable 
+range for all tests. The results demonstrate that there was minimal downtime for both planned 
+and unplanned HA activities.  
+
+For this test, the Oracle Database was running the workload in a steady state on the ESXi host 
+(Host 1). Then the host was shutdown, the virtual machine running Oracle Database was failed 
+over to the next available host (Host 2), and the virtual machine was rebooted on the host. Then 
+Oracle Database was manually restarted, the workload was reconnected, and it was able to 
+generated load on the database. After failover, it returned to its steady state prior to the HA 
+operation. 
+
+During HA failover, the TPS dropped to zero and returned to a steady state over a period of 3 
+minutes. Failover included rebooting the operating system in the second host, manually logging 
+into the virtual machine, restarting Oracle Database, and reconnecting the workload.  
+
+Note that, when there is no manual intervention, the database can be restarted on its own, 
+once the virtual machine is rebooted on the second host. For an automated process, the time 
+required to connect back to the workload is lower. 
+
+Figure 17. VMware High Availability testing results 
+
+ 
+
+ 
+
+ 
+
+Fault Tolerance Test Results 
+
+FT testing was successful and all test passed. The average TPS was well within an acceptable 
+range for all tests.  
+
+For the Fault Tolerance testing, the Oracle Database virtual machine configuration was changed 
+to support 1 vCPU. Note that FT supports one CPU only at present. The RDM-P disks were 
+converted to  VMDK as part of the FT requirement. The FT logging network was configured with 
+a 1 Gb NIC. For more information about the FT configuration, see “Appendix A: Testing 
+Configuration” below. 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 0    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+When FT was started and the load was transferred from the Primary VM to the Secondary VM, 
+there was an incidental TPS decrease of approximately 4 seconds, as shown below. After that, 
+the Secondary VM was enabled and FT assumed connectivity.  
+
+There was no load driver disconnect or load decrease when the Secondary VM started, and it 
+drove the same amount of load as Primary VM.  
+
+Figure 18. VMware Fault Tolerance testing results 
+
+ 
+
+Figure 19. Swingbench Fault Tolerance test results 
+
+ 
+
+ 
+
+ 
+
+ 
+
+1  FT transferred the load from the Primary VM to the Secondary VM (4 seconds). 
+
+Deployment Best Practices 
+The best practices for deploying the Oracle Database solution for high availability include: 
+
+  Follow VMware vSphere performance best practices guide to configure the virtual machine 
+
+and database, and to configure vMotion, Storage vMotion, DRS, HA, and FT: 
+
+  Performance Best Practices for VMware vSphere 5.1: 
+
+http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.1.pdf     
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 1    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+  vSphere High Availability Deployment Best Practices:  
+
+http://www.vmware.com/files/pdf/techpaper/vmw-vsphere-high-availability.pdf   
+
+  Best Practices for iSCSI Storage: 
+
+http://pubs.vmware.com/vsphere-
+50/index.jsp?topic=%2Fcom.vmware.vsphere.storage.doc_50%2FGUID-34297ED3-9D62-
+4869-BB9E-6EDFBEBD2E94.html 
+
+  Note that the Oracle Database server was built using minimal specifications as it was 
+
+intended for a Lab environment. 
+
+Conclusion 
+VMware vSphere enables the deployment of multiple virtual machines running different Oracle 
+database solutions consolidated on to the same physical server and storage. This consolidation 
+results in increased CPU utilization, a reduction in overall server requirements, and a lower total 
+cost of ownership (TCO).  
+
+This paper describes the validation testing for high availability that was performed using Oracle 
+Database with vSphere 5.1 advanced features including vMotion, Storage vMotion, Distributed 
+Resource Scheduler (DRS), High Availability (HA), and Fault Tolerance (FT). All of the tests were 
+conducted on a testing architecture that employed Hewlett-Packard server and storage 
+hardware. The paper also outlines best practices for deploying the solution in the datacenter. 
+
+Overall, testing results show that how high availability can be achieved (planned and unplanned 
+downtime) for Oracle database running on VMware vSphere. Furthermore, it shows the impact 
+of transaction per second (TPS) in the database while high availability operations are initiated in 
+VMware vSphere infrastructure.  
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 2    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Appendix A: Testing Configuration 
+The configuration of the VMware ESX host servers and storage, iSCSI configuration, network 
+configuration, installed software, and virtual machine configuration used in this testing is 
+described in the sections below. 
+
+Hardware and Storage Configuration 
+
+Tables A-1 and A-2 describe the configuration of VMware ESXi host servers and the storage 
+server used in this testing. 
+
+Table A-1. ESXi host hardware configuration 
+
+Hardware 
+
+Server 
+
+Configuration 
+
+  Two HP Proliant DL 380p Gen8 servers. Each server is equipped with: 
+
+  16 CPUs (2 x 8) x 2.693 GHz (cores) 
+
+ 
+
+Intel Zeon CPU E5-26800, 2.7 GHz (processor) 
+
+  8 NICs 
+
+  Hyperthreading enabled 
+
+ 
+
+Table A-2. Storage server configuration 
+
+Hardware 
+
+Server 
+
+Configuration 
+
+  HP Proliant P4500 G2 iSCSI storage equipped with: 
+
+  Aggregate of 36 disks 
+
+  RAID 1 + 0 
+
+  SAS 3.0 GBPS connectivity 
+
+  Hardware iSCSI Protocol (10 Gb NIC) 
+
+  Software version 9.5.00.1215.0 
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 3    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+iSCSI Configuration 
+
+Figure A-1 describes the iSCSI configuration used in this testing. 
+
+Figure A-1. iSCSI configuration 
+
+ 
+
+Network Configuration 
+
+Figure A-2 describes the network switch configuration used in this testing. 
+
+Figure A-2. Network switch configuration for both hosts 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 4    
+
+ 
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Installed Software 
+
+Table A-3 lists the installed software used in this testing. 
+
+Table A-3. Software installation 
+
+Software Type 
+
+VMware  
+
+Oracle 
+
+Swingbench 
+
+Software configuration 
+
+  VMware vSphere 5.1, with vMotion, Storage vMotion, DRS, HA, and FT 
+
+enabled 
+
+  VMware vCenter Server 5.1 
+
+  Oracle Database 11g Release 2 
+
+  Swingbench 2.4 
+
+Virtual Machine Configuration 
+
+Table A-4 describes the configuration of virtual machines running on ESXi host servers in this 
+testing. 
+
+Table A-4. Virtual machine configuration 
+
+Virtual machine  
+
+Hardware configuration 
+
+Oracle Database (RHEL 6 – 64 bit)  
+ 
+
+  4 vCPUs 
+
+  16 GB memory 
+
+  1 Ethernet card (vmxnet 3) 
+
+  100 GB OS Disk (VMDK) 
+
+  400 GB Data Disk (RDM-Physical) 
+
+  50 GB Temp File Disk (VMDK) 
+
+  4 vCPU 
+
+  8 GB memory 
+
+  1 Ethernet card 
+
+  300 GB storage (VMDK) 
+
+Swingbench (RHEL 6 – 64 bit) 
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 5    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+Resources  
+Customers can find more information about the VMware and Oracle Database products 
+described in this paper using the links listed below. 
+
+VMware  
+
+Deployment References 
+
+  VMware vSphere: 
+
+http://www.vmware.com/products/datacenter-virtualization/vsphere/overview.html   
+
+  VMware Support and Downloads web site: 
+
+http://www.vmware.com/support/product-support/vsphere/index.html   
+
+  Performance Best Practices for VMware vSphere 5.1: 
+
+http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.1.pdf     
+
+  vSphere High Availability Deployment Best Practices:  
+
+http://www.vmware.com/files/pdf/techpaper/vmw-vsphere-high-availability.pdf   
+
+  Best Practices for iSCSI Storage: 
+
+http://pubs.vmware.com/vsphere-
+50/index.jsp?topic=%2Fcom.vmware.vsphere.storage.doc_50%2FGUID-34297ED3-9D62-
+4869-BB9E-6EDFBEBD2E94.html 
+
+  Compatibility Guides (VMware Certified Compatibility Guides): 
+
+http://www.vmware.com/resources/guides.html?src=WWW_BestMatch_US#utm_source=
+WWW_BestMatch_US&utm_medium=src&utm_campaign=src-tagged-url   
+  VMware Compatibility Guide (compatible storage and networking devices): 
+
+http://www.vmware.com/resources/compatibility/search.php   
+
+General Information 
+
+  VMware web site: 
+
+http://www.vmware.com/ 
+
+  Featured VMware Documentation Sets: 
+
+http://www.vmware.com/support/pubs/  
+
+  VMware Licensing Help Center: 
+
+http://www.vmware.com/support/licensing/  
+
+  VMware Product Podcasts: 
+
+http://www.vmware.com/technical-resources/podcasts/  
+
+  VMware Technology Network (Community) web site: 
+http://communities.vmware.com/community/vmtn   
+
+  Community, VMware Knowledge Base: 
+
+http://communities.vmware.com/community/vmtn/resources/knowledgebase   
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 6    
+
+ 
+
+Oracle® Database High Availability on VMware vSphere®  
+
+ 
+
+  VMware Support Insider: 
+
+http://blogs.vmware.com/kbtv/  
+
+  VMware TV: 
+
+http://www.youtube.com/user/vmwaretv   
+
+  VMworld TV: 
+
+http://www.youtube.com/user/VMworldTV  
+
+  VMware KB TV (external): 
+
+http://www.youtube.com/user/VMwareKB 
+
+Hewlett-Packard (HP) 
+
+  HP ProLiant DL380p Gen8 Server - Overview:  
+
+http://h10010.www1.hp.com/wwpc/us/en/sm/WF05a/15351-15351-3328412-241644-
+241475-5177957.html?dnr=1 
+
+  HP Proliant P4500 G2 
+
+http://www8.hp.com/us/en/products/disk-storage/product-detail.html?oid=5294279   
+
+Oracle Database 
+
+  Oracle web site:  
+
+http://www.oracle.com 
+
+  Oracle Database web site: 
+
+http://www.oracle.com/us/products/database/overview/index.html  
+
+Swingbench 
+
+  Swingbench web site:  
+
+http://www.dominicgiles.com/index.html   
+   
+
+ 
+
+           
+
+ 
+
+   
+
+D E P L O Y M E N T   A N D   T E C H N I C A L   C O N S I D E R A T I O N S   G U I D E   / 2 7    
+
+

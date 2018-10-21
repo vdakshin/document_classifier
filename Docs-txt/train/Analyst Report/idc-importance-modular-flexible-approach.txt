@@ -1,0 +1,477 @@
+ 
+
+I D C   T E C H N O L O G Y   S P O T L I G H T  
+
+ The Importance of a Modular and Flexible 
+Approach to Integrated Infrastructure 
+November 2014 
+Adapted from Converged and Integrated Systems State of the Market and Future Outlook: Executive Interview 
+Summary Report, by Brad Casemore, Laura DuBois, and Matthew Eastwood, et al. IDC #242628 
+Sponsored by VCE 
+
+ 
+
+In today’s rapidly changing world, IT executives are tasked with finding more impactful ways to 
+transform business through smarter technology investments—the integrated infrastructure being one 
+of the vital options that such businesses can leverage to optimize operations, increase risk and 
+compliance posture, reduce costs, and innovate effectively from increased use of third-platform 
+applications. With the integrated infrastructures, organizations can accelerate time to investments 
+and modernize their traditional data centers into highly efficient, reliable, cost-saving, and sustainable 
+assets for their global business operations. This Technology Spotlight examines integrated systems 
+that combine storage, networking, and server assets in a preconfigured turnkey solution that is 
+modular and scalable as business demands change and grow. It also looks at the role played by VCE 
+Vblock Systems with EMC XtremIO scale-out all-flash arrays and VCE technology extension for EMC 
+Isilon in this strategically important market. 
+Introduction: Changing Compute Workloads 
+Mobile devices, cloud services, social networks, and big data analytics are driving corporate digital 
+data growth by 40% to 50% per year. The vast majority of the new data being generated today, yet 
+still considered underutilized, is unstructured, which will surpass structured data in terms of both 
+capacity shipped and revenue next year, according to IDC. By 2017, unstructured data will account 
+for 79.2% of capacity shipped and 57.3% of revenue.  
+
+At the same time, Bring Your Own Device (BYOD) is becoming the norm, requiring IT to support 
+privately-owned smartphones and tablets at work while maintaining control of sensitive corporate 
+data. Data-intensive workloads are also rapidly growing, including on-line transaction processing 
+(OLTP), client and server virtualization, big data analytics, and high-performance computing (HPC), in 
+areas such as the oil and gas industry and medical sciences. Workload consolidation for such 
+applications is a growing priority for enterprise customers, demanding integrated systems with scale-
+out storage. 
+
+Businesses are increasingly demanding access and mining large datasets long stored away in data 
+warehouses and other data sources locked in disparate systems. Such information sources help 
+them spot opportunities, turn insight into new offerings, direct frauds and compliance exposures, and 
+predict market behavior. Big data analytics is uncovering valuable patterns in credit card use, cell 
+phone activity, and retail transactions. 
+
+To address an ever-shifting compute workload, many IT organizations are choosing a "virtualized 
+first" strategy, a trend born from the fact that nearly half of x86 workloads are currently running in 
+virtual environments. Virtualized infrastructure is expected to grow at 15% over the next five years (at 
+a similar pace as IDC third-platform applications), while growth in traditional client-server 
+infrastructure will grow only 0.7%, according to IDC. 
+
+Meanwhile, time is not on an IT organization’s side. IT organizations are struggling to meet business 
+SLAs. IT teams can spend up to eight weeks implementing new service requests due to the fact that 
+corporate applications and data are often hosted on legacy infrastructure silos. 
+
+Despite the security and compliance concerns, business managers have learned that they can turn to 
+external cloud and compute service providers to meet their needs, which are putting pressure on IT 
+organizations to seek out more flexible infrastructure. The direct and indirect costs of rigid 
+infrastructure comes from ongoing acquisition of new hardware and software, data migrations that 
+require downtime, and siloed operations that result in long provisioning lead times.  
+
+The more siloed data and applications are within a company, the harder it is to distribute resources, 
+hindering IT from meeting SLAs. Silos also affect a business’s ability to comply with regulatory 
+mandates because system updates and upgrades are not rolled out holistically. A single federal 
+mandate can lead to lost productivity while software across disparate systems is updated. 
+
+Additionally, it can be difficult to ensure that all lines of business are connected to high availability 
+and/or disaster recovery systems because of a lack of visibility across corporate infrastructure. 
+Businesses are also forced to pay for IT specialists to manage separate storage, networking, and 
+server resources. 
+
+Business advantages of using integrated systems for mixed workload consolidation are clearer than 
+ever. Integrated systems can bring together storage, compute, and networking resources in a 
+preconfigured and highly scalable architecture increasing an organization’s agility, flexibility, and 
+productivity. Unlike traditional server-client infrastructures that cannot be future proofed beyond a 
+couple of years, and require IT managers to guesstimate capacity needs and often lead to 
+overprovisioning, integrated systems grow as needs expand on demand. As a result, IT executives 
+can achieve better alignment with changing business needs. 
+
+Businesses today are motivated by desire to discover new opportunities and exploit them through IT 
+resources, and that requires a shift to modern, integrated, and agile infrastructures.  
+The Benefits of Integrated Systems 
+The bundled nature of integrated systems makes buying economical, and ensures that each 
+technology will work together in an automated fashion. An IDC survey of 308 U.S. IT decision makers 
+revealed that 70.4% are running a mix of new and existing workloads on integrated systems, 20.4% 
+are exclusively existing software and 9.3% are new or Greenfield applications (see Figure 1). 
+
+2 
+
+©2014 IDC 
+
+F i g u r e   1  
+
+Workloads Running On Integrated Systems 
+
+Exclusively 
+
+9.3%
+
+new/ 
+
+greenfield
+
+Exclusively 
+
+existing 
+software
+20.4%
+
+Mix of new 
+and existing
+
+70.4%
+
+ 
+
+Source: IDC, 2014 
+
+As business units complete projects, IT resources can be reclaimed and placed back into a virtual 
+pool, reallocated to new projects as they arise, which reduces CapEx and OpEx related to over-
+provisioning and administration. IT overhead and operational costs are often a burden in companies 
+where, if the infrastructure is not agile and built in a private cloud-like fashion, then your IT overhead 
+is high because IT staff performs a lot of tactical operational tasks. Integrated infrastructure also 
+helps prevent important IT staff from performing less valuable tasks, such as managing virtual server 
+farm upgrades. 
+
+By training IT “generalists,” instead of hiring specialists, workers can manage multiple resources at 
+the same time and other staff can be freed up for more interesting projects in R&D or other areas. 
+Integrated systems managed by IT generalists versus specialists means a shift away from a focus on 
+simple IT CapEx and OpEx to the benefits of business agility from faster provisioning and better 
+performance across the organization. 
+
+Today, reduced downtime, cost savings, and improved resource utilization are becoming more 
+important drivers than innovation and agility for many businesses. 
+Usage Trends  
+The convergence of systems will provide flexibility, faster time to market for new services, and reduce 
+incidents of downtime by 50% to 75%, according to the IDC report titled, Integrated Systems: End-
+User Survey Report 2014. Customers using an optimized data center infrastructure on average 
+reduced their annual data center infrastructure costs by nearly $3.6 million, or $75,778 per 100 users, 
+IDC’s report notes. 
+
+©2014 IDC 
+
+3 
+
+U.S. IT decision makers who have deployed or are considering deploying an integrated infrastructure 
+expect a 20% to 30% improvement in time to provision systems, according to IDC.  
+
+In another survey of 308 IT leaders by IDC, titled IDC Converged and Integrated Systems End-User 
+Survey Report 2013, an increase in IT staff productivity and utilization of infrastructure resources 
+were cited as top benefits of deploying an integrated system. The report included 162 IT managers 
+who are currently running integrated systems in production, 59% of which had more than 5,000 
+employees and 45% of whom have 750 physical servers. The majority of those surveyed also have 
+been running integrated systems in production for more than a year. 
+
+The survey revealed that IT managers expect about 50% of compute, storage, and network 
+resources and workloads to run on integrated systems by end of 2015. Fifty-two percent of those 
+surveyed are already running integrated systems, while 37% are evaluating them and 10.4% are 
+testing them. 
+
+When it came to IT organizations meeting data center operational and architectural goals over the 
+next 12 to 18 months, IT managers identified the following top five challenges:  
+
+§  Constrained capital budgets (50.6%) 
+
+§  Compliance and change control (47.4%) 
+
+§  Disaster recovery and high availability capabilities (38.3%) 
+
+§  Dealing with the impact of mobile devices 35.4%) 
+
+§ 
+
+Improving business agility/IT credibility (29.9%) 
+
+IT managers who were testing/piloting integrated systems were asked how they expect their 
+organization to benefit. The top three answers were: 
+
+1.  Reduced downtime (68.8%) 
+
+2.  Reduced data center cooling and power costs (65.6%) 
+
+3. 
+
+Improved utilization of compute resources (62.5%).  
+
+Those answers compared favorably with IT managers already using integrated systems, 49.4% of 
+whom said they had seen reduced downtime, 48.1% documented lower power and cooling costs, and 
+46.9% experienced improved utilization of compute resources (see Figure 2). 
+
+4 
+
+©2014 IDC 
+
+F i g u r e   2  
+
+Top Benefits of Integrated Systems 
+
+Q. Which of the following describe how your organization has benefited (or 
+expects to benefit) from the use of converged or integrated systems? 
+
+53.1%
+
+50.0%
+
+55.3%
+
+52.5%
+
+50.0%
+49.1%
+49.4%
+
+56.1%
+
+68.8%
+
+65.6%
+
+57.0%
+
+62.5%
+
+48.1%
+
+46.9%
+
+38.9%
+
+52.6%
+
+53.1%
+
+48.2%
+
+33.3%
+34.4%
+
+30.7%
+
+Improved IT staff productivity
+
+Faster infrastructure, workload and application 
+
+provisioning
+
+Reduced downtime
+
+Reduce cost of data center facilities, power and 
+
+cooling
+
+Improved utilization of compute resources
+
+Improved utilization of storage resources
+
+Faster time to market
+
+Other
+
+.6%
+.9%
+
+3.1%
+
+In Production n=162)
+Testing/Piloting (n=32)
+Evaluating (n=114)
+
+Source: IDC, 2014 
+
+0%
+
+10%
+
+20%
+
+30%
+
+40%
+
+50%
+
+60%
+
+70%
+
+80%
+
+ 
+
+Flexible infrastructures enable CIOs to more focus on workgroup or line of business needs in addition 
+to corporate-wide economics. The ability to document exactly what amount of resources were used 
+by which business group and for how long enables an accurate ROI across the entire organization. 
+
+It is these business benefits that have spurred integrated infrastructure and platform market growth 
+by 35.9% year-over-year in the first half of 2014 to $4.3 billion, according to IDC. In the second 
+quarter of 2014, integrated infrastructure sales grew 59.2% year over year, generating $1.35 billion. 
+This amounted to 56.3% of the total market value. 
+Considering VCE Modular Architecture 
+VCE Vblock Systems are designed to improve IT infrastructure agility, cut the time to deploy systems, 
+and increase staff efficiency. A challenge with traditional system deployments in IT is left to guess the 
+cost of deployment and hope they won’t overshoot it. With integrated systems such as the Vblock 
+Systems, every resource is accounted for before it’s even brought to bear for a line of business or 
+workgroup. 
+
+Designed for high availability with best-of-breed components, VCE Vblock Systems use a 
+consolidated footprint and a simplified IT environment intended to free staff resources and reduce 
+downtime. Customers who are seeking a three- to five-year technology direction can benefit knowing 
+Vblock Systems are not just about hardware and software, but an ongoing partnership with an 
+established vendor that continuously brings forth innovations from EMC, Cisco, and VMware. 
+
+As evolving third-platform applications such as mobile computing, social media, cloud computing, and 
+big data gain more traction in the enterprise they will fuel the enormous growth of unstructured data. 
+They form the basis for the enterprise "data lakes." Data lakes consist of data consolidated from 
+different traditional and next-generation application workload sources. Such data sources require an 
+infrastructure where they can be accessed and shared across business units requiring multi-tenant 
+access in virtual or bare metal environments.  One of the key architectural requirements for the 
+
+©2014 IDC 
+
+5 
+
+Vblock Systems is applying scale-out all-flash XtremIO for block workload consolidation and scale-out 
+Isilon for unstructured data workload consolidation. This combination is critical for the next-generation 
+of applications and agile data center requirements. 
+
+The infrastructure to support data lakes must be highly scalable, both in capacity and performance as 
+well as having an operational flexibility to support a wide range of applications and workloads, 
+extensible from the existing integrated infrastructures running second-platform or legacy applications. 
+Having central access to an unstructured data lake as an extension to the integrated infrastructures 
+also releases the ability to apply powerful analytics such as Hadoop, opening up new insight and 
+opportunities for new markets with enterprise oversight and control. 
+
+Workloads have always landed on platforms that are best able to meet their compute, I/O, memory 
+and storage needs. Integrated systems are no different. 
+
+To address unstructured and semi-structured data lakes while extending the VCE value, VCE 
+recently announced the VCE technology extension for EMC Isilon storage that allows organizations to 
+extend an integrated infrastructure for scale-out network-attached storage. This new offering also 
+addresses the capacity, scaling, and resource expansion demands identified by IDC’s research Battle 
+for the Future of the Data Center: The Role of Disaggregated Systems, Matt Eastwood. 
+
+VCE Vblock Systems and VCE technology extensions for EMC Isilon storage deliver native Hadoop 
+Distributed File System (HDFS) integration with the ability to support multiple Hadoop distributions 
+and versions. The flexible architecture of EMC Isilon enables other enterprise and emerging 
+applications to use Hadoop data while eliminating the need to manually move data around or invest in 
+a separate, stand-alone infrastructure such as direct-attached storage (DAS). The DAS model where 
+server and storage usage is tightly coupled, that can lead to data security exposure, frequent 
+downtimes, inefficient storage utilization, and lack of enterprise IT control and visibility. 
+
+Key Additions to the VCE Architecture 
+
+In addition to the VCE technology extension for EMC Isilon, VCE added the all-flash Vblock System 
+540 to the Vblock System portfolio.  This augments Vblock Specialized Systems for Extreme 
+Applications and extends the use of EMC XtremIO All-Flash Arrays. XtremIO is an ideal platform to 
+address high-performance databases, analytics, business applications, private cloud, VDI, and other 
+low latency application needs in mixed workload environments.  With its unique scale-out 
+performance architecture, in-memory space-efficient copy services and inline data reduction, the 
+Vblock System 540 is ideal for consolidating the aforementioned workloads. 
+
+As part of the Vblock System 540, XtremIO, EMC’s flagship all-flash array, and is claimed to offer 
+consistent sub-millisecond application response times and over 900,000 I/O operations per second 
+(IOPS). This is the measured performance for typical OLTP mixed read/write workloads with ~0.5 
+millisecond response time. The all-flash Vblock System 540 allows flexible configurations of over a 
+dozen scale-out controllers for linear expansion of IOPS, bandwidth, and capacity, making it a 
+powerful solution for consolidating performance hungry applications. These include virtual server 
+farms and private clouds, production OLTP, database test and developer environments, as well as 
+data warehousing and analytic applications such as Oracle, Microsoft SQL Server, SAS, and SAP. In 
+addition, always-on and inline data reduction services available on the XtremIO, including 
+deduplication, compression, space efficient copy services, and thin provisioning make flash 
+consolidation economical with petabyte-scale effective capacity. All of this results in superior user 
+experience, radically simplified admin experience, and impressive savings due to workload 
+consolidation on an all-flash integrated system. 
+
+ 
+
+6 
+
+©2014 IDC 
+
+Vblock System 540 can be augmented with VCE Vblock System 740 (which includes EMC VMAX3 
+series), or Vblock System 340 (which includes EMC VNX2 series). They provide highly scalable, 
+hybrid and all-flash configurations, ideally suited for mixed workload and mission-critical applications. 
+VCE Vblock Systems can also be augmented with the VCE technology extension for EMC Isilon to 
+enable third party platform applications  
+
+The VCE technology extension for EMC Isilon allows customers to manage their active and archived 
+data in a single volume, addressing end-user computing, data analytics, video surveillance, high- 
+performance computing, file shares, and home directory services, as well as backup and archival 
+requirements. 
+
+Vblock System 540 eliminates storage sprawl in virtualized environments with EMC Isilon because 
+both storage architectures deliver the unique scale-out architecture built right into it. EMC’s Isilon 
+platform can expand to petabytes of capacity all under a single volume, file system, and namespace, 
+adjusting to whatever capacity is needed for a workgroup or business unit. 
+IDC Perspective 
+Given the current adoption rate of integrated infrastructure, there is more that (Integrated 
+Infrastructure Systems or Platform) vendors like VCE can do to impress upon CIOs and IT executives 
+the many benefits of making it the de facto standard in their IT infrastructure. As businesses seek to 
+transform themselves in preparation for the third-platform era, they need to be guided by vendors in 
+making the right decisions for their infrastructure, and ultimately for the viability of their IT 
+organization in increasing business contributions by taking on newer applications and workloads.  
+This task is not easy. First, it requires vendors to build advisory relationships at the highest level, and 
+to instill the trust that the vendor is in fact willing to stay true to the single point of support no matter 
+what the issue is. Second, it requires that such vendors have to be at the top of technological trends 
+and constantly add/update their portfolio. This minimizes the need to approach a different vendor for 
+solutions that do not fit into the IIS vendor’s portfolio. 
+
+IDC believes that VCE has tackled both these challenges quite effectively. It has built trusted advisor 
+relationships with C-level executives at clients and prospects alike. VCE's most recent product 
+announcements listed above reaffirms its commitment to providing a flexible and adaptable 
+architecture for workloads of all shapes and sizes. And yet, VCE needs to ensure that it is ahead of 
+the competition in terms of offering a comprehensive integrated infrastructure systems portfolio that is 
+differentiated on the basis of the individual best-of-breed components, and more importantly on the 
+basis of the engineering and operational efforts that go into integrating them to seamlessly work with 
+each other to sustain its VCE experience end-to-end. 
+Conclusion 
+Benefits of integrated infrastructure apply to all organizations, regardless of industry. By deploying 
+private or hybrid clouds using the right integrated infrastructure, businesses can spend more time on 
+innovation and act on high value-added patterns on the modern infrastructure that helps accelerate 
+time to market, reduce provisioning times, and reduce overall cost of IT services. They also reduce 
+compliance and risk exposure and management costs by being able to streamline operations and 
+collapse siloed but costly processes while increasing enterprise IT visibility. 
+
+The genesis of integrated infrastructure was focused on the ability for IT to standardize its data center 
+architectures and leverage automation to eliminate the disparate provisioning challenges. Traditional 
+approaches depended on IT having to provision each system, which typically takes a day for each 
+system and up to four weeks to complete. With expanded use of unique scale-out, architecture, using 
+all-flash and file-optimized storage solutions, IT can implement integrated infrastructure as an efficient 
+way to provision systems at the project onset. Such modern use can also help IT meet or exceed 
+
+©2014 IDC 
+
+7 
+
+service levels, empowering business to act on time-sensitive patterns, reliably complete high-volume 
+transactions, and maintain continuity across data centers. This also enables new workflow agility 
+benefits for on-demand copy services for real-time analytics and accelerated development and test. 
+For this reason, organizations that invest in the integrated infrastructures greatly benefit from their 
+architectural evolution toward extracting greater value from a broadening set of mission-critical 
+workloads and datasets regardless of volume, velocity, or variety.  
+
+By implementing integrated infrastructure, businesses can create and access rapidly evolving 
+applications as a more dependable, agile set of services from IT and application teams for optimized 
+outcomes. Enterprises can become more productive, curtail inefficient or duplicative efforts, and 
+reduce “missed opportunity” costs. In summary, the modern integrated infrastructure founded upon 
+the technological advancements in compute, storage, and networks on the scalable, modular and 
+extensible architecture, thus, directly impacts business by adapting to escalating demands of an 
+organization. 
+
+ 
+
+ 
+A B O U T   T H I S   P U B L I C A T I O N  
+
+This publication was produced by IDC Custom Solutions. The opinion, analysis, and research results presented herein  
+are drawn from more detailed research and analysis independently conducted and published by IDC, unless specific vendor 
+sponsorship is noted. IDC Custom Solutions makes IDC content available in a wide range of formats for distribution by  
+various companies. A license to distribute IDC content does not imply endorsement of or opinion about the licensee. 
+
+C O P Y R I G H T   A N D   R E S T R I C T I O N S  
+
+Any IDC information or reference to IDC that is to be used in advertising, press releases, or promotional materials requires  
+prior written approval from IDC. For permission requests contact the Custom Solutions information line at 508-988-7610 or 
+gms@idc.com. Translation and/or localization of this document require an additional license from IDC. 
+
+For more information on IDC visit www.idc.com. For more information on IDC Custom Solutions visit 
+http://www.idc.com/prodserv/custom_solutions/index.jsp. 
+
+Global Headquarters: 5 Speen Street, Framingham, MA 01701 USA    P.508.872.8200    F.508.935.4015    www.idc.com 
+
+8 
+
+©2014 IDC 
+
+

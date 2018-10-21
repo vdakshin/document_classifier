@@ -1,0 +1,300 @@
+ 
+
+CISCO UNIFIED COMMUNICATIONS (UC) 
+ON VBLOCKTM SYSTEMS  
+
+ 
+VCE designs and delivers VblockTM Systems, the world’s most advanced converged infrastructure—one that optimizes infrastructure, 
+lowers costs, secures the environment, speeds deployment, and promotes innovation. And with best-in-class components, one 
+architecture spanning the whole portfolio, advanced operations management for converged infrastructure, a single point of contact 
+from initiation through support, and the industry's most robust range of configurations and models, the Vblock Systems family 
+addresses the unique needs and requirements of practically any size organization, a variety of price points, and a multitude of 
+specific verticals and business drivers. 
+
+This document provides an overview of Unified Communications (UC) on Vblock Systems. Optimized for Cisco(R) Unified 
+Communications (UC) applications, the solution brings together a comprehensive, integrated IP communications system of voice, 
+messaging, video, and desktop applications, with the pre-engineered, pre-integrated, validated Vblock Systems.  
+
+The solution eliminates the need to build an infrastructure from individual vendors -- a non-trivial undertaking when architecture 
+design, deployment, and operational complexities are huge. Vblock Systems provide the ability to seamlessly scale Unified 
+Communications (UC) up and out as needed using standard compute, network, and storage building blocks. UC, deployed on Vblock 
+Systems, enables companies to adapt quickly to market changes, increase productivity, improve their competitive advantage, and 
+deliver a rich media experience across any workspace.  
+ 
+
+TABLE I: VBLOCK™ SYSTEM FAMILY COMPONENTS 
+ 
+
+Vblock System 100 
+
+Vblock System 200 
+
+Vblock System 300 
+
+Vblock System 700 
+
+MIN/MAX 
+CHASSIS 
+
+MIN/MAX  
+BLADES 
+
+DRIVE RANGE 
+
+STORAGE 
+CAPACITY 
+
+3/8 (servers) 
+
+ 
+
+2 
+
+6-48TB 
+
+CABINETS 
+
+1 
+
+4/12 
+ 
+
+ 
+
+14-105 
+
+100TB 
+
+1 
+
+2/16 
+
+2/128 
+
+125-1000 
+
+1PB 
+
+1-8 
+
+COMPUTE 
+ 
+ 
+
+NETWORK 
+
+Cisco C220 M3 Servers  Cisco C220 M3 Servers  Cisco UCS 5108  
+
+Catalyst 3750x 
+switches 
+Cisco Nexus 1000v 
+Essentials  
+ 
+
+Nexus 5548UP 
+switches  
+Cisco Nexus 1000v 
+Essentials 
+ 
+
+Server Chassis 
+Cisco B Series M2,  
+M3 Blade Servers 
+
+Cisco UCS 6296UP, 
+6248UP  
+Cisco Fabric Extender 
+2204XP, 2208XP 
+Cisco Nexus 5548UP, 
+5596UP, Cisco MDS 
+9148 
+
+2/48 
+
+192/384 
+
+24-3200 
+
+1-4PB 
+
+3-28 
+
+Cisco UCS 5108  
+Server Chassis 
+Cisco B Series M2,  
+M3 Blade Servers 
+
+Cisco UCS 6296UP, 
+6248UP 
+Cisco Fabric Extender 
+2204XP, 2208XP 
+Cisco Nexus 5548UP, 
+5596UP, Cisco MDS  
+9148, 9513 
+
+© 2012, 2013 VCE Company, LLC. All rights reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+TABLE I: VBLOCK™ SYSTEM FAMILY COMPONENTS 
+ 
+
+Vblock System 100 
+
+Vblock System 200 
+
+STORAGE 
+
+EMC VNXe 3150/3300 
+Storage Arrays 
+
+EMC VNX 5300  
+Storage Array 
+
+MANAGEMENT 
+
+Cisco UCS Manager 
+EMC Unisphere Manager 
+VMware vCenter Server 
+
+VIRTUALIZ-
+ATION 
+
+VMware, ESXi, VMware 
+vCenter Server Standard, VMware 
+vSphere Server Enterprise Plus 
+
+Vblock System 300 
+
+Vblock System 700 
+
+EMC VNX Storage 
+Arrays 5300, 5500, 
+5700, 7500 
+
+EMC VMAX Storage 
+Arrays 10K, 20K, 40K 
+
+*Additional optional management software tools are available. Vblock Systems pre-integrated, pre-validated approach follows 
+both Cisco's UC on UCS Tested Reference Configuration (TRC) and UC on UCS Specs-based support model. For complete list 
+of UC virtualization supported hardware please visit: http://docwiki.cisco.com/wiki/UC_Virtualization_Supported_Hardware. 
+
+Performance Benefits from Vblock Systems
+During testing of the Vblock Systems for Unified Communications, VCE demonstrated several benefits of running Cisco UC 
+on Vblock Systems.  This was particularly true in the storage domain.  As the number of users supported by the UC 
+applications increases, the cache and automated tiering functionality of the EMC VNX array provides increasing value 
+compared to traditional storage methods. 
+
+In a scenario to support a 30,000-user UC implementation and requiring approximately 2,200 IOPS, we compared a Vblock 
+System using a VCE-optimized FAST VP configuration to a traditional RAID configuration and observed the following 
+results:
+
+TABLE 2: COMPARING THE VBLOCK SYSTEM WITH FAST VP TO TRADITIONAL RAID  
+FOR UC APPLICATIONS 
+
+ 
+
+ 
+
+Vblock System with FAST VP 
+
+Traditional RAID 
+
+CAPACITY REQUIRED 
+
+4.5 TB 
+
+CAPACITY AVAILABLE 
+
+6.2 TB 
+
+CAPACITY UTILIZATION  73% 
+
+IOPS REQUIRED 
+
+IOPS AVAILABE 
+(FRONT END) 
+
+2200 
+
+3,040 
+
+4.5 TB 
+
+7.0 TB 
+
+64% 
+
+2200 
+
+2,304 
+
+DATA DISKS REQUIRED  One 200 GB Flash + three 2 TB NL-SAS 
+
+Sixteen 450 GB FC/SAS 
+
+ 
+
+© 2012, 2013 VCE Company, LLC. All rights reserved. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+The FAST VP solution contained within the Vblock System yields a 75% reduction in the number of data drives required to 
+implement Cisco UC applications.  
+
+The Vblock System offers balanced CPU, I/O bandwidth, and storage performance and capacity relative to the compute 
+and storage arrays in the system.  All components incorporate redundancy into the design. 
+
+Jumpstart Business Transformation 
+VCE	  technology	  and	  industry	  experts	  can	  accelerate	  business	  value	  and	  manage	  risk	  through	  quality	  execution	  and	  proven	  
+deployment,	  migration,	  and	  management	  services.	  We	  intimately	  understand	  the	  entire	  technology	  stack	  and	  provide	  seamless	  
+support	  to	  governments	  and	  businesses	  operating	  multitenant	  and	  mixed	  workload	  environments	  in	  more	  than	  25	  countries	  on	  five	  
+continents.	  
+Learn more about how to get a single platform containing everything you need to deliver a comprehensive and effective 
+collaborative experience, visit vce.com or contact a Vblock™ Qualified Partner. 
+
+ 
+
+ 
+
+ 
+
+ABOUT VCE 
+VCE, formed by Cisco and EMC with investments from VMware and Intel, accelerates the adoption of converged 
+infrastructure and cloud-based computing models that dramatically reduce the cost of IT while improving time to 
+market for our customers. VCE, through the Vblock Systems, delivers the industry's only fully integrated and fully 
+virtualized cloud infrastructure system. VCE solutions are available through an extensive partner network, and 
+cover horizontal applications, vertical industry offerings, and application development environments, allowing 
+customers to focus on business innovation instead of integrating, validating, and managing IT infrastructure. 
+For more information, go to www.vce.com. 
+ 
+
+ 
+Copyright © 2012, 2013 VCE Company, LLC. All rights reserved. Vblock and the VCE logo are registered trademarks or trademarks of VCE Company, LLC. and/or its 
+affiliates in the United States or other countries. All other trademarks used herein are the property of their respective owners. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

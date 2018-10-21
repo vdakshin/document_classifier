@@ -1,0 +1,242 @@
+ 
+
+ 
+
+      FINANCIAL SERVICES 
+CASE STUDY 
+
+ 
+
+Challenges:  
+• 
+
+Escalating costs of IT in a 
+hyper-competitive market 
+puts pressure on staff to do 
+more with existing CAPEX and 
+OPEX 
+
+• 
+
+Backing up the reactive 
+replication strategy with a 
+proactive problem avoidance 
+strategy 
+
+ 
+Raymond James Deploys Virtual Instruments’ 
+VirtualWisdom to monitor its SAN to continue ensuring 
+
+100% data availability 
+
+Overview  
+
+Raymond James, founded in 1962 and a public company since 1983, is a diversified financial 
+services holding company with subsidiaries engaged primarily in investment and financial 
+planning, in addition to investment banking and asset management.  More than 5,300 financial 
+advisors serve approximately 1.9 million accounts in approximately 2,300 locations throughout 
+the United States, Canada and overseas. In addition, total client assets are approximately $223 
+billion, of which approximately $29 billion are managed by the firm’s asset management 
+subsidiaries.   
+
+IT Environment  
+
+With the major datacenter in St. Petersburg, Florida and a hot backup site in Southeastern 
+Michigan, the IT staff supports over a thousand servers, 90% of which are Windows based, 
+including a fast growing number of VMware ESX hosts supporting hundreds of virtual machines.  
+There are almost 2,000 switch ports, supporting 200 storage ports and 400TB of data, in both 
+facilities.  Data is split between EMC DMX and Clariion systems, with the applications requiring 
+replication deployed on the DMXs.  The current ratio of server to storage ports averages 16:1. 
+
+Like many IT departments, Raymond James is challenged with tight budgets and with getting 
+more and more performance out of existing hardware assets and personnel.  The SAN team’s 
+success is measured by a simple metric: keep the data available; no excuses.  So taking a purely 
+reactive approach to SAN troubleshooting and performance optimization was out of the 
+question.  Getting the job done by massive over-provisioning, so often seen in major 
+datacenters, was likewise not an option due to budget constraints. 
+
+Role of VirtualWisdom 
+
+A more proactive approach to system availability was needed, and in early 2008, Raymond 
+
+ 
+
+ 
+
+ 
+
+• 
+
+• 
+
+•  Determining which servers 
+
+need dedicated storage ports  
+Identifying the top storage 
+users and quickly seeing 
+trends 
+Being alerted to failing 
+components and quickly 
+replacing them before users 
+are impacted  
+
+Solution:  
+• 
+
+Virtual Instruments 
+VirtualWisdom and 
+professional services 
+consulting 
+
+Customer Benefits:  
+• 
+
+Causes of potential 
+application slow-downs 
+identified and corrective 
+action provided before users 
+are even aware of a problem 
+
+• 
+
+ 
+ 
+ 
+
+Reduction in the need to 
+replace suspected bad SAN 
+components because of 
+superior fault diagnosis, 
+which saves on both CAPEX 
+and OPEX 
+
+“The services consultants 
+
+sent out were 
+
+knowledgeable, efficient and 
+
+very easy to work with.”  
+
+-Doug Ward 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+ 
+
+ 
+
+      FINANCIAL SERVICES 
+CASE STUDY 
+Storage Analyst 
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+James deployed VirtualWisdom, both software ProbeVs and a Fiber Channel ProbeFCX along 
+with a 144 port rover in the St. Petersburg datacenter.  After the initial 2-day installation service, 
+the storage team spent three weeks establishing a baseline, and built filters and alerts for 
+metrics that give an early indication of trouble.   VirtualWisdom sees loss of sync, link resets, 
+packet discards, aborts, code violations, and CRC errors and can send alarms for out-of-bounds 
+conditions.  Every few months, a new baseline is reviewed and established to accommodate the 
+changes in the SAN infrastructure.  Additionally, a daily report on the top ten servers by 
+utilization is sent up the management chain, as a quick way to get a meaningful trend of storage 
+usage. 
+
+Troubleshooting the SAN  
+
+According to Raymond James, VirtualWisdom has enabled them to continue quickly responding 
+to potential performance and availability problems, and “isolate issues in a timely manner”, well 
+before any impact on the application users.   
+
+As an example of fast troubleshooting, on a number of occasions, the VirtualWisdom dashboard 
+alerted to CRC errors, and made it easy to diagnose bad Switch Route Processors (SRPs) on Inter-
+Switch Links (ISLs).  The issue was identified and resolved without extensive detective work. 
+
+In another example, after one of the first ESX host upgrades at Raymond James, the SAN staff 
+used VirtualWisdom to quickly notice that a number of servers were incorrectly configured to go 
+down the same I/O path.  Multi-pathing was quickly re-enabled, before the application users 
+were affected. 
+
+Optimizing Hardware 
+
+Thanks to the benefits of server virtualization, Raymond James has stopped the explosion of 
+server sprawl, and with an average 10:1 guest to host ratio, is repurposing existing servers as 
+ESX hosts.  Additionally, the number of SAN links is stabilizing, and VirtualWisdom is being used 
+to verify that the network consolidation doesn’t impact performance. 
+
+Lessons Learned 
+
+When asked what he would recommend to all new VirtualWisdom customers, Doug Ward, 
+Storage Analyst replies “Spend as much time as you can with the services people learning how to 
+develop reports”.  We could not agree more.  VirtualWisdom is a powerful platform, and utilizing 
+the expertise of Virtual Instruments’ QuickStart services pays for itself many times over in 
+helping to reduce CAPEX and OPEX. 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+“I like the VirtualWisdom 
+dashboard; I can log in and 
+
+immediately see  if 
+
+something’s yellow or red 
+
+and needs attention” 
+
+-Doug Ward 
+Storage Analyst 
+
+ 
+
+ 25 Metro Drive, Suite 400  
+
+San Jose, CA 95110  
+ 
+Sales Information  
+sales@virtualinstruments.com 
+ 
+Customer Support  
+support@virtualinstruments.com  
+www.virtualinstruments.com 
+ 
+ 
+©2009 Virtual Instruments. All rights 
+reserved. Features and specifications are 
+subject to change without notice 11/09 
+ 
+
+ WWW.VIRTUALINSTRUMENTS.COM 
+
+
